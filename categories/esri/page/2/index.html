@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>ESRI – Node Dangles</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://maprantala.com/categories/esri/index.xml">
+<meta name="description" content="">
+<meta name="created" content="2018-06-22T20:26:28-0500">
+<meta name="modified" content="2018-06-22T20:26:28-0500">
+<meta name="author" content="Matthew Rantala">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="ESRI">
+<meta property="og:url" content="https://maprantala.com/categories/esri/">
+<meta property="og:type" content="website">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/categories/esri/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url" : "https://maprantala.com/categories/esri/",
+    "name": "ESRI",
+    "description": "Geospatial Programming Blog",
+    "author": {
+      "@type": "Person",
+      "name": "Matthew Rantala"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="list-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/" class="active" aria-current="page">Home</a></li>
+<li><a href="/2019-01-21-wordpress-permalinks-snafu/">WordPress Permalinks Snafu</a></li>
+<li><a href="/posts/">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<h1 class="title">ESRI</h1>
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-05-23-feature-classes-and-tables-with-names-starting-with-nd/">Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</a></h2>
+
+</header>
+<div class="content">
+Random luck me to discovering a bug related to feature classes whose names start with “nd_”. It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
+I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/">Renaming Raster Dataset and arcpy.Exists()</a></h2>
+
+</header>
+<div class="content">
+Discovered something today. I was working on an arcpy script that copies a raster dataset from a file geodatabase into a Postgres SDE geodatabase and then does some boring routine tasks–building stats, creating a mosaic dataset, adding the raster to the mosaic dataset and making a couple referenced mosaic datasets.
+It sometimes has trouble with the initial step of uploading the raster because of the sheer size of if (1m elevation raster for counties) and it failed today on one.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/">Sorting a Coded-Value Domain Add-In (ArcGIS 10)</a></h2>
+
+</header>
+<div class="content">
+I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation. So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.
+This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/">Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</a></h2>
+
+</header>
+<div class="content">
+For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.
+Here is the bare-bones script that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-04-08-change-detector-script-arcgis-resource-center/">Change Detector arcpy Script</a></h2>
+
+</header>
+<div class="content">
+During a process I was working on, I needed to compare a feature class before and after some edits. I did not quickly find anything in ArcToolbox but searching ArcResources led me to Change Detector script by Bruce Harold. After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-03-25-arcideas-scale-dependant-settings/">ArcIdeas: Scale-Dependant Settings.</a></h2>
+
+</header>
+<div class="content">
+Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent. Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range. Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.
+I’m not sure how rapidly ESRI takes “Ideas” into consideration but if you feel like it would benefit you, why not promote this idea: Scale Range, SQL Query and Symbology Rendering in ArcMap.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/">Using arcpy to List Domains Assigned to Featureclass Fields</a></h2>
+
+</header>
+<div class="content">
+I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain. Rows were moved to the bottom of the list when they were edited.
+So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-03-08-calculating-geometry-using-arcpy-in-field-calculator/">ArcMap Field Calculator: Calculating Geometry using arcpy</a></h2>
+
+</header>
+<div class="content">
+One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the Field Calculator. When I stumbled upon a bug in the way the Extract Values to Points tool handles Null geometries, I figured it was time to figure it out. Setting the X, Y to 0,0 was sufficient for my needs.
+I set the Parser to Python and the formula was simple once I figured out the syntax:
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-03-07-extract-values-to-points-spatial-analyst-bug/">Extract Values to Points (Spatial Analyst) Bug</a></h2>
+
+</header>
+<div class="content">
+One of the Spatial Analyst tools we often use in ArcGIS is the “Extract Values to Points” tool. This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.
+
+Today I was running it for the first time against an Image Service we recently published and I received a warning message,”WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry”.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-03-02-instantiating-add-in-objects-at-load-time/">Instantiating Add-In Objects at Load Time</a></h2>
+
+</header>
+<div class="content">
+In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0. So far, I’m loving the functionality.
+One thing, however, that I have to figure out is that the controls are not instantiated until they are clicked on. One of the results is that the controls, by default, are enabled.
+</div>
+</article>
+
+<nav class="pager">
+<a href="/categories/esri/" rel="prev" class="pager-item pager-prev">Prev</a>
+<a href="/categories/esri/page/3/" rel="next" class="pager-item pager-next">Next</a>
+</nav>
+
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

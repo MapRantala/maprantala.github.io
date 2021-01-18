@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>arcsde 10 on Node Dangles</title>
+    <link>https://maprantala.com/tags/arcsde-10/</link>
+    <description>Recent content in arcsde 10 on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Aug 2012 07:17:41 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/arcsde-10/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>SDEINTERCEPT &amp;#038; SDEINTERCEPTLOC</title>
+      <link>https://maprantala.com/posts/2012-08-01-sdeintercept-sdeinterceptloc/</link>
+      <pubDate>Wed, 01 Aug 2012 07:17:41 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2012-08-01-sdeintercept-sdeinterceptloc/</guid>
+      <description>&lt;p&gt;Awhile ago, I had a ArcSDE problem that required &lt;a href=&#34;http://support.esri.com/en/&#34;&gt;ESRI technical support&lt;/a&gt; to help trouble-shoot. The problem was odd but was resolved by rebooting the server.&lt;br&gt;
+During the process, though, the support person had me set a couple of environment variables for logging SDE activity on the client machine.&lt;/p&gt;
+&lt;p&gt;The settings were SDEINTERCEPT and SDEINTERCEPTLOC.&lt;/p&gt;
+&lt;p&gt;From &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002n00000018000000&#34;&gt;ESRI’s Help&lt;/a&gt;, SDEINTERCEPT specifies what activity to log and SDEINTERCEPTLOC specifies where to save the log files.&lt;/p&gt;
+&lt;p&gt;I recently deleted the directory I made for the log files but did not remove the variables and I noticed that one of my python scripts reported a weird error (but continued to run, I think). I tracked it back to these variables and realized what I had done.&lt;/p&gt;
+&lt;p&gt;Googling SDEINTERCEPTLOC did lead me to some helpful information like:&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;http://sdeintercept.wordpress.com/2011/11/22/sde-user-permissions/&#34;&gt;SDEINTERCEPT blog&lt;/a&gt; where Ken posts ArcSDE help.&lt;/p&gt;
+&lt;p&gt;This &lt;a href=&#34;http://blogs.esri.com/esri/arcgis/2008/09/05/digging-deeper-troubleshooting-geoprocessing-errors-when-using-arcsde-data/&#34;&gt;ESRI post&lt;/a&gt; about troubleshotting geoprocessing problems.&lt;/p&gt;
+&lt;p&gt;And this &lt;a href=&#34;http://support.esri.com/en/knowledgebase/techarticles/detail/35704&#34;&gt;ESRI technical&lt;/a&gt; article about diagnosing ArcSDE Connections.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Revoking &amp;#8216;Public&amp;#8217; Permissions in PostgreSQL ArcSDE</title>
+      <link>https://maprantala.com/posts/2011-03-11-revoking-public-permissions-in-postgresql-arcsde/</link>
+      <pubDate>Fri, 11 Mar 2011 11:11:48 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-03-11-revoking-public-permissions-in-postgresql-arcsde/</guid>
+      <description>&lt;p&gt;While banging my head on how to grant access to a &lt;a href=&#34;http://wp.me/pVrsJ-6Q&#34;&gt;referenced mosaic dataset&lt;/a&gt; , I did something out of frustration that I normally would not do–I granted ‘public’ access to some data.&lt;/p&gt;
+&lt;p&gt;Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:&lt;/p&gt;
+&lt;p&gt;Error 999999: Error executing function.&lt;/p&gt;
+&lt;p&gt;The Object being referenced does not exist [ERROR:  role “public” does not exist::SQL state: 42704]&lt;br&gt;
+Failed to execute (ChangePrivileges).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/revokepublic.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I actually expected that would occur–ArcSDE isn’t aware of PostgreSQL’s public account.&lt;/p&gt;
+&lt;p&gt;The solution was to go into pgAdmin II and revoke the privileges there.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/revokepgadminiii.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

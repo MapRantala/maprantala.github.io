@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Calling os.startfile and webbrowser.open from ArcGIS. – Node Dangles</title>
+<meta name="description" content="Recently I’ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a “Help” button that opens a help file in .pdf format.Sample python …">
+<meta name="created" content="2014-12-31T14:38:16-0600">
+<meta name="modified" content="2014-12-31T14:38:16-0600">
+<meta name="author" content="Matt">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="Calling os.startfile and webbrowser.open from ArcGIS.">
+<meta property="og:url" content="https://maprantala.com/posts/2014-12-31-calling-os-startfile-and-webbrowser-open-from-arcgis/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/posts/2014-12-31-calling-os-startfile-and-webbrowser-open-from-arcgis/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Calling os.startfile and webbrowser.open from ArcGIS.",
+    "datePublished": "2014-12-31T14:38:16-06:00",
+    "dateModified": "2014-12-31T14:38:16-06:00",
+    "url" : "https://maprantala.com/posts/2014-12-31-calling-os-startfile-and-webbrowser-open-from-arcgis/",
+    "description": "Recently I’ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a “Help” button that opens a help file in .pdf format.Sample python …",
+    "keywords": ["arcpy","ESRI","python"],
+    "author": {
+      "@type": "Person",
+      "name": "Matt"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/2019-01-21-wordpress-permalinks-snafu/">WordPress Permalinks Snafu</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title ">Calling os.startfile and webbrowser.open from ArcGIS.</h1>
+<div class="tags">
+Tags:
+<ul>
+<li><a href="/tags/arcpy">arcpy</a></li>
+<li><a href="/tags/esri">ESRI</a></li>
+<li><a href="/tags/python">python</a></li>
+</ul>
+</div>
+</header>
+<div class="content">
+<p>Recently I’ve created <!-- raw HTML omitted -->Python add-ins<!-- raw HTML omitted --> for data entry for our staff. Most of these have a toolbar with a “Help” button that opens a help file in .pdf format.<!-- raw HTML omitted --></p>
+<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2014/12/Toolbar.png"><!-- raw HTML omitted --></a><!-- raw HTML omitted -->Sample python add-in toolbar.<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(<em>path to help.pdf</em>).</p>
+<p>However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!</p>
+<p>Luckily the <!-- raw HTML omitted -->Python development team at Esri<!-- raw HTML omitted --> already had a <!-- raw HTML omitted -->blog post<!-- raw HTML omitted --> about this at their <!-- raw HTML omitted -->ArcPy Café blog<!-- raw HTML omitted -->.</p>
+<p>They report that the root of the problem is “conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool”. But this can be overcome by using a <!-- raw HTML omitted -->decorator<!-- raw HTML omitted --> function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.</p>
+<p>Example code is shown below:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I’ve been able to tell, works fine without crashing your ArcMap session.</p>
+<p>Cheers!</p>
+
+
+</div>
+</article>
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

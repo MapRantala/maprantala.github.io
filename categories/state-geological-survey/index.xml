@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>State Geological Survey on Node Dangles</title>
+    <link>https://maprantala.com/categories/state-geological-survey/</link>
+    <description>Recent content in State Geological Survey on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Aug 2010 16:50:04 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/categories/state-geological-survey/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Utah Geological Survey</title>
+      <link>https://maprantala.com/posts/2010-08-04-utah-geological-survey/</link>
+      <pubDate>Wed, 04 Aug 2010 16:50:04 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-08-04-utah-geological-survey/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://geology.utah.gov/&#34;&gt;Utah Geological Survey&lt;/a&gt; has a good supply of &lt;a href=&#34;http://geology.utah.gov/maps/geomap/index.htm&#34;&gt;Maps&lt;/a&gt; and &lt;a href=&#34;http://geology.utah.gov/maps/gis/index.htm&#34;&gt;data&lt;/a&gt; available online and some &lt;a href=&#34;http://geology.utah.gov/maps/index.htm&#34;&gt;online maps&lt;/a&gt;. They also have an online &lt;a href=&#34;http://geology.utah.gov/blog/&#34;&gt;Blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The GIS data is a fairly complete package–the sample I downloaded included .pdfs, shapefiles, layer files, images and ArcMap project (.MXD) files used to generate the .pdfs.  File sizes are larger because of the completeness.  Feature classes have a moderate level of attribution.&lt;/p&gt;
+&lt;p&gt;The highlight, however, are the sample &lt;a href=&#34;http://geology.utah.gov/geo_guides/st_george/index.htm&#34;&gt;Keyhole Markup (KMZ) files&lt;/a&gt; of the of the St. George 30′ x 60′ quadrangle that can be viewed in Google Earth.  Too cool.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Arizona Geological Survey</title>
+      <link>https://maprantala.com/posts/2010-07-23-arizona-geological-survey/</link>
+      <pubDate>Fri, 23 Jul 2010 19:07:52 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-23-arizona-geological-survey/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.azgs.az.gov/&#34;&gt;The Arizona Geological Survey&lt;/a&gt; has a great looking site with some good information.  They have a &lt;a href=&#34;http://www.azgs.az.gov/publications_online/pubslist_2008.pdf&#34;&gt;publication list&lt;/a&gt; that can either be downloaded or ordered and are making pdf versions of their recent publications available &lt;a href=&#34;http://www.azgs.az.gov/publications_online.shtml&#34;&gt;online&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I was going to note that there was no download-able data available until Google told me that they in fact had a &lt;a href=&#34;http://www.azgs.az.gov/services_azgeomap.shtml&#34;&gt;WMS/WFS available online&lt;/a&gt;.  The WMS is a great looking map, I have not gotten the WFS to work, however–probably more due to my abilities than the service.&lt;/p&gt;
+&lt;p&gt;They are also temporarily hosting a &lt;a href=&#34;http://services.azgs.az.gov/OnlineMaps/demos/nvClarkCounty.html&#34;&gt;surficial geology map&lt;/a&gt; of Clark County, Nevada.&lt;/p&gt;
+&lt;p&gt;Lee Allison, the State Geologist, also has a &lt;a href=&#34;http://arizonageology.blogspot.com/&#34;&gt;blog&lt;/a&gt; with frequent postings.  One of which led me to the Nation Park Service’s &lt;a href=&#34;http://science.nature.nps.gov/nrdata/&#34;&gt;Data Stor&lt;/a&gt;e which is worth a look.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Create Geologic Cross Sections&amp;#8211;eXacto Section v. 2.0, ArcMap 9.3</title>
+      <link>https://maprantala.com/posts/2010-07-23-create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/</link>
+      <pubDate>Fri, 23 Jul 2010 13:59:44 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-23-create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://arcscripts.esri.com/details.asp?dbid=16734&#34;&gt;Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3&lt;/a&gt; written by Jennifer Carrell of the &lt;a href=&#34;http://www.isgs.illinois.edu/&#34;&gt;Illinois State Geological Survey&lt;/a&gt; is a handy tool for creating cross sections.&lt;/p&gt;
+&lt;p&gt;It requires ArcGIS and a 3D Analyst Extension license.&lt;/p&gt;
+&lt;p&gt;You can create profiles against multiple DEMs at once, define the vertical exaggeration, and have it include contact points.  It is well documented and comes with sample data to use with the tutorial.&lt;/p&gt;
+&lt;p&gt;I did not see it mentioned but it also include a personal geodatabase that include a grid that can be used along with the profiles you create.&lt;/p&gt;
+&lt;p&gt;If  you make profiles, think this is definitely an option you should look at.  The fact that it is a VBA application is a bit worrisome in that its lifespan is limited.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Michigan Office of Geological Survey</title>
+      <link>https://maprantala.com/posts/2010-07-22-michigan-office-of-geological-survey/</link>
+      <pubDate>Thu, 22 Jul 2010 15:31:20 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-22-michigan-office-of-geological-survey/</guid>
+      <description>&lt;p&gt;The Michigan &lt;a href=&#34;http://www.michigan.gov/deq/0,1607,7-135-3306_57064-87386--,00.html&#34;&gt;Office of Geological Survey&lt;/a&gt; appears to have pdf versions of all the documents in their &lt;a href=&#34;http://www.michigan.gov/documents/deq/GIMDL-Catalog-2010-01-20_307979_7.pdf&#34;&gt;Digital Geological Library&lt;/a&gt; available for download.  The transcripts of some early (beginning in 1871) &lt;a href=&#34;http://www.michigan.gov/documents/deq/OFR_19_Rominger_1871-1874_Aopt_306084_7.pdf&#34;&gt;field notes&lt;/a&gt; are a fun inclusion in the available archives.&lt;/p&gt;
+&lt;p&gt;Actual GIS data was a bit hard to find although I found both bedrock geology and quarternary geology available from the state &lt;a href=&#34;http://www.mcgi.state.mi.us/mgdl/?action=thm&#34;&gt;Geographic Data Library&lt;/a&gt; in shapefile format.  I also found oil and gas well data but did not download it.&lt;/p&gt;
+&lt;p&gt;The data carried minimal attribution, one interesting thing I found in the bedrock data was the red, green, blue values apparently used for each polygon.&lt;/p&gt;
+&lt;p&gt;One thing to be aware of is that the shapefiles do not come with a prj file which could be a problem.  Michigan has their own defined coordinate system called &lt;a href=&#34;http://www.michigan.gov/documents/DNR_Map_Proj_and_MI_Georef_Info_20889_7.pdf&#34;&gt;Michigan GeoRef&lt;/a&gt;.  This coordinate system defines the entire state into a single zone instead of multiple zones like the USGS’ stateplane system does.  This is nice to work with UNLESS it comes undocumented as I found out while doing some consulting work in Au Train, Michigan a decade ago–I was able to finally find something online about it around 2 am one morning but I think I still have scars from the head-pounding that occurred that night.&lt;/p&gt;
+&lt;p&gt;ESRI, however, makes it easy to deal with this data–they include the specifications for Michigan GeoRef in inventory of predefined coordinate systems that ships with ArcGIS.  If you define the projection on each shapefile, it will then load automatically in real-world coordinates.  To define the projection on a shapefile, right-click on it in ArcCatalog and select “Properties…”.  Select “XY Coordinate System” on the Shapefile Properties dialog.  Hit the “Select” button and navigate to Projected Coordinate Systems-State Sytems-NAD 1983 Michigan GeoRef (Meters).prj.  Hit the “Add” button and then the “Apply” button.  Repeat for any other shapefiles you download.&lt;/p&gt;
+&lt;p&gt;One item I found out about ArcGIS while doing this is that if you change the projection on a shapefile, it will recognize that change the next time you use that data.  I originally set the units to be feet on the data so it did not load in the proper real-world location.  I saved my ArcMap document, quit out, and corrected the problem.  When I re-opened the document, Michigan had migrated back to where we are used to seeing it.  This contrasts with how ArcView 3.x use to handle raster data, you had to actually remove the layer from your view and re-load it to recognize the change in spatial references.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wisconsin Geological and Natural History Survey</title>
+      <link>https://maprantala.com/posts/2010-07-15-wisconsin-geological-and-natural-history-survey/</link>
+      <pubDate>Thu, 15 Jul 2010 13:18:28 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-15-wisconsin-geological-and-natural-history-survey/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://www.uwex.edu/wgnhs/&#34;&gt;Wisconsin Geological and Natural History Survey&lt;/a&gt; has a well organized, appealing website.  Their data is easy to find although there is not much GIS data available.&lt;/p&gt;
+&lt;p&gt;Although because I am more interested in sample data sets than anything, the &lt;a href=&#34;http://www.uwex.edu/wgnhs/gis.htm&#34;&gt;GIS data&lt;/a&gt; they do have–statewide geologic map; pleistocene geology, precambrian geology, quaternary geology, (surficial?) geology and bedrock geology for various counties–may actually be a great reference.  Other than the statewide geologic map, the data is available on a per-publication basis.&lt;/p&gt;
+&lt;p&gt;Some other data is available in the &lt;a href=&#34;http://www.uwex.edu/wgnhs/wofrs.htm&#34;&gt;open-file reports&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;They also have a &lt;a href=&#34;http://www.uwex.edu/wgnhs/wcrs.htm&#34;&gt;well contructor’s reports CD&lt;/a&gt; available for purchase, albeit only scanned images of the wells and a very simple database.&lt;/p&gt;
+&lt;p&gt;Other .pdfs are also available of various &lt;a href=&#34;http://www.uwex.edu/wgnhs/sample.htm&#34;&gt;state-wide maps&lt;/a&gt; and for various open-file reports.&lt;/p&gt;
+&lt;p&gt;I found some interesting things while reviewing the data I downloaded.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;There is minimal attribution on the data–enough to symbolize it.&lt;/li&gt;
+&lt;li&gt;Dip &amp;amp; Strike triangles are captured as points with attribution of the horizontal azimuth and inclination.&lt;/li&gt;
+&lt;li&gt;One item I found odd at first but quickly grew to appreciate is that they provide a georeferenced .sid of  each plate.  This allows you to directly compare the digital data to the final cartographic product.  Think this may be a keeper of an idea.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Iowa Geological Survey</title>
+      <link>https://maprantala.com/posts/2010-07-14-iowa-geological-survey/</link>
+      <pubDate>Wed, 14 Jul 2010 13:01:47 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-14-iowa-geological-survey/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://www.igsb.uiowa.edu/&#34;&gt;Iowa Geological Survey&lt;/a&gt; has a lot of data available to download &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/nrgislibx/&#34;&gt;here&lt;/a&gt;.  PDF versions of many of their publications can be found in their &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/gsbpubs/&#34;&gt;List of Publications&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Their GIS data is minimally attributed for the most part, their public wells data set did have a more robust attribution scheme.  One cool feature I found in the wells data is that they provide a hyper-link for many features to an &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/geosam/Scripts/geocard.asp?wnumber=43873&#34;&gt;on-line site record&lt;/a&gt;.  Found both shapefiles and file geodatabases in the samples I downloaded.&lt;/p&gt;
+&lt;p&gt;More interestingly, I opened up their Bedrock Geological Map and noticed something odd to me.  See the bulls-eye just NW of center?  That, even to a non-geologist like me, does not look too geologic.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Turns out it is related to a meteorite impact known as the &lt;a href=&#34;http://en.wikipedia.org/wiki/Manson_crater&#34;&gt;Manson Crater&lt;/a&gt;, once thought to be The Dinosaur Killer until it was determined to be too old.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>South Dakota Geological Survey</title>
+      <link>https://maprantala.com/posts/2010-07-13-south-dakota-geological-survey/</link>
+      <pubDate>Tue, 13 Jul 2010 12:33:07 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-13-south-dakota-geological-survey/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://www.sdgs.usd.edu/&#34;&gt;South Dakota Geological Survey&lt;/a&gt; website provides some good base data–imagery, DRGs, DEMs, and DLGs.  There is a searchable database of &lt;a href=&#34;http://www.sddenr.net/core/&#34;&gt;core cuttings&lt;/a&gt; and the &lt;a href=&#34;http://arcgis.sd.gov/server/sdgis/Data.aspx&#34;&gt;state data server&lt;/a&gt; has bedrock data for the eastern portion of the state and a statewide layer, presumably surficial geology, called geology.  Quad-based geological maps are also available (PDF format) in the &lt;a href=&#34;http://www.sdgs.usd.edu/publications/index.html&#34;&gt;Publications and Maps&lt;/a&gt; section.  The data I downloaded was in shapefile format with minimal attribution.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>North Dakota Geological Survey</title>
+      <link>https://maprantala.com/posts/2010-07-12-north-dakota-geological-survey/</link>
+      <pubDate>Mon, 12 Jul 2010 13:53:28 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-12-north-dakota-geological-survey/</guid>
+      <description>&lt;p&gt;Took a quick look at the &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/&#34;&gt;North Dakota Geological Survey’s website&lt;/a&gt; for GIS data.&lt;/p&gt;
+&lt;p&gt;The only data I found served directly from their website was &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/surfacegeo/surfacemapsnew.asp&#34;&gt;surface geology map&lt;/a&gt; .pdfs for some 24k and 100k maps.  Also available is a search for &lt;a href=&#34;https://www.dmr.nd.gov/oilgas/findwellsvw.asp&#34;&gt;Oil &amp;amp; Gas wells&lt;/a&gt; although I did not see the data was downloadable.  Some other &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/Publication_List/contentsnew.asp&#34;&gt;publications&lt;/a&gt; have .pdfs that can be downloaded.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;http://web.apps.state.nd.us/imf/sites/hubexplorer/jsp/index.jsp&#34;&gt;North Dakota Hub Explorer&lt;/a&gt; serves as the state’s official data portal including for GIS data.  The downloadable data includes bedrock geology, surface geology, and contours.  Interestingly, the site allows you to choose from 7 different coordinate systems and 27 different file formats including several AutoCad, ESRI, MapInfo, and KML.  The data I looked at had more attribution than the bare minimum shown on a hard-copy map.  Bedrock data, for example, had additional lithology.&lt;/p&gt;
+&lt;p&gt;Even though I appeared to be getting a &lt;em&gt;Request is complex&lt;/em&gt; error message, their system functioned very well, you step your way through a few selections and a few minutes later you receive an email providing a link to start a download of your compressed data.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AASG</title>
+      <link>https://maprantala.com/posts/2010-07-09-aasg/</link>
+      <pubDate>Fri, 09 Jul 2010 19:49:51 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-09-aasg/</guid>
+      <description>&lt;p&gt;I was looking for links to all the State Geological Surveys and found the Association of American State Geologists (AASG) &lt;a href=&#34;http://www.stategeologists.org/&#34;&gt;Homepage&lt;/a&gt; to have exactly what I needed.&lt;/p&gt;
+&lt;p&gt;I hope to build some sort of inventory of data samples available.  If I do one a day, can be done in 10 weeks, or about 3 months.&lt;/p&gt;
+&lt;p&gt;What I will find the most useful is data distribution methods and data structures.&lt;/p&gt;
+&lt;p&gt;The USGS has a sample web application and it includes statewide data for four states–Arizona, Idaho, Oregon and Washington, so those, along with Illinois and the states that border Minnesota will be among the first I take a look at.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://maps.ngmdb.us/dataviewer/&#34;&gt;http://maps.ngmdb.us/dataviewer/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

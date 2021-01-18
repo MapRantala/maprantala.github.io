@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python.geoprocessing on Node Dangles</title>
+    <link>https://maprantala.com/tags/python.geoprocessing/</link>
+    <description>Recent content in python.geoprocessing on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Jan 2011 15:31:48 -0600</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/python.geoprocessing/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Checking to see if a Field Index Exists Using Python (geoprocessing 9.3).</title>
+      <link>https://maprantala.com/posts/2011-01-27-checking-to-see-if-a-field-index-exists-using-python/</link>
+      <pubDate>Thu, 27 Jan 2011 15:31:48 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-01-27-checking-to-see-if-a-field-index-exists-using-python/</guid>
+      <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
+&lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
+&lt;p&gt;No problem creating the index, for example:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn’t work-it did not like the “while” loop construction.  I’m guessing it worked in 9.2 and despite ESRI’s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
+&lt;p&gt;A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

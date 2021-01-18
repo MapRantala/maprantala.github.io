@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>python – Node Dangles</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://maprantala.com/tags/python/index.xml">
+<meta name="description" content="">
+<meta name="created" content="2018-05-08T17:56:09-0500">
+<meta name="modified" content="2018-05-08T17:56:09-0500">
+<meta name="author" content="Matthew Rantala">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="python">
+<meta property="og:url" content="https://maprantala.com/tags/python/">
+<meta property="og:type" content="website">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/tags/python/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url" : "https://maprantala.com/tags/python/",
+    "name": "python",
+    "description": "Geospatial Programming Blog",
+    "author": {
+      "@type": "Person",
+      "name": "Matthew Rantala"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="list-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/" class="active" aria-current="page">Home</a></li>
+<li><a href="/2019-01-21-wordpress-permalinks-snafu/">WordPress Permalinks Snafu</a></li>
+<li><a href="/posts/">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<h1 class="title">python</h1>
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2010-09-13-topotoraster-error/">TopoToRaster Error</a></h2>
+
+</header>
+<div class="content">
+In running an automated process, I had a TopoToRaster repeatedly fail on me. The only input theme was a contour theme. The process ran fine when I used the envelope of the contour theme as the output extent but when I changed it to the envelope of a polygon theme, it would bomb. The polygon’s envelope was smaller than the contour theme.
+ArcCatalog would bomb out without presenting any sort of useful message.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2010-07-26-accessing-network-drives-via-scheduled-python-task/">Accessing Network Drives via Scheduled Python Task</a></h2>
+
+</header>
+<div class="content">
+As previously mentioned, I have a scheduled nightly backup that is written in Python. Most of it has been working fine but I had not gotten it to copy files to network drives. I finally got around to correcting that part. My first attempt was just to map the network drives for the user account that is used to run the task. No good.
+My second attempt was to call a .
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2010-07-09-python-emailer/">Python emailer</a></h2>
+
+</header>
+<div class="content">
+So I have a nightly process that runs and I, being the lazy programmer I am, didn’t want to bother checking a log file each morning to see how it went. The natural answer is to have the results emailed to me because I do have to check my email.
+Since the process is already handled mostly in python, thought I would implement the emailing via python. It was actually simple enough to do–just required figuring out the setting for my SMTP server (actually I didn’t figure it our for my work server so I’m using my GMail account).
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2010-07-07-ned-processing-in-python-geoprocessing/">NED Processing in Python &amp;#038; Geoprocessing</a></h2>
+
+</header>
+<div class="content">
+<p>The <a href="http://www.usgs.gov/">USGS</a> updated a significant portion of <a href="http://ned.usgs.gov/">NED</a> data for my state in June.  I recently downloaded the updates, processed them–projecting and converting the elevations from meters to feet–using python and geoprocessing.  My python skills are still pretty crude but I was able to get the job done.</p>
+<p>One of the benefits of working for the public sector is that I can more freely publish code without worrying about “trade secrets” or what have you so I thought I would put my code out for anyone to see, maybe someone will find it useful.  It is split into two separate files, mostly because I used <!-- raw HTML omitted -->Model Builder<!-- raw HTML omitted --> to generate the main processing chunk of code (Project_Reclassify.py) and another script to control looping, etc. The code isn’t pretty and you’ll see the results of my development process with two subroutines in LaunchScript.py that could really be one.</p>
+<h3 id="heading"></h3>
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2010-05-16-measuring-distance-from-a-point-to-a-line-segment/">Measuring distance from a point to a line segment in Python.</a></h2>
+
+</header>
+<div class="content">
+I recently had the need to calculate the distance from a point (address point) to a polyline (street segment) and wanted to avoid using any additional libraries because it was being done for an external client. Ok, I actually used arcgisscripting for reading the data but that lacked, from what I could tell, the fine-detail granularity of measuring distance between individual geometries.
+But since the only spatial operations I needed were to measure the distance between two points and the distance between a point and polyline, I decided to just do it via brute force.
+</div>
+</article>
+
+<nav class="pager">
+<a href="/tags/python/page/2/" rel="prev" class="pager-item pager-prev">Prev</a>
+</nav>
+
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

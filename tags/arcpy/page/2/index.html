@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>arcpy – Node Dangles</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://maprantala.com/tags/arcpy/index.xml">
+<meta name="description" content="">
+<meta name="created" content="2018-05-08T17:56:09-0500">
+<meta name="modified" content="2018-05-08T17:56:09-0500">
+<meta name="author" content="Matthew Rantala">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="arcpy">
+<meta property="og:url" content="https://maprantala.com/tags/arcpy/">
+<meta property="og:type" content="website">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/tags/arcpy/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url" : "https://maprantala.com/tags/arcpy/",
+    "name": "arcpy",
+    "description": "Geospatial Programming Blog",
+    "author": {
+      "@type": "Person",
+      "name": "Matthew Rantala"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="list-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/" class="active" aria-current="page">Home</a></li>
+<li><a href="/2019-01-21-wordpress-permalinks-snafu/">WordPress Permalinks Snafu</a></li>
+<li><a href="/posts/">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<h1 class="title">arcpy</h1>
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2012-05-02-quick-dirty-arcpy-autopan-arcmap-using-arcpy/">Quick &amp;#038; Dirty arcpy: Autopan ArcMap using arcpy</a></h2>
+
+</header>
+<div class="content">
+Question: How do I get ArcMap to automatically pan through an area.
+As I mentioned in a previous post, I recently had the need to have ArcMap automatically pan through a project area. My first attempt was to print a series of data-driven pages (using a fishnet polygon layer as the index) this but that did not accomplish what I needed so I switched to arcpy, which made the task simple enough.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2012-04-28-arcmap-field-calculator-identifying-unique-cases-single-field/">ArcMap Field Calculator: Identifying Unique Cases, Single Field</a></h2>
+
+</header>
+<div class="content">
+Seems like a lot of people are finding the ArcMap Field Calculator examples that I have posted useful so I will make an effort to post more of them. Most posts are generated after I do something and think that others might want to know how to do it. (Or so I can go back and remember how I did something without re-inventing it).
+Something I did today was create a field (!
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2012-04-23-arcmap-field-calculator-identifying-unique-cases-multiple-fields/">ArcMap Field Calculator: Identifying Unique Cases, Multiple Fields</a></h2>
+
+</header>
+<div class="content">
+You may have noticed that this post–ArcMap Field Calculator: Identifying Unique Cases, Single Field–specifies “Single Field”. Yes, that was my version of a cliff-hanger post.
+The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats “a” the same as “A”.
+Today’s example groups records into different cases based off the values of two fields, !
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-10-06-field-calculator-arcpy-date-to-decimal-function/">ArcMap Field Calculator: ArcPy Date to Decimal Function</a></h2>
+
+</header>
+<div class="content">
+One of the standards in our databases is to store dates as 8-digit integer values in the format of yyyymmdd. This requires us to occasionally convert values from date fields into this format.
+We can do this in the ArcMap Field Calculator using this arcpy function:
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-07-28-using-arcpy-in-arcgis-10-field-calculater-to-create-a-unique-id/">ArcMap Field Calculator: Create a Unique ID</a></h2>
+
+</header>
+<div class="content">
+One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N. In ArcView 3.x, the formula was simply “rec + 1” if I wanted to start with the number 1.
+In ArcGIS, the process got a little more complex–you had to write a little VBA in Field Calculator as described by ESRI.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-07-11-debugging-a-python-scheduled-task/">Debugging a Python Scheduled Task</a></h2>
+
+</header>
+<div class="content">
+I have been working on a python script that I want (NEED) to run as a scheduled task on a remote machine. I got to the point that the script did exactly what I needed when I was interactively running it in a Windows session but had problems when running it as a scheduled task. The debugging process was cumbersome–make a change, schedule a task to run it, log out of the machine, and wait.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-07-05-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0-redux/">Checking to see if a Field Index Exists Using Arcpy (ArGIS 10.0) redux</a></h2>
+
+</header>
+<div class="content">
+I’ve previously posted python code to check if a field index exists for both ArcGIs 9.3 and ArcGIS 10.0.
+Recently I have been working on a process that was using this code but it was not working because it looks for an index with a specific name. It was not working in this case because the name of the indexes was getting incremented as they were being created. For example, I was building an index on the table C5ST, field RelateId ([C5IX].
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/">Renaming Raster Dataset and arcpy.Exists()</a></h2>
+
+</header>
+<div class="content">
+Discovered something today. I was working on an arcpy script that copies a raster dataset from a file geodatabase into a Postgres SDE geodatabase and then does some boring routine tasks–building stats, creating a mosaic dataset, adding the raster to the mosaic dataset and making a couple referenced mosaic datasets.
+It sometimes has trouble with the initial step of uploading the raster because of the sheer size of if (1m elevation raster for counties) and it failed today on one.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/">Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</a></h2>
+
+</header>
+<div class="content">
+For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.
+Here is the bare-bones script that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-04-08-change-detector-script-arcgis-resource-center/">Change Detector arcpy Script</a></h2>
+
+</header>
+<div class="content">
+During a process I was working on, I needed to compare a feature class before and after some edits. I did not quickly find anything in ArcToolbox but searching ArcResources led me to Change Detector script by Bruce Harold. After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.
+</div>
+</article>
+
+<nav class="pager">
+<a href="/tags/arcpy/" rel="prev" class="pager-item pager-prev">Prev</a>
+<a href="/tags/arcpy/page/3/" rel="next" class="pager-item pager-next">Next</a>
+</nav>
+
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

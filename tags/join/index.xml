@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Join on Node Dangles</title>
+    <link>https://maprantala.com/tags/join/</link>
+    <description>Recent content in Join on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 May 2010 02:02:37 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/join/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ArcMap-Excel Join Error</title>
+      <link>https://maprantala.com/posts/2010-05-28-arcmap-excel-join-error/</link>
+      <pubDate>Fri, 28 May 2010 02:02:37 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-05-28-arcmap-excel-join-error/</guid>
+      <description>&lt;p&gt;Came across a new ArcMap bug today. A staff member was trying to join an Excel 2007 file (.xlsx) to a point shapefile in ArcMap and it did not appear to be working. She only had Office 2003 on her machine so I tried it on my spanking new machine that has 2007 installed. Same result–the fields get appended but they are all blank.&lt;/p&gt;
+&lt;p&gt;I discovered, however, that when I had the table open, if I switched form showing ALL records to only the selected, Poof!!! The values filled in. From there I was able to successfully export the data to a new shapefile that always showed the values.&lt;/p&gt;
+&lt;p&gt;I have an inkling that the file name, which contained space and other special characters, may have been a factor.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;August 11, 2010 Addendum:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I was just working with some more and, after joining a table to an Excel table, having all the fields look blank, I discovered that if I close and then re-open the table all looks good–all fields have values.&lt;/p&gt;
+&lt;p&gt;Another problem I had is that even after successfully joining a table to the Excel table and creating an XY Event Theme from it, I was unsuccessful in exporting it to either a shapefile or a personal geodatabase feature class.  My personal opinion at this point would be to convert the Excel file to a different format before working with it in ArcGIS.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

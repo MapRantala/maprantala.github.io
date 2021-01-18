@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>wisconsin geological and natural history survey on Node Dangles</title>
+    <link>https://maprantala.com/tags/wisconsin-geological-and-natural-history-survey/</link>
+    <description>Recent content in wisconsin geological and natural history survey on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 15 Jul 2010 13:18:28 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/wisconsin-geological-and-natural-history-survey/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Wisconsin Geological and Natural History Survey</title>
+      <link>https://maprantala.com/posts/2010-07-15-wisconsin-geological-and-natural-history-survey/</link>
+      <pubDate>Thu, 15 Jul 2010 13:18:28 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-15-wisconsin-geological-and-natural-history-survey/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://www.uwex.edu/wgnhs/&#34;&gt;Wisconsin Geological and Natural History Survey&lt;/a&gt; has a well organized, appealing website.  Their data is easy to find although there is not much GIS data available.&lt;/p&gt;
+&lt;p&gt;Although because I am more interested in sample data sets than anything, the &lt;a href=&#34;http://www.uwex.edu/wgnhs/gis.htm&#34;&gt;GIS data&lt;/a&gt; they do have–statewide geologic map; pleistocene geology, precambrian geology, quaternary geology, (surficial?) geology and bedrock geology for various counties–may actually be a great reference.  Other than the statewide geologic map, the data is available on a per-publication basis.&lt;/p&gt;
+&lt;p&gt;Some other data is available in the &lt;a href=&#34;http://www.uwex.edu/wgnhs/wofrs.htm&#34;&gt;open-file reports&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;They also have a &lt;a href=&#34;http://www.uwex.edu/wgnhs/wcrs.htm&#34;&gt;well contructor’s reports CD&lt;/a&gt; available for purchase, albeit only scanned images of the wells and a very simple database.&lt;/p&gt;
+&lt;p&gt;Other .pdfs are also available of various &lt;a href=&#34;http://www.uwex.edu/wgnhs/sample.htm&#34;&gt;state-wide maps&lt;/a&gt; and for various open-file reports.&lt;/p&gt;
+&lt;p&gt;I found some interesting things while reviewing the data I downloaded.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;There is minimal attribution on the data–enough to symbolize it.&lt;/li&gt;
+&lt;li&gt;Dip &amp;amp; Strike triangles are captured as points with attribution of the horizontal azimuth and inclination.&lt;/li&gt;
+&lt;li&gt;One item I found odd at first but quickly grew to appreciate is that they provide a georeferenced .sid of  each plate.  This allows you to directly compare the digital data to the final cartographic product.  Think this may be a keeper of an idea.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

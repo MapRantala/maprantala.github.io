@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>self on Node Dangles</title>
+    <link>https://maprantala.com/tags/self/</link>
+    <description>Recent content in self on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 16 May 2010 16:33:30 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/self/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>My Favorite Avenue Snippet Ever.</title>
+      <link>https://maprantala.com/posts/2010-05-16-my-favorite-avenue-snippet-ever/</link>
+      <pubDate>Sun, 16 May 2010 16:33:30 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-05-16-my-favorite-avenue-snippet-ever/</guid>
+      <description>&lt;p&gt;I worked in Avenue for many years but do not expect to do too much more. Before my Avenue skills erode to nothing, thought I would share my favorite Avenue snippet. Really, it involves two “function” scripts that clients scripts can use.&lt;/p&gt;
+&lt;p&gt;What I got use to doing is instead of using a mess of global variables is using one global variable–a dictionary–that was used to store what essentially became global variables. The main advantage of doing this is that I started storing the parameters passed to each script as a global variable named after the script. This came in EXTREMELY useful for debugging purposes because when I was having trouble with a script I could write out my global dictionary to an ODB file at the beginning of that script, thereby storing the application’s state prior to the problem.&lt;/p&gt;
+&lt;p&gt;The first script, MyApplication_Routine_AddSelfDict, is used to add/modify a dictionary entry:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;The second script, MyApplication_Routine_GetSelfDict,  is used to retrieve a value from the global dictionary.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Then I can have client scripts first add an entry (primary key = script name)to the global dictionary storing the parameters passed in (self).  Then I set a local variable to the entry just added.   Then, if I need to debug later, I can throw an exit (shown in red) into the script, run the process and after it exits, I can step through the script and pull the parameters passed in from the global dictionary.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;And that’s it.  Took me several years to refine this technique–for a long time I just stuck a check in at the beginning of each script to see if there were any parameters passed and if so, store them in a separate global.  But what I like abut this is I can write the whole global dictionary out to an ODB, quit out of ArcView and then return to the project, read in the ODB and reset my global dictionary and pick up from where I left off.&lt;/p&gt;
+&lt;p&gt;The one addition that I added later was to remove entries from the global dictionary once a script ends.  I didn’t show it here.&lt;/p&gt;
+&lt;p&gt;Having all this data in one global dictionary is probably a horrendous design approach to anyone with an Object-Orientated mindset but, as they say, it got the job done.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

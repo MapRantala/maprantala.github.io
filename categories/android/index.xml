@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on Node Dangles</title>
+    <link>https://maprantala.com/categories/android/</link>
+    <description>Recent content in Android on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 18 Apr 2014 06:11:58 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/categories/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Friday Fave: Custom Maps App for Android</title>
+      <link>https://maprantala.com/posts/2014-04-18-friday-fave-custom-maps-app-for-android/</link>
+      <pubDate>Fri, 18 Apr 2014 06:11:58 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2014-04-18-friday-fave-custom-maps-app-for-android/</guid>
+      <description>&lt;p&gt;I admit, I love picking up freebie maps. Whether it is from the front desk of a hotel or from the bicycle shop, there is a certain appeal to seeing what people put on maps. I have maps organic orchards, breweries, &lt;!-- raw HTML omitted --&gt;Minnesota authors&lt;!-- raw HTML omitted --&gt;, rails to trails, zoos, fictional places, race maps, and a variety of other things that someone felt the need to cartographize.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://thefriends.org/wp-content/uploads/2012/12/mn_writers_on_the_map_web_download.pdf&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://thefriends.org/&#34;&gt;http://thefriends.org/&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;So, with all these paper maps lying around, I was thrilled to find &lt;!-- raw HTML omitted --&gt;Custom &lt;!-- raw HTML omitted --&gt;Maps&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;, a free app on&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Google Play&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;This app allows you to take a picture (or use an image on your device) and georeference it.  You can then view your location on the map. I’ve tried it with a few maps and have been happy with the results.&lt;/p&gt;
+&lt;p&gt;Similar to georeferencing in a desktop application, you select points on the map and then the same points on a control. You need at lest two or three points. After doing it a couple of times, the process becomes pretty easy and it just takes a minute or two from taking the picture to viewing your current location on the map.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/CustomMaps-AlignPoint.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://www.custommapsapp.com&#34;&gt;http://www.custommapsapp.com&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;An example use case scenario for this app is you are lugging your family around at an overwhelming large amusement park and never quite sure where you are. You can take a picture of the map you picked up at the entrance, georeference it, and your phone will then show exactly where you are on that map and where the nearest loo is.&lt;/p&gt;
+&lt;p&gt;The biggest limitation I’ve seen so far is that there is a limit of 3-5 megapixel size limit on the image. Apparently this is an android limitation on how much memory an app can consume. But if you adjust your camera settings not to exceed this, you should be good.&lt;/p&gt;
+&lt;p&gt;So far, I’m enjoying this app. The author, Marko Teittinen (a good Finn name), has made the source code &lt;a href=&#34;https://code.google.com/p/custom-maps/&#34;&gt;open source&lt;/a&gt; so I look forward to digging into it in more detail.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

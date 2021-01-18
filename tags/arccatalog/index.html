@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>ArcCatalog – Node Dangles</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://maprantala.com/tags/arccatalog/index.xml">
+<meta name="description" content="">
+<meta name="created" content="2012-03-21T18:19:03-0500">
+<meta name="modified" content="2012-03-21T18:19:03-0500">
+<meta name="author" content="Matthew Rantala">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="ArcCatalog">
+<meta property="og:url" content="https://maprantala.com/tags/arccatalog/">
+<meta property="og:type" content="website">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/tags/arccatalog/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url" : "https://maprantala.com/tags/arccatalog/",
+    "name": "ArcCatalog",
+    "description": "Geospatial Programming Blog",
+    "author": {
+      "@type": "Person",
+      "name": "Matthew Rantala"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="list-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/" class="active" aria-current="page">Home</a></li>
+<li><a href="/2019-01-21-wordpress-permalinks-snafu/">WordPress Permalinks Snafu</a></li>
+<li><a href="/posts/">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<h1 class="title">ArcCatalog</h1>
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2012-03-21-domain-sorter-add-in-version-1-1/">Domain Sorter Add-In Version 1.1</a></h2>
+
+</header>
+<div class="content">
+Almost a year ago, I updated ERSI’s Domain Sort code for VB 6 to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had an open OLE connection. When I tested it, it turned out the reports were accurate.
+
+I got around to adding in a Try-Catch around the offending chunk of code &amp; it is now better than ever. You can download just the Add-In or the Add-In with source code or get it from ESRI’s ArcGIS Resource Center.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-05-23-feature-classes-and-tables-with-names-starting-with-nd/">Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</a></h2>
+
+</header>
+<div class="content">
+Random luck me to discovering a bug related to feature classes whose names start with “nd_”. It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
+I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.
+</div>
+</article>
+
+
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

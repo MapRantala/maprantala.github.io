@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python parameters on Node Dangles</title>
+    <link>https://maprantala.com/tags/python-parameters/</link>
+    <description>Recent content in python parameters on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Dec 2010 14:56:43 -0600</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/python-parameters/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Launching a Python script with parameters&amp;#8211;3 methods.</title>
+      <link>https://maprantala.com/posts/2010-12-13-launching-a-python-script-with-parameters-3-methods/</link>
+      <pubDate>Mon, 13 Dec 2010 14:56:43 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2010-12-13-launching-a-python-script-with-parameters-3-methods/</guid>
+      <description>&lt;p&gt;Since I use python for different tasks, I launch python scripts a variety of ways. Depending on what I am doing, a single script may need to accept parameters from either:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Passed in from an ArcGIS Toolbox Tool.&lt;/li&gt;
+&lt;li&gt;Re-occurring default value.  Often used in scheduled processes, a nightly backup, for example.&lt;/li&gt;
+&lt;li&gt;A temporary set of values used in an interactive, debugging session.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;What I often do is make the parameter interpretation flexible to meet my needs.  The sample below shows how I do this.  The logic first checks to see if the correct number of parameters were used to launch the script (i.e. if it is called by an Arc Toolbox tool), where the files for the default files exist or if the debug values are valid, including checking the current date against a hard-coded date variable.  Juggling the conditional structure would allow you to prioritize the options differently.&lt;/p&gt;
+&lt;p&gt;I am also using Tkinter to display an interactive dialog if none of the three conditions are successfully met.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

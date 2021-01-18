@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>odbc connection on Node Dangles</title>
+    <link>https://maprantala.com/tags/odbc-connection/</link>
+    <description>Recent content in odbc connection on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Mar 2011 20:06:59 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/odbc-connection/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Updating Access ODBC connections using VBA</title>
+      <link>https://maprantala.com/posts/2011-03-16-updating-access-odbc-connections-using-vba/</link>
+      <pubDate>Wed, 16 Mar 2011 20:06:59 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-03-16-updating-access-odbc-connections-using-vba/</guid>
+      <description>&lt;p&gt;I don’t do much in Access or VBA but sometimes you inherit things that force you, at least temporarily, to go retro.&lt;/p&gt;
+&lt;p&gt;We have an Access-based data extraction routine that uses several (21) pass-through queries that use an ODBC connection.  The queries are pulling data from an Oracle database maintained by a different agency that enforces a time-out of passwords every three months.&lt;/p&gt;
+&lt;p&gt;So every three months I have to go through the ODBC connections for these queries and change the password.  And before you chastise me for storing the password in the VBA code, I can only say “you’re right” but that’s the way it is done–not ideal but gets the job done and we’re not dealing with overly sensitive data.&lt;/p&gt;
+&lt;p&gt;Well, my three-month deadline was approaching and I figured I would simplify the process which I found error-prone.&lt;/p&gt;
+&lt;p&gt;Some searching and object model diagramming scouring and I came up with this barebones solution, of course, your connection string may vary.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

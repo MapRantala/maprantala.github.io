@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ArcSDE Post Installation on Node Dangles</title>
+    <link>https://maprantala.com/tags/arcsde-post-installation/</link>
+    <description>Recent content in ArcSDE Post Installation on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 17 Feb 2011 18:22:07 -0600</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/arcsde-post-installation/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Multiple geodatabases and ArcSDE services from one PostgreSQL server.</title>
+      <link>https://maprantala.com/posts/2011-02-17-multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/</link>
+      <pubDate>Thu, 17 Feb 2011 18:22:07 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-02-17-multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/</guid>
+      <description>&lt;p&gt;To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point).  A side question is why can’t tables and raster be placed in Feature Datasets?  This wouldn’t be an end-all solution for what we want to do but there are some messy consequences of this limitation.&lt;/p&gt;
+&lt;p&gt;ESRI has instructions on &lt;a href=&#34;http://help.arcgis.com/EN/ArcGISDesktop/10.0/Help/index.html#//002p00000011000000.htm&#34;&gt;Setting up multiple geodatabases in one PostgreSQL database cluster on Windows&lt;/a&gt; which was helpful but we repeatedly got an “The ArcSDE Repository was unsuccessfully completed.  Would you like to view this error?” error during the Repository Setup step, step two of four, of the ArcSDE Post Installation process. The odd thing, however, was that the wise_err.log was blank so I had no clue on why it was failing.  After much Googling and head-banging, I came across a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=158&amp;amp;f=2290&amp;amp;t=298474#941273&#34;&gt;post from&lt;/a&gt; &lt;a href=&#34;http://www.linkedin.com/profile/view?id=24468141&amp;amp;authType=name&amp;amp;authToken=VoHW&amp;amp;pvs=pp&amp;amp;trk=ppro_viewmore&#34;&gt;Kim Doty&lt;/a&gt; on ESRI’s forums reporting the same problem but they were able to create a service by just continuing through the process .  Figuring I had nothing to lose, I thought I might as well try to go through the entire ArcSDE Post Installation process and see what happened.  Although I received blank error messages, I was able to successfully create the second ArcSDE instance.&lt;/p&gt;
+&lt;p&gt;I will touch on some of the highlights of the process.  In my case, I was creating a database &amp;amp; service with these parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Database name:&lt;img src=&#34;https://maprantala.com/Users/mrantala/AppData/Local/Temp/moz-screenshot-11.png&#34; alt=&#34;&#34;&gt; mgsgdb_lidar&lt;/li&gt;
+&lt;li&gt;Service name:  mgs1_sde&lt;/li&gt;
+&lt;li&gt;Tablespace folder: D:mgsdb1dmgsgdb_lidar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Following ESRI’s instructions, I first made custom copies of dbinit.sde, dbtune.sde, and giomgr.defs that contain the service name (mgs1_sde) within the file name.  These copies were named dbinit_mgs1_sde.sde, dbtune_mgs1_sde.sde, and giomgr_mgs1_sde.defs.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/files1.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;When I have trouble with the ArcSDE Post Installation, I like to go through the four steps individually so I select a “Custom” install.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/custom.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The four steps making up the ArcSDE Post Installation process are shown on the next dialog.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/steps.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I was able to complete the first step, Define SDE User Environment, without any problems.&lt;/p&gt;
+&lt;p&gt;Make sure to set your database name, default tablespace, and tablespace folders are distinct from your first installation.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/databaseinfo.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;During the second step of the ArcSDE Post Installation process, Repository Setup, make sure to use the custom files you made earlier when you come to the ArcSDE configuratino files dialog.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/customfiles.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Later in the Repository Setup, make sure to use the correct database name:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/step2-databasename.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This is the first error message I received in the process (still during Repository Setup):&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/viewerror.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Clicking “Yes”, however, shows an empty wise_err.log file:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/emptylog.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;After viewing this, I canceled out of the Repository Setup step.&lt;/p&gt;
+&lt;p&gt;Taking a look in pgAdmin III, however, I can see that both my database (mgsgdb_lidar) and tablespace (mgsgdb_lidar) were created:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/step2-inpgadminiii.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I received the same error message during the third step, Authorize ArcSDE, as in the second step:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/step3error.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;But running the fourth step, Create ArcSDE Service, resulted in this sweet message:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/success.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;After editing my pg_hba.conf and opening the port in my firewall, the service was created, running, and visible.  So far, it seems to be fully functional and without problems.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

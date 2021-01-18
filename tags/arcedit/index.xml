@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>arcedit on Node Dangles</title>
+    <link>https://maprantala.com/tags/arcedit/</link>
+    <description>Recent content in arcedit on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Jan 2011 16:50:42 -0600</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/arcedit/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Displaying Node Dangles in Arcedit</title>
+      <link>https://maprantala.com/posts/2011-01-06-displaying-node-dangles-in-arcedit/</link>
+      <pubDate>Thu, 06 Jan 2011 16:50:42 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-01-06-displaying-node-dangles-in-arcedit/</guid>
+      <description>&lt;p&gt;Since the name of the blog is Node Dangles, I get several hits daily from searches on “Node Dangles” and I have no  information on node dangles.  This post is the first in a series to change that.&lt;/p&gt;
+&lt;p&gt;First let us, by us, I mean &lt;a href=&#34;http://www.esri.com&#34;&gt;ESRI&lt;/a&gt;, define what a node dangle is.  Their online glossary actually defines a &lt;a href=&#34;http://resources.arcgis.com/glossary/term/215&#34;&gt;dangling arc&lt;/a&gt;, a dangling node is a &lt;a href=&#34;http://resources.arcgis.com/glossary/term/71&#34;&gt;node&lt;/a&gt; (endpoint of an arc) that does the non-connecting mentioned below:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Matt’s definition is “a node that isn’t connected to any other node”.  The Arcedit screen shot below shows a coverage of roads and its arcs (white lines), nodes (white squares) at the ends of the arcs, and node dangles (red squares) indicating what nodes are dangling.  Too bad clearly flagging &lt;a href=&#34;http://en.wikipedia.org/wiki/United_States_presidential_election,_2000&#34;&gt;dangling chads&lt;/a&gt; isn’t so eary .&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/01/dangles.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Displaying (and illustrating) how to display dangling nodes in Arcedit is simple, the command is “drawenvironment node dangle” or, as I’ve done above, “drawe node dangle”.  To display the dangles in a different color than the default white, follow-up with the command “nodecolor dangle 2”.  The 2 is ESRI’s value for red.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

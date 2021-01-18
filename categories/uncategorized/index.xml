@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Uncategorized on Node Dangles</title>
+    <link>https://maprantala.com/categories/uncategorized/</link>
+    <description>Recent content in Uncategorized on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 24 Aug 2018 18:11:30 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/categories/uncategorized/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Quick &amp;#038; Dirty: REST calls via python</title>
+      <link>https://maprantala.com/posts/2018-08-24-quick-dirty-rest-calls-via-python/</link>
+      <pubDate>Fri, 24 Aug 2018 18:11:30 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2018-08-24-quick-dirty-rest-calls-via-python/</guid>
+      <description>&lt;p&gt;Was sharing a python script with a php developer to illustrate how a couple of requests can be made to an ArcGIS REST endpoint.&lt;/p&gt;
+&lt;p&gt;Nothing fancy–one gets the data for one record, one gets data for all records, and the final gets the data for the record that intersects a point.&lt;/p&gt;
+&lt;p&gt;The only thing to note is that the original version that I shared gets a token because the service it uses is secured. I commented out the routine to get a token and just substituted in a blank string and pointed the code at one of esri’s sample services at https://sampleserver6.arcgisonline.com/arcgis/.&lt;/p&gt;
+&lt;p&gt;The file can be downloaded &lt;!-- raw HTML omitted --&gt;here&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Node Dangles</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://maprantala.com/index.xml">
+<meta name="description" content="">
+<meta name="created" content="2019-01-21T05:19:03-0600">
+<meta name="modified" content="2019-01-21T05:19:03-0600">
+<meta name="author" content="Matthew Rantala">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="Node Dangles">
+<meta property="og:url" content="https://maprantala.com/">
+<meta property="og:type" content="website">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url" : "https://maprantala.com/",
+    "name": "Node Dangles",
+    "description": "Geospatial Programming Blog",
+    "author": {
+      "@type": "Person",
+      "name": "Matthew Rantala"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="list-page front">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/" class="active" aria-current="page">Home</a></li>
+<li><a href="/2019-01-21-wordpress-permalinks-snafu/">WordPress Permalinks Snafu</a></li>
+<li><a href="/posts/">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="single-view">
+<div class="content">
+
+</div>
+</article>
+
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-12-31-calling-os-startfile-and-webbrowser-open-from-arcgis/">Calling os.startfile and webbrowser.open from ArcGIS.</a></h2>
+
+</header>
+<div class="content">
+Recently I’ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a “Help” button that opens a help file in .pdf format.Sample python add-in toolbar.The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(path to help.pdf).
+However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!
+Luckily the Python development team at Esrialready had a blog postabout this at their ArcPy Café blog.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-12-18-quick-dirty-arcpy-verify-a-coded-value-domain-code/">Quick &amp;#038; Dirty Arcpy: Verify a Coded Value Domain Code</a></h2>
+
+</header>
+<div class="content">
+I’ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a Coded Value Domainis valid.
+The logic of the code is pretty straight-forward. Get a field’s domain and check that a potential value is one of the code values. The biggest “trick” in this code is that arcpy.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-12-03-quick-dirty-arcpy-listing-data-sources/">Quick &amp;#038; Dirty ArcPy: Listing Data Sources</a></h2>
+
+</header>
+<div class="content">
+I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here’s the bare-bones script I used instead:
+  
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-10-10-arcmap-field-calculator-python-nulls-none/">ArcMap Field Calculator: Python Nulls (None)</a></h2>
+
+</header>
+<div class="content">
+I’ve been asked this twice this week, so thought I should post it. Calculating Null values in the ArcMap Field Calculator is easy, if you can remember the right work for “Null”. The proper word is “None” (without the quotes). Good luck &amp; have a good weekend.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-07-07-quick-dirty-arcpy-compare-feature-class-table-schemas/">Quick &amp;#038; Dirty arcpy: Compare Feature Class Table Schemas</a></h2>
+
+</header>
+<div class="content">
+I’m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some psycopg2).
+One of the QC checks I’m doing at the end of this re-write is just verifying that the feature class schemas are the same (or that the differences are intended) under the new process as they were in the old process.
+And while ArcGIS does have a good toolfor this, there were a couple tweaks I wanted to make.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-05-16-garmin-gpx-to-shapefile-shp-conversion-gpx2shp-py/">Garmin GPX to Shapefile (SHP) conversion GPX2Shp.py</a></h2>
+
+</header>
+<div class="content">
+I mentioned using Tapiriikto batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .GPX to shapefilesthat worked but none seemed to recognize my heart rate data.
+The trick is Garmin extends the GPX specification to incorporate the heart rate:
+Each track point looks like this:
+ Since the first few exiting GPX converters failed to meet my needs, I decided to make my own, at least partially.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-05-06-zipping-a-shapefile-from-arccatalog/">Zipping a Shapefile from ArcCatalog</a></h2>
+
+</header>
+<div class="content">
+Back in 2010, I posted a python script and an ArcToolboxtool for zipping a shapefile.
+Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn’t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from Github.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-05-02-friday-fave-geodatabase-geek/">Friday Fave: Geodatabase Geek</a></h2>
+
+</header>
+<div class="content">
+This Friday Fave is more for utility than pleasure.
+Unfortunately, I have been working to determine why my views and query layers perform so much worse than directly accessing my feature class.
+My Googling led me to Geodatabase Geek, by Trevor Hart, Eagle Technology Group Ltd. Trevor has some real good information about Geodatabases and also gave a good lightening talk on Usage Reporting on ArcGIS 10.1 for Server at the 2013 ESRI International Developer’s Conference.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-04-25-friday-fave-tapiriik/">Friday Fave: Tapiriik</a></h2>
+
+</header>
+<div class="content">
+This Friday Fave is a little bit different.
+My interest in geospatial technologies (although we just called it GIS back then) largely because I wanted to measure my running routes more accurately and efficiently than the paper map &amp; scrap of paper method I was using in the early 90s. When I was introduced to GIS, I knew what I was going to use it for.
+Now that GPS technology is ubiquitous–I’m currently using four different GPS devices, at the same time, on my bike rides–I seldom have to use a map to measure my routes.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-04-23-quick-dirty-arcpy-bulk-changing-field-values/">Quick &amp;#038; Dirty arcpy: Bulk Changing Field Values</a></h2>
+
+</header>
+<div class="content">
+In mapping cross sections, our geologists often find themselves renaming their stratigraphic units midway, or at the end, of creating multiple cross sections. This can cause a situation where we need to change multiple values in multiple fields in multiple feature classes–a situation that can get messy very fast.
+Perfect situation for a quick &amp; dirty arcpy script and, in this case, an ArcToolbox tool that can be downloaded.
+This tool will change all feature classes in the O:\clay_cga\sand-distribution_model\dnrPackages\stratlines directory.
+</div>
+</article>
+
+<nav class="pager">
+<a href="/" rel="prev" class="pager-item pager-prev">Prev</a>
+<a href="/page/3/" rel="next" class="pager-item pager-next">Next</a>
+</nav>
+
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

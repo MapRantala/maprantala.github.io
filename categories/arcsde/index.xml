@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ArcSDE on Node Dangles</title>
+    <link>https://maprantala.com/categories/arcsde/</link>
+    <description>Recent content in ArcSDE on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Feb 2013 05:25:03 -0600</lastBuildDate>
+    <atom:link href="https://maprantala.com/categories/arcsde/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ArcSDE Tip: Finding an ArcSDE instance&amp;#8217;s port</title>
+      <link>https://maprantala.com/posts/2013-02-26-arcsde-tip-finding-an-arcsdeinstances-port/</link>
+      <pubDate>Tue, 26 Feb 2013 05:25:03 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2013-02-26-arcsde-tip-finding-an-arcsdeinstances-port/</guid>
+      <description>&lt;p&gt;One of my main tasks right now is to document many of the details of maintaining ArcSDE geodatabases so I anticipate having several blog posts on this topic that are re-writes of documents I am working on. I am presuming that the person will have no ArcSDE experience so I am documenting very detailed information.&lt;/p&gt;
+&lt;p&gt;Almost all of the ArcSDE commands require that you specify which instance (service/port) the command applies to by using the “-i” parameter.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/02/instanceparameter1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;ArcSDE Instance Parameter&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Since we have multiple ArcSDE geodatabases, I like to have a handy-dandy sticky note with all the geodatabases and their respective ports on the side of my monitor.&lt;/p&gt;
+&lt;p&gt;But when that is not handy and I can never remember the ArcSDE command line syntax to get a list of instances and their ports–I mean remembering “&lt;!-- raw HTML omitted --&gt;sdeservice -o list&lt;!-- raw HTML omitted --&gt;” is difficult at my age.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/02/sdeservicelist.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The quickest and most reliable way I’ve found to get the instance number is just to check the properties of your SDE connection file in ArcCatalog, right-click on it and select “Connection Properties”.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2013/02/connectionproperties.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;And the port is right there in the service entry (5164).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2013/02/connectionproperties2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SDEINTERCEPT &amp;#038; SDEINTERCEPTLOC</title>
+      <link>https://maprantala.com/posts/2012-08-01-sdeintercept-sdeinterceptloc/</link>
+      <pubDate>Wed, 01 Aug 2012 07:17:41 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2012-08-01-sdeintercept-sdeinterceptloc/</guid>
+      <description>&lt;p&gt;Awhile ago, I had a ArcSDE problem that required &lt;a href=&#34;http://support.esri.com/en/&#34;&gt;ESRI technical support&lt;/a&gt; to help trouble-shoot. The problem was odd but was resolved by rebooting the server.&lt;br&gt;
+During the process, though, the support person had me set a couple of environment variables for logging SDE activity on the client machine.&lt;/p&gt;
+&lt;p&gt;The settings were SDEINTERCEPT and SDEINTERCEPTLOC.&lt;/p&gt;
+&lt;p&gt;From &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002n00000018000000&#34;&gt;ESRI’s Help&lt;/a&gt;, SDEINTERCEPT specifies what activity to log and SDEINTERCEPTLOC specifies where to save the log files.&lt;/p&gt;
+&lt;p&gt;I recently deleted the directory I made for the log files but did not remove the variables and I noticed that one of my python scripts reported a weird error (but continued to run, I think). I tracked it back to these variables and realized what I had done.&lt;/p&gt;
+&lt;p&gt;Googling SDEINTERCEPTLOC did lead me to some helpful information like:&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;http://sdeintercept.wordpress.com/2011/11/22/sde-user-permissions/&#34;&gt;SDEINTERCEPT blog&lt;/a&gt; where Ken posts ArcSDE help.&lt;/p&gt;
+&lt;p&gt;This &lt;a href=&#34;http://blogs.esri.com/esri/arcgis/2008/09/05/digging-deeper-troubleshooting-geoprocessing-errors-when-using-arcsde-data/&#34;&gt;ESRI post&lt;/a&gt; about troubleshotting geoprocessing problems.&lt;/p&gt;
+&lt;p&gt;And this &lt;a href=&#34;http://support.esri.com/en/knowledgebase/techarticles/detail/35704&#34;&gt;ESRI technical&lt;/a&gt; article about diagnosing ArcSDE Connections.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Data Extration Failed &amp;#8212; Reverse Proxy Time-out</title>
+      <link>https://maprantala.com/posts/2011-08-18-data-extration-failed/</link>
+      <pubDate>Thu, 18 Aug 2011 19:55:47 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-08-18-data-extration-failed/</guid>
+      <description>&lt;p&gt;Testing one of our geodata services, we discovered that it allowed us to extract a portion of our feature class but when we tried to extract the entire data set, we received this Data Extraction error: Data extraction failed. Proxy or Gateway Server did not allow the URL. Check with your LAN administrator that Proxy or Gateway server is configured to allow the URL.&lt;/p&gt;
+&lt;p&gt;The fact that I was able to extract a portion of the data and I could see the entire geodatabase get made and zipped led me to believe it was more of time-out issue.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Reading through this thread at &lt;a href=&#34;http://forums.esri.com/thread.asp?c=158&amp;amp;f=1696&amp;amp;t=273750&#34;&gt;ArcForum&lt;/a&gt; led to some good information.  But Thomas’ comment that he was using “IIS7 for my reverse proxy server” and had to change one more setting led me to the solution.  In Server Manager, the default Proxy Time-Out is set at 30 seconds by default.  I bumped that up, 60 seconds shown below but I ended up going to 300 seconds and the problem was resolved.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</title>
+      <link>https://maprantala.com/posts/2011-05-23-feature-classes-and-tables-with-names-starting-with-nd/</link>
+      <pubDate>Mon, 23 May 2011 15:55:24 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-05-23-feature-classes-and-tables-with-names-starting-with-nd/</guid>
+      <description>&lt;p&gt;Random luck me to discovering a bug related to feature classes whose names start with “nd_”.  It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them.  Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases,  personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.&lt;/p&gt;
+&lt;p&gt;I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.  After importing 15 shapefiles, I only had thirteen feature classes despite receiving no errors during the process.  The two shapefiles that failed to import were named ND_oil_and_gas.shp and ND_Bendix_Study.shp.  Subsequent attempts to import them individually returned an error “Invalid Target Name”.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/05/invalidtargetname.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I discovered in pgAdmin III (Postgres SDE Geodatabase) that the table existed and there was an entry in sde.sde_layers for the feature class but ArcCatalog refused to show it.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/05/nd_2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I used some un-supported methods to try to resolve the problem and despite some sweating, I failed to find a way to get ArcCatalog to display these feature classes.  I did, however, at least found a way to delete them–arcpy can detect that the feature classes exists so it is able to delete them.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/05/arcpy_delete.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;At least by deleting them, I can prevent leaving “invisible” feature classes from hanging out in my geodatabase.&lt;/p&gt;
+&lt;p&gt;I suspect the problems stems from how ESRI has implemented the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002p0000007m000000.htm&#34;&gt;Network dataset table-naming structure&lt;/a&gt; –dirty areas are stored in tables named &lt;em&gt;nd_&lt;!-- raw HTML omitted --&gt;_dirtyareas _ and &lt;em&gt;nd_&lt;!-- raw HTML omitted --&gt;_dirtyobjects&lt;/em&gt;.  Possibly the developer  working on the ArcCatalog GUI ended up suppressing showing feature classes and tables whose names start with “nd&lt;/em&gt;”.&lt;/p&gt;
+&lt;p&gt;And, just for posterity’s sake, here is a python code snippet listing the feature classes in a workspace:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;import arcpy&lt;/p&gt;
+&lt;p&gt;arcpy.env.workspace = “c:/temp/_nd/F.gdb”&lt;/p&gt;
+&lt;p&gt;print arcpy.env.workspace&lt;br&gt;
+for fc in arcpy.ListFeatureClasses():&lt;br&gt;
+print fc&lt;/p&gt;
+&lt;p&gt;print “Done!”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Renaming Raster Dataset and arcpy.Exists()</title>
+      <link>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</link>
+      <pubDate>Tue, 03 May 2011 09:33:48 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</guid>
+      <description>&lt;p&gt;Discovered something today. I was working on an arcpy script that copies a raster dataset from a file geodatabase into a Postgres SDE geodatabase and then does some boring routine tasks–building stats, creating a mosaic dataset, adding the raster to the mosaic dataset and making a couple referenced mosaic datasets.&lt;/p&gt;
+&lt;p&gt;It sometimes has trouble with the initial step of uploading the raster because of the sheer size of if (1m elevation raster for counties) and it failed today on one. It failed today so I used the ArcCatalog GUI to copy the raster and renamed it.&lt;/p&gt;
+&lt;p&gt;I then proceeded to run launch my script. Before each step, I use &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Exists/000v00000021000000/&#34;&gt;arcpy.Exists&lt;/a&gt;() extensively to check to see if various items exist before I attempt to create them. It was continuously reporting that my raster set did not exist even though I could see it in ArcCatalog.&lt;/p&gt;
+&lt;p&gt;Finally, I realized that I needed to close ArcCatalog before arcpy recognized the fact I had renamed something. To note, I was running arcpy from a separate PythonWin window, not from the ArcCatalog session I had renamed the raster dataset with.&lt;/p&gt;
+&lt;p&gt;Once I closed ArcCatalog, arcpy recognized the renaming and life was good.&lt;/p&gt;
+&lt;p&gt;I’m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sorting a Coded-Value Domain Add-In (ArcGIS 10)</title>
+      <link>https://maprantala.com/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/</link>
+      <pubDate>Tue, 03 May 2011 03:33:01 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
+      <description>&lt;p&gt;I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation.  So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.&lt;/p&gt;
+&lt;p&gt;This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.&lt;/p&gt;
+&lt;p&gt;In the past, I have gone through the tedious process of exporting the domain to a table, sorting the table, removing the domain from the necessary field(s), deleting the domain, re-importing the table back in a new domain and finally re-applying the domain to the necessary field(s). Let’s just say I didn’t do this until someone asked a few times and I didn’t have anything more exciting–like a root canal–I could busy myself with.&lt;/p&gt;
+&lt;p&gt;But this new application contains more domains than any of other datasets so it was time to find a better solution. ESRI does have a &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;Domain Sort&lt;/a&gt; Developer Sample.  It, however, did &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;not play nice&lt;/a&gt; with ArcGIS 10.&lt;/p&gt;
+&lt;p&gt;So I went ahead and update it from VB 6 to VB.Net/ArcObjects 10.  I made an &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/DomainSorter.esriAddIn&#34;&gt;Add-In&lt;/a&gt; that can be installed by downloading the .esriaddin file and double-clicking on it.  The &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120321_DomainSort.zip&#34;&gt;source code&lt;/a&gt; is also available.&lt;/p&gt;
+&lt;p&gt;This will add an ArcCatalog Toolbar that can be added by going to Customize-Toolbars-Domain Sorter Toolbar.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This will add a toolbar with one button.  The button enables whenever you select a geodatabase with at least one coded-value domain.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This brings up a Windows form that lets you sort any domain by either the code or description, ascending or descending.  Once you hit “OK” it re-sorts your domain.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_3.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The only problem I have had is that only the owner of a domain is allowed to edit it on an SDE geodatabase.&lt;/p&gt;
+&lt;p&gt;But other than that, the button allows you to easily keep your domains sorted.&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Revoking &amp;#8216;Public&amp;#8217; Permissions in PostgreSQL ArcSDE</title>
+      <link>https://maprantala.com/posts/2011-03-11-revoking-public-permissions-in-postgresql-arcsde/</link>
+      <pubDate>Fri, 11 Mar 2011 11:11:48 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-03-11-revoking-public-permissions-in-postgresql-arcsde/</guid>
+      <description>&lt;p&gt;While banging my head on how to grant access to a &lt;a href=&#34;http://wp.me/pVrsJ-6Q&#34;&gt;referenced mosaic dataset&lt;/a&gt; , I did something out of frustration that I normally would not do–I granted ‘public’ access to some data.&lt;/p&gt;
+&lt;p&gt;Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:&lt;/p&gt;
+&lt;p&gt;Error 999999: Error executing function.&lt;/p&gt;
+&lt;p&gt;The Object being referenced does not exist [ERROR:  role “public” does not exist::SQL state: 42704]&lt;br&gt;
+Failed to execute (ChangePrivileges).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/revokepublic.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I actually expected that would occur–ArcSDE isn’t aware of PostgreSQL’s public account.&lt;/p&gt;
+&lt;p&gt;The solution was to go into pgAdmin II and revoke the privileges there.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/revokepgadminiii.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Multiple geodatabases and ArcSDE services from one PostgreSQL server.</title>
+      <link>https://maprantala.com/posts/2011-02-17-multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/</link>
+      <pubDate>Thu, 17 Feb 2011 18:22:07 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-02-17-multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/</guid>
+      <description>&lt;p&gt;To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point).  A side question is why can’t tables and raster be placed in Feature Datasets?  This wouldn’t be an end-all solution for what we want to do but there are some messy consequences of this limitation.&lt;/p&gt;
+&lt;p&gt;ESRI has instructions on &lt;a href=&#34;http://help.arcgis.com/EN/ArcGISDesktop/10.0/Help/index.html#//002p00000011000000.htm&#34;&gt;Setting up multiple geodatabases in one PostgreSQL database cluster on Windows&lt;/a&gt; which was helpful but we repeatedly got an “The ArcSDE Repository was unsuccessfully completed.  Would you like to view this error?” error during the Repository Setup step, step two of four, of the ArcSDE Post Installation process. The odd thing, however, was that the wise_err.log was blank so I had no clue on why it was failing.  After much Googling and head-banging, I came across a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=158&amp;amp;f=2290&amp;amp;t=298474#941273&#34;&gt;post from&lt;/a&gt; &lt;a href=&#34;http://www.linkedin.com/profile/view?id=24468141&amp;amp;authType=name&amp;amp;authToken=VoHW&amp;amp;pvs=pp&amp;amp;trk=ppro_viewmore&#34;&gt;Kim Doty&lt;/a&gt; on ESRI’s forums reporting the same problem but they were able to create a service by just continuing through the process .  Figuring I had nothing to lose, I thought I might as well try to go through the entire ArcSDE Post Installation process and see what happened.  Although I received blank error messages, I was able to successfully create the second ArcSDE instance.&lt;/p&gt;
+&lt;p&gt;I will touch on some of the highlights of the process.  In my case, I was creating a database &amp;amp; service with these parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Database name:&lt;img src=&#34;https://maprantala.com/Users/mrantala/AppData/Local/Temp/moz-screenshot-11.png&#34; alt=&#34;&#34;&gt; mgsgdb_lidar&lt;/li&gt;
+&lt;li&gt;Service name:  mgs1_sde&lt;/li&gt;
+&lt;li&gt;Tablespace folder: D:mgsdb1dmgsgdb_lidar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Following ESRI’s instructions, I first made custom copies of dbinit.sde, dbtune.sde, and giomgr.defs that contain the service name (mgs1_sde) within the file name.  These copies were named dbinit_mgs1_sde.sde, dbtune_mgs1_sde.sde, and giomgr_mgs1_sde.defs.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/files1.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;When I have trouble with the ArcSDE Post Installation, I like to go through the four steps individually so I select a “Custom” install.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/custom.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The four steps making up the ArcSDE Post Installation process are shown on the next dialog.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/steps.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I was able to complete the first step, Define SDE User Environment, without any problems.&lt;/p&gt;
+&lt;p&gt;Make sure to set your database name, default tablespace, and tablespace folders are distinct from your first installation.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/databaseinfo.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;During the second step of the ArcSDE Post Installation process, Repository Setup, make sure to use the custom files you made earlier when you come to the ArcSDE configuratino files dialog.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/customfiles.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Later in the Repository Setup, make sure to use the correct database name:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/step2-databasename.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This is the first error message I received in the process (still during Repository Setup):&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/viewerror.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Clicking “Yes”, however, shows an empty wise_err.log file:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/emptylog.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;After viewing this, I canceled out of the Repository Setup step.&lt;/p&gt;
+&lt;p&gt;Taking a look in pgAdmin III, however, I can see that both my database (mgsgdb_lidar) and tablespace (mgsgdb_lidar) were created:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/step2-inpgadminiii.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I received the same error message during the third step, Authorize ArcSDE, as in the second step:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/step3error.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;But running the fourth step, Create ArcSDE Service, resulted in this sweet message:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/success.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;After editing my pg_hba.conf and opening the port in my firewall, the service was created, running, and visible.  So far, it seems to be fully functional and without problems.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using ArcGIS 9.3.1 Desktop to Extract Data From an ArcGIS 10 Server Geodata Service</title>
+      <link>https://maprantala.com/posts/2011-02-04-using-arcgis-9-3-1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</link>
+      <pubDate>Fri, 04 Feb 2011 18:26:53 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-02-04-using-arcgis-9-3-1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</guid>
+      <description>&lt;p&gt;In building our Enterprise GIS Database, we need to support users with different needs.  Some of our users just need to see the data on a map while others may want to download a copy of the data so they can use it within their own desktop system.&lt;/p&gt;
+&lt;p&gt;After doing some exploring, one of the options that looks like it will feel the bulk of our internal needs is to create a &lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Map%20service&#34;&gt;Map Service&lt;/a&gt;/&lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Geodata%20service&#34;&gt;Geodata Servic&lt;/a&gt;e pair–by creating a Map Service, we can make an easy-to-use visual representation of our data.  Combining that with a paired Geodata Service–a Geodata Service with the same name as the Map Service–we can accommodate those users who want to extract the data to their hard drive.&lt;/p&gt;
+&lt;p&gt;A user who has added paired Map &amp;amp; Geodata Services to an ArcMap dataframe can use the Distributed Geodatabase Toolbar to extract data to a local geodatabase.  The Extract Data button is on the far right of the Distributed Geodatabase Toolbar.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/distributedgeodatabasetoolbar.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;Unfortunately, my first attempts at testing this did not work.  It would look like it was processing, I would end up with a .mdb or .gdb file on my hard drive but I could not open it.  I would get a “Failed to connect to database. This release of the GeoDatabase is eitehr invalid or out of date. [Unknown GeoDatabase release.]  The Microsoft Jet database engine cannot find the input table or query ‘GDB_ReleaseInfo’. Make sure it exists and that its name is spelled correctly.” error.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/versionerror.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;When exporting to an .mdb file, I could open it in Access and see the data.&lt;/p&gt;
+&lt;p&gt;Luckily the error is fairly helpful–I was getting an ArcGIS &lt;a href=&#34;http://blogs.esri.com/Dev/blogs/geodatabase/archive/2010/03/15/The-Simplified-Geodatabase-Schema-in-ArcGIS-10.aspx&#34;&gt;10 Geodatabase&lt;/a&gt; even though I am running ArcGIS 9.3.1 on my desktop.  I was able to open the exported geodatabases using a copy of ArcGIS 10 on another machine.   The reason for the inconsistency is pretty interesting.  Our office is, and for the foreseeable future, running in a mixed-version environment.  We have a mixture of 9.3.1 and 10 desktops, a 9.3.1 ArcSDE server and a 10 ArcGIS Server.  The Extract Tool is a server-side function apparently that creates a version 10 Geodatabase.&lt;/p&gt;
+&lt;p&gt;The way to get around this is to extract the data to XML and then import the XML workspace into a geodatabase.  Not sure if that will work for all schemas but it was successful for me.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/exportxml.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcGIS 9.3.1 to ArcSDE 10 Connection Error</title>
+      <link>https://maprantala.com/posts/2011-01-13-arcgis-9-3-1-to-arcsde-10-connection-error/</link>
+      <pubDate>Thu, 13 Jan 2011 14:41:58 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-01-13-arcgis-9-3-1-to-arcsde-10-connection-error/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://maprantala.com/Users/mrantala/AppData/Local/Temp/moz-screenshot-7.png&#34; alt=&#34;&#34;&gt;We finally installed an instance of ArcSDE 10 today.  My first attempt at connecting in ArcCatalog 9.3.1 failed with the following error:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Failed to connect to the specified server.&lt;/p&gt;
+&lt;p&gt;This release of the GeoDatabase is either invalid or out of date. [Please run the&lt;/p&gt;
+&lt;p&gt;ArcSDE setup utility using the -o install option.]&lt;/p&gt;
+&lt;p&gt;DBMS table not found[sde.sde.GDB_Release]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/01/connecterror2.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;Turns out the solution was simple, this &lt;a href=&#34;http://resources.arcgis.com/content/kbase?fa=articleShow&amp;amp;d=37385&#34;&gt;article&lt;/a&gt; points out that &lt;a href=&#34;http://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;amp;PID=17&amp;amp;MetaID=1620&#34;&gt;Service pack 2&lt;/a&gt; is required.  After updating my ArcGIS, the problem was solved:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/01/errormessage.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI’s &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDe with the -o option as the first error message instructed me to do.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

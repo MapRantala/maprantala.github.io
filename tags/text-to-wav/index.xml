@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>text to wav on Node Dangles</title>
+    <link>https://maprantala.com/tags/text-to-wav/</link>
+    <description>Recent content in text to wav on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 31 May 2012 23:12:28 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/text-to-wav/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Quick &amp;#038; Dirty python: Converting a text file to audio (.wav)</title>
+      <link>https://maprantala.com/posts/2012-05-31-quick-dirty-python-converting-a-text-file-to-audio-wav/</link>
+      <pubDate>Thu, 31 May 2012 23:12:28 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2012-05-31-quick-dirty-python-converting-a-text-file-to-audio-wav/</guid>
+      <description>&lt;p&gt;This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without any freeware that could handle the 53 page document–there are some cool websites that do text to mp3 like &lt;!-- raw HTML omitted --&gt;vozme &lt;!-- raw HTML omitted --&gt;and &lt;!-- raw HTML omitted --&gt;YAKiToMe&lt;!-- raw HTML omitted --&gt;! but they didn’t convert the whole document. I then found &lt;!-- raw HTML omitted --&gt;pyTTS&lt;!-- raw HTML omitted --&gt;, a python package that serves as a wrapper to the &lt;!-- raw HTML omitted --&gt;Microsoft Speech API (SAPI) &lt;!-- raw HTML omitted --&gt;, which has &lt;!-- raw HTML omitted --&gt;been in version 5 since 2000.&lt;!-- raw HTML omitted --&gt; But I didn’t easily find a version of pyTTS for python 2.6. So I decided to see if I could roll my own.&lt;/p&gt;
+&lt;p&gt;As it turns out, getting python to talk using SAPI is relatively easy. Reading a plain text file can be done in a few lines.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;And it wasn’t that much more to have it write out a .wav file:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;And with that chunk of code, I was able to convert my 54 page document into a 4 hour long .wav file (over 600 MB) that I used another software package to convert to .mp3 (200 MB). The voice is a bit robotic but not too bad, I just hope the content that I converted (a database specification standard) doesn’t put me to sleep while I drive.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

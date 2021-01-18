@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ArcIdeas on Node Dangles</title>
+    <link>https://maprantala.com/tags/arcideas/</link>
+    <description>Recent content in ArcIdeas on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Mar 2011 11:29:36 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/arcideas/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ArcIdeas: Scale-Dependant Settings.</title>
+      <link>https://maprantala.com/posts/2011-03-25-arcideas-scale-dependant-settings/</link>
+      <pubDate>Fri, 25 Mar 2011 11:29:36 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-03-25-arcideas-scale-dependant-settings/</guid>
+      <description>&lt;p&gt;Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent.  Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range.  Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.&lt;/p&gt;
+&lt;p&gt;I’m not sure how rapidly ESRI takes “Ideas” into consideration but if you feel like it would benefit you, why not promote this idea:  &lt;a href=&#34;http://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Have a good weekend, all!&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Icon Transparency</title>
+      <link>https://maprantala.com/posts/2010-09-08-icon-transparency/</link>
+      <pubDate>Wed, 08 Sep 2010 15:47:36 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-09-08-icon-transparency/</guid>
+      <description>&lt;p&gt;Maybe I am just dense, but skimming &lt;a href=&#34;https://c.na1.visual.force.com/apex/ideaView?id=0873000000088YVAAY&#34;&gt;ArcIdeas&lt;/a&gt;, I found out that the transparency for an icon is determined by the upper-left pixel.  Don’t know if this is an ESRI convention or not but thought I would pass it one.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

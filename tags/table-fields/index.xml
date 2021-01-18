@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>table fields on Node Dangles</title>
+    <link>https://maprantala.com/tags/table-fields/</link>
+    <description>Recent content in table fields on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 17 Mar 2011 17:03:39 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/table-fields/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Quick &amp;#038; Dirty arcpy: Field Listings</title>
+      <link>https://maprantala.com/posts/2011-03-17-quick-dirty-field-listings-using-arcpy/</link>
+      <pubDate>Thu, 17 Mar 2011 17:03:39 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-03-17-quick-dirty-field-listings-using-arcpy/</guid>
+      <description>&lt;p&gt;I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven’t found it.  So, as is my nature, I decided to roll my own.&lt;/p&gt;
+&lt;p&gt;This is a &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;bare-bones script&lt;/a&gt; that iterates through the fields, printing the field name, type, width, and precision.  There are three optional features to it:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can choose to have it list the domain, if there is one, on each field.&lt;/li&gt;
+&lt;li&gt;You can have it write to a text file (otherwise you can just copy &amp;amp; paste the results from the results window).&lt;/li&gt;
+&lt;li&gt;You can have it count the number of populated records.  This can take a long time if working with a large dataset.  Also note that my logic for determining what constitutes being populated may not be what you need but the structure is there.  I also do not account for all field types, if the field is of a type I have not account for, the code will return -999.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To use the script from ArcToolbox, you need to pass it four parameters, their Names, type, whether they are input or output, and whether they are required or optional are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;featureclass, Table, Input, Required&lt;/li&gt;
+&lt;li&gt;includedomainstring, Boolean, Input, Required (controls whether or not domains are exported)&lt;/li&gt;
+&lt;li&gt;doCountsRespone, Boolean, Input, Required (controls whether or not you want to get the number of populated records.  (Your definition of populated may vary from my code)&lt;/li&gt;
+&lt;li&gt;outputFile, File, Output, Optional (optional output file to write)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here is the code, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;just downloading&lt;/a&gt; it since I haven’t figured out a good way to have WordPress play nicely with python’s indenting.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

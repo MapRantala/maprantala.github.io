@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GPX on Node Dangles</title>
+    <link>https://maprantala.com/tags/gpx/</link>
+    <description>Recent content in GPX on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 May 2014 21:11:20 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/gpx/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Garmin GPX to Shapefile (SHP) conversion GPX2Shp.py</title>
+      <link>https://maprantala.com/posts/2014-05-16-garmin-gpx-to-shapefile-shp-conversion-gpx2shp-py/</link>
+      <pubDate>Fri, 16 May 2014 21:11:20 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2014-05-16-garmin-gpx-to-shapefile-shp-conversion-gpx2shp-py/</guid>
+      <description>&lt;p&gt;I mentioned using &lt;!-- raw HTML omitted --&gt;Tapiriik&lt;!-- raw HTML omitted --&gt; to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .&lt;!-- raw HTML omitted --&gt;GPX to shapefiles&lt;!-- raw HTML omitted --&gt; that worked but none seemed to recognize my heart rate data.&lt;/p&gt;
+&lt;p&gt;The trick is Garmin extends the GPX specification to incorporate the heart rate:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Each track point looks like this:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;Since the first few exiting GPX converters failed to meet my needs, I decided to make my own, at least partially.&lt;/p&gt;
+&lt;p&gt;I used Joel Lawhead of &lt;!-- raw HTML omitted --&gt;GeospatialPython.com&lt;!-- raw HTML omitted --&gt;‘s &lt;!-- raw HTML omitted --&gt;pyshp&lt;!-- raw HTML omitted --&gt; library to handle writing the shapefile. I added some basic loop and I stuck a template.prj in the workspace that gets copied once for each shapefile.&lt;/p&gt;
+&lt;p&gt;Otherwise, nothing too fancy going on.  The code can be downloaded from &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/python/python/20140516_GPX2SHP&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

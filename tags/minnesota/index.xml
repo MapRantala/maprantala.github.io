@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Minnesota on Node Dangles</title>
+    <link>https://maprantala.com/tags/minnesota/</link>
+    <description>Recent content in Minnesota on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 15 May 2010 13:27:09 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/minnesota/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Endpoints</title>
+      <link>https://maprantala.com/posts/2010-05-15-a-new-beginning/</link>
+      <pubDate>Sat, 15 May 2010 13:27:09 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-05-15-a-new-beginning/</guid>
+      <description>&lt;p&gt;I spent almost nine years working for a great company, &lt;a href=&#34;http://www.adc4gis.com/&#34;&gt;Applied Data Consultants&lt;/a&gt;, through a variety of roles–spent approximately 3 weeks doing Parcel work as a GIS Tech before I started working in Avenue for my own sanity. After that, spent several years doing various programming tasks including building tools for internal production and application development. The last couple years, I served more of a Consultant role, both for internal and external clients.&lt;/p&gt;
+&lt;p&gt;Where one polyline ends, another starts in this case.&lt;/p&gt;
+&lt;p&gt;In a couple days, I start my role as Geological Information Specialist at a state agency in Minnesota. I previously worked for the Wisconsin DNR (where I originally “discovered” GIS) and Pierce County, Wisconsin so I have some governmental experience but I am wondering how I will adapt to the organizational differences.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

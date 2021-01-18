@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ArcGIS Server on Node Dangles</title>
+    <link>https://maprantala.com/tags/arcgis-server/</link>
+    <description>Recent content in ArcGIS Server on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Mar 2011 11:29:36 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/arcgis-server/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ArcIdeas: Scale-Dependant Settings.</title>
+      <link>https://maprantala.com/posts/2011-03-25-arcideas-scale-dependant-settings/</link>
+      <pubDate>Fri, 25 Mar 2011 11:29:36 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-03-25-arcideas-scale-dependant-settings/</guid>
+      <description>&lt;p&gt;Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent.  Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range.  Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.&lt;/p&gt;
+&lt;p&gt;I’m not sure how rapidly ESRI takes “Ideas” into consideration but if you feel like it would benefit you, why not promote this idea:  &lt;a href=&#34;http://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Have a good weekend, all!&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using ArcGIS 9.3.1 Desktop to Extract Data From an ArcGIS 10 Server Geodata Service</title>
+      <link>https://maprantala.com/posts/2011-02-04-using-arcgis-9-3-1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</link>
+      <pubDate>Fri, 04 Feb 2011 18:26:53 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-02-04-using-arcgis-9-3-1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</guid>
+      <description>&lt;p&gt;In building our Enterprise GIS Database, we need to support users with different needs.  Some of our users just need to see the data on a map while others may want to download a copy of the data so they can use it within their own desktop system.&lt;/p&gt;
+&lt;p&gt;After doing some exploring, one of the options that looks like it will feel the bulk of our internal needs is to create a &lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Map%20service&#34;&gt;Map Service&lt;/a&gt;/&lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Geodata%20service&#34;&gt;Geodata Servic&lt;/a&gt;e pair–by creating a Map Service, we can make an easy-to-use visual representation of our data.  Combining that with a paired Geodata Service–a Geodata Service with the same name as the Map Service–we can accommodate those users who want to extract the data to their hard drive.&lt;/p&gt;
+&lt;p&gt;A user who has added paired Map &amp;amp; Geodata Services to an ArcMap dataframe can use the Distributed Geodatabase Toolbar to extract data to a local geodatabase.  The Extract Data button is on the far right of the Distributed Geodatabase Toolbar.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/distributedgeodatabasetoolbar.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;Unfortunately, my first attempts at testing this did not work.  It would look like it was processing, I would end up with a .mdb or .gdb file on my hard drive but I could not open it.  I would get a “Failed to connect to database. This release of the GeoDatabase is eitehr invalid or out of date. [Unknown GeoDatabase release.]  The Microsoft Jet database engine cannot find the input table or query ‘GDB_ReleaseInfo’. Make sure it exists and that its name is spelled correctly.” error.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/versionerror.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;When exporting to an .mdb file, I could open it in Access and see the data.&lt;/p&gt;
+&lt;p&gt;Luckily the error is fairly helpful–I was getting an ArcGIS &lt;a href=&#34;http://blogs.esri.com/Dev/blogs/geodatabase/archive/2010/03/15/The-Simplified-Geodatabase-Schema-in-ArcGIS-10.aspx&#34;&gt;10 Geodatabase&lt;/a&gt; even though I am running ArcGIS 9.3.1 on my desktop.  I was able to open the exported geodatabases using a copy of ArcGIS 10 on another machine.   The reason for the inconsistency is pretty interesting.  Our office is, and for the foreseeable future, running in a mixed-version environment.  We have a mixture of 9.3.1 and 10 desktops, a 9.3.1 ArcSDE server and a 10 ArcGIS Server.  The Extract Tool is a server-side function apparently that creates a version 10 Geodatabase.&lt;/p&gt;
+&lt;p&gt;The way to get around this is to extract the data to XML and then import the XML workspace into a geodatabase.  Not sure if that will work for all schemas but it was successful for me.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/exportxml.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows Task Scheduler on Node Dangles</title>
+    <link>https://maprantala.com/tags/windows-task-scheduler/</link>
+    <description>Recent content in Windows Task Scheduler on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Jul 2011 18:11:13 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/windows-task-scheduler/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Debugging a Python Scheduled Task</title>
+      <link>https://maprantala.com/posts/2011-07-11-debugging-a-python-scheduled-task/</link>
+      <pubDate>Mon, 11 Jul 2011 18:11:13 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-07-11-debugging-a-python-scheduled-task/</guid>
+      <description>&lt;p&gt;I have been working on a python script that I want (NEED) to run as a scheduled task on a remote machine.  I got to the point that the script did exactly what I needed when I was interactively running it in a Windows session but had problems when running it as a scheduled task.  The debugging process was cumbersome–make a change, schedule a task to run it, log out of the machine, and wait.  The log back in and repeat the process.&lt;/p&gt;
+&lt;p&gt;That got old.&lt;/p&gt;
+&lt;p&gt;So I wrote &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110711_tester.zip&#34;&gt;a script  (tester.py)&lt;/a&gt; that calls any other python scripts in the same directory that (1) start with “test_” and (2) there is not a corresponding file with the same base name and “.start” extension.  It would launch “test_BaBing.py” as long as there is not a “test_BaBing.start” in the same directory.  Tester.py continued to run, looping every 60 seconds, until tester.stop exists.&lt;/p&gt;
+&lt;p&gt;This made the process easier because I could work on my local machine, editing the problematic script, saving changes and within 60 seconds it would be launched on the remote machine.  I could view the results, make additional edits, delete the .start file and it would launch again within 60 seconds.&lt;/p&gt;
+&lt;p&gt;Within a couple minutes I was able to determine the problem (path related) and fix it.&lt;/p&gt;
+&lt;p&gt;Happy programmer.&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;I would recommend using this only while debugging a script–routinely running it could be a security risk since someone could copy a destructive python script into the directory and this would run it.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Download: &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110711_tester.zip&#34;&gt;tester.py&lt;/a&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

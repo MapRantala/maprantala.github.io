@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Career on Node Dangles</title>
+    <link>https://maprantala.com/categories/career/</link>
+    <description>Recent content in Career on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 07 Aug 2017 19:48:08 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/categories/career/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ArcGIS Pro 2.0 Migration Overview</title>
+      <link>https://maprantala.com/posts/2017-08-07-arcgis-pro-2-0-migration-overview/</link>
+      <pubDate>Mon, 07 Aug 2017 19:48:08 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2017-08-07-arcgis-pro-2-0-migration-overview/</guid>
+      <description>&lt;p&gt;In April I started a new position at a company that had no existing GIS.&lt;/p&gt;
+&lt;p&gt;Nothing.&lt;/p&gt;
+&lt;p&gt;There was a definite need for GIS and some GIS-type functions were occuring but basically when I started, I had an &lt;!-- raw HTML omitted --&gt;ArcGIS Enterprise&lt;!-- raw HTML omitted --&gt; license and a mess of KML files.&lt;/p&gt;
+&lt;p&gt;An exciting opportunity. And since I was starting from scratch, I had zero legacy concerns. No existing data, workflows, custom code, or maps to tie me to a specific software package. Knowing that ArcGIS Pro is taking over the world, I decided to transition to ArcPro and use that as our (GIS staff count of 1) company standard for desktop mapping.&lt;/p&gt;
+&lt;p&gt;That plan got side-tracked somewhat when we purchased a data management tool (&lt;!-- raw HTML omitted --&gt;CrescentLink Network Manager&lt;!-- raw HTML omitted --&gt;) that is only available for ArcMap. But I have still been using Pro on a regular basis.&lt;/p&gt;
+&lt;p&gt;I started a brilliant post about the transition–the pros, the cons, and my overall experience. But before I could finish it, &lt;!-- raw HTML omitted --&gt;out came 2.0&lt;!-- raw HTML omitted --&gt; and my post was suddenly out-dated. So I’ve decided to split that post into a bunch of smaller, more focused posts.&lt;/p&gt;
+&lt;h4 id=&#34;overview&#34;&gt;Overview&lt;/h4&gt;
+&lt;p&gt;Without getting into to deep on specific features or functionality, I do have some broad comments to make.&lt;/p&gt;
+&lt;h6 id=&#34;learning-curve&#34;&gt;Learning Curve&lt;/h6&gt;
+&lt;p&gt;There is definitely a learning curve in moving from ArcGIS Desktop to ArcGIS Pro–even though there is a lot of the same concepts between Pro &amp;amp; Desktop (the Toolboxes have barely changed), just finding the tools was a huge hurdle at first. I’ve never been a fan of the ribbon interface, I like my tools to be where they are and accessible.&lt;/p&gt;
+&lt;p&gt;But with regular use, I have gotten more adept at finding what I want to use. Still end up hunting for tools at times but it has gotten better. I’m probably at about 75% efficiency as compared to Desktop although I switch between the two on a regular basis because there are times where I just need to get something done.&lt;/p&gt;
+&lt;h6 id=&#34;stability&#34;&gt;Stability&lt;/h6&gt;
+&lt;p&gt;Even though I just had to force-stop a session, 2.0 has made significant strides in stability. I had near daily crashes with 1.5 but now it is maybe a once-a-week. Maybe I’ve learned what not to do in Pro but I don’t remember any pattern to the crashes I had with 1.5.&lt;/p&gt;
+&lt;h6 id=&#34;performance&#34;&gt;Performance&lt;/h6&gt;
+&lt;p&gt;Performance is still painful to me. There are too many times when the wait cursor shows up when you do simple things like clicking on a button. A lot of the processing has been routed through the geoprocessing system and it just seems much slower.&lt;/p&gt;
+&lt;h4 id=&#34;version-20-highlights&#34;&gt;Version 2.0 Highlights&lt;/h4&gt;
+&lt;p&gt;While I’ll probably do some whining about ArcGIS Pro in this planned series of posts, there were a couple of significant highlights to the 2.0 release that took care of two of my major usability concerns.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h4 id=&#34;summary&#34;&gt;Summary&lt;/h4&gt;
+&lt;p&gt;Overall, I’ve grown accustom to ArcPro. Like any new software, it takes time to get a feel for it. The transition is not that much different from going from ArcView 3.x to ArcGIS Desktop (or whatever 8.x was called). I am not yet as productive in it as Desktop but there are some things I really like about it to go along with my complaints.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>I&amp;#8217;m Back!</title>
+      <link>https://maprantala.com/posts/2013-02-24-im-back/</link>
+      <pubDate>Sun, 24 Feb 2013 11:04:35 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2013-02-24-im-back/</guid>
+      <description>&lt;p&gt;Ok, it has been to long since I last posted and I thank those few people who asked If I had suffered a Segmentation Violation or something.&lt;/p&gt;
+&lt;p&gt;By means of a brief explanation, I changed jobs last summer, going back to a previous employer in a very different role than what I’ve ever had before. It was a challenging and difficult and one that I had minimal success at but, in the end, didn’t work out. Mostly because I wasn’t a good fit for a variety of reasons including, not surprisingly, geography!  I was mostly tele-commuting because the office was two hours away. I really needed to be in the office more than I was and I wasn’t in a position to relocate.&lt;/p&gt;
+&lt;p&gt;During my time with that employer I was doing less technical stuff and just did not feel the urgency to be blogging.&lt;/p&gt;
+&lt;p&gt;I’ve left that job (which was very hard to do because I felt like I was abandoning friends) and have a short-term gig with the employer I left in the summer which will be almost entirely technical work, so I hope to crank out some more technical blog posts.&lt;/p&gt;
+&lt;p&gt;Also, I’m hoping to shift my career focus somewhat. I’ve been somewhat stuck as a desktop guy–developing mostly desktop applications.  I’ve wanted to do more web development stuff but never made the switch. I’m hoping to build my web skills in the short-term and have been cramming on topics like Java, HTML5, CSS, Map Server, Geo Server, php, jQuery, and anything else that might enhance my web-abilities.&lt;/p&gt;
+&lt;p&gt;So expect some changes to the blog and I thank everyone who comes to the blog, while the numbers aren’t huge, I am still surprised at how many people find their way here.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Endpoints</title>
+      <link>https://maprantala.com/posts/2010-05-15-a-new-beginning/</link>
+      <pubDate>Sat, 15 May 2010 13:27:09 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-05-15-a-new-beginning/</guid>
+      <description>&lt;p&gt;I spent almost nine years working for a great company, &lt;a href=&#34;http://www.adc4gis.com/&#34;&gt;Applied Data Consultants&lt;/a&gt;, through a variety of roles–spent approximately 3 weeks doing Parcel work as a GIS Tech before I started working in Avenue for my own sanity. After that, spent several years doing various programming tasks including building tools for internal production and application development. The last couple years, I served more of a Consultant role, both for internal and external clients.&lt;/p&gt;
+&lt;p&gt;Where one polyline ends, another starts in this case.&lt;/p&gt;
+&lt;p&gt;In a couple days, I start my role as Geological Information Specialist at a state agency in Minnesota. I previously worked for the Wisconsin DNR (where I originally “discovered” GIS) and Pierce County, Wisconsin so I have some governmental experience but I am wondering how I will adapt to the organizational differences.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

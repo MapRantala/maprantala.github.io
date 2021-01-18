@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>polylines on Node Dangles</title>
+    <link>https://maprantala.com/tags/polylines/</link>
+    <description>Recent content in polylines on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 May 2011 05:01:50 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/polylines/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
+      <link>https://maprantala.com/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</link>
+      <pubDate>Sun, 01 May 2011 05:01:50 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</guid>
+      <description>&lt;p&gt;For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.&lt;/p&gt;
+&lt;p&gt;Here is the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;bare-bones script&lt;/a&gt; that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.  Some cautionary notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This is Quick &amp;amp; Dirty code–minimal error catching or documentation.&lt;/li&gt;
+&lt;li&gt;I basically tested this against one feature class (the one I wanted to split) once I got it to work, I quit.&lt;/li&gt;
+&lt;li&gt;There is some rounding error–features may be a tad bit off (a few ten-thousandths of a unit).&lt;/li&gt;
+&lt;li&gt;I did not test against multi-part features.&lt;/li&gt;
+&lt;li&gt;The tolerance is the native units of the data–if your data is in meters but you want to split the polylines every mile, enter 1,609.344.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you’ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
+&lt;p&gt;Here is the code for the Googlebots, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;just downloading&lt;/a&gt; it.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

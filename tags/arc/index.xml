@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arc on Node Dangles</title>
+    <link>https://maprantala.com/tags/arc/</link>
+    <description>Recent content in Arc on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Mar 2011 09:30:40 -0600</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/arc/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ArcMap Field Calculator: Calculating Geometry using arcpy</title>
+      <link>https://maprantala.com/posts/2011-03-08-calculating-geometry-using-arcpy-in-field-calculator/</link>
+      <pubDate>Tue, 08 Mar 2011 09:30:40 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-03-08-calculating-geometry-using-arcpy-in-field-calculator/</guid>
+      <description>&lt;p&gt;One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm&#34;&gt;Field Calculator&lt;/a&gt;.  When I stumbled upon a bug in the way the &lt;a href=&#34;http://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/&#34;&gt;Extract Values to Points&lt;/a&gt; tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.&lt;/p&gt;
+&lt;p&gt;I set the Parser to Python and the formula was simple once I figured out the syntax:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/origin.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Then, to extend my knowledge, I wanted to see how to calculate the geometry based off of two fields (X and Y).   The only real trick is knowing the bracket field names using exclamation points instead of brackets:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/fields.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So turns out everything it pretty easy and straight-forward.  Whew!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

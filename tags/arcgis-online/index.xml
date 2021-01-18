@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ArcGIS Online on Node Dangles</title>
+    <link>https://maprantala.com/tags/arcgis-online/</link>
+    <description>Recent content in ArcGIS Online on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Jun 2018 20:26:28 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/arcgis-online/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Forcing ArcGIS Online to Update Feature Layer Information</title>
+      <link>https://maprantala.com/posts/2018-06-22-forcing-arcgis-online-to-update-feature-layer-information/</link>
+      <pubDate>Fri, 22 Jun 2018 20:26:28 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2018-06-22-forcing-arcgis-online-to-update-feature-layer-information/</guid>
+      <description>&lt;p&gt;Because we use ArcGIS Online Web Maps in our daily work-flows, I created an AGO group that contains Feature Layers that are links to our self-hosted ArcGIS Server services. This way, users can quickly add data from our ArcGIS Server Site and not have to look up URLs/Usernames/Passwords (I’ve save the username/password as part of the ArcGIS Online service when appropriate).&lt;/p&gt;
+&lt;p&gt;But I’ve had a problem where if I change the service, the changes are not reflected in the AGO Feature Layer for that service and I have to monkey about to get the changes to migrate to the maps.&lt;/p&gt;
+&lt;p&gt;Finally annoyed with doing that for the Xth time, I decided to see if I could get the feature service information to refresh automatically. Documentation search found nothing; call in to tech support–still waiting. While experimenting, however, I found that newer Feature Layer I added this way do actually update when I made changes. WTH?!&lt;/p&gt;
+&lt;p&gt;Using &lt;!-- raw HTML omitted --&gt;ArcGIS Online Assistant&lt;!-- raw HTML omitted --&gt;, something caught my eye. My older Feature Layers had a Description and Data but the newer (automatically updating ones) do not.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2018/06/Data-1.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Was this the answer–the 912 line JSON file for this service had all the information about the Feature Service. So it seems like the information about my Feature Service probably got saved when I create the Feature Layer and this cache was used later instead of gathering new information. Now that I had a suspected reason why this was occurring, I needed to figure out how to either delete or force a refresh of the cache. There’s no delete option next to the Data section so I figured I would empty the content and see if that would work.&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;WARNING: Unsupported Technique Ahead!! Proceed at Own Risk–Test First with a Copy of Data!!!&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;Using AGO Assistant, I copied the Feature Layer that did not recognize when I made changes to the Feature Service and then made a map with that new Feature Layer so that I could test against a copy of the data. Once I had those, I went to the Copy of my Feature Layer in AGO Assistant and deleted almost everything in the Data section and saved that. (Note that it despite saying it saved my edits when I deleted everything, the contents were still there so you have to leave something in there).&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;br&gt;
+Once I went and looked at the Feature Layer and it showed the layer I had previously added that was not showing up. And when added to a New map, it reflected all my changes. The existing map, however, still had previous settings–a new field, for example, did not appear.&lt;/p&gt;
+&lt;p&gt;So I found a partial fix–the Feature Layer hopefully will not cache any information about the Feature Service so when I add it to a map, the most recent settings will be used. Will still need to update maps but at least I have a Feature Layer now that reflects the most recent changes to the Feature Service.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcGIS Online Basemaps Now Free</title>
+      <link>https://maprantala.com/posts/2011-02-22-arcgis-online-basemaps-now-free/</link>
+      <pubDate>Tue, 22 Feb 2011 12:57:58 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-02-22-arcgis-online-basemaps-now-free/</guid>
+      <description>&lt;p&gt;I’ve seen several posts like this &lt;a href=&#34;http://gisandscience.com/2011/02/19/arcgis-online-basemaps-now-freely-available-regardless-of-use/&#34;&gt;one&lt;/a&gt; that reiterate that ESRI has announced that:&lt;/p&gt;
+&lt;p&gt;“As of the end of January, ArcGIS Online basemaps published and hosted by Esri are now freely available to all users regardless of commercial, noncommercial, internal, or external use. This means that you no longer have to pay a subscription fee for including ArcGIS Online basemaps in your commercial-use web applications. Basemaps included in this new business model are World Imagery Map, World Street Map, World Topographic Map, USA Topographic Maps, and DeLorme World Basemap. The only restriction is a high-volume transaction limit of 50,000,000 transactions in a 12-month period, which is equivalent to 400,000,000 tile requests per year, or over 1,000,000 per day – a volume that most likely very few users will reach. ‘Read the &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;ArcGIS Online blog&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; to get the latest news and updates.&#39;”&lt;/p&gt;
+&lt;p&gt;I was unable to find a copy of the announcement on the ArcGIS Online blog or on on &lt;a href=&#34;http://www.esri.com/news/index.html&#34;&gt;ESRI’s news section&lt;/a&gt; although I did receive an email that Charles Convis, &lt;a href=&#34;http://www.conservationgis.org/&#34;&gt;ESRI Conservation Program Coordinator&lt;/a&gt;, sent to the &lt;a href=&#34;http://www.scgis.org/&#34;&gt;Society for Conservation GIS&lt;/a&gt; mailing list with the same information so I’m guessing it is true. Perhaps ESRI pulled the post hoping to release the information with more of a splash?&lt;/p&gt;
+&lt;p&gt;Regardless, I think that this only helps make quick, affordable, professional web application more possible.&lt;/p&gt;
+&lt;p&gt;While skimming the ArcGIS Online Blog, I found a &lt;a href=&#34;http://blogs.esri.com/Support/blogs/arcgisonline/archive/2011/02/09/blogging-with-arcgis-online-maps.aspx&#34;&gt;post about embedding a hosted map&lt;/a&gt; into your blog. Like this one of Arlington, Texas, where Super Bowl XLV was played a couple weeks ago. And, in case you missed it, the now 13-Time World Champions, &lt;a href=&#34;http://www.packers.com/&#34;&gt;Green Bay Packers&lt;/a&gt;, beat the Pittsburgh Steelers 31-25, winning the team’s fourth Super Bowl. ESRI also published this &lt;a href=&#34;http://www.esri.com/news/maps/superbowl/index.html&#34;&gt;neat application&lt;/a&gt; that spatially shows which team football fans were rooting for.&lt;/p&gt;
+&lt;p&gt;Unfortunately, the free WordPress blogging software I am using allows only limited set of embedded frames–arcgis online maps not being one of them. There are wordpress add-ins to allow this but my host, WordPress.com, does not include it so you’ll just see a link. Rather disappointing.&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;View Arlington Map&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

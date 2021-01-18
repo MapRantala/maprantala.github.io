@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>ArcGIS – Node Dangles</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://maprantala.com/categories/arcgis/index.xml">
+<meta name="description" content="">
+<meta name="created" content="2015-08-14T10:01:54-0500">
+<meta name="modified" content="2015-08-14T10:01:54-0500">
+<meta name="author" content="Matthew Rantala">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="ArcGIS">
+<meta property="og:url" content="https://maprantala.com/categories/arcgis/">
+<meta property="og:type" content="website">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/categories/arcgis/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url" : "https://maprantala.com/categories/arcgis/",
+    "name": "ArcGIS",
+    "description": "Geospatial Programming Blog",
+    "author": {
+      "@type": "Person",
+      "name": "Matthew Rantala"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="list-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/" class="active" aria-current="page">Home</a></li>
+<li><a href="/2019-01-21-wordpress-permalinks-snafu/">WordPress Permalinks Snafu</a></li>
+<li><a href="/posts/">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<h1 class="title">ArcGIS</h1>
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2015-08-14-converting-mxd-to-layer-file-in-arcpy/">Converting MXD to Layer file in Arcpy</a></h2>
+
+</header>
+<div class="content">
+Working on doing some advanced ArcGIS server printingand had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks Petr Krebsfor the idea), copy all the existing layers into it, and save it out as a layer file.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-05-06-zipping-a-shapefile-from-arccatalog/">Zipping a Shapefile from ArcCatalog</a></h2>
+
+</header>
+<div class="content">
+Back in 2010, I posted a python script and an ArcToolboxtool for zipping a shapefile.
+Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn’t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from Github.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-05-02-friday-fave-geodatabase-geek/">Friday Fave: Geodatabase Geek</a></h2>
+
+</header>
+<div class="content">
+This Friday Fave is more for utility than pleasure.
+Unfortunately, I have been working to determine why my views and query layers perform so much worse than directly accessing my feature class.
+My Googling led me to Geodatabase Geek, by Trevor Hart, Eagle Technology Group Ltd. Trevor has some real good information about Geodatabases and also gave a good lightening talk on Usage Reporting on ArcGIS 10.1 for Server at the 2013 ESRI International Developer’s Conference.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2014-02-11-arcmap-maximum-legend-items-from-a-arcgis-server-service/">ArcMap Maximum Legend Items from a ArcGIS Server service</a></h2>
+
+</header>
+<div class="content">
+Recently we took a call from a user who could not see the legend for one of the feature classes in one of our services. (Precambrian Bedrock in http://mgsweb2.mngs.umn.edu/arcgis/services/state/mnbdrkgeology )
+After trying some standard things–restarting the service, checking the source .MXD–I turned to The Google Machine and quickly found help from ESRI: http://support.esri.com/zh-cn/knowledgebase/techarticles/detail/33741 .
+Turns out the default number of legend items ArcMap will display from an ArcGIS Server map service layer is 100 and we had 102 in the problematic layer.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2013-02-26-arcsde-tip-finding-an-arcsdeinstances-port/">ArcSDE Tip: Finding an ArcSDE instance&amp;#8217;s port</a></h2>
+
+</header>
+<div class="content">
+One of my main tasks right now is to document many of the details of maintaining ArcSDE geodatabases so I anticipate having several blog posts on this topic that are re-writes of documents I am working on. I am presuming that the person will have no ArcSDE experience so I am documenting very detailed information.
+Almost all of the ArcSDE commands require that you specify which instance (service/port) the command applies to by using the “-i” parameter.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2012-04-23-arcmap-field-calculator-identifying-unique-cases-multiple-fields/">ArcMap Field Calculator: Identifying Unique Cases, Multiple Fields</a></h2>
+
+</header>
+<div class="content">
+You may have noticed that this post–ArcMap Field Calculator: Identifying Unique Cases, Single Field–specifies “Single Field”. Yes, that was my version of a cliff-hanger post.
+The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats “a” the same as “A”.
+Today’s example groups records into different cases based off the values of two fields, !
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-08-18-data-extration-failed/">Data Extration Failed &amp;#8212; Reverse Proxy Time-out</a></h2>
+
+</header>
+<div class="content">
+Testing one of our geodata services, we discovered that it allowed us to extract a portion of our feature class but when we tried to extract the entire data set, we received this Data Extraction error: Data extraction failed. Proxy or Gateway Server did not allow the URL. Check with your LAN administrator that Proxy or Gateway server is configured to allow the URL.
+The fact that I was able to extract a portion of the data and I could see the entire geodatabase get made and zipped led me to believe it was more of time-out issue.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-07-28-using-arcpy-in-arcgis-10-field-calculater-to-create-a-unique-id/">ArcMap Field Calculator: Create a Unique ID</a></h2>
+
+</header>
+<div class="content">
+One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N. In ArcView 3.x, the formula was simply “rec + 1” if I wanted to start with the number 1.
+In ArcGIS, the process got a little more complex–you had to write a little VBA in Field Calculator as described by ESRI.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-07-19-arcgis-add-in-custom-mouse-cursor/">ArcGIS Add-In Custom Mouse Cursor</a></h2>
+
+</header>
+<div class="content">
+I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI’s instructions. But, once you know how to do it, it is pretty easy. In Visual Studio, Add a New Item:
+
+Add a Cursor File:
+
+You can edit your cursor with the editor program in Visual Studio. Once you satisfied with how it looks, make sure that the Build Action on the cursor is “Embedded Resource”.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/">Sorting a Coded-Value Domain Add-In (ArcGIS 10)</a></h2>
+
+</header>
+<div class="content">
+I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation. So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.
+This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.
+</div>
+</article>
+
+<nav class="pager">
+<a href="/categories/arcgis/page/2/" rel="next" class="pager-item pager-next">Next</a>
+</nav>
+
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

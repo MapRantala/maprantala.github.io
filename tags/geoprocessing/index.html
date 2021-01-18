@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>geoprocessing – Node Dangles</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://maprantala.com/tags/geoprocessing/index.xml">
+<meta name="description" content="">
+<meta name="created" content="2011-05-01T05:01:50-0500">
+<meta name="modified" content="2011-05-01T05:01:50-0500">
+<meta name="author" content="Matthew Rantala">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="geoprocessing">
+<meta property="og:url" content="https://maprantala.com/tags/geoprocessing/">
+<meta property="og:type" content="website">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/tags/geoprocessing/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url" : "https://maprantala.com/tags/geoprocessing/",
+    "name": "geoprocessing",
+    "description": "Geospatial Programming Blog",
+    "author": {
+      "@type": "Person",
+      "name": "Matthew Rantala"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="list-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/" class="active" aria-current="page">Home</a></li>
+<li><a href="/2019-01-21-wordpress-permalinks-snafu/">WordPress Permalinks Snafu</a></li>
+<li><a href="/posts/">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<h1 class="title">geoprocessing</h1>
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/">Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</a></h2>
+
+</header>
+<div class="content">
+For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.
+Here is the bare-bones script that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-03-17-quick-dirty-field-listings-using-arcpy/">Quick &amp;#038; Dirty arcpy: Field Listings</a></h2>
+
+</header>
+<div class="content">
+I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document. There might be an easy way to do this in ArcGIS 10 but I haven’t found it. So, as is my nature, I decided to roll my own.
+This is a bare-bones script that iterates through the fields, printing the field name, type, width, and precision. There are three optional features to it:
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2010-12-17-multiple-outputs-for-python-scripts/">Multiple outputs for Python scripts</a></h2>
+
+</header>
+<div class="content">
+Related to my post on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways. This is largely due to the fact that some are called by ArcToolbox scripts. Running in ESRI’s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2010-12-15-zipping-a-shapefile-via-arctoolbox/">Zipping a shapefile via ArcToolbox</a></h2>
+
+</header>
+<div class="content">
+UPDATE: After receiving a request to modify the code to ignore .lock files, I have an updated to this post.
+ I’ve received a request on how to use the Zip Shapefile code I posted last week from ArcGIS. Sorry, I did not set the code up to call directly from ArcGIS but only as an illustration of how it can be done.
+I have, however, with some minor tweaking, made a version that can added to ArcToolbox.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2010-07-07-ned-processing-in-python-geoprocessing/">NED Processing in Python &amp;#038; Geoprocessing</a></h2>
+
+</header>
+<div class="content">
+<p>The <a href="http://www.usgs.gov/">USGS</a> updated a significant portion of <a href="http://ned.usgs.gov/">NED</a> data for my state in June.  I recently downloaded the updates, processed them–projecting and converting the elevations from meters to feet–using python and geoprocessing.  My python skills are still pretty crude but I was able to get the job done.</p>
+<p>One of the benefits of working for the public sector is that I can more freely publish code without worrying about “trade secrets” or what have you so I thought I would put my code out for anyone to see, maybe someone will find it useful.  It is split into two separate files, mostly because I used <!-- raw HTML omitted -->Model Builder<!-- raw HTML omitted --> to generate the main processing chunk of code (Project_Reclassify.py) and another script to control looping, etc. The code isn’t pretty and you’ll see the results of my development process with two subroutines in LaunchScript.py that could really be one.</p>
+<h3 id="heading"></h3>
+</div>
+</article>
+
+
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

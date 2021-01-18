@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>coded-value domains on Node Dangles</title>
+    <link>https://maprantala.com/tags/coded-value-domains/</link>
+    <description>Recent content in coded-value domains on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Mar 2011 18:04:36 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/coded-value-domains/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using arcpy to List Domains Assigned to Featureclass Fields</title>
+      <link>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</link>
+      <pubDate>Mon, 14 Mar 2011 18:04:36 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</guid>
+      <description>&lt;p&gt;I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
+&lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
+&lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/failedtodeletedomain.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The Google Machine led me to an &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=985&amp;amp;t=303616&#34;&gt;ArcForums post&lt;/a&gt; by  with some python code for listing all the fields with a domain.&lt;/p&gt;
+&lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the ‘listfc(“”)’ line that is the first line of the def listds() module.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

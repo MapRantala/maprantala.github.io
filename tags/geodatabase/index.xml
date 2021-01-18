@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>geodatabase on Node Dangles</title>
+    <link>https://maprantala.com/tags/geodatabase/</link>
+    <description>Recent content in geodatabase on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 23 May 2011 15:55:24 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/geodatabase/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</title>
+      <link>https://maprantala.com/posts/2011-05-23-feature-classes-and-tables-with-names-starting-with-nd/</link>
+      <pubDate>Mon, 23 May 2011 15:55:24 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-05-23-feature-classes-and-tables-with-names-starting-with-nd/</guid>
+      <description>&lt;p&gt;Random luck me to discovering a bug related to feature classes whose names start with “nd_”.  It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them.  Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases,  personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.&lt;/p&gt;
+&lt;p&gt;I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.  After importing 15 shapefiles, I only had thirteen feature classes despite receiving no errors during the process.  The two shapefiles that failed to import were named ND_oil_and_gas.shp and ND_Bendix_Study.shp.  Subsequent attempts to import them individually returned an error “Invalid Target Name”.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/05/invalidtargetname.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I discovered in pgAdmin III (Postgres SDE Geodatabase) that the table existed and there was an entry in sde.sde_layers for the feature class but ArcCatalog refused to show it.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/05/nd_2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I used some un-supported methods to try to resolve the problem and despite some sweating, I failed to find a way to get ArcCatalog to display these feature classes.  I did, however, at least found a way to delete them–arcpy can detect that the feature classes exists so it is able to delete them.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/05/arcpy_delete.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;At least by deleting them, I can prevent leaving “invisible” feature classes from hanging out in my geodatabase.&lt;/p&gt;
+&lt;p&gt;I suspect the problems stems from how ESRI has implemented the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002p0000007m000000.htm&#34;&gt;Network dataset table-naming structure&lt;/a&gt; –dirty areas are stored in tables named &lt;em&gt;nd_&lt;!-- raw HTML omitted --&gt;_dirtyareas _ and &lt;em&gt;nd_&lt;!-- raw HTML omitted --&gt;_dirtyobjects&lt;/em&gt;.  Possibly the developer  working on the ArcCatalog GUI ended up suppressing showing feature classes and tables whose names start with “nd&lt;/em&gt;”.&lt;/p&gt;
+&lt;p&gt;And, just for posterity’s sake, here is a python code snippet listing the feature classes in a workspace:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;import arcpy&lt;/p&gt;
+&lt;p&gt;arcpy.env.workspace = “c:/temp/_nd/F.gdb”&lt;/p&gt;
+&lt;p&gt;print arcpy.env.workspace&lt;br&gt;
+for fc in arcpy.ListFeatureClasses():&lt;br&gt;
+print fc&lt;/p&gt;
+&lt;p&gt;print “Done!”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Change Detector arcpy Script</title>
+      <link>https://maprantala.com/posts/2011-04-08-change-detector-script-arcgis-resource-center/</link>
+      <pubDate>Fri, 08 Apr 2011 10:48:59 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-04-08-change-detector-script-arcgis-resource-center/</guid>
+      <description>&lt;p&gt;During a process I was working on, I needed to compare a feature class before and after some edits.  I did not quickly find anything in ArcToolbox but searching &lt;a href=&#34;http://resources.arcgis.com/&#34;&gt;ArcResources&lt;/a&gt; led me to &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=351BEE10-1422-2418-8815-82074A3E6B6C&#34;&gt;Change Detector script by Bruce Harold&lt;/a&gt;.  After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.  I also discovered that it needs to export to the same format (personal geodatabase, file geodatabase, shapefile) as the source data (or at least one that uses the same field name deliminator).&lt;/p&gt;
+&lt;p&gt;After minor adjustments, though, it worked like a charm.  I’ll be submitting the changes I made to Bruce and let him incorporate the changes into the official code.&lt;/p&gt;
+&lt;p&gt;FOLLOW-UP: Mr. Harold quickly responded to my email &amp;amp; made the change (although I haven’t checked it). Way to go Bruce!  Thanks for a handy script.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using arcpy to List Domains Assigned to Featureclass Fields</title>
+      <link>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</link>
+      <pubDate>Mon, 14 Mar 2011 18:04:36 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</guid>
+      <description>&lt;p&gt;I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
+&lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
+&lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/failedtodeletedomain.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The Google Machine led me to an &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=985&amp;amp;t=303616&#34;&gt;ArcForums post&lt;/a&gt; by  with some python code for listing all the fields with a domain.&lt;/p&gt;
+&lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the ‘listfc(“”)’ line that is the first line of the def listds() module.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Checking to see if a Field Index Exists Using Python (geoprocessing 9.3).</title>
+      <link>https://maprantala.com/posts/2011-01-27-checking-to-see-if-a-field-index-exists-using-python/</link>
+      <pubDate>Thu, 27 Jan 2011 15:31:48 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-01-27-checking-to-see-if-a-field-index-exists-using-python/</guid>
+      <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
+&lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
+&lt;p&gt;No problem creating the index, for example:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn’t work-it did not like the “while” loop construction.  I’m guessing it worked in 9.2 and despite ESRI’s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
+&lt;p&gt;A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

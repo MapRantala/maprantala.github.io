@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hennepin County on Node Dangles</title>
+    <link>https://maprantala.com/tags/hennepin-county/</link>
+    <description>Recent content in Hennepin County on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Oct 2017 22:17:11 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/hennepin-county/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ArcToolbox Tool: Add [ST_CON_ABR] to Hennepin County, MN Centerlines</title>
+      <link>https://maprantala.com/posts/2017-10-04-arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</link>
+      <pubDate>Wed, 04 Oct 2017 22:17:11 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2017-10-04-arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</guid>
+      <description>&lt;p&gt;One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a “recover-our-cost” mentality to more of an “Open Data”. Minnesota, for example, has launched their &lt;!-- raw HTML omitted --&gt;Geospatial Commons&lt;!-- raw HTML omitted --&gt; as a platform for sharing data.&lt;/p&gt;
+&lt;p&gt;And while getting free, authoritative data is awesome, it can leave you in a bind if the structure of the data changes. Sometime between April and September, Hennepin County, Minnesota, changed the schema of their &lt;!-- raw HTML omitted --&gt;publicly available street centerlines data&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
+&lt;p&gt;The data used to have both a full, concatenated street name field ([ST_CONCAT]) and an abbreviated version ([ST_CON_ABR]). A record might have “James Lofton Avenue North” and “James Lofton Ave N”, respectively, in these two fields. The abbreviated version was nice for labeling but it disappeared from the most recent updates.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2017/10/Streetnames.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So, as you  might guess from the fact that I’m posting about it, I wrote a script to add that field in and launch it from an ArcToolbox Tool. Nothing fancy going on in the code, just a series of replaces, depending on the field. Using dictionaries instead of arrays of paired values might have been better but the script takes just a few seconds to run so I can live with it as-is.&lt;/p&gt;
+&lt;p&gt;The list of street type abbreviations came from a combination of &lt;!-- raw HTML omitted --&gt;ESRI’s standards&lt;!-- raw HTML omitted --&gt; and those found in an older version of the Hennepin County data. There were no conflicting abbreviations between the two. The code warns if a street name occurs in the data that is not in the list.&lt;/p&gt;
+&lt;p&gt;While I’m including the code here for reference, it’s probably best to &lt;!-- raw HTML omitted --&gt;download the code from GitHub.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

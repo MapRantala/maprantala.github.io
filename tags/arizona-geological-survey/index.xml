@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arizona Geological Survey on Node Dangles</title>
+    <link>https://maprantala.com/tags/arizona-geological-survey/</link>
+    <description>Recent content in Arizona Geological Survey on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 23 Jul 2010 19:07:52 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/arizona-geological-survey/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Arizona Geological Survey</title>
+      <link>https://maprantala.com/posts/2010-07-23-arizona-geological-survey/</link>
+      <pubDate>Fri, 23 Jul 2010 19:07:52 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-23-arizona-geological-survey/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.azgs.az.gov/&#34;&gt;The Arizona Geological Survey&lt;/a&gt; has a great looking site with some good information.  They have a &lt;a href=&#34;http://www.azgs.az.gov/publications_online/pubslist_2008.pdf&#34;&gt;publication list&lt;/a&gt; that can either be downloaded or ordered and are making pdf versions of their recent publications available &lt;a href=&#34;http://www.azgs.az.gov/publications_online.shtml&#34;&gt;online&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I was going to note that there was no download-able data available until Google told me that they in fact had a &lt;a href=&#34;http://www.azgs.az.gov/services_azgeomap.shtml&#34;&gt;WMS/WFS available online&lt;/a&gt;.  The WMS is a great looking map, I have not gotten the WFS to work, however–probably more due to my abilities than the service.&lt;/p&gt;
+&lt;p&gt;They are also temporarily hosting a &lt;a href=&#34;http://services.azgs.az.gov/OnlineMaps/demos/nvClarkCounty.html&#34;&gt;surficial geology map&lt;/a&gt; of Clark County, Nevada.&lt;/p&gt;
+&lt;p&gt;Lee Allison, the State Geologist, also has a &lt;a href=&#34;http://arizonageology.blogspot.com/&#34;&gt;blog&lt;/a&gt; with frequent postings.  One of which led me to the Nation Park Service’s &lt;a href=&#34;http://science.nature.nps.gov/nrdata/&#34;&gt;Data Stor&lt;/a&gt;e which is worth a look.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

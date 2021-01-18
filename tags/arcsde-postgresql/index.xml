@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>arcsde postgresql on Node Dangles</title>
+    <link>https://maprantala.com/tags/arcsde-postgresql/</link>
+    <description>Recent content in arcsde postgresql on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Mar 2011 11:11:48 -0600</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/arcsde-postgresql/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Revoking &amp;#8216;Public&amp;#8217; Permissions in PostgreSQL ArcSDE</title>
+      <link>https://maprantala.com/posts/2011-03-11-revoking-public-permissions-in-postgresql-arcsde/</link>
+      <pubDate>Fri, 11 Mar 2011 11:11:48 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-03-11-revoking-public-permissions-in-postgresql-arcsde/</guid>
+      <description>&lt;p&gt;While banging my head on how to grant access to a &lt;a href=&#34;http://wp.me/pVrsJ-6Q&#34;&gt;referenced mosaic dataset&lt;/a&gt; , I did something out of frustration that I normally would not do–I granted ‘public’ access to some data.&lt;/p&gt;
+&lt;p&gt;Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:&lt;/p&gt;
+&lt;p&gt;Error 999999: Error executing function.&lt;/p&gt;
+&lt;p&gt;The Object being referenced does not exist [ERROR:  role “public” does not exist::SQL state: 42704]&lt;br&gt;
+Failed to execute (ChangePrivileges).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/revokepublic.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I actually expected that would occur–ArcSDE isn’t aware of PostgreSQL’s public account.&lt;/p&gt;
+&lt;p&gt;The solution was to go into pgAdmin II and revoke the privileges there.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/revokepgadminiii.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

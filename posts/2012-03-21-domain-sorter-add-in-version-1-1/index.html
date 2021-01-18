@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Domain Sorter Add-In Version 1.1 – Node Dangles</title>
+<meta name="description" content="Almost a year ago, I updated ERSI’s Domain Sort code for VB 6 to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had …">
+<meta name="created" content="2012-03-21T18:19:03-0500">
+<meta name="modified" content="2012-03-21T18:19:03-0500">
+<meta name="author" content="Matt">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="Domain Sorter Add-In Version 1.1">
+<meta property="og:url" content="https://maprantala.com/posts/2012-03-21-domain-sorter-add-in-version-1-1/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/posts/2012-03-21-domain-sorter-add-in-version-1-1/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Domain Sorter Add-In Version 1.1",
+    "datePublished": "2012-03-21T18:19:03-05:00",
+    "dateModified": "2012-03-21T18:19:03-05:00",
+    "url" : "https://maprantala.com/posts/2012-03-21-domain-sorter-add-in-version-1-1/",
+    "description": "Almost a year ago, I updated ERSI’s Domain Sort code for VB 6 to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had …",
+    "keywords": ["ArcCatalog","coded-value domain","domain","vb.net"],
+    "author": {
+      "@type": "Person",
+      "name": "Matt"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/2019-01-21-wordpress-permalinks-snafu/">WordPress Permalinks Snafu</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title ">Domain Sorter Add-In Version 1.1</h1>
+<div class="tags">
+Tags:
+<ul>
+<li><a href="/tags/arccatalog">ArcCatalog</a></li>
+<li><a href="/tags/coded-value-domain">coded-value domain</a></li>
+<li><a href="/tags/domain">domain</a></li>
+<li><a href="/tags/vb.net">vb.net</a></li>
+</ul>
+</div>
+</header>
+<div class="content">
+<p>Almost <a href="http://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/">a year ago</a>, I updated ERSI’s <a href="http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm">Domain Sort code for VB 6</a> to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had an open OLE connection. When I tested it, it turned out the reports were accurate.</p>
+<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/arccatalog.png"><!-- raw HTML omitted --></a></p>
+<p>I got around to adding in a Try-Catch around the offending chunk of code &amp; it is now better than ever. You can download just the <a href="http://dl.dropbox.com/u/22241283/NodeDangles/DomainSorter.esriAddIn">Add-In</a> or the <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20120321_DomainSort.zip">Add-In with source code</a> or get it from <a href="http://resources.arcgis.com/gallery/file/arcobjects-net-api/details?entryID=B5E1BB12-1422-2418-34B7-D3A6908560FA">ESRI’s ArcGIS Resource Center</a>.</p>
+
+
+</div>
+</article>
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

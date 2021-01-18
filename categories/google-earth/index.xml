@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Google Earth on Node Dangles</title>
+    <link>https://maprantala.com/categories/google-earth/</link>
+    <description>Recent content in Google Earth on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Aug 2010 16:50:04 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/categories/google-earth/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Utah Geological Survey</title>
+      <link>https://maprantala.com/posts/2010-08-04-utah-geological-survey/</link>
+      <pubDate>Wed, 04 Aug 2010 16:50:04 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-08-04-utah-geological-survey/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://geology.utah.gov/&#34;&gt;Utah Geological Survey&lt;/a&gt; has a good supply of &lt;a href=&#34;http://geology.utah.gov/maps/geomap/index.htm&#34;&gt;Maps&lt;/a&gt; and &lt;a href=&#34;http://geology.utah.gov/maps/gis/index.htm&#34;&gt;data&lt;/a&gt; available online and some &lt;a href=&#34;http://geology.utah.gov/maps/index.htm&#34;&gt;online maps&lt;/a&gt;. They also have an online &lt;a href=&#34;http://geology.utah.gov/blog/&#34;&gt;Blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The GIS data is a fairly complete package–the sample I downloaded included .pdfs, shapefiles, layer files, images and ArcMap project (.MXD) files used to generate the .pdfs.  File sizes are larger because of the completeness.  Feature classes have a moderate level of attribution.&lt;/p&gt;
+&lt;p&gt;The highlight, however, are the sample &lt;a href=&#34;http://geology.utah.gov/geo_guides/st_george/index.htm&#34;&gt;Keyhole Markup (KMZ) files&lt;/a&gt; of the of the St. George 30′ x 60′ quadrangle that can be viewed in Google Earth.  Too cool.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

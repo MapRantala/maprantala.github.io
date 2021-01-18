@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>transparent icon on Node Dangles</title>
+    <link>https://maprantala.com/tags/transparent-icon/</link>
+    <description>Recent content in transparent icon on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Sep 2010 15:47:36 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/transparent-icon/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Icon Transparency</title>
+      <link>https://maprantala.com/posts/2010-09-08-icon-transparency/</link>
+      <pubDate>Wed, 08 Sep 2010 15:47:36 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-09-08-icon-transparency/</guid>
+      <description>&lt;p&gt;Maybe I am just dense, but skimming &lt;a href=&#34;https://c.na1.visual.force.com/apex/ideaView?id=0873000000088YVAAY&#34;&gt;ArcIdeas&lt;/a&gt;, I found out that the transparency for an icon is determined by the upper-left pixel.  Don’t know if this is an ESRI convention or not but thought I would pass it one.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

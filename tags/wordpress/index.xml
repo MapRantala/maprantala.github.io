@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wordpress on Node Dangles</title>
+    <link>https://maprantala.com/tags/wordpress/</link>
+    <description>Recent content in Wordpress on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 Jan 2019 05:19:03 -0600</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/wordpress/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>WordPress Permalinks Snafu</title>
+      <link>https://maprantala.com/2019-01-21-wordpress-permalinks-snafu/</link>
+      <pubDate>Mon, 21 Jan 2019 05:19:03 -0600</pubDate>
+      <guid>https://maprantala.com/2019-01-21-wordpress-permalinks-snafu/</guid>
+      <description>&lt;p&gt;Using a free &lt;!-- raw HTML omitted --&gt;StatCounter.com&lt;!-- raw HTML omitted --&gt; add-in, I get weekly emails showing the number of visitors to this blog. During the summer, the numbers plummeted. At the time, I thought it had to do with Google/Chrome requiring https.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Luckily, HostGator (disclosure: I’m working on becoming a HostGator affiliate), who I use to host this blog and a few other websites, provided free https certificates for all of my sites. So I made sure that &lt;a href=&#34;https://MapRantala.com&#34;&gt;https://MapRantala.com&lt;/a&gt; worked and thought the numbers would rebound.&lt;/p&gt;
+&lt;p&gt;Looking at the chart, you can see they did only slightly. I assumed that it would just be a matter of time for Google to see that https was enabled and since the blog is more a place for me to make notes to myself, I wasn’t concerned.&lt;/p&gt;
+&lt;p&gt;This weekend, I decided to take a look at Google’s Search Console and see if I could determine what was going on. Looking in the coverage, I saw many 404 results for pages. As I investigated some of them, I realized that it was due to my Permalinks setting.&lt;/p&gt;
+&lt;p&gt;The URLs, as shown below, were not working.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;The website was using “https://maprantala.com/index.php/” as the base URL. So, for example, “https://maprantala.com/2017/08/07/arcgis-pro-2-0-migration-overview” did not work but “https://maprantala.com/&lt;strong&gt;index.php&lt;/strong&gt;/2017/08/07/arcgis-pro-2-0-migration-overview” did.&lt;/p&gt;
+&lt;p&gt;To change the WordPress Permalinks setting, I went to Settings-Permalinks and removed he “index.php/” from the Custom Structure. Waiting a day, the 404s have disappeared in Search Console and, in theory, I just need to wait for Google to re-index the pages which are currently shown as “Crawled – currently not indexed”&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;WordPress Permalinks Setting &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;That may not have been the whole problem. I republished this blog under a different name for a year. But moved it back to this domain when that domain registration expired. So that may have been another factor.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordPress Permalinks Snafu</title>
+      <link>https://maprantala.com/posts/2019-01-21-wordpress-permalinks-snafu/</link>
+      <pubDate>Mon, 21 Jan 2019 05:19:03 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2019-01-21-wordpress-permalinks-snafu/</guid>
+      <description>&lt;p&gt;Using a free &lt;!-- raw HTML omitted --&gt;StatCounter.com&lt;!-- raw HTML omitted --&gt; add-in, I get weekly emails showing the number of visitors to this blog. During the summer, the numbers plummeted. At the time, I thought it had to do with Google/Chrome requiring https.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Luckily, HostGator (disclosure: I’m working on becoming a HostGator affiliate), who I use to host this blog and a few other websites, provided free https certificates for all of my sites. So I made sure that &lt;a href=&#34;https://MapRantala.com&#34;&gt;https://MapRantala.com&lt;/a&gt; worked and thought the numbers would rebound.&lt;/p&gt;
+&lt;p&gt;Looking at the chart, you can see they did only slightly. I assumed that it would just be a matter of time for Google to see that https was enabled and since the blog is more a place for me to make notes to myself, I wasn’t concerned.&lt;/p&gt;
+&lt;p&gt;This weekend, I decided to take a look at Google’s Search Console and see if I could determine what was going on. Looking in the coverage, I saw many 404 results for pages. As I investigated some of them, I realized that it was due to my Permalinks setting.&lt;/p&gt;
+&lt;p&gt;The URLs, as shown below, were not working.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;The website was using “https://maprantala.com/index.php/” as the base URL. So, for example, “https://maprantala.com/2017/08/07/arcgis-pro-2-0-migration-overview” did not work but “https://maprantala.com/&lt;strong&gt;index.php&lt;/strong&gt;/2017/08/07/arcgis-pro-2-0-migration-overview” did.&lt;/p&gt;
+&lt;p&gt;To change the WordPress Permalinks setting, I went to Settings-Permalinks and removed he “index.php/” from the Custom Structure. Waiting a day, the 404s have disappeared in Search Console and, in theory, I just need to wait for Google to re-index the pages which are currently shown as “Crawled – currently not indexed”&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;WordPress Permalinks Setting &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;That may not have been the whole problem. I republished this blog under a different name for a year. But moved it back to this domain when that domain registration expired. So that may have been another factor.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcGIS Online Basemaps Now Free</title>
+      <link>https://maprantala.com/posts/2011-02-22-arcgis-online-basemaps-now-free/</link>
+      <pubDate>Tue, 22 Feb 2011 12:57:58 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-02-22-arcgis-online-basemaps-now-free/</guid>
+      <description>&lt;p&gt;I’ve seen several posts like this &lt;a href=&#34;http://gisandscience.com/2011/02/19/arcgis-online-basemaps-now-freely-available-regardless-of-use/&#34;&gt;one&lt;/a&gt; that reiterate that ESRI has announced that:&lt;/p&gt;
+&lt;p&gt;“As of the end of January, ArcGIS Online basemaps published and hosted by Esri are now freely available to all users regardless of commercial, noncommercial, internal, or external use. This means that you no longer have to pay a subscription fee for including ArcGIS Online basemaps in your commercial-use web applications. Basemaps included in this new business model are World Imagery Map, World Street Map, World Topographic Map, USA Topographic Maps, and DeLorme World Basemap. The only restriction is a high-volume transaction limit of 50,000,000 transactions in a 12-month period, which is equivalent to 400,000,000 tile requests per year, or over 1,000,000 per day – a volume that most likely very few users will reach. ‘Read the &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;ArcGIS Online blog&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; to get the latest news and updates.&#39;”&lt;/p&gt;
+&lt;p&gt;I was unable to find a copy of the announcement on the ArcGIS Online blog or on on &lt;a href=&#34;http://www.esri.com/news/index.html&#34;&gt;ESRI’s news section&lt;/a&gt; although I did receive an email that Charles Convis, &lt;a href=&#34;http://www.conservationgis.org/&#34;&gt;ESRI Conservation Program Coordinator&lt;/a&gt;, sent to the &lt;a href=&#34;http://www.scgis.org/&#34;&gt;Society for Conservation GIS&lt;/a&gt; mailing list with the same information so I’m guessing it is true. Perhaps ESRI pulled the post hoping to release the information with more of a splash?&lt;/p&gt;
+&lt;p&gt;Regardless, I think that this only helps make quick, affordable, professional web application more possible.&lt;/p&gt;
+&lt;p&gt;While skimming the ArcGIS Online Blog, I found a &lt;a href=&#34;http://blogs.esri.com/Support/blogs/arcgisonline/archive/2011/02/09/blogging-with-arcgis-online-maps.aspx&#34;&gt;post about embedding a hosted map&lt;/a&gt; into your blog. Like this one of Arlington, Texas, where Super Bowl XLV was played a couple weeks ago. And, in case you missed it, the now 13-Time World Champions, &lt;a href=&#34;http://www.packers.com/&#34;&gt;Green Bay Packers&lt;/a&gt;, beat the Pittsburgh Steelers 31-25, winning the team’s fourth Super Bowl. ESRI also published this &lt;a href=&#34;http://www.esri.com/news/maps/superbowl/index.html&#34;&gt;neat application&lt;/a&gt; that spatially shows which team football fans were rooting for.&lt;/p&gt;
+&lt;p&gt;Unfortunately, the free WordPress blogging software I am using allows only limited set of embedded frames–arcgis online maps not being one of them. There are wordpress add-ins to allow this but my host, WordPress.com, does not include it so you’ll just see a link. Rather disappointing.&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;View Arlington Map&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GIS Data on Node Dangles</title>
+    <link>https://maprantala.com/tags/gis-data/</link>
+    <description>Recent content in GIS Data on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Aug 2010 16:50:04 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/gis-data/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Utah Geological Survey</title>
+      <link>https://maprantala.com/posts/2010-08-04-utah-geological-survey/</link>
+      <pubDate>Wed, 04 Aug 2010 16:50:04 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-08-04-utah-geological-survey/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://geology.utah.gov/&#34;&gt;Utah Geological Survey&lt;/a&gt; has a good supply of &lt;a href=&#34;http://geology.utah.gov/maps/geomap/index.htm&#34;&gt;Maps&lt;/a&gt; and &lt;a href=&#34;http://geology.utah.gov/maps/gis/index.htm&#34;&gt;data&lt;/a&gt; available online and some &lt;a href=&#34;http://geology.utah.gov/maps/index.htm&#34;&gt;online maps&lt;/a&gt;. They also have an online &lt;a href=&#34;http://geology.utah.gov/blog/&#34;&gt;Blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The GIS data is a fairly complete package–the sample I downloaded included .pdfs, shapefiles, layer files, images and ArcMap project (.MXD) files used to generate the .pdfs.  File sizes are larger because of the completeness.  Feature classes have a moderate level of attribution.&lt;/p&gt;
+&lt;p&gt;The highlight, however, are the sample &lt;a href=&#34;http://geology.utah.gov/geo_guides/st_george/index.htm&#34;&gt;Keyhole Markup (KMZ) files&lt;/a&gt; of the of the St. George 30′ x 60′ quadrangle that can be viewed in Google Earth.  Too cool.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>South Dakota Geological Survey</title>
+      <link>https://maprantala.com/posts/2010-07-13-south-dakota-geological-survey/</link>
+      <pubDate>Tue, 13 Jul 2010 12:33:07 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-13-south-dakota-geological-survey/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://www.sdgs.usd.edu/&#34;&gt;South Dakota Geological Survey&lt;/a&gt; website provides some good base data–imagery, DRGs, DEMs, and DLGs.  There is a searchable database of &lt;a href=&#34;http://www.sddenr.net/core/&#34;&gt;core cuttings&lt;/a&gt; and the &lt;a href=&#34;http://arcgis.sd.gov/server/sdgis/Data.aspx&#34;&gt;state data server&lt;/a&gt; has bedrock data for the eastern portion of the state and a statewide layer, presumably surficial geology, called geology.  Quad-based geological maps are also available (PDF format) in the &lt;a href=&#34;http://www.sdgs.usd.edu/publications/index.html&#34;&gt;Publications and Maps&lt;/a&gt; section.  The data I downloaded was in shapefile format with minimal attribution.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>North Dakota Geological Survey</title>
+      <link>https://maprantala.com/posts/2010-07-12-north-dakota-geological-survey/</link>
+      <pubDate>Mon, 12 Jul 2010 13:53:28 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-12-north-dakota-geological-survey/</guid>
+      <description>&lt;p&gt;Took a quick look at the &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/&#34;&gt;North Dakota Geological Survey’s website&lt;/a&gt; for GIS data.&lt;/p&gt;
+&lt;p&gt;The only data I found served directly from their website was &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/surfacegeo/surfacemapsnew.asp&#34;&gt;surface geology map&lt;/a&gt; .pdfs for some 24k and 100k maps.  Also available is a search for &lt;a href=&#34;https://www.dmr.nd.gov/oilgas/findwellsvw.asp&#34;&gt;Oil &amp;amp; Gas wells&lt;/a&gt; although I did not see the data was downloadable.  Some other &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/Publication_List/contentsnew.asp&#34;&gt;publications&lt;/a&gt; have .pdfs that can be downloaded.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;http://web.apps.state.nd.us/imf/sites/hubexplorer/jsp/index.jsp&#34;&gt;North Dakota Hub Explorer&lt;/a&gt; serves as the state’s official data portal including for GIS data.  The downloadable data includes bedrock geology, surface geology, and contours.  Interestingly, the site allows you to choose from 7 different coordinate systems and 27 different file formats including several AutoCad, ESRI, MapInfo, and KML.  The data I looked at had more attribution than the bare minimum shown on a hard-copy map.  Bedrock data, for example, had additional lithology.&lt;/p&gt;
+&lt;p&gt;Even though I appeared to be getting a &lt;em&gt;Request is complex&lt;/em&gt; error message, their system functioned very well, you step your way through a few selections and a few minutes later you receive an email providing a link to start a download of your compressed data.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

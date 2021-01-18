@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sample on Node Dangles</title>
+    <link>https://maprantala.com/tags/sample/</link>
+    <description>Recent content in Sample on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 16 May 2016 23:26:12 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/sample/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>2016 Grandma&amp;#8217;s Marathon Map</title>
+      <link>https://maprantala.com/posts/2016-05-16-2016-grandmas-marathon-map/</link>
+      <pubDate>Mon, 16 May 2016 23:26:12 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2016-05-16-2016-grandmas-marathon-map/</guid>
+      <description>&lt;p&gt;A Little Map I made for fun for Grandma’s Marathon ( &lt;a href=&#34;https://twitter.com/grandmasmara&#34;&gt;@grandmasmara&lt;/a&gt; ) or click &lt;!-- raw HTML omitted --&gt;Here &lt;!-- raw HTML omitted --&gt;for the stand-alone map.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

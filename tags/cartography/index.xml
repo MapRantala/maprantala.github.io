@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cartography on Node Dangles</title>
+    <link>https://maprantala.com/tags/cartography/</link>
+    <description>Recent content in Cartography on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Apr 2014 06:15:02 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/cartography/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Friday Fave: Cartozia Tales</title>
+      <link>https://maprantala.com/posts/2014-04-11-friday-fave-cartozia-tales/</link>
+      <pubDate>Fri, 11 Apr 2014 06:15:02 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2014-04-11-friday-fave-cartozia-tales/</guid>
+      <description>&lt;p&gt;Obviously Cartographers belong in the same category as other superheroes like Superman, Batman, and Spiderman and we finally have a our own comic book to prove it.&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Cartozia Tales&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; is a collaborative effort of nine indy artists with two guest artist each issue.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/Cartozia.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;They have an interesting plan, they’ve split the world into nine regions (what’s the name for the ninth of an area, nona-rant?) and the artist will tell a story from a different region each issue. They may build off the region’s story from the previous issue, continue on the story they told the previous issue, and start something fresh.&lt;/p&gt;
+&lt;p&gt;After being funded by a &lt;!-- raw HTML omitted --&gt;KickStarter campaign&lt;!-- raw HTML omitted --&gt;, they’ve shipped three issues already and have at least seven more promised. Think the project definitely deserve’s a look.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Friday Fave: Public Workout Maps</title>
+      <link>https://maprantala.com/posts/2014-04-05-friday-fave-public-workout-maps/</link>
+      <pubDate>Sat, 05 Apr 2014 05:15:31 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2014-04-05-friday-fave-public-workout-maps/</guid>
+      <description>&lt;p&gt;When I first found out about GIS, the first application that came to mind was using it to map my running routes. At that time, I was using paper maps and scraps of paper to measure how far I was running each day. GIS obviously offered a better method.&lt;/p&gt;
+&lt;p&gt;Almost twenty years later, GPS has become so common place that I think we have four or five devices in our household that have GPS capabilities and measuring my runs has become ridiculously simple.&lt;/p&gt;
+&lt;p&gt;Given that background, you can understand why I love projects like &lt;!-- raw HTML omitted --&gt;this project&lt;!-- raw HTML omitted --&gt; by Nikita Barsukov, who compiled publicly available data from &lt;!-- raw HTML omitted --&gt;Endomondo&lt;!-- raw HTML omitted --&gt; and created maps of public running workout tracks for a variety of European Cities, including this sample from Helsinki.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/helsinki.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Barsukov.Net&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Flowing Data, using a similar concept, generated &lt;!-- raw HTML omitted --&gt;similar maps&lt;!-- raw HTML omitted --&gt; for several cities in the United States, including &lt;!-- raw HTML omitted --&gt;Minneapolis&lt;!-- raw HTML omitted --&gt;–some areas I know.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://flowingdata.com/2014/02/05/where-people-run/&#34;&gt;http://flowingdata.com/2014/02/05/where-people-run/&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;I’ve got about six years of running data of my own that I should use to generate a personal running route map but would be a fun project.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

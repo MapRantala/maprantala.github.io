@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>index exists on Node Dangles</title>
+    <link>https://maprantala.com/tags/index-exists/</link>
+    <description>Recent content in index exists on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 Feb 2011 09:55:35 -0600</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/index-exists/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Checking to see if a Field Index Exists Using Arcpy (ArGIS 10.0)</title>
+      <link>https://maprantala.com/posts/2011-02-21-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/</link>
+      <pubDate>Mon, 21 Feb 2011 09:55:35 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-02-21-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/</guid>
+      <description>&lt;p&gt;Updating some python code from 9.3 that using geoprocessing  to 10.0 using arcpy and the first real object I’ve had to change relates to detecting whether or not an index exists on a table.&lt;/p&gt;
+&lt;p&gt;I previously &lt;a href=&#34;http://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;posted code&lt;/a&gt; using a 9.3 geoprocessing commands, the core of it being:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;With arcpy, ESRI has gone back to using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Describe/000v00000026000000/&#34;&gt;Describe&lt;/a&gt; methodology.  Way back when GISers use to type most of their commands into their wood-burning computers, the command “Describe” was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).  The snippet below shows a function for checking to see if a table has an index with a specified named.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

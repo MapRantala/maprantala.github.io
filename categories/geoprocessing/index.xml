@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>geoprocessing on Node Dangles</title>
+    <link>https://maprantala.com/categories/geoprocessing/</link>
+    <description>Recent content in geoprocessing on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Aug 2012 07:17:41 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/categories/geoprocessing/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>SDEINTERCEPT &amp;#038; SDEINTERCEPTLOC</title>
+      <link>https://maprantala.com/posts/2012-08-01-sdeintercept-sdeinterceptloc/</link>
+      <pubDate>Wed, 01 Aug 2012 07:17:41 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2012-08-01-sdeintercept-sdeinterceptloc/</guid>
+      <description>&lt;p&gt;Awhile ago, I had a ArcSDE problem that required &lt;a href=&#34;http://support.esri.com/en/&#34;&gt;ESRI technical support&lt;/a&gt; to help trouble-shoot. The problem was odd but was resolved by rebooting the server.&lt;br&gt;
+During the process, though, the support person had me set a couple of environment variables for logging SDE activity on the client machine.&lt;/p&gt;
+&lt;p&gt;The settings were SDEINTERCEPT and SDEINTERCEPTLOC.&lt;/p&gt;
+&lt;p&gt;From &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002n00000018000000&#34;&gt;ESRI’s Help&lt;/a&gt;, SDEINTERCEPT specifies what activity to log and SDEINTERCEPTLOC specifies where to save the log files.&lt;/p&gt;
+&lt;p&gt;I recently deleted the directory I made for the log files but did not remove the variables and I noticed that one of my python scripts reported a weird error (but continued to run, I think). I tracked it back to these variables and realized what I had done.&lt;/p&gt;
+&lt;p&gt;Googling SDEINTERCEPTLOC did lead me to some helpful information like:&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;http://sdeintercept.wordpress.com/2011/11/22/sde-user-permissions/&#34;&gt;SDEINTERCEPT blog&lt;/a&gt; where Ken posts ArcSDE help.&lt;/p&gt;
+&lt;p&gt;This &lt;a href=&#34;http://blogs.esri.com/esri/arcgis/2008/09/05/digging-deeper-troubleshooting-geoprocessing-errors-when-using-arcsde-data/&#34;&gt;ESRI post&lt;/a&gt; about troubleshotting geoprocessing problems.&lt;/p&gt;
+&lt;p&gt;And this &lt;a href=&#34;http://support.esri.com/en/knowledgebase/techarticles/detail/35704&#34;&gt;ESRI technical&lt;/a&gt; article about diagnosing ArcSDE Connections.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Checking to see if a Field Index Exists Using Arcpy (ArGIS 10.0) redux</title>
+      <link>https://maprantala.com/posts/2011-07-05-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0-redux/</link>
+      <pubDate>Tue, 05 Jul 2011 12:53:34 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-07-05-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0-redux/</guid>
+      <description>&lt;p&gt;I’ve previously posted python code to check if a field index exists for both &lt;a href=&#34;http://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;ArcGIs 9.3&lt;/a&gt; and &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;ArcGIS 10.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Recently I have been working on a process that was using this code but it was not working because it looks for an index with a specific name.  It was not working in this case because the name of the indexes was getting incremented as they were being created.  For example, I was building an index on the table C5ST, field RelateId ([C5IX].[Relateid]) named I_C5IX_RelateId.  That worked fine until we switched our process so now we keep multiple versions of some tables, each with a date-based suffix.&lt;/p&gt;
+&lt;p&gt;We now have tables name C5St_20110625 and C5St_20110626–the Index-name scheme, however was still creating I_C5IX_RelateId and it worked great on the first one.  But when it created the second one, even on a different table, it was automatically name I_C5IX_RelateId_2 even though the name I_C5IX_RelateId was used when trying to create the index.&lt;/p&gt;
+&lt;p&gt;Before generating relates, our code checks to see if the key fields are indexed, and if they are not, builds  an index.  Because of the naming situation, multiple, duplicate indexes were being created.  Probably not too harmful but it is a little messy.&lt;/p&gt;
+&lt;p&gt;So I re-wrote the code so that you pass the function the table name and field name that you want to check and it checks to see if there is an index existing for that field and return a Boolean.  The one little wrinkle I put in is to account for indexes that span multiple fields–the ” if (iIndex.fields[0].Name.upper() == fieldname.upper()):” statement is checking the index to see if it is on a single field or multiple fields.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;def fieldHasIndex(tablename,fieldname):&lt;br&gt;
+if not arcpy.Exists(tablename):&lt;br&gt;
+return False&lt;/p&gt;
+&lt;p&gt;tabledescription = arcpy.Describe(tablename)&lt;/p&gt;
+&lt;p&gt;for iIndex in tabledescription.indexes:&lt;br&gt;
+if (len(iIndex.fields)==1):&lt;br&gt;
+if (iIndex.fields[0].Name.upper() == fieldname.upper()):&lt;br&gt;
+return True&lt;/p&gt;
+&lt;p&gt;return False&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Renaming Raster Dataset and arcpy.Exists()</title>
+      <link>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</link>
+      <pubDate>Tue, 03 May 2011 09:33:48 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</guid>
+      <description>&lt;p&gt;Discovered something today. I was working on an arcpy script that copies a raster dataset from a file geodatabase into a Postgres SDE geodatabase and then does some boring routine tasks–building stats, creating a mosaic dataset, adding the raster to the mosaic dataset and making a couple referenced mosaic datasets.&lt;/p&gt;
+&lt;p&gt;It sometimes has trouble with the initial step of uploading the raster because of the sheer size of if (1m elevation raster for counties) and it failed today on one. It failed today so I used the ArcCatalog GUI to copy the raster and renamed it.&lt;/p&gt;
+&lt;p&gt;I then proceeded to run launch my script. Before each step, I use &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Exists/000v00000021000000/&#34;&gt;arcpy.Exists&lt;/a&gt;() extensively to check to see if various items exist before I attempt to create them. It was continuously reporting that my raster set did not exist even though I could see it in ArcCatalog.&lt;/p&gt;
+&lt;p&gt;Finally, I realized that I needed to close ArcCatalog before arcpy recognized the fact I had renamed something. To note, I was running arcpy from a separate PythonWin window, not from the ArcCatalog session I had renamed the raster dataset with.&lt;/p&gt;
+&lt;p&gt;Once I closed ArcCatalog, arcpy recognized the renaming and life was good.&lt;/p&gt;
+&lt;p&gt;I’m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
+      <link>https://maprantala.com/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</link>
+      <pubDate>Sun, 01 May 2011 05:01:50 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</guid>
+      <description>&lt;p&gt;For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.&lt;/p&gt;
+&lt;p&gt;Here is the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;bare-bones script&lt;/a&gt; that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.  Some cautionary notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This is Quick &amp;amp; Dirty code–minimal error catching or documentation.&lt;/li&gt;
+&lt;li&gt;I basically tested this against one feature class (the one I wanted to split) once I got it to work, I quit.&lt;/li&gt;
+&lt;li&gt;There is some rounding error–features may be a tad bit off (a few ten-thousandths of a unit).&lt;/li&gt;
+&lt;li&gt;I did not test against multi-part features.&lt;/li&gt;
+&lt;li&gt;The tolerance is the native units of the data–if your data is in meters but you want to split the polylines every mile, enter 1,609.344.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you’ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
+&lt;p&gt;Here is the code for the Googlebots, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;just downloading&lt;/a&gt; it.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Change Detector arcpy Script</title>
+      <link>https://maprantala.com/posts/2011-04-08-change-detector-script-arcgis-resource-center/</link>
+      <pubDate>Fri, 08 Apr 2011 10:48:59 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-04-08-change-detector-script-arcgis-resource-center/</guid>
+      <description>&lt;p&gt;During a process I was working on, I needed to compare a feature class before and after some edits.  I did not quickly find anything in ArcToolbox but searching &lt;a href=&#34;http://resources.arcgis.com/&#34;&gt;ArcResources&lt;/a&gt; led me to &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=351BEE10-1422-2418-8815-82074A3E6B6C&#34;&gt;Change Detector script by Bruce Harold&lt;/a&gt;.  After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.  I also discovered that it needs to export to the same format (personal geodatabase, file geodatabase, shapefile) as the source data (or at least one that uses the same field name deliminator).&lt;/p&gt;
+&lt;p&gt;After minor adjustments, though, it worked like a charm.  I’ll be submitting the changes I made to Bruce and let him incorporate the changes into the official code.&lt;/p&gt;
+&lt;p&gt;FOLLOW-UP: Mr. Harold quickly responded to my email &amp;amp; made the change (although I haven’t checked it). Way to go Bruce!  Thanks for a handy script.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using arcpy to List Domains Assigned to Featureclass Fields</title>
+      <link>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</link>
+      <pubDate>Mon, 14 Mar 2011 18:04:36 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</guid>
+      <description>&lt;p&gt;I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
+&lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
+&lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/failedtodeletedomain.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The Google Machine led me to an &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=985&amp;amp;t=303616&#34;&gt;ArcForums post&lt;/a&gt; by  with some python code for listing all the fields with a domain.&lt;/p&gt;
+&lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the ‘listfc(“”)’ line that is the first line of the def listds() module.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Zipping a File Geodatabase using Python</title>
+      <link>https://maprantala.com/posts/2011-02-08-zipping-a-file-geodatabase-using-python/</link>
+      <pubDate>Tue, 08 Feb 2011 13:44:34 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-02-08-zipping-a-file-geodatabase-using-python/</guid>
+      <description>&lt;p&gt;Ever since the ever-popular post, &lt;a href=&#34;http://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zipping a shapefile using python&lt;/a&gt;, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.&lt;/p&gt;
+&lt;p&gt;The key trick, as shown in line 17, is appending the basename of the file geodatabase (“nfg.gdb/” in my example) in front of each file as you write it to the zipfile.&lt;/p&gt;
+&lt;p&gt;UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp;amp; pasted and have work.  So I have posted a the code &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110208_Sample_Zip_FileGeodatabase.zip&#34;&gt;HERE&lt;/a&gt; for downloading.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Checking to see if a Field Index Exists Using Python (geoprocessing 9.3).</title>
+      <link>https://maprantala.com/posts/2011-01-27-checking-to-see-if-a-field-index-exists-using-python/</link>
+      <pubDate>Thu, 27 Jan 2011 15:31:48 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-01-27-checking-to-see-if-a-field-index-exists-using-python/</guid>
+      <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
+&lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
+&lt;p&gt;No problem creating the index, for example:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn’t work-it did not like the “while” loop construction.  I’m guessing it worked in 9.2 and despite ESRI’s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
+&lt;p&gt;A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Multiple outputs for Python scripts</title>
+      <link>https://maprantala.com/posts/2010-12-17-multiple-outputs-for-python-scripts/</link>
+      <pubDate>Fri, 17 Dec 2010 15:19:38 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2010-12-17-multiple-outputs-for-python-scripts/</guid>
+      <description>&lt;p&gt;Related to my &lt;a href=&#34;http://maprantala.com/2010/12/13/launching-a-python-script-with-parameters-3-methods/&#34;&gt;post&lt;/a&gt; on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways.  This is largely due to the fact that some are called by ArcToolbox scripts.  Running in ESRI’s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.&lt;/p&gt;
+&lt;p&gt;If you assume one output method but then run your code in the opposite framework, you don’t get to see all the pretty little messages.  What I do is create a simple little routine that broadcasts the message both ways.  This is probably an obvious solution but took a few cases before I went ahead and started implementing it.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Trying to perform &amp;#8220;relate&amp;#8221; in Model Builder</title>
+      <link>https://maprantala.com/posts/2010-08-11-trying-to-perform-relate-in-model-builder/</link>
+      <pubDate>Wed, 11 Aug 2010 17:31:21 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-08-11-trying-to-perform-relate-in-model-builder/</guid>
+      <description>&lt;p&gt;I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y’) in another table (CWI.C5IX).  There is not an existing tool for doing this in ArcGIS.  I did find a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=1728&amp;amp;t=257179&amp;amp;g=1&#34;&gt;post&lt;/a&gt; by Layne Seely in &lt;a href=&#34;http://forums.esri.com/&#34;&gt;ArcForums&lt;/a&gt; titled “trying to perform “relate” in Model Builder.” that led me to the Make Table View under Data Management Tools-Make Table View and even had  the basic syntax I was looking for (if it hadn’t I probably would have guessed that it would not allow subqueries).&lt;/p&gt;
+&lt;p&gt;Since I always like to see exactly the syntax someone uses, I decided to show the syntax I used in case that helps anyone else.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/08/tableview.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Sample of a Table View using a subquery&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;It does require that the tables reside in the same workspace, which is a reasonable limitation that I can live with.  Another drawback is that if you export the model to a python script, the command can get pretty long, especially if you have many fields.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>NED Processing in Python &amp;#038; Geoprocessing</title>
+      <link>https://maprantala.com/posts/2010-07-07-ned-processing-in-python-geoprocessing/</link>
+      <pubDate>Wed, 07 Jul 2010 14:05:20 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-07-ned-processing-in-python-geoprocessing/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://www.usgs.gov/&#34;&gt;USGS&lt;/a&gt; updated a significant portion of &lt;a href=&#34;http://ned.usgs.gov/&#34;&gt;NED&lt;/a&gt; data for my state in June.  I recently downloaded the updates, processed them–projecting and converting the elevations from meters to feet–using python and geoprocessing.  My python skills are still pretty crude but I was able to get the job done.&lt;/p&gt;
+&lt;p&gt;One of the benefits of working for the public sector is that I can more freely publish code without worrying about “trade secrets” or what have you so I thought I would put my code out for anyone to see, maybe someone will find it useful.  It is split into two separate files, mostly because I used &lt;!-- raw HTML omitted --&gt;Model Builder&lt;!-- raw HTML omitted --&gt; to generate the main processing chunk of code (Project_Reclassify.py) and another script to control looping, etc. The code isn’t pretty and you’ll see the results of my development process with two subroutines in LaunchScript.py that could really be one.&lt;/p&gt;
+&lt;h3 id=&#34;heading&#34;&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;launchscriptpy&#34;&gt;LaunchScript.py&lt;/h3&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h3 id=&#34;projectreclassifypy&#34;&gt;Project.Reclassify.py&lt;/h3&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;blockquote&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

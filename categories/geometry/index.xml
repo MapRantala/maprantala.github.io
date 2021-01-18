@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Geometry on Node Dangles</title>
+    <link>https://maprantala.com/categories/geometry/</link>
+    <description>Recent content in Geometry on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 May 2010 02:52:24 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/categories/geometry/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Geology Information Systems</title>
+      <link>https://maprantala.com/posts/2010-05-24-geology-information-systems/</link>
+      <pubDate>Mon, 24 May 2010 02:52:24 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-05-24-geology-information-systems/</guid>
+      <description>&lt;p&gt;In the last couple months, I’ve had a bit of an eye-opening about Geography. People actually trained in geography may implicitly understand this but I, with my Accounting degree, have spent the last 16 years “doing” GIS without realizing the foundation of geography–geology. I picked up enough geography to understand some of the inter-relationships between people and the lands they live on.&lt;/p&gt;
+&lt;p&gt;But what I didn’t pick up on was how the lands we live on are formed. Maybe it is a moot point–how physical geography is arrived at doesn’t matter, just how we react to it. But, and now working for a Geological Survey, I better have this opinion, a better understanding of what our geology is and how it was formed really does form the foundation for the geography.&lt;/p&gt;
+&lt;p&gt;Two examples. First, in talking with my new supervisor, he was talking about how, because of the geology in the southeast part of the state, they have a lot of water quality issues–the water tends to have sulfur in it. With the recent interest in alternative energy sources, and in this case ethanol plants water quality is a concern when deciding where to build the plants because they require a considerable amount of water. For some reason there have been plants placed in this part of the state and they are having some problems finding sufficient water.&lt;/p&gt;
+&lt;p&gt;The second, and I’m not sure that this is actually fact or just a theory but it is an interesting idea, was something I read in Malcolm Gladwell’s book &lt;em&gt;Outliers&lt;/em&gt;. In the book, it was suggested that there was an almost epidemic of feuds, a la Hatfield-McCoy, in part of the US largely due to the geology of a portion of the country. The areas that relied on a herding economy developed a clannish “code of honor” that led to these long-term feuds. While I understood that physical geography effects human behavior I hadn’t taken the mental step to link geology to physical geography.&lt;/p&gt;
+&lt;p&gt;Pretty silly and probably obvious oversight.&lt;/p&gt;
+&lt;p&gt;And to think, I use to think the “G” in GIS should really stand for Geometry. Humph!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>arcgis – Node Dangles</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://maprantala.com/tags/arcgis/index.xml">
+<meta name="description" content="">
+<meta name="created" content="2015-08-14T10:01:54-0500">
+<meta name="modified" content="2015-08-14T10:01:54-0500">
+<meta name="author" content="Matthew Rantala">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="arcgis">
+<meta property="og:url" content="https://maprantala.com/tags/arcgis/">
+<meta property="og:type" content="website">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/tags/arcgis/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url" : "https://maprantala.com/tags/arcgis/",
+    "name": "arcgis",
+    "description": "Geospatial Programming Blog",
+    "author": {
+      "@type": "Person",
+      "name": "Matthew Rantala"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="list-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/" class="active" aria-current="page">Home</a></li>
+<li><a href="/2019-01-21-wordpress-permalinks-snafu/">WordPress Permalinks Snafu</a></li>
+<li><a href="/posts/">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<h1 class="title">arcgis</h1>
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/">Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</a></h2>
+
+</header>
+<div class="content">
+For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.
+Here is the bare-bones script that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-04-08-change-detector-script-arcgis-resource-center/">Change Detector arcpy Script</a></h2>
+
+</header>
+<div class="content">
+During a process I was working on, I needed to compare a feature class before and after some edits. I did not quickly find anything in ArcToolbox but searching ArcResources led me to Change Detector script by Bruce Harold. After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-03-25-arcideas-scale-dependant-settings/">ArcIdeas: Scale-Dependant Settings.</a></h2>
+
+</header>
+<div class="content">
+Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent. Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range. Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.
+I’m not sure how rapidly ESRI takes “Ideas” into consideration but if you feel like it would benefit you, why not promote this idea: Scale Range, SQL Query and Symbology Rendering in ArcMap.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-03-08-calculating-geometry-using-arcpy-in-field-calculator/">ArcMap Field Calculator: Calculating Geometry using arcpy</a></h2>
+
+</header>
+<div class="content">
+One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the Field Calculator. When I stumbled upon a bug in the way the Extract Values to Points tool handles Null geometries, I figured it was time to figure it out. Setting the X, Y to 0,0 was sufficient for my needs.
+I set the Parser to Python and the formula was simple once I figured out the syntax:
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-03-07-extract-values-to-points-spatial-analyst-bug/">Extract Values to Points (Spatial Analyst) Bug</a></h2>
+
+</header>
+<div class="content">
+One of the Spatial Analyst tools we often use in ArcGIS is the “Extract Values to Points” tool. This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.
+
+Today I was running it for the first time against an Image Service we recently published and I received a warning message,”WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry”.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-02-23-esri-font-samples-pdf-applicationpdf-object/">ESRI Font Samples.pdf (application/pdf Object)</a></h2>
+
+</header>
+<div class="content">
+Whenever I want to skim through ESRI’s fonts to find some symbology I need for a specific purpose, I go through some laborious process to skim the fonts searching for an adequate symbol.
+However, in the ESRI Mapping Center blog post, user use2b311 post a link to a pre-made pdf showing ESRI Font Samples.pdf (application/pdf Object).
+Back when ESRI use to actually print hard-copy manuals, there were similar diagrams available but either I haven’t searched enough of they don’t exist in the digital help systems so I was happy to stumble upon this.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-02-17-multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/">Multiple geodatabases and ArcSDE services from one PostgreSQL server.</a></h2>
+
+</header>
+<div class="content">
+To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point). A side question is why can’t tables and raster be placed in Feature Datasets? This wouldn’t be an end-all solution for what we want to do but there are some messy consequences of this limitation.
+ESRI has instructions on Setting up multiple geodatabases in one PostgreSQL database cluster on Windows which was helpful but we repeatedly got an “The ArcSDE Repository was unsuccessfully completed.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-02-15-walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-net-10-sdk/">Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)</a></h2>
+
+</header>
+<div class="content">
+I was working my way through this ESRI Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK). And came across a couple minor errors that I had to correct during the process.
+First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a “Name ‘ArcMap’ is not declared.” error.
+
+In the walk-through, they mention that the ArcMap method of your class. For me, however, it appeared under the .
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2011-02-04-using-arcgis-9-3-1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/">Using ArcGIS 9.3.1 Desktop to Extract Data From an ArcGIS 10 Server Geodata Service</a></h2>
+
+</header>
+<div class="content">
+In building our Enterprise GIS Database, we need to support users with different needs. Some of our users just need to see the data on a map while others may want to download a copy of the data so they can use it within their own desktop system.
+After doing some exploring, one of the options that looks like it will feel the bulk of our internal needs is to create a Map Service/Geodata Service pair–by creating a Map Service, we can make an easy-to-use visual representation of our data.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title "><a href="/posts/2010-12-17-multiple-outputs-for-python-scripts/">Multiple outputs for Python scripts</a></h2>
+
+</header>
+<div class="content">
+Related to my post on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways. This is largely due to the fact that some are called by ArcToolbox scripts. Running in ESRI’s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.
+</div>
+</article>
+
+<nav class="pager">
+<a href="/tags/arcgis/" rel="prev" class="pager-item pager-prev">Prev</a>
+<a href="/tags/arcgis/page/3/" rel="next" class="pager-item pager-next">Next</a>
+</nav>
+
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

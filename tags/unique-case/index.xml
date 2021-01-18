@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unique Case on Node Dangles</title>
+    <link>https://maprantala.com/tags/unique-case/</link>
+    <description>Recent content in Unique Case on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 Apr 2012 05:55:34 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/unique-case/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ArcMap Field Calculator: Identifying Unique Cases, Single Field</title>
+      <link>https://maprantala.com/posts/2012-04-28-arcmap-field-calculator-identifying-unique-cases-single-field/</link>
+      <pubDate>Sat, 28 Apr 2012 05:55:34 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2012-04-28-arcmap-field-calculator-identifying-unique-cases-single-field/</guid>
+      <description>&lt;p&gt;Seems like a lot of people are finding the ArcMap Field Calculator &lt;a href=&#34;http://maprantala.com/category/esri/arcmap-esri/field-calculator/&#34;&gt;examples&lt;/a&gt; that I have posted useful so I will make an effort to post more of them. Most posts are generated after I do something and think that others might want to know how to do it. (Or so I can go back and remember how I did something without re-inventing it).&lt;/p&gt;
+&lt;p&gt;Something I did today was create a field (!Case!) and then populated this with a unique identifier for each different value (case) that occurred in a different field (!Feature!).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note: python’s &lt;em&gt;index&lt;/em&gt; statement is a 0-based search so the first case will have the value 0, the second will have 1, and so on. If you want to start the results at 1, you can make the last line: “return caseList.index(inValue) + 1”.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The basic structure for this is shown:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

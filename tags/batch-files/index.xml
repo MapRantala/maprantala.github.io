@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>batch files on Node Dangles</title>
+    <link>https://maprantala.com/tags/batch-files/</link>
+    <description>Recent content in batch files on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 26 Jul 2010 12:43:02 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/batch-files/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Accessing Network Drives via Scheduled Python Task</title>
+      <link>https://maprantala.com/posts/2010-07-26-accessing-network-drives-via-scheduled-python-task/</link>
+      <pubDate>Mon, 26 Jul 2010 12:43:02 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-26-accessing-network-drives-via-scheduled-python-task/</guid>
+      <description>&lt;p&gt;As previously mentioned, I have a scheduled nightly backup that is written in Python.  Most of it has been working fine but I had not gotten it to copy files to network drives.  I finally got around to correcting that part.  My first attempt was just to map the network drives for the user account that is used to run the task.  No good.&lt;/p&gt;
+&lt;p&gt;My second attempt was to call a .bat file from python before accessing the network drives and that worked.&lt;/p&gt;
+&lt;p&gt;The batch file has two lines (one for each network drive):&lt;/p&gt;
+&lt;p&gt;net use n: \domain1sharename mypassword /USER:domainusername&lt;br&gt;
+net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
+&lt;p&gt;And my python script includes two lines to call it before I access the network locations:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

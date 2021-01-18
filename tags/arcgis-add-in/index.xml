@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>arcgis add-in on Node Dangles</title>
+    <link>https://maprantala.com/tags/arcgis-add-in/</link>
+    <description>Recent content in arcgis add-in on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Mar 2011 15:18:14 -0600</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/arcgis-add-in/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Instantiating Add-In Objects at Load Time</title>
+      <link>https://maprantala.com/posts/2011-03-02-instantiating-add-in-objects-at-load-time/</link>
+      <pubDate>Wed, 02 Mar 2011 15:18:14 -0600</pubDate>
+      <guid>https://maprantala.com/posts/2011-03-02-instantiating-add-in-objects-at-load-time/</guid>
+      <description>&lt;p&gt;In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0.  So far, I’m loving the functionality.&lt;/p&gt;
+&lt;p&gt;One thing, however, that I have to figure out is that the controls are not instantiated until they are clicked on.  One of the results is that the controls, by default, are enabled.  This is not the functionality I wanted.&lt;/p&gt;
+&lt;p&gt;I found the solution in ESRI’s topic, &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/&#34;&gt;Advanced add-in concepts (ArcObjects .NET 10 SDK)&lt;/a&gt; in the Delayed loading section:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;The verbiage, “setting the onDemand Extensible Markup Language (XML) attribute to false” was a bit non-specific to me.  I guessed right, however, that they were referring to the control definiton in the Command section of Config.esriaddinx.  In the example below, I set the onDemand attribute to false by adding the  ‘onDemand=”false”‘ tag and the control did, in fact, get instantiated at load time, giving me the ability to disable it.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Zipping a shapefile via ArcToolbox – Node Dangles</title>
+<meta name="description" content="UPDATE: After receiving a request to modify the code to ignore .lock files, I have an updated to this post.  I’ve received a request on how to use the Zip Shapefile code …">
+<meta name="created" content="2010-12-15T14:36:04-0600">
+<meta name="modified" content="2010-12-15T14:36:04-0600">
+<meta name="author" content="Matt">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="Zipping a shapefile via ArcToolbox">
+<meta property="og:url" content="https://maprantala.com/posts/2010-12-15-zipping-a-shapefile-via-arctoolbox/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/posts/2010-12-15-zipping-a-shapefile-via-arctoolbox/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Zipping a shapefile via ArcToolbox",
+    "datePublished": "2010-12-15T14:36:04-06:00",
+    "dateModified": "2010-12-15T14:36:04-06:00",
+    "url" : "https://maprantala.com/posts/2010-12-15-zipping-a-shapefile-via-arctoolbox/",
+    "description": "UPDATE: After receiving a request to modify the code to ignore .lock files, I have an updated to this post.  I’ve received a request on how to use the Zip Shapefile code …",
+    "keywords": ["arcgis","arcgisscripting","geoprocessing","python","shapefile","zip"],
+    "author": {
+      "@type": "Person",
+      "name": "Matt"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/2019-01-21-wordpress-permalinks-snafu/">WordPress Permalinks Snafu</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title ">Zipping a shapefile via ArcToolbox</h1>
+<div class="tags">
+Tags:
+<ul>
+<li><a href="/tags/arcgis">arcgis</a></li>
+<li><a href="/tags/arcgisscripting">arcgisscripting</a></li>
+<li><a href="/tags/geoprocessing">geoprocessing</a></li>
+<li><a href="/tags/python">python</a></li>
+<li><a href="/tags/shapefile">shapefile</a></li>
+<li><a href="/tags/zip">zip</a></li>
+</ul>
+</div>
+</header>
+<div class="content">
+<h2 id="update"><strong>UPDATE:</strong></h2>
+<p><a href="http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/">After receiving a request to modify the code to ignore .lock files, I have an updated to this post.</a></p>
+<p> </p>
+<p>I’ve received a request on how to use the <a href="http://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/">Zip Shapefile</a> code I posted last week from ArcGIS. Sorry, I did not set the code up to call directly from ArcGIS but only as an illustration of how it can be done.</p>
+<p>I have, however, with some minor tweaking, made a version that can added to ArcToolbox. The steps to install are below, please note that at one point I had you download a *.zip file that had been renamed to *.jpg–this should now be corrected and the link should lead you directly to zipshapefile.zip.  Because of this steps two and three are obsolete.</p>
+<ol>
+<li>Download the code from here.</li>
+<li><!-- raw HTML omitted -->Rename the file from zipshapefile-zip.jpg back to zipshapefile.zip.<!-- raw HTML omitted --></li>
+<li>Unzip the file.</li>
+<li>Move ZipShapefile.py to C:Program FilesArcGISArcToolBoxScriptsZipShapefile.py.</li>
+<li>Optionally, move Zip Shapefile.tbx, perhaps C:Program FilesArcGISArcToolBoxToolboxes.</li>
+<li>Add the toolbox to ArcToolbox. ESRI has instructions <a href="http://webhelp.esri.com/arcgisdesktop/9.3/tutorials/spatial/Spatial_14.htm">here</a> on how to do this.</li>
+</ol>
+<p>You should now have a new toolbox named “Zip Shapefile” with a script named “Zip a Shapefile” in it. Clicking on on the tool will bring up this dialog.</p>
+<p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2010/12/capture.jpg"><!-- raw HTML omitted --></a></p>
+<p>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>****<br>
+In response to Chris:</p>
+<p>I believe you need to copy the ZipShapefile.py file from the .zip that you downloaded to C:Program FilesArcGISArcToolBoxScripts, the error message is consistent with the tool not being about to find the python script there.</p>
+<p>If you prefer to place the ZipShapefile.py in a different location, you will need to change the source on the tool. To do this, right click on the tool in ArcCatalog and change the path of the Script File as set in the Source tab (see below):<a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2012/03/setpath.png"><!-- raw HTML omitted --></a></p>
+<!-- raw HTML omitted -->
+
+
+</div>
+</article>
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

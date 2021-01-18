@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>South Dakota Geological Survey on Node Dangles</title>
+    <link>https://maprantala.com/tags/south-dakota-geological-survey/</link>
+    <description>Recent content in South Dakota Geological Survey on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 Jul 2010 12:33:07 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/tags/south-dakota-geological-survey/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>South Dakota Geological Survey</title>
+      <link>https://maprantala.com/posts/2010-07-13-south-dakota-geological-survey/</link>
+      <pubDate>Tue, 13 Jul 2010 12:33:07 -0500</pubDate>
+      <guid>https://maprantala.com/posts/2010-07-13-south-dakota-geological-survey/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://www.sdgs.usd.edu/&#34;&gt;South Dakota Geological Survey&lt;/a&gt; website provides some good base data–imagery, DRGs, DEMs, and DLGs.  There is a searchable database of &lt;a href=&#34;http://www.sddenr.net/core/&#34;&gt;core cuttings&lt;/a&gt; and the &lt;a href=&#34;http://arcgis.sd.gov/server/sdgis/Data.aspx&#34;&gt;state data server&lt;/a&gt; has bedrock data for the eastern portion of the state and a statewide layer, presumably surficial geology, called geology.  Quad-based geological maps are also available (PDF format) in the &lt;a href=&#34;http://www.sdgs.usd.edu/publications/index.html&#34;&gt;Publications and Maps&lt;/a&gt; section.  The data I downloaded was in shapefile format with minimal attribution.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
