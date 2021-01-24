@@ -14,13 +14,13 @@
       <link>https://maprantala.com/2017/10/04/arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</link>
       <pubDate>Wed, 04 Oct 2017 22:17:11 -0500</pubDate>
       <guid>https://maprantala.com/2017/10/04/arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</guid>
-      <description>&lt;p&gt;One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a “recover-our-cost” mentality to more of an “Open Data”. Minnesota, for example, has launched their &lt;!-- raw HTML omitted --&gt;Geospatial Commons&lt;!-- raw HTML omitted --&gt; as a platform for sharing data.&lt;/p&gt;
+      <description>&lt;p&gt;One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a &amp;lsquo;recover-our-cost&amp;rsquo; mentality to more of an &amp;lsquo;Open Data&amp;rsquo;. Minnesota, for example, has launched their &lt;!-- raw HTML omitted --&gt;Geospatial Commons&lt;!-- raw HTML omitted --&gt; as a platform for sharing data.&lt;/p&gt;
 &lt;p&gt;And while getting free, authoritative data is awesome, it can leave you in a bind if the structure of the data changes. Sometime between April and September, Hennepin County, Minnesota, changed the schema of their &lt;!-- raw HTML omitted --&gt;publicly available street centerlines data&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
-&lt;p&gt;The data used to have both a full, concatenated street name field ([ST_CONCAT]) and an abbreviated version ([ST_CON_ABR]). A record might have “James Lofton Avenue North” and “James Lofton Ave N”, respectively, in these two fields. The abbreviated version was nice for labeling but it disappeared from the most recent updates.&lt;/p&gt;
+&lt;p&gt;The data used to have both a full, concatenated street name field ([ST_CONCAT]) and an abbreviated version ([ST_CON_ABR]). A record might have &amp;lsquo;James Lofton Avenue North&amp;rsquo; and &amp;lsquo;James Lofton Ave N&amp;rsquo;, respectively, in these two fields. The abbreviated version was nice for labeling but it disappeared from the most recent updates.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2017/10/Streetnames.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;So, as you  might guess from the fact that I’m posting about it, I wrote a script to add that field in and launch it from an ArcToolbox Tool. Nothing fancy going on in the code, just a series of replaces, depending on the field. Using dictionaries instead of arrays of paired values might have been better but the script takes just a few seconds to run so I can live with it as-is.&lt;/p&gt;
-&lt;p&gt;The list of street type abbreviations came from a combination of &lt;!-- raw HTML omitted --&gt;ESRI’s standards&lt;!-- raw HTML omitted --&gt; and those found in an older version of the Hennepin County data. There were no conflicting abbreviations between the two. The code warns if a street name occurs in the data that is not in the list.&lt;/p&gt;
-&lt;p&gt;While I’m including the code here for reference, it’s probably best to &lt;!-- raw HTML omitted --&gt;download the code from GitHub.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;So, as you  might guess from the fact that I&amp;rsquo;m posting about it, I wrote a script to add that field in and launch it from an ArcToolbox Tool. Nothing fancy going on in the code, just a series of replaces, depending on the field. Using dictionaries instead of arrays of paired values might have been better but the script takes just a few seconds to run so I can live with it as-is.&lt;/p&gt;
+&lt;p&gt;The list of street type abbreviations came from a combination of &lt;!-- raw HTML omitted --&gt;ESRI&amp;rsquo;s standards&lt;!-- raw HTML omitted --&gt; and those found in an older version of the Hennepin County data. There were no conflicting abbreviations between the two. The code warns if a street name occurs in the data that is not in the list.&lt;/p&gt;
+&lt;p&gt;While I&amp;rsquo;m including the code here for reference, it&amp;rsquo;s probably best to &lt;!-- raw HTML omitted --&gt;download the code from GitHub.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;blockquote&gt;
@@ -48,16 +48,16 @@
       <link>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis./</link>
       <pubDate>Wed, 31 Dec 2014 14:38:16 -0600</pubDate>
       <guid>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis./</guid>
-      <description>&lt;p&gt;Recently I’ve created &lt;!-- raw HTML omitted --&gt;Python add-ins&lt;!-- raw HTML omitted --&gt; for data entry for our staff. Most of these have a toolbar with a “Help” button that opens a help file in .pdf format.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Recently I&amp;rsquo;ve created &lt;!-- raw HTML omitted --&gt;Python add-ins&lt;!-- raw HTML omitted --&gt; for data entry for our staff. Most of these have a toolbar with a &amp;lsquo;Help&amp;rsquo; button that opens a help file in .pdf format.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/12/Toolbar.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Sample python add-in toolbar.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(&lt;em&gt;path to help.pdf&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!&lt;/p&gt;
 &lt;p&gt;Luckily the &lt;!-- raw HTML omitted --&gt;Python development team at Esri&lt;!-- raw HTML omitted --&gt; already had a &lt;!-- raw HTML omitted --&gt;blog post&lt;!-- raw HTML omitted --&gt; about this at their &lt;!-- raw HTML omitted --&gt;ArcPy Café blog&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
-&lt;p&gt;They report that the root of the problem is “conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool”. But this can be overcome by using a &lt;!-- raw HTML omitted --&gt;decorator&lt;!-- raw HTML omitted --&gt; function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.&lt;/p&gt;
+&lt;p&gt;They report that the root of the problem is &amp;lsquo;conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool&amp;rsquo;. But this can be overcome by using a &lt;!-- raw HTML omitted --&gt;decorator&lt;!-- raw HTML omitted --&gt; function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.&lt;/p&gt;
 &lt;p&gt;Example code is shown below:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I’ve been able to tell, works fine without crashing your ArcMap session.&lt;/p&gt;
+&lt;p&gt;Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&amp;rsquo;ve been able to tell, works fine without crashing your ArcMap session.&lt;/p&gt;
 &lt;p&gt;Cheers!&lt;/p&gt;
 </description>
     </item>
@@ -67,9 +67,9 @@
       <link>https://maprantala.com/2014/12/18/quick-#038-dirty-arcpy-verify-a-coded-value-domain-code/</link>
       <pubDate>Thu, 18 Dec 2014 22:32:11 -0600</pubDate>
       <guid>https://maprantala.com/2014/12/18/quick-#038-dirty-arcpy-verify-a-coded-value-domain-code/</guid>
-      <description>&lt;p&gt;I’ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a &lt;!-- raw HTML omitted --&gt;Coded Value Domain&lt;!-- raw HTML omitted --&gt; is valid.&lt;/p&gt;
-&lt;p&gt;The logic of the code is pretty straight-forward. Get a field’s domain and check that a potential value is one of the code values. The biggest “trick” in this code is that &lt;!-- raw HTML omitted --&gt;arcpy.da.ListDomains&lt;!-- raw HTML omitted --&gt;, which locates a field’s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.&lt;/p&gt;
-&lt;p&gt;A couple caveats about the code. It only returns True if a field exists, has a coded value domain, and the value tested is one of the (case-sensitive) valid codes. While I have an ArcToolbox tool to call it for illustration purposes, I’m only calling it from code so I wanted tight requirements.&lt;/p&gt;
+      <description>&lt;p&gt;I&amp;rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a &lt;!-- raw HTML omitted --&gt;Coded Value Domain&lt;!-- raw HTML omitted --&gt; is valid.&lt;/p&gt;
+&lt;p&gt;The logic of the code is pretty straight-forward. Get a field&amp;rsquo;s domain and check that a potential value is one of the code values. The biggest &amp;lsquo;trick&amp;rsquo; in this code is that &lt;!-- raw HTML omitted --&gt;arcpy.da.ListDomains&lt;!-- raw HTML omitted --&gt;, which locates a field&amp;rsquo;s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.&lt;/p&gt;
+&lt;p&gt;A couple caveats about the code. It only returns True if a field exists, has a coded value domain, and the value tested is one of the (case-sensitive) valid codes. While I have an ArcToolbox tool to call it for illustration purposes, I&amp;rsquo;m only calling it from code so I wanted tight requirements.&lt;/p&gt;
 &lt;p&gt;Anyhow, here is the code or &lt;!-- raw HTML omitted --&gt;download it&lt;!-- raw HTML omitted --&gt; from GitHub.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -88,11 +88,11 @@
 &lt;p&gt;This tool will change all feature classes in the O:\clay_cga\sand-distribution_model\dnrPackages\stratlines directory.&lt;/p&gt;
 &lt;p&gt;It will look at two fields, [strat] and [unit] and make these changes:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;“go” becomes “gro”&lt;/li&gt;
-&lt;li&gt;“goc” becomes “grc”&lt;/li&gt;
-&lt;li&gt;“sgb” becomes “grb”&lt;/li&gt;
+&lt;li&gt;&amp;lsquo;go&amp;rsquo; becomes &amp;lsquo;gro&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;&amp;lsquo;goc&amp;rsquo; becomes &amp;lsquo;grc&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;&amp;lsquo;sgb&amp;rsquo; becomes &amp;lsquo;grb&amp;rsquo;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;And since I have Case Sensitive checked, “Go” will not get changed to “gro”.  Also note that only full values that match values in the Old Value List get changed, part matches are left as-is so “got” would be left as-is even though the first two characters match “go”.&lt;/p&gt;
+&lt;p&gt;And since I have Case Sensitive checked, &amp;lsquo;Go&amp;rsquo; will not get changed to &amp;lsquo;gro&amp;rsquo;.  Also note that only full values that match values in the Old Value List get changed, part matches are left as-is so &amp;lsquo;got&amp;rsquo; would be left as-is even though the first two characters match &amp;lsquo;go&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/BulkFieldChange.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -108,7 +108,7 @@
       <pubDate>Mon, 23 Sep 2013 06:47:36 -0500</pubDate>
       <guid>https://maprantala.com/2013/09/23/arcpy-check-if-a-field-exists/</guid>
       <description>&lt;p&gt;I was helping a co-worker who needed to check if a field exists in their arcpy script. Since we were located at their computer, I thought I would just do a quick Google search and pull the code off this blog. Seemed logical since I the original purpose was exactly that—to serve as a handy, public place to store code snippets that I use &amp;amp; that others might find handy.&lt;/p&gt;
-&lt;p&gt;Anyhow, my Google Search on “&lt;a href=&#34;https://www.google.com/#q=Node+Dangles+field+Exists&#34;&gt;Node Dangles field Exists&lt;/a&gt;” came up with a &lt;a href=&#34;http://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;9.3 script&lt;/a&gt; to check if field index exists. And I also have a &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;10.0 version&lt;/a&gt; but did not come up with the field exists snippet. So here it is:&lt;/p&gt;
+&lt;p&gt;Anyhow, my Google Search on “&lt;a href=&#34;https://www.google.com/#q=Node+Dangles+field+Exists&#34;&gt;Node Dangles field Exists&lt;/a&gt;” came up with a &lt;a href=&#34;https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;9.3 script&lt;/a&gt; to check if field index exists. And I also have a &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;10.0 version&lt;/a&gt; but did not come up with the field exists snippet. So here it is:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2013/09/image2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -118,13 +118,13 @@
     </item>
     
     <item>
-      <title>Unsupported Arc: &amp;#8220;Rebox&amp;#8221;ing or updating the extent of a feature class.</title>
-      <link>https://maprantala.com/2012/06/05/unsupported-arc-#8220rebox%238221ing-or-updating-the-extent-of-a-feature-class./</link>
+      <title>Unsupported Arc: &#39;Rebox&#39;ing or updating the extent of a feature class.</title>
+      <link>https://maprantala.com/2012/06/05/unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class./</link>
       <pubDate>Tue, 05 Jun 2012 21:16:28 -0500</pubDate>
-      <guid>https://maprantala.com/2012/06/05/unsupported-arc-#8220rebox%238221ing-or-updating-the-extent-of-a-feature-class./</guid>
-      <description>&lt;p&gt;I’ve found that sometimes I can not find the answer to a question until I know the answer &amp;amp; then it becomes ridiculously easy to find the answer.&lt;/p&gt;
+      <guid>https://maprantala.com/2012/06/05/unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class./</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve found that sometimes I can not find the answer to a question until I know the answer &amp;amp; then it becomes ridiculously easy to find the answer.&lt;/p&gt;
 &lt;p&gt;One small annoying thing that I never spent much time was when you delete features from a feature class making it significantly smaller but the envelope does not get re-sized so the zoom extent (still the original extent) is too large. This often happens to use when we convert tables to an XY theme and there are blank records–most of our data shows in Minnesota but there are some in Oklahoma (I think). Once we eliminate or correct the blank records, our data view still pops out to include a large section of the United States even though we only have data in Minnesota.&lt;/p&gt;
-&lt;p&gt;A long, long time ago, &lt;!-- raw HTML omitted --&gt;Workstation ArcInfo&lt;!-- raw HTML omitted --&gt; had a simple command, &lt;!-- raw HTML omitted --&gt;Rebox&lt;!-- raw HTML omitted --&gt;, for just this purpose (actually it still does, I just don’t get to use it anymore)–it shrunk the extent to the smallest rectangle required to enclose all the data. Up until today, I thought &lt;!-- raw HTML omitted --&gt;the request&lt;!-- raw HTML omitted --&gt; for this feature was completely ignored.&lt;/p&gt;
+&lt;p&gt;A long, long time ago, &lt;!-- raw HTML omitted --&gt;Workstation ArcInfo&lt;!-- raw HTML omitted --&gt; had a simple command, &lt;!-- raw HTML omitted --&gt;Rebox&lt;!-- raw HTML omitted --&gt;, for just this purpose (actually it still does, I just don&amp;rsquo;t get to use it anymore)–it shrunk the extent to the smallest rectangle required to enclose all the data. Up until today, I thought &lt;!-- raw HTML omitted --&gt;the request&lt;!-- raw HTML omitted --&gt; for this feature was completely ignored.&lt;/p&gt;
 &lt;p&gt;While researching something else, I was digging around in the sde tables and found one, sde.sde_layers, that had the interesting fields, minx, miny, maxx, and maxy. My quick &amp;amp; dangerous test (I performed it on a throw-away feature class in a throw-away geodatabase) gave me the results I wanted–once I loaded the feature class into ArcMap, the extent was a nice, tight rectangle around my features.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2012/06/extent1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Is this a supported way to Rebox the extent? No.&lt;/p&gt;
@@ -141,7 +141,7 @@
       <pubDate>Wed, 02 May 2012 05:19:40 -0500</pubDate>
       <guid>https://maprantala.com/2012/05/02/quick-#038-dirty-arcpy-autopan-arcmap-using-arcpy/</guid>
       <description>&lt;p&gt;Question: How do I get ArcMap to automatically pan through an area.&lt;/p&gt;
-&lt;p&gt;As I mentioned in a &lt;a href=&#34;http://maprantala.com/2012/04/30/building-a-loc%E2%80%A6f-bing-imagery/&#34;&gt;previous post&lt;/a&gt;, I recently had the need to have ArcMap automatically pan through a project area. My first attempt was to print a series of data-driven pages (using a fishnet polygon layer as the index) this but that did not accomplish what I needed so I switched to arcpy, which made the task simple enough. Nothing special or tricky about this code, but just did not find it anywhere else.&lt;/p&gt;
+&lt;p&gt;As I mentioned in a &lt;a href=&#34;https://maprantala.com/2012/04/30/building-a-loc%E2%80%A6f-bing-imagery/&#34;&gt;previous post&lt;/a&gt;, I recently had the need to have ArcMap automatically pan through a project area. My first attempt was to print a series of data-driven pages (using a fishnet polygon layer as the index) this but that did not accomplish what I needed so I switched to arcpy, which made the task simple enough. Nothing special or tricky about this code, but just did not find it anywhere else.&lt;/p&gt;
 &lt;p&gt;The one thing to note is that I have a 1 second pause between pans–this was to allow image tiles to download. You will need to adjust the delay to meet your needs. &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120427_AutoPan.zip&#34;&gt;The toolbox and code can also be downloaded&lt;/a&gt;.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -155,9 +155,9 @@
       <link>https://maprantala.com/2012/03/21/domain-sorter-add-in-version-1.1/</link>
       <pubDate>Wed, 21 Mar 2012 18:19:03 -0500</pubDate>
       <guid>https://maprantala.com/2012/03/21/domain-sorter-add-in-version-1.1/</guid>
-      <description>&lt;p&gt;Almost &lt;a href=&#34;http://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/&#34;&gt;a year ago&lt;/a&gt;, I updated ERSI’s &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;Domain Sort code for VB 6&lt;/a&gt; to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had an open OLE connection. When I tested it, it turned out the reports were accurate.&lt;/p&gt;
+      <description>&lt;p&gt;Almost &lt;a href=&#34;https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/&#34;&gt;a year ago&lt;/a&gt;, I updated ERSI&amp;rsquo;s &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;Domain Sort code for VB 6&lt;/a&gt; to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had an open OLE connection. When I tested it, it turned out the reports were accurate.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/arccatalog.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I got around to adding in a Try-Catch around the offending chunk of code &amp;amp; it is now better than ever. You can download just the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/DomainSorter.esriAddIn&#34;&gt;Add-In&lt;/a&gt; or the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120321_DomainSort.zip&#34;&gt;Add-In with source code&lt;/a&gt; or get it from &lt;a href=&#34;http://resources.arcgis.com/gallery/file/arcobjects-net-api/details?entryID=B5E1BB12-1422-2418-34B7-D3A6908560FA&#34;&gt;ESRI’s ArcGIS Resource Center&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I got around to adding in a Try-Catch around the offending chunk of code &amp;amp; it is now better than ever. You can download just the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/DomainSorter.esriAddIn&#34;&gt;Add-In&lt;/a&gt; or the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120321_DomainSort.zip&#34;&gt;Add-In with source code&lt;/a&gt; or get it from &lt;a href=&#34;http://resources.arcgis.com/gallery/file/arcobjects-net-api/details?entryID=B5E1BB12-1422-2418-34B7-D3A6908560FA&#34;&gt;ESRI&amp;rsquo;s ArcGIS Resource Center&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -166,7 +166,7 @@
       <link>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</link>
       <pubDate>Thu, 28 Jul 2011 20:08:13 -0500</pubDate>
       <guid>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</guid>
-      <description>&lt;p&gt;One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N.  In ArcView 3.x, the formula was simply “rec + 1” if I wanted to start with the number 1.&lt;/p&gt;
+      <description>&lt;p&gt;One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N.  In ArcView 3.x, the formula was simply &amp;lsquo;rec + 1&amp;rsquo; if I wanted to start with the number 1.&lt;/p&gt;
 &lt;p&gt;In ArcGIS, the process got a little more complex–you had to write a little VBA in Field Calculator as &lt;a href=&#34;http://support.esri.com/en/knowledgebase/techarticles/detail/27427&#34;&gt;described by ESRI&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;While this option still exists in ArcGIS 10, I believe it will disappear when 10.1 comes out and VBA support is completely eliminated.  But it is doable using Python which will continue to be supported.&lt;/p&gt;
 &lt;p&gt;Googling around, I did not find an exact answer but Dave Verbyla, Professor of GIS/Remote Sensing at the University of Alaska has a &lt;a href=&#34;http://nrm.salrm.uaf.edu/~dverbyla/nrm638/lectures/Python_field_calculator.pdf&#34;&gt;posted some samples&lt;/a&gt; that served as a good starting point.&lt;/p&gt;
@@ -174,7 +174,7 @@
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;While composing this post, I actually wanted a concatenated value; “OC” plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:&lt;/p&gt;
+&lt;p&gt;While composing this post, I actually wanted a concatenated value; &amp;lsquo;OC&amp;rsquo; plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
@@ -185,11 +185,11 @@
       <link>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</link>
       <pubDate>Tue, 19 Jul 2011 20:47:03 -0500</pubDate>
       <guid>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</guid>
-      <description>&lt;p&gt;I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI’s instructions.  But, once you know how to do it, it is pretty easy.  In Visual Studio, Add a New Item:&lt;/p&gt;
+      <description>&lt;p&gt;I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI&amp;rsquo;s instructions.  But, once you know how to do it, it is pretty easy.  In Visual Studio, Add a New Item:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/07/addresource.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Add a Cursor File:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/selectcursor.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is “Embedded Resource”.&lt;/p&gt;
+&lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is &amp;lsquo;Embedded Resource&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/07/embedded.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Then you can set your cursor with two lines of code. Not that my cursor is in my QDI.QdiAddIn Namespace:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -203,11 +203,11 @@
       <link>https://maprantala.com/2011/07/05/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0-redux/</link>
       <pubDate>Tue, 05 Jul 2011 12:53:34 -0500</pubDate>
       <guid>https://maprantala.com/2011/07/05/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0-redux/</guid>
-      <description>&lt;p&gt;I’ve previously posted python code to check if a field index exists for both &lt;a href=&#34;http://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;ArcGIs 9.3&lt;/a&gt; and &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;ArcGIS 10.0&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;I&amp;rsquo;ve previously posted python code to check if a field index exists for both &lt;a href=&#34;https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;ArcGIs 9.3&lt;/a&gt; and &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;ArcGIS 10.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Recently I have been working on a process that was using this code but it was not working because it looks for an index with a specific name.  It was not working in this case because the name of the indexes was getting incremented as they were being created.  For example, I was building an index on the table C5ST, field RelateId ([C5IX].[Relateid]) named I_C5IX_RelateId.  That worked fine until we switched our process so now we keep multiple versions of some tables, each with a date-based suffix.&lt;/p&gt;
 &lt;p&gt;We now have tables name C5St_20110625 and C5St_20110626–the Index-name scheme, however was still creating I_C5IX_RelateId and it worked great on the first one.  But when it created the second one, even on a different table, it was automatically name I_C5IX_RelateId_2 even though the name I_C5IX_RelateId was used when trying to create the index.&lt;/p&gt;
 &lt;p&gt;Before generating relates, our code checks to see if the key fields are indexed, and if they are not, builds  an index.  Because of the naming situation, multiple, duplicate indexes were being created.  Probably not too harmful but it is a little messy.&lt;/p&gt;
-&lt;p&gt;So I re-wrote the code so that you pass the function the table name and field name that you want to check and it checks to see if there is an index existing for that field and return a Boolean.  The one little wrinkle I put in is to account for indexes that span multiple fields–the ” if (iIndex.fields[0].Name.upper() == fieldname.upper()):” statement is checking the index to see if it is on a single field or multiple fields.&lt;/p&gt;
+&lt;p&gt;So I re-wrote the code so that you pass the function the table name and field name that you want to check and it checks to see if there is an index existing for that field and return a Boolean.  The one little wrinkle I put in is to account for indexes that span multiple fields–the &#39; if (iIndex.fields[0].Name.upper() == fieldname.upper()):&#39; statement is checking the index to see if it is on a single field or multiple fields.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;def fieldHasIndex(tablename,fieldname):&lt;br&gt;
@@ -234,7 +234,7 @@ return True&lt;/p&gt;
 &lt;p&gt;I then proceeded to run launch my script. Before each step, I use &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Exists/000v00000021000000/&#34;&gt;arcpy.Exists&lt;/a&gt;() extensively to check to see if various items exist before I attempt to create them. It was continuously reporting that my raster set did not exist even though I could see it in ArcCatalog.&lt;/p&gt;
 &lt;p&gt;Finally, I realized that I needed to close ArcCatalog before arcpy recognized the fact I had renamed something. To note, I was running arcpy from a separate PythonWin window, not from the ArcCatalog session I had renamed the raster dataset with.&lt;/p&gt;
 &lt;p&gt;Once I closed ArcCatalog, arcpy recognized the renaming and life was good.&lt;/p&gt;
-&lt;p&gt;I’m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -245,15 +245,15 @@ return True&lt;/p&gt;
       <pubDate>Tue, 03 May 2011 03:33:01 -0500</pubDate>
       <guid>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
       <description>&lt;p&gt;I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation.  So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.&lt;/p&gt;
-&lt;p&gt;This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.&lt;/p&gt;
-&lt;p&gt;In the past, I have gone through the tedious process of exporting the domain to a table, sorting the table, removing the domain from the necessary field(s), deleting the domain, re-importing the table back in a new domain and finally re-applying the domain to the necessary field(s). Let’s just say I didn’t do this until someone asked a few times and I didn’t have anything more exciting–like a root canal–I could busy myself with.&lt;/p&gt;
+&lt;p&gt;This can be confusing for users–they go to select &amp;lsquo;Milli Vanilli&amp;rsquo; and look between &amp;lsquo;Madonna&amp;rsquo; and &amp;lsquo;Motley Crue&amp;rsquo; but can not find their favorite band there–they have to go to the end of the list to find their selection.&lt;/p&gt;
+&lt;p&gt;In the past, I have gone through the tedious process of exporting the domain to a table, sorting the table, removing the domain from the necessary field(s), deleting the domain, re-importing the table back in a new domain and finally re-applying the domain to the necessary field(s). Let&amp;rsquo;s just say I didn&amp;rsquo;t do this until someone asked a few times and I didn&amp;rsquo;t have anything more exciting–like a root canal–I could busy myself with.&lt;/p&gt;
 &lt;p&gt;But this new application contains more domains than any of other datasets so it was time to find a better solution. ESRI does have a &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;Domain Sort&lt;/a&gt; Developer Sample.  It, however, did &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;not play nice&lt;/a&gt; with ArcGIS 10.&lt;/p&gt;
 &lt;p&gt;So I went ahead and update it from VB 6 to VB.Net/ArcObjects 10.  I made an &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/DomainSorter.esriAddIn&#34;&gt;Add-In&lt;/a&gt; that can be installed by downloading the .esriaddin file and double-clicking on it.  The &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120321_DomainSort.zip&#34;&gt;source code&lt;/a&gt; is also available.&lt;/p&gt;
 &lt;p&gt;This will add an ArcCatalog Toolbar that can be added by going to Customize-Toolbars-Domain Sorter Toolbar.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This will add a toolbar with one button.  The button enables whenever you select a geodatabase with at least one coded-value domain.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;This brings up a Windows form that lets you sort any domain by either the code or description, ascending or descending.  Once you hit “OK” it re-sorts your domain.&lt;/p&gt;
+&lt;p&gt;This brings up a Windows form that lets you sort any domain by either the code or description, ascending or descending.  Once you hit &amp;lsquo;OK&amp;rsquo; it re-sorts your domain.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_3.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The only problem I have had is that only the owner of a domain is allowed to edit it on an SDE geodatabase.&lt;/p&gt;
 &lt;p&gt;But other than that, the button allows you to easily keep your domains sorted.&lt;/p&gt;
@@ -267,9 +267,9 @@ return True&lt;/p&gt;
       <link>https://maprantala.com/2011/04/08/change-detector-arcpy-script/</link>
       <pubDate>Fri, 08 Apr 2011 10:48:59 -0500</pubDate>
       <guid>https://maprantala.com/2011/04/08/change-detector-arcpy-script/</guid>
-      <description>&lt;p&gt;During a process I was working on, I needed to compare a feature class before and after some edits.  I did not quickly find anything in ArcToolbox but searching &lt;a href=&#34;http://resources.arcgis.com/&#34;&gt;ArcResources&lt;/a&gt; led me to &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=351BEE10-1422-2418-8815-82074A3E6B6C&#34;&gt;Change Detector script by Bruce Harold&lt;/a&gt;.  After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.  I also discovered that it needs to export to the same format (personal geodatabase, file geodatabase, shapefile) as the source data (or at least one that uses the same field name deliminator).&lt;/p&gt;
-&lt;p&gt;After minor adjustments, though, it worked like a charm.  I’ll be submitting the changes I made to Bruce and let him incorporate the changes into the official code.&lt;/p&gt;
-&lt;p&gt;FOLLOW-UP: Mr. Harold quickly responded to my email &amp;amp; made the change (although I haven’t checked it). Way to go Bruce!  Thanks for a handy script.&lt;/p&gt;
+      <description>&lt;p&gt;During a process I was working on, I needed to compare a feature class before and after some edits.  I did not quickly find anything in ArcToolbox but searching &lt;a href=&#34;http://resources.arcgis.com/&#34;&gt;ArcResources&lt;/a&gt; led me to &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=351BEE10-1422-2418-8815-82074A3E6B6C&#34;&gt;Change Detector script by Bruce Harold&lt;/a&gt;.  After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case &amp;lsquo;S&amp;rsquo; and in the other it was a lower case &amp;rsquo;s&#39;.  I also discovered that it needs to export to the same format (personal geodatabase, file geodatabase, shapefile) as the source data (or at least one that uses the same field name deliminator).&lt;/p&gt;
+&lt;p&gt;After minor adjustments, though, it worked like a charm.  I&amp;rsquo;ll be submitting the changes I made to Bruce and let him incorporate the changes into the official code.&lt;/p&gt;
+&lt;p&gt;FOLLOW-UP: Mr. Harold quickly responded to my email &amp;amp; made the change (although I haven&amp;rsquo;t checked it). Way to go Bruce!  Thanks for a handy script.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -280,11 +280,11 @@ return True&lt;/p&gt;
       <pubDate>Tue, 15 Feb 2011 17:05:55 -0600</pubDate>
       <guid>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</guid>
       <description>&lt;p&gt;I was working my way through this ESRI &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#//0001000001ms000000&#34;&gt;Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)&lt;/a&gt;.  And came across a couple minor errors that I had to correct during the process.&lt;/p&gt;
-&lt;p&gt;First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a “Name ‘ArcMap’ is not declared.” error.&lt;/p&gt;
+&lt;p&gt;First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a &amp;lsquo;Name ‘ArcMap&amp;rsquo; is not declared.&#39; error.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/arcmapnotdeclared.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I’m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;
+&lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&amp;rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;The fix is just adding  “My.” to the namespace in this line:&lt;/p&gt;
+&lt;p&gt;The fix is just adding  &amp;lsquo;My.&amp;rsquo; to the namespace in this line:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;To get this:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -309,8 +309,8 @@ return True&lt;/p&gt;
       <link>https://maprantala.com/2011/02/08/zipping-a-file-geodatabase-using-python/</link>
       <pubDate>Tue, 08 Feb 2011 13:44:34 -0600</pubDate>
       <guid>https://maprantala.com/2011/02/08/zipping-a-file-geodatabase-using-python/</guid>
-      <description>&lt;p&gt;Ever since the ever-popular post, &lt;a href=&#34;http://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zipping a shapefile using python&lt;/a&gt;, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.&lt;/p&gt;
-&lt;p&gt;The key trick, as shown in line 17, is appending the basename of the file geodatabase (“nfg.gdb/” in my example) in front of each file as you write it to the zipfile.&lt;/p&gt;
+      <description>&lt;p&gt;Ever since the ever-popular post, &lt;a href=&#34;https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zipping a shapefile using python&lt;/a&gt;, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.&lt;/p&gt;
+&lt;p&gt;The key trick, as shown in line 17, is appending the basename of the file geodatabase (&amp;lsquo;nfg.gdb/&amp;rsquo; in my example) in front of each file as you write it to the zipfile.&lt;/p&gt;
 &lt;p&gt;UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp;amp; pasted and have work.  So I have posted a the code &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110208_Sample_Zip_FileGeodatabase.zip&#34;&gt;HERE&lt;/a&gt; for downloading.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -323,14 +323,14 @@ return True&lt;/p&gt;
       <link>https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python-geoprocessing-9.3./</link>
       <pubDate>Thu, 27 Jan 2011 15:31:48 -0600</pubDate>
       <guid>https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python-geoprocessing-9.3./</guid>
-      <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
+      <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
 &lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
 &lt;p&gt;No problem creating the index, for example:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn’t work-it did not like the “while” loop construction.  I’m guessing it worked in 9.2 and despite ESRI’s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
+&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
 &lt;p&gt;A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -346,8 +346,8 @@ return True&lt;/p&gt;
       <link>https://maprantala.com/2010/12/17/multiple-outputs-for-python-scripts/</link>
       <pubDate>Fri, 17 Dec 2010 15:19:38 -0600</pubDate>
       <guid>https://maprantala.com/2010/12/17/multiple-outputs-for-python-scripts/</guid>
-      <description>&lt;p&gt;Related to my &lt;a href=&#34;http://maprantala.com/2010/12/13/launching-a-python-script-with-parameters-3-methods/&#34;&gt;post&lt;/a&gt; on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways.  This is largely due to the fact that some are called by ArcToolbox scripts.  Running in ESRI’s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.&lt;/p&gt;
-&lt;p&gt;If you assume one output method but then run your code in the opposite framework, you don’t get to see all the pretty little messages.  What I do is create a simple little routine that broadcasts the message both ways.  This is probably an obvious solution but took a few cases before I went ahead and started implementing it.&lt;/p&gt;
+      <description>&lt;p&gt;Related to my &lt;a href=&#34;https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters-3-methods/&#34;&gt;post&lt;/a&gt; on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways.  This is largely due to the fact that some are called by ArcToolbox scripts.  Running in ESRI&amp;rsquo;s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.&lt;/p&gt;
+&lt;p&gt;If you assume one output method but then run your code in the opposite framework, you don&amp;rsquo;t get to see all the pretty little messages.  What I do is create a simple little routine that broadcasts the message both ways.  This is probably an obvious solution but took a few cases before I went ahead and started implementing it.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;blockquote&gt;
@@ -361,8 +361,8 @@ return True&lt;/p&gt;
       <pubDate>Fri, 10 Dec 2010 18:20:13 -0600</pubDate>
       <guid>https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/</guid>
       <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;One of the tasks I’ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;One of the tasks I&amp;rsquo;ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;
 &lt;p&gt;Not an overly complicated situation but a common one that ArcGIS does not have a solution out-of-the-box. Below is a bare-bones code snippet to do it. It has both the input shapefile and output zip file hard-coded. The call to the subroutine that does the work is: zipShapefile(wellsShapeFile,wellsZipFile)&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -371,10 +371,10 @@ return True&lt;/p&gt;
     </item>
     
     <item>
-      <title>Create Geologic Cross Sections&amp;#8211;eXacto Section v. 2.0, ArcMap 9.3</title>
-      <link>https://maprantala.com/2010/07/23/create-geologic-cross-sections#8211exacto-section-v.-2.0-arcmap-9.3/</link>
+      <title>Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3</title>
+      <link>https://maprantala.com/2010/07/23/create-geologic-cross-sectionsexacto-section-v.-2.0-arcmap-9.3/</link>
       <pubDate>Fri, 23 Jul 2010 13:59:44 -0500</pubDate>
-      <guid>https://maprantala.com/2010/07/23/create-geologic-cross-sections#8211exacto-section-v.-2.0-arcmap-9.3/</guid>
+      <guid>https://maprantala.com/2010/07/23/create-geologic-cross-sectionsexacto-section-v.-2.0-arcmap-9.3/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://arcscripts.esri.com/details.asp?dbid=16734&#34;&gt;Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3&lt;/a&gt; written by Jennifer Carrell of the &lt;a href=&#34;http://www.isgs.illinois.edu/&#34;&gt;Illinois State Geological Survey&lt;/a&gt; is a handy tool for creating cross sections.&lt;/p&gt;
 &lt;p&gt;It requires ArcGIS and a 3D Analyst Extension license.&lt;/p&gt;
 &lt;p&gt;You can create profiles against multiple DEMs at once, define the vertical exaggeration, and have it include contact points.  It is well documented and comes with sample data to use with the tutorial.&lt;/p&gt;

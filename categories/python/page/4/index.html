@@ -88,14 +88,14 @@
 </header>
 <div class="content">
 UPDATE: After receiving a request to modify the code to ignore .lock files, I have an updated to this post.
- I’ve received a request on how to use the Zip Shapefile code I posted last week from ArcGIS. Sorry, I did not set the code up to call directly from ArcGIS but only as an illustration of how it can be done.
+ I&rsquo;ve received a request on how to use the Zip Shapefile code I posted last week from ArcGIS. Sorry, I did not set the code up to call directly from ArcGIS but only as an illustration of how it can be done.
 I have, however, with some minor tweaking, made a version that can added to ArcToolbox.
 </div>
 </article>
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2010/12/13/launching-a-python-script-with-parameters#82113-methods./">Launching a Python script with parameters&amp;#8211;3 methods.</a></h2>
+<h2 class="title "><a href="/2010/12/13/launching-a-python-script-with-parameters3-methods./">Launching a Python script with parameters–3 methods.</a></h2>
 
 </header>
 <div class="content">
@@ -111,7 +111,7 @@ Since I use python for different tasks, I launch python scripts a variety of way
 </header>
 <div class="content">
 UPDATE: After receiving a request to modify the code to ignore .lock files, I have an updated to this post.
-One of the tasks I’ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.
+One of the tasks I&rsquo;ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.
 Not an overly complicated situation but a common one that ArcGIS does not have a solution out-of-the-box.
 </div>
 </article>
@@ -122,18 +122,18 @@ Not an overly complicated situation but a common one that ArcGIS does not have a
 
 </header>
 <div class="content">
-In running an automated process, I had a TopoToRaster repeatedly fail on me. The only input theme was a contour theme. The process ran fine when I used the envelope of the contour theme as the output extent but when I changed it to the envelope of a polygon theme, it would bomb. The polygon’s envelope was smaller than the contour theme.
+In running an automated process, I had a TopoToRaster repeatedly fail on me. The only input theme was a contour theme. The process ran fine when I used the envelope of the contour theme as the output extent but when I changed it to the envelope of a polygon theme, it would bomb. The polygon&rsquo;s envelope was smaller than the contour theme.
 ArcCatalog would bomb out without presenting any sort of useful message.
 </div>
 </article>
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2010/08/11/trying-to-perform-#8220relate%238221-in-model-builder/">Trying to perform &amp;#8220;relate&amp;#8221; in Model Builder</a></h2>
+<h2 class="title "><a href="/2010/08/11/trying-to-perform-relate-in-model-builder/">Trying to perform &#39;relate&#39; in Model Builder</a></h2>
 
 </header>
 <div class="content">
-I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y’) in another table (CWI.C5IX). There is not an existing tool for doing this in ArcGIS. I did find a post by Layne Seely in ArcForums titled “trying to perform “relate” in Model Builder.” that led me to the Make Table View under Data Management Tools-Make Table View and even had the basic syntax I was looking for (if it hadn’t I probably would have guessed that it would not allow subqueries).
+I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y') in another table (CWI.C5IX). There is not an existing tool for doing this in ArcGIS. I did find a post by Layne Seely in ArcForums titled &lsquo;trying to perform &lsquo;relate&rsquo; in Model Builder.&rsquo; that led me to the Make Table View under Data Management Tools-Make Table View and even had the basic syntax I was looking for (if it hadn&rsquo;t I probably would have guessed that it would not allow subqueries).
 </div>
 </article>
 
@@ -154,8 +154,8 @@ My second attempt was to call a .
 
 </header>
 <div class="content">
-So I have a nightly process that runs and I, being the lazy programmer I am, didn’t want to bother checking a log file each morning to see how it went. The natural answer is to have the results emailed to me because I do have to check my email.
-Since the process is already handled mostly in python, thought I would implement the emailing via python. It was actually simple enough to do–just required figuring out the setting for my SMTP server (actually I didn’t figure it our for my work server so I’m using my GMail account).
+So I have a nightly process that runs and I, being the lazy programmer I am, didn&rsquo;t want to bother checking a log file each morning to see how it went. The natural answer is to have the results emailed to me because I do have to check my email.
+Since the process is already handled mostly in python, thought I would implement the emailing via python. It was actually simple enough to do–just required figuring out the setting for my SMTP server (actually I didn&rsquo;t figure it our for my work server so I&rsquo;m using my GMail account).
 </div>
 </article>
 
@@ -166,7 +166,7 @@ Since the process is already handled mostly in python, thought I would implement
 </header>
 <div class="content">
 <p>The <a href="http://www.usgs.gov/">USGS</a> updated a significant portion of <a href="http://ned.usgs.gov/">NED</a> data for my state in June.  I recently downloaded the updates, processed them–projecting and converting the elevations from meters to feet–using python and geoprocessing.  My python skills are still pretty crude but I was able to get the job done.</p>
-<p>One of the benefits of working for the public sector is that I can more freely publish code without worrying about “trade secrets” or what have you so I thought I would put my code out for anyone to see, maybe someone will find it useful.  It is split into two separate files, mostly because I used <!-- raw HTML omitted -->Model Builder<!-- raw HTML omitted --> to generate the main processing chunk of code (Project_Reclassify.py) and another script to control looping, etc. The code isn’t pretty and you’ll see the results of my development process with two subroutines in LaunchScript.py that could really be one.</p>
+<p>One of the benefits of working for the public sector is that I can more freely publish code without worrying about &lsquo;trade secrets&rsquo; or what have you so I thought I would put my code out for anyone to see, maybe someone will find it useful.  It is split into two separate files, mostly because I used <!-- raw HTML omitted -->Model Builder<!-- raw HTML omitted --> to generate the main processing chunk of code (Project_Reclassify.py) and another script to control looping, etc. The code isn&rsquo;t pretty and you&rsquo;ll see the results of my development process with two subroutines in LaunchScript.py that could really be one.</p>
 <h3 id="heading"></h3>
 </div>
 </article>

@@ -86,22 +86,22 @@
 <h1 class="title ">ArcMap Field Calculator: Text to Double</h1>
 </header>
 <div class="content">
-<p>Received a request yesterday asking how to use the ArcMap Calculator to copy values from a Text field to a Double field using python syntax.  As any good blogger would do, I immediately thought, “Awesome! Someone’s question is the perfect topic for a new blog post”.</p>
+<p>Received a request yesterday asking how to use the ArcMap Calculator to copy values from a Text field to a Double field using python syntax.  As any good blogger would do, I immediately thought, &lsquo;Awesome! Someone&rsquo;s question is the perfect topic for a new blog post&rsquo;.</p>
 <p>The python parser is actually pretty good at casting values on the fly so if the values in your text field (!Day! in my example) are valid values that can be converted to a Double value, it is as simple as just setting the formula to be the text field. In my example case, I wanted to copy the value from !Day! to !DecDay! so I set the formula to be DecDay = !Day!.</p>
 <p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber1.png"><!-- raw HTML omitted --></a></p>
-<p>That should work fine if you have clean values in your text field. In the example above, you might notice I had a selected set of 3 records that all had numeric values in the !Day! field. When I included the fourth row, which does not have a numeric value in the text field, I get this error message (“There was a failure during processing, check the Geoprocessing Results window for details.” when I use the same formula. Time to add in an error exception.</p>
+<p>That should work fine if you have clean values in your text field. In the example above, you might notice I had a selected set of 3 records that all had numeric values in the !Day! field. When I included the fourth row, which does not have a numeric value in the text field, I get this error message (&lsquo;There was a failure during processing, check the Geoprocessing Results window for details.&rsquo; when I use the same formula. Time to add in an error exception.</p>
 <p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber2b.png"><!-- raw HTML omitted --></a></p>
-<p>For more advanced logic, the Field Calculator dialog allows you to use a python function if you check on the “Show Codeblock” option.  In the “Pre-Logic Script Code” area (Seriously, who at ESRI came up with that name?) I entered the following function. If the value in my text field (!Day!) can be cast to a number of type float, that value is returned. If the cast is unsuccessful (IE the value in !Day! is not a number), then I return -99.</p>
+<p>For more advanced logic, the Field Calculator dialog allows you to use a python function if you check on the &lsquo;Show Codeblock&rsquo; option.  In the &lsquo;Pre-Logic Script Code&rsquo; area (Seriously, who at ESRI came up with that name?) I entered the following function. If the value in my text field (!Day!) can be cast to a number of type float, that value is returned. If the cast is unsuccessful (IE the value in !Day! is not a number), then I return -99.</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p>Then in the formula portion of the dialog, I call the function, passing the value in the !Day! field: DecDay = toNum(!Day!).<br>
 <a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber2.png"><!-- raw HTML omitted --></a></p>
-<p>Now, if you would prefer not to set all the records with non-numeric values to be -99 or other error value, not return anything. To do this, I replaced the “return -99” in the original function with a filler line (“doNothing = 4”) since the try block needs an non-empty except clause.</p>
+<p>Now, if you would prefer not to set all the records with non-numeric values to be -99 or other error value, not return anything. To do this, I replaced the &lsquo;return -99&rsquo; in the original function with a filler line (&lsquo;doNothing = 4&rsquo;) since the try block needs an non-empty except clause.</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber3.png"><!-- raw HTML omitted --></a><br>
 And that should leave the values in the double field unscathed in your records with non-numeric values in the text field.</p>
-<p>Shameless Plug: Check out my other blog posts on using ArcMap’s Field Calculator to <a href="http://maprantala.com/2011/03/08/calculating-geometry-using-arcpy-in-field-calculator/">calculate geometry</a> and converting a date value to an <a href="http://maprantala.com/2011/10/06/field-calculator-arcpy-date-to-decimal-function/">8 digit numeric value</a>.</p>
+<p>Shameless Plug: Check out my other blog posts on using ArcMap&rsquo;s Field Calculator to <a href="https://maprantala.com/2011/03/08/calculating-geometry-using-arcpy-in-field-calculator/">calculate geometry</a> and converting a date value to an <a href="https://maprantala.com/2011/10/06/field-calculator-arcpy-date-to-decimal-function/">8 digit numeric value</a>.</p>
 
 
 </div>

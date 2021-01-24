@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Quick &amp;#038; Dirty Arcpy: Verify a Coded Value Domain Code – Node Dangles</title>
-<meta name="description" content="I’ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a …">
+<meta name="description" content="I&amp;amp;rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into …">
 <meta name="created" content="2014-12-18T22:32:11-0600">
 <meta name="modified" content="2014-12-18T22:32:11-0600">
 <meta name="author" content="Matt">
@@ -36,7 +36,7 @@
     "datePublished": "2014-12-18T22:32:11-06:00",
     "dateModified": "2014-12-18T22:32:11-06:00",
     "url" : "https://maprantala.com/2014/12/18/quick-#038-dirty-arcpy-verify-a-coded-value-domain-code/",
-    "description": "I’ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a …",
+    "description": "I\u0026amp;rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into …",
     "author": {
       "@type": "Person",
       "name": "Matt"
@@ -86,9 +86,9 @@
 <h1 class="title ">Quick &amp;#038; Dirty Arcpy: Verify a Coded Value Domain Code</h1>
 </header>
 <div class="content">
-<p>I’ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a <!-- raw HTML omitted -->Coded Value Domain<!-- raw HTML omitted --> is valid.</p>
-<p>The logic of the code is pretty straight-forward. Get a field’s domain and check that a potential value is one of the code values. The biggest “trick” in this code is that <!-- raw HTML omitted -->arcpy.da.ListDomains<!-- raw HTML omitted -->, which locates a field’s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.</p>
-<p>A couple caveats about the code. It only returns True if a field exists, has a coded value domain, and the value tested is one of the (case-sensitive) valid codes. While I have an ArcToolbox tool to call it for illustration purposes, I’m only calling it from code so I wanted tight requirements.</p>
+<p>I&rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a <!-- raw HTML omitted -->Coded Value Domain<!-- raw HTML omitted --> is valid.</p>
+<p>The logic of the code is pretty straight-forward. Get a field&rsquo;s domain and check that a potential value is one of the code values. The biggest &lsquo;trick&rsquo; in this code is that <!-- raw HTML omitted -->arcpy.da.ListDomains<!-- raw HTML omitted -->, which locates a field&rsquo;s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.</p>
+<p>A couple caveats about the code. It only returns True if a field exists, has a coded value domain, and the value tested is one of the (case-sensitive) valid codes. While I have an ArcToolbox tool to call it for illustration purposes, I&rsquo;m only calling it from code so I wanted tight requirements.</p>
 <p>Anyhow, here is the code or <!-- raw HTML omitted -->download it<!-- raw HTML omitted --> from GitHub.</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->

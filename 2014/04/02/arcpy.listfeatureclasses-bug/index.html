@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>arcpy.ListFeatureClasses() Bug – Node Dangles</title>
-<meta name="description" content="I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy’s ListFeatureClassesrequest. If you have a feature class in a …">
+<meta name="description" content="I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&amp;amp;rsquo;s ListFeatureClassesrequest. If you have a feature class in …">
 <meta name="created" content="2014-04-02T18:59:06-0500">
 <meta name="modified" content="2014-04-02T18:59:06-0500">
 <meta name="author" content="Matt">
@@ -36,7 +36,7 @@
     "datePublished": "2014-04-02T18:59:06-05:00",
     "dateModified": "2014-04-02T18:59:06-05:00",
     "url" : "https://maprantala.com/2014/04/02/arcpy.listfeatureclasses-bug/",
-    "description": "I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy’s ListFeatureClassesrequest. If you have a feature class in a …",
+    "description": "I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy\u0026amp;rsquo;s ListFeatureClassesrequest. If you have a feature class in …",
     "keywords": ["arcgis","arcpy","ListFeatureClasses"],
     "author": {
       "@type": "Person",
@@ -95,12 +95,12 @@ Tags:
 </div>
 </header>
 <div class="content">
-<p>I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy’s <!-- raw HTML omitted -->ListFeatureClasses<!-- raw HTML omitted --> request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.</p>
+<p>I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&rsquo;s <!-- raw HTML omitted -->ListFeatureClasses<!-- raw HTML omitted --> request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.</p>
 <p>Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.</p>
 <p>After discovering missing data in our backups, I reconstructed what happened and found this bug. Below is arcpy code that iterates through the feature datasets in a geodatabase and lists the feature classes:</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
-<p>And here is a screen shot of the contents of a test enterprise geodatabase, you’ll see it has a feature data set named “outcrops” that has a feature class also named “outcrops” within it:<br>
+<p>And here is a screen shot of the contents of a test enterprise geodatabase, you&rsquo;ll see it has a feature data set named &lsquo;outcrops&rsquo; that has a feature class also named &lsquo;outcrops&rsquo; within it:<br>
 <a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/sandbox.png"><!-- raw HTML omitted --></a></p>
 <p>And the results list only the feature dataset:</p>
 <p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/results.png"><!-- raw HTML omitted --></a></p>

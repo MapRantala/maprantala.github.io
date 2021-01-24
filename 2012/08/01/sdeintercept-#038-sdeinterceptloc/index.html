@@ -98,7 +98,7 @@ Tags:
 <p>Awhile ago, I had a ArcSDE problem that required <a href="http://support.esri.com/en/">ESRI technical support</a> to help trouble-shoot. The problem was odd but was resolved by rebooting the server.<br>
 During the process, though, the support person had me set a couple of environment variables for logging SDE activity on the client machine.</p>
 <p>The settings were SDEINTERCEPT and SDEINTERCEPTLOC.</p>
-<p>From <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002n00000018000000">ESRI’s Help</a>, SDEINTERCEPT specifies what activity to log and SDEINTERCEPTLOC specifies where to save the log files.</p>
+<p>From <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002n00000018000000">ESRI&rsquo;s Help</a>, SDEINTERCEPT specifies what activity to log and SDEINTERCEPTLOC specifies where to save the log files.</p>
 <p>I recently deleted the directory I made for the log files but did not remove the variables and I noticed that one of my python scripts reported a weird error (but continued to run, I think). I tracked it back to these variables and realized what I had done.</p>
 <p>Googling SDEINTERCEPTLOC did lead me to some helpful information like:</p>
 <p>The <a href="http://sdeintercept.wordpress.com/2011/11/22/sde-user-permissions/">SDEINTERCEPT blog</a> where Ken posts ArcSDE help.</p>

@@ -15,9 +15,9 @@
       <pubDate>Wed, 15 Dec 2010 14:36:04 -0600</pubDate>
       <guid>https://maprantala.com/2010/12/15/zipping-a-shapefile-via-arctoolbox/</guid>
       <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;p&gt;I’ve received a request on how to use the &lt;a href=&#34;http://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zip Shapefile&lt;/a&gt; code I posted last week from ArcGIS. Sorry, I did not set the code up to call directly from ArcGIS but only as an illustration of how it can be done.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve received a request on how to use the &lt;a href=&#34;https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zip Shapefile&lt;/a&gt; code I posted last week from ArcGIS. Sorry, I did not set the code up to call directly from ArcGIS but only as an illustration of how it can be done.&lt;/p&gt;
 &lt;p&gt;I have, however, with some minor tweaking, made a version that can added to ArcToolbox. The steps to install are below, please note that at one point I had you download a *.zip file that had been renamed to *.jpg–this should now be corrected and the link should lead you directly to zipshapefile.zip.  Because of this steps two and three are obsolete.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Download the code from here.&lt;/li&gt;
@@ -27,7 +27,7 @@
 &lt;li&gt;Optionally, move Zip Shapefile.tbx, perhaps C:Program FilesArcGISArcToolBoxToolboxes.&lt;/li&gt;
 &lt;li&gt;Add the toolbox to ArcToolbox. ESRI has instructions &lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/tutorials/spatial/Spatial_14.htm&#34;&gt;here&lt;/a&gt; on how to do this.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;You should now have a new toolbox named “Zip Shapefile” with a script named “Zip a Shapefile” in it. Clicking on on the tool will bring up this dialog.&lt;/p&gt;
+&lt;p&gt;You should now have a new toolbox named &amp;lsquo;Zip Shapefile&amp;rsquo; with a script named &amp;lsquo;Zip a Shapefile&amp;rsquo; in it. Clicking on on the tool will bring up this dialog.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/12/capture.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;****&lt;br&gt;
 In response to Chris:&lt;/p&gt;
@@ -43,8 +43,8 @@ In response to Chris:&lt;/p&gt;
       <pubDate>Fri, 10 Dec 2010 18:20:13 -0600</pubDate>
       <guid>https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/</guid>
       <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;One of the tasks I’ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;One of the tasks I&amp;rsquo;ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;
 &lt;p&gt;Not an overly complicated situation but a common one that ArcGIS does not have a solution out-of-the-box. Below is a bare-bones code snippet to do it. It has both the input shapefile and output zip file hard-coded. The call to the subroutine that does the work is: zipShapefile(wellsShapeFile,wellsZipFile)&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;

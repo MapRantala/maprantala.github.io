@@ -23,7 +23,7 @@
 &lt;li&gt;I did not test against multi-part features.&lt;/li&gt;
 &lt;li&gt;The tolerance is the native units of the data–if your data is in meters but you want to split the polylines every mile, enter 1,609.344.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you’ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
+&lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you&amp;rsquo;ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the code for the Googlebots, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;just downloading&lt;/a&gt; it.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;

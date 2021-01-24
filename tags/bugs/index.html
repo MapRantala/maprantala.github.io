@@ -87,8 +87,8 @@
 
 </header>
 <div class="content">
-Because we use ArcGIS Online Web Maps in our daily work-flows, I created an AGO group that contains Feature Layers that are links to our self-hosted ArcGIS Server services. This way, users can quickly add data from our ArcGIS Server Site and not have to look up URLs/Usernames/Passwords (I’ve save the username/password as part of the ArcGIS Online service when appropriate).
-But I’ve had a problem where if I change the service, the changes are not reflected in the AGO Feature Layer for that service and I have to monkey about to get the changes to migrate to the maps.
+Because we use ArcGIS Online Web Maps in our daily work-flows, I created an AGO group that contains Feature Layers that are links to our self-hosted ArcGIS Server services. This way, users can quickly add data from our ArcGIS Server Site and not have to look up URLs/Usernames/Passwords (I&rsquo;ve save the username/password as part of the ArcGIS Online service when appropriate).
+But I&rsquo;ve had a problem where if I change the service, the changes are not reflected in the AGO Feature Layer for that service and I have to monkey about to get the changes to migrate to the maps.
 </div>
 </article>
 
@@ -109,7 +109,7 @@ In my config.json, I was using a relative path to the proxy. Note that I had the
 
 </header>
 <div class="content">
-I recently downloaded Web AppBuilder 2.4, Developer’s Edition and built a quick &amp; dirty app. For some reason, it worked fine in Web AppBuilder but once I deployed it, no basemaps would show in the Baseman Gallery widget, it would just spin, spin, spin.
+I recently downloaded Web AppBuilder 2.4, Developer&rsquo;s Edition and built a quick &amp; dirty app. For some reason, it worked fine in Web AppBuilder but once I deployed it, no basemaps would show in the Baseman Gallery widget, it would just spin, spin, spin.
 
 Digging around, I found some old posts where users were experiencing similar problems but none of the solution resulted in a great solution. I was able to get it to work by listing the basemaps individually in the config_BasemapGallery.
 </div>
@@ -117,11 +117,11 @@ Digging around, I found some old posts where users were experiencing similar pro
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./">Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</a></h2>
+<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./">Feature classes and Tables with names starting with &#39;nd_&#39;.</a></h2>
 
 </header>
 <div class="content">
-Random luck me to discovering a bug related to feature classes whose names start with “nd_”. It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
+Random luck me to discovering a bug related to feature classes whose names start with &lsquo;nd_'. It appears that you are allowed to create feature classes starting with &lsquo;nd_&rsquo; but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
 I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.
 </div>
 </article>
@@ -133,7 +133,7 @@ I first noticed something odd was occurring while importing a series of shapefil
 </header>
 <div class="content">
 I was working my way through this ESRI Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK). And came across a couple minor errors that I had to correct during the process.
-First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a “Name ‘ArcMap’ is not declared.” error.
+First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a &lsquo;Name ‘ArcMap&rsquo; is not declared.' error.
 
 In the walk-through, they mention that the ArcMap method of your class. For me, however, it appeared under the .
 </div>
@@ -162,7 +162,7 @@ DBMS table not found[sde.sde.GDB_Release]
 </header>
 <div class="content">
 I have been working on updating some data that was published using Arc/Info Workstation Export (.e00) files, converting them to shapefiles, or in the case of annotation, to a geodatabase feature class.
-While converting some INFO tables, I have received this error:Unable to encode the 38th item in the 65th record for the INFO fileIt turns out that Workstation can create export files that contain values that did not fit within their field–I’m guessing that somehow you are actually able to enter invalid values into those fields but I did not confirm that.
+While converting some INFO tables, I have received this error:Unable to encode the 38th item in the 65th record for the INFO fileIt turns out that Workstation can create export files that contain values that did not fit within their field–I&rsquo;m guessing that somehow you are actually able to enter invalid values into those fields but I did not confirm that.
 </div>
 </article>
 

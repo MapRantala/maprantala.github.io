@@ -16,7 +16,7 @@
       <guid>https://maprantala.com/2018/08/24/quick-#038-dirty-rest-calls-via-python/</guid>
       <description>&lt;p&gt;Was sharing a python script with a php developer to illustrate how a couple of requests can be made to an ArcGIS REST endpoint.&lt;/p&gt;
 &lt;p&gt;Nothing fancy–one gets the data for one record, one gets data for all records, and the final gets the data for the record that intersects a point.&lt;/p&gt;
-&lt;p&gt;The only thing to note is that the original version that I shared gets a token because the service it uses is secured. I commented out the routine to get a token and just substituted in a blank string and pointed the code at one of esri’s sample services at https://sampleserver6.arcgisonline.com/arcgis/.&lt;/p&gt;
+&lt;p&gt;The only thing to note is that the original version that I shared gets a token because the service it uses is secured. I commented out the routine to get a token and just substituted in a blank string and pointed the code at one of esri&amp;rsquo;s sample services at https://sampleserver6.arcgisonline.com/arcgis/.&lt;/p&gt;
 &lt;p&gt;The file can be downloaded &lt;!-- raw HTML omitted --&gt;here&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;

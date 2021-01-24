@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>ArcMap Field Calculator: Beware of Integer Division! – Node Dangles</title>
-<meta name="description" content="Apparently, if you post one time about ArcMap field calculator, you’re bound to get additional questions. After my recent post about using field calculator to convert …">
+<meta name="description" content="Apparently, if you post one time about ArcMap field calculator, you&amp;amp;rsquo;re bound to get additional questions. After my recent post about using field calculator to …">
 <meta name="created" content="2012-04-02T05:34:54-0500">
 <meta name="modified" content="2012-04-02T05:34:54-0500">
 <meta name="author" content="Matt">
@@ -36,7 +36,7 @@
     "datePublished": "2012-04-02T05:34:54-05:00",
     "dateModified": "2012-04-02T05:34:54-05:00",
     "url" : "https://maprantala.com/2012/04/02/arcmap-field-calculator-beware-of-integer-division/",
-    "description": "Apparently, if you post one time about ArcMap field calculator, you’re bound to get additional questions. After my recent post about using field calculator to convert …",
+    "description": "Apparently, if you post one time about ArcMap field calculator, you\u0026amp;rsquo;re bound to get additional questions. After my recent post about using field calculator to …",
     "author": {
       "@type": "Person",
       "name": "Matt"
@@ -86,14 +86,14 @@
 <h1 class="title ">ArcMap Field Calculator: Beware of Integer Division!</h1>
 </header>
 <div class="content">
-<p>Apparently, if you post one time about ArcMap field calculator, you’re bound to get additional questions.  After <a href="http://maprantala.com/2012/03/28/arcmap-field-calculator-text-to-double/">my recent post</a> about using field calculator to convert text values to numeric, someone asked about a problem they were having with another calculation they were having.</p>
+<p>Apparently, if you post one time about ArcMap field calculator, you&rsquo;re bound to get additional questions.  After <a href="https://maprantala.com/2012/03/28/arcmap-field-calculator-text-to-double/">my recent post</a> about using field calculator to convert text values to numeric, someone asked about a problem they were having with another calculation they were having.</p>
 <p>The underlying problem was that python 2.6, which is installed with ArcGIS 10, <a href="http://docs.python.org/release/2.6.7/library/stdtypes.html#numeric-types-int-float-long-complex">uses integer division</a> when both the numerator and denominator are integers. The result of integer division is an integer rounded towards negative infinity.</p>
-<p>If you’re not aware of this (or forget) then you open yourself up to some unexpected results–they can be especially hard to catch if you are using it within a larger block of code.</p>
-<p>In this example, I’m calculating a percentage but the result is 0 for all the records because of the rounding.</p>
+<p>If you&rsquo;re not aware of this (or forget) then you open yourself up to some unexpected results–they can be especially hard to catch if you are using it within a larger block of code.</p>
+<p>In this example, I&rsquo;m calculating a percentage but the result is 0 for all the records because of the rounding.</p>
 <p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2012/03/calc1.png"><!-- raw HTML omitted --></a></p>
-<p>The easiest thing to do in this simple example is just convert one of the two value to a non-integer value. This can be done by multiplying by 1.0 (not just “1”, you need to include the “.0”) which is a float datatype. Multiplying one of the values by a float makes that value a float and integer division no longer applies &amp; we end up with a happy GISer.</p>
+<p>The easiest thing to do in this simple example is just convert one of the two value to a non-integer value. This can be done by multiplying by 1.0 (not just &lsquo;1&rsquo;, you need to include the &lsquo;.0&rsquo;) which is a float datatype. Multiplying one of the values by a float makes that value a float and integer division no longer applies &amp; we end up with a happy GISer.</p>
 <p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/calc2.png"><!-- raw HTML omitted --></a></p>
-<p>Another option if you are using a Codeblock is to include “from __future__ import division” in your code block. Python is slowly moving away from using integer division and the _\<em>_future__</em> module overrides the default behavior.</p>
+<p>Another option if you are using a Codeblock is to include &lsquo;from __future__ import division&rsquo; in your code block. Python is slowly moving away from using integer division and the _\<em>_future__</em> module overrides the default behavior.</p>
 <p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/calc3.png"><!-- raw HTML omitted --></a></p>
 
 

@@ -30,7 +30,7 @@
       <pubDate>Tue, 06 May 2014 05:42:04 -0500</pubDate>
       <guid>https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/</guid>
       <description>&lt;p&gt;Back in 2010, I posted a &lt;!-- raw HTML omitted --&gt;python script &lt;!-- raw HTML omitted --&gt;and an &lt;!-- raw HTML omitted --&gt;ArcToolbox&lt;!-- raw HTML omitted --&gt; tool for zipping a shapefile.&lt;/p&gt;
-&lt;p&gt;Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn’t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from &lt;!-- raw HTML omitted --&gt;Github&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
+&lt;p&gt;Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn&amp;rsquo;t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from &lt;!-- raw HTML omitted --&gt;Github&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
 &lt;p&gt;The guts of the code is here, though:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -44,12 +44,12 @@
       <link>https://maprantala.com/2014/05/02/friday-fave-geodatabase-geek/</link>
       <pubDate>Fri, 02 May 2014 05:02:12 -0500</pubDate>
       <guid>https://maprantala.com/2014/05/02/friday-fave-geodatabase-geek/</guid>
-      <description>&lt;p&gt;This &lt;a href=&#34;http://maprantala.com/category/friday-fave/&#34;&gt;Friday Fave&lt;/a&gt; is more for utility than pleasure.&lt;/p&gt;
+      <description>&lt;p&gt;This &lt;a href=&#34;https://maprantala.com/category/friday-fave/&#34;&gt;Friday Fave&lt;/a&gt; is more for utility than pleasure.&lt;/p&gt;
 &lt;p&gt;Unfortunately, I have been working to determine why my views and query layers perform so much worse than directly accessing my feature class.&lt;/p&gt;
-&lt;p&gt;My Googling led me to &lt;!-- raw HTML omitted --&gt;Geodatabase Geek&lt;!-- raw HTML omitted --&gt;, by Trevor Hart, &lt;!-- raw HTML omitted --&gt;Eagle Technology Group Ltd&lt;!-- raw HTML omitted --&gt;.  Trevor has some real good information about Geodatabases and also  gave a good lightening talk on &lt;a href=&#34;http://video.esri.com/watch/2481/usage-reporting-on-arcgis-101-for-server&#34;&gt;Usage Reporting on ArcGIS 10.1 for Server &lt;/a&gt;at the 2013 ESRI International Developer’s Conference.&lt;/p&gt;
-&lt;p&gt;One tool he pointed out was &lt;!-- raw HTML omitted --&gt;Mxdperfstat&lt;!-- raw HTML omitted --&gt; for benchmarking the performance of your MXD. Trevor used it to compare the performance of a &lt;!-- raw HTML omitted --&gt;Feature Class vs Query Layer vs Spatial View&lt;!-- raw HTML omitted --&gt;. While the official version is available for ArcGIS 9.3 through 10.2, I do want to point out &lt;!-- raw HTML omitted --&gt;Hussein Nasser’s 10.1 version&lt;!-- raw HTML omitted --&gt; which he put out before the official 10.1 version came out (it’s not really a version, more of a work-around but I like his ingenuity).&lt;/p&gt;
-&lt;p&gt;My results were significantly different on our 10.0 database server, the spatial view I was testing was much slower.  The query for both the spatial view and query layer was simply “Select * from &lt;em&gt;featureclass&lt;/em&gt;”&lt;/p&gt;
-&lt;p&gt;So not sure what to make of the performance yet, I’ve got a spatial index made so not sure what else I can try.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;My Googling led me to &lt;!-- raw HTML omitted --&gt;Geodatabase Geek&lt;!-- raw HTML omitted --&gt;, by Trevor Hart, &lt;!-- raw HTML omitted --&gt;Eagle Technology Group Ltd&lt;!-- raw HTML omitted --&gt;.  Trevor has some real good information about Geodatabases and also  gave a good lightening talk on &lt;a href=&#34;http://video.esri.com/watch/2481/usage-reporting-on-arcgis-101-for-server&#34;&gt;Usage Reporting on ArcGIS 10.1 for Server &lt;/a&gt;at the 2013 ESRI International Developer&amp;rsquo;s Conference.&lt;/p&gt;
+&lt;p&gt;One tool he pointed out was &lt;!-- raw HTML omitted --&gt;Mxdperfstat&lt;!-- raw HTML omitted --&gt; for benchmarking the performance of your MXD. Trevor used it to compare the performance of a &lt;!-- raw HTML omitted --&gt;Feature Class vs Query Layer vs Spatial View&lt;!-- raw HTML omitted --&gt;. While the official version is available for ArcGIS 9.3 through 10.2, I do want to point out &lt;!-- raw HTML omitted --&gt;Hussein Nasser&amp;rsquo;s 10.1 version&lt;!-- raw HTML omitted --&gt; which he put out before the official 10.1 version came out (it&amp;rsquo;s not really a version, more of a work-around but I like his ingenuity).&lt;/p&gt;
+&lt;p&gt;My results were significantly different on our 10.0 database server, the spatial view I was testing was much slower.  The query for both the spatial view and query layer was simply &amp;lsquo;Select * from &lt;em&gt;featureclass&lt;/em&gt;&amp;rsquo;&lt;/p&gt;
+&lt;p&gt;So not sure what to make of the performance yet, I&amp;rsquo;ve got a spatial index made so not sure what else I can try.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2014/05/MGSDB1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;ArcSDE 10.0 Performance&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 </description>
@@ -63,7 +63,7 @@
       <description>&lt;p&gt;Recently we took a call from a user who could not see the legend for one of the feature classes in one of our services. (Precambrian Bedrock in &lt;a href=&#34;http://mgsweb2.mngs.umn.edu/arcgis/services/state/mnbdrkgeology&#34;&gt;http://mgsweb2.mngs.umn.edu/arcgis/services/state/mnbdrkgeology&lt;/a&gt; )&lt;/p&gt;
 &lt;p&gt;After trying some standard things–restarting the service, checking the source .MXD–I turned to The Google Machine and quickly found help from ESRI: &lt;a href=&#34;http://support.esri.com/zh-cn/knowledgebase/techarticles/detail/33741&#34;&gt;http://support.esri.com/zh-cn/knowledgebase/techarticles/detail/33741&lt;/a&gt; .&lt;/p&gt;
 &lt;p&gt;Turns out the default number of legend items ArcMap will display from an ArcGIS Server map service layer is 100 and we had 102 in the problematic layer. (I plead innocence, blame the geologist for needing that many categories).&lt;/p&gt;
-&lt;p&gt;The solution was to edit the Windows registry and change the setting for “Maximum Legend Count” from 100 to something higher than 102. After doing that (see path note below) and restarting ArcMap, the legend showed for us.&lt;/p&gt;
+&lt;p&gt;The solution was to edit the Windows registry and change the setting for &amp;lsquo;Maximum Legend Count&amp;rsquo; from 100 to something higher than 102. After doing that (see path note below) and restarting ArcMap, the legend showed for us.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Path Details&lt;/strong&gt;&lt;br&gt;
 The path turned out to be a little different on Windows 7 than the paths indicated in the help article.&lt;br&gt;
 ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
@@ -80,17 +80,17 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     </item>
     
     <item>
-      <title>ArcSDE Tip: Finding an ArcSDE instance&amp;#8217;s port</title>
-      <link>https://maprantala.com/2013/02/26/arcsde-tip-finding-an-arcsde-instance#8217s-port/</link>
+      <title>ArcSDE Tip: Finding an ArcSDE instance&#39;s port</title>
+      <link>https://maprantala.com/2013/02/26/arcsde-tip-finding-an-arcsde-instances-port/</link>
       <pubDate>Tue, 26 Feb 2013 05:25:03 -0600</pubDate>
-      <guid>https://maprantala.com/2013/02/26/arcsde-tip-finding-an-arcsde-instance#8217s-port/</guid>
+      <guid>https://maprantala.com/2013/02/26/arcsde-tip-finding-an-arcsde-instances-port/</guid>
       <description>&lt;p&gt;One of my main tasks right now is to document many of the details of maintaining ArcSDE geodatabases so I anticipate having several blog posts on this topic that are re-writes of documents I am working on. I am presuming that the person will have no ArcSDE experience so I am documenting very detailed information.&lt;/p&gt;
-&lt;p&gt;Almost all of the ArcSDE commands require that you specify which instance (service/port) the command applies to by using the “-i” parameter.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Almost all of the ArcSDE commands require that you specify which instance (service/port) the command applies to by using the &amp;lsquo;-i&amp;rsquo; parameter.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/02/instanceparameter1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;ArcSDE Instance Parameter&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;Since we have multiple ArcSDE geodatabases, I like to have a handy-dandy sticky note with all the geodatabases and their respective ports on the side of my monitor.&lt;/p&gt;
-&lt;p&gt;But when that is not handy and I can never remember the ArcSDE command line syntax to get a list of instances and their ports–I mean remembering “&lt;!-- raw HTML omitted --&gt;sdeservice -o list&lt;!-- raw HTML omitted --&gt;” is difficult at my age.&lt;/p&gt;
+&lt;p&gt;But when that is not handy and I can never remember the ArcSDE command line syntax to get a list of instances and their ports–I mean remembering &amp;lsquo;&lt;!-- raw HTML omitted --&gt;sdeservice -o list&lt;!-- raw HTML omitted --&gt;&amp;rsquo; is difficult at my age.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/02/sdeservicelist.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;The quickest and most reliable way I’ve found to get the instance number is just to check the properties of your SDE connection file in ArcCatalog, right-click on it and select “Connection Properties”.&lt;/p&gt;
+&lt;p&gt;The quickest and most reliable way I&amp;rsquo;ve found to get the instance number is just to check the properties of your SDE connection file in ArcCatalog, right-click on it and select &amp;lsquo;Connection Properties&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2013/02/connectionproperties.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;And the port is right there in the service entry (5164).&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2013/02/connectionproperties2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -102,9 +102,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
       <link>https://maprantala.com/2012/04/23/arcmap-field-calculator-identifying-unique-cases-multiple-fields/</link>
       <pubDate>Mon, 23 Apr 2012 06:06:25 -0500</pubDate>
       <guid>https://maprantala.com/2012/04/23/arcmap-field-calculator-identifying-unique-cases-multiple-fields/</guid>
-      <description>&lt;p&gt;You may have noticed that this post–&lt;a href=&#34;http://wp.me/pVrsJ-bf&#34;&gt;ArcMap Field Calculator: Identifying Unique Cases, Single Field&lt;/a&gt;–specifies “Single Field”. Yes, that was my version of a cliff-hanger post.&lt;/p&gt;
-&lt;p&gt;The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats “a” the same as “A”.&lt;/p&gt;
-&lt;p&gt;Today’s example groups records into different cases based off the values of two fields, !county_c! and !feature! and required only minor modifications.&lt;/p&gt;
+      <description>&lt;p&gt;You may have noticed that this post–&lt;a href=&#34;http://wp.me/pVrsJ-bf&#34;&gt;ArcMap Field Calculator: Identifying Unique Cases, Single Field&lt;/a&gt;–specifies &amp;lsquo;Single Field&amp;rsquo;. Yes, that was my version of a cliff-hanger post.&lt;/p&gt;
+&lt;p&gt;The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats &amp;lsquo;a&amp;rsquo; the same as &amp;lsquo;A&amp;rsquo;.&lt;/p&gt;
+&lt;p&gt;Today&amp;rsquo;s example groups records into different cases based off the values of two fields, !county_c! and !feature! and required only minor modifications.&lt;/p&gt;
 &lt;p&gt;The calling line was modified from:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;to:&lt;/p&gt;
@@ -134,7 +134,7 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
       <description>&lt;p&gt;Testing one of our geodata services, we discovered that it allowed us to extract a portion of our feature class but when we tried to extract the entire data set, we received this Data Extraction error: Data extraction failed. Proxy or Gateway Server did not allow the URL. Check with your LAN administrator that Proxy or Gateway server is configured to allow the URL.&lt;/p&gt;
 &lt;p&gt;The fact that I was able to extract a portion of the data and I could see the entire geodatabase get made and zipped led me to believe it was more of time-out issue.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Reading through this thread at &lt;a href=&#34;http://forums.esri.com/thread.asp?c=158&amp;amp;f=1696&amp;amp;t=273750&#34;&gt;ArcForum&lt;/a&gt; led to some good information.  But Thomas’ comment that he was using “IIS7 for my reverse proxy server” and had to change one more setting led me to the solution.  In Server Manager, the default Proxy Time-Out is set at 30 seconds by default.  I bumped that up, 60 seconds shown below but I ended up going to 300 seconds and the problem was resolved.&lt;/p&gt;
+&lt;p&gt;Reading through this thread at &lt;a href=&#34;http://forums.esri.com/thread.asp?c=158&amp;amp;f=1696&amp;amp;t=273750&#34;&gt;ArcForum&lt;/a&gt; led to some good information.  But Thomas&#39; comment that he was using &amp;lsquo;IIS7 for my reverse proxy server&amp;rsquo; and had to change one more setting led me to the solution.  In Server Manager, the default Proxy Time-Out is set at 30 seconds by default.  I bumped that up, 60 seconds shown below but I ended up going to 300 seconds and the problem was resolved.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
@@ -145,7 +145,7 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
       <link>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</link>
       <pubDate>Thu, 28 Jul 2011 20:08:13 -0500</pubDate>
       <guid>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</guid>
-      <description>&lt;p&gt;One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N.  In ArcView 3.x, the formula was simply “rec + 1” if I wanted to start with the number 1.&lt;/p&gt;
+      <description>&lt;p&gt;One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N.  In ArcView 3.x, the formula was simply &amp;lsquo;rec + 1&amp;rsquo; if I wanted to start with the number 1.&lt;/p&gt;
 &lt;p&gt;In ArcGIS, the process got a little more complex–you had to write a little VBA in Field Calculator as &lt;a href=&#34;http://support.esri.com/en/knowledgebase/techarticles/detail/27427&#34;&gt;described by ESRI&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;While this option still exists in ArcGIS 10, I believe it will disappear when 10.1 comes out and VBA support is completely eliminated.  But it is doable using Python which will continue to be supported.&lt;/p&gt;
 &lt;p&gt;Googling around, I did not find an exact answer but Dave Verbyla, Professor of GIS/Remote Sensing at the University of Alaska has a &lt;a href=&#34;http://nrm.salrm.uaf.edu/~dverbyla/nrm638/lectures/Python_field_calculator.pdf&#34;&gt;posted some samples&lt;/a&gt; that served as a good starting point.&lt;/p&gt;
@@ -153,7 +153,7 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;While composing this post, I actually wanted a concatenated value; “OC” plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:&lt;/p&gt;
+&lt;p&gt;While composing this post, I actually wanted a concatenated value; &amp;lsquo;OC&amp;rsquo; plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
@@ -164,11 +164,11 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
       <link>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</link>
       <pubDate>Tue, 19 Jul 2011 20:47:03 -0500</pubDate>
       <guid>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</guid>
-      <description>&lt;p&gt;I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI’s instructions.  But, once you know how to do it, it is pretty easy.  In Visual Studio, Add a New Item:&lt;/p&gt;
+      <description>&lt;p&gt;I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI&amp;rsquo;s instructions.  But, once you know how to do it, it is pretty easy.  In Visual Studio, Add a New Item:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/07/addresource.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Add a Cursor File:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/selectcursor.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is “Embedded Resource”.&lt;/p&gt;
+&lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is &amp;lsquo;Embedded Resource&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/07/embedded.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Then you can set your cursor with two lines of code. Not that my cursor is in my QDI.QdiAddIn Namespace:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -183,15 +183,15 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
       <pubDate>Tue, 03 May 2011 03:33:01 -0500</pubDate>
       <guid>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
       <description>&lt;p&gt;I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation.  So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.&lt;/p&gt;
-&lt;p&gt;This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.&lt;/p&gt;
-&lt;p&gt;In the past, I have gone through the tedious process of exporting the domain to a table, sorting the table, removing the domain from the necessary field(s), deleting the domain, re-importing the table back in a new domain and finally re-applying the domain to the necessary field(s). Let’s just say I didn’t do this until someone asked a few times and I didn’t have anything more exciting–like a root canal–I could busy myself with.&lt;/p&gt;
+&lt;p&gt;This can be confusing for users–they go to select &amp;lsquo;Milli Vanilli&amp;rsquo; and look between &amp;lsquo;Madonna&amp;rsquo; and &amp;lsquo;Motley Crue&amp;rsquo; but can not find their favorite band there–they have to go to the end of the list to find their selection.&lt;/p&gt;
+&lt;p&gt;In the past, I have gone through the tedious process of exporting the domain to a table, sorting the table, removing the domain from the necessary field(s), deleting the domain, re-importing the table back in a new domain and finally re-applying the domain to the necessary field(s). Let&amp;rsquo;s just say I didn&amp;rsquo;t do this until someone asked a few times and I didn&amp;rsquo;t have anything more exciting–like a root canal–I could busy myself with.&lt;/p&gt;
 &lt;p&gt;But this new application contains more domains than any of other datasets so it was time to find a better solution. ESRI does have a &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;Domain Sort&lt;/a&gt; Developer Sample.  It, however, did &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;not play nice&lt;/a&gt; with ArcGIS 10.&lt;/p&gt;
 &lt;p&gt;So I went ahead and update it from VB 6 to VB.Net/ArcObjects 10.  I made an &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/DomainSorter.esriAddIn&#34;&gt;Add-In&lt;/a&gt; that can be installed by downloading the .esriaddin file and double-clicking on it.  The &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120321_DomainSort.zip&#34;&gt;source code&lt;/a&gt; is also available.&lt;/p&gt;
 &lt;p&gt;This will add an ArcCatalog Toolbar that can be added by going to Customize-Toolbars-Domain Sorter Toolbar.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This will add a toolbar with one button.  The button enables whenever you select a geodatabase with at least one coded-value domain.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;This brings up a Windows form that lets you sort any domain by either the code or description, ascending or descending.  Once you hit “OK” it re-sorts your domain.&lt;/p&gt;
+&lt;p&gt;This brings up a Windows form that lets you sort any domain by either the code or description, ascending or descending.  Once you hit &amp;lsquo;OK&amp;rsquo; it re-sorts your domain.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_3.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The only problem I have had is that only the owner of a domain is allowed to edit it on an SDE geodatabase.&lt;/p&gt;
 &lt;p&gt;But other than that, the button allows you to easily keep your domains sorted.&lt;/p&gt;
@@ -214,7 +214,7 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
 &lt;li&gt;I did not test against multi-part features.&lt;/li&gt;
 &lt;li&gt;The tolerance is the native units of the data–if your data is in meters but you want to split the polylines every mile, enter 1,609.344.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you’ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
+&lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you&amp;rsquo;ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the code for the Googlebots, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;just downloading&lt;/a&gt; it.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -228,7 +228,7 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
       <pubDate>Fri, 25 Mar 2011 11:29:36 -0500</pubDate>
       <guid>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings./</guid>
       <description>&lt;p&gt;Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent.  Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range.  Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.&lt;/p&gt;
-&lt;p&gt;I’m not sure how rapidly ESRI takes “Ideas” into consideration but if you feel like it would benefit you, why not promote this idea:  &lt;a href=&#34;http://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not sure how rapidly ESRI takes &amp;lsquo;Ideas&amp;rsquo; into consideration but if you feel like it would benefit you, why not promote this idea:  &lt;a href=&#34;http://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Have a good weekend, all!&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
@@ -239,12 +239,12 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
       <link>https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/</link>
       <pubDate>Mon, 14 Mar 2011 18:04:36 -0500</pubDate>
       <guid>https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/</guid>
-      <description>&lt;p&gt;I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
+      <description>&lt;p&gt;I was making an edit (adding leading &amp;lsquo;0&amp;rsquo;s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
 &lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
 &lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/failedtodeletedomain.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The Google Machine led me to an &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=985&amp;amp;t=303616&#34;&gt;ArcForums post&lt;/a&gt; by  with some python code for listing all the fields with a domain.&lt;/p&gt;
-&lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the ‘listfc(“”)’ line that is the first line of the def listds() module.&lt;/p&gt;
+&lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the ‘listfc(&#39;&#39;)&amp;rsquo; line that is the first line of the def listds() module.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -256,13 +256,13 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
       <link>https://maprantala.com/2011/03/11/revoking-#8216public%238217-permissions-in-postgresql-arcsde/</link>
       <pubDate>Fri, 11 Mar 2011 11:11:48 -0600</pubDate>
       <guid>https://maprantala.com/2011/03/11/revoking-#8216public%238217-permissions-in-postgresql-arcsde/</guid>
-      <description>&lt;p&gt;While banging my head on how to grant access to a &lt;a href=&#34;http://wp.me/pVrsJ-6Q&#34;&gt;referenced mosaic dataset&lt;/a&gt; , I did something out of frustration that I normally would not do–I granted ‘public’ access to some data.&lt;/p&gt;
+      <description>&lt;p&gt;While banging my head on how to grant access to a &lt;a href=&#34;http://wp.me/pVrsJ-6Q&#34;&gt;referenced mosaic dataset&lt;/a&gt; , I did something out of frustration that I normally would not do–I granted ‘public&#39; access to some data.&lt;/p&gt;
 &lt;p&gt;Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:&lt;/p&gt;
 &lt;p&gt;Error 999999: Error executing function.&lt;/p&gt;
-&lt;p&gt;The Object being referenced does not exist [ERROR:  role “public” does not exist::SQL state: 42704]&lt;br&gt;
+&lt;p&gt;The Object being referenced does not exist [ERROR:  role &amp;lsquo;public&amp;rsquo; does not exist::SQL state: 42704]&lt;br&gt;
 Failed to execute (ChangePrivileges).&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/revokepublic.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I actually expected that would occur–ArcSDE isn’t aware of PostgreSQL’s public account.&lt;/p&gt;
+&lt;p&gt;I actually expected that would occur–ArcSDE isn&amp;rsquo;t aware of PostgreSQL&amp;rsquo;s public account.&lt;/p&gt;
 &lt;p&gt;The solution was to go into pgAdmin II and revoke the privileges there.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/revokepgadminiii.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -274,20 +274,20 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
       <link>https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/</link>
       <pubDate>Mon, 07 Mar 2011 08:37:33 -0600</pubDate>
       <guid>https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/</guid>
-      <description>&lt;p&gt;One of the Spatial Analyst tools we often use in ArcGIS is the “&lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//009z0000002t000000.htm&#34;&gt;Extract Values to Points&lt;/a&gt;” tool.  This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.&lt;/p&gt;
+      <description>&lt;p&gt;One of the Spatial Analyst tools we often use in ArcGIS is the &amp;lsquo;&lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//009z0000002t000000.htm&#34;&gt;Extract Values to Points&lt;/a&gt;&amp;rsquo; tool.  This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/extractvaluestopoints.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Today I was running it for the first time against an Image Service we recently published and I received a warning message,”WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry”.  But the script seemed to run and the final results said “Succeeded” so I thought it was probably fine.  But as I double-checked, I realized the results were wonky.&lt;/p&gt;
-&lt;p&gt;Turns out that I had two records with Null geometry in my point file of 397 records.  These two records threw the above error but actually had a value in the [Rastervalu] field.  Turns out all 397 records had values.  These two records were consecutive–let’s say the 100th and 101st records in my shapefile.  What happened is record 100 got the value for record 102, record 101 get the value for 103, record 102 (which has valid geometry) had the value for 104.  This pattern, each record having the value for the record 2 place after it, continued until record 396 which had the value for record 397.  Record 397 also had the value for 397.  So the final three records all had the value for the final record.&lt;/p&gt;
+&lt;p&gt;Today I was running it for the first time against an Image Service we recently published and I received a warning message,&amp;lsquo;WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry&amp;rsquo;.  But the script seemed to run and the final results said &amp;lsquo;Succeeded&amp;rsquo; so I thought it was probably fine.  But as I double-checked, I realized the results were wonky.&lt;/p&gt;
+&lt;p&gt;Turns out that I had two records with Null geometry in my point file of 397 records.  These two records threw the above error but actually had a value in the [Rastervalu] field.  Turns out all 397 records had values.  These two records were consecutive–let&amp;rsquo;s say the 100th and 101st records in my shapefile.  What happened is record 100 got the value for record 102, record 101 get the value for 103, record 102 (which has valid geometry) had the value for 104.  This pattern, each record having the value for the record 2 place after it, continued until record 396 which had the value for record 397.  Record 397 also had the value for 397.  So the final three records all had the value for the final record.&lt;/p&gt;
 &lt;p&gt;What I would have expected would be for the two records with Null Geometry to have null values in the [Rastervalu] field and the rest of the records to have the correct values.  Despite the warning, it is very misleading for all the records to end up with a value.&lt;/p&gt;
 &lt;p&gt;I have a simplified example below.  I made a point shapefile with four records.  The first, third, and fourth  records have valid geometries; the second has Null geometry.  The second record ends up with the value for the third record.  The third record, has the value for the fourth.  The fourth record being the last record, ends up with the last valid value, which was its own.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/results.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The results that I would have hoped for would be for the third record to have a Null value.&lt;/p&gt;
 &lt;p&gt;The way I envision what is occurring behind the scenes is this:  the process makes a list (more of a stack in programming terms) of result values as it processed the points but just assumes that every record will return a value so it does not track which value goes with which shape.&lt;/p&gt;
 &lt;p&gt;When it reached the two null geometries, it threw an error but continued on.  It did not add a value for these records to the stack of values–when it comes across records with valid geometry but do not intersect the raster it adds a psuedo-null value of (-9999) to the stack.  After it processed all the records it had 395 values in the stack.  It then went, one-by-one through the stack and populated the records in the output shapefile, the first record got the first value in the stack, the second record got the second value, the 100th record got the 100th value (which came from the location of the 102nd record) and so on.  At the end, the final two records received the last valid value.&lt;/p&gt;
-&lt;p&gt;This final behavior–using the last valid value–corresponds a bit to a behavior we’ve seen with ArcObjects in general.  When iterating through a table, if a field is Null for a specific row, the value from the last non-Null value for that field is often returned.&lt;/p&gt;
-&lt;p&gt;I’m in the process of submitting a bug to ESRI.  I’m not sure if this existed prior to ArcGIS 10.0 (I’m guessing it did) or if it occurs in other processes (I’m guessing it does).  I did find out that the “&lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//009z0000002s000000.htm&#34;&gt;Extract Multi Values to Points&lt;/a&gt;” works as expected.  I’m guessing it is because unlike the “Extract Values to Points” which creates a new shapefile, this tool appends fields to the existing shapefile and presumably processes records one-by-one without putting the results in a virtual stack.  The “Extract Multi Values to Points” tool also does not throw any warnings.&lt;/p&gt;
+&lt;p&gt;This final behavior–using the last valid value–corresponds a bit to a behavior we&amp;rsquo;ve seen with ArcObjects in general.  When iterating through a table, if a field is Null for a specific row, the value from the last non-Null value for that field is often returned.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m in the process of submitting a bug to ESRI.  I&amp;rsquo;m not sure if this existed prior to ArcGIS 10.0 (I&amp;rsquo;m guessing it did) or if it occurs in other processes (I&amp;rsquo;m guessing it does).  I did find out that the &amp;lsquo;&lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//009z0000002s000000.htm&#34;&gt;Extract Multi Values to Points&lt;/a&gt;&amp;rsquo; works as expected.  I&amp;rsquo;m guessing it is because unlike the &amp;lsquo;Extract Values to Points&amp;rsquo; which creates a new shapefile, this tool appends fields to the existing shapefile and presumably processes records one-by-one without putting the results in a virtual stack.  The &amp;lsquo;Extract Multi Values to Points&amp;rsquo; tool also does not throw any warnings.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/same.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://maprantala.com/wp-content/uploads/2011/03/extractvaluetopoints.jpg&#34;&gt;&lt;br&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/wp-content/uploads/2011/03/extractvaluetopoints.jpg&#34;&gt;&lt;br&gt;
 &lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
@@ -308,16 +308,16 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;Turns out the solution was simple, this &lt;a href=&#34;http://resources.arcgis.com/content/kbase?fa=articleShow&amp;amp;d=37385&#34;&gt;article&lt;/a&gt; points out that &lt;a href=&#34;http://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;amp;PID=17&amp;amp;MetaID=1620&#34;&gt;Service pack 2&lt;/a&gt; is required.  After updating my ArcGIS, the problem was solved:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/01/errormessage.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI’s &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDe with the -o option as the first error message instructed me to do.&lt;/p&gt;
+&lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&amp;rsquo;s &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDe with the -o option as the first error message instructed me to do.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
     <item>
-      <title>Launching a Python script with parameters&amp;#8211;3 methods.</title>
-      <link>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters#82113-methods./</link>
+      <title>Launching a Python script with parameters–3 methods.</title>
+      <link>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters3-methods./</link>
       <pubDate>Mon, 13 Dec 2010 14:56:43 -0600</pubDate>
-      <guid>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters#82113-methods./</guid>
+      <guid>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters3-methods./</guid>
       <description>&lt;p&gt;Since I use python for different tasks, I launch python scripts a variety of ways. Depending on what I am doing, a single script may need to accept parameters from either:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Passed in from an ArcGIS Toolbox Tool.&lt;/li&gt;
@@ -338,19 +338,19 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
       <pubDate>Wed, 15 Sep 2010 13:36:34 -0500</pubDate>
       <guid>https://maprantala.com/2010/09/15/another-topotoraster-error/</guid>
       <description>&lt;h3 id=&#34;subtitled-why-error-messages-are-good&#34;&gt;Subtitled:  Why error messages are good.&lt;/h3&gt;
-&lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn’t have to spend a day trying figure out what was wrong.&lt;br&gt;
+&lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn&amp;rsquo;t have to spend a day trying figure out what was wrong.&lt;br&gt;
 &lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/09/sixteen.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://maprantala.com/wp-content/uploads/2010/09/topotorastererror1.jpg&#34;&gt;&lt;br&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/wp-content/uploads/2010/09/topotorastererror1.jpg&#34;&gt;&lt;br&gt;
 &lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>Trying to perform &amp;#8220;relate&amp;#8221; in Model Builder</title>
-      <link>https://maprantala.com/2010/08/11/trying-to-perform-#8220relate%238221-in-model-builder/</link>
+      <title>Trying to perform &#39;relate&#39; in Model Builder</title>
+      <link>https://maprantala.com/2010/08/11/trying-to-perform-relate-in-model-builder/</link>
       <pubDate>Wed, 11 Aug 2010 17:31:21 -0500</pubDate>
-      <guid>https://maprantala.com/2010/08/11/trying-to-perform-#8220relate%238221-in-model-builder/</guid>
-      <description>&lt;p&gt;I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y’) in another table (CWI.C5IX).  There is not an existing tool for doing this in ArcGIS.  I did find a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=1728&amp;amp;t=257179&amp;amp;g=1&#34;&gt;post&lt;/a&gt; by Layne Seely in &lt;a href=&#34;http://forums.esri.com/&#34;&gt;ArcForums&lt;/a&gt; titled “trying to perform “relate” in Model Builder.” that led me to the Make Table View under Data Management Tools-Make Table View and even had  the basic syntax I was looking for (if it hadn’t I probably would have guessed that it would not allow subqueries).&lt;/p&gt;
+      <guid>https://maprantala.com/2010/08/11/trying-to-perform-relate-in-model-builder/</guid>
+      <description>&lt;p&gt;I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y&#39;) in another table (CWI.C5IX).  There is not an existing tool for doing this in ArcGIS.  I did find a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=1728&amp;amp;t=257179&amp;amp;g=1&#34;&gt;post&lt;/a&gt; by Layne Seely in &lt;a href=&#34;http://forums.esri.com/&#34;&gt;ArcForums&lt;/a&gt; titled &amp;lsquo;trying to perform &amp;lsquo;relate&amp;rsquo; in Model Builder.&amp;rsquo; that led me to the Make Table View under Data Management Tools-Make Table View and even had  the basic syntax I was looking for (if it hadn&amp;rsquo;t I probably would have guessed that it would not allow subqueries).&lt;/p&gt;
 &lt;p&gt;Since I always like to see exactly the syntax someone uses, I decided to show the syntax I used in case that helps anyone else.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/08/tableview.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Sample of a Table View using a subquery&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;It does require that the tables reside in the same workspace, which is a reasonable limitation that I can live with.  Another drawback is that if you export the model to a python script, the command can get pretty long, especially if you have many fields.&lt;/p&gt;
@@ -362,7 +362,7 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
       <link>https://maprantala.com/2010/07/14/arcgis-ideas/</link>
       <pubDate>Wed, 14 Jul 2010 14:20:47 -0500</pubDate>
       <guid>https://maprantala.com/2010/07/14/arcgis-ideas/</guid>
-      <description>&lt;p&gt;Ok, maybe I have been hiding under a rock, but just saw this is a post from &lt;a href=&#34;http://www.spatiallyadjusted.com/&#34;&gt;James Fee’s Spatially Adjusted blog&lt;/a&gt;.  ESRI has a public suggestion box called  &lt;a href=&#34;http://ideas.arcgis.com/&#34;&gt;ArcGIS Ideas&lt;/a&gt; where users can submit suggestions for ESRI.  One thing I like is that it is open for other users to see and comment.  Not sure how responsive ESRI will be but at least it gives us a place to vent.&lt;/p&gt;
+      <description>&lt;p&gt;Ok, maybe I have been hiding under a rock, but just saw this is a post from &lt;a href=&#34;http://www.spatiallyadjusted.com/&#34;&gt;James Fee&amp;rsquo;s Spatially Adjusted blog&lt;/a&gt;.  ESRI has a public suggestion box called  &lt;a href=&#34;http://ideas.arcgis.com/&#34;&gt;ArcGIS Ideas&lt;/a&gt; where users can submit suggestions for ESRI.  One thing I like is that it is open for other users to see and comment.  Not sure how responsive ESRI will be but at least it gives us a place to vent.&lt;/p&gt;
 </description>
     </item>
     
@@ -372,7 +372,7 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
       <pubDate>Mon, 12 Jul 2010 12:36:49 -0500</pubDate>
       <guid>https://maprantala.com/2010/07/12/esri-releases-service-arcgis-9.3.1-pack-2/</guid>
       <description>&lt;p&gt;Right before the Users Conference, ESRI has released &lt;a href=&#34;http://blogs.esri.com/Dev/blogs/arcgisdesktop/archive/2010/07/09/ArcGIS-Desktop-9.3.1-Service-Pack-2.aspx&#34;&gt;ArcGIS Desktop 9.3.1 Service Pack 2&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Haven’t had a chance to see what bugs this addresses yet.&lt;/p&gt;
+&lt;p&gt;Haven&amp;rsquo;t had a chance to see what bugs this addresses yet.&lt;/p&gt;
 </description>
     </item>
     

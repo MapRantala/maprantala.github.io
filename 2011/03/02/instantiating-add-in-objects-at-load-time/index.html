@@ -96,11 +96,11 @@ Tags:
 </div>
 </header>
 <div class="content">
-<p>In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0.  So far, I’m loving the functionality.</p>
+<p>In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0.  So far, I&rsquo;m loving the functionality.</p>
 <p>One thing, however, that I have to figure out is that the controls are not instantiated until they are clicked on.  One of the results is that the controls, by default, are enabled.  This is not the functionality I wanted.</p>
-<p>I found the solution in ESRI’s topic, <a href="http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/">Advanced add-in concepts (ArcObjects .NET 10 SDK)</a> in the Delayed loading section:</p>
+<p>I found the solution in ESRI&rsquo;s topic, <a href="http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/">Advanced add-in concepts (ArcObjects .NET 10 SDK)</a> in the Delayed loading section:</p>
 <!-- raw HTML omitted -->
-<p>The verbiage, “setting the onDemand Extensible Markup Language (XML) attribute to false” was a bit non-specific to me.  I guessed right, however, that they were referring to the control definiton in the Command section of Config.esriaddinx.  In the example below, I set the onDemand attribute to false by adding the  ‘onDemand=”false”‘ tag and the control did, in fact, get instantiated at load time, giving me the ability to disable it.</p>
+<p>The verbiage, &lsquo;setting the onDemand Extensible Markup Language (XML) attribute to false&rsquo; was a bit non-specific to me.  I guessed right, however, that they were referring to the control definiton in the Command section of Config.esriaddinx.  In the example below, I set the onDemand attribute to false by adding the  ‘onDemand=&lsquo;false&rsquo;‘ tag and the control did, in fact, get instantiated at load time, giving me the ability to disable it.</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <blockquote>

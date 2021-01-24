@@ -100,11 +100,39 @@ Tags:
 <p>But since the only spatial operations I needed were to measure the distance between two points and the distance between a point and polyline, I decided to just do it via brute force. The datasets being processed were not huge so it made this feasible.</p>
 <p>Measuring point-to-point distance was easy enough. And while I knew I could work through the details of measuring the distance between a point and polyline, I decided NOT to re-invent the wheel if I did not have to. Google did not come up with any direct answers but I did come across this <a href="http://local.wasp.uwa.edu.au/%7Epbourke/geometry/pointline/">post</a> from <a href="http://local.wasp.uwa.edu.au/%7Epbourke/" title="Paul Bourke">Paul Bourke</a> at the <a href="http://wasp.uwa.edu.au/">University of Western Australia</a> about measuring the distance between a point and a line segment. A polyline is just a series of line segments so I used it as the basis of my measurement–I just loop through all the consecutive vertice pairs, using the minimum distance found.</p>
 <p>Paul did not have a python implementation included, so I went ahead and created my own from his information.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<blockquote>
-</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lineMagnitude</span> (x1, y1, x2, y2):
+    lineMagnitude <span style="color:#f92672">=</span> math<span style="color:#f92672">.</span>sqrt(math<span style="color:#f92672">.</span>pow((x2 <span style="color:#f92672">-</span> x1), <span style="color:#ae81ff">2</span>)<span style="color:#f92672">+</span> math<span style="color:#f92672">.</span>pow((y2 <span style="color:#f92672">-</span> y1), <span style="color:#ae81ff">2</span>))
+    <span style="color:#66d9ef">return</span> lineMagnitude
 
+<span style="color:#75715e">#Calc minimum distance from a point and a line segment (i.e. consecutive vertices in a polyline).</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">DistancePointLine</span> (px, py, x1, y1, x2, y2):
+    <span style="color:#75715e">#http://local.wasp.uwa.edu.au/~pbourke/geometry/pointline/source.vba</span>
+    LineMag <span style="color:#f92672">=</span> lineMagnitude(x1, y1, x2, y2)
+
+    <span style="color:#66d9ef">if</span> LineMag <span style="color:#f92672">&amp;</span>lt; <span style="color:#ae81ff">0.00000001</span>:
+        DistancePointLine <span style="color:#f92672">=</span> <span style="color:#ae81ff">9999</span>
+        <span style="color:#66d9ef">return</span> DistancePointLine
+
+    u1 <span style="color:#f92672">=</span> (((px <span style="color:#f92672">-</span> x1) <span style="color:#f92672">*</span> (x2 <span style="color:#f92672">-</span> x1)) <span style="color:#f92672">+</span> ((py <span style="color:#f92672">-</span> y1) <span style="color:#f92672">*</span> (y2 <span style="color:#f92672">-</span> y1)))
+    u <span style="color:#f92672">=</span> u1 <span style="color:#f92672">/</span> (LineMag <span style="color:#f92672">*</span> LineMag)
+
+    <span style="color:#66d9ef">if</span> (u <span style="color:#f92672">&amp;</span>lt; <span style="color:#ae81ff">0.00001</span>) <span style="color:#f92672">or</span> (u <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">1</span>):
+        <span style="color:#75715e">#// closest point does not fall within the line segment, take the shorter distance</span>
+        <span style="color:#75715e">#// to an endpoint</span>
+        ix <span style="color:#f92672">=</span> lineMagnitude(px, py, x1, y1)
+        iy <span style="color:#f92672">=</span> lineMagnitude(px, py, x2, y2)
+        <span style="color:#66d9ef">if</span> ix <span style="color:#f92672">&amp;</span>gt; iy:
+            DistancePointLine <span style="color:#f92672">=</span> iy
+        <span style="color:#66d9ef">else</span>:
+            DistancePointLine <span style="color:#f92672">=</span> ix
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#75715e"># Intersecting point is on the line, use the formula</span>
+        ix <span style="color:#f92672">=</span> x1 <span style="color:#f92672">+</span> u <span style="color:#f92672">*</span> (x2 <span style="color:#f92672">-</span> x1)
+        iy <span style="color:#f92672">=</span> y1 <span style="color:#f92672">+</span> u <span style="color:#f92672">*</span> (y2 <span style="color:#f92672">-</span> y1)
+        DistancePointLine <span style="color:#f92672">=</span> lineMagnitude(px, py, ix, iy)
+
+    <span style="color:#66d9ef">return</span> DistancePointLine
+</code></pre></div>
 
 </div>
 </article>

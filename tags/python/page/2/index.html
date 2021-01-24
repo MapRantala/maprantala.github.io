@@ -87,7 +87,7 @@
 
 </header>
 <div class="content">
-During a process I was working on, I needed to compare a feature class before and after some edits. I did not quickly find anything in ArcToolbox but searching ArcResources led me to Change Detector script by Bruce Harold. After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.
+During a process I was working on, I needed to compare a feature class before and after some edits. I did not quickly find anything in ArcToolbox but searching ArcResources led me to Change Detector script by Bruce Harold. After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case &lsquo;S&rsquo; and in the other it was a lower case &rsquo;s'.
 </div>
 </article>
 
@@ -97,7 +97,7 @@ During a process I was working on, I needed to compare a feature class before an
 
 </header>
 <div class="content">
-I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain. Rows were moved to the bottom of the list when they were edited.
+I was making an edit (adding leading &lsquo;0&rsquo;s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain. Rows were moved to the bottom of the list when they were edited.
 So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.
 </div>
 </article>
@@ -130,9 +130,9 @@ Our existing data is organized by tiles with the directory name representing the
 
 </header>
 <div class="content">
-Updating some python code from 9.3 that using geoprocessing to 10.0 using arcpy and the first real object I’ve had to change relates to detecting whether or not an index exists on a table.
+Updating some python code from 9.3 that using geoprocessing to 10.0 using arcpy and the first real object I&rsquo;ve had to change relates to detecting whether or not an index exists on a table.
 I previously posted code using a 9.3 geoprocessing commands, the core of it being:
-With arcpy, ESRI has gone back to using the Describe methodology. Way back when GISers use to type most of their commands into their wood-burning computers, the command “Describe” was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).
+With arcpy, ESRI has gone back to using the Describe methodology. Way back when GISers use to type most of their commands into their wood-burning computers, the command &lsquo;Describe&rsquo; was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).
 </div>
 </article>
 
@@ -143,7 +143,7 @@ With arcpy, ESRI has gone back to using the Describe methodology. Way back when
 </header>
 <div class="content">
 Ever since the ever-popular post, Zipping a shapefile using python, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.
-The key trick, as shown in line 17, is appending the basename of the file geodatabase (“nfg.gdb/” in my example) in front of each file as you write it to the zipfile.
+The key trick, as shown in line 17, is appending the basename of the file geodatabase (&lsquo;nfg.gdb/&rsquo; in my example) in front of each file as you write it to the zipfile.
 UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp; pasted and have work.
 </div>
 </article>
@@ -154,7 +154,7 @@ UPDATE: WordPress messes with the spacing when I post code, making it difficult 
 
 </header>
 <div class="content">
-Related to my post on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways. This is largely due to the fact that some are called by ArcToolbox scripts. Running in ESRI’s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.
+Related to my post on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways. This is largely due to the fact that some are called by ArcToolbox scripts. Running in ESRI&rsquo;s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.
 </div>
 </article>
 
@@ -165,14 +165,14 @@ Related to my post on how I enable a script to accept parameters from different 
 </header>
 <div class="content">
 UPDATE: After receiving a request to modify the code to ignore .lock files, I have an updated to this post.
- I’ve received a request on how to use the Zip Shapefile code I posted last week from ArcGIS. Sorry, I did not set the code up to call directly from ArcGIS but only as an illustration of how it can be done.
+ I&rsquo;ve received a request on how to use the Zip Shapefile code I posted last week from ArcGIS. Sorry, I did not set the code up to call directly from ArcGIS but only as an illustration of how it can be done.
 I have, however, with some minor tweaking, made a version that can added to ArcToolbox.
 </div>
 </article>
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2010/12/13/launching-a-python-script-with-parameters#82113-methods./">Launching a Python script with parameters&amp;#8211;3 methods.</a></h2>
+<h2 class="title "><a href="/2010/12/13/launching-a-python-script-with-parameters3-methods./">Launching a Python script with parameters–3 methods.</a></h2>
 
 </header>
 <div class="content">
@@ -188,7 +188,7 @@ Since I use python for different tasks, I launch python scripts a variety of way
 </header>
 <div class="content">
 UPDATE: After receiving a request to modify the code to ignore .lock files, I have an updated to this post.
-One of the tasks I’ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.
+One of the tasks I&rsquo;ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.
 Not an overly complicated situation but a common one that ArcGIS does not have a solution out-of-the-box.
 </div>
 </article>

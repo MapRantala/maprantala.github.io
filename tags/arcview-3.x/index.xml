@@ -14,7 +14,7 @@
       <link>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</link>
       <pubDate>Thu, 28 Jul 2011 20:08:13 -0500</pubDate>
       <guid>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</guid>
-      <description>&lt;p&gt;One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N.  In ArcView 3.x, the formula was simply “rec + 1” if I wanted to start with the number 1.&lt;/p&gt;
+      <description>&lt;p&gt;One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N.  In ArcView 3.x, the formula was simply &amp;lsquo;rec + 1&amp;rsquo; if I wanted to start with the number 1.&lt;/p&gt;
 &lt;p&gt;In ArcGIS, the process got a little more complex–you had to write a little VBA in Field Calculator as &lt;a href=&#34;http://support.esri.com/en/knowledgebase/techarticles/detail/27427&#34;&gt;described by ESRI&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;While this option still exists in ArcGIS 10, I believe it will disappear when 10.1 comes out and VBA support is completely eliminated.  But it is doable using Python which will continue to be supported.&lt;/p&gt;
 &lt;p&gt;Googling around, I did not find an exact answer but Dave Verbyla, Professor of GIS/Remote Sensing at the University of Alaska has a &lt;a href=&#34;http://nrm.salrm.uaf.edu/~dverbyla/nrm638/lectures/Python_field_calculator.pdf&#34;&gt;posted some samples&lt;/a&gt; that served as a good starting point.&lt;/p&gt;
@@ -22,7 +22,7 @@
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;While composing this post, I actually wanted a concatenated value; “OC” plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:&lt;/p&gt;
+&lt;p&gt;While composing this post, I actually wanted a concatenated value; &amp;lsquo;OC&amp;rsquo; plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>

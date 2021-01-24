@@ -87,18 +87,18 @@
 
 </header>
 <div class="content">
-I’ve previously posted python code to check if a field index exists for both ArcGIs 9.3 and ArcGIS 10.0.
+I&rsquo;ve previously posted python code to check if a field index exists for both ArcGIs 9.3 and ArcGIS 10.0.
 Recently I have been working on a process that was using this code but it was not working because it looks for an index with a specific name. It was not working in this case because the name of the indexes was getting incremented as they were being created. For example, I was building an index on the table C5ST, field RelateId ([C5IX].
 </div>
 </article>
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./">Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</a></h2>
+<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./">Feature classes and Tables with names starting with &#39;nd_&#39;.</a></h2>
 
 </header>
 <div class="content">
-Random luck me to discovering a bug related to feature classes whose names start with “nd_”. It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
+Random luck me to discovering a bug related to feature classes whose names start with &lsquo;nd_'. It appears that you are allowed to create feature classes starting with &lsquo;nd_&rsquo; but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
 I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.
 </div>
 </article>
@@ -120,7 +120,7 @@ It sometimes has trouble with the initial step of uploading the raster because o
 
 </header>
 <div class="content">
-During a process I was working on, I needed to compare a feature class before and after some edits. I did not quickly find anything in ArcToolbox but searching ArcResources led me to Change Detector script by Bruce Harold. After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.
+During a process I was working on, I needed to compare a feature class before and after some edits. I did not quickly find anything in ArcToolbox but searching ArcResources led me to Change Detector script by Bruce Harold. After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case &lsquo;S&rsquo; and in the other it was a lower case &rsquo;s'.
 </div>
 </article>
 
@@ -130,7 +130,7 @@ During a process I was working on, I needed to compare a feature class before an
 
 </header>
 <div class="content">
-I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document. There might be an easy way to do this in ArcGIS 10 but I haven’t found it. So, as is my nature, I decided to roll my own.
+I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document. There might be an easy way to do this in ArcGIS 10 but I haven&rsquo;t found it. So, as is my nature, I decided to roll my own.
 This is a bare-bones script that iterates through the fields, printing the field name, type, width, and precision. There are three optional features to it:
 </div>
 </article>
@@ -141,7 +141,7 @@ This is a bare-bones script that iterates through the fields, printing the field
 
 </header>
 <div class="content">
-I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain. Rows were moved to the bottom of the list when they were edited.
+I was making an edit (adding leading &lsquo;0&rsquo;s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain. Rows were moved to the bottom of the list when they were edited.
 So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.
 </div>
 </article>
@@ -164,7 +164,7 @@ Our existing data is organized by tiles with the directory name representing the
 </header>
 <div class="content">
 Ever since the ever-popular post, Zipping a shapefile using python, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.
-The key trick, as shown in line 17, is appending the basename of the file geodatabase (“nfg.gdb/” in my example) in front of each file as you write it to the zipfile.
+The key trick, as shown in line 17, is appending the basename of the file geodatabase (&lsquo;nfg.gdb/&rsquo; in my example) in front of each file as you write it to the zipfile.
 UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp; pasted and have work.
 </div>
 </article>
@@ -188,7 +188,7 @@ But before creating the index, I wanted to verify that it did not exist. I trie
 
 </header>
 <div class="content">
-Related to my post on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways. This is largely due to the fact that some are called by ArcToolbox scripts. Running in ESRI’s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.
+Related to my post on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways. This is largely due to the fact that some are called by ArcToolbox scripts. Running in ESRI&rsquo;s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.
 </div>
 </article>
 

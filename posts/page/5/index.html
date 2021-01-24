@@ -133,7 +133,7 @@ The fact that I was able to extract a portion of the data and I could see the en
 
 </header>
 <div class="content">
-One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N. In ArcView 3.x, the formula was simply “rec + 1” if I wanted to start with the number 1.
+One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N. In ArcView 3.x, the formula was simply &lsquo;rec + 1&rsquo; if I wanted to start with the number 1.
 In ArcGIS, the process got a little more complex–you had to write a little VBA in Field Calculator as described by ESRI.
 </div>
 </article>
@@ -144,11 +144,11 @@ In ArcGIS, the process got a little more complex–you had to write a little VBA
 
 </header>
 <div class="content">
-I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI’s instructions. But, once you know how to do it, it is pretty easy. In Visual Studio, Add a New Item:
+I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI&rsquo;s instructions. But, once you know how to do it, it is pretty easy. In Visual Studio, Add a New Item:
 
 Add a Cursor File:
 
-You can edit your cursor with the editor program in Visual Studio. Once you satisfied with how it looks, make sure that the Build Action on the cursor is “Embedded Resource”.
+You can edit your cursor with the editor program in Visual Studio. Once you satisfied with how it looks, make sure that the Build Action on the cursor is &lsquo;Embedded Resource&rsquo;.
 </div>
 </article>
 
@@ -168,18 +168,18 @@ I have been working on a python script that I want (NEED) to run as a scheduled 
 
 </header>
 <div class="content">
-I’ve previously posted python code to check if a field index exists for both ArcGIs 9.3 and ArcGIS 10.0.
+I&rsquo;ve previously posted python code to check if a field index exists for both ArcGIs 9.3 and ArcGIS 10.0.
 Recently I have been working on a process that was using this code but it was not working because it looks for an index with a specific name. It was not working in this case because the name of the indexes was getting incremented as they were being created. For example, I was building an index on the table C5ST, field RelateId ([C5IX].
 </div>
 </article>
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./">Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</a></h2>
+<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./">Feature classes and Tables with names starting with &#39;nd_&#39;.</a></h2>
 
 </header>
 <div class="content">
-Random luck me to discovering a bug related to feature classes whose names start with “nd_”. It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
+Random luck me to discovering a bug related to feature classes whose names start with &lsquo;nd_'. It appears that you are allowed to create feature classes starting with &lsquo;nd_&rsquo; but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
 I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.
 </div>
 </article>

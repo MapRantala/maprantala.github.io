@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Extract Values to Points (Spatial Analyst) Bug – Node Dangles</title>
-<meta name="description" content="One of the Spatial Analyst tools we often use in ArcGIS is the “Extract Values to Points” tool. This allows us to take a point file (well locations in our case) and …">
+<meta name="description" content="One of the Spatial Analyst tools we often use in ArcGIS is the &amp;amp;lsquo;Extract Values to Points&amp;amp;rsquo; tool. This allows us to take a point file (well locations in our …">
 <meta name="created" content="2011-03-07T08:37:33-0600">
 <meta name="modified" content="2011-03-07T08:37:33-0600">
 <meta name="author" content="Matt">
@@ -36,7 +36,7 @@
     "datePublished": "2011-03-07T08:37:33-06:00",
     "dateModified": "2011-03-07T08:37:33-06:00",
     "url" : "https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/",
-    "description": "One of the Spatial Analyst tools we often use in ArcGIS is the “Extract Values to Points” tool. This allows us to take a point file (well locations in our case) and …",
+    "description": "One of the Spatial Analyst tools we often use in ArcGIS is the \u0026amp;lsquo;Extract Values to Points\u0026amp;rsquo; tool. This allows us to take a point file (well locations in our …",
     "keywords": ["arcgis","arcgis 10","arcgis bug","ArcGIS Spatial Analyst","ArcObjects","arctoolbox","ESRI","esri bugs","Extract Multi Values to Points","Extract Values to Points","Null geometry","spatial analyst"],
     "author": {
       "@type": "Person",
@@ -104,20 +104,20 @@ Tags:
 </div>
 </header>
 <div class="content">
-<p>One of the Spatial Analyst tools we often use in ArcGIS is the “<a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//009z0000002t000000.htm">Extract Values to Points</a>” tool.  This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.</p>
+<p>One of the Spatial Analyst tools we often use in ArcGIS is the &lsquo;<a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//009z0000002t000000.htm">Extract Values to Points</a>&rsquo; tool.  This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.</p>
 <p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/extractvaluestopoints.jpg"><!-- raw HTML omitted --></a></p>
-<p>Today I was running it for the first time against an Image Service we recently published and I received a warning message,”WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry”.  But the script seemed to run and the final results said “Succeeded” so I thought it was probably fine.  But as I double-checked, I realized the results were wonky.</p>
-<p>Turns out that I had two records with Null geometry in my point file of 397 records.  These two records threw the above error but actually had a value in the [Rastervalu] field.  Turns out all 397 records had values.  These two records were consecutive–let’s say the 100th and 101st records in my shapefile.  What happened is record 100 got the value for record 102, record 101 get the value for 103, record 102 (which has valid geometry) had the value for 104.  This pattern, each record having the value for the record 2 place after it, continued until record 396 which had the value for record 397.  Record 397 also had the value for 397.  So the final three records all had the value for the final record.</p>
+<p>Today I was running it for the first time against an Image Service we recently published and I received a warning message,&lsquo;WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry&rsquo;.  But the script seemed to run and the final results said &lsquo;Succeeded&rsquo; so I thought it was probably fine.  But as I double-checked, I realized the results were wonky.</p>
+<p>Turns out that I had two records with Null geometry in my point file of 397 records.  These two records threw the above error but actually had a value in the [Rastervalu] field.  Turns out all 397 records had values.  These two records were consecutive–let&rsquo;s say the 100th and 101st records in my shapefile.  What happened is record 100 got the value for record 102, record 101 get the value for 103, record 102 (which has valid geometry) had the value for 104.  This pattern, each record having the value for the record 2 place after it, continued until record 396 which had the value for record 397.  Record 397 also had the value for 397.  So the final three records all had the value for the final record.</p>
 <p>What I would have expected would be for the two records with Null Geometry to have null values in the [Rastervalu] field and the rest of the records to have the correct values.  Despite the warning, it is very misleading for all the records to end up with a value.</p>
 <p>I have a simplified example below.  I made a point shapefile with four records.  The first, third, and fourth  records have valid geometries; the second has Null geometry.  The second record ends up with the value for the third record.  The third record, has the value for the fourth.  The fourth record being the last record, ends up with the last valid value, which was its own.</p>
 <p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/results.jpg"><!-- raw HTML omitted --></a></p>
 <p>The results that I would have hoped for would be for the third record to have a Null value.</p>
 <p>The way I envision what is occurring behind the scenes is this:  the process makes a list (more of a stack in programming terms) of result values as it processed the points but just assumes that every record will return a value so it does not track which value goes with which shape.</p>
 <p>When it reached the two null geometries, it threw an error but continued on.  It did not add a value for these records to the stack of values–when it comes across records with valid geometry but do not intersect the raster it adds a psuedo-null value of (-9999) to the stack.  After it processed all the records it had 395 values in the stack.  It then went, one-by-one through the stack and populated the records in the output shapefile, the first record got the first value in the stack, the second record got the second value, the 100th record got the 100th value (which came from the location of the 102nd record) and so on.  At the end, the final two records received the last valid value.</p>
-<p>This final behavior–using the last valid value–corresponds a bit to a behavior we’ve seen with ArcObjects in general.  When iterating through a table, if a field is Null for a specific row, the value from the last non-Null value for that field is often returned.</p>
-<p>I’m in the process of submitting a bug to ESRI.  I’m not sure if this existed prior to ArcGIS 10.0 (I’m guessing it did) or if it occurs in other processes (I’m guessing it does).  I did find out that the “<a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//009z0000002s000000.htm">Extract Multi Values to Points</a>” works as expected.  I’m guessing it is because unlike the “Extract Values to Points” which creates a new shapefile, this tool appends fields to the existing shapefile and presumably processes records one-by-one without putting the results in a virtual stack.  The “Extract Multi Values to Points” tool also does not throw any warnings.</p>
+<p>This final behavior–using the last valid value–corresponds a bit to a behavior we&rsquo;ve seen with ArcObjects in general.  When iterating through a table, if a field is Null for a specific row, the value from the last non-Null value for that field is often returned.</p>
+<p>I&rsquo;m in the process of submitting a bug to ESRI.  I&rsquo;m not sure if this existed prior to ArcGIS 10.0 (I&rsquo;m guessing it did) or if it occurs in other processes (I&rsquo;m guessing it does).  I did find out that the &lsquo;<a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//009z0000002s000000.htm">Extract Multi Values to Points</a>&rsquo; works as expected.  I&rsquo;m guessing it is because unlike the &lsquo;Extract Values to Points&rsquo; which creates a new shapefile, this tool appends fields to the existing shapefile and presumably processes records one-by-one without putting the results in a virtual stack.  The &lsquo;Extract Multi Values to Points&rsquo; tool also does not throw any warnings.</p>
 <p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/same.jpg"><!-- raw HTML omitted --></a></p>
-<p><a href="http://maprantala.com/wp-content/uploads/2011/03/extractvaluetopoints.jpg"><br>
+<p><a href="https://maprantala.com/wp-content/uploads/2011/03/extractvaluetopoints.jpg"><br>
 </a></p>
 
 

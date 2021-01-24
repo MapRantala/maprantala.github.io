@@ -87,8 +87,8 @@
 
 </header>
 <div class="content">
-Because we use ArcGIS Online Web Maps in our daily work-flows, I created an AGO group that contains Feature Layers that are links to our self-hosted ArcGIS Server services. This way, users can quickly add data from our ArcGIS Server Site and not have to look up URLs/Usernames/Passwords (I’ve save the username/password as part of the ArcGIS Online service when appropriate).
-But I’ve had a problem where if I change the service, the changes are not reflected in the AGO Feature Layer for that service and I have to monkey about to get the changes to migrate to the maps.
+Because we use ArcGIS Online Web Maps in our daily work-flows, I created an AGO group that contains Feature Layers that are links to our self-hosted ArcGIS Server services. This way, users can quickly add data from our ArcGIS Server Site and not have to look up URLs/Usernames/Passwords (I&rsquo;ve save the username/password as part of the ArcGIS Online service when appropriate).
+But I&rsquo;ve had a problem where if I change the service, the changes are not reflected in the AGO Feature Layer for that service and I have to monkey about to get the changes to migrate to the maps.
 </div>
 </article>
 
@@ -98,7 +98,7 @@ But I’ve had a problem where if I change the service, the changes are not refl
 
 </header>
 <div class="content">
-Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the “lazy” GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.
+Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the &lsquo;lazy&rsquo; GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.
 </div>
 </article>
 
@@ -129,7 +129,7 @@ Working on doing some advanced ArcGIS server printingand had the need to batch c
 
 </header>
 <div class="content">
-Recently I’ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a “Help” button that opens a help file in .pdf format.Sample python add-in toolbar.The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(path to help.pdf).
+Recently I&rsquo;ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a &lsquo;Help&rsquo; button that opens a help file in .pdf format.Sample python add-in toolbar.The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(path to help.pdf).
 However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!
 Luckily the Python development team at Esrialready had a blog postabout this at their ArcPy Café blog.
 </div>
@@ -141,7 +141,7 @@ Luckily the Python development team at Esrialready had a blog postabout this at 
 
 </header>
 <div class="content">
-I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here’s the bare-bones script I used instead:
+I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here&rsquo;s the bare-bones script I used instead:
   
 </div>
 </article>
@@ -155,7 +155,7 @@ I just had the need to go through a directory containing many (100+) layer files
 Awhile ago, I had a ArcSDE problem that required ESRI technical support to help trouble-shoot. The problem was odd but was resolved by rebooting the server.
 During the process, though, the support person had me set a couple of environment variables for logging SDE activity on the client machine.
 The settings were SDEINTERCEPT and SDEINTERCEPTLOC.
-From ESRI’s Help, SDEINTERCEPT specifies what activity to log and SDEINTERCEPTLOC specifies where to save the log files.
+From ESRI&rsquo;s Help, SDEINTERCEPT specifies what activity to log and SDEINTERCEPTLOC specifies where to save the log files.
 </div>
 </article>
 
@@ -165,18 +165,18 @@ From ESRI’s Help, SDEINTERCEPT specifies what activity to log and SDEINTERCEPT
 
 </header>
 <div class="content">
-I’ve previously posted python code to check if a field index exists for both ArcGIs 9.3 and ArcGIS 10.0.
+I&rsquo;ve previously posted python code to check if a field index exists for both ArcGIs 9.3 and ArcGIS 10.0.
 Recently I have been working on a process that was using this code but it was not working because it looks for an index with a specific name. It was not working in this case because the name of the indexes was getting incremented as they were being created. For example, I was building an index on the table C5ST, field RelateId ([C5IX].
 </div>
 </article>
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./">Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</a></h2>
+<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./">Feature classes and Tables with names starting with &#39;nd_&#39;.</a></h2>
 
 </header>
 <div class="content">
-Random luck me to discovering a bug related to feature classes whose names start with “nd_”. It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
+Random luck me to discovering a bug related to feature classes whose names start with &lsquo;nd_'. It appears that you are allowed to create feature classes starting with &lsquo;nd_&rsquo; but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
 I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.
 </div>
 </article>

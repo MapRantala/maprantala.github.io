@@ -87,7 +87,7 @@
 
 </header>
 <div class="content">
-In running an automated process, I had a TopoToRaster repeatedly fail on me. The only input theme was a contour theme. The process ran fine when I used the envelope of the contour theme as the output extent but when I changed it to the envelope of a polygon theme, it would bomb. The polygon’s envelope was smaller than the contour theme.
+In running an automated process, I had a TopoToRaster repeatedly fail on me. The only input theme was a contour theme. The process ran fine when I used the envelope of the contour theme as the output extent but when I changed it to the envelope of a polygon theme, it would bomb. The polygon&rsquo;s envelope was smaller than the contour theme.
 ArcCatalog would bomb out without presenting any sort of useful message.
 </div>
 </article>
@@ -109,8 +109,8 @@ My second attempt was to call a .
 
 </header>
 <div class="content">
-So I have a nightly process that runs and I, being the lazy programmer I am, didn’t want to bother checking a log file each morning to see how it went. The natural answer is to have the results emailed to me because I do have to check my email.
-Since the process is already handled mostly in python, thought I would implement the emailing via python. It was actually simple enough to do–just required figuring out the setting for my SMTP server (actually I didn’t figure it our for my work server so I’m using my GMail account).
+So I have a nightly process that runs and I, being the lazy programmer I am, didn&rsquo;t want to bother checking a log file each morning to see how it went. The natural answer is to have the results emailed to me because I do have to check my email.
+Since the process is already handled mostly in python, thought I would implement the emailing via python. It was actually simple enough to do–just required figuring out the setting for my SMTP server (actually I didn&rsquo;t figure it our for my work server so I&rsquo;m using my GMail account).
 </div>
 </article>
 
@@ -121,7 +121,7 @@ Since the process is already handled mostly in python, thought I would implement
 </header>
 <div class="content">
 <p>The <a href="http://www.usgs.gov/">USGS</a> updated a significant portion of <a href="http://ned.usgs.gov/">NED</a> data for my state in June.  I recently downloaded the updates, processed them–projecting and converting the elevations from meters to feet–using python and geoprocessing.  My python skills are still pretty crude but I was able to get the job done.</p>
-<p>One of the benefits of working for the public sector is that I can more freely publish code without worrying about “trade secrets” or what have you so I thought I would put my code out for anyone to see, maybe someone will find it useful.  It is split into two separate files, mostly because I used <!-- raw HTML omitted -->Model Builder<!-- raw HTML omitted --> to generate the main processing chunk of code (Project_Reclassify.py) and another script to control looping, etc. The code isn’t pretty and you’ll see the results of my development process with two subroutines in LaunchScript.py that could really be one.</p>
+<p>One of the benefits of working for the public sector is that I can more freely publish code without worrying about &lsquo;trade secrets&rsquo; or what have you so I thought I would put my code out for anyone to see, maybe someone will find it useful.  It is split into two separate files, mostly because I used <!-- raw HTML omitted -->Model Builder<!-- raw HTML omitted --> to generate the main processing chunk of code (Project_Reclassify.py) and another script to control looping, etc. The code isn&rsquo;t pretty and you&rsquo;ll see the results of my development process with two subroutines in LaunchScript.py that could really be one.</p>
 <h3 id="heading"></h3>
 </div>
 </article>

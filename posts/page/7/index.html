@@ -87,9 +87,9 @@
 
 </header>
 <div class="content">
-One of the Spatial Analyst tools we often use in ArcGIS is the “Extract Values to Points” tool. This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.
+One of the Spatial Analyst tools we often use in ArcGIS is the &lsquo;Extract Values to Points&rsquo; tool. This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.
 
-Today I was running it for the first time against an Image Service we recently published and I received a warning message,”WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry”.
+Today I was running it for the first time against an Image Service we recently published and I received a warning message,&lsquo;WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry&rsquo;.
 </div>
 </article>
 
@@ -99,7 +99,7 @@ Today I was running it for the first time against an Image Service we recently p
 
 </header>
 <div class="content">
-In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0. So far, I’m loving the functionality.
+In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0. So far, I&rsquo;m loving the functionality.
 One thing, however, that I have to figure out is that the controls are not instantiated until they are clicked on. One of the results is that the controls, by default, are enabled.
 </div>
 </article>
@@ -121,9 +121,9 @@ Our existing data is organized by tiles with the directory name representing the
 
 </header>
 <div class="content">
-Whenever I want to skim through ESRI’s fonts to find some symbology I need for a specific purpose, I go through some laborious process to skim the fonts searching for an adequate symbol.
+Whenever I want to skim through ESRI&rsquo;s fonts to find some symbology I need for a specific purpose, I go through some laborious process to skim the fonts searching for an adequate symbol.
 However, in the ESRI Mapping Center blog post, user use2b311 post a link to a pre-made pdf showing ESRI Font Samples.pdf (application/pdf Object).
-Back when ESRI use to actually print hard-copy manuals, there were similar diagrams available but either I haven’t searched enough of they don’t exist in the digital help systems so I was happy to stumble upon this.
+Back when ESRI use to actually print hard-copy manuals, there were similar diagrams available but either I haven&rsquo;t searched enough of they don&rsquo;t exist in the digital help systems so I was happy to stumble upon this.
 </div>
 </article>
 
@@ -133,8 +133,8 @@ Back when ESRI use to actually print hard-copy manuals, there were similar diagr
 
 </header>
 <div class="content">
-I’ve seen several posts like this one that reiterate that ESRI has announced that:
-“As of the end of January, ArcGIS Online basemaps published and hosted by Esri are now freely available to all users regardless of commercial, noncommercial, internal, or external use. This means that you no longer have to pay a subscription fee for including ArcGIS Online basemaps in your commercial-use web applications. Basemaps included in this new business model are World Imagery Map, World Street Map, World Topographic Map, USA Topographic Maps, and DeLorme World Basemap.
+I&rsquo;ve seen several posts like this one that reiterate that ESRI has announced that:
+&lsquo;As of the end of January, ArcGIS Online basemaps published and hosted by Esri are now freely available to all users regardless of commercial, noncommercial, internal, or external use. This means that you no longer have to pay a subscription fee for including ArcGIS Online basemaps in your commercial-use web applications. Basemaps included in this new business model are World Imagery Map, World Street Map, World Topographic Map, USA Topographic Maps, and DeLorme World Basemap.
 </div>
 </article>
 
@@ -144,9 +144,9 @@ I’ve seen several posts like this one that reiterate that ESRI has announced t
 
 </header>
 <div class="content">
-Updating some python code from 9.3 that using geoprocessing to 10.0 using arcpy and the first real object I’ve had to change relates to detecting whether or not an index exists on a table.
+Updating some python code from 9.3 that using geoprocessing to 10.0 using arcpy and the first real object I&rsquo;ve had to change relates to detecting whether or not an index exists on a table.
 I previously posted code using a 9.3 geoprocessing commands, the core of it being:
-With arcpy, ESRI has gone back to using the Describe methodology. Way back when GISers use to type most of their commands into their wood-burning computers, the command “Describe” was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).
+With arcpy, ESRI has gone back to using the Describe methodology. Way back when GISers use to type most of their commands into their wood-burning computers, the command &lsquo;Describe&rsquo; was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).
 </div>
 </article>
 
@@ -156,8 +156,8 @@ With arcpy, ESRI has gone back to using the Describe methodology. Way back when
 
 </header>
 <div class="content">
-To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point). A side question is why can’t tables and raster be placed in Feature Datasets? This wouldn’t be an end-all solution for what we want to do but there are some messy consequences of this limitation.
-ESRI has instructions on Setting up multiple geodatabases in one PostgreSQL database cluster on Windows which was helpful but we repeatedly got an “The ArcSDE Repository was unsuccessfully completed.
+To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point). A side question is why can&rsquo;t tables and raster be placed in Feature Datasets? This wouldn&rsquo;t be an end-all solution for what we want to do but there are some messy consequences of this limitation.
+ESRI has instructions on Setting up multiple geodatabases in one PostgreSQL database cluster on Windows which was helpful but we repeatedly got an &lsquo;The ArcSDE Repository was unsuccessfully completed.
 </div>
 </article>
 
@@ -168,7 +168,7 @@ ESRI has instructions on Setting up multiple geodatabases in one PostgreSQL data
 </header>
 <div class="content">
 I was working my way through this ESRI Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK). And came across a couple minor errors that I had to correct during the process.
-First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a “Name ‘ArcMap’ is not declared.” error.
+First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a &lsquo;Name ‘ArcMap&rsquo; is not declared.' error.
 
 In the walk-through, they mention that the ArcMap method of your class. For me, however, it appeared under the .
 </div>
@@ -181,7 +181,7 @@ In the walk-through, they mention that the ArcMap method of your class. For me,
 </header>
 <div class="content">
 Ever since the ever-popular post, Zipping a shapefile using python, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.
-The key trick, as shown in line 17, is appending the basename of the file geodatabase (“nfg.gdb/” in my example) in front of each file as you write it to the zipfile.
+The key trick, as shown in line 17, is appending the basename of the file geodatabase (&lsquo;nfg.gdb/&rsquo; in my example) in front of each file as you write it to the zipfile.
 UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp; pasted and have work.
 </div>
 </article>

@@ -14,12 +14,12 @@
       <link>https://maprantala.com/2014/04/02/arcpy.listfeatureclasses-bug/</link>
       <pubDate>Wed, 02 Apr 2014 18:59:06 -0500</pubDate>
       <guid>https://maprantala.com/2014/04/02/arcpy.listfeatureclasses-bug/</guid>
-      <description>&lt;p&gt;I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy’s &lt;!-- raw HTML omitted --&gt;ListFeatureClasses&lt;!-- raw HTML omitted --&gt; request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.&lt;/p&gt;
+      <description>&lt;p&gt;I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&amp;rsquo;s &lt;!-- raw HTML omitted --&gt;ListFeatureClasses&lt;!-- raw HTML omitted --&gt; request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.&lt;/p&gt;
 &lt;p&gt;Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.&lt;/p&gt;
 &lt;p&gt;After discovering missing data in our backups, I reconstructed what happened and found this bug. Below is arcpy code that iterates through the feature datasets in a geodatabase and lists the feature classes:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And here is a screen shot of the contents of a test enterprise geodatabase, you’ll see it has a feature data set named “outcrops” that has a feature class also named “outcrops” within it:&lt;br&gt;
+&lt;p&gt;And here is a screen shot of the contents of a test enterprise geodatabase, you&amp;rsquo;ll see it has a feature data set named &amp;lsquo;outcrops&amp;rsquo; that has a feature class also named &amp;lsquo;outcrops&amp;rsquo; within it:&lt;br&gt;
 &lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/sandbox.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;And the results list only the feature dataset:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/results.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;

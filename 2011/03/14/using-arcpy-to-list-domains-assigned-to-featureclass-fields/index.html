@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Using arcpy to List Domains Assigned to Featureclass Fields – Node Dangles</title>
-<meta name="description" content="I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain. Rows …">
+<meta name="description" content="I was making an edit (adding leading &amp;amp;lsquo;0&amp;amp;rsquo;s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my …">
 <meta name="created" content="2011-03-14T18:04:36-0500">
 <meta name="modified" content="2011-03-14T18:04:36-0500">
 <meta name="author" content="Matt">
@@ -36,7 +36,7 @@
     "datePublished": "2011-03-14T18:04:36-05:00",
     "dateModified": "2011-03-14T18:04:36-05:00",
     "url" : "https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/",
-    "description": "I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain. Rows …",
+    "description": "I was making an edit (adding leading \u0026amp;lsquo;0\u0026amp;rsquo;s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my …",
     "keywords": ["arc gis","arcgis 10","arcpy","coded-value domains","ESRI","geodatabase","gisscripting","python"],
     "author": {
       "@type": "Person",
@@ -100,12 +100,12 @@ Tags:
 </div>
 </header>
 <div class="content">
-<p>I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.</p>
+<p>I was making an edit (adding leading &lsquo;0&rsquo;s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.</p>
 <p>So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.</p>
 <p>I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).</p>
 <p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/failedtodeletedomain.png"><!-- raw HTML omitted --></a></p>
 <p>The Google Machine led me to an <a href="http://forums.esri.com/Thread.asp?c=93&amp;f=985&amp;t=303616">ArcForums post</a> by  with some python code for listing all the fields with a domain.</p>
-<p>I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip">9.3 version</a> and the <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip">10.0 version</a>, but here is a quick look.  The key addition is the ‘listfc(“”)’ line that is the first line of the def listds() module.</p>
+<p>I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip">9.3 version</a> and the <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip">10.0 version</a>, but here is a quick look.  The key addition is the ‘listfc('')&rsquo; line that is the first line of the def listds() module.</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->

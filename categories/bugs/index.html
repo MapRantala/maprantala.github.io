@@ -87,8 +87,8 @@
 
 </header>
 <div class="content">
-Because we use ArcGIS Online Web Maps in our daily work-flows, I created an AGO group that contains Feature Layers that are links to our self-hosted ArcGIS Server services. This way, users can quickly add data from our ArcGIS Server Site and not have to look up URLs/Usernames/Passwords (I’ve save the username/password as part of the ArcGIS Online service when appropriate).
-But I’ve had a problem where if I change the service, the changes are not reflected in the AGO Feature Layer for that service and I have to monkey about to get the changes to migrate to the maps.
+Because we use ArcGIS Online Web Maps in our daily work-flows, I created an AGO group that contains Feature Layers that are links to our self-hosted ArcGIS Server services. This way, users can quickly add data from our ArcGIS Server Site and not have to look up URLs/Usernames/Passwords (I&rsquo;ve save the username/password as part of the ArcGIS Online service when appropriate).
+But I&rsquo;ve had a problem where if I change the service, the changes are not reflected in the AGO Feature Layer for that service and I have to monkey about to get the changes to migrate to the maps.
 </div>
 </article>
 
@@ -109,7 +109,7 @@ In my config.json, I was using a relative path to the proxy. Note that I had the
 
 </header>
 <div class="content">
-Recently I’ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a “Help” button that opens a help file in .pdf format.Sample python add-in toolbar.The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(path to help.pdf).
+Recently I&rsquo;ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a &lsquo;Help&rsquo; button that opens a help file in .pdf format.Sample python add-in toolbar.The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(path to help.pdf).
 However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!
 Luckily the Python development team at Esrialready had a blog postabout this at their ArcPy Café blog.
 </div>
@@ -121,7 +121,7 @@ Luckily the Python development team at Esrialready had a blog postabout this at 
 
 </header>
 <div class="content">
-I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy’s ListFeatureClassesrequest. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.
+I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&rsquo;s ListFeatureClassesrequest. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.
 Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.
 After discovering missing data in our backups, I reconstructed what happened and found this bug.
 </div>
@@ -136,7 +136,7 @@ After discovering missing data in our backups, I reconstructed what happened and
 Awhile ago, I had a ArcSDE problem that required ESRI technical support to help trouble-shoot. The problem was odd but was resolved by rebooting the server.
 During the process, though, the support person had me set a couple of environment variables for logging SDE activity on the client machine.
 The settings were SDEINTERCEPT and SDEINTERCEPTLOC.
-From ESRI’s Help, SDEINTERCEPT specifies what activity to log and SDEINTERCEPTLOC specifies where to save the log files.
+From ESRI&rsquo;s Help, SDEINTERCEPT specifies what activity to log and SDEINTERCEPTLOC specifies where to save the log files.
 </div>
 </article>
 
@@ -146,9 +146,9 @@ From ESRI’s Help, SDEINTERCEPT specifies what activity to log and SDEINTERCEPT
 
 </header>
 <div class="content">
-Almost a year ago, I updated ERSI’s Domain Sort code for VB 6 to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had an open OLE connection. When I tested it, it turned out the reports were accurate.
+Almost a year ago, I updated ERSI&rsquo;s Domain Sort code for VB 6 to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had an open OLE connection. When I tested it, it turned out the reports were accurate.
 
-I got around to adding in a Try-Catch around the offending chunk of code &amp; it is now better than ever. You can download just the Add-In or the Add-In with source code or get it from ESRI’s ArcGIS Resource Center.
+I got around to adding in a Try-Catch around the offending chunk of code &amp; it is now better than ever. You can download just the Add-In or the Add-In with source code or get it from ESRI&rsquo;s ArcGIS Resource Center.
 </div>
 </article>
 
@@ -164,11 +164,11 @@ I have been working on a python script that I want (NEED) to run as a scheduled 
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./">Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</a></h2>
+<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./">Feature classes and Tables with names starting with &#39;nd_&#39;.</a></h2>
 
 </header>
 <div class="content">
-Random luck me to discovering a bug related to feature classes whose names start with “nd_”. It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
+Random luck me to discovering a bug related to feature classes whose names start with &lsquo;nd_'. It appears that you are allowed to create feature classes starting with &lsquo;nd_&rsquo; but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
 I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.
 </div>
 </article>
@@ -179,9 +179,9 @@ I first noticed something odd was occurring while importing a series of shapefil
 
 </header>
 <div class="content">
-One of the Spatial Analyst tools we often use in ArcGIS is the “Extract Values to Points” tool. This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.
+One of the Spatial Analyst tools we often use in ArcGIS is the &lsquo;Extract Values to Points&rsquo; tool. This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.
 
-Today I was running it for the first time against an Image Service we recently published and I received a warning message,”WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry”.
+Today I was running it for the first time against an Image Service we recently published and I received a warning message,&lsquo;WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry&rsquo;.
 </div>
 </article>
 
@@ -191,8 +191,8 @@ Today I was running it for the first time against an Image Service we recently p
 
 </header>
 <div class="content">
-To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point). A side question is why can’t tables and raster be placed in Feature Datasets? This wouldn’t be an end-all solution for what we want to do but there are some messy consequences of this limitation.
-ESRI has instructions on Setting up multiple geodatabases in one PostgreSQL database cluster on Windows which was helpful but we repeatedly got an “The ArcSDE Repository was unsuccessfully completed.
+To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point). A side question is why can&rsquo;t tables and raster be placed in Feature Datasets? This wouldn&rsquo;t be an end-all solution for what we want to do but there are some messy consequences of this limitation.
+ESRI has instructions on Setting up multiple geodatabases in one PostgreSQL database cluster on Windows which was helpful but we repeatedly got an &lsquo;The ArcSDE Repository was unsuccessfully completed.
 </div>
 </article>
 

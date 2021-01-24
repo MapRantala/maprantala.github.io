@@ -15,9 +15,9 @@
       <pubDate>Wed, 15 Sep 2010 13:36:34 -0500</pubDate>
       <guid>https://maprantala.com/2010/09/15/another-topotoraster-error/</guid>
       <description>&lt;h3 id=&#34;subtitled-why-error-messages-are-good&#34;&gt;Subtitled:  Why error messages are good.&lt;/h3&gt;
-&lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn’t have to spend a day trying figure out what was wrong.&lt;br&gt;
+&lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn&amp;rsquo;t have to spend a day trying figure out what was wrong.&lt;br&gt;
 &lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/09/sixteen.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://maprantala.com/wp-content/uploads/2010/09/topotorastererror1.jpg&#34;&gt;&lt;br&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/wp-content/uploads/2010/09/topotorastererror1.jpg&#34;&gt;&lt;br&gt;
 &lt;/a&gt;&lt;/p&gt;
 </description>
     </item>

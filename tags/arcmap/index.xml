@@ -14,8 +14,8 @@
       <link>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</link>
       <pubDate>Tue, 08 May 2018 17:56:09 -0500</pubDate>
       <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</guid>
-      <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the “lazy” GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
-&lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the “.replace” settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
+      <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the &amp;lsquo;lazy&amp;rsquo; GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
+&lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;blockquote&gt;
@@ -42,7 +42,7 @@
       <pubDate>Wed, 02 May 2012 05:19:40 -0500</pubDate>
       <guid>https://maprantala.com/2012/05/02/quick-#038-dirty-arcpy-autopan-arcmap-using-arcpy/</guid>
       <description>&lt;p&gt;Question: How do I get ArcMap to automatically pan through an area.&lt;/p&gt;
-&lt;p&gt;As I mentioned in a &lt;a href=&#34;http://maprantala.com/2012/04/30/building-a-loc%E2%80%A6f-bing-imagery/&#34;&gt;previous post&lt;/a&gt;, I recently had the need to have ArcMap automatically pan through a project area. My first attempt was to print a series of data-driven pages (using a fishnet polygon layer as the index) this but that did not accomplish what I needed so I switched to arcpy, which made the task simple enough. Nothing special or tricky about this code, but just did not find it anywhere else.&lt;/p&gt;
+&lt;p&gt;As I mentioned in a &lt;a href=&#34;https://maprantala.com/2012/04/30/building-a-loc%E2%80%A6f-bing-imagery/&#34;&gt;previous post&lt;/a&gt;, I recently had the need to have ArcMap automatically pan through a project area. My first attempt was to print a series of data-driven pages (using a fishnet polygon layer as the index) this but that did not accomplish what I needed so I switched to arcpy, which made the task simple enough. Nothing special or tricky about this code, but just did not find it anywhere else.&lt;/p&gt;
 &lt;p&gt;The one thing to note is that I have a 1 second pause between pans–this was to allow image tiles to download. You will need to adjust the delay to meet your needs. &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120427_AutoPan.zip&#34;&gt;The toolbox and code can also be downloaded&lt;/a&gt;.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -56,9 +56,9 @@
       <link>https://maprantala.com/2012/04/28/arcmap-field-calculator-identifying-unique-cases-single-field/</link>
       <pubDate>Sat, 28 Apr 2012 05:55:34 -0500</pubDate>
       <guid>https://maprantala.com/2012/04/28/arcmap-field-calculator-identifying-unique-cases-single-field/</guid>
-      <description>&lt;p&gt;Seems like a lot of people are finding the ArcMap Field Calculator &lt;a href=&#34;http://maprantala.com/category/esri/arcmap-esri/field-calculator/&#34;&gt;examples&lt;/a&gt; that I have posted useful so I will make an effort to post more of them. Most posts are generated after I do something and think that others might want to know how to do it. (Or so I can go back and remember how I did something without re-inventing it).&lt;/p&gt;
+      <description>&lt;p&gt;Seems like a lot of people are finding the ArcMap Field Calculator &lt;a href=&#34;https://maprantala.com/category/esri/arcmap-esri/field-calculator/&#34;&gt;examples&lt;/a&gt; that I have posted useful so I will make an effort to post more of them. Most posts are generated after I do something and think that others might want to know how to do it. (Or so I can go back and remember how I did something without re-inventing it).&lt;/p&gt;
 &lt;p&gt;Something I did today was create a field (!Case!) and then populated this with a unique identifier for each different value (case) that occurred in a different field (!Feature!).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note: python’s &lt;em&gt;index&lt;/em&gt; statement is a 0-based search so the first case will have the value 0, the second will have 1, and so on. If you want to start the results at 1, you can make the last line: “return caseList.index(inValue) + 1”.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note: python&amp;rsquo;s &lt;em&gt;index&lt;/em&gt; statement is a 0-based search so the first case will have the value 0, the second will have 1, and so on. If you want to start the results at 1, you can make the last line: &amp;lsquo;return caseList.index(inValue) + 1&amp;rsquo;.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;The basic structure for this is shown:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -71,9 +71,9 @@
       <link>https://maprantala.com/2012/04/23/arcmap-field-calculator-identifying-unique-cases-multiple-fields/</link>
       <pubDate>Mon, 23 Apr 2012 06:06:25 -0500</pubDate>
       <guid>https://maprantala.com/2012/04/23/arcmap-field-calculator-identifying-unique-cases-multiple-fields/</guid>
-      <description>&lt;p&gt;You may have noticed that this post–&lt;a href=&#34;http://wp.me/pVrsJ-bf&#34;&gt;ArcMap Field Calculator: Identifying Unique Cases, Single Field&lt;/a&gt;–specifies “Single Field”. Yes, that was my version of a cliff-hanger post.&lt;/p&gt;
-&lt;p&gt;The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats “a” the same as “A”.&lt;/p&gt;
-&lt;p&gt;Today’s example groups records into different cases based off the values of two fields, !county_c! and !feature! and required only minor modifications.&lt;/p&gt;
+      <description>&lt;p&gt;You may have noticed that this post–&lt;a href=&#34;http://wp.me/pVrsJ-bf&#34;&gt;ArcMap Field Calculator: Identifying Unique Cases, Single Field&lt;/a&gt;–specifies &amp;lsquo;Single Field&amp;rsquo;. Yes, that was my version of a cliff-hanger post.&lt;/p&gt;
+&lt;p&gt;The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats &amp;lsquo;a&amp;rsquo; the same as &amp;lsquo;A&amp;rsquo;.&lt;/p&gt;
+&lt;p&gt;Today&amp;rsquo;s example groups records into different cases based off the values of two fields, !county_c! and !feature! and required only minor modifications.&lt;/p&gt;
 &lt;p&gt;The calling line was modified from:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;to:&lt;/p&gt;
@@ -113,11 +113,11 @@
       <link>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</link>
       <pubDate>Tue, 19 Jul 2011 20:47:03 -0500</pubDate>
       <guid>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</guid>
-      <description>&lt;p&gt;I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI’s instructions.  But, once you know how to do it, it is pretty easy.  In Visual Studio, Add a New Item:&lt;/p&gt;
+      <description>&lt;p&gt;I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI&amp;rsquo;s instructions.  But, once you know how to do it, it is pretty easy.  In Visual Studio, Add a New Item:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/07/addresource.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Add a Cursor File:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/selectcursor.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is “Embedded Resource”.&lt;/p&gt;
+&lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is &amp;lsquo;Embedded Resource&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/07/embedded.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Then you can set your cursor with two lines of code. Not that my cursor is in my QDI.QdiAddIn Namespace:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -131,9 +131,9 @@
       <link>https://maprantala.com/2011/04/08/change-detector-arcpy-script/</link>
       <pubDate>Fri, 08 Apr 2011 10:48:59 -0500</pubDate>
       <guid>https://maprantala.com/2011/04/08/change-detector-arcpy-script/</guid>
-      <description>&lt;p&gt;During a process I was working on, I needed to compare a feature class before and after some edits.  I did not quickly find anything in ArcToolbox but searching &lt;a href=&#34;http://resources.arcgis.com/&#34;&gt;ArcResources&lt;/a&gt; led me to &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=351BEE10-1422-2418-8815-82074A3E6B6C&#34;&gt;Change Detector script by Bruce Harold&lt;/a&gt;.  After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.  I also discovered that it needs to export to the same format (personal geodatabase, file geodatabase, shapefile) as the source data (or at least one that uses the same field name deliminator).&lt;/p&gt;
-&lt;p&gt;After minor adjustments, though, it worked like a charm.  I’ll be submitting the changes I made to Bruce and let him incorporate the changes into the official code.&lt;/p&gt;
-&lt;p&gt;FOLLOW-UP: Mr. Harold quickly responded to my email &amp;amp; made the change (although I haven’t checked it). Way to go Bruce!  Thanks for a handy script.&lt;/p&gt;
+      <description>&lt;p&gt;During a process I was working on, I needed to compare a feature class before and after some edits.  I did not quickly find anything in ArcToolbox but searching &lt;a href=&#34;http://resources.arcgis.com/&#34;&gt;ArcResources&lt;/a&gt; led me to &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=351BEE10-1422-2418-8815-82074A3E6B6C&#34;&gt;Change Detector script by Bruce Harold&lt;/a&gt;.  After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case &amp;lsquo;S&amp;rsquo; and in the other it was a lower case &amp;rsquo;s&#39;.  I also discovered that it needs to export to the same format (personal geodatabase, file geodatabase, shapefile) as the source data (or at least one that uses the same field name deliminator).&lt;/p&gt;
+&lt;p&gt;After minor adjustments, though, it worked like a charm.  I&amp;rsquo;ll be submitting the changes I made to Bruce and let him incorporate the changes into the official code.&lt;/p&gt;
+&lt;p&gt;FOLLOW-UP: Mr. Harold quickly responded to my email &amp;amp; made the change (although I haven&amp;rsquo;t checked it). Way to go Bruce!  Thanks for a handy script.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -143,7 +143,7 @@
       <link>https://maprantala.com/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/</link>
       <pubDate>Tue, 08 Mar 2011 09:30:40 -0600</pubDate>
       <guid>https://maprantala.com/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/</guid>
-      <description>&lt;p&gt;One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm&#34;&gt;Field Calculator&lt;/a&gt;.  When I stumbled upon a bug in the way the &lt;a href=&#34;http://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/&#34;&gt;Extract Values to Points&lt;/a&gt; tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.&lt;/p&gt;
+      <description>&lt;p&gt;One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm&#34;&gt;Field Calculator&lt;/a&gt;.  When I stumbled upon a bug in the way the &lt;a href=&#34;https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/&#34;&gt;Extract Values to Points&lt;/a&gt; tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.&lt;/p&gt;
 &lt;p&gt;I set the Parser to Python and the formula was simple once I figured out the syntax:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/origin.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -170,9 +170,9 @@
       <pubDate>Wed, 15 Sep 2010 13:36:34 -0500</pubDate>
       <guid>https://maprantala.com/2010/09/15/another-topotoraster-error/</guid>
       <description>&lt;h3 id=&#34;subtitled-why-error-messages-are-good&#34;&gt;Subtitled:  Why error messages are good.&lt;/h3&gt;
-&lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn’t have to spend a day trying figure out what was wrong.&lt;br&gt;
+&lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn&amp;rsquo;t have to spend a day trying figure out what was wrong.&lt;br&gt;
 &lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/09/sixteen.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://maprantala.com/wp-content/uploads/2010/09/topotorastererror1.jpg&#34;&gt;&lt;br&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/wp-content/uploads/2010/09/topotorastererror1.jpg&#34;&gt;&lt;br&gt;
 &lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
@@ -182,7 +182,7 @@
       <link>https://maprantala.com/2010/09/13/topotoraster-error/</link>
       <pubDate>Mon, 13 Sep 2010 20:25:01 -0500</pubDate>
       <guid>https://maprantala.com/2010/09/13/topotoraster-error/</guid>
-      <description>&lt;p&gt;In running an automated process, I had a TopoToRaster repeatedly fail on me. The only input theme was a contour theme. The process ran fine when I used the envelope of the contour theme as the output extent but when I changed it to the envelope of a polygon theme, it would bomb. The polygon’s envelope was smaller than the contour theme.&lt;/p&gt;
+      <description>&lt;p&gt;In running an automated process, I had a TopoToRaster repeatedly fail on me. The only input theme was a contour theme. The process ran fine when I used the envelope of the contour theme as the output extent but when I changed it to the envelope of a polygon theme, it would bomb. The polygon&amp;rsquo;s envelope was smaller than the contour theme.&lt;/p&gt;
 &lt;p&gt;ArcCatalog would bomb out without presenting any sort of useful message.&lt;/p&gt;
 &lt;p&gt;I determined eventually that If I set the left extent as 435210, the process would work if set the right extent to 446655 or greater but would bomb if I used 446654 or less. If the the left extent was 435209, the right extent had to be 446654 or greater.&lt;/p&gt;
 &lt;p&gt;The image below shows the contours (with vertexes) and the polygon theme I was using. The two circle graphics show the approximate extent I was clipping to.&lt;/p&gt;
@@ -210,10 +210,10 @@
       <description>&lt;p&gt;I have been working on updating some data that was published using Arc/Info Workstation Export (.e00) files, converting them to shapefiles, or in the case of annotation, to a geodatabase feature class.&lt;/p&gt;
 &lt;p&gt;While converting some INFO tables, I have received this error:&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/09/importerror1.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Unable to encode the 38th item in the 65th record for the INFO file&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;It turns out that Workstation can create export files that contain values that did not fit within their field–I’m guessing that somehow you are actually able to enter invalid values into those fields but I did not confirm that.&lt;/p&gt;
-&lt;p&gt;The error, “Unable to encode the 38th item in the 65th record…” was only partially helpful.  The error was in the 65th record but I was not able figure out which field contained the error.  The nature assumption that it was the 38th column was incorrect, at least if you are counting from left to right.  Whatever logic that is used, is consistent, at least within a specific table, because I had numerous records with problems and when the error messages indicated it was the same item, it did turn out to be the same field.&lt;/p&gt;
+&lt;p&gt;It turns out that Workstation can create export files that contain values that did not fit within their field–I&amp;rsquo;m guessing that somehow you are actually able to enter invalid values into those fields but I did not confirm that.&lt;/p&gt;
+&lt;p&gt;The error, &amp;lsquo;Unable to encode the 38th item in the 65th record…&amp;rsquo; was only partially helpful.  The error was in the 65th record but I was not able figure out which field contained the error.  The nature assumption that it was the 38th column was incorrect, at least if you are counting from left to right.  Whatever logic that is used, is consistent, at least within a specific table, because I had numerous records with problems and when the error messages indicated it was the same item, it did turn out to be the same field.&lt;/p&gt;
 &lt;p&gt;What I ended up having to do was open the export file in my favorite text editor, locating the info for problematic record and go through the columns one-by-one, comparing the value in the text file with that in the table.  In this case, 14.1 was suppose to be the value in the WP_TIO2 field.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://maprantala.com/wp-content/uploads/2010/09/testfile.jpg&#34;&gt;…”&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/wp-content/uploads/2010/09/testfile.jpg&#34;&gt;…&#39;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;One thing I noticed, and this is consistent with behavior I have observed in ArcObjects in other cases, is that the record with the invalid value in a field ends up with the same value in that field as the previous record.  So in this case, the bad record has a value of 1.12 in the WP_TIO2 field because that is what previous record has.   That leads me to believe that ArcObjects is re-using a variable as it does the import, just updating each value, field-by-field.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2010/09/badvalue.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Just to make sure that I had diagnosed the problem right, I attempted to change the value to 14.1 in an ArcMap edit session and got this message:&lt;br&gt;
@@ -237,10 +237,10 @@
     </item>
     
     <item>
-      <title>Create Geologic Cross Sections&amp;#8211;eXacto Section v. 2.0, ArcMap 9.3</title>
-      <link>https://maprantala.com/2010/07/23/create-geologic-cross-sections#8211exacto-section-v.-2.0-arcmap-9.3/</link>
+      <title>Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3</title>
+      <link>https://maprantala.com/2010/07/23/create-geologic-cross-sectionsexacto-section-v.-2.0-arcmap-9.3/</link>
       <pubDate>Fri, 23 Jul 2010 13:59:44 -0500</pubDate>
-      <guid>https://maprantala.com/2010/07/23/create-geologic-cross-sections#8211exacto-section-v.-2.0-arcmap-9.3/</guid>
+      <guid>https://maprantala.com/2010/07/23/create-geologic-cross-sectionsexacto-section-v.-2.0-arcmap-9.3/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://arcscripts.esri.com/details.asp?dbid=16734&#34;&gt;Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3&lt;/a&gt; written by Jennifer Carrell of the &lt;a href=&#34;http://www.isgs.illinois.edu/&#34;&gt;Illinois State Geological Survey&lt;/a&gt; is a handy tool for creating cross sections.&lt;/p&gt;
 &lt;p&gt;It requires ArcGIS and a 3D Analyst Extension license.&lt;/p&gt;
 &lt;p&gt;You can create profiles against multiple DEMs at once, define the vertical exaggeration, and have it include contact points.  It is well documented and comes with sample data to use with the tutorial.&lt;/p&gt;
@@ -254,7 +254,7 @@
       <link>https://maprantala.com/2010/07/07/hogeweg-arcgis-editor-for-openstreetmap/</link>
       <pubDate>Wed, 07 Jul 2010 19:10:35 -0500</pubDate>
       <guid>https://maprantala.com/2010/07/07/hogeweg-arcgis-editor-for-openstreetmap/</guid>
-      <description>&lt;p&gt;As someone who lives in the boon-docks whose street (both my current and previous one) does not appear in the data for either &lt;a href=&#34;http://www.navteq.com/&#34;&gt;NAVTEQ&lt;/a&gt; or &lt;a href=&#34;http://www.teleatlas.com/&#34;&gt;TeleAtlas&lt;/a&gt; and someone who used both of those data sets extensively in his previous job, I’ve watched OpenStreetMap for awhile, although have not contributed.&lt;/p&gt;
+      <description>&lt;p&gt;As someone who lives in the boon-docks whose street (both my current and previous one) does not appear in the data for either &lt;a href=&#34;http://www.navteq.com/&#34;&gt;NAVTEQ&lt;/a&gt; or &lt;a href=&#34;http://www.teleatlas.com/&#34;&gt;TeleAtlas&lt;/a&gt; and someone who used both of those data sets extensively in his previous job, I&amp;rsquo;ve watched OpenStreetMap for awhile, although have not contributed.&lt;/p&gt;
 &lt;p&gt;Marten Hogeweg, &lt;!-- raw HTML omitted --&gt;ArcGIS Server Geoportal Extension Product Manager, ESRI announce in his blogs an &lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://martenhogeweg.blogspot.com/2010/07/announcing-arcgis-editor-for.html&#34;&gt;ArcGIS Editor for OpenStreetMap&lt;/a&gt;.  Sounds like a great idea, giving GIS professions–some whom have the source materials the ability to easily contribute should only help the project.&lt;/p&gt;
 &lt;p&gt;Unfortunately, it is only available at 10.0 but that gives me another reason to install it on a virtual machine and start playing more.&lt;/p&gt;
 </description>
@@ -265,15 +265,15 @@
       <link>https://maprantala.com/2010/07/01/sticky-move-tolerance/</link>
       <pubDate>Thu, 01 Jul 2010 16:51:42 -0500</pubDate>
       <guid>https://maprantala.com/2010/07/01/sticky-move-tolerance/</guid>
-      <description>&lt;p&gt;While I am pretty experienced in editing data in previous generations of ESRI’s software, I have not done a lot in ArcGIS. So in my new position where I am supporting a group of geologists who do a lot of data creation in ArcMap, I am learning some of the intricacies of the ArcGIS platform.&lt;/p&gt;
+      <description>&lt;p&gt;While I am pretty experienced in editing data in previous generations of ESRI&amp;rsquo;s software, I have not done a lot in ArcGIS. So in my new position where I am supporting a group of geologists who do a lot of data creation in ArcMap, I am learning some of the intricacies of the ArcGIS platform.&lt;/p&gt;
 &lt;p&gt;One of the potential gotchas that a coworker informed me about that I was vaguely aware of was the issue of sticky move tolerances. What can happen, when editing existing features, is that each time you select a feature it can easily get moved very slightly if the mouse moves while the feature is selected. While the movement itself may be well within any allowable accuracy requirements, it can make a huge mess if you are working with a shapefile polygon coverage for example.&lt;/p&gt;
 &lt;p&gt;ArcMap has a setting, Sticky Move Tolerance, that helps prevent these tiny, accidental moving of features.  A feature will not be moved until the mouse moves at least as many screen pixels as this setting.  The default setting is 0, disabling this feature.&lt;/p&gt;
-&lt;p&gt;This setting can be set changed under Options on the Editor Toolbar.&lt;br&gt;
-&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/07/setting.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This setting can be set changed under Options on the Editor Toolbar.
+&lt;img src=&#34;https://maprantala.com/images/2010/07/setting.jpg&#34; alt=&#34;Settings&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The Sticky move tolerance is on the General tab.  In this example, I have my setting at 25 pixels which may be a bit high but I do not do a lot of data editing myself so it is workable.  The downside of having it set this high is if I want to move a feature just a tiny bit, I have to first drag the mouse relatively far away and then bring it tighter into where the feature is.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/07/options.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/07/options.jpg?resize=344%2C341g&#34; alt=&#34;Options&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Not sure how well this is documented although it can be found in the help system.&lt;/p&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Moving_features&#34;&gt;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Moving_features&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;https://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Moving_features&#34;&gt;https://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Moving_features&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 </description>
     </item>
     

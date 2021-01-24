@@ -10,10 +10,10 @@
     <atom:link href="https://maprantala.com/categories/model-builder/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Launching a Python script with parameters&amp;#8211;3 methods.</title>
-      <link>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters#82113-methods./</link>
+      <title>Launching a Python script with parameters–3 methods.</title>
+      <link>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters3-methods./</link>
       <pubDate>Mon, 13 Dec 2010 14:56:43 -0600</pubDate>
-      <guid>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters#82113-methods./</guid>
+      <guid>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters3-methods./</guid>
       <description>&lt;p&gt;Since I use python for different tasks, I launch python scripts a variety of ways. Depending on what I am doing, a single script may need to accept parameters from either:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Passed in from an ArcGIS Toolbox Tool.&lt;/li&gt;
@@ -29,11 +29,11 @@
     </item>
     
     <item>
-      <title>Trying to perform &amp;#8220;relate&amp;#8221; in Model Builder</title>
-      <link>https://maprantala.com/2010/08/11/trying-to-perform-#8220relate%238221-in-model-builder/</link>
+      <title>Trying to perform &#39;relate&#39; in Model Builder</title>
+      <link>https://maprantala.com/2010/08/11/trying-to-perform-relate-in-model-builder/</link>
       <pubDate>Wed, 11 Aug 2010 17:31:21 -0500</pubDate>
-      <guid>https://maprantala.com/2010/08/11/trying-to-perform-#8220relate%238221-in-model-builder/</guid>
-      <description>&lt;p&gt;I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y’) in another table (CWI.C5IX).  There is not an existing tool for doing this in ArcGIS.  I did find a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=1728&amp;amp;t=257179&amp;amp;g=1&#34;&gt;post&lt;/a&gt; by Layne Seely in &lt;a href=&#34;http://forums.esri.com/&#34;&gt;ArcForums&lt;/a&gt; titled “trying to perform “relate” in Model Builder.” that led me to the Make Table View under Data Management Tools-Make Table View and even had  the basic syntax I was looking for (if it hadn’t I probably would have guessed that it would not allow subqueries).&lt;/p&gt;
+      <guid>https://maprantala.com/2010/08/11/trying-to-perform-relate-in-model-builder/</guid>
+      <description>&lt;p&gt;I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y&#39;) in another table (CWI.C5IX).  There is not an existing tool for doing this in ArcGIS.  I did find a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=1728&amp;amp;t=257179&amp;amp;g=1&#34;&gt;post&lt;/a&gt; by Layne Seely in &lt;a href=&#34;http://forums.esri.com/&#34;&gt;ArcForums&lt;/a&gt; titled &amp;lsquo;trying to perform &amp;lsquo;relate&amp;rsquo; in Model Builder.&amp;rsquo; that led me to the Make Table View under Data Management Tools-Make Table View and even had  the basic syntax I was looking for (if it hadn&amp;rsquo;t I probably would have guessed that it would not allow subqueries).&lt;/p&gt;
 &lt;p&gt;Since I always like to see exactly the syntax someone uses, I decided to show the syntax I used in case that helps anyone else.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/08/tableview.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Sample of a Table View using a subquery&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;It does require that the tables reside in the same workspace, which is a reasonable limitation that I can live with.  Another drawback is that if you export the model to a python script, the command can get pretty long, especially if you have many fields.&lt;/p&gt;

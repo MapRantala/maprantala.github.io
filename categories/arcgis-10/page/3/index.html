@@ -87,7 +87,7 @@
 
 </header>
 <div class="content">
-I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain. Rows were moved to the bottom of the list when they were edited.
+I was making an edit (adding leading &lsquo;0&rsquo;s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain. Rows were moved to the bottom of the list when they were edited.
 So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.
 </div>
 </article>
@@ -98,10 +98,10 @@ So I went through the process of converting my domain back to a table, made my e
 
 </header>
 <div class="content">
-While banging my head on how to grant access to a referenced mosaic dataset , I did something out of frustration that I normally would not do–I granted ‘public’ access to some data.
+While banging my head on how to grant access to a referenced mosaic dataset , I did something out of frustration that I normally would not do–I granted ‘public' access to some data.
 Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:
 Error 999999: Error executing function.
-The Object being referenced does not exist [ERROR: role “public” does not exist::SQL state: 42704]
+The Object being referenced does not exist [ERROR: role &lsquo;public&rsquo; does not exist::SQL state: 42704]
 </div>
 </article>
 
@@ -111,7 +111,7 @@ The Object being referenced does not exist [ERROR: role “public” does not e
 
 </header>
 <div class="content">
-While I’m enjoying the functionality of the new Referenced Mosaic Dataset that have been introduced in ArcGIS10, something that I stumbled over recently was administering the privileges to a referenced mosaic dataset.
+While I&rsquo;m enjoying the functionality of the new Referenced Mosaic Dataset that have been introduced in ArcGIS10, something that I stumbled over recently was administering the privileges to a referenced mosaic dataset.
 A referenced mosaic dataset is a raster datatype that uses a mosaic dataset as a base. For example, we loaded a series of DEMs into a mosaic dataset and then created a referenced mosaic dataset that does the meters to feet conversion for us.
 </div>
 </article>
@@ -133,9 +133,9 @@ I set the Parser to Python and the formula was simple once I figured out the syn
 
 </header>
 <div class="content">
-One of the Spatial Analyst tools we often use in ArcGIS is the “Extract Values to Points” tool. This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.
+One of the Spatial Analyst tools we often use in ArcGIS is the &lsquo;Extract Values to Points&rsquo; tool. This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.
 
-Today I was running it for the first time against an Image Service we recently published and I received a warning message,”WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry”.
+Today I was running it for the first time against an Image Service we recently published and I received a warning message,&lsquo;WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry&rsquo;.
 </div>
 </article>
 
@@ -145,7 +145,7 @@ Today I was running it for the first time against an Image Service we recently p
 
 </header>
 <div class="content">
-In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0. So far, I’m loving the functionality.
+In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0. So far, I&rsquo;m loving the functionality.
 One thing, however, that I have to figure out is that the controls are not instantiated until they are clicked on. One of the results is that the controls, by default, are enabled.
 </div>
 </article>
@@ -167,9 +167,9 @@ Our existing data is organized by tiles with the directory name representing the
 
 </header>
 <div class="content">
-Updating some python code from 9.3 that using geoprocessing to 10.0 using arcpy and the first real object I’ve had to change relates to detecting whether or not an index exists on a table.
+Updating some python code from 9.3 that using geoprocessing to 10.0 using arcpy and the first real object I&rsquo;ve had to change relates to detecting whether or not an index exists on a table.
 I previously posted code using a 9.3 geoprocessing commands, the core of it being:
-With arcpy, ESRI has gone back to using the Describe methodology. Way back when GISers use to type most of their commands into their wood-burning computers, the command “Describe” was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).
+With arcpy, ESRI has gone back to using the Describe methodology. Way back when GISers use to type most of their commands into their wood-burning computers, the command &lsquo;Describe&rsquo; was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).
 </div>
 </article>
 
@@ -179,8 +179,8 @@ With arcpy, ESRI has gone back to using the Describe methodology. Way back when
 
 </header>
 <div class="content">
-To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point). A side question is why can’t tables and raster be placed in Feature Datasets? This wouldn’t be an end-all solution for what we want to do but there are some messy consequences of this limitation.
-ESRI has instructions on Setting up multiple geodatabases in one PostgreSQL database cluster on Windows which was helpful but we repeatedly got an “The ArcSDE Repository was unsuccessfully completed.
+To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point). A side question is why can&rsquo;t tables and raster be placed in Feature Datasets? This wouldn&rsquo;t be an end-all solution for what we want to do but there are some messy consequences of this limitation.
+ESRI has instructions on Setting up multiple geodatabases in one PostgreSQL database cluster on Windows which was helpful but we repeatedly got an &lsquo;The ArcSDE Repository was unsuccessfully completed.
 </div>
 </article>
 
@@ -191,7 +191,7 @@ ESRI has instructions on Setting up multiple geodatabases in one PostgreSQL data
 </header>
 <div class="content">
 I was working my way through this ESRI Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK). And came across a couple minor errors that I had to correct during the process.
-First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a “Name ‘ArcMap’ is not declared.” error.
+First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a &lsquo;Name ‘ArcMap&rsquo; is not declared.' error.
 
 In the walk-through, they mention that the ArcMap method of your class. For me, however, it appeared under the .
 </div>

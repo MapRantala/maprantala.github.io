@@ -83,11 +83,11 @@
 <h1 class="title">geodatabase</h1>
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./">Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</a></h2>
+<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./">Feature classes and Tables with names starting with &#39;nd_&#39;.</a></h2>
 
 </header>
 <div class="content">
-Random luck me to discovering a bug related to feature classes whose names start with “nd_”. It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
+Random luck me to discovering a bug related to feature classes whose names start with &lsquo;nd_'. It appears that you are allowed to create feature classes starting with &lsquo;nd_&rsquo; but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
 I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.
 </div>
 </article>
@@ -98,7 +98,7 @@ I first noticed something odd was occurring while importing a series of shapefil
 
 </header>
 <div class="content">
-During a process I was working on, I needed to compare a feature class before and after some edits. I did not quickly find anything in ArcToolbox but searching ArcResources led me to Change Detector script by Bruce Harold. After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.
+During a process I was working on, I needed to compare a feature class before and after some edits. I did not quickly find anything in ArcToolbox but searching ArcResources led me to Change Detector script by Bruce Harold. After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case &lsquo;S&rsquo; and in the other it was a lower case &rsquo;s'.
 </div>
 </article>
 
@@ -108,7 +108,7 @@ During a process I was working on, I needed to compare a feature class before an
 
 </header>
 <div class="content">
-I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain. Rows were moved to the bottom of the list when they were edited.
+I was making an edit (adding leading &lsquo;0&rsquo;s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain. Rows were moved to the bottom of the list when they were edited.
 So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.
 </div>
 </article>

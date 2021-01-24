@@ -14,9 +14,9 @@
       <link>https://maprantala.com/2011/03/16/updating-access-odbc-connections-using-vba/</link>
       <pubDate>Wed, 16 Mar 2011 20:06:59 -0500</pubDate>
       <guid>https://maprantala.com/2011/03/16/updating-access-odbc-connections-using-vba/</guid>
-      <description>&lt;p&gt;I don’t do much in Access or VBA but sometimes you inherit things that force you, at least temporarily, to go retro.&lt;/p&gt;
+      <description>&lt;p&gt;I don&amp;rsquo;t do much in Access or VBA but sometimes you inherit things that force you, at least temporarily, to go retro.&lt;/p&gt;
 &lt;p&gt;We have an Access-based data extraction routine that uses several (21) pass-through queries that use an ODBC connection.  The queries are pulling data from an Oracle database maintained by a different agency that enforces a time-out of passwords every three months.&lt;/p&gt;
-&lt;p&gt;So every three months I have to go through the ODBC connections for these queries and change the password.  And before you chastise me for storing the password in the VBA code, I can only say “you’re right” but that’s the way it is done–not ideal but gets the job done and we’re not dealing with overly sensitive data.&lt;/p&gt;
+&lt;p&gt;So every three months I have to go through the ODBC connections for these queries and change the password.  And before you chastise me for storing the password in the VBA code, I can only say &amp;lsquo;you&amp;rsquo;re right&amp;rsquo; but that&amp;rsquo;s the way it is done–not ideal but gets the job done and we&amp;rsquo;re not dealing with overly sensitive data.&lt;/p&gt;
 &lt;p&gt;Well, my three-month deadline was approaching and I figured I would simplify the process which I found error-prone.&lt;/p&gt;
 &lt;p&gt;Some searching and object model diagramming scouring and I came up with this barebones solution, of course, your connection string may vary.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;

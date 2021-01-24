@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Revoking &amp;#8216;Public&amp;#8217; Permissions in PostgreSQL ArcSDE – Node Dangles</title>
-<meta name="description" content="While banging my head on how to grant access to a referenced mosaic dataset , I did something out of frustration that I normally would not do–I granted ‘public’ access to …">
+<meta name="description" content="While banging my head on how to grant access to a referenced mosaic dataset , I did something out of frustration that I normally would not do–I granted ‘public&amp;#39; access to …">
 <meta name="created" content="2011-03-11T11:11:48-0600">
 <meta name="modified" content="2011-03-11T11:11:48-0600">
 <meta name="author" content="Matt">
@@ -36,7 +36,7 @@
     "datePublished": "2011-03-11T11:11:48-06:00",
     "dateModified": "2011-03-11T11:11:48-06:00",
     "url" : "https://maprantala.com/2011/03/11/revoking-#8216public%238217-permissions-in-postgresql-arcsde/",
-    "description": "While banging my head on how to grant access to a referenced mosaic dataset , I did something out of frustration that I normally would not do–I granted ‘public’ access to …",
+    "description": "While banging my head on how to grant access to a referenced mosaic dataset , I did something out of frustration that I normally would not do–I granted ‘public\u0026#39; access to …",
     "keywords": ["ArcSDE","arcsde 10","arcsde postgresql","pgadmin III"],
     "author": {
       "@type": "Person",
@@ -96,13 +96,13 @@ Tags:
 </div>
 </header>
 <div class="content">
-<p>While banging my head on how to grant access to a <a href="http://wp.me/pVrsJ-6Q">referenced mosaic dataset</a> , I did something out of frustration that I normally would not do–I granted ‘public’ access to some data.</p>
+<p>While banging my head on how to grant access to a <a href="http://wp.me/pVrsJ-6Q">referenced mosaic dataset</a> , I did something out of frustration that I normally would not do–I granted ‘public' access to some data.</p>
 <p>Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:</p>
 <p>Error 999999: Error executing function.</p>
-<p>The Object being referenced does not exist [ERROR:  role “public” does not exist::SQL state: 42704]<br>
+<p>The Object being referenced does not exist [ERROR:  role &lsquo;public&rsquo; does not exist::SQL state: 42704]<br>
 Failed to execute (ChangePrivileges).</p>
 <p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/revokepublic.jpg"><!-- raw HTML omitted --></a></p>
-<p>I actually expected that would occur–ArcSDE isn’t aware of PostgreSQL’s public account.</p>
+<p>I actually expected that would occur–ArcSDE isn&rsquo;t aware of PostgreSQL&rsquo;s public account.</p>
 <p>The solution was to go into pgAdmin II and revoke the privileges there.</p>
 <p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/revokepgadminiii.jpg"><!-- raw HTML omitted --></a></p>
 <!-- raw HTML omitted -->

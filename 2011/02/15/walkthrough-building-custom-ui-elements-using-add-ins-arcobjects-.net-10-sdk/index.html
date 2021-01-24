@@ -99,11 +99,11 @@ Tags:
 </header>
 <div class="content">
 <p>I was working my way through this ESRI <a href="http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#//0001000001ms000000">Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)</a>.  And came across a couple minor errors that I had to correct during the process.</p>
-<p>First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a “Name ‘ArcMap’ is not declared.” error.</p>
+<p>First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a &lsquo;Name ‘ArcMap&rsquo; is not declared.' error.</p>
 <p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/arcmapnotdeclared.jpg"><!-- raw HTML omitted --></a></p>
-<p>In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I’m guessing, something that got changed after the first documentation was created and the final libraries published.</p>
+<p>In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.</p>
 <p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg"><!-- raw HTML omitted --></a></p>
-<p>The fix is just adding  “My.” to the namespace in this line:</p>
+<p>The fix is just adding  &lsquo;My.&rsquo; to the namespace in this line:</p>
 <!-- raw HTML omitted -->
 <p>To get this:</p>
 <!-- raw HTML omitted -->

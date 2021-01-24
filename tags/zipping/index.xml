@@ -14,8 +14,8 @@
       <link>https://maprantala.com/2011/02/08/zipping-a-file-geodatabase-using-python/</link>
       <pubDate>Tue, 08 Feb 2011 13:44:34 -0600</pubDate>
       <guid>https://maprantala.com/2011/02/08/zipping-a-file-geodatabase-using-python/</guid>
-      <description>&lt;p&gt;Ever since the ever-popular post, &lt;a href=&#34;http://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zipping a shapefile using python&lt;/a&gt;, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.&lt;/p&gt;
-&lt;p&gt;The key trick, as shown in line 17, is appending the basename of the file geodatabase (“nfg.gdb/” in my example) in front of each file as you write it to the zipfile.&lt;/p&gt;
+      <description>&lt;p&gt;Ever since the ever-popular post, &lt;a href=&#34;https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zipping a shapefile using python&lt;/a&gt;, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.&lt;/p&gt;
+&lt;p&gt;The key trick, as shown in line 17, is appending the basename of the file geodatabase (&amp;lsquo;nfg.gdb/&amp;rsquo; in my example) in front of each file as you write it to the zipfile.&lt;/p&gt;
 &lt;p&gt;UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp;amp; pasted and have work.  So I have posted a the code &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110208_Sample_Zip_FileGeodatabase.zip&#34;&gt;HERE&lt;/a&gt; for downloading.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -29,8 +29,8 @@
       <pubDate>Fri, 10 Dec 2010 18:20:13 -0600</pubDate>
       <guid>https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/</guid>
       <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;One of the tasks I’ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;One of the tasks I&amp;rsquo;ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;
 &lt;p&gt;Not an overly complicated situation but a common one that ArcGIS does not have a solution out-of-the-box. Below is a bare-bones code snippet to do it. It has both the input shapefile and output zip file hard-coded. The call to the subroutine that does the work is: zipShapefile(wellsShapeFile,wellsZipFile)&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;

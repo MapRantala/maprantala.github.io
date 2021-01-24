@@ -87,7 +87,7 @@
 
 </header>
 <div class="content">
-I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy’s ListFeatureClassesrequest. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.
+I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&rsquo;s ListFeatureClassesrequest. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.
 Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.
 After discovering missing data in our backups, I reconstructed what happened and found this bug.
 </div>
@@ -95,11 +95,11 @@ After discovering missing data in our backups, I reconstructed what happened and
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2012/06/05/unsupported-arc-#8220rebox%238221ing-or-updating-the-extent-of-a-feature-class./">Unsupported Arc: &amp;#8220;Rebox&amp;#8221;ing or updating the extent of a feature class.</a></h2>
+<h2 class="title "><a href="/2012/06/05/unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class./">Unsupported Arc: &#39;Rebox&#39;ing or updating the extent of a feature class.</a></h2>
 
 </header>
 <div class="content">
-I’ve found that sometimes I can not find the answer to a question until I know the answer &amp; then it becomes ridiculously easy to find the answer.
+I&rsquo;ve found that sometimes I can not find the answer to a question until I know the answer &amp; then it becomes ridiculously easy to find the answer.
 One small annoying thing that I never spent much time was when you delete features from a feature class making it significantly smaller but the envelope does not get re-sized so the zoom extent (still the original extent) is too large. This often happens to use when we convert tables to an XY theme and there are blank records–most of our data shows in Minnesota but there are some in Oklahoma (I think).
 </div>
 </article>
@@ -110,9 +110,9 @@ One small annoying thing that I never spent much time was when you delete featur
 
 </header>
 <div class="content">
-Almost a year ago, I updated ERSI’s Domain Sort code for VB 6 to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had an open OLE connection. When I tested it, it turned out the reports were accurate.
+Almost a year ago, I updated ERSI&rsquo;s Domain Sort code for VB 6 to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had an open OLE connection. When I tested it, it turned out the reports were accurate.
 
-I got around to adding in a Try-Catch around the offending chunk of code &amp; it is now better than ever. You can download just the Add-In or the Add-In with source code or get it from ESRI’s ArcGIS Resource Center.
+I got around to adding in a Try-Catch around the offending chunk of code &amp; it is now better than ever. You can download just the Add-In or the Add-In with source code or get it from ESRI&rsquo;s ArcGIS Resource Center.
 </div>
 </article>
 
@@ -122,11 +122,11 @@ I got around to adding in a Try-Catch around the offending chunk of code &amp; i
 
 </header>
 <div class="content">
-I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI’s instructions. But, once you know how to do it, it is pretty easy. In Visual Studio, Add a New Item:
+I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI&rsquo;s instructions. But, once you know how to do it, it is pretty easy. In Visual Studio, Add a New Item:
 
 Add a Cursor File:
 
-You can edit your cursor with the editor program in Visual Studio. Once you satisfied with how it looks, make sure that the Build Action on the cursor is “Embedded Resource”.
+You can edit your cursor with the editor program in Visual Studio. Once you satisfied with how it looks, make sure that the Build Action on the cursor is &lsquo;Embedded Resource&rsquo;.
 </div>
 </article>
 
@@ -148,7 +148,7 @@ It sometimes has trouble with the initial step of uploading the raster because o
 </header>
 <div class="content">
 I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation. So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.
-This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.
+This can be confusing for users–they go to select &lsquo;Milli Vanilli&rsquo; and look between &lsquo;Madonna&rsquo; and &lsquo;Motley Crue&rsquo; but can not find their favorite band there–they have to go to the end of the list to find their selection.
 </div>
 </article>
 
@@ -158,7 +158,7 @@ This can be confusing for users–they go to select “Milli Vanilli” and look
 
 </header>
 <div class="content">
-In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0. So far, I’m loving the functionality.
+In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0. So far, I&rsquo;m loving the functionality.
 One thing, however, that I have to figure out is that the controls are not instantiated until they are clicked on. One of the results is that the controls, by default, are enabled.
 </div>
 </article>
@@ -170,7 +170,7 @@ One thing, however, that I have to figure out is that the controls are not insta
 </header>
 <div class="content">
 I was working my way through this ESRI Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK). And came across a couple minor errors that I had to correct during the process.
-First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a “Name ‘ArcMap’ is not declared.” error.
+First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a &lsquo;Name ‘ArcMap&rsquo; is not declared.' error.
 
 In the walk-through, they mention that the ArcMap method of your class. For me, however, it appeared under the .
 </div>
@@ -178,7 +178,7 @@ In the walk-through, they mention that the ArcMap method of your class. For me,
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2010/12/13/launching-a-python-script-with-parameters#82113-methods./">Launching a Python script with parameters&amp;#8211;3 methods.</a></h2>
+<h2 class="title "><a href="/2010/12/13/launching-a-python-script-with-parameters3-methods./">Launching a Python script with parameters–3 methods.</a></h2>
 
 </header>
 <div class="content">

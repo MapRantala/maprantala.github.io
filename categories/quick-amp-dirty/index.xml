@@ -14,8 +14,8 @@
       <link>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</link>
       <pubDate>Tue, 08 May 2018 17:56:09 -0500</pubDate>
       <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</guid>
-      <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the “lazy” GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
-&lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the “.replace” settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
+      <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the &amp;lsquo;lazy&amp;rsquo; GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
+&lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;blockquote&gt;
@@ -28,9 +28,9 @@
       <link>https://maprantala.com/2014/12/18/quick-#038-dirty-arcpy-verify-a-coded-value-domain-code/</link>
       <pubDate>Thu, 18 Dec 2014 22:32:11 -0600</pubDate>
       <guid>https://maprantala.com/2014/12/18/quick-#038-dirty-arcpy-verify-a-coded-value-domain-code/</guid>
-      <description>&lt;p&gt;I’ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a &lt;!-- raw HTML omitted --&gt;Coded Value Domain&lt;!-- raw HTML omitted --&gt; is valid.&lt;/p&gt;
-&lt;p&gt;The logic of the code is pretty straight-forward. Get a field’s domain and check that a potential value is one of the code values. The biggest “trick” in this code is that &lt;!-- raw HTML omitted --&gt;arcpy.da.ListDomains&lt;!-- raw HTML omitted --&gt;, which locates a field’s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.&lt;/p&gt;
-&lt;p&gt;A couple caveats about the code. It only returns True if a field exists, has a coded value domain, and the value tested is one of the (case-sensitive) valid codes. While I have an ArcToolbox tool to call it for illustration purposes, I’m only calling it from code so I wanted tight requirements.&lt;/p&gt;
+      <description>&lt;p&gt;I&amp;rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a &lt;!-- raw HTML omitted --&gt;Coded Value Domain&lt;!-- raw HTML omitted --&gt; is valid.&lt;/p&gt;
+&lt;p&gt;The logic of the code is pretty straight-forward. Get a field&amp;rsquo;s domain and check that a potential value is one of the code values. The biggest &amp;lsquo;trick&amp;rsquo; in this code is that &lt;!-- raw HTML omitted --&gt;arcpy.da.ListDomains&lt;!-- raw HTML omitted --&gt;, which locates a field&amp;rsquo;s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.&lt;/p&gt;
+&lt;p&gt;A couple caveats about the code. It only returns True if a field exists, has a coded value domain, and the value tested is one of the (case-sensitive) valid codes. While I have an ArcToolbox tool to call it for illustration purposes, I&amp;rsquo;m only calling it from code so I wanted tight requirements.&lt;/p&gt;
 &lt;p&gt;Anyhow, here is the code or &lt;!-- raw HTML omitted --&gt;download it&lt;!-- raw HTML omitted --&gt; from GitHub.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -44,7 +44,7 @@
       <link>https://maprantala.com/2014/12/03/quick-#038-dirty-arcpy-listing-data-sources/</link>
       <pubDate>Wed, 03 Dec 2014 08:05:10 -0600</pubDate>
       <guid>https://maprantala.com/2014/12/03/quick-#038-dirty-arcpy-listing-data-sources/</guid>
-      <description>&lt;p&gt;I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here’s the &lt;a href=&#34;https://github.com/MapRantala/Blog/blob/master/python/arcpy/20141203_ListDataSources/listDataSources.py&#34;&gt;bare-bones script&lt;/a&gt; I used instead:&lt;/p&gt;
+      <description>&lt;p&gt;I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here&amp;rsquo;s the &lt;a href=&#34;https://github.com/MapRantala/Blog/blob/master/python/arcpy/20141203_ListDataSources/listDataSources.py&#34;&gt;bare-bones script&lt;/a&gt; I used instead:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;blockquote&gt;
@@ -57,11 +57,11 @@
       <link>https://maprantala.com/2014/07/07/quick-#038-dirty-arcpy-compare-feature-class-table-schemas/</link>
       <pubDate>Mon, 07 Jul 2014 05:06:18 -0500</pubDate>
       <guid>https://maprantala.com/2014/07/07/quick-#038-dirty-arcpy-compare-feature-class-table-schemas/</guid>
-      <description>&lt;p&gt;I’m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some &lt;!-- raw HTML omitted --&gt;psycopg2&lt;!-- raw HTML omitted --&gt;).&lt;/p&gt;
-&lt;p&gt;One of the QC checks I’m doing at the end of this re-write is just verifying that the feature class schemas are the same (or that the differences are intended)  under the new process as they were in the old process.&lt;/p&gt;
+      <description>&lt;p&gt;I&amp;rsquo;m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some &lt;!-- raw HTML omitted --&gt;psycopg2&lt;!-- raw HTML omitted --&gt;).&lt;/p&gt;
+&lt;p&gt;One of the QC checks I&amp;rsquo;m doing at the end of this re-write is just verifying that the feature class schemas are the same (or that the differences are intended)  under the new process as they were in the old process.&lt;/p&gt;
 &lt;p&gt;And while ArcGIS does have a &lt;!-- raw HTML omitted --&gt;good tool&lt;!-- raw HTML omitted --&gt; for this, there were a couple tweaks I wanted to make. Most notably, I wanted a list of fields that are not in both feature classes.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2014/07/TableCompare.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;So I made a quick &amp;amp; dirty script to do that, nothing especially clever but I’ve found it useful. Download it from &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/ArcToolbox/ArcGIS_10_2/20140702_CompareTableFields&#34;&gt;GitHub&lt;/a&gt;. I have it currently set up to work on feature layers but you should be able to change the toolbox parameter types to allow feature classes or tables.&lt;/p&gt;
+&lt;p&gt;So I made a quick &amp;amp; dirty script to do that, nothing especially clever but I&amp;rsquo;ve found it useful. Download it from &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/ArcToolbox/ArcGIS_10_2/20140702_CompareTableFields&#34;&gt;GitHub&lt;/a&gt;. I have it currently set up to work on feature layers but you should be able to change the toolbox parameter types to allow feature classes or tables.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;blockquote&gt;
@@ -79,11 +79,11 @@
 &lt;p&gt;This tool will change all feature classes in the O:\clay_cga\sand-distribution_model\dnrPackages\stratlines directory.&lt;/p&gt;
 &lt;p&gt;It will look at two fields, [strat] and [unit] and make these changes:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;“go” becomes “gro”&lt;/li&gt;
-&lt;li&gt;“goc” becomes “grc”&lt;/li&gt;
-&lt;li&gt;“sgb” becomes “grb”&lt;/li&gt;
+&lt;li&gt;&amp;lsquo;go&amp;rsquo; becomes &amp;lsquo;gro&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;&amp;lsquo;goc&amp;rsquo; becomes &amp;lsquo;grc&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;&amp;lsquo;sgb&amp;rsquo; becomes &amp;lsquo;grb&amp;rsquo;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;And since I have Case Sensitive checked, “Go” will not get changed to “gro”.  Also note that only full values that match values in the Old Value List get changed, part matches are left as-is so “got” would be left as-is even though the first two characters match “go”.&lt;/p&gt;
+&lt;p&gt;And since I have Case Sensitive checked, &amp;lsquo;Go&amp;rsquo; will not get changed to &amp;lsquo;gro&amp;rsquo;.  Also note that only full values that match values in the Old Value List get changed, part matches are left as-is so &amp;lsquo;got&amp;rsquo; would be left as-is even though the first two characters match &amp;lsquo;go&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/BulkFieldChange.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -98,14 +98,14 @@
       <link>https://maprantala.com/2012/05/31/quick-#038-dirty-python-converting-a-text-file-to-audio-.wav/</link>
       <pubDate>Thu, 31 May 2012 23:12:28 -0500</pubDate>
       <guid>https://maprantala.com/2012/05/31/quick-#038-dirty-python-converting-a-text-file-to-audio-.wav/</guid>
-      <description>&lt;p&gt;This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without any freeware that could handle the 53 page document–there are some cool websites that do text to mp3 like &lt;!-- raw HTML omitted --&gt;vozme &lt;!-- raw HTML omitted --&gt;and &lt;!-- raw HTML omitted --&gt;YAKiToMe&lt;!-- raw HTML omitted --&gt;! but they didn’t convert the whole document. I then found &lt;!-- raw HTML omitted --&gt;pyTTS&lt;!-- raw HTML omitted --&gt;, a python package that serves as a wrapper to the &lt;!-- raw HTML omitted --&gt;Microsoft Speech API (SAPI) &lt;!-- raw HTML omitted --&gt;, which has &lt;!-- raw HTML omitted --&gt;been in version 5 since 2000.&lt;!-- raw HTML omitted --&gt; But I didn’t easily find a version of pyTTS for python 2.6. So I decided to see if I could roll my own.&lt;/p&gt;
+      <description>&lt;p&gt;This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without any freeware that could handle the 53 page document–there are some cool websites that do text to mp3 like &lt;!-- raw HTML omitted --&gt;vozme &lt;!-- raw HTML omitted --&gt;and &lt;!-- raw HTML omitted --&gt;YAKiToMe&lt;!-- raw HTML omitted --&gt;! but they didn&amp;rsquo;t convert the whole document. I then found &lt;!-- raw HTML omitted --&gt;pyTTS&lt;!-- raw HTML omitted --&gt;, a python package that serves as a wrapper to the &lt;!-- raw HTML omitted --&gt;Microsoft Speech API (SAPI) &lt;!-- raw HTML omitted --&gt;, which has &lt;!-- raw HTML omitted --&gt;been in version 5 since 2000.&lt;!-- raw HTML omitted --&gt; But I didn&amp;rsquo;t easily find a version of pyTTS for python 2.6. So I decided to see if I could roll my own.&lt;/p&gt;
 &lt;p&gt;As it turns out, getting python to talk using SAPI is relatively easy. Reading a plain text file can be done in a few lines.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And it wasn’t that much more to have it write out a .wav file:&lt;/p&gt;
+&lt;p&gt;And it wasn&amp;rsquo;t that much more to have it write out a .wav file:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And with that chunk of code, I was able to convert my 54 page document into a 4 hour long .wav file (over 600 MB) that I used another software package to convert to .mp3 (200 MB). The voice is a bit robotic but not too bad, I just hope the content that I converted (a database specification standard) doesn’t put me to sleep while I drive.&lt;/p&gt;
+&lt;p&gt;And with that chunk of code, I was able to convert my 54 page document into a 4 hour long .wav file (over 600 MB) that I used another software package to convert to .mp3 (200 MB). The voice is a bit robotic but not too bad, I just hope the content that I converted (a database specification standard) doesn&amp;rsquo;t put me to sleep while I drive.&lt;/p&gt;
 </description>
     </item>
     
@@ -115,7 +115,7 @@
       <pubDate>Wed, 02 May 2012 05:19:40 -0500</pubDate>
       <guid>https://maprantala.com/2012/05/02/quick-#038-dirty-arcpy-autopan-arcmap-using-arcpy/</guid>
       <description>&lt;p&gt;Question: How do I get ArcMap to automatically pan through an area.&lt;/p&gt;
-&lt;p&gt;As I mentioned in a &lt;a href=&#34;http://maprantala.com/2012/04/30/building-a-loc%E2%80%A6f-bing-imagery/&#34;&gt;previous post&lt;/a&gt;, I recently had the need to have ArcMap automatically pan through a project area. My first attempt was to print a series of data-driven pages (using a fishnet polygon layer as the index) this but that did not accomplish what I needed so I switched to arcpy, which made the task simple enough. Nothing special or tricky about this code, but just did not find it anywhere else.&lt;/p&gt;
+&lt;p&gt;As I mentioned in a &lt;a href=&#34;https://maprantala.com/2012/04/30/building-a-loc%E2%80%A6f-bing-imagery/&#34;&gt;previous post&lt;/a&gt;, I recently had the need to have ArcMap automatically pan through a project area. My first attempt was to print a series of data-driven pages (using a fishnet polygon layer as the index) this but that did not accomplish what I needed so I switched to arcpy, which made the task simple enough. Nothing special or tricky about this code, but just did not find it anywhere else.&lt;/p&gt;
 &lt;p&gt;The one thing to note is that I have a 1 second pause between pans–this was to allow image tiles to download. You will need to adjust the delay to meet your needs. &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120427_AutoPan.zip&#34;&gt;The toolbox and code can also be downloaded&lt;/a&gt;.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -129,7 +129,7 @@
       <link>https://maprantala.com/2012/03/14/quicker-#038-cleaner-python-recursive-folder-search/</link>
       <pubDate>Wed, 14 Mar 2012 17:28:59 -0500</pubDate>
       <guid>https://maprantala.com/2012/03/14/quicker-#038-cleaner-python-recursive-folder-search/</guid>
-      <description>&lt;p&gt;As contributor of the day, &lt;a href=&#34;http://www.cleanstick.net/jason/&#34;&gt;Jason Scheirer&lt;/a&gt;, &lt;a href=&#34;http://maprantala.com/2012/03/13/quick-dirty-python-recursive-folder-search-2/#comments&#34;&gt;pointed out&lt;/a&gt;, python has a simple, direct way to browse through the subdirectories of a directory–&lt;a href=&#34;http://docs.python.org/library/os.html#os.walk&#34;&gt;os.walk&lt;/a&gt;&lt;/p&gt;
+      <description>&lt;p&gt;As contributor of the day, &lt;a href=&#34;http://www.cleanstick.net/jason/&#34;&gt;Jason Scheirer&lt;/a&gt;, &lt;a href=&#34;https://maprantala.com/2012/03/13/quick-dirty-python-recursive-folder-search-2/#comments&#34;&gt;pointed out&lt;/a&gt;, python has a simple, direct way to browse through the subdirectories of a directory–&lt;a href=&#34;http://docs.python.org/library/os.html#os.walk&#34;&gt;os.walk&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Here is a bare-bones example of using it to print out the subdirectories in a path. The files variable of the 3-tuple is a list of files similar to the dirs variable that I loop through.&lt;/p&gt;
 &lt;p&gt;Thanks Jason for pointing out something I missed.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -166,7 +166,7 @@
 &lt;li&gt;I did not test against multi-part features.&lt;/li&gt;
 &lt;li&gt;The tolerance is the native units of the data–if your data is in meters but you want to split the polylines every mile, enter 1,609.344.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you’ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
+&lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you&amp;rsquo;ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the code for the Googlebots, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;just downloading&lt;/a&gt; it.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -179,7 +179,7 @@
       <link>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</link>
       <pubDate>Thu, 17 Mar 2011 17:03:39 -0500</pubDate>
       <guid>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</guid>
-      <description>&lt;p&gt;I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven’t found it.  So, as is my nature, I decided to roll my own.&lt;/p&gt;
+      <description>&lt;p&gt;I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven&amp;rsquo;t found it.  So, as is my nature, I decided to roll my own.&lt;/p&gt;
 &lt;p&gt;This is a &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;bare-bones script&lt;/a&gt; that iterates through the fields, printing the field name, type, width, and precision.  There are three optional features to it:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;You can choose to have it list the domain, if there is one, on each field.&lt;/li&gt;
@@ -193,7 +193,7 @@
 &lt;li&gt;doCountsRespone, Boolean, Input, Required (controls whether or not you want to get the number of populated records.  (Your definition of populated may vary from my code)&lt;/li&gt;
 &lt;li&gt;outputFile, File, Output, Optional (optional output file to write)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Here is the code, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;just downloading&lt;/a&gt; it since I haven’t figured out a good way to have WordPress play nicely with python’s indenting.&lt;/p&gt;
+&lt;p&gt;Here is the code, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;just downloading&lt;/a&gt; it since I haven&amp;rsquo;t figured out a good way to have WordPress play nicely with python&amp;rsquo;s indenting.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;

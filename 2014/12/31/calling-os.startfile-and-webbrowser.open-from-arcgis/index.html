@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Calling os.startfile and webbrowser.open from ArcGIS. – Node Dangles</title>
-<meta name="description" content="Recently I’ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a “Help” button that opens a help file in .pdf format.Sample python …">
+<meta name="description" content="Recently I&amp;amp;rsquo;ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a &amp;amp;lsquo;Help&amp;amp;rsquo; button that opens a help file in .pdf …">
 <meta name="created" content="2014-12-31T14:38:16-0600">
 <meta name="modified" content="2014-12-31T14:38:16-0600">
 <meta name="author" content="Matt">
@@ -36,7 +36,7 @@
     "datePublished": "2014-12-31T14:38:16-06:00",
     "dateModified": "2014-12-31T14:38:16-06:00",
     "url" : "https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis./",
-    "description": "Recently I’ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a “Help” button that opens a help file in .pdf format.Sample python …",
+    "description": "Recently I\u0026amp;rsquo;ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a \u0026amp;lsquo;Help\u0026amp;rsquo; button that opens a help file in .pdf …",
     "keywords": ["arcpy","ESRI","python"],
     "author": {
       "@type": "Person",
@@ -95,16 +95,16 @@ Tags:
 </div>
 </header>
 <div class="content">
-<p>Recently I’ve created <!-- raw HTML omitted -->Python add-ins<!-- raw HTML omitted --> for data entry for our staff. Most of these have a toolbar with a “Help” button that opens a help file in .pdf format.<!-- raw HTML omitted --></p>
+<p>Recently I&rsquo;ve created <!-- raw HTML omitted -->Python add-ins<!-- raw HTML omitted --> for data entry for our staff. Most of these have a toolbar with a &lsquo;Help&rsquo; button that opens a help file in .pdf format.<!-- raw HTML omitted --></p>
 <p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2014/12/Toolbar.png"><!-- raw HTML omitted --></a><!-- raw HTML omitted -->Sample python add-in toolbar.<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(<em>path to help.pdf</em>).</p>
 <p>However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!</p>
 <p>Luckily the <!-- raw HTML omitted -->Python development team at Esri<!-- raw HTML omitted --> already had a <!-- raw HTML omitted -->blog post<!-- raw HTML omitted --> about this at their <!-- raw HTML omitted -->ArcPy Café blog<!-- raw HTML omitted -->.</p>
-<p>They report that the root of the problem is “conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool”. But this can be overcome by using a <!-- raw HTML omitted -->decorator<!-- raw HTML omitted --> function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.</p>
+<p>They report that the root of the problem is &lsquo;conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool&rsquo;. But this can be overcome by using a <!-- raw HTML omitted -->decorator<!-- raw HTML omitted --> function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.</p>
 <p>Example code is shown below:</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
-<p>Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I’ve been able to tell, works fine without crashing your ArcMap session.</p>
+<p>Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&rsquo;ve been able to tell, works fine without crashing your ArcMap session.</p>
 <p>Cheers!</p>
 
 

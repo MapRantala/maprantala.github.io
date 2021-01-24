@@ -104,10 +104,10 @@ C:\GIS_dataBuchetteparcels.shp</p>
 <p>This makes batch loading the data less efficient because I end up having to rename the data or else end up with a series of feature classes named parcels, parcels_2, parcels_n.</p>
 <p>So I hacked out a quick script that takes an input raster and figures out the final name I want it to have based of the directory name.</p>
 <p>First, I used the Copy Raster (In ArcToolbox: Data Management-Raster-Raster Dataset-Copy Raster) and copied on sample to my geodatabase.</p>
-<p>Then, I went to the Results Tab (Select Geoprocessing from the Menubar, Geoprocessing-Results) and right-clicked on the Copy Raster result and selected “Copy as Python Snippet”.</p>
+<p>Then, I went to the Results Tab (Select Geoprocessing from the Menubar, Geoprocessing-Results) and right-clicked on the Copy Raster result and selected &lsquo;Copy as Python Snippet&rsquo;.</p>
 <p>I then created a new python script and pasted the one line.</p>
 <p>I added some imports, accepted a parameter, some string manipulation, and some result outputs and I had a quick &amp; easy script. In added the script in ArcToolbox and now I can right-click on it and run it in Batch mode. I do a quick search in Windows Explorer to get all the rasters I want to run it on and select &amp; drag them to my ArcToolbox Batch Dialog.</p>
-<p>Actual code can be downloaded <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110228_load_lidar_data.zip">HERE</a> and you don’t need to worry about WordPress messing up the spacing.</p>
+<p>Actual code can be downloaded <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110228_load_lidar_data.zip">HERE</a> and you don&rsquo;t need to worry about WordPress messing up the spacing.</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->

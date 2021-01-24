@@ -14,11 +14,11 @@
       <link>https://maprantala.com/2011/07/05/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0-redux/</link>
       <pubDate>Tue, 05 Jul 2011 12:53:34 -0500</pubDate>
       <guid>https://maprantala.com/2011/07/05/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0-redux/</guid>
-      <description>&lt;p&gt;I’ve previously posted python code to check if a field index exists for both &lt;a href=&#34;http://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;ArcGIs 9.3&lt;/a&gt; and &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;ArcGIS 10.0&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;I&amp;rsquo;ve previously posted python code to check if a field index exists for both &lt;a href=&#34;https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;ArcGIs 9.3&lt;/a&gt; and &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;ArcGIS 10.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Recently I have been working on a process that was using this code but it was not working because it looks for an index with a specific name.  It was not working in this case because the name of the indexes was getting incremented as they were being created.  For example, I was building an index on the table C5ST, field RelateId ([C5IX].[Relateid]) named I_C5IX_RelateId.  That worked fine until we switched our process so now we keep multiple versions of some tables, each with a date-based suffix.&lt;/p&gt;
 &lt;p&gt;We now have tables name C5St_20110625 and C5St_20110626–the Index-name scheme, however was still creating I_C5IX_RelateId and it worked great on the first one.  But when it created the second one, even on a different table, it was automatically name I_C5IX_RelateId_2 even though the name I_C5IX_RelateId was used when trying to create the index.&lt;/p&gt;
 &lt;p&gt;Before generating relates, our code checks to see if the key fields are indexed, and if they are not, builds  an index.  Because of the naming situation, multiple, duplicate indexes were being created.  Probably not too harmful but it is a little messy.&lt;/p&gt;
-&lt;p&gt;So I re-wrote the code so that you pass the function the table name and field name that you want to check and it checks to see if there is an index existing for that field and return a Boolean.  The one little wrinkle I put in is to account for indexes that span multiple fields–the ” if (iIndex.fields[0].Name.upper() == fieldname.upper()):” statement is checking the index to see if it is on a single field or multiple fields.&lt;/p&gt;
+&lt;p&gt;So I re-wrote the code so that you pass the function the table name and field name that you want to check and it checks to see if there is an index existing for that field and return a Boolean.  The one little wrinkle I put in is to account for indexes that span multiple fields–the &#39; if (iIndex.fields[0].Name.upper() == fieldname.upper()):&#39; statement is checking the index to see if it is on a single field or multiple fields.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;def fieldHasIndex(tablename,fieldname):&lt;br&gt;
@@ -40,14 +40,14 @@ return True&lt;/p&gt;
       <link>https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python-geoprocessing-9.3./</link>
       <pubDate>Thu, 27 Jan 2011 15:31:48 -0600</pubDate>
       <guid>https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python-geoprocessing-9.3./</guid>
-      <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
+      <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
 &lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
 &lt;p&gt;No problem creating the index, for example:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn’t work-it did not like the “while” loop construction.  I’m guessing it worked in 9.2 and despite ESRI’s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
+&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
 &lt;p&gt;A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -64,9 +64,9 @@ return True&lt;/p&gt;
       <pubDate>Wed, 15 Dec 2010 14:36:04 -0600</pubDate>
       <guid>https://maprantala.com/2010/12/15/zipping-a-shapefile-via-arctoolbox/</guid>
       <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;p&gt;I’ve received a request on how to use the &lt;a href=&#34;http://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zip Shapefile&lt;/a&gt; code I posted last week from ArcGIS. Sorry, I did not set the code up to call directly from ArcGIS but only as an illustration of how it can be done.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve received a request on how to use the &lt;a href=&#34;https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zip Shapefile&lt;/a&gt; code I posted last week from ArcGIS. Sorry, I did not set the code up to call directly from ArcGIS but only as an illustration of how it can be done.&lt;/p&gt;
 &lt;p&gt;I have, however, with some minor tweaking, made a version that can added to ArcToolbox. The steps to install are below, please note that at one point I had you download a *.zip file that had been renamed to *.jpg–this should now be corrected and the link should lead you directly to zipshapefile.zip.  Because of this steps two and three are obsolete.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Download the code from here.&lt;/li&gt;
@@ -76,7 +76,7 @@ return True&lt;/p&gt;
 &lt;li&gt;Optionally, move Zip Shapefile.tbx, perhaps C:Program FilesArcGISArcToolBoxToolboxes.&lt;/li&gt;
 &lt;li&gt;Add the toolbox to ArcToolbox. ESRI has instructions &lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/tutorials/spatial/Spatial_14.htm&#34;&gt;here&lt;/a&gt; on how to do this.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;You should now have a new toolbox named “Zip Shapefile” with a script named “Zip a Shapefile” in it. Clicking on on the tool will bring up this dialog.&lt;/p&gt;
+&lt;p&gt;You should now have a new toolbox named &amp;lsquo;Zip Shapefile&amp;rsquo; with a script named &amp;lsquo;Zip a Shapefile&amp;rsquo; in it. Clicking on on the tool will bring up this dialog.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/12/capture.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;****&lt;br&gt;
 In response to Chris:&lt;/p&gt;
@@ -95,11 +95,39 @@ In response to Chris:&lt;/p&gt;
 &lt;p&gt;But since the only spatial operations I needed were to measure the distance between two points and the distance between a point and polyline, I decided to just do it via brute force. The datasets being processed were not huge so it made this feasible.&lt;/p&gt;
 &lt;p&gt;Measuring point-to-point distance was easy enough. And while I knew I could work through the details of measuring the distance between a point and polyline, I decided NOT to re-invent the wheel if I did not have to. Google did not come up with any direct answers but I did come across this &lt;a href=&#34;http://local.wasp.uwa.edu.au/%7Epbourke/geometry/pointline/&#34;&gt;post&lt;/a&gt; from &lt;a href=&#34;http://local.wasp.uwa.edu.au/%7Epbourke/&#34; title=&#34;Paul Bourke&#34;&gt;Paul Bourke&lt;/a&gt; at the &lt;a href=&#34;http://wasp.uwa.edu.au/&#34;&gt;University of Western Australia&lt;/a&gt; about measuring the distance between a point and a line segment. A polyline is just a series of line segments so I used it as the basis of my measurement–I just loop through all the consecutive vertice pairs, using the minimum distance found.&lt;/p&gt;
 &lt;p&gt;Paul did not have a python implementation included, so I went ahead and created my own from his information.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;lineMagnitude&lt;/span&gt; (x1, y1, x2, y2):
+    lineMagnitude &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; math&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sqrt(math&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pow((x2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1), &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; math&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pow((y2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1), &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; lineMagnitude
+
+&lt;span style=&#34;color:#75715e&#34;&gt;#Calc minimum distance from a point and a line segment (i.e. consecutive vertices in a polyline).&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;DistancePointLine&lt;/span&gt; (px, py, x1, y1, x2, y2):
+    &lt;span style=&#34;color:#75715e&#34;&gt;#http://local.wasp.uwa.edu.au/~pbourke/geometry/pointline/source.vba&lt;/span&gt;
+    LineMag &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(x1, y1, x2, y2)
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; LineMag &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00000001&lt;/span&gt;:
+        DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9999&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; DistancePointLine
+
+    u1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (((px &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (x2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1)) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; ((py &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (y2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1)))
+    u &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; u1 &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (LineMag &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; LineMag)
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00001&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+        &lt;span style=&#34;color:#75715e&#34;&gt;#// closest point does not fall within the line segment, take the shorter distance&lt;/span&gt;
+        &lt;span style=&#34;color:#75715e&#34;&gt;#// to an endpoint&lt;/span&gt;
+        ix &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(px, py, x1, y1)
+        iy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(px, py, x2, y2)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ix &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;gt; iy:
+            DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; iy
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+            DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ix
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        &lt;span style=&#34;color:#75715e&#34;&gt;# Intersecting point is on the line, use the formula&lt;/span&gt;
+        ix &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; x1 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; u &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (x2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1)
+        iy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; y1 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; u &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (y2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1)
+        DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(px, py, ix, iy)
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; DistancePointLine
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
   </channel>

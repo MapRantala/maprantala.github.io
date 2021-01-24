@@ -14,7 +14,7 @@
       <link>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</link>
       <pubDate>Thu, 17 Mar 2011 17:03:39 -0500</pubDate>
       <guid>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</guid>
-      <description>&lt;p&gt;I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven’t found it.  So, as is my nature, I decided to roll my own.&lt;/p&gt;
+      <description>&lt;p&gt;I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven&amp;rsquo;t found it.  So, as is my nature, I decided to roll my own.&lt;/p&gt;
 &lt;p&gt;This is a &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;bare-bones script&lt;/a&gt; that iterates through the fields, printing the field name, type, width, and precision.  There are three optional features to it:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;You can choose to have it list the domain, if there is one, on each field.&lt;/li&gt;
@@ -28,7 +28,7 @@
 &lt;li&gt;doCountsRespone, Boolean, Input, Required (controls whether or not you want to get the number of populated records.  (Your definition of populated may vary from my code)&lt;/li&gt;
 &lt;li&gt;outputFile, File, Output, Optional (optional output file to write)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Here is the code, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;just downloading&lt;/a&gt; it since I haven’t figured out a good way to have WordPress play nicely with python’s indenting.&lt;/p&gt;
+&lt;p&gt;Here is the code, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;just downloading&lt;/a&gt; it since I haven&amp;rsquo;t figured out a good way to have WordPress play nicely with python&amp;rsquo;s indenting.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;

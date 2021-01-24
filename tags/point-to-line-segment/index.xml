@@ -18,11 +18,39 @@
 &lt;p&gt;But since the only spatial operations I needed were to measure the distance between two points and the distance between a point and polyline, I decided to just do it via brute force. The datasets being processed were not huge so it made this feasible.&lt;/p&gt;
 &lt;p&gt;Measuring point-to-point distance was easy enough. And while I knew I could work through the details of measuring the distance between a point and polyline, I decided NOT to re-invent the wheel if I did not have to. Google did not come up with any direct answers but I did come across this &lt;a href=&#34;http://local.wasp.uwa.edu.au/%7Epbourke/geometry/pointline/&#34;&gt;post&lt;/a&gt; from &lt;a href=&#34;http://local.wasp.uwa.edu.au/%7Epbourke/&#34; title=&#34;Paul Bourke&#34;&gt;Paul Bourke&lt;/a&gt; at the &lt;a href=&#34;http://wasp.uwa.edu.au/&#34;&gt;University of Western Australia&lt;/a&gt; about measuring the distance between a point and a line segment. A polyline is just a series of line segments so I used it as the basis of my measurement–I just loop through all the consecutive vertice pairs, using the minimum distance found.&lt;/p&gt;
 &lt;p&gt;Paul did not have a python implementation included, so I went ahead and created my own from his information.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;lineMagnitude&lt;/span&gt; (x1, y1, x2, y2):
+    lineMagnitude &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; math&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sqrt(math&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pow((x2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1), &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; math&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pow((y2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1), &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; lineMagnitude
+
+&lt;span style=&#34;color:#75715e&#34;&gt;#Calc minimum distance from a point and a line segment (i.e. consecutive vertices in a polyline).&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;DistancePointLine&lt;/span&gt; (px, py, x1, y1, x2, y2):
+    &lt;span style=&#34;color:#75715e&#34;&gt;#http://local.wasp.uwa.edu.au/~pbourke/geometry/pointline/source.vba&lt;/span&gt;
+    LineMag &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(x1, y1, x2, y2)
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; LineMag &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00000001&lt;/span&gt;:
+        DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9999&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; DistancePointLine
+
+    u1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (((px &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (x2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1)) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; ((py &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (y2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1)))
+    u &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; u1 &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (LineMag &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; LineMag)
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00001&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+        &lt;span style=&#34;color:#75715e&#34;&gt;#// closest point does not fall within the line segment, take the shorter distance&lt;/span&gt;
+        &lt;span style=&#34;color:#75715e&#34;&gt;#// to an endpoint&lt;/span&gt;
+        ix &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(px, py, x1, y1)
+        iy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(px, py, x2, y2)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ix &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;gt; iy:
+            DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; iy
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+            DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ix
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        &lt;span style=&#34;color:#75715e&#34;&gt;# Intersecting point is on the line, use the formula&lt;/span&gt;
+        ix &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; x1 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; u &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (x2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1)
+        iy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; y1 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; u &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (y2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1)
+        DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(px, py, ix, iy)
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; DistancePointLine
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
   </channel>

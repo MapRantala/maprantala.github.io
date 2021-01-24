@@ -14,34 +14,34 @@
       <link>https://maprantala.com/2012/03/21/domain-sorter-add-in-version-1.1/</link>
       <pubDate>Wed, 21 Mar 2012 18:19:03 -0500</pubDate>
       <guid>https://maprantala.com/2012/03/21/domain-sorter-add-in-version-1.1/</guid>
-      <description>&lt;p&gt;Almost &lt;a href=&#34;http://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/&#34;&gt;a year ago&lt;/a&gt;, I updated ERSI’s &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;Domain Sort code for VB 6&lt;/a&gt; to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had an open OLE connection. When I tested it, it turned out the reports were accurate.&lt;/p&gt;
+      <description>&lt;p&gt;Almost &lt;a href=&#34;https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/&#34;&gt;a year ago&lt;/a&gt;, I updated ERSI&amp;rsquo;s &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;Domain Sort code for VB 6&lt;/a&gt; to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had an open OLE connection. When I tested it, it turned out the reports were accurate.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/arccatalog.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I got around to adding in a Try-Catch around the offending chunk of code &amp;amp; it is now better than ever. You can download just the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/DomainSorter.esriAddIn&#34;&gt;Add-In&lt;/a&gt; or the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120321_DomainSort.zip&#34;&gt;Add-In with source code&lt;/a&gt; or get it from &lt;a href=&#34;http://resources.arcgis.com/gallery/file/arcobjects-net-api/details?entryID=B5E1BB12-1422-2418-34B7-D3A6908560FA&#34;&gt;ESRI’s ArcGIS Resource Center&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I got around to adding in a Try-Catch around the offending chunk of code &amp;amp; it is now better than ever. You can download just the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/DomainSorter.esriAddIn&#34;&gt;Add-In&lt;/a&gt; or the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120321_DomainSort.zip&#34;&gt;Add-In with source code&lt;/a&gt; or get it from &lt;a href=&#34;http://resources.arcgis.com/gallery/file/arcobjects-net-api/details?entryID=B5E1BB12-1422-2418-34B7-D3A6908560FA&#34;&gt;ESRI&amp;rsquo;s ArcGIS Resource Center&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</title>
-      <link>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./</link>
+      <title>Feature classes and Tables with names starting with &#39;nd_&#39;.</title>
+      <link>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./</link>
       <pubDate>Mon, 23 May 2011 15:55:24 -0500</pubDate>
-      <guid>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./</guid>
-      <description>&lt;p&gt;Random luck me to discovering a bug related to feature classes whose names start with “nd_”.  It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them.  Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases,  personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.&lt;/p&gt;
-&lt;p&gt;I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.  After importing 15 shapefiles, I only had thirteen feature classes despite receiving no errors during the process.  The two shapefiles that failed to import were named ND_oil_and_gas.shp and ND_Bendix_Study.shp.  Subsequent attempts to import them individually returned an error “Invalid Target Name”.&lt;/p&gt;
+      <guid>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./</guid>
+      <description>&lt;p&gt;Random luck me to discovering a bug related to feature classes whose names start with &amp;lsquo;nd_&#39;.  It appears that you are allowed to create feature classes starting with &amp;lsquo;nd_&amp;rsquo; but ArcCatalog will not display them.  Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases,  personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.&lt;/p&gt;
+&lt;p&gt;I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.  After importing 15 shapefiles, I only had thirteen feature classes despite receiving no errors during the process.  The two shapefiles that failed to import were named ND_oil_and_gas.shp and ND_Bendix_Study.shp.  Subsequent attempts to import them individually returned an error &amp;lsquo;Invalid Target Name&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/05/invalidtargetname.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I discovered in pgAdmin III (Postgres SDE Geodatabase) that the table existed and there was an entry in sde.sde_layers for the feature class but ArcCatalog refused to show it.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/05/nd_2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I used some un-supported methods to try to resolve the problem and despite some sweating, I failed to find a way to get ArcCatalog to display these feature classes.  I did, however, at least found a way to delete them–arcpy can detect that the feature classes exists so it is able to delete them.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/05/arcpy_delete.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;At least by deleting them, I can prevent leaving “invisible” feature classes from hanging out in my geodatabase.&lt;/p&gt;
-&lt;p&gt;I suspect the problems stems from how ESRI has implemented the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002p0000007m000000.htm&#34;&gt;Network dataset table-naming structure&lt;/a&gt; –dirty areas are stored in tables named &lt;em&gt;nd_&lt;!-- raw HTML omitted --&gt;_dirtyareas _ and &lt;em&gt;nd_&lt;!-- raw HTML omitted --&gt;_dirtyobjects&lt;/em&gt;.  Possibly the developer  working on the ArcCatalog GUI ended up suppressing showing feature classes and tables whose names start with “nd&lt;/em&gt;”.&lt;/p&gt;
-&lt;p&gt;And, just for posterity’s sake, here is a python code snippet listing the feature classes in a workspace:&lt;/p&gt;
+&lt;p&gt;At least by deleting them, I can prevent leaving &amp;lsquo;invisible&amp;rsquo; feature classes from hanging out in my geodatabase.&lt;/p&gt;
+&lt;p&gt;I suspect the problems stems from how ESRI has implemented the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002p0000007m000000.htm&#34;&gt;Network dataset table-naming structure&lt;/a&gt; –dirty areas are stored in tables named &lt;em&gt;nd_&lt;!-- raw HTML omitted --&gt;_dirtyareas _ and &lt;em&gt;nd_&lt;!-- raw HTML omitted --&gt;_dirtyobjects&lt;/em&gt;.  Possibly the developer  working on the ArcCatalog GUI ended up suppressing showing feature classes and tables whose names start with &amp;lsquo;nd&lt;/em&gt;&amp;rsquo;.&lt;/p&gt;
+&lt;p&gt;And, just for posterity&amp;rsquo;s sake, here is a python code snippet listing the feature classes in a workspace:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;import arcpy&lt;/p&gt;
-&lt;p&gt;arcpy.env.workspace = “c:/temp/_nd/F.gdb”&lt;/p&gt;
+&lt;p&gt;arcpy.env.workspace = &amp;lsquo;c:/temp/_nd/F.gdb&amp;rsquo;&lt;/p&gt;
 &lt;p&gt;print arcpy.env.workspace&lt;br&gt;
 for fc in arcpy.ListFeatureClasses():&lt;br&gt;
 print fc&lt;/p&gt;
-&lt;p&gt;print “Done!”&lt;/p&gt;
+&lt;p&gt;print &amp;lsquo;Done!&amp;rsquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>

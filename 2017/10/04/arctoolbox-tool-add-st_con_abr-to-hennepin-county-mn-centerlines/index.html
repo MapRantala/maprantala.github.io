@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>ArcToolbox Tool: Add [ST_CON_ABR] to Hennepin County, MN Centerlines – Node Dangles</title>
-<meta name="description" content="One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a “recover-our-cost” mentality to more of an …">
+<meta name="description" content="One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a &amp;amp;lsquo;recover-our-cost&amp;amp;rsquo; mentality to …">
 <meta name="created" content="2017-10-04T22:17:11-0500">
 <meta name="modified" content="2017-10-04T22:17:11-0500">
 <meta name="author" content="Matt">
@@ -36,7 +36,7 @@
     "datePublished": "2017-10-04T22:17:11-05:00",
     "dateModified": "2017-10-04T22:17:11-05:00",
     "url" : "https://maprantala.com/2017/10/04/arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/",
-    "description": "One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a “recover-our-cost” mentality to more of an …",
+    "description": "One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a \u0026amp;lsquo;recover-our-cost\u0026amp;rsquo; mentality to …",
     "keywords": ["arcpy","arctoolbox","Hennepin County","python"],
     "author": {
       "@type": "Person",
@@ -96,13 +96,13 @@ Tags:
 </div>
 </header>
 <div class="content">
-<p>One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a “recover-our-cost” mentality to more of an “Open Data”. Minnesota, for example, has launched their <!-- raw HTML omitted -->Geospatial Commons<!-- raw HTML omitted --> as a platform for sharing data.</p>
+<p>One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a &lsquo;recover-our-cost&rsquo; mentality to more of an &lsquo;Open Data&rsquo;. Minnesota, for example, has launched their <!-- raw HTML omitted -->Geospatial Commons<!-- raw HTML omitted --> as a platform for sharing data.</p>
 <p>And while getting free, authoritative data is awesome, it can leave you in a bind if the structure of the data changes. Sometime between April and September, Hennepin County, Minnesota, changed the schema of their <!-- raw HTML omitted -->publicly available street centerlines data<!-- raw HTML omitted -->.</p>
-<p>The data used to have both a full, concatenated street name field ([ST_CONCAT]) and an abbreviated version ([ST_CON_ABR]). A record might have “James Lofton Avenue North” and “James Lofton Ave N”, respectively, in these two fields. The abbreviated version was nice for labeling but it disappeared from the most recent updates.</p>
+<p>The data used to have both a full, concatenated street name field ([ST_CONCAT]) and an abbreviated version ([ST_CON_ABR]). A record might have &lsquo;James Lofton Avenue North&rsquo; and &lsquo;James Lofton Ave N&rsquo;, respectively, in these two fields. The abbreviated version was nice for labeling but it disappeared from the most recent updates.</p>
 <p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2017/10/Streetnames.jpg"><!-- raw HTML omitted --></a></p>
-<p>So, as you  might guess from the fact that I’m posting about it, I wrote a script to add that field in and launch it from an ArcToolbox Tool. Nothing fancy going on in the code, just a series of replaces, depending on the field. Using dictionaries instead of arrays of paired values might have been better but the script takes just a few seconds to run so I can live with it as-is.</p>
-<p>The list of street type abbreviations came from a combination of <!-- raw HTML omitted -->ESRI’s standards<!-- raw HTML omitted --> and those found in an older version of the Hennepin County data. There were no conflicting abbreviations between the two. The code warns if a street name occurs in the data that is not in the list.</p>
-<p>While I’m including the code here for reference, it’s probably best to <!-- raw HTML omitted -->download the code from GitHub.<!-- raw HTML omitted --></p>
+<p>So, as you  might guess from the fact that I&rsquo;m posting about it, I wrote a script to add that field in and launch it from an ArcToolbox Tool. Nothing fancy going on in the code, just a series of replaces, depending on the field. Using dictionaries instead of arrays of paired values might have been better but the script takes just a few seconds to run so I can live with it as-is.</p>
+<p>The list of street type abbreviations came from a combination of <!-- raw HTML omitted -->ESRI&rsquo;s standards<!-- raw HTML omitted --> and those found in an older version of the Hennepin County data. There were no conflicting abbreviations between the two. The code warns if a street name occurs in the data that is not in the list.</p>
+<p>While I&rsquo;m including the code here for reference, it&rsquo;s probably best to <!-- raw HTML omitted -->download the code from GitHub.<!-- raw HTML omitted --></p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <blockquote>

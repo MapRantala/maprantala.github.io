@@ -97,7 +97,7 @@ Working on doing some advanced ArcGIS server printingand had the need to batch c
 
 </header>
 <div class="content">
-I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here’s the bare-bones script I used instead:
+I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here&rsquo;s the bare-bones script I used instead:
   
 </div>
 </article>
@@ -108,7 +108,7 @@ I just had the need to go through a directory containing many (100+) layer files
 
 </header>
 <div class="content">
-I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy’s ListFeatureClassesrequest. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.
+I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&rsquo;s ListFeatureClassesrequest. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.
 Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.
 After discovering missing data in our backups, I reconstructed what happened and found this bug.
 </div>
@@ -142,9 +142,9 @@ Something I did today was create a field (!
 
 </header>
 <div class="content">
-You may have noticed that this post–ArcMap Field Calculator: Identifying Unique Cases, Single Field–specifies “Single Field”. Yes, that was my version of a cliff-hanger post.
-The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats “a” the same as “A”.
-Today’s example groups records into different cases based off the values of two fields, !
+You may have noticed that this post–ArcMap Field Calculator: Identifying Unique Cases, Single Field–specifies &lsquo;Single Field&rsquo;. Yes, that was my version of a cliff-hanger post.
+The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats &lsquo;a&rsquo; the same as &lsquo;A&rsquo;.
+Today&rsquo;s example groups records into different cases based off the values of two fields, !
 </div>
 </article>
 
@@ -160,11 +160,11 @@ I have been working on a python script that I want (NEED) to run as a scheduled 
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./">Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</a></h2>
+<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./">Feature classes and Tables with names starting with &#39;nd_&#39;.</a></h2>
 
 </header>
 <div class="content">
-Random luck me to discovering a bug related to feature classes whose names start with “nd_”. It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
+Random luck me to discovering a bug related to feature classes whose names start with &lsquo;nd_'. It appears that you are allowed to create feature classes starting with &lsquo;nd_&rsquo; but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
 I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.
 </div>
 </article>
@@ -187,7 +187,7 @@ It sometimes has trouble with the initial step of uploading the raster because o
 </header>
 <div class="content">
 I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation. So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.
-This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.
+This can be confusing for users–they go to select &lsquo;Milli Vanilli&rsquo; and look between &lsquo;Madonna&rsquo; and &lsquo;Motley Crue&rsquo; but can not find their favorite band there–they have to go to the end of the list to find their selection.
 </div>
 </article>
 

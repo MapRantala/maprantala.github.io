@@ -83,12 +83,12 @@
 <h1 class="title">ArcSDE</h1>
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2013/02/26/arcsde-tip-finding-an-arcsde-instance#8217s-port/">ArcSDE Tip: Finding an ArcSDE instance&amp;#8217;s port</a></h2>
+<h2 class="title "><a href="/2013/02/26/arcsde-tip-finding-an-arcsde-instances-port/">ArcSDE Tip: Finding an ArcSDE instance&#39;s port</a></h2>
 
 </header>
 <div class="content">
 One of my main tasks right now is to document many of the details of maintaining ArcSDE geodatabases so I anticipate having several blog posts on this topic that are re-writes of documents I am working on. I am presuming that the person will have no ArcSDE experience so I am documenting very detailed information.
-Almost all of the ArcSDE commands require that you specify which instance (service/port) the command applies to by using the “-i” parameter.
+Almost all of the ArcSDE commands require that you specify which instance (service/port) the command applies to by using the &lsquo;-i&rsquo; parameter.
 </div>
 </article>
 
@@ -101,17 +101,17 @@ Almost all of the ArcSDE commands require that you specify which instance (servi
 Awhile ago, I had a ArcSDE problem that required ESRI technical support to help trouble-shoot. The problem was odd but was resolved by rebooting the server.
 During the process, though, the support person had me set a couple of environment variables for logging SDE activity on the client machine.
 The settings were SDEINTERCEPT and SDEINTERCEPTLOC.
-From ESRI’s Help, SDEINTERCEPT specifies what activity to log and SDEINTERCEPTLOC specifies where to save the log files.
+From ESRI&rsquo;s Help, SDEINTERCEPT specifies what activity to log and SDEINTERCEPTLOC specifies where to save the log files.
 </div>
 </article>
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./">Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</a></h2>
+<h2 class="title "><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./">Feature classes and Tables with names starting with &#39;nd_&#39;.</a></h2>
 
 </header>
 <div class="content">
-Random luck me to discovering a bug related to feature classes whose names start with “nd_”. It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
+Random luck me to discovering a bug related to feature classes whose names start with &lsquo;nd_'. It appears that you are allowed to create feature classes starting with &lsquo;nd_&rsquo; but ArcCatalog will not display them. Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases, personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.
 I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.
 </div>
 </article>
@@ -134,7 +134,7 @@ It sometimes has trouble with the initial step of uploading the raster because o
 </header>
 <div class="content">
 I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation. So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.
-This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.
+This can be confusing for users–they go to select &lsquo;Milli Vanilli&rsquo; and look between &lsquo;Madonna&rsquo; and &lsquo;Motley Crue&rsquo; but can not find their favorite band there–they have to go to the end of the list to find their selection.
 </div>
 </article>
 
@@ -144,10 +144,10 @@ This can be confusing for users–they go to select “Milli Vanilli” and look
 
 </header>
 <div class="content">
-While banging my head on how to grant access to a referenced mosaic dataset , I did something out of frustration that I normally would not do–I granted ‘public’ access to some data.
+While banging my head on how to grant access to a referenced mosaic dataset , I did something out of frustration that I normally would not do–I granted ‘public' access to some data.
 Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:
 Error 999999: Error executing function.
-The Object being referenced does not exist [ERROR: role “public” does not exist::SQL state: 42704]
+The Object being referenced does not exist [ERROR: role &lsquo;public&rsquo; does not exist::SQL state: 42704]
 </div>
 </article>
 
@@ -168,8 +168,8 @@ Our existing data is organized by tiles with the directory name representing the
 
 </header>
 <div class="content">
-To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point). A side question is why can’t tables and raster be placed in Feature Datasets? This wouldn’t be an end-all solution for what we want to do but there are some messy consequences of this limitation.
-ESRI has instructions on Setting up multiple geodatabases in one PostgreSQL database cluster on Windows which was helpful but we repeatedly got an “The ArcSDE Repository was unsuccessfully completed.
+To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point). A side question is why can&rsquo;t tables and raster be placed in Feature Datasets? This wouldn&rsquo;t be an end-all solution for what we want to do but there are some messy consequences of this limitation.
+ESRI has instructions on Setting up multiple geodatabases in one PostgreSQL database cluster on Windows which was helpful but we repeatedly got an &lsquo;The ArcSDE Repository was unsuccessfully completed.
 </div>
 </article>
 

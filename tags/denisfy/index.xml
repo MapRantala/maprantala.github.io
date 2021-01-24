@@ -14,7 +14,7 @@
       <link>https://maprantala.com/2010/09/13/topotoraster-error/</link>
       <pubDate>Mon, 13 Sep 2010 20:25:01 -0500</pubDate>
       <guid>https://maprantala.com/2010/09/13/topotoraster-error/</guid>
-      <description>&lt;p&gt;In running an automated process, I had a TopoToRaster repeatedly fail on me. The only input theme was a contour theme. The process ran fine when I used the envelope of the contour theme as the output extent but when I changed it to the envelope of a polygon theme, it would bomb. The polygon’s envelope was smaller than the contour theme.&lt;/p&gt;
+      <description>&lt;p&gt;In running an automated process, I had a TopoToRaster repeatedly fail on me. The only input theme was a contour theme. The process ran fine when I used the envelope of the contour theme as the output extent but when I changed it to the envelope of a polygon theme, it would bomb. The polygon&amp;rsquo;s envelope was smaller than the contour theme.&lt;/p&gt;
 &lt;p&gt;ArcCatalog would bomb out without presenting any sort of useful message.&lt;/p&gt;
 &lt;p&gt;I determined eventually that If I set the left extent as 435210, the process would work if set the right extent to 446655 or greater but would bomb if I used 446654 or less. If the the left extent was 435209, the right extent had to be 446654 or greater.&lt;/p&gt;
 &lt;p&gt;The image below shows the contours (with vertexes) and the polygon theme I was using. The two circle graphics show the approximate extent I was clipping to.&lt;/p&gt;

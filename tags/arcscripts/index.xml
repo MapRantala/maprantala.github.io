@@ -34,7 +34,7 @@
 &lt;p&gt;I then proceeded to run launch my script. Before each step, I use &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Exists/000v00000021000000/&#34;&gt;arcpy.Exists&lt;/a&gt;() extensively to check to see if various items exist before I attempt to create them. It was continuously reporting that my raster set did not exist even though I could see it in ArcCatalog.&lt;/p&gt;
 &lt;p&gt;Finally, I realized that I needed to close ArcCatalog before arcpy recognized the fact I had renamed something. To note, I was running arcpy from a separate PythonWin window, not from the ArcCatalog session I had renamed the raster dataset with.&lt;/p&gt;
 &lt;p&gt;Once I closed ArcCatalog, arcpy recognized the renaming and life was good.&lt;/p&gt;
-&lt;p&gt;I’m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -53,7 +53,7 @@
 &lt;li&gt;I did not test against multi-part features.&lt;/li&gt;
 &lt;li&gt;The tolerance is the native units of the data–if your data is in meters but you want to split the polylines every mile, enter 1,609.344.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you’ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
+&lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you&amp;rsquo;ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the code for the Googlebots, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;just downloading&lt;/a&gt; it.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -66,9 +66,9 @@
       <link>https://maprantala.com/2011/04/08/change-detector-arcpy-script/</link>
       <pubDate>Fri, 08 Apr 2011 10:48:59 -0500</pubDate>
       <guid>https://maprantala.com/2011/04/08/change-detector-arcpy-script/</guid>
-      <description>&lt;p&gt;During a process I was working on, I needed to compare a feature class before and after some edits.  I did not quickly find anything in ArcToolbox but searching &lt;a href=&#34;http://resources.arcgis.com/&#34;&gt;ArcResources&lt;/a&gt; led me to &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=351BEE10-1422-2418-8815-82074A3E6B6C&#34;&gt;Change Detector script by Bruce Harold&lt;/a&gt;.  After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.  I also discovered that it needs to export to the same format (personal geodatabase, file geodatabase, shapefile) as the source data (or at least one that uses the same field name deliminator).&lt;/p&gt;
-&lt;p&gt;After minor adjustments, though, it worked like a charm.  I’ll be submitting the changes I made to Bruce and let him incorporate the changes into the official code.&lt;/p&gt;
-&lt;p&gt;FOLLOW-UP: Mr. Harold quickly responded to my email &amp;amp; made the change (although I haven’t checked it). Way to go Bruce!  Thanks for a handy script.&lt;/p&gt;
+      <description>&lt;p&gt;During a process I was working on, I needed to compare a feature class before and after some edits.  I did not quickly find anything in ArcToolbox but searching &lt;a href=&#34;http://resources.arcgis.com/&#34;&gt;ArcResources&lt;/a&gt; led me to &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=351BEE10-1422-2418-8815-82074A3E6B6C&#34;&gt;Change Detector script by Bruce Harold&lt;/a&gt;.  After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case &amp;lsquo;S&amp;rsquo; and in the other it was a lower case &amp;rsquo;s&#39;.  I also discovered that it needs to export to the same format (personal geodatabase, file geodatabase, shapefile) as the source data (or at least one that uses the same field name deliminator).&lt;/p&gt;
+&lt;p&gt;After minor adjustments, though, it worked like a charm.  I&amp;rsquo;ll be submitting the changes I made to Bruce and let him incorporate the changes into the official code.&lt;/p&gt;
+&lt;p&gt;FOLLOW-UP: Mr. Harold quickly responded to my email &amp;amp; made the change (although I haven&amp;rsquo;t checked it). Way to go Bruce!  Thanks for a handy script.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -78,8 +78,8 @@
       <link>https://maprantala.com/2010/12/17/multiple-outputs-for-python-scripts/</link>
       <pubDate>Fri, 17 Dec 2010 15:19:38 -0600</pubDate>
       <guid>https://maprantala.com/2010/12/17/multiple-outputs-for-python-scripts/</guid>
-      <description>&lt;p&gt;Related to my &lt;a href=&#34;http://maprantala.com/2010/12/13/launching-a-python-script-with-parameters-3-methods/&#34;&gt;post&lt;/a&gt; on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways.  This is largely due to the fact that some are called by ArcToolbox scripts.  Running in ESRI’s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.&lt;/p&gt;
-&lt;p&gt;If you assume one output method but then run your code in the opposite framework, you don’t get to see all the pretty little messages.  What I do is create a simple little routine that broadcasts the message both ways.  This is probably an obvious solution but took a few cases before I went ahead and started implementing it.&lt;/p&gt;
+      <description>&lt;p&gt;Related to my &lt;a href=&#34;https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters-3-methods/&#34;&gt;post&lt;/a&gt; on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways.  This is largely due to the fact that some are called by ArcToolbox scripts.  Running in ESRI&amp;rsquo;s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.&lt;/p&gt;
+&lt;p&gt;If you assume one output method but then run your code in the opposite framework, you don&amp;rsquo;t get to see all the pretty little messages.  What I do is create a simple little routine that broadcasts the message both ways.  This is probably an obvious solution but took a few cases before I went ahead and started implementing it.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;blockquote&gt;
@@ -92,16 +92,16 @@
       <link>https://maprantala.com/2010/12/10/x-section-xacto-updated/</link>
       <pubDate>Fri, 10 Dec 2010 18:15:51 -0600</pubDate>
       <guid>https://maprantala.com/2010/12/10/x-section-xacto-updated/</guid>
-      <description>&lt;p&gt;I just happened to stumble upon an update of a tool to Create Geologic Cross Sections, eXacto Section v. 2.0, that I &lt;a href=&#34;http://maprantala.com/2010/07/23/create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/&#34;&gt;mentioned&lt;/a&gt; in July. Jennifer Carrell at the Illinois Geological Survey wrote this tool. The latest update is from December 8, 2010 and can be &lt;a href=&#34;http://resources.arcgis.com/gallery/file/geoprocessing/details?entryID=C83CC388-1422-2418-7F10-B4D3DF5F1EE6&#34;&gt;downloaded at ESRI’s ArcGIS Resource Center&lt;/a&gt;. Our office has used previous versions and finds in very useful in creating cross-sections. I have not tried this latest update.&lt;/p&gt;
+      <description>&lt;p&gt;I just happened to stumble upon an update of a tool to Create Geologic Cross Sections, eXacto Section v. 2.0, that I &lt;a href=&#34;https://maprantala.com/2010/07/23/create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/&#34;&gt;mentioned&lt;/a&gt; in July. Jennifer Carrell at the Illinois Geological Survey wrote this tool. The latest update is from December 8, 2010 and can be &lt;a href=&#34;http://resources.arcgis.com/gallery/file/geoprocessing/details?entryID=C83CC388-1422-2418-7F10-B4D3DF5F1EE6&#34;&gt;downloaded at ESRI&amp;rsquo;s ArcGIS Resource Center&lt;/a&gt;. Our office has used previous versions and finds in very useful in creating cross-sections. I have not tried this latest update.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
     <item>
-      <title>Create Geologic Cross Sections&amp;#8211;eXacto Section v. 2.0, ArcMap 9.3</title>
-      <link>https://maprantala.com/2010/07/23/create-geologic-cross-sections#8211exacto-section-v.-2.0-arcmap-9.3/</link>
+      <title>Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3</title>
+      <link>https://maprantala.com/2010/07/23/create-geologic-cross-sectionsexacto-section-v.-2.0-arcmap-9.3/</link>
       <pubDate>Fri, 23 Jul 2010 13:59:44 -0500</pubDate>
-      <guid>https://maprantala.com/2010/07/23/create-geologic-cross-sections#8211exacto-section-v.-2.0-arcmap-9.3/</guid>
+      <guid>https://maprantala.com/2010/07/23/create-geologic-cross-sectionsexacto-section-v.-2.0-arcmap-9.3/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://arcscripts.esri.com/details.asp?dbid=16734&#34;&gt;Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3&lt;/a&gt; written by Jennifer Carrell of the &lt;a href=&#34;http://www.isgs.illinois.edu/&#34;&gt;Illinois State Geological Survey&lt;/a&gt; is a handy tool for creating cross sections.&lt;/p&gt;
 &lt;p&gt;It requires ArcGIS and a 3D Analyst Extension license.&lt;/p&gt;
 &lt;p&gt;You can create profiles against multiple DEMs at once, define the vertical exaggeration, and have it include contact points.  It is well documented and comes with sample data to use with the tutorial.&lt;/p&gt;

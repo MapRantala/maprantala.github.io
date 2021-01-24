@@ -15,7 +15,7 @@
       <pubDate>Fri, 25 Mar 2011 11:29:36 -0500</pubDate>
       <guid>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings./</guid>
       <description>&lt;p&gt;Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent.  Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range.  Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.&lt;/p&gt;
-&lt;p&gt;I’m not sure how rapidly ESRI takes “Ideas” into consideration but if you feel like it would benefit you, why not promote this idea:  &lt;a href=&#34;http://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not sure how rapidly ESRI takes &amp;lsquo;Ideas&amp;rsquo; into consideration but if you feel like it would benefit you, why not promote this idea:  &lt;a href=&#34;http://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Have a good weekend, all!&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
@@ -31,7 +31,7 @@
 &lt;p&gt;A user who has added paired Map &amp;amp; Geodata Services to an ArcMap dataframe can use the Distributed Geodatabase Toolbar to extract data to a local geodatabase.  The Extract Data button is on the far right of the Distributed Geodatabase Toolbar.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/distributedgeodatabasetoolbar.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;p&gt;Unfortunately, my first attempts at testing this did not work.  It would look like it was processing, I would end up with a .mdb or .gdb file on my hard drive but I could not open it.  I would get a “Failed to connect to database. This release of the GeoDatabase is eitehr invalid or out of date. [Unknown GeoDatabase release.]  The Microsoft Jet database engine cannot find the input table or query ‘GDB_ReleaseInfo’. Make sure it exists and that its name is spelled correctly.” error.&lt;/p&gt;
+&lt;p&gt;Unfortunately, my first attempts at testing this did not work.  It would look like it was processing, I would end up with a .mdb or .gdb file on my hard drive but I could not open it.  I would get a &amp;lsquo;Failed to connect to database. This release of the GeoDatabase is eitehr invalid or out of date. [Unknown GeoDatabase release.]  The Microsoft Jet database engine cannot find the input table or query ‘GDB_ReleaseInfo&amp;rsquo;. Make sure it exists and that its name is spelled correctly.&#39; error.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/versionerror.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;When exporting to an .mdb file, I could open it in Access and see the data.&lt;/p&gt;
