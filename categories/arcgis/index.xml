@@ -11,9 +11,9 @@
     
     <item>
       <title>Converting MXD to Layer file in Arcpy</title>
-      <link>https://maprantala.com/posts/2015-08-14-converting-mxd-to-layer-file-in-arcpy/</link>
+      <link>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</link>
       <pubDate>Fri, 14 Aug 2015 10:01:54 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2015-08-14-converting-mxd-to-layer-file-in-arcpy/</guid>
+      <guid>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</guid>
       <description>&lt;p&gt;Working on doing some &lt;!-- raw HTML omitted --&gt;advanced ArcGIS server printing&lt;!-- raw HTML omitted --&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;!-- raw HTML omitted --&gt;Petr Krebs&lt;!-- raw HTML omitted --&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
 &lt;p&gt;I created an ArcGIS toolbox with two options–one to convert a single .mxd and one to batch convert an entire folder. To use it, make sure to have the EmptyGroup.lyr in the same directory as the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the raw code or &lt;!-- raw HTML omitted --&gt;git it&lt;!-- raw HTML omitted --&gt;:&lt;/p&gt;
@@ -26,9 +26,9 @@
     
     <item>
       <title>Zipping a Shapefile from ArcCatalog</title>
-      <link>https://maprantala.com/posts/2014-05-06-zipping-a-shapefile-from-arccatalog/</link>
+      <link>https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/</link>
       <pubDate>Tue, 06 May 2014 05:42:04 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-05-06-zipping-a-shapefile-from-arccatalog/</guid>
+      <guid>https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/</guid>
       <description>&lt;p&gt;Back in 2010, I posted a &lt;!-- raw HTML omitted --&gt;python script &lt;!-- raw HTML omitted --&gt;and an &lt;!-- raw HTML omitted --&gt;ArcToolbox&lt;!-- raw HTML omitted --&gt; tool for zipping a shapefile.&lt;/p&gt;
 &lt;p&gt;Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn’t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from &lt;!-- raw HTML omitted --&gt;Github&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
 &lt;p&gt;The guts of the code is here, though:&lt;/p&gt;
@@ -41,9 +41,9 @@
     
     <item>
       <title>Friday Fave: Geodatabase Geek</title>
-      <link>https://maprantala.com/posts/2014-05-02-friday-fave-geodatabase-geek/</link>
+      <link>https://maprantala.com/2014/05/02/friday-fave-geodatabase-geek/</link>
       <pubDate>Fri, 02 May 2014 05:02:12 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-05-02-friday-fave-geodatabase-geek/</guid>
+      <guid>https://maprantala.com/2014/05/02/friday-fave-geodatabase-geek/</guid>
       <description>&lt;p&gt;This &lt;a href=&#34;http://maprantala.com/category/friday-fave/&#34;&gt;Friday Fave&lt;/a&gt; is more for utility than pleasure.&lt;/p&gt;
 &lt;p&gt;Unfortunately, I have been working to determine why my views and query layers perform so much worse than directly accessing my feature class.&lt;/p&gt;
 &lt;p&gt;My Googling led me to &lt;!-- raw HTML omitted --&gt;Geodatabase Geek&lt;!-- raw HTML omitted --&gt;, by Trevor Hart, &lt;!-- raw HTML omitted --&gt;Eagle Technology Group Ltd&lt;!-- raw HTML omitted --&gt;.  Trevor has some real good information about Geodatabases and also  gave a good lightening talk on &lt;a href=&#34;http://video.esri.com/watch/2481/usage-reporting-on-arcgis-101-for-server&#34;&gt;Usage Reporting on ArcGIS 10.1 for Server &lt;/a&gt;at the 2013 ESRI International Developer’s Conference.&lt;/p&gt;
@@ -57,9 +57,9 @@
     
     <item>
       <title>ArcMap Maximum Legend Items from a ArcGIS Server service</title>
-      <link>https://maprantala.com/posts/2014-02-11-arcmap-maximum-legend-items-from-a-arcgis-server-service/</link>
+      <link>https://maprantala.com/2014/02/11/arcmap-maximum-legend-items-from-a-arcgis-server-service/</link>
       <pubDate>Tue, 11 Feb 2014 06:02:42 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2014-02-11-arcmap-maximum-legend-items-from-a-arcgis-server-service/</guid>
+      <guid>https://maprantala.com/2014/02/11/arcmap-maximum-legend-items-from-a-arcgis-server-service/</guid>
       <description>&lt;p&gt;Recently we took a call from a user who could not see the legend for one of the feature classes in one of our services. (Precambrian Bedrock in &lt;a href=&#34;http://mgsweb2.mngs.umn.edu/arcgis/services/state/mnbdrkgeology&#34;&gt;http://mgsweb2.mngs.umn.edu/arcgis/services/state/mnbdrkgeology&lt;/a&gt; )&lt;/p&gt;
 &lt;p&gt;After trying some standard things–restarting the service, checking the source .MXD–I turned to The Google Machine and quickly found help from ESRI: &lt;a href=&#34;http://support.esri.com/zh-cn/knowledgebase/techarticles/detail/33741&#34;&gt;http://support.esri.com/zh-cn/knowledgebase/techarticles/detail/33741&lt;/a&gt; .&lt;/p&gt;
 &lt;p&gt;Turns out the default number of legend items ArcMap will display from an ArcGIS Server map service layer is 100 and we had 102 in the problematic layer. (I plead innocence, blame the geologist for needing that many categories).&lt;/p&gt;
@@ -81,9 +81,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>ArcSDE Tip: Finding an ArcSDE instance&amp;#8217;s port</title>
-      <link>https://maprantala.com/posts/2013-02-26-arcsde-tip-finding-an-arcsdeinstances-port/</link>
+      <link>https://maprantala.com/2013/02/26/arcsde-tip-finding-an-arcsde-instance#8217s-port/</link>
       <pubDate>Tue, 26 Feb 2013 05:25:03 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2013-02-26-arcsde-tip-finding-an-arcsdeinstances-port/</guid>
+      <guid>https://maprantala.com/2013/02/26/arcsde-tip-finding-an-arcsde-instance#8217s-port/</guid>
       <description>&lt;p&gt;One of my main tasks right now is to document many of the details of maintaining ArcSDE geodatabases so I anticipate having several blog posts on this topic that are re-writes of documents I am working on. I am presuming that the person will have no ArcSDE experience so I am documenting very detailed information.&lt;/p&gt;
 &lt;p&gt;Almost all of the ArcSDE commands require that you specify which instance (service/port) the command applies to by using the “-i” parameter.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/02/instanceparameter1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;ArcSDE Instance Parameter&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
@@ -99,9 +99,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>ArcMap Field Calculator: Identifying Unique Cases, Multiple Fields</title>
-      <link>https://maprantala.com/posts/2012-04-23-arcmap-field-calculator-identifying-unique-cases-multiple-fields/</link>
+      <link>https://maprantala.com/2012/04/23/arcmap-field-calculator-identifying-unique-cases-multiple-fields/</link>
       <pubDate>Mon, 23 Apr 2012 06:06:25 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-04-23-arcmap-field-calculator-identifying-unique-cases-multiple-fields/</guid>
+      <guid>https://maprantala.com/2012/04/23/arcmap-field-calculator-identifying-unique-cases-multiple-fields/</guid>
       <description>&lt;p&gt;You may have noticed that this post–&lt;a href=&#34;http://wp.me/pVrsJ-bf&#34;&gt;ArcMap Field Calculator: Identifying Unique Cases, Single Field&lt;/a&gt;–specifies “Single Field”. Yes, that was my version of a cliff-hanger post.&lt;/p&gt;
 &lt;p&gt;The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats “a” the same as “A”.&lt;/p&gt;
 &lt;p&gt;Today’s example groups records into different cases based off the values of two fields, !county_c! and !feature! and required only minor modifications.&lt;/p&gt;
@@ -128,9 +128,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>Data Extration Failed &amp;#8212; Reverse Proxy Time-out</title>
-      <link>https://maprantala.com/posts/2011-08-18-data-extration-failed/</link>
+      <link>https://maprantala.com/2011/08/18/data-extration-failed-#8212-reverse-proxy-time-out/</link>
       <pubDate>Thu, 18 Aug 2011 19:55:47 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-08-18-data-extration-failed/</guid>
+      <guid>https://maprantala.com/2011/08/18/data-extration-failed-#8212-reverse-proxy-time-out/</guid>
       <description>&lt;p&gt;Testing one of our geodata services, we discovered that it allowed us to extract a portion of our feature class but when we tried to extract the entire data set, we received this Data Extraction error: Data extraction failed. Proxy or Gateway Server did not allow the URL. Check with your LAN administrator that Proxy or Gateway server is configured to allow the URL.&lt;/p&gt;
 &lt;p&gt;The fact that I was able to extract a portion of the data and I could see the entire geodatabase get made and zipped led me to believe it was more of time-out issue.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -142,9 +142,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>ArcMap Field Calculator: Create a Unique ID</title>
-      <link>https://maprantala.com/posts/2011-07-28-using-arcpy-in-arcgis-10-field-calculater-to-create-a-unique-id/</link>
+      <link>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</link>
       <pubDate>Thu, 28 Jul 2011 20:08:13 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-07-28-using-arcpy-in-arcgis-10-field-calculater-to-create-a-unique-id/</guid>
+      <guid>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</guid>
       <description>&lt;p&gt;One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N.  In ArcView 3.x, the formula was simply “rec + 1” if I wanted to start with the number 1.&lt;/p&gt;
 &lt;p&gt;In ArcGIS, the process got a little more complex–you had to write a little VBA in Field Calculator as &lt;a href=&#34;http://support.esri.com/en/knowledgebase/techarticles/detail/27427&#34;&gt;described by ESRI&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;While this option still exists in ArcGIS 10, I believe it will disappear when 10.1 comes out and VBA support is completely eliminated.  But it is doable using Python which will continue to be supported.&lt;/p&gt;
@@ -161,9 +161,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>ArcGIS Add-In Custom Mouse Cursor</title>
-      <link>https://maprantala.com/posts/2011-07-19-arcgis-add-in-custom-mouse-cursor/</link>
+      <link>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</link>
       <pubDate>Tue, 19 Jul 2011 20:47:03 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-07-19-arcgis-add-in-custom-mouse-cursor/</guid>
+      <guid>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</guid>
       <description>&lt;p&gt;I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI’s instructions.  But, once you know how to do it, it is pretty easy.  In Visual Studio, Add a New Item:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/07/addresource.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Add a Cursor File:&lt;/p&gt;
@@ -179,9 +179,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>Sorting a Coded-Value Domain Add-In (ArcGIS 10)</title>
-      <link>https://maprantala.com/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/</link>
+      <link>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</link>
       <pubDate>Tue, 03 May 2011 03:33:01 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
+      <guid>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
       <description>&lt;p&gt;I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation.  So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.&lt;/p&gt;
 &lt;p&gt;This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.&lt;/p&gt;
 &lt;p&gt;In the past, I have gone through the tedious process of exporting the domain to a table, sorting the table, removing the domain from the necessary field(s), deleting the domain, re-importing the table back in a new domain and finally re-applying the domain to the necessary field(s). Let’s just say I didn’t do this until someone asked a few times and I didn’t have anything more exciting–like a root canal–I could busy myself with.&lt;/p&gt;
@@ -202,9 +202,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
-      <link>https://maprantala.com/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</link>
+      <link>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
       <pubDate>Sun, 01 May 2011 05:01:50 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</guid>
+      <guid>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
       <description>&lt;p&gt;For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.&lt;/p&gt;
 &lt;p&gt;Here is the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;bare-bones script&lt;/a&gt; that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.  Some cautionary notes:&lt;/p&gt;
 &lt;ul&gt;
@@ -224,9 +224,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>ArcIdeas: Scale-Dependant Settings.</title>
-      <link>https://maprantala.com/posts/2011-03-25-arcideas-scale-dependant-settings/</link>
+      <link>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings./</link>
       <pubDate>Fri, 25 Mar 2011 11:29:36 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-25-arcideas-scale-dependant-settings/</guid>
+      <guid>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings./</guid>
       <description>&lt;p&gt;Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent.  Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range.  Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.&lt;/p&gt;
 &lt;p&gt;I’m not sure how rapidly ESRI takes “Ideas” into consideration but if you feel like it would benefit you, why not promote this idea:  &lt;a href=&#34;http://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Have a good weekend, all!&lt;/p&gt;
@@ -236,9 +236,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>Using arcpy to List Domains Assigned to Featureclass Fields</title>
-      <link>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</link>
+      <link>https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/</link>
       <pubDate>Mon, 14 Mar 2011 18:04:36 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</guid>
+      <guid>https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/</guid>
       <description>&lt;p&gt;I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
 &lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
 &lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;
@@ -253,9 +253,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>Revoking &amp;#8216;Public&amp;#8217; Permissions in PostgreSQL ArcSDE</title>
-      <link>https://maprantala.com/posts/2011-03-11-revoking-public-permissions-in-postgresql-arcsde/</link>
+      <link>https://maprantala.com/2011/03/11/revoking-#8216public%238217-permissions-in-postgresql-arcsde/</link>
       <pubDate>Fri, 11 Mar 2011 11:11:48 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-11-revoking-public-permissions-in-postgresql-arcsde/</guid>
+      <guid>https://maprantala.com/2011/03/11/revoking-#8216public%238217-permissions-in-postgresql-arcsde/</guid>
       <description>&lt;p&gt;While banging my head on how to grant access to a &lt;a href=&#34;http://wp.me/pVrsJ-6Q&#34;&gt;referenced mosaic dataset&lt;/a&gt; , I did something out of frustration that I normally would not do–I granted ‘public’ access to some data.&lt;/p&gt;
 &lt;p&gt;Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:&lt;/p&gt;
 &lt;p&gt;Error 999999: Error executing function.&lt;/p&gt;
@@ -271,9 +271,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
     
     <item>
       <title>Extract Values to Points (Spatial Analyst) Bug</title>
-      <link>https://maprantala.com/posts/2011-03-07-extract-values-to-points-spatial-analyst-bug/</link>
+      <link>https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/</link>
       <pubDate>Mon, 07 Mar 2011 08:37:33 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-07-extract-values-to-points-spatial-analyst-bug/</guid>
+      <guid>https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/</guid>
       <description>&lt;p&gt;One of the Spatial Analyst tools we often use in ArcGIS is the “&lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//009z0000002t000000.htm&#34;&gt;Extract Values to Points&lt;/a&gt;” tool.  This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/extractvaluestopoints.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Today I was running it for the first time against an Image Service we recently published and I received a warning message,”WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry”.  But the script seemed to run and the final results said “Succeeded” so I thought it was probably fine.  But as I double-checked, I realized the results were wonky.&lt;/p&gt;
@@ -294,9 +294,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
     
     <item>
       <title>ArcGIS 9.3.1 to ArcSDE 10 Connection Error</title>
-      <link>https://maprantala.com/posts/2011-01-13-arcgis-9-3-1-to-arcsde-10-connection-error/</link>
+      <link>https://maprantala.com/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/</link>
       <pubDate>Thu, 13 Jan 2011 14:41:58 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-01-13-arcgis-9-3-1-to-arcsde-10-connection-error/</guid>
+      <guid>https://maprantala.com/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://maprantala.com/Users/mrantala/AppData/Local/Temp/moz-screenshot-7.png&#34; alt=&#34;&#34;&gt;We finally installed an instance of ArcSDE 10 today.  My first attempt at connecting in ArcCatalog 9.3.1 failed with the following error:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Failed to connect to the specified server.&lt;/p&gt;
@@ -315,9 +315,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
     
     <item>
       <title>Launching a Python script with parameters&amp;#8211;3 methods.</title>
-      <link>https://maprantala.com/posts/2010-12-13-launching-a-python-script-with-parameters-3-methods/</link>
+      <link>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters#82113-methods./</link>
       <pubDate>Mon, 13 Dec 2010 14:56:43 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-13-launching-a-python-script-with-parameters-3-methods/</guid>
+      <guid>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters#82113-methods./</guid>
       <description>&lt;p&gt;Since I use python for different tasks, I launch python scripts a variety of ways. Depending on what I am doing, a single script may need to accept parameters from either:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Passed in from an ArcGIS Toolbox Tool.&lt;/li&gt;
@@ -334,9 +334,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
     
     <item>
       <title>Another TopoToRaster Error</title>
-      <link>https://maprantala.com/posts/2010-09-15-another-topotoraster-error/</link>
+      <link>https://maprantala.com/2010/09/15/another-topotoraster-error/</link>
       <pubDate>Wed, 15 Sep 2010 13:36:34 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-15-another-topotoraster-error/</guid>
+      <guid>https://maprantala.com/2010/09/15/another-topotoraster-error/</guid>
       <description>&lt;h3 id=&#34;subtitled-why-error-messages-are-good&#34;&gt;Subtitled:  Why error messages are good.&lt;/h3&gt;
 &lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn’t have to spend a day trying figure out what was wrong.&lt;br&gt;
 &lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/09/sixteen.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -347,9 +347,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
     
     <item>
       <title>Trying to perform &amp;#8220;relate&amp;#8221; in Model Builder</title>
-      <link>https://maprantala.com/posts/2010-08-11-trying-to-perform-relate-in-model-builder/</link>
+      <link>https://maprantala.com/2010/08/11/trying-to-perform-#8220relate%238221-in-model-builder/</link>
       <pubDate>Wed, 11 Aug 2010 17:31:21 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-08-11-trying-to-perform-relate-in-model-builder/</guid>
+      <guid>https://maprantala.com/2010/08/11/trying-to-perform-#8220relate%238221-in-model-builder/</guid>
       <description>&lt;p&gt;I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y’) in another table (CWI.C5IX).  There is not an existing tool for doing this in ArcGIS.  I did find a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=1728&amp;amp;t=257179&amp;amp;g=1&#34;&gt;post&lt;/a&gt; by Layne Seely in &lt;a href=&#34;http://forums.esri.com/&#34;&gt;ArcForums&lt;/a&gt; titled “trying to perform “relate” in Model Builder.” that led me to the Make Table View under Data Management Tools-Make Table View and even had  the basic syntax I was looking for (if it hadn’t I probably would have guessed that it would not allow subqueries).&lt;/p&gt;
 &lt;p&gt;Since I always like to see exactly the syntax someone uses, I decided to show the syntax I used in case that helps anyone else.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/08/tableview.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Sample of a Table View using a subquery&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
@@ -359,18 +359,18 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
     
     <item>
       <title>ArcGIS Ideas</title>
-      <link>https://maprantala.com/posts/2010-07-14-arcgis-ideas/</link>
+      <link>https://maprantala.com/2010/07/14/arcgis-ideas/</link>
       <pubDate>Wed, 14 Jul 2010 14:20:47 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-14-arcgis-ideas/</guid>
+      <guid>https://maprantala.com/2010/07/14/arcgis-ideas/</guid>
       <description>&lt;p&gt;Ok, maybe I have been hiding under a rock, but just saw this is a post from &lt;a href=&#34;http://www.spatiallyadjusted.com/&#34;&gt;James Fee’s Spatially Adjusted blog&lt;/a&gt;.  ESRI has a public suggestion box called  &lt;a href=&#34;http://ideas.arcgis.com/&#34;&gt;ArcGIS Ideas&lt;/a&gt; where users can submit suggestions for ESRI.  One thing I like is that it is open for other users to see and comment.  Not sure how responsive ESRI will be but at least it gives us a place to vent.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>ESRI releases Service ArcGIS 9.3.1 Pack 2</title>
-      <link>https://maprantala.com/posts/2010-07-12-esri-releases-service-arcgis-9-3-1-pack-2/</link>
+      <link>https://maprantala.com/2010/07/12/esri-releases-service-arcgis-9.3.1-pack-2/</link>
       <pubDate>Mon, 12 Jul 2010 12:36:49 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-12-esri-releases-service-arcgis-9-3-1-pack-2/</guid>
+      <guid>https://maprantala.com/2010/07/12/esri-releases-service-arcgis-9.3.1-pack-2/</guid>
       <description>&lt;p&gt;Right before the Users Conference, ESRI has released &lt;a href=&#34;http://blogs.esri.com/Dev/blogs/arcgisdesktop/archive/2010/07/09/ArcGIS-Desktop-9.3.1-Service-Pack-2.aspx&#34;&gt;ArcGIS Desktop 9.3.1 Service Pack 2&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Haven’t had a chance to see what bugs this addresses yet.&lt;/p&gt;
 </description>
@@ -378,9 +378,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
     
     <item>
       <title>ArcMap-Excel Join Error</title>
-      <link>https://maprantala.com/posts/2010-05-28-arcmap-excel-join-error/</link>
+      <link>https://maprantala.com/2010/05/28/arcmap-excel-join-error/</link>
       <pubDate>Fri, 28 May 2010 02:02:37 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-28-arcmap-excel-join-error/</guid>
+      <guid>https://maprantala.com/2010/05/28/arcmap-excel-join-error/</guid>
       <description>&lt;p&gt;Came across a new ArcMap bug today. A staff member was trying to join an Excel 2007 file (.xlsx) to a point shapefile in ArcMap and it did not appear to be working. She only had Office 2003 on her machine so I tried it on my spanking new machine that has 2007 installed. Same result–the fields get appended but they are all blank.&lt;/p&gt;
 &lt;p&gt;I discovered, however, that when I had the table open, if I switched form showing ALL records to only the selected, Poof!!! The values filled in. From there I was able to successfully export the data to a new shapefile that always showed the values.&lt;/p&gt;
 &lt;p&gt;I have an inkling that the file name, which contained space and other special characters, may have been a factor.&lt;/p&gt;

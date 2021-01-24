@@ -11,9 +11,9 @@
     
     <item>
       <title>Create Geologic Cross Sections&amp;#8211;eXacto Section v. 2.0, ArcMap 9.3</title>
-      <link>https://maprantala.com/posts/2010-07-23-create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/</link>
+      <link>https://maprantala.com/2010/07/23/create-geologic-cross-sections#8211exacto-section-v.-2.0-arcmap-9.3/</link>
       <pubDate>Fri, 23 Jul 2010 13:59:44 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-23-create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/</guid>
+      <guid>https://maprantala.com/2010/07/23/create-geologic-cross-sections#8211exacto-section-v.-2.0-arcmap-9.3/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://arcscripts.esri.com/details.asp?dbid=16734&#34;&gt;Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3&lt;/a&gt; written by Jennifer Carrell of the &lt;a href=&#34;http://www.isgs.illinois.edu/&#34;&gt;Illinois State Geological Survey&lt;/a&gt; is a handy tool for creating cross sections.&lt;/p&gt;
 &lt;p&gt;It requires ArcGIS and a 3D Analyst Extension license.&lt;/p&gt;
 &lt;p&gt;You can create profiles against multiple DEMs at once, define the vertical exaggeration, and have it include contact points.  It is well documented and comes with sample data to use with the tutorial.&lt;/p&gt;

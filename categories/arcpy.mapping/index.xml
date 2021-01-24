@@ -11,9 +11,9 @@
     
     <item>
       <title>Using ArcPy.Mapping to update Definition Queries.</title>
-      <link>https://maprantala.com/posts/2018-05-08-using-arcpy-mapping-to-update-definition-queries/</link>
+      <link>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</link>
       <pubDate>Tue, 08 May 2018 17:56:09 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2018-05-08-using-arcpy-mapping-to-update-definition-queries/</guid>
+      <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</guid>
       <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the “lazy” GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
 &lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the “.replace” settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;

@@ -11,9 +11,9 @@
     
     <item>
       <title>Data Extration Failed &amp;#8212; Reverse Proxy Time-out</title>
-      <link>https://maprantala.com/posts/2011-08-18-data-extration-failed/</link>
+      <link>https://maprantala.com/2011/08/18/data-extration-failed-#8212-reverse-proxy-time-out/</link>
       <pubDate>Thu, 18 Aug 2011 19:55:47 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-08-18-data-extration-failed/</guid>
+      <guid>https://maprantala.com/2011/08/18/data-extration-failed-#8212-reverse-proxy-time-out/</guid>
       <description>&lt;p&gt;Testing one of our geodata services, we discovered that it allowed us to extract a portion of our feature class but when we tried to extract the entire data set, we received this Data Extraction error: Data extraction failed. Proxy or Gateway Server did not allow the URL. Check with your LAN administrator that Proxy or Gateway server is configured to allow the URL.&lt;/p&gt;
 &lt;p&gt;The fact that I was able to extract a portion of the data and I could see the entire geodatabase get made and zipped led me to believe it was more of time-out issue.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;

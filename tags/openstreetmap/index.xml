@@ -11,9 +11,9 @@
     
     <item>
       <title>ArcBruTile</title>
-      <link>https://maprantala.com/posts/2010-09-09-arcbrutile/</link>
+      <link>https://maprantala.com/2010/09/09/arcbrutile/</link>
       <pubDate>Thu, 09 Sep 2010 14:38:46 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-09-arcbrutile/</guid>
+      <guid>https://maprantala.com/2010/09/09/arcbrutile/</guid>
       <description>&lt;p&gt;Stumbled across &lt;a href=&#34;http://arcbrutile.codeplex.com/&#34;&gt;ArcBruTile&lt;/a&gt;, an ArcMap application that allows you to display map tile services–such as &lt;a href=&#34;http://www.openstreetmap.org/&#34;&gt;OpenStreetMap&lt;/a&gt;, &lt;a href=&#34;http://maps.google.com/&#34;&gt;Google Maps&lt;/a&gt;, &lt;a href=&#34;http://www.bing.com/maps/&#34;&gt;Bing&lt;/a&gt;, &lt;a href=&#34;http://www.spatialcloud.com/&#34;&gt;Spatial Cloud&lt;/a&gt;, and &lt;a href=&#34;http://wiki.osgeo.org/wiki/Tile_Map_Service_Specification&#34;&gt;Tile Map Service&lt;/a&gt; (TMS)–in your ArcMap documents.   It works pretty well from my preliminary testing of it.   I have found that at times that the graphical tiles are distorted but I am guessing it is because they are optimized for display in a specific projection, at specific scales and, in ArcMap, you can use any projection/scale combination you want.&lt;/p&gt;
 &lt;p&gt;This is a free, open-source project that is still in Beta but definitely an application I plan to keep an eye on.  As with any open-source project, the cool thing is the code is available for you to look at, learn from, and hopefully contribute to.&lt;/p&gt;
 </description>
@@ -21,9 +21,9 @@
     
     <item>
       <title>Hogeweg: ArcGIS Editor for OpenStreetMap</title>
-      <link>https://maprantala.com/posts/2010-07-07-hogeweg-arcgis-editor-for-openstreetmap/</link>
+      <link>https://maprantala.com/2010/07/07/hogeweg-arcgis-editor-for-openstreetmap/</link>
       <pubDate>Wed, 07 Jul 2010 19:10:35 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-07-hogeweg-arcgis-editor-for-openstreetmap/</guid>
+      <guid>https://maprantala.com/2010/07/07/hogeweg-arcgis-editor-for-openstreetmap/</guid>
       <description>&lt;p&gt;As someone who lives in the boon-docks whose street (both my current and previous one) does not appear in the data for either &lt;a href=&#34;http://www.navteq.com/&#34;&gt;NAVTEQ&lt;/a&gt; or &lt;a href=&#34;http://www.teleatlas.com/&#34;&gt;TeleAtlas&lt;/a&gt; and someone who used both of those data sets extensively in his previous job, I’ve watched OpenStreetMap for awhile, although have not contributed.&lt;/p&gt;
 &lt;p&gt;Marten Hogeweg, &lt;!-- raw HTML omitted --&gt;ArcGIS Server Geoportal Extension Product Manager, ESRI announce in his blogs an &lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://martenhogeweg.blogspot.com/2010/07/announcing-arcgis-editor-for.html&#34;&gt;ArcGIS Editor for OpenStreetMap&lt;/a&gt;.  Sounds like a great idea, giving GIS professions–some whom have the source materials the ability to easily contribute should only help the project.&lt;/p&gt;
 &lt;p&gt;Unfortunately, it is only available at 10.0 but that gives me another reason to install it on a virtual machine and start playing more.&lt;/p&gt;

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Friday Fave: Geodatabase Geek – Node Dangles</title>
+<meta name="description" content="This Friday Fave is more for utility than pleasure. Unfortunately, I have been working to determine why my views and query layers perform so much worse than directly …">
+<meta name="created" content="2014-05-02T05:02:12-0500">
+<meta name="modified" content="2014-05-02T05:02:12-0500">
+<meta name="author" content="Matt">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="Friday Fave: Geodatabase Geek">
+<meta property="og:url" content="https://maprantala.com/2014/05/02/friday-fave-geodatabase-geek/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/2014/05/02/friday-fave-geodatabase-geek/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Friday Fave: Geodatabase Geek",
+    "datePublished": "2014-05-02T05:02:12-05:00",
+    "dateModified": "2014-05-02T05:02:12-05:00",
+    "url" : "https://maprantala.com/2014/05/02/friday-fave-geodatabase-geek/",
+    "description": "This Friday Fave is more for utility than pleasure. Unfortunately, I have been working to determine why my views and query layers perform so much worse than directly …",
+    "author": {
+      "@type": "Person",
+      "name": "Matt"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title ">Friday Fave: Geodatabase Geek</h1>
+</header>
+<div class="content">
+<p>This <a href="http://maprantala.com/category/friday-fave/">Friday Fave</a> is more for utility than pleasure.</p>
+<p>Unfortunately, I have been working to determine why my views and query layers perform so much worse than directly accessing my feature class.</p>
+<p>My Googling led me to <!-- raw HTML omitted -->Geodatabase Geek<!-- raw HTML omitted -->, by Trevor Hart, <!-- raw HTML omitted -->Eagle Technology Group Ltd<!-- raw HTML omitted -->.  Trevor has some real good information about Geodatabases and also  gave a good lightening talk on <a href="http://video.esri.com/watch/2481/usage-reporting-on-arcgis-101-for-server">Usage Reporting on ArcGIS 10.1 for Server </a>at the 2013 ESRI International Developer’s Conference.</p>
+<p>One tool he pointed out was <!-- raw HTML omitted -->Mxdperfstat<!-- raw HTML omitted --> for benchmarking the performance of your MXD. Trevor used it to compare the performance of a <!-- raw HTML omitted -->Feature Class vs Query Layer vs Spatial View<!-- raw HTML omitted -->. While the official version is available for ArcGIS 9.3 through 10.2, I do want to point out <!-- raw HTML omitted -->Hussein Nasser’s 10.1 version<!-- raw HTML omitted --> which he put out before the official 10.1 version came out (it’s not really a version, more of a work-around but I like his ingenuity).</p>
+<p>My results were significantly different on our 10.0 database server, the spatial view I was testing was much slower.  The query for both the spatial view and query layer was simply “Select * from <em>featureclass</em>”</p>
+<p>So not sure what to make of the performance yet, I’ve got a spatial index made so not sure what else I can try.<!-- raw HTML omitted --></p>
+<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2014/05/MGSDB1.png"><!-- raw HTML omitted --></a><!-- raw HTML omitted -->ArcSDE 10.0 Performance<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p> </p>
+
+
+</div>
+</article>
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

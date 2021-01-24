@@ -11,9 +11,9 @@
     
     <item>
       <title>WordPress Permalinks Snafu</title>
-      <link>https://maprantala.com/posts/2019-01-21-wordpress-permalinks-snafu/</link>
+      <link>https://maprantala.com/2019/01/21/wordpress-permalinks-snafu/</link>
       <pubDate>Mon, 21 Jan 2019 05:19:03 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2019-01-21-wordpress-permalinks-snafu/</guid>
+      <guid>https://maprantala.com/2019/01/21/wordpress-permalinks-snafu/</guid>
       <description>&lt;p&gt;Using a free &lt;!-- raw HTML omitted --&gt;StatCounter.com&lt;!-- raw HTML omitted --&gt; add-in, I get weekly emails showing the number of visitors to this blog. During the summer, the numbers plummeted. At the time, I thought it had to do with Google/Chrome requiring https.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;Luckily, HostGator (disclosure: I’m working on becoming a HostGator affiliate), who I use to host this blog and a few other websites, provided free https certificates for all of my sites. So I made sure that &lt;a href=&#34;https://MapRantala.com&#34;&gt;https://MapRantala.com&lt;/a&gt; worked and thought the numbers would rebound.&lt;/p&gt;
@@ -30,9 +30,9 @@
     
     <item>
       <title>Quick &amp;#038; Dirty: REST calls via python</title>
-      <link>https://maprantala.com/posts/2018-08-24-quick-dirty-rest-calls-via-python/</link>
+      <link>https://maprantala.com/2018/08/24/quick-#038-dirty-rest-calls-via-python/</link>
       <pubDate>Fri, 24 Aug 2018 18:11:30 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2018-08-24-quick-dirty-rest-calls-via-python/</guid>
+      <guid>https://maprantala.com/2018/08/24/quick-#038-dirty-rest-calls-via-python/</guid>
       <description>&lt;p&gt;Was sharing a python script with a php developer to illustrate how a couple of requests can be made to an ArcGIS REST endpoint.&lt;/p&gt;
 &lt;p&gt;Nothing fancy–one gets the data for one record, one gets data for all records, and the final gets the data for the record that intersects a point.&lt;/p&gt;
 &lt;p&gt;The only thing to note is that the original version that I shared gets a token because the service it uses is secured. I commented out the routine to get a token and just substituted in a blank string and pointed the code at one of esri’s sample services at https://sampleserver6.arcgisonline.com/arcgis/.&lt;/p&gt;
@@ -47,9 +47,9 @@
     
     <item>
       <title>Forcing ArcGIS Online to Update Feature Layer Information</title>
-      <link>https://maprantala.com/posts/2018-06-22-forcing-arcgis-online-to-update-feature-layer-information/</link>
+      <link>https://maprantala.com/2018/06/22/forcing-arcgis-online-to-update-feature-layer-information/</link>
       <pubDate>Fri, 22 Jun 2018 20:26:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2018-06-22-forcing-arcgis-online-to-update-feature-layer-information/</guid>
+      <guid>https://maprantala.com/2018/06/22/forcing-arcgis-online-to-update-feature-layer-information/</guid>
       <description>&lt;p&gt;Because we use ArcGIS Online Web Maps in our daily work-flows, I created an AGO group that contains Feature Layers that are links to our self-hosted ArcGIS Server services. This way, users can quickly add data from our ArcGIS Server Site and not have to look up URLs/Usernames/Passwords (I’ve save the username/password as part of the ArcGIS Online service when appropriate).&lt;/p&gt;
 &lt;p&gt;But I’ve had a problem where if I change the service, the changes are not reflected in the AGO Feature Layer for that service and I have to monkey about to get the changes to migrate to the maps.&lt;/p&gt;
 &lt;p&gt;Finally annoyed with doing that for the Xth time, I decided to see if I could get the feature service information to refresh automatically. Documentation search found nothing; call in to tech support–still waiting. While experimenting, however, I found that newer Feature Layer I added this way do actually update when I made changes. WTH?!&lt;/p&gt;
@@ -66,9 +66,9 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
     
     <item>
       <title>Using ArcPy.Mapping to update Definition Queries.</title>
-      <link>https://maprantala.com/posts/2018-05-08-using-arcpy-mapping-to-update-definition-queries/</link>
+      <link>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</link>
       <pubDate>Tue, 08 May 2018 17:56:09 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2018-05-08-using-arcpy-mapping-to-update-definition-queries/</guid>
+      <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</guid>
       <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the “lazy” GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
 &lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the “.replace” settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -80,9 +80,9 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
     
     <item>
       <title>ArcToolbox Tool: Add [ST_CON_ABR] to Hennepin County, MN Centerlines</title>
-      <link>https://maprantala.com/posts/2017-10-04-arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</link>
+      <link>https://maprantala.com/2017/10/04/arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</link>
       <pubDate>Wed, 04 Oct 2017 22:17:11 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2017-10-04-arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</guid>
+      <guid>https://maprantala.com/2017/10/04/arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</guid>
       <description>&lt;p&gt;One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a “recover-our-cost” mentality to more of an “Open Data”. Minnesota, for example, has launched their &lt;!-- raw HTML omitted --&gt;Geospatial Commons&lt;!-- raw HTML omitted --&gt; as a platform for sharing data.&lt;/p&gt;
 &lt;p&gt;And while getting free, authoritative data is awesome, it can leave you in a bind if the structure of the data changes. Sometime between April and September, Hennepin County, Minnesota, changed the schema of their &lt;!-- raw HTML omitted --&gt;publicly available street centerlines data&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
 &lt;p&gt;The data used to have both a full, concatenated street name field ([ST_CONCAT]) and an abbreviated version ([ST_CON_ABR]). A record might have “James Lofton Avenue North” and “James Lofton Ave N”, respectively, in these two fields. The abbreviated version was nice for labeling but it disappeared from the most recent updates.&lt;/p&gt;
@@ -99,9 +99,9 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
     
     <item>
       <title>ArcGIS Pro 2.0 Migration Overview</title>
-      <link>https://maprantala.com/posts/2017-08-07-arcgis-pro-2-0-migration-overview/</link>
+      <link>https://maprantala.com/2017/08/07/arcgis-pro-2.0-migration-overview/</link>
       <pubDate>Mon, 07 Aug 2017 19:48:08 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2017-08-07-arcgis-pro-2-0-migration-overview/</guid>
+      <guid>https://maprantala.com/2017/08/07/arcgis-pro-2.0-migration-overview/</guid>
       <description>&lt;p&gt;In April I started a new position at a company that had no existing GIS.&lt;/p&gt;
 &lt;p&gt;Nothing.&lt;/p&gt;
 &lt;p&gt;There was a definite need for GIS and some GIS-type functions were occuring but basically when I started, I had an &lt;!-- raw HTML omitted --&gt;ArcGIS Enterprise&lt;!-- raw HTML omitted --&gt; license and a mess of KML files.&lt;/p&gt;
@@ -127,9 +127,9 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
     
     <item>
       <title>Esri Web AppBuilder 2.4, Empty Basemap Gallery Follow-Up</title>
-      <link>https://maprantala.com/posts/2017-08-06-esri-web-appbuilder-2-4-empty-basemap-gallery-follow-up/</link>
+      <link>https://maprantala.com/2017/08/06/esri-web-appbuilder-2.4-empty-basemap-gallery-follow-up/</link>
       <pubDate>Sun, 06 Aug 2017 10:12:07 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2017-08-06-esri-web-appbuilder-2-4-empty-basemap-gallery-follow-up/</guid>
+      <guid>https://maprantala.com/2017/08/06/esri-web-appbuilder-2.4-empty-basemap-gallery-follow-up/</guid>
       <description>&lt;p&gt;A while ago I &lt;!-- raw HTML omitted --&gt;posted &lt;!-- raw HTML omitted --&gt;a work-around for a problem I was having with a &lt;!-- raw HTML omitted --&gt;Web AppBuilder&lt;!-- raw HTML omitted --&gt; application. Working with Esri tech support, we determined what I was doing to cause the problem.&lt;/p&gt;
 &lt;p&gt;In my config.json, I was using a relative path to the proxy. Note that I had the proxy as a separate application at the root level of our domain because I intended to have a shared proxy for all of our applications instead of individual ones. So the WAB application would be using &lt;a href=&#34;http://ourarcgisdomain.com/proxy/proxy.ashx&#34;&gt;http://ourarcgisdomain.com/proxy/proxy.ashx&lt;/a&gt;.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -145,9 +145,9 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
     
     <item>
       <title>Esri Web AppBuilder 2.4, Empty Basemap Gallery</title>
-      <link>https://maprantala.com/posts/2017-04-10-esri-web-appbuilder-2-4-empty-basemap-gallery/</link>
+      <link>https://maprantala.com/2017/04/10/esri-web-appbuilder-2.4-empty-basemap-gallery/</link>
       <pubDate>Mon, 10 Apr 2017 20:08:37 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2017-04-10-esri-web-appbuilder-2-4-empty-basemap-gallery/</guid>
+      <guid>https://maprantala.com/2017/04/10/esri-web-appbuilder-2.4-empty-basemap-gallery/</guid>
       <description>&lt;p&gt;I recently downloaded Web AppBuilder 2.4, Developer’s Edition and built a quick &amp;amp; dirty app. For some reason, it worked fine in Web AppBuilder but once I deployed it, no basemaps would show in the B&lt;a href=&#34;http://doc.arcgis.com/en/web-appbuilder/create-apps/widget-basemap.htm&#34;&gt;aseman Gallery widget&lt;/a&gt;, it would just spin, spin, spin.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2017/04/BasemapGallery.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Digging around, I found some &lt;a href=&#34;https://geonet.esri.com/thread/118906&#34;&gt;old posts&lt;/a&gt; where users were experiencing similar problems but none of the solution resulted in a great solution. I was able to get it to work by listing the basemaps individually in the config_BasemapGallery.json file but I that was more of a work-around. Notice in the thumbnailUrl, I have to put the full path to the thumbnails. Note that for brevity’s sake, I’m only showing one of the basemaps in this sample.&lt;/p&gt;
@@ -182,9 +182,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>2016 Grandma&amp;#8217;s Marathon Map</title>
-      <link>https://maprantala.com/posts/2016-05-16-2016-grandmas-marathon-map/</link>
+      <link>https://maprantala.com/2016/05/16/2016-grandma#8217s-marathon-map/</link>
       <pubDate>Mon, 16 May 2016 23:26:12 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2016-05-16-2016-grandmas-marathon-map/</guid>
+      <guid>https://maprantala.com/2016/05/16/2016-grandma#8217s-marathon-map/</guid>
       <description>&lt;p&gt;A Little Map I made for fun for Grandma’s Marathon ( &lt;a href=&#34;https://twitter.com/grandmasmara&#34;&gt;@grandmasmara&lt;/a&gt; ) or click &lt;!-- raw HTML omitted --&gt;Here &lt;!-- raw HTML omitted --&gt;for the stand-alone map.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
@@ -192,9 +192,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Converting MXD to Layer file in Arcpy</title>
-      <link>https://maprantala.com/posts/2015-08-14-converting-mxd-to-layer-file-in-arcpy/</link>
+      <link>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</link>
       <pubDate>Fri, 14 Aug 2015 10:01:54 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2015-08-14-converting-mxd-to-layer-file-in-arcpy/</guid>
+      <guid>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</guid>
       <description>&lt;p&gt;Working on doing some &lt;!-- raw HTML omitted --&gt;advanced ArcGIS server printing&lt;!-- raw HTML omitted --&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;!-- raw HTML omitted --&gt;Petr Krebs&lt;!-- raw HTML omitted --&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
 &lt;p&gt;I created an ArcGIS toolbox with two options–one to convert a single .mxd and one to batch convert an entire folder. To use it, make sure to have the EmptyGroup.lyr in the same directory as the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the raw code or &lt;!-- raw HTML omitted --&gt;git it&lt;!-- raw HTML omitted --&gt;:&lt;/p&gt;
@@ -207,9 +207,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Calling os.startfile and webbrowser.open from ArcGIS.</title>
-      <link>https://maprantala.com/posts/2014-12-31-calling-os-startfile-and-webbrowser-open-from-arcgis/</link>
+      <link>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis./</link>
       <pubDate>Wed, 31 Dec 2014 14:38:16 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2014-12-31-calling-os-startfile-and-webbrowser-open-from-arcgis/</guid>
+      <guid>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis./</guid>
       <description>&lt;p&gt;Recently I’ve created &lt;!-- raw HTML omitted --&gt;Python add-ins&lt;!-- raw HTML omitted --&gt; for data entry for our staff. Most of these have a toolbar with a “Help” button that opens a help file in .pdf format.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/12/Toolbar.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Sample python add-in toolbar.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(&lt;em&gt;path to help.pdf&lt;/em&gt;).&lt;/p&gt;
@@ -226,9 +226,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Quick &amp;#038; Dirty Arcpy: Verify a Coded Value Domain Code</title>
-      <link>https://maprantala.com/posts/2014-12-18-quick-dirty-arcpy-verify-a-coded-value-domain-code/</link>
+      <link>https://maprantala.com/2014/12/18/quick-#038-dirty-arcpy-verify-a-coded-value-domain-code/</link>
       <pubDate>Thu, 18 Dec 2014 22:32:11 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2014-12-18-quick-dirty-arcpy-verify-a-coded-value-domain-code/</guid>
+      <guid>https://maprantala.com/2014/12/18/quick-#038-dirty-arcpy-verify-a-coded-value-domain-code/</guid>
       <description>&lt;p&gt;I’ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a &lt;!-- raw HTML omitted --&gt;Coded Value Domain&lt;!-- raw HTML omitted --&gt; is valid.&lt;/p&gt;
 &lt;p&gt;The logic of the code is pretty straight-forward. Get a field’s domain and check that a potential value is one of the code values. The biggest “trick” in this code is that &lt;!-- raw HTML omitted --&gt;arcpy.da.ListDomains&lt;!-- raw HTML omitted --&gt;, which locates a field’s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.&lt;/p&gt;
 &lt;p&gt;A couple caveats about the code. It only returns True if a field exists, has a coded value domain, and the value tested is one of the (case-sensitive) valid codes. While I have an ArcToolbox tool to call it for illustration purposes, I’m only calling it from code so I wanted tight requirements.&lt;/p&gt;
@@ -242,9 +242,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Quick &amp;#038; Dirty ArcPy: Listing Data Sources</title>
-      <link>https://maprantala.com/posts/2014-12-03-quick-dirty-arcpy-listing-data-sources/</link>
+      <link>https://maprantala.com/2014/12/03/quick-#038-dirty-arcpy-listing-data-sources/</link>
       <pubDate>Wed, 03 Dec 2014 08:05:10 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2014-12-03-quick-dirty-arcpy-listing-data-sources/</guid>
+      <guid>https://maprantala.com/2014/12/03/quick-#038-dirty-arcpy-listing-data-sources/</guid>
       <description>&lt;p&gt;I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here’s the &lt;a href=&#34;https://github.com/MapRantala/Blog/blob/master/python/arcpy/20141203_ListDataSources/listDataSources.py&#34;&gt;bare-bones script&lt;/a&gt; I used instead:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -255,9 +255,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>ArcMap Field Calculator: Python Nulls (None)</title>
-      <link>https://maprantala.com/posts/2014-10-10-arcmap-field-calculator-python-nulls-none/</link>
+      <link>https://maprantala.com/2014/10/10/arcmap-field-calculator-python-nulls-none/</link>
       <pubDate>Fri, 10 Oct 2014 14:22:40 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-10-10-arcmap-field-calculator-python-nulls-none/</guid>
+      <guid>https://maprantala.com/2014/10/10/arcmap-field-calculator-python-nulls-none/</guid>
       <description>&lt;p&gt;I’ve been asked this twice this week, so thought I should post it. Calculating Null values in the ArcMap Field Calculator is easy, if you can remember the right work for “Null”. The proper word is “None” (without the quotes). Good luck &amp;amp; have a good weekend.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2014/10/None.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
@@ -265,9 +265,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Quick &amp;#038; Dirty arcpy: Compare Feature Class Table Schemas</title>
-      <link>https://maprantala.com/posts/2014-07-07-quick-dirty-arcpy-compare-feature-class-table-schemas/</link>
+      <link>https://maprantala.com/2014/07/07/quick-#038-dirty-arcpy-compare-feature-class-table-schemas/</link>
       <pubDate>Mon, 07 Jul 2014 05:06:18 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-07-07-quick-dirty-arcpy-compare-feature-class-table-schemas/</guid>
+      <guid>https://maprantala.com/2014/07/07/quick-#038-dirty-arcpy-compare-feature-class-table-schemas/</guid>
       <description>&lt;p&gt;I’m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some &lt;!-- raw HTML omitted --&gt;psycopg2&lt;!-- raw HTML omitted --&gt;).&lt;/p&gt;
 &lt;p&gt;One of the QC checks I’m doing at the end of this re-write is just verifying that the feature class schemas are the same (or that the differences are intended)  under the new process as they were in the old process.&lt;/p&gt;
 &lt;p&gt;And while ArcGIS does have a &lt;!-- raw HTML omitted --&gt;good tool&lt;!-- raw HTML omitted --&gt; for this, there were a couple tweaks I wanted to make. Most notably, I wanted a list of fields that are not in both feature classes.&lt;/p&gt;
@@ -282,9 +282,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Garmin GPX to Shapefile (SHP) conversion GPX2Shp.py</title>
-      <link>https://maprantala.com/posts/2014-05-16-garmin-gpx-to-shapefile-shp-conversion-gpx2shp-py/</link>
+      <link>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</link>
       <pubDate>Fri, 16 May 2014 21:11:20 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-05-16-garmin-gpx-to-shapefile-shp-conversion-gpx2shp-py/</guid>
+      <guid>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</guid>
       <description>&lt;p&gt;I mentioned using &lt;!-- raw HTML omitted --&gt;Tapiriik&lt;!-- raw HTML omitted --&gt; to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .&lt;!-- raw HTML omitted --&gt;GPX to shapefiles&lt;!-- raw HTML omitted --&gt; that worked but none seemed to recognize my heart rate data.&lt;/p&gt;
 &lt;p&gt;The trick is Garmin extends the GPX specification to incorporate the heart rate:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -310,9 +310,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Zipping a Shapefile from ArcCatalog</title>
-      <link>https://maprantala.com/posts/2014-05-06-zipping-a-shapefile-from-arccatalog/</link>
+      <link>https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/</link>
       <pubDate>Tue, 06 May 2014 05:42:04 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-05-06-zipping-a-shapefile-from-arccatalog/</guid>
+      <guid>https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/</guid>
       <description>&lt;p&gt;Back in 2010, I posted a &lt;!-- raw HTML omitted --&gt;python script &lt;!-- raw HTML omitted --&gt;and an &lt;!-- raw HTML omitted --&gt;ArcToolbox&lt;!-- raw HTML omitted --&gt; tool for zipping a shapefile.&lt;/p&gt;
 &lt;p&gt;Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn’t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from &lt;!-- raw HTML omitted --&gt;Github&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
 &lt;p&gt;The guts of the code is here, though:&lt;/p&gt;
@@ -325,9 +325,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Friday Fave: Geodatabase Geek</title>
-      <link>https://maprantala.com/posts/2014-05-02-friday-fave-geodatabase-geek/</link>
+      <link>https://maprantala.com/2014/05/02/friday-fave-geodatabase-geek/</link>
       <pubDate>Fri, 02 May 2014 05:02:12 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-05-02-friday-fave-geodatabase-geek/</guid>
+      <guid>https://maprantala.com/2014/05/02/friday-fave-geodatabase-geek/</guid>
       <description>&lt;p&gt;This &lt;a href=&#34;http://maprantala.com/category/friday-fave/&#34;&gt;Friday Fave&lt;/a&gt; is more for utility than pleasure.&lt;/p&gt;
 &lt;p&gt;Unfortunately, I have been working to determine why my views and query layers perform so much worse than directly accessing my feature class.&lt;/p&gt;
 &lt;p&gt;My Googling led me to &lt;!-- raw HTML omitted --&gt;Geodatabase Geek&lt;!-- raw HTML omitted --&gt;, by Trevor Hart, &lt;!-- raw HTML omitted --&gt;Eagle Technology Group Ltd&lt;!-- raw HTML omitted --&gt;.  Trevor has some real good information about Geodatabases and also  gave a good lightening talk on &lt;a href=&#34;http://video.esri.com/watch/2481/usage-reporting-on-arcgis-101-for-server&#34;&gt;Usage Reporting on ArcGIS 10.1 for Server &lt;/a&gt;at the 2013 ESRI International Developer’s Conference.&lt;/p&gt;
@@ -341,9 +341,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Friday Fave: Tapiriik</title>
-      <link>https://maprantala.com/posts/2014-04-25-friday-fave-tapiriik/</link>
+      <link>https://maprantala.com/2014/04/25/friday-fave-tapiriik/</link>
       <pubDate>Fri, 25 Apr 2014 05:55:13 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-04-25-friday-fave-tapiriik/</guid>
+      <guid>https://maprantala.com/2014/04/25/friday-fave-tapiriik/</guid>
       <description>&lt;p&gt;This &lt;a href=&#34;http://maprantala.com/category/fun-maps/friday-fave/&#34;&gt;Friday Fave&lt;/a&gt; is a little bit different.&lt;/p&gt;
 &lt;p&gt;My interest in geospatial technologies (although we just called it GIS back then) largely because I wanted to measure my running routes more accurately and efficiently than the paper map &amp;amp; scrap of paper method I was using in the early 90s. When I was introduced to GIS, I knew what I was going to use it for.&lt;/p&gt;
 &lt;p&gt;Now that GPS technology is ubiquitous–I’m currently using four different GPS devices, at the same time, on my bike rides–I seldom have to use a map to measure my routes. I may still use &lt;!-- raw HTML omitted --&gt;MapMyRun.com&lt;!-- raw HTML omitted --&gt; to plan a route ahead of time if I’m running in a new area or trying to plan a loop of a certain distance but GPS has really made it so simple to just go out and run.&lt;/p&gt;
@@ -363,9 +363,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Quick &amp;#038; Dirty arcpy: Bulk Changing Field Values</title>
-      <link>https://maprantala.com/posts/2014-04-23-quick-dirty-arcpy-bulk-changing-field-values/</link>
+      <link>https://maprantala.com/2014/04/23/quick-#038-dirty-arcpy-bulk-changing-field-values/</link>
       <pubDate>Wed, 23 Apr 2014 05:18:24 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-04-23-quick-dirty-arcpy-bulk-changing-field-values/</guid>
+      <guid>https://maprantala.com/2014/04/23/quick-#038-dirty-arcpy-bulk-changing-field-values/</guid>
       <description>&lt;p&gt;In mapping cross sections, our geologists often find themselves renaming their stratigraphic units midway, or at the end, of creating multiple cross sections.  This can cause a situation where we need to change multiple values in multiple fields in multiple feature classes–a situation that can get messy very fast.&lt;/p&gt;
 &lt;p&gt;Perfect situation for a quick &amp;amp; dirty arcpy script and, in this case, an &lt;a href=&#34;https://github.com/MapRantala/Blog&#34;&gt;ArcToolbox tool that can be downloaded&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This tool will change all feature classes in the O:\clay_cga\sand-distribution_model\dnrPackages\stratlines directory.&lt;/p&gt;
@@ -387,9 +387,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Friday Fave: Custom Maps App for Android</title>
-      <link>https://maprantala.com/posts/2014-04-18-friday-fave-custom-maps-app-for-android/</link>
+      <link>https://maprantala.com/2014/04/18/friday-fave-custom-maps-app-for-android/</link>
       <pubDate>Fri, 18 Apr 2014 06:11:58 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-04-18-friday-fave-custom-maps-app-for-android/</guid>
+      <guid>https://maprantala.com/2014/04/18/friday-fave-custom-maps-app-for-android/</guid>
       <description>&lt;p&gt;I admit, I love picking up freebie maps. Whether it is from the front desk of a hotel or from the bicycle shop, there is a certain appeal to seeing what people put on maps. I have maps organic orchards, breweries, &lt;!-- raw HTML omitted --&gt;Minnesota authors&lt;!-- raw HTML omitted --&gt;, rails to trails, zoos, fictional places, race maps, and a variety of other things that someone felt the need to cartographize.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://thefriends.org/wp-content/uploads/2012/12/mn_writers_on_the_map_web_download.pdf&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://thefriends.org/&#34;&gt;http://thefriends.org/&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;So, with all these paper maps lying around, I was thrilled to find &lt;!-- raw HTML omitted --&gt;Custom &lt;!-- raw HTML omitted --&gt;Maps&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;, a free app on&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Google Play&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
@@ -405,9 +405,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Friday Fave: Cartozia Tales</title>
-      <link>https://maprantala.com/posts/2014-04-11-friday-fave-cartozia-tales/</link>
+      <link>https://maprantala.com/2014/04/11/friday-fave-cartozia-tales/</link>
       <pubDate>Fri, 11 Apr 2014 06:15:02 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-04-11-friday-fave-cartozia-tales/</guid>
+      <guid>https://maprantala.com/2014/04/11/friday-fave-cartozia-tales/</guid>
       <description>&lt;p&gt;Obviously Cartographers belong in the same category as other superheroes like Superman, Batman, and Spiderman and we finally have a our own comic book to prove it.&lt;/p&gt;
 &lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Cartozia Tales&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; is a collaborative effort of nine indy artists with two guest artist each issue.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/Cartozia.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -418,9 +418,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Friday Fave: Public Workout Maps</title>
-      <link>https://maprantala.com/posts/2014-04-05-friday-fave-public-workout-maps/</link>
+      <link>https://maprantala.com/2014/04/05/friday-fave-public-workout-maps/</link>
       <pubDate>Sat, 05 Apr 2014 05:15:31 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-04-05-friday-fave-public-workout-maps/</guid>
+      <guid>https://maprantala.com/2014/04/05/friday-fave-public-workout-maps/</guid>
       <description>&lt;p&gt;When I first found out about GIS, the first application that came to mind was using it to map my running routes. At that time, I was using paper maps and scraps of paper to measure how far I was running each day. GIS obviously offered a better method.&lt;/p&gt;
 &lt;p&gt;Almost twenty years later, GPS has become so common place that I think we have four or five devices in our household that have GPS capabilities and measuring my runs has become ridiculously simple.&lt;/p&gt;
 &lt;p&gt;Given that background, you can understand why I love projects like &lt;!-- raw HTML omitted --&gt;this project&lt;!-- raw HTML omitted --&gt; by Nikita Barsukov, who compiled publicly available data from &lt;!-- raw HTML omitted --&gt;Endomondo&lt;!-- raw HTML omitted --&gt; and created maps of public running workout tracks for a variety of European Cities, including this sample from Helsinki.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
@@ -433,9 +433,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>arcpy.ListFeatureClasses() Bug</title>
-      <link>https://maprantala.com/posts/2014-04-02-arcpy-listfeatureclasses-bug/</link>
+      <link>https://maprantala.com/2014/04/02/arcpy.listfeatureclasses-bug/</link>
       <pubDate>Wed, 02 Apr 2014 18:59:06 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-04-02-arcpy-listfeatureclasses-bug/</guid>
+      <guid>https://maprantala.com/2014/04/02/arcpy.listfeatureclasses-bug/</guid>
       <description>&lt;p&gt;I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy’s &lt;!-- raw HTML omitted --&gt;ListFeatureClasses&lt;!-- raw HTML omitted --&gt; request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.&lt;/p&gt;
 &lt;p&gt;Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.&lt;/p&gt;
 &lt;p&gt;After discovering missing data in our backups, I reconstructed what happened and found this bug. Below is arcpy code that iterates through the feature datasets in a geodatabase and lists the feature classes:&lt;/p&gt;
@@ -457,9 +457,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>ArcMap Field Calculator: Calculating Running Total with arcpy</title>
-      <link>https://maprantala.com/posts/2014-02-13-arcmap-field-calculator-calculating-running-total-with-arcpy/</link>
+      <link>https://maprantala.com/2014/02/13/arcmap-field-calculator-calculating-running-total-with-arcpy/</link>
       <pubDate>Thu, 13 Feb 2014 06:06:37 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2014-02-13-arcmap-field-calculator-calculating-running-total-with-arcpy/</guid>
+      <guid>https://maprantala.com/2014/02/13/arcmap-field-calculator-calculating-running-total-with-arcpy/</guid>
       <description>&lt;p&gt;I had a user with a series of GPS points (that were in chronological order) that they wanted to know the accumulated distance from the start to each point in their shapefile. First, we calculated the distance from each point to the previous point into a field called [DistFt].&lt;/p&gt;
 &lt;p&gt;Then, we hacked out this quick python function to accumulate the total distance in Arcmap’s Field Calculator:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -472,9 +472,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>ArcMap Maximum Legend Items from a ArcGIS Server service</title>
-      <link>https://maprantala.com/posts/2014-02-11-arcmap-maximum-legend-items-from-a-arcgis-server-service/</link>
+      <link>https://maprantala.com/2014/02/11/arcmap-maximum-legend-items-from-a-arcgis-server-service/</link>
       <pubDate>Tue, 11 Feb 2014 06:02:42 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2014-02-11-arcmap-maximum-legend-items-from-a-arcgis-server-service/</guid>
+      <guid>https://maprantala.com/2014/02/11/arcmap-maximum-legend-items-from-a-arcgis-server-service/</guid>
       <description>&lt;p&gt;Recently we took a call from a user who could not see the legend for one of the feature classes in one of our services. (Precambrian Bedrock in &lt;a href=&#34;http://mgsweb2.mngs.umn.edu/arcgis/services/state/mnbdrkgeology&#34;&gt;http://mgsweb2.mngs.umn.edu/arcgis/services/state/mnbdrkgeology&lt;/a&gt; )&lt;/p&gt;
 &lt;p&gt;After trying some standard things–restarting the service, checking the source .MXD–I turned to The Google Machine and quickly found help from ESRI: &lt;a href=&#34;http://support.esri.com/zh-cn/knowledgebase/techarticles/detail/33741&#34;&gt;http://support.esri.com/zh-cn/knowledgebase/techarticles/detail/33741&lt;/a&gt; .&lt;/p&gt;
 &lt;p&gt;Turns out the default number of legend items ArcMap will display from an ArcGIS Server map service layer is 100 and we had 102 in the problematic layer. (I plead innocence, blame the geologist for needing that many categories).&lt;/p&gt;
@@ -496,9 +496,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>Arcpy: Check if a field exists</title>
-      <link>https://maprantala.com/posts/2013-09-23-arcpy-check-if-a-field-exists/</link>
+      <link>https://maprantala.com/2013/09/23/arcpy-check-if-a-field-exists/</link>
       <pubDate>Mon, 23 Sep 2013 06:47:36 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2013-09-23-arcpy-check-if-a-field-exists/</guid>
+      <guid>https://maprantala.com/2013/09/23/arcpy-check-if-a-field-exists/</guid>
       <description>&lt;p&gt;I was helping a co-worker who needed to check if a field exists in their arcpy script. Since we were located at their computer, I thought I would just do a quick Google search and pull the code off this blog. Seemed logical since I the original purpose was exactly that—to serve as a handy, public place to store code snippets that I use &amp;amp; that others might find handy.&lt;/p&gt;
 &lt;p&gt;Anyhow, my Google Search on “&lt;a href=&#34;https://www.google.com/#q=Node+Dangles+field+Exists&#34;&gt;Node Dangles field Exists&lt;/a&gt;” came up with a &lt;a href=&#34;http://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;9.3 script&lt;/a&gt; to check if field index exists. And I also have a &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;10.0 version&lt;/a&gt; but did not come up with the field exists snippet. So here it is:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2013/09/image2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -511,9 +511,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>ArcMap Field Calculator: Number of parts in multi-part feature</title>
-      <link>https://maprantala.com/posts/2013-09-05-arcmap-field-calculator/</link>
+      <link>https://maprantala.com/2013/09/05/arcmap-field-calculator-number-of-parts-in-multi-part-feature/</link>
       <pubDate>Thu, 05 Sep 2013 14:04:40 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2013-09-05-arcmap-field-calculator/</guid>
+      <guid>https://maprantala.com/2013/09/05/arcmap-field-calculator-number-of-parts-in-multi-part-feature/</guid>
       <description>&lt;p&gt;In the last week, I have looked for multi-part features a couple of times. Today, I was looking for multi-part polygons after dealing with the fall-out of a case of Clip Gone Wild as shown below.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/09/image.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I have not found a way to write a query to find these but Field Calculator does allow you to calculate a field’s value to the number of parts.&lt;/p&gt;
@@ -524,9 +524,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>ArcSDE Tip: Finding an ArcSDE instance&amp;#8217;s port</title>
-      <link>https://maprantala.com/posts/2013-02-26-arcsde-tip-finding-an-arcsdeinstances-port/</link>
+      <link>https://maprantala.com/2013/02/26/arcsde-tip-finding-an-arcsde-instance#8217s-port/</link>
       <pubDate>Tue, 26 Feb 2013 05:25:03 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2013-02-26-arcsde-tip-finding-an-arcsdeinstances-port/</guid>
+      <guid>https://maprantala.com/2013/02/26/arcsde-tip-finding-an-arcsde-instance#8217s-port/</guid>
       <description>&lt;p&gt;One of my main tasks right now is to document many of the details of maintaining ArcSDE geodatabases so I anticipate having several blog posts on this topic that are re-writes of documents I am working on. I am presuming that the person will have no ArcSDE experience so I am documenting very detailed information.&lt;/p&gt;
 &lt;p&gt;Almost all of the ArcSDE commands require that you specify which instance (service/port) the command applies to by using the “-i” parameter.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/02/instanceparameter1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;ArcSDE Instance Parameter&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
@@ -542,9 +542,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>I&amp;#8217;m Back!</title>
-      <link>https://maprantala.com/posts/2013-02-24-im-back/</link>
+      <link>https://maprantala.com/2013/02/24/i#8217m-back/</link>
       <pubDate>Sun, 24 Feb 2013 11:04:35 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2013-02-24-im-back/</guid>
+      <guid>https://maprantala.com/2013/02/24/i#8217m-back/</guid>
       <description>&lt;p&gt;Ok, it has been to long since I last posted and I thank those few people who asked If I had suffered a Segmentation Violation or something.&lt;/p&gt;
 &lt;p&gt;By means of a brief explanation, I changed jobs last summer, going back to a previous employer in a very different role than what I’ve ever had before. It was a challenging and difficult and one that I had minimal success at but, in the end, didn’t work out. Mostly because I wasn’t a good fit for a variety of reasons including, not surprisingly, geography!  I was mostly tele-commuting because the office was two hours away. I really needed to be in the office more than I was and I wasn’t in a position to relocate.&lt;/p&gt;
 &lt;p&gt;During my time with that employer I was doing less technical stuff and just did not feel the urgency to be blogging.&lt;/p&gt;
@@ -556,9 +556,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>SDEINTERCEPT &amp;#038; SDEINTERCEPTLOC</title>
-      <link>https://maprantala.com/posts/2012-08-01-sdeintercept-sdeinterceptloc/</link>
+      <link>https://maprantala.com/2012/08/01/sdeintercept-#038-sdeinterceptloc/</link>
       <pubDate>Wed, 01 Aug 2012 07:17:41 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-08-01-sdeintercept-sdeinterceptloc/</guid>
+      <guid>https://maprantala.com/2012/08/01/sdeintercept-#038-sdeinterceptloc/</guid>
       <description>&lt;p&gt;Awhile ago, I had a ArcSDE problem that required &lt;a href=&#34;http://support.esri.com/en/&#34;&gt;ESRI technical support&lt;/a&gt; to help trouble-shoot. The problem was odd but was resolved by rebooting the server.&lt;br&gt;
 During the process, though, the support person had me set a couple of environment variables for logging SDE activity on the client machine.&lt;/p&gt;
 &lt;p&gt;The settings were SDEINTERCEPT and SDEINTERCEPTLOC.&lt;/p&gt;
@@ -573,9 +573,9 @@ During the process, though, the support person had me set a couple of environmen
     
     <item>
       <title>Unsupported Arc: &amp;#8220;Rebox&amp;#8221;ing or updating the extent of a feature class.</title>
-      <link>https://maprantala.com/posts/2012-06-05-unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class/</link>
+      <link>https://maprantala.com/2012/06/05/unsupported-arc-#8220rebox%238221ing-or-updating-the-extent-of-a-feature-class./</link>
       <pubDate>Tue, 05 Jun 2012 21:16:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-06-05-unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class/</guid>
+      <guid>https://maprantala.com/2012/06/05/unsupported-arc-#8220rebox%238221ing-or-updating-the-extent-of-a-feature-class./</guid>
       <description>&lt;p&gt;I’ve found that sometimes I can not find the answer to a question until I know the answer &amp;amp; then it becomes ridiculously easy to find the answer.&lt;/p&gt;
 &lt;p&gt;One small annoying thing that I never spent much time was when you delete features from a feature class making it significantly smaller but the envelope does not get re-sized so the zoom extent (still the original extent) is too large. This often happens to use when we convert tables to an XY theme and there are blank records–most of our data shows in Minnesota but there are some in Oklahoma (I think). Once we eliminate or correct the blank records, our data view still pops out to include a large section of the United States even though we only have data in Minnesota.&lt;/p&gt;
 &lt;p&gt;A long, long time ago, &lt;!-- raw HTML omitted --&gt;Workstation ArcInfo&lt;!-- raw HTML omitted --&gt; had a simple command, &lt;!-- raw HTML omitted --&gt;Rebox&lt;!-- raw HTML omitted --&gt;, for just this purpose (actually it still does, I just don’t get to use it anymore)–it shrunk the extent to the smallest rectangle required to enclose all the data. Up until today, I thought &lt;!-- raw HTML omitted --&gt;the request&lt;!-- raw HTML omitted --&gt; for this feature was completely ignored.&lt;/p&gt;
@@ -591,9 +591,9 @@ During the process, though, the support person had me set a couple of environmen
     
     <item>
       <title>Quick &amp;#038; Dirty python: Converting a text file to audio (.wav)</title>
-      <link>https://maprantala.com/posts/2012-05-31-quick-dirty-python-converting-a-text-file-to-audio-wav/</link>
+      <link>https://maprantala.com/2012/05/31/quick-#038-dirty-python-converting-a-text-file-to-audio-.wav/</link>
       <pubDate>Thu, 31 May 2012 23:12:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-05-31-quick-dirty-python-converting-a-text-file-to-audio-wav/</guid>
+      <guid>https://maprantala.com/2012/05/31/quick-#038-dirty-python-converting-a-text-file-to-audio-.wav/</guid>
       <description>&lt;p&gt;This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without any freeware that could handle the 53 page document–there are some cool websites that do text to mp3 like &lt;!-- raw HTML omitted --&gt;vozme &lt;!-- raw HTML omitted --&gt;and &lt;!-- raw HTML omitted --&gt;YAKiToMe&lt;!-- raw HTML omitted --&gt;! but they didn’t convert the whole document. I then found &lt;!-- raw HTML omitted --&gt;pyTTS&lt;!-- raw HTML omitted --&gt;, a python package that serves as a wrapper to the &lt;!-- raw HTML omitted --&gt;Microsoft Speech API (SAPI) &lt;!-- raw HTML omitted --&gt;, which has &lt;!-- raw HTML omitted --&gt;been in version 5 since 2000.&lt;!-- raw HTML omitted --&gt; But I didn’t easily find a version of pyTTS for python 2.6. So I decided to see if I could roll my own.&lt;/p&gt;
 &lt;p&gt;As it turns out, getting python to talk using SAPI is relatively easy. Reading a plain text file can be done in a few lines.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -607,9 +607,9 @@ During the process, though, the support person had me set a couple of environmen
     
     <item>
       <title>Quick &amp;#038; Dirty arcpy: Autopan ArcMap using arcpy</title>
-      <link>https://maprantala.com/posts/2012-05-02-quick-dirty-arcpy-autopan-arcmap-using-arcpy/</link>
+      <link>https://maprantala.com/2012/05/02/quick-#038-dirty-arcpy-autopan-arcmap-using-arcpy/</link>
       <pubDate>Wed, 02 May 2012 05:19:40 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-05-02-quick-dirty-arcpy-autopan-arcmap-using-arcpy/</guid>
+      <guid>https://maprantala.com/2012/05/02/quick-#038-dirty-arcpy-autopan-arcmap-using-arcpy/</guid>
       <description>&lt;p&gt;Question: How do I get ArcMap to automatically pan through an area.&lt;/p&gt;
 &lt;p&gt;As I mentioned in a &lt;a href=&#34;http://maprantala.com/2012/04/30/building-a-loc%E2%80%A6f-bing-imagery/&#34;&gt;previous post&lt;/a&gt;, I recently had the need to have ArcMap automatically pan through a project area. My first attempt was to print a series of data-driven pages (using a fishnet polygon layer as the index) this but that did not accomplish what I needed so I switched to arcpy, which made the task simple enough. Nothing special or tricky about this code, but just did not find it anywhere else.&lt;/p&gt;
 &lt;p&gt;The one thing to note is that I have a 1 second pause between pans–this was to allow image tiles to download. You will need to adjust the delay to meet your needs. &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120427_AutoPan.zip&#34;&gt;The toolbox and code can also be downloaded&lt;/a&gt;.&lt;/p&gt;
@@ -622,9 +622,9 @@ During the process, though, the support person had me set a couple of environmen
     
     <item>
       <title>Building a local, permanent cache of Bing Imagery.</title>
-      <link>https://maprantala.com/posts/2012-04-30-building-a-local-permanent-cache-of-bing-imagery/</link>
+      <link>https://maprantala.com/2012/04/30/building-a-local-permanent-cache-of-bing-imagery./</link>
       <pubDate>Mon, 30 Apr 2012 05:28:15 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-04-30-building-a-local-permanent-cache-of-bing-imagery/</guid>
+      <guid>https://maprantala.com/2012/04/30/building-a-local-permanent-cache-of-bing-imagery./</guid>
       <description>&lt;p&gt;I recently had an internal request to capture and store the Bing imagery for an area for future use. The user was interested in some specific images that were taken after a fire, making the ground surface-and certain geological features-much more visible. His concern was that in the future this imagery might get replaced with updated imagery taken when the vegetation has grown back.&lt;/p&gt;
 &lt;p&gt;Since it is unknown when/how this data might be used by us, we mostly wanted to capture it now &amp;amp; find a way to use it.&lt;/p&gt;
 &lt;p&gt;While we initiated the process of finding out what agency the data was available through, we also came up with a quick &amp;amp; dirty way to download the data.&lt;/p&gt;
@@ -638,9 +638,9 @@ During the process, though, the support person had me set a couple of environmen
     
     <item>
       <title>ArcMap Field Calculator: Identifying Unique Cases, Single Field</title>
-      <link>https://maprantala.com/posts/2012-04-28-arcmap-field-calculator-identifying-unique-cases-single-field/</link>
+      <link>https://maprantala.com/2012/04/28/arcmap-field-calculator-identifying-unique-cases-single-field/</link>
       <pubDate>Sat, 28 Apr 2012 05:55:34 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-04-28-arcmap-field-calculator-identifying-unique-cases-single-field/</guid>
+      <guid>https://maprantala.com/2012/04/28/arcmap-field-calculator-identifying-unique-cases-single-field/</guid>
       <description>&lt;p&gt;Seems like a lot of people are finding the ArcMap Field Calculator &lt;a href=&#34;http://maprantala.com/category/esri/arcmap-esri/field-calculator/&#34;&gt;examples&lt;/a&gt; that I have posted useful so I will make an effort to post more of them. Most posts are generated after I do something and think that others might want to know how to do it. (Or so I can go back and remember how I did something without re-inventing it).&lt;/p&gt;
 &lt;p&gt;Something I did today was create a field (!Case!) and then populated this with a unique identifier for each different value (case) that occurred in a different field (!Feature!).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Note: python’s &lt;em&gt;index&lt;/em&gt; statement is a 0-based search so the first case will have the value 0, the second will have 1, and so on. If you want to start the results at 1, you can make the last line: “return caseList.index(inValue) + 1”.&lt;/strong&gt;&lt;/p&gt;
@@ -653,9 +653,9 @@ During the process, though, the support person had me set a couple of environmen
     
     <item>
       <title>ArcMap Field Calculator: Identifying Unique Cases, Multiple Fields</title>
-      <link>https://maprantala.com/posts/2012-04-23-arcmap-field-calculator-identifying-unique-cases-multiple-fields/</link>
+      <link>https://maprantala.com/2012/04/23/arcmap-field-calculator-identifying-unique-cases-multiple-fields/</link>
       <pubDate>Mon, 23 Apr 2012 06:06:25 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-04-23-arcmap-field-calculator-identifying-unique-cases-multiple-fields/</guid>
+      <guid>https://maprantala.com/2012/04/23/arcmap-field-calculator-identifying-unique-cases-multiple-fields/</guid>
       <description>&lt;p&gt;You may have noticed that this post–&lt;a href=&#34;http://wp.me/pVrsJ-bf&#34;&gt;ArcMap Field Calculator: Identifying Unique Cases, Single Field&lt;/a&gt;–specifies “Single Field”. Yes, that was my version of a cliff-hanger post.&lt;/p&gt;
 &lt;p&gt;The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats “a” the same as “A”.&lt;/p&gt;
 &lt;p&gt;Today’s example groups records into different cases based off the values of two fields, !county_c! and !feature! and required only minor modifications.&lt;/p&gt;
@@ -682,9 +682,9 @@ During the process, though, the support person had me set a couple of environmen
     
     <item>
       <title>ArcMap Field Calculator: Beware of Integer Division!</title>
-      <link>https://maprantala.com/posts/2012-04-02-arcmap-field-calculator-beware-of-integer-division/</link>
+      <link>https://maprantala.com/2012/04/02/arcmap-field-calculator-beware-of-integer-division/</link>
       <pubDate>Mon, 02 Apr 2012 05:34:54 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-04-02-arcmap-field-calculator-beware-of-integer-division/</guid>
+      <guid>https://maprantala.com/2012/04/02/arcmap-field-calculator-beware-of-integer-division/</guid>
       <description>&lt;p&gt;Apparently, if you post one time about ArcMap field calculator, you’re bound to get additional questions.  After &lt;a href=&#34;http://maprantala.com/2012/03/28/arcmap-field-calculator-text-to-double/&#34;&gt;my recent post&lt;/a&gt; about using field calculator to convert text values to numeric, someone asked about a problem they were having with another calculation they were having.&lt;/p&gt;
 &lt;p&gt;The underlying problem was that python 2.6, which is installed with ArcGIS 10, &lt;a href=&#34;http://docs.python.org/release/2.6.7/library/stdtypes.html#numeric-types-int-float-long-complex&#34;&gt;uses integer division&lt;/a&gt; when both the numerator and denominator are integers. The result of integer division is an integer rounded towards negative infinity.&lt;/p&gt;
 &lt;p&gt;If you’re not aware of this (or forget) then you open yourself up to some unexpected results–they can be especially hard to catch if you are using it within a larger block of code.&lt;/p&gt;
@@ -699,9 +699,9 @@ During the process, though, the support person had me set a couple of environmen
     
     <item>
       <title>ArcMap Field Calculator: Text to Double</title>
-      <link>https://maprantala.com/posts/2012-03-28-arcmap-field-calculator-text-to-double/</link>
+      <link>https://maprantala.com/2012/03/28/arcmap-field-calculator-text-to-double/</link>
       <pubDate>Wed, 28 Mar 2012 05:23:32 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-03-28-arcmap-field-calculator-text-to-double/</guid>
+      <guid>https://maprantala.com/2012/03/28/arcmap-field-calculator-text-to-double/</guid>
       <description>&lt;p&gt;Received a request yesterday asking how to use the ArcMap Calculator to copy values from a Text field to a Double field using python syntax.  As any good blogger would do, I immediately thought, “Awesome! Someone’s question is the perfect topic for a new blog post”.&lt;/p&gt;
 &lt;p&gt;The python parser is actually pretty good at casting values on the fly so if the values in your text field (!Day! in my example) are valid values that can be converted to a Double value, it is as simple as just setting the formula to be the text field. In my example case, I wanted to copy the value from !Day! to !DecDay! so I set the formula to be DecDay = !Day!.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -723,9 +723,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>Domain Sorter Add-In Version 1.1</title>
-      <link>https://maprantala.com/posts/2012-03-21-domain-sorter-add-in-version-1-1/</link>
+      <link>https://maprantala.com/2012/03/21/domain-sorter-add-in-version-1.1/</link>
       <pubDate>Wed, 21 Mar 2012 18:19:03 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-03-21-domain-sorter-add-in-version-1-1/</guid>
+      <guid>https://maprantala.com/2012/03/21/domain-sorter-add-in-version-1.1/</guid>
       <description>&lt;p&gt;Almost &lt;a href=&#34;http://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/&#34;&gt;a year ago&lt;/a&gt;, I updated ERSI’s &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;Domain Sort code for VB 6&lt;/a&gt; to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had an open OLE connection. When I tested it, it turned out the reports were accurate.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/arccatalog.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I got around to adding in a Try-Catch around the offending chunk of code &amp;amp; it is now better than ever. You can download just the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/DomainSorter.esriAddIn&#34;&gt;Add-In&lt;/a&gt; or the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120321_DomainSort.zip&#34;&gt;Add-In with source code&lt;/a&gt; or get it from &lt;a href=&#34;http://resources.arcgis.com/gallery/file/arcobjects-net-api/details?entryID=B5E1BB12-1422-2418-34B7-D3A6908560FA&#34;&gt;ESRI’s ArcGIS Resource Center&lt;/a&gt;.&lt;/p&gt;
@@ -734,9 +734,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>Quicker &amp;#038; Cleaner python recursive folder search</title>
-      <link>https://maprantala.com/posts/2012-03-14-quicker-cleaner-python-recursive-folder-search/</link>
+      <link>https://maprantala.com/2012/03/14/quicker-#038-cleaner-python-recursive-folder-search/</link>
       <pubDate>Wed, 14 Mar 2012 17:28:59 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-03-14-quicker-cleaner-python-recursive-folder-search/</guid>
+      <guid>https://maprantala.com/2012/03/14/quicker-#038-cleaner-python-recursive-folder-search/</guid>
       <description>&lt;p&gt;As contributor of the day, &lt;a href=&#34;http://www.cleanstick.net/jason/&#34;&gt;Jason Scheirer&lt;/a&gt;, &lt;a href=&#34;http://maprantala.com/2012/03/13/quick-dirty-python-recursive-folder-search-2/#comments&#34;&gt;pointed out&lt;/a&gt;, python has a simple, direct way to browse through the subdirectories of a directory–&lt;a href=&#34;http://docs.python.org/library/os.html#os.walk&#34;&gt;os.walk&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Here is a bare-bones example of using it to print out the subdirectories in a path. The files variable of the 3-tuple is a list of files similar to the dirs variable that I loop through.&lt;/p&gt;
 &lt;p&gt;Thanks Jason for pointing out something I missed.&lt;/p&gt;
@@ -748,9 +748,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>Quick &amp;#038; Dirty python recursive folder search</title>
-      <link>https://maprantala.com/posts/2012-03-13-quick-dirty-python-recursive-folder-search-2/</link>
+      <link>https://maprantala.com/2012/03/13/quick-#038-dirty-python-recursive-folder-search/</link>
       <pubDate>Tue, 13 Mar 2012 15:55:55 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-03-13-quick-dirty-python-recursive-folder-search-2/</guid>
+      <guid>https://maprantala.com/2012/03/13/quick-#038-dirty-python-recursive-folder-search/</guid>
       <description>&lt;p&gt;Someone asked how to have python recursively search a folder structure. There may be a better way but this is how I typically do it–it basically starts with one directory and loops through the contents compiling a list of sub-directories as it goes through the contents.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2012/03/dirstalker.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -762,9 +762,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>ArcMap Field Calculator: ArcPy Date to Decimal Function</title>
-      <link>https://maprantala.com/posts/2011-10-06-field-calculator-arcpy-date-to-decimal-function/</link>
+      <link>https://maprantala.com/2011/10/06/arcmap-field-calculator-arcpy-date-to-decimal-function/</link>
       <pubDate>Thu, 06 Oct 2011 21:08:35 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-10-06-field-calculator-arcpy-date-to-decimal-function/</guid>
+      <guid>https://maprantala.com/2011/10/06/arcmap-field-calculator-arcpy-date-to-decimal-function/</guid>
       <description>&lt;p&gt;One of the standards in our databases is to store dates as 8-digit integer values in the format of yyyymmdd. This requires us to occasionally convert values from date fields into this format.&lt;/p&gt;
 &lt;p&gt;We can do this in the ArcMap Field Calculator using this arcpy function:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -775,9 +775,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>Data Extration Failed &amp;#8212; Reverse Proxy Time-out</title>
-      <link>https://maprantala.com/posts/2011-08-18-data-extration-failed/</link>
+      <link>https://maprantala.com/2011/08/18/data-extration-failed-#8212-reverse-proxy-time-out/</link>
       <pubDate>Thu, 18 Aug 2011 19:55:47 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-08-18-data-extration-failed/</guid>
+      <guid>https://maprantala.com/2011/08/18/data-extration-failed-#8212-reverse-proxy-time-out/</guid>
       <description>&lt;p&gt;Testing one of our geodata services, we discovered that it allowed us to extract a portion of our feature class but when we tried to extract the entire data set, we received this Data Extraction error: Data extraction failed. Proxy or Gateway Server did not allow the URL. Check with your LAN administrator that Proxy or Gateway server is configured to allow the URL.&lt;/p&gt;
 &lt;p&gt;The fact that I was able to extract a portion of the data and I could see the entire geodatabase get made and zipped led me to believe it was more of time-out issue.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -789,9 +789,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>ArcMap Field Calculator: Create a Unique ID</title>
-      <link>https://maprantala.com/posts/2011-07-28-using-arcpy-in-arcgis-10-field-calculater-to-create-a-unique-id/</link>
+      <link>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</link>
       <pubDate>Thu, 28 Jul 2011 20:08:13 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-07-28-using-arcpy-in-arcgis-10-field-calculater-to-create-a-unique-id/</guid>
+      <guid>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</guid>
       <description>&lt;p&gt;One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N.  In ArcView 3.x, the formula was simply “rec + 1” if I wanted to start with the number 1.&lt;/p&gt;
 &lt;p&gt;In ArcGIS, the process got a little more complex–you had to write a little VBA in Field Calculator as &lt;a href=&#34;http://support.esri.com/en/knowledgebase/techarticles/detail/27427&#34;&gt;described by ESRI&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;While this option still exists in ArcGIS 10, I believe it will disappear when 10.1 comes out and VBA support is completely eliminated.  But it is doable using Python which will continue to be supported.&lt;/p&gt;
@@ -808,9 +808,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>ArcGIS Add-In Custom Mouse Cursor</title>
-      <link>https://maprantala.com/posts/2011-07-19-arcgis-add-in-custom-mouse-cursor/</link>
+      <link>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</link>
       <pubDate>Tue, 19 Jul 2011 20:47:03 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-07-19-arcgis-add-in-custom-mouse-cursor/</guid>
+      <guid>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</guid>
       <description>&lt;p&gt;I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI’s instructions.  But, once you know how to do it, it is pretty easy.  In Visual Studio, Add a New Item:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/07/addresource.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Add a Cursor File:&lt;/p&gt;
@@ -826,9 +826,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>Debugging a Python Scheduled Task</title>
-      <link>https://maprantala.com/posts/2011-07-11-debugging-a-python-scheduled-task/</link>
+      <link>https://maprantala.com/2011/07/11/debugging-a-python-scheduled-task/</link>
       <pubDate>Mon, 11 Jul 2011 18:11:13 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-07-11-debugging-a-python-scheduled-task/</guid>
+      <guid>https://maprantala.com/2011/07/11/debugging-a-python-scheduled-task/</guid>
       <description>&lt;p&gt;I have been working on a python script that I want (NEED) to run as a scheduled task on a remote machine.  I got to the point that the script did exactly what I needed when I was interactively running it in a Windows session but had problems when running it as a scheduled task.  The debugging process was cumbersome–make a change, schedule a task to run it, log out of the machine, and wait.  The log back in and repeat the process.&lt;/p&gt;
 &lt;p&gt;That got old.&lt;/p&gt;
 &lt;p&gt;So I wrote &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110711_tester.zip&#34;&gt;a script  (tester.py)&lt;/a&gt; that calls any other python scripts in the same directory that (1) start with “test_” and (2) there is not a corresponding file with the same base name and “.start” extension.  It would launch “test_BaBing.py” as long as there is not a “test_BaBing.start” in the same directory.  Tester.py continued to run, looping every 60 seconds, until tester.stop exists.&lt;/p&gt;
@@ -845,9 +845,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>Checking to see if a Field Index Exists Using Arcpy (ArGIS 10.0) redux</title>
-      <link>https://maprantala.com/posts/2011-07-05-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0-redux/</link>
+      <link>https://maprantala.com/2011/07/05/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0-redux/</link>
       <pubDate>Tue, 05 Jul 2011 12:53:34 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-07-05-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0-redux/</guid>
+      <guid>https://maprantala.com/2011/07/05/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0-redux/</guid>
       <description>&lt;p&gt;I’ve previously posted python code to check if a field index exists for both &lt;a href=&#34;http://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;ArcGIs 9.3&lt;/a&gt; and &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;ArcGIS 10.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Recently I have been working on a process that was using this code but it was not working because it looks for an index with a specific name.  It was not working in this case because the name of the indexes was getting incremented as they were being created.  For example, I was building an index on the table C5ST, field RelateId ([C5IX].[Relateid]) named I_C5IX_RelateId.  That worked fine until we switched our process so now we keep multiple versions of some tables, each with a date-based suffix.&lt;/p&gt;
 &lt;p&gt;We now have tables name C5St_20110625 and C5St_20110626–the Index-name scheme, however was still creating I_C5IX_RelateId and it worked great on the first one.  But when it created the second one, even on a different table, it was automatically name I_C5IX_RelateId_2 even though the name I_C5IX_RelateId was used when trying to create the index.&lt;/p&gt;
@@ -871,9 +871,9 @@ return True&lt;/p&gt;
     
     <item>
       <title>Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</title>
-      <link>https://maprantala.com/posts/2011-05-23-feature-classes-and-tables-with-names-starting-with-nd/</link>
+      <link>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./</link>
       <pubDate>Mon, 23 May 2011 15:55:24 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-23-feature-classes-and-tables-with-names-starting-with-nd/</guid>
+      <guid>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./</guid>
       <description>&lt;p&gt;Random luck me to discovering a bug related to feature classes whose names start with “nd_”.  It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them.  Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases,  personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.&lt;/p&gt;
 &lt;p&gt;I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.  After importing 15 shapefiles, I only had thirteen feature classes despite receiving no errors during the process.  The two shapefiles that failed to import were named ND_oil_and_gas.shp and ND_Bendix_Study.shp.  Subsequent attempts to import them individually returned an error “Invalid Target Name”.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/05/invalidtargetname.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -898,9 +898,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Renaming Raster Dataset and arcpy.Exists()</title>
-      <link>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</link>
+      <link>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</link>
       <pubDate>Tue, 03 May 2011 09:33:48 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</guid>
+      <guid>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</guid>
       <description>&lt;p&gt;Discovered something today. I was working on an arcpy script that copies a raster dataset from a file geodatabase into a Postgres SDE geodatabase and then does some boring routine tasks–building stats, creating a mosaic dataset, adding the raster to the mosaic dataset and making a couple referenced mosaic datasets.&lt;/p&gt;
 &lt;p&gt;It sometimes has trouble with the initial step of uploading the raster because of the sheer size of if (1m elevation raster for counties) and it failed today on one. It failed today so I used the ArcCatalog GUI to copy the raster and renamed it.&lt;/p&gt;
 &lt;p&gt;I then proceeded to run launch my script. Before each step, I use &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Exists/000v00000021000000/&#34;&gt;arcpy.Exists&lt;/a&gt;() extensively to check to see if various items exist before I attempt to create them. It was continuously reporting that my raster set did not exist even though I could see it in ArcCatalog.&lt;/p&gt;
@@ -913,9 +913,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Sorting a Coded-Value Domain Add-In (ArcGIS 10)</title>
-      <link>https://maprantala.com/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/</link>
+      <link>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</link>
       <pubDate>Tue, 03 May 2011 03:33:01 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
+      <guid>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
       <description>&lt;p&gt;I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation.  So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.&lt;/p&gt;
 &lt;p&gt;This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.&lt;/p&gt;
 &lt;p&gt;In the past, I have gone through the tedious process of exporting the domain to a table, sorting the table, removing the domain from the necessary field(s), deleting the domain, re-importing the table back in a new domain and finally re-applying the domain to the necessary field(s). Let’s just say I didn’t do this until someone asked a few times and I didn’t have anything more exciting–like a root canal–I could busy myself with.&lt;/p&gt;
@@ -936,9 +936,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
-      <link>https://maprantala.com/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</link>
+      <link>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
       <pubDate>Sun, 01 May 2011 05:01:50 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</guid>
+      <guid>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
       <description>&lt;p&gt;For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.&lt;/p&gt;
 &lt;p&gt;Here is the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;bare-bones script&lt;/a&gt; that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.  Some cautionary notes:&lt;/p&gt;
 &lt;ul&gt;
@@ -958,9 +958,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Change Detector arcpy Script</title>
-      <link>https://maprantala.com/posts/2011-04-08-change-detector-script-arcgis-resource-center/</link>
+      <link>https://maprantala.com/2011/04/08/change-detector-arcpy-script/</link>
       <pubDate>Fri, 08 Apr 2011 10:48:59 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-04-08-change-detector-script-arcgis-resource-center/</guid>
+      <guid>https://maprantala.com/2011/04/08/change-detector-arcpy-script/</guid>
       <description>&lt;p&gt;During a process I was working on, I needed to compare a feature class before and after some edits.  I did not quickly find anything in ArcToolbox but searching &lt;a href=&#34;http://resources.arcgis.com/&#34;&gt;ArcResources&lt;/a&gt; led me to &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=351BEE10-1422-2418-8815-82074A3E6B6C&#34;&gt;Change Detector script by Bruce Harold&lt;/a&gt;.  After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.  I also discovered that it needs to export to the same format (personal geodatabase, file geodatabase, shapefile) as the source data (or at least one that uses the same field name deliminator).&lt;/p&gt;
 &lt;p&gt;After minor adjustments, though, it worked like a charm.  I’ll be submitting the changes I made to Bruce and let him incorporate the changes into the official code.&lt;/p&gt;
 &lt;p&gt;FOLLOW-UP: Mr. Harold quickly responded to my email &amp;amp; made the change (although I haven’t checked it). Way to go Bruce!  Thanks for a handy script.&lt;/p&gt;
@@ -970,9 +970,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>ArcIdeas: Scale-Dependant Settings.</title>
-      <link>https://maprantala.com/posts/2011-03-25-arcideas-scale-dependant-settings/</link>
+      <link>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings./</link>
       <pubDate>Fri, 25 Mar 2011 11:29:36 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-25-arcideas-scale-dependant-settings/</guid>
+      <guid>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings./</guid>
       <description>&lt;p&gt;Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent.  Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range.  Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.&lt;/p&gt;
 &lt;p&gt;I’m not sure how rapidly ESRI takes “Ideas” into consideration but if you feel like it would benefit you, why not promote this idea:  &lt;a href=&#34;http://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Have a good weekend, all!&lt;/p&gt;
@@ -982,9 +982,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Quick &amp;#038; Dirty arcpy: Field Listings</title>
-      <link>https://maprantala.com/posts/2011-03-17-quick-dirty-field-listings-using-arcpy/</link>
+      <link>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</link>
       <pubDate>Thu, 17 Mar 2011 17:03:39 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-17-quick-dirty-field-listings-using-arcpy/</guid>
+      <guid>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</guid>
       <description>&lt;p&gt;I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven’t found it.  So, as is my nature, I decided to roll my own.&lt;/p&gt;
 &lt;p&gt;This is a &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;bare-bones script&lt;/a&gt; that iterates through the fields, printing the field name, type, width, and precision.  There are three optional features to it:&lt;/p&gt;
 &lt;ul&gt;
@@ -1008,9 +1008,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Updating Access ODBC connections using VBA</title>
-      <link>https://maprantala.com/posts/2011-03-16-updating-access-odbc-connections-using-vba/</link>
+      <link>https://maprantala.com/2011/03/16/updating-access-odbc-connections-using-vba/</link>
       <pubDate>Wed, 16 Mar 2011 20:06:59 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-16-updating-access-odbc-connections-using-vba/</guid>
+      <guid>https://maprantala.com/2011/03/16/updating-access-odbc-connections-using-vba/</guid>
       <description>&lt;p&gt;I don’t do much in Access or VBA but sometimes you inherit things that force you, at least temporarily, to go retro.&lt;/p&gt;
 &lt;p&gt;We have an Access-based data extraction routine that uses several (21) pass-through queries that use an ODBC connection.  The queries are pulling data from an Oracle database maintained by a different agency that enforces a time-out of passwords every three months.&lt;/p&gt;
 &lt;p&gt;So every three months I have to go through the ODBC connections for these queries and change the password.  And before you chastise me for storing the password in the VBA code, I can only say “you’re right” but that’s the way it is done–not ideal but gets the job done and we’re not dealing with overly sensitive data.&lt;/p&gt;
@@ -1024,9 +1024,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Using arcpy to List Domains Assigned to Featureclass Fields</title>
-      <link>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</link>
+      <link>https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/</link>
       <pubDate>Mon, 14 Mar 2011 18:04:36 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</guid>
+      <guid>https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/</guid>
       <description>&lt;p&gt;I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
 &lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
 &lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;
@@ -1041,9 +1041,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Revoking &amp;#8216;Public&amp;#8217; Permissions in PostgreSQL ArcSDE</title>
-      <link>https://maprantala.com/posts/2011-03-11-revoking-public-permissions-in-postgresql-arcsde/</link>
+      <link>https://maprantala.com/2011/03/11/revoking-#8216public%238217-permissions-in-postgresql-arcsde/</link>
       <pubDate>Fri, 11 Mar 2011 11:11:48 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-11-revoking-public-permissions-in-postgresql-arcsde/</guid>
+      <guid>https://maprantala.com/2011/03/11/revoking-#8216public%238217-permissions-in-postgresql-arcsde/</guid>
       <description>&lt;p&gt;While banging my head on how to grant access to a &lt;a href=&#34;http://wp.me/pVrsJ-6Q&#34;&gt;referenced mosaic dataset&lt;/a&gt; , I did something out of frustration that I normally would not do–I granted ‘public’ access to some data.&lt;/p&gt;
 &lt;p&gt;Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:&lt;/p&gt;
 &lt;p&gt;Error 999999: Error executing function.&lt;/p&gt;
@@ -1059,9 +1059,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
     
     <item>
       <title>Referenced Mosaic Datasets Permissions on SDE</title>
-      <link>https://maprantala.com/posts/2011-03-09-referenced-mosaic-datasets-permissions-on-sde/</link>
+      <link>https://maprantala.com/2011/03/09/referenced-mosaic-datasets-permissions-on-sde/</link>
       <pubDate>Wed, 09 Mar 2011 09:08:27 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-09-referenced-mosaic-datasets-permissions-on-sde/</guid>
+      <guid>https://maprantala.com/2011/03/09/referenced-mosaic-datasets-permissions-on-sde/</guid>
       <description>&lt;p&gt;While I’m enjoying the functionality of the new &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//00170000008p000000.htm&#34;&gt;Referenced Mosaic Dataset&lt;/a&gt; that have been introduced in ArcGIS10, something that I stumbled over recently was administering the privileges to a referenced mosaic dataset.&lt;/p&gt;
 &lt;p&gt;A referenced mosaic dataset is a raster datatype that uses a mosaic dataset as a base.  For example, we loaded a series of DEMs into a mosaic dataset and then created a referenced mosaic dataset that does the meters to feet conversion for us.  This saved us from having to process each DEM before loading it.  We also created a referenced mosaic dataset hillshade from the original meter data.&lt;/p&gt;
 &lt;p&gt;The problem I came across, and this was more my oversight than anything, but I had a heck of a time trying to grant privileges to the referenced mosaic dataset.  The solution was actually very simple–I needed to also grant access to the mosaic dataset that was being used as the base.&lt;/p&gt;
@@ -1072,9 +1072,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
     
     <item>
       <title>ArcMap Field Calculator: Calculating Geometry using arcpy</title>
-      <link>https://maprantala.com/posts/2011-03-08-calculating-geometry-using-arcpy-in-field-calculator/</link>
+      <link>https://maprantala.com/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/</link>
       <pubDate>Tue, 08 Mar 2011 09:30:40 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-08-calculating-geometry-using-arcpy-in-field-calculator/</guid>
+      <guid>https://maprantala.com/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/</guid>
       <description>&lt;p&gt;One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm&#34;&gt;Field Calculator&lt;/a&gt;.  When I stumbled upon a bug in the way the &lt;a href=&#34;http://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/&#34;&gt;Extract Values to Points&lt;/a&gt; tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.&lt;/p&gt;
 &lt;p&gt;I set the Parser to Python and the formula was simple once I figured out the syntax:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -1088,9 +1088,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
     
     <item>
       <title>Extract Values to Points (Spatial Analyst) Bug</title>
-      <link>https://maprantala.com/posts/2011-03-07-extract-values-to-points-spatial-analyst-bug/</link>
+      <link>https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/</link>
       <pubDate>Mon, 07 Mar 2011 08:37:33 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-07-extract-values-to-points-spatial-analyst-bug/</guid>
+      <guid>https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/</guid>
       <description>&lt;p&gt;One of the Spatial Analyst tools we often use in ArcGIS is the “&lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//009z0000002t000000.htm&#34;&gt;Extract Values to Points&lt;/a&gt;” tool.  This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/extractvaluestopoints.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Today I was running it for the first time against an Image Service we recently published and I received a warning message,”WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry”.  But the script seemed to run and the final results said “Succeeded” so I thought it was probably fine.  But as I double-checked, I realized the results were wonky.&lt;/p&gt;
@@ -1111,9 +1111,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
     
     <item>
       <title>Instantiating Add-In Objects at Load Time</title>
-      <link>https://maprantala.com/posts/2011-03-02-instantiating-add-in-objects-at-load-time/</link>
+      <link>https://maprantala.com/2011/03/02/instantiating-add-in-objects-at-load-time/</link>
       <pubDate>Wed, 02 Mar 2011 15:18:14 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-02-instantiating-add-in-objects-at-load-time/</guid>
+      <guid>https://maprantala.com/2011/03/02/instantiating-add-in-objects-at-load-time/</guid>
       <description>&lt;p&gt;In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0.  So far, I’m loving the functionality.&lt;/p&gt;
 &lt;p&gt;One thing, however, that I have to figure out is that the controls are not instantiated until they are clicked on.  One of the results is that the controls, by default, are enabled.  This is not the functionality I wanted.&lt;/p&gt;
 &lt;p&gt;I found the solution in ESRI’s topic, &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/&#34;&gt;Advanced add-in concepts (ArcObjects .NET 10 SDK)&lt;/a&gt; in the Delayed loading section:&lt;/p&gt;
@@ -1128,9 +1128,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
     
     <item>
       <title>Loading Tiled, Same-Name Data in Batch Mode.</title>
-      <link>https://maprantala.com/posts/2011-02-28-loading-tiled-same-name-data-in-batch-mode/</link>
+      <link>https://maprantala.com/2011/02/28/loading-tiled-same-name-data-in-batch-mode./</link>
       <pubDate>Mon, 28 Feb 2011 12:30:43 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-28-loading-tiled-same-name-data-in-batch-mode/</guid>
+      <guid>https://maprantala.com/2011/02/28/loading-tiled-same-name-data-in-batch-mode./</guid>
       <description>&lt;p&gt;I have been loading existing raster data into a geodatabase to be included in a new Mosaic Dataset–a very cool and useful addition to ArcGIS 10. The most time-consuming part of the process for the human (at least this human) has been getting the names of the rasters right.&lt;/p&gt;
 &lt;p&gt;Our existing data is organized by tiles with the directory name representing the tile name and then the data within each tile directory having the same name.&lt;/p&gt;
 &lt;p&gt;For example:&lt;br&gt;
@@ -1151,9 +1151,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>ESRI Font Samples.pdf (application/pdf Object)</title>
-      <link>https://maprantala.com/posts/2011-02-23-esri-font-samples-pdf-applicationpdf-object/</link>
+      <link>https://maprantala.com/2011/02/23/esri-font-samples.pdf-application/pdf-object/</link>
       <pubDate>Wed, 23 Feb 2011 08:12:59 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-23-esri-font-samples-pdf-applicationpdf-object/</guid>
+      <guid>https://maprantala.com/2011/02/23/esri-font-samples.pdf-application/pdf-object/</guid>
       <description>&lt;p&gt;Whenever I want to skim through ESRI’s fonts to find some symbology I need for a specific purpose, I go through some laborious process to skim the fonts searching for an adequate symbol.&lt;/p&gt;
 &lt;p&gt;However, in the &lt;a href=&#34;http://blogs.esri.com/Support/blogs/mappingcenter/archive/2010/04/05/About-Fonts-in-ArcMap-Symbols.aspx&#34;&gt;ESRI Mapping Center blog post,&lt;/a&gt; user &lt;a href=&#34;http://blogs.esri.com/Support/user/Profile.aspx?UserID=24410&#34;&gt;use2b311&lt;/a&gt; post a link to a pre-made pdf showing &lt;a href=&#34;http://maprantala.com/wp-content/uploads/2011/02/ESRI-Font-Samples.pdf&#34;&gt;ESRI Font Samples.pdf (application/pdf Object)&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Back when ESRI use to actually print hard-copy manuals, there were similar diagrams available but either I haven’t searched enough of they don’t exist in the digital help systems so I was happy to stumble upon this.&lt;/p&gt;
@@ -1164,9 +1164,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>ArcGIS Online Basemaps Now Free</title>
-      <link>https://maprantala.com/posts/2011-02-22-arcgis-online-basemaps-now-free/</link>
+      <link>https://maprantala.com/2011/02/22/arcgis-online-basemaps-now-free/</link>
       <pubDate>Tue, 22 Feb 2011 12:57:58 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-22-arcgis-online-basemaps-now-free/</guid>
+      <guid>https://maprantala.com/2011/02/22/arcgis-online-basemaps-now-free/</guid>
       <description>&lt;p&gt;I’ve seen several posts like this &lt;a href=&#34;http://gisandscience.com/2011/02/19/arcgis-online-basemaps-now-freely-available-regardless-of-use/&#34;&gt;one&lt;/a&gt; that reiterate that ESRI has announced that:&lt;/p&gt;
 &lt;p&gt;“As of the end of January, ArcGIS Online basemaps published and hosted by Esri are now freely available to all users regardless of commercial, noncommercial, internal, or external use. This means that you no longer have to pay a subscription fee for including ArcGIS Online basemaps in your commercial-use web applications. Basemaps included in this new business model are World Imagery Map, World Street Map, World Topographic Map, USA Topographic Maps, and DeLorme World Basemap. The only restriction is a high-volume transaction limit of 50,000,000 transactions in a 12-month period, which is equivalent to 400,000,000 tile requests per year, or over 1,000,000 per day – a volume that most likely very few users will reach. ‘Read the &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;ArcGIS Online blog&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; to get the latest news and updates.&#39;”&lt;/p&gt;
 &lt;p&gt;I was unable to find a copy of the announcement on the ArcGIS Online blog or on on &lt;a href=&#34;http://www.esri.com/news/index.html&#34;&gt;ESRI’s news section&lt;/a&gt; although I did receive an email that Charles Convis, &lt;a href=&#34;http://www.conservationgis.org/&#34;&gt;ESRI Conservation Program Coordinator&lt;/a&gt;, sent to the &lt;a href=&#34;http://www.scgis.org/&#34;&gt;Society for Conservation GIS&lt;/a&gt; mailing list with the same information so I’m guessing it is true. Perhaps ESRI pulled the post hoping to release the information with more of a splash?&lt;/p&gt;
@@ -1180,9 +1180,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Checking to see if a Field Index Exists Using Arcpy (ArGIS 10.0)</title>
-      <link>https://maprantala.com/posts/2011-02-21-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/</link>
+      <link>https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0/</link>
       <pubDate>Mon, 21 Feb 2011 09:55:35 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-21-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/</guid>
+      <guid>https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0/</guid>
       <description>&lt;p&gt;Updating some python code from 9.3 that using geoprocessing  to 10.0 using arcpy and the first real object I’ve had to change relates to detecting whether or not an index exists on a table.&lt;/p&gt;
 &lt;p&gt;I previously &lt;a href=&#34;http://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;posted code&lt;/a&gt; using a 9.3 geoprocessing commands, the core of it being:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -1196,9 +1196,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Multiple geodatabases and ArcSDE services from one PostgreSQL server.</title>
-      <link>https://maprantala.com/posts/2011-02-17-multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/</link>
+      <link>https://maprantala.com/2011/02/17/multiple-geodatabases-and-arcsde-services-from-one-postgresql-server./</link>
       <pubDate>Thu, 17 Feb 2011 18:22:07 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-17-multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/</guid>
+      <guid>https://maprantala.com/2011/02/17/multiple-geodatabases-and-arcsde-services-from-one-postgresql-server./</guid>
       <description>&lt;p&gt;To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point).  A side question is why can’t tables and raster be placed in Feature Datasets?  This wouldn’t be an end-all solution for what we want to do but there are some messy consequences of this limitation.&lt;/p&gt;
 &lt;p&gt;ESRI has instructions on &lt;a href=&#34;http://help.arcgis.com/EN/ArcGISDesktop/10.0/Help/index.html#//002p00000011000000.htm&#34;&gt;Setting up multiple geodatabases in one PostgreSQL database cluster on Windows&lt;/a&gt; which was helpful but we repeatedly got an “The ArcSDE Repository was unsuccessfully completed.  Would you like to view this error?” error during the Repository Setup step, step two of four, of the ArcSDE Post Installation process. The odd thing, however, was that the wise_err.log was blank so I had no clue on why it was failing.  After much Googling and head-banging, I came across a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=158&amp;amp;f=2290&amp;amp;t=298474#941273&#34;&gt;post from&lt;/a&gt; &lt;a href=&#34;http://www.linkedin.com/profile/view?id=24468141&amp;amp;authType=name&amp;amp;authToken=VoHW&amp;amp;pvs=pp&amp;amp;trk=ppro_viewmore&#34;&gt;Kim Doty&lt;/a&gt; on ESRI’s forums reporting the same problem but they were able to create a service by just continuing through the process .  Figuring I had nothing to lose, I thought I might as well try to go through the entire ArcSDE Post Installation process and see what happened.  Although I received blank error messages, I was able to successfully create the second ArcSDE instance.&lt;/p&gt;
 &lt;p&gt;I will touch on some of the highlights of the process.  In my case, I was creating a database &amp;amp; service with these parameters:&lt;/p&gt;
@@ -1238,9 +1238,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)</title>
-      <link>https://maprantala.com/posts/2011-02-15-walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-net-10-sdk/</link>
+      <link>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</link>
       <pubDate>Tue, 15 Feb 2011 17:05:55 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-15-walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-net-10-sdk/</guid>
+      <guid>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</guid>
       <description>&lt;p&gt;I was working my way through this ESRI &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#//0001000001ms000000&#34;&gt;Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)&lt;/a&gt;.  And came across a couple minor errors that I had to correct during the process.&lt;/p&gt;
 &lt;p&gt;First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a “Name ‘ArcMap’ is not declared.” error.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/arcmapnotdeclared.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -1268,9 +1268,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Zipping a File Geodatabase using Python</title>
-      <link>https://maprantala.com/posts/2011-02-08-zipping-a-file-geodatabase-using-python/</link>
+      <link>https://maprantala.com/2011/02/08/zipping-a-file-geodatabase-using-python/</link>
       <pubDate>Tue, 08 Feb 2011 13:44:34 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-08-zipping-a-file-geodatabase-using-python/</guid>
+      <guid>https://maprantala.com/2011/02/08/zipping-a-file-geodatabase-using-python/</guid>
       <description>&lt;p&gt;Ever since the ever-popular post, &lt;a href=&#34;http://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zipping a shapefile using python&lt;/a&gt;, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.&lt;/p&gt;
 &lt;p&gt;The key trick, as shown in line 17, is appending the basename of the file geodatabase (“nfg.gdb/” in my example) in front of each file as you write it to the zipfile.&lt;/p&gt;
 &lt;p&gt;UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp;amp; pasted and have work.  So I have posted a the code &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110208_Sample_Zip_FileGeodatabase.zip&#34;&gt;HERE&lt;/a&gt; for downloading.&lt;/p&gt;
@@ -1282,9 +1282,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Using ArcGIS 9.3.1 Desktop to Extract Data From an ArcGIS 10 Server Geodata Service</title>
-      <link>https://maprantala.com/posts/2011-02-04-using-arcgis-9-3-1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</link>
+      <link>https://maprantala.com/2011/02/04/using-arcgis-9.3.1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</link>
       <pubDate>Fri, 04 Feb 2011 18:26:53 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-04-using-arcgis-9-3-1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</guid>
+      <guid>https://maprantala.com/2011/02/04/using-arcgis-9.3.1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</guid>
       <description>&lt;p&gt;In building our Enterprise GIS Database, we need to support users with different needs.  Some of our users just need to see the data on a map while others may want to download a copy of the data so they can use it within their own desktop system.&lt;/p&gt;
 &lt;p&gt;After doing some exploring, one of the options that looks like it will feel the bulk of our internal needs is to create a &lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Map%20service&#34;&gt;Map Service&lt;/a&gt;/&lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Geodata%20service&#34;&gt;Geodata Servic&lt;/a&gt;e pair–by creating a Map Service, we can make an easy-to-use visual representation of our data.  Combining that with a paired Geodata Service–a Geodata Service with the same name as the Map Service–we can accommodate those users who want to extract the data to their hard drive.&lt;/p&gt;
 &lt;p&gt;A user who has added paired Map &amp;amp; Geodata Services to an ArcMap dataframe can use the Distributed Geodatabase Toolbar to extract data to a local geodatabase.  The Extract Data button is on the far right of the Distributed Geodatabase Toolbar.&lt;/p&gt;
@@ -1304,9 +1304,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Checking to see if a Field Index Exists Using Python (geoprocessing 9.3).</title>
-      <link>https://maprantala.com/posts/2011-01-27-checking-to-see-if-a-field-index-exists-using-python/</link>
+      <link>https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python-geoprocessing-9.3./</link>
       <pubDate>Thu, 27 Jan 2011 15:31:48 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-01-27-checking-to-see-if-a-field-index-exists-using-python/</guid>
+      <guid>https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python-geoprocessing-9.3./</guid>
       <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
 &lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
 &lt;p&gt;No problem creating the index, for example:&lt;/p&gt;
@@ -1327,9 +1327,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>ArcGIS 9.3.1 to ArcSDE 10 Connection Error</title>
-      <link>https://maprantala.com/posts/2011-01-13-arcgis-9-3-1-to-arcsde-10-connection-error/</link>
+      <link>https://maprantala.com/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/</link>
       <pubDate>Thu, 13 Jan 2011 14:41:58 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-01-13-arcgis-9-3-1-to-arcsde-10-connection-error/</guid>
+      <guid>https://maprantala.com/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://maprantala.com/Users/mrantala/AppData/Local/Temp/moz-screenshot-7.png&#34; alt=&#34;&#34;&gt;We finally installed an instance of ArcSDE 10 today.  My first attempt at connecting in ArcCatalog 9.3.1 failed with the following error:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Failed to connect to the specified server.&lt;/p&gt;
@@ -1348,9 +1348,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Displaying Node Dangles in Arcedit</title>
-      <link>https://maprantala.com/posts/2011-01-06-displaying-node-dangles-in-arcedit/</link>
+      <link>https://maprantala.com/2011/01/06/displaying-node-dangles-in-arcedit/</link>
       <pubDate>Thu, 06 Jan 2011 16:50:42 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-01-06-displaying-node-dangles-in-arcedit/</guid>
+      <guid>https://maprantala.com/2011/01/06/displaying-node-dangles-in-arcedit/</guid>
       <description>&lt;p&gt;Since the name of the blog is Node Dangles, I get several hits daily from searches on “Node Dangles” and I have no  information on node dangles.  This post is the first in a series to change that.&lt;/p&gt;
 &lt;p&gt;First let us, by us, I mean &lt;a href=&#34;http://www.esri.com&#34;&gt;ESRI&lt;/a&gt;, define what a node dangle is.  Their online glossary actually defines a &lt;a href=&#34;http://resources.arcgis.com/glossary/term/215&#34;&gt;dangling arc&lt;/a&gt;, a dangling node is a &lt;a href=&#34;http://resources.arcgis.com/glossary/term/71&#34;&gt;node&lt;/a&gt; (endpoint of an arc) that does the non-connecting mentioned below:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -1362,9 +1362,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Multiple outputs for Python scripts</title>
-      <link>https://maprantala.com/posts/2010-12-17-multiple-outputs-for-python-scripts/</link>
+      <link>https://maprantala.com/2010/12/17/multiple-outputs-for-python-scripts/</link>
       <pubDate>Fri, 17 Dec 2010 15:19:38 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-17-multiple-outputs-for-python-scripts/</guid>
+      <guid>https://maprantala.com/2010/12/17/multiple-outputs-for-python-scripts/</guid>
       <description>&lt;p&gt;Related to my &lt;a href=&#34;http://maprantala.com/2010/12/13/launching-a-python-script-with-parameters-3-methods/&#34;&gt;post&lt;/a&gt; on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways.  This is largely due to the fact that some are called by ArcToolbox scripts.  Running in ESRI’s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.&lt;/p&gt;
 &lt;p&gt;If you assume one output method but then run your code in the opposite framework, you don’t get to see all the pretty little messages.  What I do is create a simple little routine that broadcasts the message both ways.  This is probably an obvious solution but took a few cases before I went ahead and started implementing it.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -1376,9 +1376,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Zipping a shapefile via ArcToolbox</title>
-      <link>https://maprantala.com/posts/2010-12-15-zipping-a-shapefile-via-arctoolbox/</link>
+      <link>https://maprantala.com/2010/12/15/zipping-a-shapefile-via-arctoolbox/</link>
       <pubDate>Wed, 15 Dec 2010 14:36:04 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-15-zipping-a-shapefile-via-arctoolbox/</guid>
+      <guid>https://maprantala.com/2010/12/15/zipping-a-shapefile-via-arctoolbox/</guid>
       <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -1404,9 +1404,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>Launching a Python script with parameters&amp;#8211;3 methods.</title>
-      <link>https://maprantala.com/posts/2010-12-13-launching-a-python-script-with-parameters-3-methods/</link>
+      <link>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters#82113-methods./</link>
       <pubDate>Mon, 13 Dec 2010 14:56:43 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-13-launching-a-python-script-with-parameters-3-methods/</guid>
+      <guid>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters#82113-methods./</guid>
       <description>&lt;p&gt;Since I use python for different tasks, I launch python scripts a variety of ways. Depending on what I am doing, a single script may need to accept parameters from either:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Passed in from an ArcGIS Toolbox Tool.&lt;/li&gt;
@@ -1423,9 +1423,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>Zipping a shapefile using python</title>
-      <link>https://maprantala.com/posts/2010-12-10-zipping-a-shapefile-using-python/</link>
+      <link>https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/</link>
       <pubDate>Fri, 10 Dec 2010 18:20:13 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-10-zipping-a-shapefile-using-python/</guid>
+      <guid>https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/</guid>
       <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;One of the tasks I’ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;
@@ -1438,9 +1438,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>X-section Xacto Updated</title>
-      <link>https://maprantala.com/posts/2010-12-10-x-section-xacto-updated/</link>
+      <link>https://maprantala.com/2010/12/10/x-section-xacto-updated/</link>
       <pubDate>Fri, 10 Dec 2010 18:15:51 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-10-x-section-xacto-updated/</guid>
+      <guid>https://maprantala.com/2010/12/10/x-section-xacto-updated/</guid>
       <description>&lt;p&gt;I just happened to stumble upon an update of a tool to Create Geologic Cross Sections, eXacto Section v. 2.0, that I &lt;a href=&#34;http://maprantala.com/2010/07/23/create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/&#34;&gt;mentioned&lt;/a&gt; in July. Jennifer Carrell at the Illinois Geological Survey wrote this tool. The latest update is from December 8, 2010 and can be &lt;a href=&#34;http://resources.arcgis.com/gallery/file/geoprocessing/details?entryID=C83CC388-1422-2418-7F10-B4D3DF5F1EE6&#34;&gt;downloaded at ESRI’s ArcGIS Resource Center&lt;/a&gt;. Our office has used previous versions and finds in very useful in creating cross-sections. I have not tried this latest update.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
@@ -1448,9 +1448,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>Example of how to add controls in data grid VB.NET</title>
-      <link>https://maprantala.com/posts/2010-12-09-example-of-how-to-add-controls-in-data-grid-vb-net/</link>
+      <link>https://maprantala.com/2010/12/09/example-of-how-to-add-controls-in-data-grid-vb.net/</link>
       <pubDate>Thu, 09 Dec 2010 17:15:35 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-09-example-of-how-to-add-controls-in-data-grid-vb-net/</guid>
+      <guid>https://maprantala.com/2010/12/09/example-of-how-to-add-controls-in-data-grid-vb.net/</guid>
       <description>&lt;p&gt;I have been working on some data entry forms that utilize a DataGrid.  Using a PostGres Geodatabase that had domains set on several fields, I could not directly bind to the controls on my dialog.  So I am going the round-about way of populating my own comboboxes with valid names and displaying within the DataGrid.&lt;/p&gt;
 &lt;p&gt;Having not done this previously, I found this example: &lt;a href=&#34;http://www.eggheadcafe.com/community/aspnet/14/22477/example-of-how-to-add-controls-in-data-grid.aspx&#34;&gt;Example of how to add controls in data grid VB.NET&lt;/a&gt; very useful and just wanted to point it out to anyone.  &lt;a href=&#34;http://www.syncfusion.com/FAQ/windowsforms/faq_c44c.aspx#q1015q&#34;&gt;George Shephard’s Windows Forms FAQ&lt;/a&gt; also had several useful tips.&lt;/p&gt;
 &lt;p&gt;Finally, I has a problem with the masked textboxs I added to the Datagrid, they required users to click once to get focus and a second to start editing.  After much googling, I found used some information from &lt;a href=&#34;http://social.msdn.microsoft.com/Forums/en-US/vbgeneral/thread/8d3c1f98-9501-4902-b81b-82f6bbd4f3e5/&#34;&gt;MSDN&lt;/a&gt; that allowed me to find a work-around.  In my Mousedown event, I included this snippet (QdiControl is the control for the specific cell that the HitTestInfo says the mousedown hit):&lt;/p&gt;
@@ -1462,9 +1462,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>ArcMap Copy &amp;#038; Paste Features</title>
-      <link>https://maprantala.com/posts/2010-10-13-arcmap-copy-paste-features/</link>
+      <link>https://maprantala.com/2010/10/13/arcmap-copy-#038-paste-features/</link>
       <pubDate>Wed, 13 Oct 2010 16:28:39 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-10-13-arcmap-copy-paste-features/</guid>
+      <guid>https://maprantala.com/2010/10/13/arcmap-copy-#038-paste-features/</guid>
       <description>&lt;p&gt;Sometimes it seems like I could write the data down by long hand faster than ArcMap can copy &amp;amp; paste features from one feature class to another. geeeeezzz.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
@@ -1472,9 +1472,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>Another TopoToRaster Error</title>
-      <link>https://maprantala.com/posts/2010-09-15-another-topotoraster-error/</link>
+      <link>https://maprantala.com/2010/09/15/another-topotoraster-error/</link>
       <pubDate>Wed, 15 Sep 2010 13:36:34 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-15-another-topotoraster-error/</guid>
+      <guid>https://maprantala.com/2010/09/15/another-topotoraster-error/</guid>
       <description>&lt;h3 id=&#34;subtitled-why-error-messages-are-good&#34;&gt;Subtitled:  Why error messages are good.&lt;/h3&gt;
 &lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn’t have to spend a day trying figure out what was wrong.&lt;br&gt;
 &lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/09/sixteen.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -1485,9 +1485,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>TopoToRaster Error</title>
-      <link>https://maprantala.com/posts/2010-09-13-topotoraster-error/</link>
+      <link>https://maprantala.com/2010/09/13/topotoraster-error/</link>
       <pubDate>Mon, 13 Sep 2010 20:25:01 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-13-topotoraster-error/</guid>
+      <guid>https://maprantala.com/2010/09/13/topotoraster-error/</guid>
       <description>&lt;p&gt;In running an automated process, I had a TopoToRaster repeatedly fail on me. The only input theme was a contour theme. The process ran fine when I used the envelope of the contour theme as the output extent but when I changed it to the envelope of a polygon theme, it would bomb. The polygon’s envelope was smaller than the contour theme.&lt;/p&gt;
 &lt;p&gt;ArcCatalog would bomb out without presenting any sort of useful message.&lt;/p&gt;
 &lt;p&gt;I determined eventually that If I set the left extent as 435210, the process would work if set the right extent to 446655 or greater but would bomb if I used 446654 or less. If the the left extent was 435209, the right extent had to be 446654 or greater.&lt;/p&gt;
@@ -1500,9 +1500,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>ArcBruTile</title>
-      <link>https://maprantala.com/posts/2010-09-09-arcbrutile/</link>
+      <link>https://maprantala.com/2010/09/09/arcbrutile/</link>
       <pubDate>Thu, 09 Sep 2010 14:38:46 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-09-arcbrutile/</guid>
+      <guid>https://maprantala.com/2010/09/09/arcbrutile/</guid>
       <description>&lt;p&gt;Stumbled across &lt;a href=&#34;http://arcbrutile.codeplex.com/&#34;&gt;ArcBruTile&lt;/a&gt;, an ArcMap application that allows you to display map tile services–such as &lt;a href=&#34;http://www.openstreetmap.org/&#34;&gt;OpenStreetMap&lt;/a&gt;, &lt;a href=&#34;http://maps.google.com/&#34;&gt;Google Maps&lt;/a&gt;, &lt;a href=&#34;http://www.bing.com/maps/&#34;&gt;Bing&lt;/a&gt;, &lt;a href=&#34;http://www.spatialcloud.com/&#34;&gt;Spatial Cloud&lt;/a&gt;, and &lt;a href=&#34;http://wiki.osgeo.org/wiki/Tile_Map_Service_Specification&#34;&gt;Tile Map Service&lt;/a&gt; (TMS)–in your ArcMap documents.   It works pretty well from my preliminary testing of it.   I have found that at times that the graphical tiles are distorted but I am guessing it is because they are optimized for display in a specific projection, at specific scales and, in ArcMap, you can use any projection/scale combination you want.&lt;/p&gt;
 &lt;p&gt;This is a free, open-source project that is still in Beta but definitely an application I plan to keep an eye on.  As with any open-source project, the cool thing is the code is available for you to look at, learn from, and hopefully contribute to.&lt;/p&gt;
 </description>
@@ -1510,18 +1510,18 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>Icon Transparency</title>
-      <link>https://maprantala.com/posts/2010-09-08-icon-transparency/</link>
+      <link>https://maprantala.com/2010/09/08/icon-transparency/</link>
       <pubDate>Wed, 08 Sep 2010 15:47:36 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-08-icon-transparency/</guid>
+      <guid>https://maprantala.com/2010/09/08/icon-transparency/</guid>
       <description>&lt;p&gt;Maybe I am just dense, but skimming &lt;a href=&#34;https://c.na1.visual.force.com/apex/ideaView?id=0873000000088YVAAY&#34;&gt;ArcIdeas&lt;/a&gt;, I found out that the transparency for an icon is determined by the upper-left pixel.  Don’t know if this is an ESRI convention or not but thought I would pass it one.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Workstation Arc/Info Interchange Import Error</title>
-      <link>https://maprantala.com/posts/2010-09-07-183/</link>
+      <link>https://maprantala.com/2010/09/07/workstation-arc/info-interchange-import-error/</link>
       <pubDate>Tue, 07 Sep 2010 19:08:39 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-07-183/</guid>
+      <guid>https://maprantala.com/2010/09/07/workstation-arc/info-interchange-import-error/</guid>
       <description>&lt;p&gt;I have been working on updating some data that was published using Arc/Info Workstation Export (.e00) files, converting them to shapefiles, or in the case of annotation, to a geodatabase feature class.&lt;/p&gt;
 &lt;p&gt;While converting some INFO tables, I have received this error:&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/09/importerror1.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Unable to encode the 38th item in the 65th record for the INFO file&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
@@ -1542,9 +1542,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>Trying to perform &amp;#8220;relate&amp;#8221; in Model Builder</title>
-      <link>https://maprantala.com/posts/2010-08-11-trying-to-perform-relate-in-model-builder/</link>
+      <link>https://maprantala.com/2010/08/11/trying-to-perform-#8220relate%238221-in-model-builder/</link>
       <pubDate>Wed, 11 Aug 2010 17:31:21 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-08-11-trying-to-perform-relate-in-model-builder/</guid>
+      <guid>https://maprantala.com/2010/08/11/trying-to-perform-#8220relate%238221-in-model-builder/</guid>
       <description>&lt;p&gt;I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y’) in another table (CWI.C5IX).  There is not an existing tool for doing this in ArcGIS.  I did find a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=1728&amp;amp;t=257179&amp;amp;g=1&#34;&gt;post&lt;/a&gt; by Layne Seely in &lt;a href=&#34;http://forums.esri.com/&#34;&gt;ArcForums&lt;/a&gt; titled “trying to perform “relate” in Model Builder.” that led me to the Make Table View under Data Management Tools-Make Table View and even had  the basic syntax I was looking for (if it hadn’t I probably would have guessed that it would not allow subqueries).&lt;/p&gt;
 &lt;p&gt;Since I always like to see exactly the syntax someone uses, I decided to show the syntax I used in case that helps anyone else.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/08/tableview.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Sample of a Table View using a subquery&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
@@ -1554,9 +1554,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>Utah Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-08-04-utah-geological-survey/</link>
+      <link>https://maprantala.com/2010/08/04/utah-geological-survey/</link>
       <pubDate>Wed, 04 Aug 2010 16:50:04 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-08-04-utah-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/08/04/utah-geological-survey/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://geology.utah.gov/&#34;&gt;Utah Geological Survey&lt;/a&gt; has a good supply of &lt;a href=&#34;http://geology.utah.gov/maps/geomap/index.htm&#34;&gt;Maps&lt;/a&gt; and &lt;a href=&#34;http://geology.utah.gov/maps/gis/index.htm&#34;&gt;data&lt;/a&gt; available online and some &lt;a href=&#34;http://geology.utah.gov/maps/index.htm&#34;&gt;online maps&lt;/a&gt;. They also have an online &lt;a href=&#34;http://geology.utah.gov/blog/&#34;&gt;Blog&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The GIS data is a fairly complete package–the sample I downloaded included .pdfs, shapefiles, layer files, images and ArcMap project (.MXD) files used to generate the .pdfs.  File sizes are larger because of the completeness.  Feature classes have a moderate level of attribution.&lt;/p&gt;
 &lt;p&gt;The highlight, however, are the sample &lt;a href=&#34;http://geology.utah.gov/geo_guides/st_george/index.htm&#34;&gt;Keyhole Markup (KMZ) files&lt;/a&gt; of the of the St. George 30′ x 60′ quadrangle that can be viewed in Google Earth.  Too cool.&lt;/p&gt;
@@ -1565,9 +1565,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>Accessing Network Drives via Scheduled Python Task</title>
-      <link>https://maprantala.com/posts/2010-07-26-accessing-network-drives-via-scheduled-python-task/</link>
+      <link>https://maprantala.com/2010/07/26/accessing-network-drives-via-scheduled-python-task/</link>
       <pubDate>Mon, 26 Jul 2010 12:43:02 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-26-accessing-network-drives-via-scheduled-python-task/</guid>
+      <guid>https://maprantala.com/2010/07/26/accessing-network-drives-via-scheduled-python-task/</guid>
       <description>&lt;p&gt;As previously mentioned, I have a scheduled nightly backup that is written in Python.  Most of it has been working fine but I had not gotten it to copy files to network drives.  I finally got around to correcting that part.  My first attempt was just to map the network drives for the user account that is used to run the task.  No good.&lt;/p&gt;
 &lt;p&gt;My second attempt was to call a .bat file from python before accessing the network drives and that worked.&lt;/p&gt;
 &lt;p&gt;The batch file has two lines (one for each network drive):&lt;/p&gt;
@@ -1583,9 +1583,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Arizona Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-23-arizona-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/23/arizona-geological-survey/</link>
       <pubDate>Fri, 23 Jul 2010 19:07:52 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-23-arizona-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/23/arizona-geological-survey/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.azgs.az.gov/&#34;&gt;The Arizona Geological Survey&lt;/a&gt; has a great looking site with some good information.  They have a &lt;a href=&#34;http://www.azgs.az.gov/publications_online/pubslist_2008.pdf&#34;&gt;publication list&lt;/a&gt; that can either be downloaded or ordered and are making pdf versions of their recent publications available &lt;a href=&#34;http://www.azgs.az.gov/publications_online.shtml&#34;&gt;online&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I was going to note that there was no download-able data available until Google told me that they in fact had a &lt;a href=&#34;http://www.azgs.az.gov/services_azgeomap.shtml&#34;&gt;WMS/WFS available online&lt;/a&gt;.  The WMS is a great looking map, I have not gotten the WFS to work, however–probably more due to my abilities than the service.&lt;/p&gt;
 &lt;p&gt;They are also temporarily hosting a &lt;a href=&#34;http://services.azgs.az.gov/OnlineMaps/demos/nvClarkCounty.html&#34;&gt;surficial geology map&lt;/a&gt; of Clark County, Nevada.&lt;/p&gt;
@@ -1595,9 +1595,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Create Geologic Cross Sections&amp;#8211;eXacto Section v. 2.0, ArcMap 9.3</title>
-      <link>https://maprantala.com/posts/2010-07-23-create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/</link>
+      <link>https://maprantala.com/2010/07/23/create-geologic-cross-sections#8211exacto-section-v.-2.0-arcmap-9.3/</link>
       <pubDate>Fri, 23 Jul 2010 13:59:44 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-23-create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/</guid>
+      <guid>https://maprantala.com/2010/07/23/create-geologic-cross-sections#8211exacto-section-v.-2.0-arcmap-9.3/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://arcscripts.esri.com/details.asp?dbid=16734&#34;&gt;Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3&lt;/a&gt; written by Jennifer Carrell of the &lt;a href=&#34;http://www.isgs.illinois.edu/&#34;&gt;Illinois State Geological Survey&lt;/a&gt; is a handy tool for creating cross sections.&lt;/p&gt;
 &lt;p&gt;It requires ArcGIS and a 3D Analyst Extension license.&lt;/p&gt;
 &lt;p&gt;You can create profiles against multiple DEMs at once, define the vertical exaggeration, and have it include contact points.  It is well documented and comes with sample data to use with the tutorial.&lt;/p&gt;
@@ -1608,9 +1608,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Michigan Office of Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-22-michigan-office-of-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/22/michigan-office-of-geological-survey/</link>
       <pubDate>Thu, 22 Jul 2010 15:31:20 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-22-michigan-office-of-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/22/michigan-office-of-geological-survey/</guid>
       <description>&lt;p&gt;The Michigan &lt;a href=&#34;http://www.michigan.gov/deq/0,1607,7-135-3306_57064-87386--,00.html&#34;&gt;Office of Geological Survey&lt;/a&gt; appears to have pdf versions of all the documents in their &lt;a href=&#34;http://www.michigan.gov/documents/deq/GIMDL-Catalog-2010-01-20_307979_7.pdf&#34;&gt;Digital Geological Library&lt;/a&gt; available for download.  The transcripts of some early (beginning in 1871) &lt;a href=&#34;http://www.michigan.gov/documents/deq/OFR_19_Rominger_1871-1874_Aopt_306084_7.pdf&#34;&gt;field notes&lt;/a&gt; are a fun inclusion in the available archives.&lt;/p&gt;
 &lt;p&gt;Actual GIS data was a bit hard to find although I found both bedrock geology and quarternary geology available from the state &lt;a href=&#34;http://www.mcgi.state.mi.us/mgdl/?action=thm&#34;&gt;Geographic Data Library&lt;/a&gt; in shapefile format.  I also found oil and gas well data but did not download it.&lt;/p&gt;
 &lt;p&gt;The data carried minimal attribution, one interesting thing I found in the bedrock data was the red, green, blue values apparently used for each polygon.&lt;/p&gt;
@@ -1623,9 +1623,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Wisconsin Geological and Natural History Survey</title>
-      <link>https://maprantala.com/posts/2010-07-15-wisconsin-geological-and-natural-history-survey/</link>
+      <link>https://maprantala.com/2010/07/15/wisconsin-geological-and-natural-history-survey/</link>
       <pubDate>Thu, 15 Jul 2010 13:18:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-15-wisconsin-geological-and-natural-history-survey/</guid>
+      <guid>https://maprantala.com/2010/07/15/wisconsin-geological-and-natural-history-survey/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.uwex.edu/wgnhs/&#34;&gt;Wisconsin Geological and Natural History Survey&lt;/a&gt; has a well organized, appealing website.  Their data is easy to find although there is not much GIS data available.&lt;/p&gt;
 &lt;p&gt;Although because I am more interested in sample data sets than anything, the &lt;a href=&#34;http://www.uwex.edu/wgnhs/gis.htm&#34;&gt;GIS data&lt;/a&gt; they do have–statewide geologic map; pleistocene geology, precambrian geology, quaternary geology, (surficial?) geology and bedrock geology for various counties–may actually be a great reference.  Other than the statewide geologic map, the data is available on a per-publication basis.&lt;/p&gt;
 &lt;p&gt;Some other data is available in the &lt;a href=&#34;http://www.uwex.edu/wgnhs/wofrs.htm&#34;&gt;open-file reports&lt;/a&gt;.&lt;/p&gt;
@@ -1642,18 +1642,18 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>ArcGIS Ideas</title>
-      <link>https://maprantala.com/posts/2010-07-14-arcgis-ideas/</link>
+      <link>https://maprantala.com/2010/07/14/arcgis-ideas/</link>
       <pubDate>Wed, 14 Jul 2010 14:20:47 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-14-arcgis-ideas/</guid>
+      <guid>https://maprantala.com/2010/07/14/arcgis-ideas/</guid>
       <description>&lt;p&gt;Ok, maybe I have been hiding under a rock, but just saw this is a post from &lt;a href=&#34;http://www.spatiallyadjusted.com/&#34;&gt;James Fee’s Spatially Adjusted blog&lt;/a&gt;.  ESRI has a public suggestion box called  &lt;a href=&#34;http://ideas.arcgis.com/&#34;&gt;ArcGIS Ideas&lt;/a&gt; where users can submit suggestions for ESRI.  One thing I like is that it is open for other users to see and comment.  Not sure how responsive ESRI will be but at least it gives us a place to vent.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Iowa Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-14-iowa-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/14/iowa-geological-survey/</link>
       <pubDate>Wed, 14 Jul 2010 13:01:47 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-14-iowa-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/14/iowa-geological-survey/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.igsb.uiowa.edu/&#34;&gt;Iowa Geological Survey&lt;/a&gt; has a lot of data available to download &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/nrgislibx/&#34;&gt;here&lt;/a&gt;.  PDF versions of many of their publications can be found in their &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/gsbpubs/&#34;&gt;List of Publications&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Their GIS data is minimally attributed for the most part, their public wells data set did have a more robust attribution scheme.  One cool feature I found in the wells data is that they provide a hyper-link for many features to an &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/geosam/Scripts/geocard.asp?wnumber=43873&#34;&gt;on-line site record&lt;/a&gt;.  Found both shapefiles and file geodatabases in the samples I downloaded.&lt;/p&gt;
 &lt;p&gt;More interestingly, I opened up their Bedrock Geological Map and noticed something odd to me.  See the bulls-eye just NW of center?  That, even to a non-geologist like me, does not look too geologic.&lt;/p&gt;
@@ -1664,9 +1664,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Entering a Null Value in VB.Net DateTimePicker</title>
-      <link>https://maprantala.com/posts/2010-07-13-datetimepicker-null-value/</link>
+      <link>https://maprantala.com/2010/07/13/entering-a-null-value-in-vb.net-datetimepicker/</link>
       <pubDate>Tue, 13 Jul 2010 16:26:45 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-13-datetimepicker-null-value/</guid>
+      <guid>https://maprantala.com/2010/07/13/entering-a-null-value-in-vb.net-datetimepicker/</guid>
       <description>&lt;p&gt;While working on a VB.Net form to query a database that includes an optional date range query, I decided I wanted to display a datetimepicker with a blank value by default and then, if the user sets a date show the date.  By default, a datetimepicker can not have a Null date, so I went a’Googling and found this post, &lt;a href=&#34;http://dotnetref.blogspot.com/2009/03/setting-datetimepicker-to-blank-value.html&#34;&gt;.NET Reference: Setting the DateTimePicker to a Blank Value&lt;/a&gt; ,that had exactly the technique I wanted.&lt;/p&gt;
 &lt;p&gt;Basically, I set the datetimepicker’s CustomFormat to a space (” “) when I want it to be Null and then when the user makes a selection, set the custom format to the date format I wanted to display.    This is the sample code I found:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -1683,18 +1683,18 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>South Dakota Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-13-south-dakota-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/13/south-dakota-geological-survey/</link>
       <pubDate>Tue, 13 Jul 2010 12:33:07 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-13-south-dakota-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/13/south-dakota-geological-survey/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.sdgs.usd.edu/&#34;&gt;South Dakota Geological Survey&lt;/a&gt; website provides some good base data–imagery, DRGs, DEMs, and DLGs.  There is a searchable database of &lt;a href=&#34;http://www.sddenr.net/core/&#34;&gt;core cuttings&lt;/a&gt; and the &lt;a href=&#34;http://arcgis.sd.gov/server/sdgis/Data.aspx&#34;&gt;state data server&lt;/a&gt; has bedrock data for the eastern portion of the state and a statewide layer, presumably surficial geology, called geology.  Quad-based geological maps are also available (PDF format) in the &lt;a href=&#34;http://www.sdgs.usd.edu/publications/index.html&#34;&gt;Publications and Maps&lt;/a&gt; section.  The data I downloaded was in shapefile format with minimal attribution.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>North Dakota Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-12-north-dakota-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/12/north-dakota-geological-survey/</link>
       <pubDate>Mon, 12 Jul 2010 13:53:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-12-north-dakota-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/12/north-dakota-geological-survey/</guid>
       <description>&lt;p&gt;Took a quick look at the &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/&#34;&gt;North Dakota Geological Survey’s website&lt;/a&gt; for GIS data.&lt;/p&gt;
 &lt;p&gt;The only data I found served directly from their website was &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/surfacegeo/surfacemapsnew.asp&#34;&gt;surface geology map&lt;/a&gt; .pdfs for some 24k and 100k maps.  Also available is a search for &lt;a href=&#34;https://www.dmr.nd.gov/oilgas/findwellsvw.asp&#34;&gt;Oil &amp;amp; Gas wells&lt;/a&gt; although I did not see the data was downloadable.  Some other &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/Publication_List/contentsnew.asp&#34;&gt;publications&lt;/a&gt; have .pdfs that can be downloaded.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;http://web.apps.state.nd.us/imf/sites/hubexplorer/jsp/index.jsp&#34;&gt;North Dakota Hub Explorer&lt;/a&gt; serves as the state’s official data portal including for GIS data.  The downloadable data includes bedrock geology, surface geology, and contours.  Interestingly, the site allows you to choose from 7 different coordinate systems and 27 different file formats including several AutoCad, ESRI, MapInfo, and KML.  The data I looked at had more attribution than the bare minimum shown on a hard-copy map.  Bedrock data, for example, had additional lithology.&lt;/p&gt;
@@ -1704,9 +1704,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>ESRI releases Service ArcGIS 9.3.1 Pack 2</title>
-      <link>https://maprantala.com/posts/2010-07-12-esri-releases-service-arcgis-9-3-1-pack-2/</link>
+      <link>https://maprantala.com/2010/07/12/esri-releases-service-arcgis-9.3.1-pack-2/</link>
       <pubDate>Mon, 12 Jul 2010 12:36:49 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-12-esri-releases-service-arcgis-9-3-1-pack-2/</guid>
+      <guid>https://maprantala.com/2010/07/12/esri-releases-service-arcgis-9.3.1-pack-2/</guid>
       <description>&lt;p&gt;Right before the Users Conference, ESRI has released &lt;a href=&#34;http://blogs.esri.com/Dev/blogs/arcgisdesktop/archive/2010/07/09/ArcGIS-Desktop-9.3.1-Service-Pack-2.aspx&#34;&gt;ArcGIS Desktop 9.3.1 Service Pack 2&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Haven’t had a chance to see what bugs this addresses yet.&lt;/p&gt;
 </description>
@@ -1714,9 +1714,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>AASG</title>
-      <link>https://maprantala.com/posts/2010-07-09-aasg/</link>
+      <link>https://maprantala.com/2010/07/09/aasg/</link>
       <pubDate>Fri, 09 Jul 2010 19:49:51 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-09-aasg/</guid>
+      <guid>https://maprantala.com/2010/07/09/aasg/</guid>
       <description>&lt;p&gt;I was looking for links to all the State Geological Surveys and found the Association of American State Geologists (AASG) &lt;a href=&#34;http://www.stategeologists.org/&#34;&gt;Homepage&lt;/a&gt; to have exactly what I needed.&lt;/p&gt;
 &lt;p&gt;I hope to build some sort of inventory of data samples available.  If I do one a day, can be done in 10 weeks, or about 3 months.&lt;/p&gt;
 &lt;p&gt;What I will find the most useful is data distribution methods and data structures.&lt;/p&gt;
@@ -1727,9 +1727,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Python emailer</title>
-      <link>https://maprantala.com/posts/2010-07-09-python-emailer/</link>
+      <link>https://maprantala.com/2010/07/09/python-emailer/</link>
       <pubDate>Fri, 09 Jul 2010 17:20:38 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-09-python-emailer/</guid>
+      <guid>https://maprantala.com/2010/07/09/python-emailer/</guid>
       <description>&lt;p&gt;So I have a nightly process that runs and I, being the lazy programmer I am, didn’t want to bother checking a log file each morning to see how it went. The natural answer is to have the results emailed to me because I do have to check my email.&lt;/p&gt;
 &lt;p&gt;Since the process is already handled mostly in python, thought I would implement the emailing via python. It was actually simple enough to do–just required figuring out the setting for my SMTP server (actually I didn’t figure it our for my work server so I’m using my GMail account).&lt;/p&gt;
 &lt;p&gt;I first wrote eMailer.py (see code below) and included it in my python path. Now, whenever I want to send code from a python application, it takes two easy lines:&lt;/p&gt;
@@ -1745,9 +1745,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Hogeweg: ArcGIS Editor for OpenStreetMap</title>
-      <link>https://maprantala.com/posts/2010-07-07-hogeweg-arcgis-editor-for-openstreetmap/</link>
+      <link>https://maprantala.com/2010/07/07/hogeweg-arcgis-editor-for-openstreetmap/</link>
       <pubDate>Wed, 07 Jul 2010 19:10:35 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-07-hogeweg-arcgis-editor-for-openstreetmap/</guid>
+      <guid>https://maprantala.com/2010/07/07/hogeweg-arcgis-editor-for-openstreetmap/</guid>
       <description>&lt;p&gt;As someone who lives in the boon-docks whose street (both my current and previous one) does not appear in the data for either &lt;a href=&#34;http://www.navteq.com/&#34;&gt;NAVTEQ&lt;/a&gt; or &lt;a href=&#34;http://www.teleatlas.com/&#34;&gt;TeleAtlas&lt;/a&gt; and someone who used both of those data sets extensively in his previous job, I’ve watched OpenStreetMap for awhile, although have not contributed.&lt;/p&gt;
 &lt;p&gt;Marten Hogeweg, &lt;!-- raw HTML omitted --&gt;ArcGIS Server Geoportal Extension Product Manager, ESRI announce in his blogs an &lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://martenhogeweg.blogspot.com/2010/07/announcing-arcgis-editor-for.html&#34;&gt;ArcGIS Editor for OpenStreetMap&lt;/a&gt;.  Sounds like a great idea, giving GIS professions–some whom have the source materials the ability to easily contribute should only help the project.&lt;/p&gt;
 &lt;p&gt;Unfortunately, it is only available at 10.0 but that gives me another reason to install it on a virtual machine and start playing more.&lt;/p&gt;
@@ -1756,9 +1756,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>NED Processing in Python &amp;#038; Geoprocessing</title>
-      <link>https://maprantala.com/posts/2010-07-07-ned-processing-in-python-geoprocessing/</link>
+      <link>https://maprantala.com/2010/07/07/ned-processing-in-python-#038-geoprocessing/</link>
       <pubDate>Wed, 07 Jul 2010 14:05:20 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-07-ned-processing-in-python-geoprocessing/</guid>
+      <guid>https://maprantala.com/2010/07/07/ned-processing-in-python-#038-geoprocessing/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.usgs.gov/&#34;&gt;USGS&lt;/a&gt; updated a significant portion of &lt;a href=&#34;http://ned.usgs.gov/&#34;&gt;NED&lt;/a&gt; data for my state in June.  I recently downloaded the updates, processed them–projecting and converting the elevations from meters to feet–using python and geoprocessing.  My python skills are still pretty crude but I was able to get the job done.&lt;/p&gt;
 &lt;p&gt;One of the benefits of working for the public sector is that I can more freely publish code without worrying about “trade secrets” or what have you so I thought I would put my code out for anyone to see, maybe someone will find it useful.  It is split into two separate files, mostly because I used &lt;!-- raw HTML omitted --&gt;Model Builder&lt;!-- raw HTML omitted --&gt; to generate the main processing chunk of code (Project_Reclassify.py) and another script to control looping, etc. The code isn’t pretty and you’ll see the results of my development process with two subroutines in LaunchScript.py that could really be one.&lt;/p&gt;
 &lt;h3 id=&#34;heading&#34;&gt;&lt;/h3&gt;
@@ -1774,9 +1774,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Sticky Move Tolerance</title>
-      <link>https://maprantala.com/posts/2010-07-01-sitcky-move-tolerance/</link>
+      <link>https://maprantala.com/2010/07/01/sticky-move-tolerance/</link>
       <pubDate>Thu, 01 Jul 2010 16:51:42 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-01-sitcky-move-tolerance/</guid>
+      <guid>https://maprantala.com/2010/07/01/sticky-move-tolerance/</guid>
       <description>&lt;p&gt;While I am pretty experienced in editing data in previous generations of ESRI’s software, I have not done a lot in ArcGIS. So in my new position where I am supporting a group of geologists who do a lot of data creation in ArcMap, I am learning some of the intricacies of the ArcGIS platform.&lt;/p&gt;
 &lt;p&gt;One of the potential gotchas that a coworker informed me about that I was vaguely aware of was the issue of sticky move tolerances. What can happen, when editing existing features, is that each time you select a feature it can easily get moved very slightly if the mouse moves while the feature is selected. While the movement itself may be well within any allowable accuracy requirements, it can make a huge mess if you are working with a shapefile polygon coverage for example.&lt;/p&gt;
 &lt;p&gt;ArcMap has a setting, Sticky Move Tolerance, that helps prevent these tiny, accidental moving of features.  A feature will not be moved until the mouse moves at least as many screen pixels as this setting.  The default setting is 0, disabling this feature.&lt;/p&gt;
@@ -1791,9 +1791,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>ArcMap-Excel Join Error</title>
-      <link>https://maprantala.com/posts/2010-05-28-arcmap-excel-join-error/</link>
+      <link>https://maprantala.com/2010/05/28/arcmap-excel-join-error/</link>
       <pubDate>Fri, 28 May 2010 02:02:37 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-28-arcmap-excel-join-error/</guid>
+      <guid>https://maprantala.com/2010/05/28/arcmap-excel-join-error/</guid>
       <description>&lt;p&gt;Came across a new ArcMap bug today. A staff member was trying to join an Excel 2007 file (.xlsx) to a point shapefile in ArcMap and it did not appear to be working. She only had Office 2003 on her machine so I tried it on my spanking new machine that has 2007 installed. Same result–the fields get appended but they are all blank.&lt;/p&gt;
 &lt;p&gt;I discovered, however, that when I had the table open, if I switched form showing ALL records to only the selected, Poof!!! The values filled in. From there I was able to successfully export the data to a new shapefile that always showed the values.&lt;/p&gt;
 &lt;p&gt;I have an inkling that the file name, which contained space and other special characters, may have been a factor.&lt;/p&gt;
@@ -1805,9 +1805,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Geology Information Systems</title>
-      <link>https://maprantala.com/posts/2010-05-24-geology-information-systems/</link>
+      <link>https://maprantala.com/2010/05/24/geology-information-systems/</link>
       <pubDate>Mon, 24 May 2010 02:52:24 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-24-geology-information-systems/</guid>
+      <guid>https://maprantala.com/2010/05/24/geology-information-systems/</guid>
       <description>&lt;p&gt;In the last couple months, I’ve had a bit of an eye-opening about Geography. People actually trained in geography may implicitly understand this but I, with my Accounting degree, have spent the last 16 years “doing” GIS without realizing the foundation of geography–geology. I picked up enough geography to understand some of the inter-relationships between people and the lands they live on.&lt;/p&gt;
 &lt;p&gt;But what I didn’t pick up on was how the lands we live on are formed. Maybe it is a moot point–how physical geography is arrived at doesn’t matter, just how we react to it. But, and now working for a Geological Survey, I better have this opinion, a better understanding of what our geology is and how it was formed really does form the foundation for the geography.&lt;/p&gt;
 &lt;p&gt;Two examples. First, in talking with my new supervisor, he was talking about how, because of the geology in the southeast part of the state, they have a lot of water quality issues–the water tends to have sulfur in it. With the recent interest in alternative energy sources, and in this case ethanol plants water quality is a concern when deciding where to build the plants because they require a considerable amount of water. For some reason there have been plants placed in this part of the state and they are having some problems finding sufficient water.&lt;/p&gt;
@@ -1819,9 +1819,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Measuring distance from a point to a line segment in Python.</title>
-      <link>https://maprantala.com/posts/2010-05-16-measuring-distance-from-a-point-to-a-line-segment/</link>
+      <link>https://maprantala.com/2010/05/16/measuring-distance-from-a-point-to-a-line-segment-in-python./</link>
       <pubDate>Sun, 16 May 2010 17:14:23 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-16-measuring-distance-from-a-point-to-a-line-segment/</guid>
+      <guid>https://maprantala.com/2010/05/16/measuring-distance-from-a-point-to-a-line-segment-in-python./</guid>
       <description>&lt;p&gt;I recently had the need to calculate the distance from a point (address point) to a polyline (street segment) and wanted to avoid using any additional libraries because it was being done for an external client. Ok, I actually used arcgisscripting for reading the data but that lacked, from what I could tell, the fine-detail granularity of measuring distance between individual geometries.&lt;/p&gt;
 &lt;p&gt;But since the only spatial operations I needed were to measure the distance between two points and the distance between a point and polyline, I decided to just do it via brute force. The datasets being processed were not huge so it made this feasible.&lt;/p&gt;
 &lt;p&gt;Measuring point-to-point distance was easy enough. And while I knew I could work through the details of measuring the distance between a point and polyline, I decided NOT to re-invent the wheel if I did not have to. Google did not come up with any direct answers but I did come across this &lt;a href=&#34;http://local.wasp.uwa.edu.au/%7Epbourke/geometry/pointline/&#34;&gt;post&lt;/a&gt; from &lt;a href=&#34;http://local.wasp.uwa.edu.au/%7Epbourke/&#34; title=&#34;Paul Bourke&#34;&gt;Paul Bourke&lt;/a&gt; at the &lt;a href=&#34;http://wasp.uwa.edu.au/&#34;&gt;University of Western Australia&lt;/a&gt; about measuring the distance between a point and a line segment. A polyline is just a series of line segments so I used it as the basis of my measurement–I just loop through all the consecutive vertice pairs, using the minimum distance found.&lt;/p&gt;
@@ -1835,9 +1835,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>My Favorite Avenue Snippet Ever.</title>
-      <link>https://maprantala.com/posts/2010-05-16-my-favorite-avenue-snippet-ever/</link>
+      <link>https://maprantala.com/2010/05/16/my-favorite-avenue-snippet-ever./</link>
       <pubDate>Sun, 16 May 2010 16:33:30 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-16-my-favorite-avenue-snippet-ever/</guid>
+      <guid>https://maprantala.com/2010/05/16/my-favorite-avenue-snippet-ever./</guid>
       <description>&lt;p&gt;I worked in Avenue for many years but do not expect to do too much more. Before my Avenue skills erode to nothing, thought I would share my favorite Avenue snippet. Really, it involves two “function” scripts that clients scripts can use.&lt;/p&gt;
 &lt;p&gt;What I got use to doing is instead of using a mess of global variables is using one global variable–a dictionary–that was used to store what essentially became global variables. The main advantage of doing this is that I started storing the parameters passed to each script as a global variable named after the script. This came in EXTREMELY useful for debugging purposes because when I was having trouble with a script I could write out my global dictionary to an ODB file at the beginning of that script, thereby storing the application’s state prior to the problem.&lt;/p&gt;
 &lt;p&gt;The first script, MyApplication_Routine_AddSelfDict, is used to add/modify a dictionary entry:&lt;/p&gt;
@@ -1857,9 +1857,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Endpoints</title>
-      <link>https://maprantala.com/posts/2010-05-15-a-new-beginning/</link>
+      <link>https://maprantala.com/2010/05/15/endpoints/</link>
       <pubDate>Sat, 15 May 2010 13:27:09 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-15-a-new-beginning/</guid>
+      <guid>https://maprantala.com/2010/05/15/endpoints/</guid>
       <description>&lt;p&gt;I spent almost nine years working for a great company, &lt;a href=&#34;http://www.adc4gis.com/&#34;&gt;Applied Data Consultants&lt;/a&gt;, through a variety of roles–spent approximately 3 weeks doing Parcel work as a GIS Tech before I started working in Avenue for my own sanity. After that, spent several years doing various programming tasks including building tools for internal production and application development. The last couple years, I served more of a Consultant role, both for internal and external clients.&lt;/p&gt;
 &lt;p&gt;Where one polyline ends, another starts in this case.&lt;/p&gt;
 &lt;p&gt;In a couple days, I start my role as Geological Information Specialist at a state agency in Minnesota. I previously worked for the Wisconsin DNR (where I originally “discovered” GIS) and Pierce County, Wisconsin so I have some governmental experience but I am wondering how I will adapt to the organizational differences.&lt;/p&gt;

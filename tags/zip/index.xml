@@ -11,9 +11,9 @@
     
     <item>
       <title>Zipping a shapefile via ArcToolbox</title>
-      <link>https://maprantala.com/posts/2010-12-15-zipping-a-shapefile-via-arctoolbox/</link>
+      <link>https://maprantala.com/2010/12/15/zipping-a-shapefile-via-arctoolbox/</link>
       <pubDate>Wed, 15 Dec 2010 14:36:04 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-15-zipping-a-shapefile-via-arctoolbox/</guid>
+      <guid>https://maprantala.com/2010/12/15/zipping-a-shapefile-via-arctoolbox/</guid>
       <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -39,9 +39,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>Zipping a shapefile using python</title>
-      <link>https://maprantala.com/posts/2010-12-10-zipping-a-shapefile-using-python/</link>
+      <link>https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/</link>
       <pubDate>Fri, 10 Dec 2010 18:20:13 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-10-zipping-a-shapefile-using-python/</guid>
+      <guid>https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/</guid>
       <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;One of the tasks I’ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;

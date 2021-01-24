@@ -11,9 +11,9 @@
     
     <item>
       <title>X-section Xacto Updated</title>
-      <link>https://maprantala.com/posts/2010-12-10-x-section-xacto-updated/</link>
+      <link>https://maprantala.com/2010/12/10/x-section-xacto-updated/</link>
       <pubDate>Fri, 10 Dec 2010 18:15:51 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-10-x-section-xacto-updated/</guid>
+      <guid>https://maprantala.com/2010/12/10/x-section-xacto-updated/</guid>
       <description>&lt;p&gt;I just happened to stumble upon an update of a tool to Create Geologic Cross Sections, eXacto Section v. 2.0, that I &lt;a href=&#34;http://maprantala.com/2010/07/23/create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/&#34;&gt;mentioned&lt;/a&gt; in July. Jennifer Carrell at the Illinois Geological Survey wrote this tool. The latest update is from December 8, 2010 and can be &lt;a href=&#34;http://resources.arcgis.com/gallery/file/geoprocessing/details?entryID=C83CC388-1422-2418-7F10-B4D3DF5F1EE6&#34;&gt;downloaded at ESRI’s ArcGIS Resource Center&lt;/a&gt;. Our office has used previous versions and finds in very useful in creating cross-sections. I have not tried this latest update.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
@@ -21,9 +21,9 @@
     
     <item>
       <title>Arizona Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-23-arizona-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/23/arizona-geological-survey/</link>
       <pubDate>Fri, 23 Jul 2010 19:07:52 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-23-arizona-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/23/arizona-geological-survey/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.azgs.az.gov/&#34;&gt;The Arizona Geological Survey&lt;/a&gt; has a great looking site with some good information.  They have a &lt;a href=&#34;http://www.azgs.az.gov/publications_online/pubslist_2008.pdf&#34;&gt;publication list&lt;/a&gt; that can either be downloaded or ordered and are making pdf versions of their recent publications available &lt;a href=&#34;http://www.azgs.az.gov/publications_online.shtml&#34;&gt;online&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I was going to note that there was no download-able data available until Google told me that they in fact had a &lt;a href=&#34;http://www.azgs.az.gov/services_azgeomap.shtml&#34;&gt;WMS/WFS available online&lt;/a&gt;.  The WMS is a great looking map, I have not gotten the WFS to work, however–probably more due to my abilities than the service.&lt;/p&gt;
 &lt;p&gt;They are also temporarily hosting a &lt;a href=&#34;http://services.azgs.az.gov/OnlineMaps/demos/nvClarkCounty.html&#34;&gt;surficial geology map&lt;/a&gt; of Clark County, Nevada.&lt;/p&gt;
@@ -33,9 +33,9 @@
     
     <item>
       <title>Michigan Office of Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-22-michigan-office-of-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/22/michigan-office-of-geological-survey/</link>
       <pubDate>Thu, 22 Jul 2010 15:31:20 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-22-michigan-office-of-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/22/michigan-office-of-geological-survey/</guid>
       <description>&lt;p&gt;The Michigan &lt;a href=&#34;http://www.michigan.gov/deq/0,1607,7-135-3306_57064-87386--,00.html&#34;&gt;Office of Geological Survey&lt;/a&gt; appears to have pdf versions of all the documents in their &lt;a href=&#34;http://www.michigan.gov/documents/deq/GIMDL-Catalog-2010-01-20_307979_7.pdf&#34;&gt;Digital Geological Library&lt;/a&gt; available for download.  The transcripts of some early (beginning in 1871) &lt;a href=&#34;http://www.michigan.gov/documents/deq/OFR_19_Rominger_1871-1874_Aopt_306084_7.pdf&#34;&gt;field notes&lt;/a&gt; are a fun inclusion in the available archives.&lt;/p&gt;
 &lt;p&gt;Actual GIS data was a bit hard to find although I found both bedrock geology and quarternary geology available from the state &lt;a href=&#34;http://www.mcgi.state.mi.us/mgdl/?action=thm&#34;&gt;Geographic Data Library&lt;/a&gt; in shapefile format.  I also found oil and gas well data but did not download it.&lt;/p&gt;
 &lt;p&gt;The data carried minimal attribution, one interesting thing I found in the bedrock data was the red, green, blue values apparently used for each polygon.&lt;/p&gt;
@@ -48,9 +48,9 @@
     
     <item>
       <title>Wisconsin Geological and Natural History Survey</title>
-      <link>https://maprantala.com/posts/2010-07-15-wisconsin-geological-and-natural-history-survey/</link>
+      <link>https://maprantala.com/2010/07/15/wisconsin-geological-and-natural-history-survey/</link>
       <pubDate>Thu, 15 Jul 2010 13:18:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-15-wisconsin-geological-and-natural-history-survey/</guid>
+      <guid>https://maprantala.com/2010/07/15/wisconsin-geological-and-natural-history-survey/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.uwex.edu/wgnhs/&#34;&gt;Wisconsin Geological and Natural History Survey&lt;/a&gt; has a well organized, appealing website.  Their data is easy to find although there is not much GIS data available.&lt;/p&gt;
 &lt;p&gt;Although because I am more interested in sample data sets than anything, the &lt;a href=&#34;http://www.uwex.edu/wgnhs/gis.htm&#34;&gt;GIS data&lt;/a&gt; they do have–statewide geologic map; pleistocene geology, precambrian geology, quaternary geology, (surficial?) geology and bedrock geology for various counties–may actually be a great reference.  Other than the statewide geologic map, the data is available on a per-publication basis.&lt;/p&gt;
 &lt;p&gt;Some other data is available in the &lt;a href=&#34;http://www.uwex.edu/wgnhs/wofrs.htm&#34;&gt;open-file reports&lt;/a&gt;.&lt;/p&gt;
@@ -67,9 +67,9 @@
     
     <item>
       <title>Iowa Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-14-iowa-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/14/iowa-geological-survey/</link>
       <pubDate>Wed, 14 Jul 2010 13:01:47 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-14-iowa-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/14/iowa-geological-survey/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.igsb.uiowa.edu/&#34;&gt;Iowa Geological Survey&lt;/a&gt; has a lot of data available to download &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/nrgislibx/&#34;&gt;here&lt;/a&gt;.  PDF versions of many of their publications can be found in their &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/gsbpubs/&#34;&gt;List of Publications&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Their GIS data is minimally attributed for the most part, their public wells data set did have a more robust attribution scheme.  One cool feature I found in the wells data is that they provide a hyper-link for many features to an &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/geosam/Scripts/geocard.asp?wnumber=43873&#34;&gt;on-line site record&lt;/a&gt;.  Found both shapefiles and file geodatabases in the samples I downloaded.&lt;/p&gt;
 &lt;p&gt;More interestingly, I opened up their Bedrock Geological Map and noticed something odd to me.  See the bulls-eye just NW of center?  That, even to a non-geologist like me, does not look too geologic.&lt;/p&gt;
@@ -80,18 +80,18 @@
     
     <item>
       <title>South Dakota Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-13-south-dakota-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/13/south-dakota-geological-survey/</link>
       <pubDate>Tue, 13 Jul 2010 12:33:07 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-13-south-dakota-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/13/south-dakota-geological-survey/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.sdgs.usd.edu/&#34;&gt;South Dakota Geological Survey&lt;/a&gt; website provides some good base data–imagery, DRGs, DEMs, and DLGs.  There is a searchable database of &lt;a href=&#34;http://www.sddenr.net/core/&#34;&gt;core cuttings&lt;/a&gt; and the &lt;a href=&#34;http://arcgis.sd.gov/server/sdgis/Data.aspx&#34;&gt;state data server&lt;/a&gt; has bedrock data for the eastern portion of the state and a statewide layer, presumably surficial geology, called geology.  Quad-based geological maps are also available (PDF format) in the &lt;a href=&#34;http://www.sdgs.usd.edu/publications/index.html&#34;&gt;Publications and Maps&lt;/a&gt; section.  The data I downloaded was in shapefile format with minimal attribution.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>North Dakota Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-12-north-dakota-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/12/north-dakota-geological-survey/</link>
       <pubDate>Mon, 12 Jul 2010 13:53:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-12-north-dakota-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/12/north-dakota-geological-survey/</guid>
       <description>&lt;p&gt;Took a quick look at the &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/&#34;&gt;North Dakota Geological Survey’s website&lt;/a&gt; for GIS data.&lt;/p&gt;
 &lt;p&gt;The only data I found served directly from their website was &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/surfacegeo/surfacemapsnew.asp&#34;&gt;surface geology map&lt;/a&gt; .pdfs for some 24k and 100k maps.  Also available is a search for &lt;a href=&#34;https://www.dmr.nd.gov/oilgas/findwellsvw.asp&#34;&gt;Oil &amp;amp; Gas wells&lt;/a&gt; although I did not see the data was downloadable.  Some other &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/Publication_List/contentsnew.asp&#34;&gt;publications&lt;/a&gt; have .pdfs that can be downloaded.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;http://web.apps.state.nd.us/imf/sites/hubexplorer/jsp/index.jsp&#34;&gt;North Dakota Hub Explorer&lt;/a&gt; serves as the state’s official data portal including for GIS data.  The downloadable data includes bedrock geology, surface geology, and contours.  Interestingly, the site allows you to choose from 7 different coordinate systems and 27 different file formats including several AutoCad, ESRI, MapInfo, and KML.  The data I looked at had more attribution than the bare minimum shown on a hard-copy map.  Bedrock data, for example, had additional lithology.&lt;/p&gt;
@@ -101,9 +101,9 @@
     
     <item>
       <title>AASG</title>
-      <link>https://maprantala.com/posts/2010-07-09-aasg/</link>
+      <link>https://maprantala.com/2010/07/09/aasg/</link>
       <pubDate>Fri, 09 Jul 2010 19:49:51 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-09-aasg/</guid>
+      <guid>https://maprantala.com/2010/07/09/aasg/</guid>
       <description>&lt;p&gt;I was looking for links to all the State Geological Surveys and found the Association of American State Geologists (AASG) &lt;a href=&#34;http://www.stategeologists.org/&#34;&gt;Homepage&lt;/a&gt; to have exactly what I needed.&lt;/p&gt;
 &lt;p&gt;I hope to build some sort of inventory of data samples available.  If I do one a day, can be done in 10 weeks, or about 3 months.&lt;/p&gt;
 &lt;p&gt;What I will find the most useful is data distribution methods and data structures.&lt;/p&gt;

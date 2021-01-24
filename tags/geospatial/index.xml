@@ -11,9 +11,9 @@
     
     <item>
       <title>Garmin GPX to Shapefile (SHP) conversion GPX2Shp.py</title>
-      <link>https://maprantala.com/posts/2014-05-16-garmin-gpx-to-shapefile-shp-conversion-gpx2shp-py/</link>
+      <link>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</link>
       <pubDate>Fri, 16 May 2014 21:11:20 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-05-16-garmin-gpx-to-shapefile-shp-conversion-gpx2shp-py/</guid>
+      <guid>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</guid>
       <description>&lt;p&gt;I mentioned using &lt;!-- raw HTML omitted --&gt;Tapiriik&lt;!-- raw HTML omitted --&gt; to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .&lt;!-- raw HTML omitted --&gt;GPX to shapefiles&lt;!-- raw HTML omitted --&gt; that worked but none seemed to recognize my heart rate data.&lt;/p&gt;
 &lt;p&gt;The trick is Garmin extends the GPX specification to incorporate the heart rate:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;

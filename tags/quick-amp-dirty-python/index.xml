@@ -11,9 +11,9 @@
     
     <item>
       <title>Quick &amp;#038; Dirty python recursive folder search</title>
-      <link>https://maprantala.com/posts/2012-03-13-quick-dirty-python-recursive-folder-search-2/</link>
+      <link>https://maprantala.com/2012/03/13/quick-#038-dirty-python-recursive-folder-search/</link>
       <pubDate>Tue, 13 Mar 2012 15:55:55 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-03-13-quick-dirty-python-recursive-folder-search-2/</guid>
+      <guid>https://maprantala.com/2012/03/13/quick-#038-dirty-python-recursive-folder-search/</guid>
       <description>&lt;p&gt;Someone asked how to have python recursively search a folder structure. There may be a better way but this is how I typically do it–it basically starts with one directory and loops through the contents compiling a list of sub-directories as it goes through the contents.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2012/03/dirstalker.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;

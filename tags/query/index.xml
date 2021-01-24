@@ -11,9 +11,9 @@
     
     <item>
       <title>Updating Access ODBC connections using VBA</title>
-      <link>https://maprantala.com/posts/2011-03-16-updating-access-odbc-connections-using-vba/</link>
+      <link>https://maprantala.com/2011/03/16/updating-access-odbc-connections-using-vba/</link>
       <pubDate>Wed, 16 Mar 2011 20:06:59 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-16-updating-access-odbc-connections-using-vba/</guid>
+      <guid>https://maprantala.com/2011/03/16/updating-access-odbc-connections-using-vba/</guid>
       <description>&lt;p&gt;I don’t do much in Access or VBA but sometimes you inherit things that force you, at least temporarily, to go retro.&lt;/p&gt;
 &lt;p&gt;We have an Access-based data extraction routine that uses several (21) pass-through queries that use an ODBC connection.  The queries are pulling data from an Oracle database maintained by a different agency that enforces a time-out of passwords every three months.&lt;/p&gt;
 &lt;p&gt;So every three months I have to go through the ODBC connections for these queries and change the password.  And before you chastise me for storing the password in the VBA code, I can only say “you’re right” but that’s the way it is done–not ideal but gets the job done and we’re not dealing with overly sensitive data.&lt;/p&gt;
@@ -27,9 +27,9 @@
     
     <item>
       <title>Entering a Null Value in VB.Net DateTimePicker</title>
-      <link>https://maprantala.com/posts/2010-07-13-datetimepicker-null-value/</link>
+      <link>https://maprantala.com/2010/07/13/entering-a-null-value-in-vb.net-datetimepicker/</link>
       <pubDate>Tue, 13 Jul 2010 16:26:45 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-13-datetimepicker-null-value/</guid>
+      <guid>https://maprantala.com/2010/07/13/entering-a-null-value-in-vb.net-datetimepicker/</guid>
       <description>&lt;p&gt;While working on a VB.Net form to query a database that includes an optional date range query, I decided I wanted to display a datetimepicker with a blank value by default and then, if the user sets a date show the date.  By default, a datetimepicker can not have a Null date, so I went a’Googling and found this post, &lt;a href=&#34;http://dotnetref.blogspot.com/2009/03/setting-datetimepicker-to-blank-value.html&#34;&gt;.NET Reference: Setting the DateTimePicker to a Blank Value&lt;/a&gt; ,that had exactly the technique I wanted.&lt;/p&gt;
 &lt;p&gt;Basically, I set the datetimepicker’s CustomFormat to a space (” “) when I want it to be Null and then when the user makes a selection, set the custom format to the date format I wanted to display.    This is the sample code I found:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;

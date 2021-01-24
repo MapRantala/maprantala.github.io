@@ -11,9 +11,9 @@
     
     <item>
       <title>Using ArcPy.Mapping to update Definition Queries.</title>
-      <link>https://maprantala.com/posts/2018-05-08-using-arcpy-mapping-to-update-definition-queries/</link>
+      <link>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</link>
       <pubDate>Tue, 08 May 2018 17:56:09 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2018-05-08-using-arcpy-mapping-to-update-definition-queries/</guid>
+      <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</guid>
       <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the “lazy” GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
 &lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the “.replace” settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -25,9 +25,9 @@
     
     <item>
       <title>ArcToolbox Tool: Add [ST_CON_ABR] to Hennepin County, MN Centerlines</title>
-      <link>https://maprantala.com/posts/2017-10-04-arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</link>
+      <link>https://maprantala.com/2017/10/04/arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</link>
       <pubDate>Wed, 04 Oct 2017 22:17:11 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2017-10-04-arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</guid>
+      <guid>https://maprantala.com/2017/10/04/arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</guid>
       <description>&lt;p&gt;One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a “recover-our-cost” mentality to more of an “Open Data”. Minnesota, for example, has launched their &lt;!-- raw HTML omitted --&gt;Geospatial Commons&lt;!-- raw HTML omitted --&gt; as a platform for sharing data.&lt;/p&gt;
 &lt;p&gt;And while getting free, authoritative data is awesome, it can leave you in a bind if the structure of the data changes. Sometime between April and September, Hennepin County, Minnesota, changed the schema of their &lt;!-- raw HTML omitted --&gt;publicly available street centerlines data&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
 &lt;p&gt;The data used to have both a full, concatenated street name field ([ST_CONCAT]) and an abbreviated version ([ST_CON_ABR]). A record might have “James Lofton Avenue North” and “James Lofton Ave N”, respectively, in these two fields. The abbreviated version was nice for labeling but it disappeared from the most recent updates.&lt;/p&gt;
@@ -44,9 +44,9 @@
     
     <item>
       <title>Converting MXD to Layer file in Arcpy</title>
-      <link>https://maprantala.com/posts/2015-08-14-converting-mxd-to-layer-file-in-arcpy/</link>
+      <link>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</link>
       <pubDate>Fri, 14 Aug 2015 10:01:54 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2015-08-14-converting-mxd-to-layer-file-in-arcpy/</guid>
+      <guid>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</guid>
       <description>&lt;p&gt;Working on doing some &lt;!-- raw HTML omitted --&gt;advanced ArcGIS server printing&lt;!-- raw HTML omitted --&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;!-- raw HTML omitted --&gt;Petr Krebs&lt;!-- raw HTML omitted --&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
 &lt;p&gt;I created an ArcGIS toolbox with two options–one to convert a single .mxd and one to batch convert an entire folder. To use it, make sure to have the EmptyGroup.lyr in the same directory as the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the raw code or &lt;!-- raw HTML omitted --&gt;git it&lt;!-- raw HTML omitted --&gt;:&lt;/p&gt;
@@ -59,9 +59,9 @@
     
     <item>
       <title>Calling os.startfile and webbrowser.open from ArcGIS.</title>
-      <link>https://maprantala.com/posts/2014-12-31-calling-os-startfile-and-webbrowser-open-from-arcgis/</link>
+      <link>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis./</link>
       <pubDate>Wed, 31 Dec 2014 14:38:16 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2014-12-31-calling-os-startfile-and-webbrowser-open-from-arcgis/</guid>
+      <guid>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis./</guid>
       <description>&lt;p&gt;Recently I’ve created &lt;!-- raw HTML omitted --&gt;Python add-ins&lt;!-- raw HTML omitted --&gt; for data entry for our staff. Most of these have a toolbar with a “Help” button that opens a help file in .pdf format.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/12/Toolbar.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Sample python add-in toolbar.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(&lt;em&gt;path to help.pdf&lt;/em&gt;).&lt;/p&gt;
@@ -78,9 +78,9 @@
     
     <item>
       <title>Quick &amp;#038; Dirty ArcPy: Listing Data Sources</title>
-      <link>https://maprantala.com/posts/2014-12-03-quick-dirty-arcpy-listing-data-sources/</link>
+      <link>https://maprantala.com/2014/12/03/quick-#038-dirty-arcpy-listing-data-sources/</link>
       <pubDate>Wed, 03 Dec 2014 08:05:10 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2014-12-03-quick-dirty-arcpy-listing-data-sources/</guid>
+      <guid>https://maprantala.com/2014/12/03/quick-#038-dirty-arcpy-listing-data-sources/</guid>
       <description>&lt;p&gt;I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here’s the &lt;a href=&#34;https://github.com/MapRantala/Blog/blob/master/python/arcpy/20141203_ListDataSources/listDataSources.py&#34;&gt;bare-bones script&lt;/a&gt; I used instead:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -91,9 +91,9 @@
     
     <item>
       <title>Garmin GPX to Shapefile (SHP) conversion GPX2Shp.py</title>
-      <link>https://maprantala.com/posts/2014-05-16-garmin-gpx-to-shapefile-shp-conversion-gpx2shp-py/</link>
+      <link>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</link>
       <pubDate>Fri, 16 May 2014 21:11:20 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-05-16-garmin-gpx-to-shapefile-shp-conversion-gpx2shp-py/</guid>
+      <guid>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</guid>
       <description>&lt;p&gt;I mentioned using &lt;!-- raw HTML omitted --&gt;Tapiriik&lt;!-- raw HTML omitted --&gt; to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .&lt;!-- raw HTML omitted --&gt;GPX to shapefiles&lt;!-- raw HTML omitted --&gt; that worked but none seemed to recognize my heart rate data.&lt;/p&gt;
 &lt;p&gt;The trick is Garmin extends the GPX specification to incorporate the heart rate:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -119,9 +119,9 @@
     
     <item>
       <title>Debugging a Python Scheduled Task</title>
-      <link>https://maprantala.com/posts/2011-07-11-debugging-a-python-scheduled-task/</link>
+      <link>https://maprantala.com/2011/07/11/debugging-a-python-scheduled-task/</link>
       <pubDate>Mon, 11 Jul 2011 18:11:13 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-07-11-debugging-a-python-scheduled-task/</guid>
+      <guid>https://maprantala.com/2011/07/11/debugging-a-python-scheduled-task/</guid>
       <description>&lt;p&gt;I have been working on a python script that I want (NEED) to run as a scheduled task on a remote machine.  I got to the point that the script did exactly what I needed when I was interactively running it in a Windows session but had problems when running it as a scheduled task.  The debugging process was cumbersome–make a change, schedule a task to run it, log out of the machine, and wait.  The log back in and repeat the process.&lt;/p&gt;
 &lt;p&gt;That got old.&lt;/p&gt;
 &lt;p&gt;So I wrote &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110711_tester.zip&#34;&gt;a script  (tester.py)&lt;/a&gt; that calls any other python scripts in the same directory that (1) start with “test_” and (2) there is not a corresponding file with the same base name and “.start” extension.  It would launch “test_BaBing.py” as long as there is not a “test_BaBing.start” in the same directory.  Tester.py continued to run, looping every 60 seconds, until tester.stop exists.&lt;/p&gt;
@@ -138,9 +138,9 @@
     
     <item>
       <title>Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</title>
-      <link>https://maprantala.com/posts/2011-05-23-feature-classes-and-tables-with-names-starting-with-nd/</link>
+      <link>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./</link>
       <pubDate>Mon, 23 May 2011 15:55:24 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-23-feature-classes-and-tables-with-names-starting-with-nd/</guid>
+      <guid>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./</guid>
       <description>&lt;p&gt;Random luck me to discovering a bug related to feature classes whose names start with “nd_”.  It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them.  Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases,  personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.&lt;/p&gt;
 &lt;p&gt;I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.  After importing 15 shapefiles, I only had thirteen feature classes despite receiving no errors during the process.  The two shapefiles that failed to import were named ND_oil_and_gas.shp and ND_Bendix_Study.shp.  Subsequent attempts to import them individually returned an error “Invalid Target Name”.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/05/invalidtargetname.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -165,9 +165,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Renaming Raster Dataset and arcpy.Exists()</title>
-      <link>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</link>
+      <link>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</link>
       <pubDate>Tue, 03 May 2011 09:33:48 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</guid>
+      <guid>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</guid>
       <description>&lt;p&gt;Discovered something today. I was working on an arcpy script that copies a raster dataset from a file geodatabase into a Postgres SDE geodatabase and then does some boring routine tasks–building stats, creating a mosaic dataset, adding the raster to the mosaic dataset and making a couple referenced mosaic datasets.&lt;/p&gt;
 &lt;p&gt;It sometimes has trouble with the initial step of uploading the raster because of the sheer size of if (1m elevation raster for counties) and it failed today on one. It failed today so I used the ArcCatalog GUI to copy the raster and renamed it.&lt;/p&gt;
 &lt;p&gt;I then proceeded to run launch my script. Before each step, I use &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Exists/000v00000021000000/&#34;&gt;arcpy.Exists&lt;/a&gt;() extensively to check to see if various items exist before I attempt to create them. It was continuously reporting that my raster set did not exist even though I could see it in ArcCatalog.&lt;/p&gt;
@@ -180,9 +180,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
-      <link>https://maprantala.com/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</link>
+      <link>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
       <pubDate>Sun, 01 May 2011 05:01:50 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</guid>
+      <guid>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
       <description>&lt;p&gt;For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.&lt;/p&gt;
 &lt;p&gt;Here is the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;bare-bones script&lt;/a&gt; that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.  Some cautionary notes:&lt;/p&gt;
 &lt;ul&gt;
@@ -202,9 +202,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Change Detector arcpy Script</title>
-      <link>https://maprantala.com/posts/2011-04-08-change-detector-script-arcgis-resource-center/</link>
+      <link>https://maprantala.com/2011/04/08/change-detector-arcpy-script/</link>
       <pubDate>Fri, 08 Apr 2011 10:48:59 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-04-08-change-detector-script-arcgis-resource-center/</guid>
+      <guid>https://maprantala.com/2011/04/08/change-detector-arcpy-script/</guid>
       <description>&lt;p&gt;During a process I was working on, I needed to compare a feature class before and after some edits.  I did not quickly find anything in ArcToolbox but searching &lt;a href=&#34;http://resources.arcgis.com/&#34;&gt;ArcResources&lt;/a&gt; led me to &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=351BEE10-1422-2418-8815-82074A3E6B6C&#34;&gt;Change Detector script by Bruce Harold&lt;/a&gt;.  After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.  I also discovered that it needs to export to the same format (personal geodatabase, file geodatabase, shapefile) as the source data (or at least one that uses the same field name deliminator).&lt;/p&gt;
 &lt;p&gt;After minor adjustments, though, it worked like a charm.  I’ll be submitting the changes I made to Bruce and let him incorporate the changes into the official code.&lt;/p&gt;
 &lt;p&gt;FOLLOW-UP: Mr. Harold quickly responded to my email &amp;amp; made the change (although I haven’t checked it). Way to go Bruce!  Thanks for a handy script.&lt;/p&gt;
@@ -214,9 +214,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Using arcpy to List Domains Assigned to Featureclass Fields</title>
-      <link>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</link>
+      <link>https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/</link>
       <pubDate>Mon, 14 Mar 2011 18:04:36 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</guid>
+      <guid>https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/</guid>
       <description>&lt;p&gt;I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
 &lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
 &lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;
@@ -231,9 +231,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>ArcMap Field Calculator: Calculating Geometry using arcpy</title>
-      <link>https://maprantala.com/posts/2011-03-08-calculating-geometry-using-arcpy-in-field-calculator/</link>
+      <link>https://maprantala.com/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/</link>
       <pubDate>Tue, 08 Mar 2011 09:30:40 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-08-calculating-geometry-using-arcpy-in-field-calculator/</guid>
+      <guid>https://maprantala.com/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/</guid>
       <description>&lt;p&gt;One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm&#34;&gt;Field Calculator&lt;/a&gt;.  When I stumbled upon a bug in the way the &lt;a href=&#34;http://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/&#34;&gt;Extract Values to Points&lt;/a&gt; tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.&lt;/p&gt;
 &lt;p&gt;I set the Parser to Python and the formula was simple once I figured out the syntax:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -247,9 +247,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Loading Tiled, Same-Name Data in Batch Mode.</title>
-      <link>https://maprantala.com/posts/2011-02-28-loading-tiled-same-name-data-in-batch-mode/</link>
+      <link>https://maprantala.com/2011/02/28/loading-tiled-same-name-data-in-batch-mode./</link>
       <pubDate>Mon, 28 Feb 2011 12:30:43 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-28-loading-tiled-same-name-data-in-batch-mode/</guid>
+      <guid>https://maprantala.com/2011/02/28/loading-tiled-same-name-data-in-batch-mode./</guid>
       <description>&lt;p&gt;I have been loading existing raster data into a geodatabase to be included in a new Mosaic Dataset–a very cool and useful addition to ArcGIS 10. The most time-consuming part of the process for the human (at least this human) has been getting the names of the rasters right.&lt;/p&gt;
 &lt;p&gt;Our existing data is organized by tiles with the directory name representing the tile name and then the data within each tile directory having the same name.&lt;/p&gt;
 &lt;p&gt;For example:&lt;br&gt;
@@ -270,9 +270,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Checking to see if a Field Index Exists Using Arcpy (ArGIS 10.0)</title>
-      <link>https://maprantala.com/posts/2011-02-21-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/</link>
+      <link>https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0/</link>
       <pubDate>Mon, 21 Feb 2011 09:55:35 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-21-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/</guid>
+      <guid>https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0/</guid>
       <description>&lt;p&gt;Updating some python code from 9.3 that using geoprocessing  to 10.0 using arcpy and the first real object I’ve had to change relates to detecting whether or not an index exists on a table.&lt;/p&gt;
 &lt;p&gt;I previously &lt;a href=&#34;http://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;posted code&lt;/a&gt; using a 9.3 geoprocessing commands, the core of it being:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -286,9 +286,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Zipping a File Geodatabase using Python</title>
-      <link>https://maprantala.com/posts/2011-02-08-zipping-a-file-geodatabase-using-python/</link>
+      <link>https://maprantala.com/2011/02/08/zipping-a-file-geodatabase-using-python/</link>
       <pubDate>Tue, 08 Feb 2011 13:44:34 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-08-zipping-a-file-geodatabase-using-python/</guid>
+      <guid>https://maprantala.com/2011/02/08/zipping-a-file-geodatabase-using-python/</guid>
       <description>&lt;p&gt;Ever since the ever-popular post, &lt;a href=&#34;http://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zipping a shapefile using python&lt;/a&gt;, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.&lt;/p&gt;
 &lt;p&gt;The key trick, as shown in line 17, is appending the basename of the file geodatabase (“nfg.gdb/” in my example) in front of each file as you write it to the zipfile.&lt;/p&gt;
 &lt;p&gt;UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp;amp; pasted and have work.  So I have posted a the code &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110208_Sample_Zip_FileGeodatabase.zip&#34;&gt;HERE&lt;/a&gt; for downloading.&lt;/p&gt;
@@ -300,9 +300,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Multiple outputs for Python scripts</title>
-      <link>https://maprantala.com/posts/2010-12-17-multiple-outputs-for-python-scripts/</link>
+      <link>https://maprantala.com/2010/12/17/multiple-outputs-for-python-scripts/</link>
       <pubDate>Fri, 17 Dec 2010 15:19:38 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-17-multiple-outputs-for-python-scripts/</guid>
+      <guid>https://maprantala.com/2010/12/17/multiple-outputs-for-python-scripts/</guid>
       <description>&lt;p&gt;Related to my &lt;a href=&#34;http://maprantala.com/2010/12/13/launching-a-python-script-with-parameters-3-methods/&#34;&gt;post&lt;/a&gt; on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways.  This is largely due to the fact that some are called by ArcToolbox scripts.  Running in ESRI’s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.&lt;/p&gt;
 &lt;p&gt;If you assume one output method but then run your code in the opposite framework, you don’t get to see all the pretty little messages.  What I do is create a simple little routine that broadcasts the message both ways.  This is probably an obvious solution but took a few cases before I went ahead and started implementing it.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -314,9 +314,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Zipping a shapefile via ArcToolbox</title>
-      <link>https://maprantala.com/posts/2010-12-15-zipping-a-shapefile-via-arctoolbox/</link>
+      <link>https://maprantala.com/2010/12/15/zipping-a-shapefile-via-arctoolbox/</link>
       <pubDate>Wed, 15 Dec 2010 14:36:04 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-15-zipping-a-shapefile-via-arctoolbox/</guid>
+      <guid>https://maprantala.com/2010/12/15/zipping-a-shapefile-via-arctoolbox/</guid>
       <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -342,9 +342,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>Launching a Python script with parameters&amp;#8211;3 methods.</title>
-      <link>https://maprantala.com/posts/2010-12-13-launching-a-python-script-with-parameters-3-methods/</link>
+      <link>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters#82113-methods./</link>
       <pubDate>Mon, 13 Dec 2010 14:56:43 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-13-launching-a-python-script-with-parameters-3-methods/</guid>
+      <guid>https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters#82113-methods./</guid>
       <description>&lt;p&gt;Since I use python for different tasks, I launch python scripts a variety of ways. Depending on what I am doing, a single script may need to accept parameters from either:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Passed in from an ArcGIS Toolbox Tool.&lt;/li&gt;
@@ -361,9 +361,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>Zipping a shapefile using python</title>
-      <link>https://maprantala.com/posts/2010-12-10-zipping-a-shapefile-using-python/</link>
+      <link>https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/</link>
       <pubDate>Fri, 10 Dec 2010 18:20:13 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-10-zipping-a-shapefile-using-python/</guid>
+      <guid>https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/</guid>
       <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;One of the tasks I’ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;
@@ -376,9 +376,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>TopoToRaster Error</title>
-      <link>https://maprantala.com/posts/2010-09-13-topotoraster-error/</link>
+      <link>https://maprantala.com/2010/09/13/topotoraster-error/</link>
       <pubDate>Mon, 13 Sep 2010 20:25:01 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-13-topotoraster-error/</guid>
+      <guid>https://maprantala.com/2010/09/13/topotoraster-error/</guid>
       <description>&lt;p&gt;In running an automated process, I had a TopoToRaster repeatedly fail on me. The only input theme was a contour theme. The process ran fine when I used the envelope of the contour theme as the output extent but when I changed it to the envelope of a polygon theme, it would bomb. The polygon’s envelope was smaller than the contour theme.&lt;/p&gt;
 &lt;p&gt;ArcCatalog would bomb out without presenting any sort of useful message.&lt;/p&gt;
 &lt;p&gt;I determined eventually that If I set the left extent as 435210, the process would work if set the right extent to 446655 or greater but would bomb if I used 446654 or less. If the the left extent was 435209, the right extent had to be 446654 or greater.&lt;/p&gt;
@@ -391,9 +391,9 @@ In response to Chris:&lt;/p&gt;
     
     <item>
       <title>Accessing Network Drives via Scheduled Python Task</title>
-      <link>https://maprantala.com/posts/2010-07-26-accessing-network-drives-via-scheduled-python-task/</link>
+      <link>https://maprantala.com/2010/07/26/accessing-network-drives-via-scheduled-python-task/</link>
       <pubDate>Mon, 26 Jul 2010 12:43:02 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-26-accessing-network-drives-via-scheduled-python-task/</guid>
+      <guid>https://maprantala.com/2010/07/26/accessing-network-drives-via-scheduled-python-task/</guid>
       <description>&lt;p&gt;As previously mentioned, I have a scheduled nightly backup that is written in Python.  Most of it has been working fine but I had not gotten it to copy files to network drives.  I finally got around to correcting that part.  My first attempt was just to map the network drives for the user account that is used to run the task.  No good.&lt;/p&gt;
 &lt;p&gt;My second attempt was to call a .bat file from python before accessing the network drives and that worked.&lt;/p&gt;
 &lt;p&gt;The batch file has two lines (one for each network drive):&lt;/p&gt;
@@ -409,9 +409,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Python emailer</title>
-      <link>https://maprantala.com/posts/2010-07-09-python-emailer/</link>
+      <link>https://maprantala.com/2010/07/09/python-emailer/</link>
       <pubDate>Fri, 09 Jul 2010 17:20:38 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-09-python-emailer/</guid>
+      <guid>https://maprantala.com/2010/07/09/python-emailer/</guid>
       <description>&lt;p&gt;So I have a nightly process that runs and I, being the lazy programmer I am, didn’t want to bother checking a log file each morning to see how it went. The natural answer is to have the results emailed to me because I do have to check my email.&lt;/p&gt;
 &lt;p&gt;Since the process is already handled mostly in python, thought I would implement the emailing via python. It was actually simple enough to do–just required figuring out the setting for my SMTP server (actually I didn’t figure it our for my work server so I’m using my GMail account).&lt;/p&gt;
 &lt;p&gt;I first wrote eMailer.py (see code below) and included it in my python path. Now, whenever I want to send code from a python application, it takes two easy lines:&lt;/p&gt;
@@ -427,9 +427,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>NED Processing in Python &amp;#038; Geoprocessing</title>
-      <link>https://maprantala.com/posts/2010-07-07-ned-processing-in-python-geoprocessing/</link>
+      <link>https://maprantala.com/2010/07/07/ned-processing-in-python-#038-geoprocessing/</link>
       <pubDate>Wed, 07 Jul 2010 14:05:20 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-07-ned-processing-in-python-geoprocessing/</guid>
+      <guid>https://maprantala.com/2010/07/07/ned-processing-in-python-#038-geoprocessing/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.usgs.gov/&#34;&gt;USGS&lt;/a&gt; updated a significant portion of &lt;a href=&#34;http://ned.usgs.gov/&#34;&gt;NED&lt;/a&gt; data for my state in June.  I recently downloaded the updates, processed them–projecting and converting the elevations from meters to feet–using python and geoprocessing.  My python skills are still pretty crude but I was able to get the job done.&lt;/p&gt;
 &lt;p&gt;One of the benefits of working for the public sector is that I can more freely publish code without worrying about “trade secrets” or what have you so I thought I would put my code out for anyone to see, maybe someone will find it useful.  It is split into two separate files, mostly because I used &lt;!-- raw HTML omitted --&gt;Model Builder&lt;!-- raw HTML omitted --&gt; to generate the main processing chunk of code (Project_Reclassify.py) and another script to control looping, etc. The code isn’t pretty and you’ll see the results of my development process with two subroutines in LaunchScript.py that could really be one.&lt;/p&gt;
 &lt;h3 id=&#34;heading&#34;&gt;&lt;/h3&gt;
@@ -445,9 +445,9 @@ net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
     
     <item>
       <title>Measuring distance from a point to a line segment in Python.</title>
-      <link>https://maprantala.com/posts/2010-05-16-measuring-distance-from-a-point-to-a-line-segment/</link>
+      <link>https://maprantala.com/2010/05/16/measuring-distance-from-a-point-to-a-line-segment-in-python./</link>
       <pubDate>Sun, 16 May 2010 17:14:23 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-16-measuring-distance-from-a-point-to-a-line-segment/</guid>
+      <guid>https://maprantala.com/2010/05/16/measuring-distance-from-a-point-to-a-line-segment-in-python./</guid>
       <description>&lt;p&gt;I recently had the need to calculate the distance from a point (address point) to a polyline (street segment) and wanted to avoid using any additional libraries because it was being done for an external client. Ok, I actually used arcgisscripting for reading the data but that lacked, from what I could tell, the fine-detail granularity of measuring distance between individual geometries.&lt;/p&gt;
 &lt;p&gt;But since the only spatial operations I needed were to measure the distance between two points and the distance between a point and polyline, I decided to just do it via brute force. The datasets being processed were not huge so it made this feasible.&lt;/p&gt;
 &lt;p&gt;Measuring point-to-point distance was easy enough. And while I knew I could work through the details of measuring the distance between a point and polyline, I decided NOT to re-invent the wheel if I did not have to. Google did not come up with any direct answers but I did come across this &lt;a href=&#34;http://local.wasp.uwa.edu.au/%7Epbourke/geometry/pointline/&#34;&gt;post&lt;/a&gt; from &lt;a href=&#34;http://local.wasp.uwa.edu.au/%7Epbourke/&#34; title=&#34;Paul Bourke&#34;&gt;Paul Bourke&lt;/a&gt; at the &lt;a href=&#34;http://wasp.uwa.edu.au/&#34;&gt;University of Western Australia&lt;/a&gt; about measuring the distance between a point and a line segment. A polyline is just a series of line segments so I used it as the basis of my measurement–I just loop through all the consecutive vertice pairs, using the minimum distance found.&lt;/p&gt;

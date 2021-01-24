@@ -11,9 +11,9 @@
     
     <item>
       <title>Instantiating Add-In Objects at Load Time</title>
-      <link>https://maprantala.com/posts/2011-03-02-instantiating-add-in-objects-at-load-time/</link>
+      <link>https://maprantala.com/2011/03/02/instantiating-add-in-objects-at-load-time/</link>
       <pubDate>Wed, 02 Mar 2011 15:18:14 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-02-instantiating-add-in-objects-at-load-time/</guid>
+      <guid>https://maprantala.com/2011/03/02/instantiating-add-in-objects-at-load-time/</guid>
       <description>&lt;p&gt;In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0.  So far, I’m loving the functionality.&lt;/p&gt;
 &lt;p&gt;One thing, however, that I have to figure out is that the controls are not instantiated until they are clicked on.  One of the results is that the controls, by default, are enabled.  This is not the functionality I wanted.&lt;/p&gt;
 &lt;p&gt;I found the solution in ESRI’s topic, &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/&#34;&gt;Advanced add-in concepts (ArcObjects .NET 10 SDK)&lt;/a&gt; in the Delayed loading section:&lt;/p&gt;

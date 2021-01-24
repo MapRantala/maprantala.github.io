@@ -11,9 +11,9 @@
     
     <item>
       <title>Using ArcGIS 9.3.1 Desktop to Extract Data From an ArcGIS 10 Server Geodata Service</title>
-      <link>https://maprantala.com/posts/2011-02-04-using-arcgis-9-3-1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</link>
+      <link>https://maprantala.com/2011/02/04/using-arcgis-9.3.1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</link>
       <pubDate>Fri, 04 Feb 2011 18:26:53 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-04-using-arcgis-9-3-1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</guid>
+      <guid>https://maprantala.com/2011/02/04/using-arcgis-9.3.1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</guid>
       <description>&lt;p&gt;In building our Enterprise GIS Database, we need to support users with different needs.  Some of our users just need to see the data on a map while others may want to download a copy of the data so they can use it within their own desktop system.&lt;/p&gt;
 &lt;p&gt;After doing some exploring, one of the options that looks like it will feel the bulk of our internal needs is to create a &lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Map%20service&#34;&gt;Map Service&lt;/a&gt;/&lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Geodata%20service&#34;&gt;Geodata Servic&lt;/a&gt;e pair–by creating a Map Service, we can make an easy-to-use visual representation of our data.  Combining that with a paired Geodata Service–a Geodata Service with the same name as the Map Service–we can accommodate those users who want to extract the data to their hard drive.&lt;/p&gt;
 &lt;p&gt;A user who has added paired Map &amp;amp; Geodata Services to an ArcMap dataframe can use the Distributed Geodatabase Toolbar to extract data to a local geodatabase.  The Extract Data button is on the far right of the Distributed Geodatabase Toolbar.&lt;/p&gt;
@@ -33,9 +33,9 @@
     
     <item>
       <title>ArcGIS 9.3.1 to ArcSDE 10 Connection Error</title>
-      <link>https://maprantala.com/posts/2011-01-13-arcgis-9-3-1-to-arcsde-10-connection-error/</link>
+      <link>https://maprantala.com/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/</link>
       <pubDate>Thu, 13 Jan 2011 14:41:58 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-01-13-arcgis-9-3-1-to-arcsde-10-connection-error/</guid>
+      <guid>https://maprantala.com/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://maprantala.com/Users/mrantala/AppData/Local/Temp/moz-screenshot-7.png&#34; alt=&#34;&#34;&gt;We finally installed an instance of ArcSDE 10 today.  My first attempt at connecting in ArcCatalog 9.3.1 failed with the following error:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Failed to connect to the specified server.&lt;/p&gt;
@@ -54,9 +54,9 @@
     
     <item>
       <title>Displaying Node Dangles in Arcedit</title>
-      <link>https://maprantala.com/posts/2011-01-06-displaying-node-dangles-in-arcedit/</link>
+      <link>https://maprantala.com/2011/01/06/displaying-node-dangles-in-arcedit/</link>
       <pubDate>Thu, 06 Jan 2011 16:50:42 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-01-06-displaying-node-dangles-in-arcedit/</guid>
+      <guid>https://maprantala.com/2011/01/06/displaying-node-dangles-in-arcedit/</guid>
       <description>&lt;p&gt;Since the name of the blog is Node Dangles, I get several hits daily from searches on “Node Dangles” and I have no  information on node dangles.  This post is the first in a series to change that.&lt;/p&gt;
 &lt;p&gt;First let us, by us, I mean &lt;a href=&#34;http://www.esri.com&#34;&gt;ESRI&lt;/a&gt;, define what a node dangle is.  Their online glossary actually defines a &lt;a href=&#34;http://resources.arcgis.com/glossary/term/215&#34;&gt;dangling arc&lt;/a&gt;, a dangling node is a &lt;a href=&#34;http://resources.arcgis.com/glossary/term/71&#34;&gt;node&lt;/a&gt; (endpoint of an arc) that does the non-connecting mentioned below:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;

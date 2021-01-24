@@ -11,9 +11,9 @@
     
     <item>
       <title>Forcing ArcGIS Online to Update Feature Layer Information</title>
-      <link>https://maprantala.com/posts/2018-06-22-forcing-arcgis-online-to-update-feature-layer-information/</link>
+      <link>https://maprantala.com/2018/06/22/forcing-arcgis-online-to-update-feature-layer-information/</link>
       <pubDate>Fri, 22 Jun 2018 20:26:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2018-06-22-forcing-arcgis-online-to-update-feature-layer-information/</guid>
+      <guid>https://maprantala.com/2018/06/22/forcing-arcgis-online-to-update-feature-layer-information/</guid>
       <description>&lt;p&gt;Because we use ArcGIS Online Web Maps in our daily work-flows, I created an AGO group that contains Feature Layers that are links to our self-hosted ArcGIS Server services. This way, users can quickly add data from our ArcGIS Server Site and not have to look up URLs/Usernames/Passwords (I’ve save the username/password as part of the ArcGIS Online service when appropriate).&lt;/p&gt;
 &lt;p&gt;But I’ve had a problem where if I change the service, the changes are not reflected in the AGO Feature Layer for that service and I have to monkey about to get the changes to migrate to the maps.&lt;/p&gt;
 &lt;p&gt;Finally annoyed with doing that for the Xth time, I decided to see if I could get the feature service information to refresh automatically. Documentation search found nothing; call in to tech support–still waiting. While experimenting, however, I found that newer Feature Layer I added this way do actually update when I made changes. WTH?!&lt;/p&gt;
@@ -30,9 +30,9 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
     
     <item>
       <title>Esri Web AppBuilder 2.4, Empty Basemap Gallery Follow-Up</title>
-      <link>https://maprantala.com/posts/2017-08-06-esri-web-appbuilder-2-4-empty-basemap-gallery-follow-up/</link>
+      <link>https://maprantala.com/2017/08/06/esri-web-appbuilder-2.4-empty-basemap-gallery-follow-up/</link>
       <pubDate>Sun, 06 Aug 2017 10:12:07 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2017-08-06-esri-web-appbuilder-2-4-empty-basemap-gallery-follow-up/</guid>
+      <guid>https://maprantala.com/2017/08/06/esri-web-appbuilder-2.4-empty-basemap-gallery-follow-up/</guid>
       <description>&lt;p&gt;A while ago I &lt;!-- raw HTML omitted --&gt;posted &lt;!-- raw HTML omitted --&gt;a work-around for a problem I was having with a &lt;!-- raw HTML omitted --&gt;Web AppBuilder&lt;!-- raw HTML omitted --&gt; application. Working with Esri tech support, we determined what I was doing to cause the problem.&lt;/p&gt;
 &lt;p&gt;In my config.json, I was using a relative path to the proxy. Note that I had the proxy as a separate application at the root level of our domain because I intended to have a shared proxy for all of our applications instead of individual ones. So the WAB application would be using &lt;a href=&#34;http://ourarcgisdomain.com/proxy/proxy.ashx&#34;&gt;http://ourarcgisdomain.com/proxy/proxy.ashx&lt;/a&gt;.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -48,9 +48,9 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
     
     <item>
       <title>Esri Web AppBuilder 2.4, Empty Basemap Gallery</title>
-      <link>https://maprantala.com/posts/2017-04-10-esri-web-appbuilder-2-4-empty-basemap-gallery/</link>
+      <link>https://maprantala.com/2017/04/10/esri-web-appbuilder-2.4-empty-basemap-gallery/</link>
       <pubDate>Mon, 10 Apr 2017 20:08:37 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2017-04-10-esri-web-appbuilder-2-4-empty-basemap-gallery/</guid>
+      <guid>https://maprantala.com/2017/04/10/esri-web-appbuilder-2.4-empty-basemap-gallery/</guid>
       <description>&lt;p&gt;I recently downloaded Web AppBuilder 2.4, Developer’s Edition and built a quick &amp;amp; dirty app. For some reason, it worked fine in Web AppBuilder but once I deployed it, no basemaps would show in the B&lt;a href=&#34;http://doc.arcgis.com/en/web-appbuilder/create-apps/widget-basemap.htm&#34;&gt;aseman Gallery widget&lt;/a&gt;, it would just spin, spin, spin.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2017/04/BasemapGallery.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Digging around, I found some &lt;a href=&#34;https://geonet.esri.com/thread/118906&#34;&gt;old posts&lt;/a&gt; where users were experiencing similar problems but none of the solution resulted in a great solution. I was able to get it to work by listing the basemaps individually in the config_BasemapGallery.json file but I that was more of a work-around. Notice in the thumbnailUrl, I have to put the full path to the thumbnails. Note that for brevity’s sake, I’m only showing one of the basemaps in this sample.&lt;/p&gt;
@@ -85,9 +85,9 @@ I had recently worked on a solution that involved appending a time stamp onto sc
     
     <item>
       <title>Feature classes and Tables with names starting with &amp;#8220;nd_&amp;#8221;.</title>
-      <link>https://maprantala.com/posts/2011-05-23-feature-classes-and-tables-with-names-starting-with-nd/</link>
+      <link>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./</link>
       <pubDate>Mon, 23 May 2011 15:55:24 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-23-feature-classes-and-tables-with-names-starting-with-nd/</guid>
+      <guid>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-#8220nd_%238221./</guid>
       <description>&lt;p&gt;Random luck me to discovering a bug related to feature classes whose names start with “nd_”.  It appears that you are allowed to create feature classes starting with “nd_” but ArcCatalog will not display them.  Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases,  personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.&lt;/p&gt;
 &lt;p&gt;I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.  After importing 15 shapefiles, I only had thirteen feature classes despite receiving no errors during the process.  The two shapefiles that failed to import were named ND_oil_and_gas.shp and ND_Bendix_Study.shp.  Subsequent attempts to import them individually returned an error “Invalid Target Name”.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/05/invalidtargetname.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -112,9 +112,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)</title>
-      <link>https://maprantala.com/posts/2011-02-15-walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-net-10-sdk/</link>
+      <link>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</link>
       <pubDate>Tue, 15 Feb 2011 17:05:55 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-15-walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-net-10-sdk/</guid>
+      <guid>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</guid>
       <description>&lt;p&gt;I was working my way through this ESRI &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#//0001000001ms000000&#34;&gt;Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)&lt;/a&gt;.  And came across a couple minor errors that I had to correct during the process.&lt;/p&gt;
 &lt;p&gt;First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a “Name ‘ArcMap’ is not declared.” error.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/arcmapnotdeclared.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -142,9 +142,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>ArcGIS 9.3.1 to ArcSDE 10 Connection Error</title>
-      <link>https://maprantala.com/posts/2011-01-13-arcgis-9-3-1-to-arcsde-10-connection-error/</link>
+      <link>https://maprantala.com/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/</link>
       <pubDate>Thu, 13 Jan 2011 14:41:58 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-01-13-arcgis-9-3-1-to-arcsde-10-connection-error/</guid>
+      <guid>https://maprantala.com/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://maprantala.com/Users/mrantala/AppData/Local/Temp/moz-screenshot-7.png&#34; alt=&#34;&#34;&gt;We finally installed an instance of ArcSDE 10 today.  My first attempt at connecting in ArcCatalog 9.3.1 failed with the following error:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Failed to connect to the specified server.&lt;/p&gt;
@@ -163,9 +163,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>Workstation Arc/Info Interchange Import Error</title>
-      <link>https://maprantala.com/posts/2010-09-07-183/</link>
+      <link>https://maprantala.com/2010/09/07/workstation-arc/info-interchange-import-error/</link>
       <pubDate>Tue, 07 Sep 2010 19:08:39 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-07-183/</guid>
+      <guid>https://maprantala.com/2010/09/07/workstation-arc/info-interchange-import-error/</guid>
       <description>&lt;p&gt;I have been working on updating some data that was published using Arc/Info Workstation Export (.e00) files, converting them to shapefiles, or in the case of annotation, to a geodatabase feature class.&lt;/p&gt;
 &lt;p&gt;While converting some INFO tables, I have received this error:&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/09/importerror1.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Unable to encode the 38th item in the 65th record for the INFO file&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
@@ -186,9 +186,9 @@ print fc&lt;/p&gt;
     
     <item>
       <title>ArcMap-Excel Join Error</title>
-      <link>https://maprantala.com/posts/2010-05-28-arcmap-excel-join-error/</link>
+      <link>https://maprantala.com/2010/05/28/arcmap-excel-join-error/</link>
       <pubDate>Fri, 28 May 2010 02:02:37 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-28-arcmap-excel-join-error/</guid>
+      <guid>https://maprantala.com/2010/05/28/arcmap-excel-join-error/</guid>
       <description>&lt;p&gt;Came across a new ArcMap bug today. A staff member was trying to join an Excel 2007 file (.xlsx) to a point shapefile in ArcMap and it did not appear to be working. She only had Office 2003 on her machine so I tried it on my spanking new machine that has 2007 installed. Same result–the fields get appended but they are all blank.&lt;/p&gt;
 &lt;p&gt;I discovered, however, that when I had the table open, if I switched form showing ALL records to only the selected, Poof!!! The values filled in. From there I was able to successfully export the data to a new shapefile that always showed the values.&lt;/p&gt;
 &lt;p&gt;I have an inkling that the file name, which contained space and other special characters, may have been a factor.&lt;/p&gt;

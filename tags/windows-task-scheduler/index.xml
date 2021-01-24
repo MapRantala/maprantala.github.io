@@ -11,9 +11,9 @@
     
     <item>
       <title>Debugging a Python Scheduled Task</title>
-      <link>https://maprantala.com/posts/2011-07-11-debugging-a-python-scheduled-task/</link>
+      <link>https://maprantala.com/2011/07/11/debugging-a-python-scheduled-task/</link>
       <pubDate>Mon, 11 Jul 2011 18:11:13 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-07-11-debugging-a-python-scheduled-task/</guid>
+      <guid>https://maprantala.com/2011/07/11/debugging-a-python-scheduled-task/</guid>
       <description>&lt;p&gt;I have been working on a python script that I want (NEED) to run as a scheduled task on a remote machine.  I got to the point that the script did exactly what I needed when I was interactively running it in a Windows session but had problems when running it as a scheduled task.  The debugging process was cumbersome–make a change, schedule a task to run it, log out of the machine, and wait.  The log back in and repeat the process.&lt;/p&gt;
 &lt;p&gt;That got old.&lt;/p&gt;
 &lt;p&gt;So I wrote &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110711_tester.zip&#34;&gt;a script  (tester.py)&lt;/a&gt; that calls any other python scripts in the same directory that (1) start with “test_” and (2) there is not a corresponding file with the same base name and “.start” extension.  It would launch “test_BaBing.py” as long as there is not a “test_BaBing.start” in the same directory.  Tester.py continued to run, looping every 60 seconds, until tester.stop exists.&lt;/p&gt;

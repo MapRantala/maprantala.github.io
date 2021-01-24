@@ -11,9 +11,9 @@
     
     <item>
       <title>Revoking &amp;#8216;Public&amp;#8217; Permissions in PostgreSQL ArcSDE</title>
-      <link>https://maprantala.com/posts/2011-03-11-revoking-public-permissions-in-postgresql-arcsde/</link>
+      <link>https://maprantala.com/2011/03/11/revoking-#8216public%238217-permissions-in-postgresql-arcsde/</link>
       <pubDate>Fri, 11 Mar 2011 11:11:48 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-11-revoking-public-permissions-in-postgresql-arcsde/</guid>
+      <guid>https://maprantala.com/2011/03/11/revoking-#8216public%238217-permissions-in-postgresql-arcsde/</guid>
       <description>&lt;p&gt;While banging my head on how to grant access to a &lt;a href=&#34;http://wp.me/pVrsJ-6Q&#34;&gt;referenced mosaic dataset&lt;/a&gt; , I did something out of frustration that I normally would not do–I granted ‘public’ access to some data.&lt;/p&gt;
 &lt;p&gt;Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:&lt;/p&gt;
 &lt;p&gt;Error 999999: Error executing function.&lt;/p&gt;

@@ -10,9 +10,9 @@
     
     <item>
       <title>Displaying Node Dangles in Arcedit</title>
-      <link>https://maprantala.com/posts/2011-01-06-displaying-node-dangles-in-arcedit/</link>
+      <link>https://maprantala.com/2011/01/06/displaying-node-dangles-in-arcedit/</link>
       <pubDate>Thu, 06 Jan 2011 16:50:42 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-01-06-displaying-node-dangles-in-arcedit/</guid>
+      <guid>https://maprantala.com/2011/01/06/displaying-node-dangles-in-arcedit/</guid>
       <description>&lt;p&gt;Since the name of the blog is Node Dangles, I get several hits daily from searches on “Node Dangles” and I have no  information on node dangles.  This post is the first in a series to change that.&lt;/p&gt;
 &lt;p&gt;First let us, by us, I mean &lt;a href=&#34;http://www.esri.com&#34;&gt;ESRI&lt;/a&gt;, define what a node dangle is.  Their online glossary actually defines a &lt;a href=&#34;http://resources.arcgis.com/glossary/term/215&#34;&gt;dangling arc&lt;/a&gt;, a dangling node is a &lt;a href=&#34;http://resources.arcgis.com/glossary/term/71&#34;&gt;node&lt;/a&gt; (endpoint of an arc) that does the non-connecting mentioned below:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -24,9 +24,9 @@
     
     <item>
       <title>Workstation Arc/Info Interchange Import Error</title>
-      <link>https://maprantala.com/posts/2010-09-07-183/</link>
+      <link>https://maprantala.com/2010/09/07/workstation-arc/info-interchange-import-error/</link>
       <pubDate>Tue, 07 Sep 2010 19:08:39 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-07-183/</guid>
+      <guid>https://maprantala.com/2010/09/07/workstation-arc/info-interchange-import-error/</guid>
       <description>&lt;p&gt;I have been working on updating some data that was published using Arc/Info Workstation Export (.e00) files, converting them to shapefiles, or in the case of annotation, to a geodatabase feature class.&lt;/p&gt;
 &lt;p&gt;While converting some INFO tables, I have received this error:&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/09/importerror1.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Unable to encode the 38th item in the 65th record for the INFO file&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;

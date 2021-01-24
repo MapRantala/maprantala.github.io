@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>WordPress Permalinks Snafu – Node Dangles</title>
+<meta name="description" content="Using a free StatCounter.comadd-in, I get weekly emails showing the number of visitors to this blog. During the summer, the numbers plummeted. At the time, I thought it …">
+<meta name="created" content="2019-01-21T05:19:03-0600">
+<meta name="modified" content="2019-01-21T05:19:03-0600">
+<meta name="author" content="adminguy">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="WordPress Permalinks Snafu">
+<meta property="og:url" content="https://maprantala.com/2019/01/21/wordpress-permalinks-snafu/">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://maprantala.com/wp-content/uploads/2019/01/stats.png">
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/2019/01/21/wordpress-permalinks-snafu/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "WordPress Permalinks Snafu",
+    "datePublished": "2019-01-21T05:19:03-06:00",
+    "dateModified": "2019-01-21T05:19:03-06:00",
+    "url" : "https://maprantala.com/2019/01/21/wordpress-permalinks-snafu/",
+    "description": "Using a free StatCounter.comadd-in, I get weekly emails showing the number of visitors to this blog. During the summer, the numbers plummeted. At the time, I thought it …",
+    "keywords": ["Wordpress"],
+    "image" : "https://maprantala.com/wp-content/uploads/2019/01/stats.png",
+    "author": {
+      "@type": "Person",
+      "name": "adminguy"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title ">WordPress Permalinks Snafu</h1>
+<div class="tags">
+Tags:
+<ul>
+<li><a href="/tags/wordpress">Wordpress</a></li>
+</ul>
+</div>
+</header>
+<div class="content">
+<p>Using a free <!-- raw HTML omitted -->StatCounter.com<!-- raw HTML omitted --> add-in, I get weekly emails showing the number of visitors to this blog. During the summer, the numbers plummeted. At the time, I thought it had to do with Google/Chrome requiring https.<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --> <!-- raw HTML omitted --></p>
+<p>Luckily, HostGator (disclosure: I’m working on becoming a HostGator affiliate), who I use to host this blog and a few other websites, provided free https certificates for all of my sites. So I made sure that <a href="https://MapRantala.com">https://MapRantala.com</a> worked and thought the numbers would rebound.</p>
+<p>Looking at the chart, you can see they did only slightly. I assumed that it would just be a matter of time for Google to see that https was enabled and since the blog is more a place for me to make notes to myself, I wasn’t concerned.</p>
+<p>This weekend, I decided to take a look at Google’s Search Console and see if I could determine what was going on. Looking in the coverage, I saw many 404 results for pages. As I investigated some of them, I realized that it was due to my Permalinks setting.</p>
+<p>The URLs, as shown below, were not working.<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --> <!-- raw HTML omitted --></p>
+<p>The website was using “https://maprantala.com/index.php/” as the base URL. So, for example, “https://maprantala.com/2017/08/07/arcgis-pro-2-0-migration-overview” did not work but “https://maprantala.com/<strong>index.php</strong>/2017/08/07/arcgis-pro-2-0-migration-overview” did.</p>
+<p>To change the WordPress Permalinks setting, I went to Settings-Permalinks and removed he “index.php/” from the Custom Structure. Waiting a day, the 404s have disappeared in Search Console and, in theory, I just need to wait for Google to re-index the pages which are currently shown as “Crawled – currently not indexed”<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --> <!-- raw HTML omitted -->WordPress Permalinks Setting <!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>That may not have been the whole problem. I republished this blog under a different name for a year. But moved it back to this domain when that domain registration expired. So that may have been another factor.</p>
+
+
+</div>
+</article>
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

@@ -11,9 +11,9 @@
     
     <item>
       <title>Using ArcPy.Mapping to update Definition Queries.</title>
-      <link>https://maprantala.com/posts/2018-05-08-using-arcpy-mapping-to-update-definition-queries/</link>
+      <link>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</link>
       <pubDate>Tue, 08 May 2018 17:56:09 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2018-05-08-using-arcpy-mapping-to-update-definition-queries/</guid>
+      <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</guid>
       <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the “lazy” GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
 &lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the “.replace” settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -25,9 +25,9 @@
     
     <item>
       <title>ArcMap Maximum Legend Items from a ArcGIS Server service</title>
-      <link>https://maprantala.com/posts/2014-02-11-arcmap-maximum-legend-items-from-a-arcgis-server-service/</link>
+      <link>https://maprantala.com/2014/02/11/arcmap-maximum-legend-items-from-a-arcgis-server-service/</link>
       <pubDate>Tue, 11 Feb 2014 06:02:42 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2014-02-11-arcmap-maximum-legend-items-from-a-arcgis-server-service/</guid>
+      <guid>https://maprantala.com/2014/02/11/arcmap-maximum-legend-items-from-a-arcgis-server-service/</guid>
       <description>&lt;p&gt;Recently we took a call from a user who could not see the legend for one of the feature classes in one of our services. (Precambrian Bedrock in &lt;a href=&#34;http://mgsweb2.mngs.umn.edu/arcgis/services/state/mnbdrkgeology&#34;&gt;http://mgsweb2.mngs.umn.edu/arcgis/services/state/mnbdrkgeology&lt;/a&gt; )&lt;/p&gt;
 &lt;p&gt;After trying some standard things–restarting the service, checking the source .MXD–I turned to The Google Machine and quickly found help from ESRI: &lt;a href=&#34;http://support.esri.com/zh-cn/knowledgebase/techarticles/detail/33741&#34;&gt;http://support.esri.com/zh-cn/knowledgebase/techarticles/detail/33741&lt;/a&gt; .&lt;/p&gt;
 &lt;p&gt;Turns out the default number of legend items ArcMap will display from an ArcGIS Server map service layer is 100 and we had 102 in the problematic layer. (I plead innocence, blame the geologist for needing that many categories).&lt;/p&gt;
@@ -49,9 +49,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>ArcMap Field Calculator: Number of parts in multi-part feature</title>
-      <link>https://maprantala.com/posts/2013-09-05-arcmap-field-calculator/</link>
+      <link>https://maprantala.com/2013/09/05/arcmap-field-calculator-number-of-parts-in-multi-part-feature/</link>
       <pubDate>Thu, 05 Sep 2013 14:04:40 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2013-09-05-arcmap-field-calculator/</guid>
+      <guid>https://maprantala.com/2013/09/05/arcmap-field-calculator-number-of-parts-in-multi-part-feature/</guid>
       <description>&lt;p&gt;In the last week, I have looked for multi-part features a couple of times. Today, I was looking for multi-part polygons after dealing with the fall-out of a case of Clip Gone Wild as shown below.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/09/image.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I have not found a way to write a query to find these but Field Calculator does allow you to calculate a field’s value to the number of parts.&lt;/p&gt;
@@ -62,9 +62,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>Unsupported Arc: &amp;#8220;Rebox&amp;#8221;ing or updating the extent of a feature class.</title>
-      <link>https://maprantala.com/posts/2012-06-05-unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class/</link>
+      <link>https://maprantala.com/2012/06/05/unsupported-arc-#8220rebox%238221ing-or-updating-the-extent-of-a-feature-class./</link>
       <pubDate>Tue, 05 Jun 2012 21:16:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-06-05-unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class/</guid>
+      <guid>https://maprantala.com/2012/06/05/unsupported-arc-#8220rebox%238221ing-or-updating-the-extent-of-a-feature-class./</guid>
       <description>&lt;p&gt;I’ve found that sometimes I can not find the answer to a question until I know the answer &amp;amp; then it becomes ridiculously easy to find the answer.&lt;/p&gt;
 &lt;p&gt;One small annoying thing that I never spent much time was when you delete features from a feature class making it significantly smaller but the envelope does not get re-sized so the zoom extent (still the original extent) is too large. This often happens to use when we convert tables to an XY theme and there are blank records–most of our data shows in Minnesota but there are some in Oklahoma (I think). Once we eliminate or correct the blank records, our data view still pops out to include a large section of the United States even though we only have data in Minnesota.&lt;/p&gt;
 &lt;p&gt;A long, long time ago, &lt;!-- raw HTML omitted --&gt;Workstation ArcInfo&lt;!-- raw HTML omitted --&gt; had a simple command, &lt;!-- raw HTML omitted --&gt;Rebox&lt;!-- raw HTML omitted --&gt;, for just this purpose (actually it still does, I just don’t get to use it anymore)–it shrunk the extent to the smallest rectangle required to enclose all the data. Up until today, I thought &lt;!-- raw HTML omitted --&gt;the request&lt;!-- raw HTML omitted --&gt; for this feature was completely ignored.&lt;/p&gt;
@@ -80,9 +80,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>ArcMap Field Calculator: Identifying Unique Cases, Single Field</title>
-      <link>https://maprantala.com/posts/2012-04-28-arcmap-field-calculator-identifying-unique-cases-single-field/</link>
+      <link>https://maprantala.com/2012/04/28/arcmap-field-calculator-identifying-unique-cases-single-field/</link>
       <pubDate>Sat, 28 Apr 2012 05:55:34 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-04-28-arcmap-field-calculator-identifying-unique-cases-single-field/</guid>
+      <guid>https://maprantala.com/2012/04/28/arcmap-field-calculator-identifying-unique-cases-single-field/</guid>
       <description>&lt;p&gt;Seems like a lot of people are finding the ArcMap Field Calculator &lt;a href=&#34;http://maprantala.com/category/esri/arcmap-esri/field-calculator/&#34;&gt;examples&lt;/a&gt; that I have posted useful so I will make an effort to post more of them. Most posts are generated after I do something and think that others might want to know how to do it. (Or so I can go back and remember how I did something without re-inventing it).&lt;/p&gt;
 &lt;p&gt;Something I did today was create a field (!Case!) and then populated this with a unique identifier for each different value (case) that occurred in a different field (!Feature!).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Note: python’s &lt;em&gt;index&lt;/em&gt; statement is a 0-based search so the first case will have the value 0, the second will have 1, and so on. If you want to start the results at 1, you can make the last line: “return caseList.index(inValue) + 1”.&lt;/strong&gt;&lt;/p&gt;
@@ -95,9 +95,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>ArcMap Field Calculator: Identifying Unique Cases, Multiple Fields</title>
-      <link>https://maprantala.com/posts/2012-04-23-arcmap-field-calculator-identifying-unique-cases-multiple-fields/</link>
+      <link>https://maprantala.com/2012/04/23/arcmap-field-calculator-identifying-unique-cases-multiple-fields/</link>
       <pubDate>Mon, 23 Apr 2012 06:06:25 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-04-23-arcmap-field-calculator-identifying-unique-cases-multiple-fields/</guid>
+      <guid>https://maprantala.com/2012/04/23/arcmap-field-calculator-identifying-unique-cases-multiple-fields/</guid>
       <description>&lt;p&gt;You may have noticed that this post–&lt;a href=&#34;http://wp.me/pVrsJ-bf&#34;&gt;ArcMap Field Calculator: Identifying Unique Cases, Single Field&lt;/a&gt;–specifies “Single Field”. Yes, that was my version of a cliff-hanger post.&lt;/p&gt;
 &lt;p&gt;The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats “a” the same as “A”.&lt;/p&gt;
 &lt;p&gt;Today’s example groups records into different cases based off the values of two fields, !county_c! and !feature! and required only minor modifications.&lt;/p&gt;
@@ -124,9 +124,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>ArcMap Field Calculator: Beware of Integer Division!</title>
-      <link>https://maprantala.com/posts/2012-04-02-arcmap-field-calculator-beware-of-integer-division/</link>
+      <link>https://maprantala.com/2012/04/02/arcmap-field-calculator-beware-of-integer-division/</link>
       <pubDate>Mon, 02 Apr 2012 05:34:54 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-04-02-arcmap-field-calculator-beware-of-integer-division/</guid>
+      <guid>https://maprantala.com/2012/04/02/arcmap-field-calculator-beware-of-integer-division/</guid>
       <description>&lt;p&gt;Apparently, if you post one time about ArcMap field calculator, you’re bound to get additional questions.  After &lt;a href=&#34;http://maprantala.com/2012/03/28/arcmap-field-calculator-text-to-double/&#34;&gt;my recent post&lt;/a&gt; about using field calculator to convert text values to numeric, someone asked about a problem they were having with another calculation they were having.&lt;/p&gt;
 &lt;p&gt;The underlying problem was that python 2.6, which is installed with ArcGIS 10, &lt;a href=&#34;http://docs.python.org/release/2.6.7/library/stdtypes.html#numeric-types-int-float-long-complex&#34;&gt;uses integer division&lt;/a&gt; when both the numerator and denominator are integers. The result of integer division is an integer rounded towards negative infinity.&lt;/p&gt;
 &lt;p&gt;If you’re not aware of this (or forget) then you open yourself up to some unexpected results–they can be especially hard to catch if you are using it within a larger block of code.&lt;/p&gt;
@@ -141,9 +141,9 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
     
     <item>
       <title>ArcMap Field Calculator: Text to Double</title>
-      <link>https://maprantala.com/posts/2012-03-28-arcmap-field-calculator-text-to-double/</link>
+      <link>https://maprantala.com/2012/03/28/arcmap-field-calculator-text-to-double/</link>
       <pubDate>Wed, 28 Mar 2012 05:23:32 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-03-28-arcmap-field-calculator-text-to-double/</guid>
+      <guid>https://maprantala.com/2012/03/28/arcmap-field-calculator-text-to-double/</guid>
       <description>&lt;p&gt;Received a request yesterday asking how to use the ArcMap Calculator to copy values from a Text field to a Double field using python syntax.  As any good blogger would do, I immediately thought, “Awesome! Someone’s question is the perfect topic for a new blog post”.&lt;/p&gt;
 &lt;p&gt;The python parser is actually pretty good at casting values on the fly so if the values in your text field (!Day! in my example) are valid values that can be converted to a Double value, it is as simple as just setting the formula to be the text field. In my example case, I wanted to copy the value from !Day! to !DecDay! so I set the formula to be DecDay = !Day!.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -165,9 +165,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>ArcMap Field Calculator: ArcPy Date to Decimal Function</title>
-      <link>https://maprantala.com/posts/2011-10-06-field-calculator-arcpy-date-to-decimal-function/</link>
+      <link>https://maprantala.com/2011/10/06/arcmap-field-calculator-arcpy-date-to-decimal-function/</link>
       <pubDate>Thu, 06 Oct 2011 21:08:35 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-10-06-field-calculator-arcpy-date-to-decimal-function/</guid>
+      <guid>https://maprantala.com/2011/10/06/arcmap-field-calculator-arcpy-date-to-decimal-function/</guid>
       <description>&lt;p&gt;One of the standards in our databases is to store dates as 8-digit integer values in the format of yyyymmdd. This requires us to occasionally convert values from date fields into this format.&lt;/p&gt;
 &lt;p&gt;We can do this in the ArcMap Field Calculator using this arcpy function:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -178,9 +178,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>ArcMap Field Calculator: Create a Unique ID</title>
-      <link>https://maprantala.com/posts/2011-07-28-using-arcpy-in-arcgis-10-field-calculater-to-create-a-unique-id/</link>
+      <link>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</link>
       <pubDate>Thu, 28 Jul 2011 20:08:13 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-07-28-using-arcpy-in-arcgis-10-field-calculater-to-create-a-unique-id/</guid>
+      <guid>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</guid>
       <description>&lt;p&gt;One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N.  In ArcView 3.x, the formula was simply “rec + 1” if I wanted to start with the number 1.&lt;/p&gt;
 &lt;p&gt;In ArcGIS, the process got a little more complex–you had to write a little VBA in Field Calculator as &lt;a href=&#34;http://support.esri.com/en/knowledgebase/techarticles/detail/27427&#34;&gt;described by ESRI&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;While this option still exists in ArcGIS 10, I believe it will disappear when 10.1 comes out and VBA support is completely eliminated.  But it is doable using Python which will continue to be supported.&lt;/p&gt;
@@ -197,9 +197,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>Renaming Raster Dataset and arcpy.Exists()</title>
-      <link>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</link>
+      <link>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</link>
       <pubDate>Tue, 03 May 2011 09:33:48 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</guid>
+      <guid>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</guid>
       <description>&lt;p&gt;Discovered something today. I was working on an arcpy script that copies a raster dataset from a file geodatabase into a Postgres SDE geodatabase and then does some boring routine tasks–building stats, creating a mosaic dataset, adding the raster to the mosaic dataset and making a couple referenced mosaic datasets.&lt;/p&gt;
 &lt;p&gt;It sometimes has trouble with the initial step of uploading the raster because of the sheer size of if (1m elevation raster for counties) and it failed today on one. It failed today so I used the ArcCatalog GUI to copy the raster and renamed it.&lt;/p&gt;
 &lt;p&gt;I then proceeded to run launch my script. Before each step, I use &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Exists/000v00000021000000/&#34;&gt;arcpy.Exists&lt;/a&gt;() extensively to check to see if various items exist before I attempt to create them. It was continuously reporting that my raster set did not exist even though I could see it in ArcCatalog.&lt;/p&gt;
@@ -212,9 +212,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)</title>
-      <link>https://maprantala.com/posts/2011-02-15-walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-net-10-sdk/</link>
+      <link>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</link>
       <pubDate>Tue, 15 Feb 2011 17:05:55 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-15-walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-net-10-sdk/</guid>
+      <guid>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</guid>
       <description>&lt;p&gt;I was working my way through this ESRI &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#//0001000001ms000000&#34;&gt;Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)&lt;/a&gt;.  And came across a couple minor errors that I had to correct during the process.&lt;/p&gt;
 &lt;p&gt;First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a “Name ‘ArcMap’ is not declared.” error.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/arcmapnotdeclared.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -242,9 +242,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>ArcBruTile</title>
-      <link>https://maprantala.com/posts/2010-09-09-arcbrutile/</link>
+      <link>https://maprantala.com/2010/09/09/arcbrutile/</link>
       <pubDate>Thu, 09 Sep 2010 14:38:46 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-09-arcbrutile/</guid>
+      <guid>https://maprantala.com/2010/09/09/arcbrutile/</guid>
       <description>&lt;p&gt;Stumbled across &lt;a href=&#34;http://arcbrutile.codeplex.com/&#34;&gt;ArcBruTile&lt;/a&gt;, an ArcMap application that allows you to display map tile services–such as &lt;a href=&#34;http://www.openstreetmap.org/&#34;&gt;OpenStreetMap&lt;/a&gt;, &lt;a href=&#34;http://maps.google.com/&#34;&gt;Google Maps&lt;/a&gt;, &lt;a href=&#34;http://www.bing.com/maps/&#34;&gt;Bing&lt;/a&gt;, &lt;a href=&#34;http://www.spatialcloud.com/&#34;&gt;Spatial Cloud&lt;/a&gt;, and &lt;a href=&#34;http://wiki.osgeo.org/wiki/Tile_Map_Service_Specification&#34;&gt;Tile Map Service&lt;/a&gt; (TMS)–in your ArcMap documents.   It works pretty well from my preliminary testing of it.   I have found that at times that the graphical tiles are distorted but I am guessing it is because they are optimized for display in a specific projection, at specific scales and, in ArcMap, you can use any projection/scale combination you want.&lt;/p&gt;
 &lt;p&gt;This is a free, open-source project that is still in Beta but definitely an application I plan to keep an eye on.  As with any open-source project, the cool thing is the code is available for you to look at, learn from, and hopefully contribute to.&lt;/p&gt;
 </description>
@@ -252,9 +252,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>Create Geologic Cross Sections&amp;#8211;eXacto Section v. 2.0, ArcMap 9.3</title>
-      <link>https://maprantala.com/posts/2010-07-23-create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/</link>
+      <link>https://maprantala.com/2010/07/23/create-geologic-cross-sections#8211exacto-section-v.-2.0-arcmap-9.3/</link>
       <pubDate>Fri, 23 Jul 2010 13:59:44 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-23-create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/</guid>
+      <guid>https://maprantala.com/2010/07/23/create-geologic-cross-sections#8211exacto-section-v.-2.0-arcmap-9.3/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://arcscripts.esri.com/details.asp?dbid=16734&#34;&gt;Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3&lt;/a&gt; written by Jennifer Carrell of the &lt;a href=&#34;http://www.isgs.illinois.edu/&#34;&gt;Illinois State Geological Survey&lt;/a&gt; is a handy tool for creating cross sections.&lt;/p&gt;
 &lt;p&gt;It requires ArcGIS and a 3D Analyst Extension license.&lt;/p&gt;
 &lt;p&gt;You can create profiles against multiple DEMs at once, define the vertical exaggeration, and have it include contact points.  It is well documented and comes with sample data to use with the tutorial.&lt;/p&gt;
@@ -265,9 +265,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>Michigan Office of Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-22-michigan-office-of-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/22/michigan-office-of-geological-survey/</link>
       <pubDate>Thu, 22 Jul 2010 15:31:20 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-22-michigan-office-of-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/22/michigan-office-of-geological-survey/</guid>
       <description>&lt;p&gt;The Michigan &lt;a href=&#34;http://www.michigan.gov/deq/0,1607,7-135-3306_57064-87386--,00.html&#34;&gt;Office of Geological Survey&lt;/a&gt; appears to have pdf versions of all the documents in their &lt;a href=&#34;http://www.michigan.gov/documents/deq/GIMDL-Catalog-2010-01-20_307979_7.pdf&#34;&gt;Digital Geological Library&lt;/a&gt; available for download.  The transcripts of some early (beginning in 1871) &lt;a href=&#34;http://www.michigan.gov/documents/deq/OFR_19_Rominger_1871-1874_Aopt_306084_7.pdf&#34;&gt;field notes&lt;/a&gt; are a fun inclusion in the available archives.&lt;/p&gt;
 &lt;p&gt;Actual GIS data was a bit hard to find although I found both bedrock geology and quarternary geology available from the state &lt;a href=&#34;http://www.mcgi.state.mi.us/mgdl/?action=thm&#34;&gt;Geographic Data Library&lt;/a&gt; in shapefile format.  I also found oil and gas well data but did not download it.&lt;/p&gt;
 &lt;p&gt;The data carried minimal attribution, one interesting thing I found in the bedrock data was the red, green, blue values apparently used for each polygon.&lt;/p&gt;
@@ -280,9 +280,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>Sticky Move Tolerance</title>
-      <link>https://maprantala.com/posts/2010-07-01-sitcky-move-tolerance/</link>
+      <link>https://maprantala.com/2010/07/01/sticky-move-tolerance/</link>
       <pubDate>Thu, 01 Jul 2010 16:51:42 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-01-sitcky-move-tolerance/</guid>
+      <guid>https://maprantala.com/2010/07/01/sticky-move-tolerance/</guid>
       <description>&lt;p&gt;While I am pretty experienced in editing data in previous generations of ESRI’s software, I have not done a lot in ArcGIS. So in my new position where I am supporting a group of geologists who do a lot of data creation in ArcMap, I am learning some of the intricacies of the ArcGIS platform.&lt;/p&gt;
 &lt;p&gt;One of the potential gotchas that a coworker informed me about that I was vaguely aware of was the issue of sticky move tolerances. What can happen, when editing existing features, is that each time you select a feature it can easily get moved very slightly if the mouse moves while the feature is selected. While the movement itself may be well within any allowable accuracy requirements, it can make a huge mess if you are working with a shapefile polygon coverage for example.&lt;/p&gt;
 &lt;p&gt;ArcMap has a setting, Sticky Move Tolerance, that helps prevent these tiny, accidental moving of features.  A feature will not be moved until the mouse moves at least as many screen pixels as this setting.  The default setting is 0, disabling this feature.&lt;/p&gt;
@@ -297,9 +297,9 @@ And that should leave the values in the double field unscathed in your records w
     
     <item>
       <title>ArcMap-Excel Join Error</title>
-      <link>https://maprantala.com/posts/2010-05-28-arcmap-excel-join-error/</link>
+      <link>https://maprantala.com/2010/05/28/arcmap-excel-join-error/</link>
       <pubDate>Fri, 28 May 2010 02:02:37 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-28-arcmap-excel-join-error/</guid>
+      <guid>https://maprantala.com/2010/05/28/arcmap-excel-join-error/</guid>
       <description>&lt;p&gt;Came across a new ArcMap bug today. A staff member was trying to join an Excel 2007 file (.xlsx) to a point shapefile in ArcMap and it did not appear to be working. She only had Office 2003 on her machine so I tried it on my spanking new machine that has 2007 installed. Same result–the fields get appended but they are all blank.&lt;/p&gt;
 &lt;p&gt;I discovered, however, that when I had the table open, if I switched form showing ALL records to only the selected, Poof!!! The values filled in. From there I was able to successfully export the data to a new shapefile that always showed the values.&lt;/p&gt;
 &lt;p&gt;I have an inkling that the file name, which contained space and other special characters, may have been a factor.&lt;/p&gt;

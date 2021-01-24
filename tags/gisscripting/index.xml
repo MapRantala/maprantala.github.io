@@ -11,9 +11,9 @@
     
     <item>
       <title>Using arcpy to List Domains Assigned to Featureclass Fields</title>
-      <link>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</link>
+      <link>https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/</link>
       <pubDate>Mon, 14 Mar 2011 18:04:36 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</guid>
+      <guid>https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/</guid>
       <description>&lt;p&gt;I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
 &lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
 &lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;

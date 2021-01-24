@@ -11,9 +11,9 @@
     
     <item>
       <title>Esri Web AppBuilder 2.4, Empty Basemap Gallery Follow-Up</title>
-      <link>https://maprantala.com/posts/2017-08-06-esri-web-appbuilder-2-4-empty-basemap-gallery-follow-up/</link>
+      <link>https://maprantala.com/2017/08/06/esri-web-appbuilder-2.4-empty-basemap-gallery-follow-up/</link>
       <pubDate>Sun, 06 Aug 2017 10:12:07 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2017-08-06-esri-web-appbuilder-2-4-empty-basemap-gallery-follow-up/</guid>
+      <guid>https://maprantala.com/2017/08/06/esri-web-appbuilder-2.4-empty-basemap-gallery-follow-up/</guid>
       <description>&lt;p&gt;A while ago I &lt;!-- raw HTML omitted --&gt;posted &lt;!-- raw HTML omitted --&gt;a work-around for a problem I was having with a &lt;!-- raw HTML omitted --&gt;Web AppBuilder&lt;!-- raw HTML omitted --&gt; application. Working with Esri tech support, we determined what I was doing to cause the problem.&lt;/p&gt;
 &lt;p&gt;In my config.json, I was using a relative path to the proxy. Note that I had the proxy as a separate application at the root level of our domain because I intended to have a shared proxy for all of our applications instead of individual ones. So the WAB application would be using &lt;a href=&#34;http://ourarcgisdomain.com/proxy/proxy.ashx&#34;&gt;http://ourarcgisdomain.com/proxy/proxy.ashx&lt;/a&gt;.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -29,9 +29,9 @@
     
     <item>
       <title>Esri Web AppBuilder 2.4, Empty Basemap Gallery</title>
-      <link>https://maprantala.com/posts/2017-04-10-esri-web-appbuilder-2-4-empty-basemap-gallery/</link>
+      <link>https://maprantala.com/2017/04/10/esri-web-appbuilder-2.4-empty-basemap-gallery/</link>
       <pubDate>Mon, 10 Apr 2017 20:08:37 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2017-04-10-esri-web-appbuilder-2-4-empty-basemap-gallery/</guid>
+      <guid>https://maprantala.com/2017/04/10/esri-web-appbuilder-2.4-empty-basemap-gallery/</guid>
       <description>&lt;p&gt;I recently downloaded Web AppBuilder 2.4, Developer’s Edition and built a quick &amp;amp; dirty app. For some reason, it worked fine in Web AppBuilder but once I deployed it, no basemaps would show in the B&lt;a href=&#34;http://doc.arcgis.com/en/web-appbuilder/create-apps/widget-basemap.htm&#34;&gt;aseman Gallery widget&lt;/a&gt;, it would just spin, spin, spin.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2017/04/BasemapGallery.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Digging around, I found some &lt;a href=&#34;https://geonet.esri.com/thread/118906&#34;&gt;old posts&lt;/a&gt; where users were experiencing similar problems but none of the solution resulted in a great solution. I was able to get it to work by listing the basemaps individually in the config_BasemapGallery.json file but I that was more of a work-around. Notice in the thumbnailUrl, I have to put the full path to the thumbnails. Note that for brevity’s sake, I’m only showing one of the basemaps in this sample.&lt;/p&gt;

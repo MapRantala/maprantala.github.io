@@ -11,9 +11,9 @@
     
     <item>
       <title>Sorting a Coded-Value Domain Add-In (ArcGIS 10)</title>
-      <link>https://maprantala.com/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/</link>
+      <link>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</link>
       <pubDate>Tue, 03 May 2011 03:33:01 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
+      <guid>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
       <description>&lt;p&gt;I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation.  So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.&lt;/p&gt;
 &lt;p&gt;This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.&lt;/p&gt;
 &lt;p&gt;In the past, I have gone through the tedious process of exporting the domain to a table, sorting the table, removing the domain from the necessary field(s), deleting the domain, re-importing the table back in a new domain and finally re-applying the domain to the necessary field(s). Let’s just say I didn’t do this until someone asked a few times and I didn’t have anything more exciting–like a root canal–I could busy myself with.&lt;/p&gt;

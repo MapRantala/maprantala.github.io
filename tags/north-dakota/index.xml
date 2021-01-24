@@ -11,9 +11,9 @@
     
     <item>
       <title>North Dakota Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-12-north-dakota-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/12/north-dakota-geological-survey/</link>
       <pubDate>Mon, 12 Jul 2010 13:53:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-12-north-dakota-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/12/north-dakota-geological-survey/</guid>
       <description>&lt;p&gt;Took a quick look at the &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/&#34;&gt;North Dakota Geological Survey’s website&lt;/a&gt; for GIS data.&lt;/p&gt;
 &lt;p&gt;The only data I found served directly from their website was &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/surfacegeo/surfacemapsnew.asp&#34;&gt;surface geology map&lt;/a&gt; .pdfs for some 24k and 100k maps.  Also available is a search for &lt;a href=&#34;https://www.dmr.nd.gov/oilgas/findwellsvw.asp&#34;&gt;Oil &amp;amp; Gas wells&lt;/a&gt; although I did not see the data was downloadable.  Some other &lt;a href=&#34;https://www.dmr.nd.gov/ndgs/Publication_List/contentsnew.asp&#34;&gt;publications&lt;/a&gt; have .pdfs that can be downloaded.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;http://web.apps.state.nd.us/imf/sites/hubexplorer/jsp/index.jsp&#34;&gt;North Dakota Hub Explorer&lt;/a&gt; serves as the state’s official data portal including for GIS data.  The downloadable data includes bedrock geology, surface geology, and contours.  Interestingly, the site allows you to choose from 7 different coordinate systems and 27 different file formats including several AutoCad, ESRI, MapInfo, and KML.  The data I looked at had more attribution than the bare minimum shown on a hard-copy map.  Bedrock data, for example, had additional lithology.&lt;/p&gt;

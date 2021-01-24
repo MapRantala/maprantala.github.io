@@ -11,9 +11,9 @@
     
     <item>
       <title>Checking to see if a Field Index Exists Using Python (geoprocessing 9.3).</title>
-      <link>https://maprantala.com/posts/2011-01-27-checking-to-see-if-a-field-index-exists-using-python/</link>
+      <link>https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python-geoprocessing-9.3./</link>
       <pubDate>Thu, 27 Jan 2011 15:31:48 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-01-27-checking-to-see-if-a-field-index-exists-using-python/</guid>
+      <guid>https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python-geoprocessing-9.3./</guid>
       <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;http://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
 &lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
 &lt;p&gt;No problem creating the index, for example:&lt;/p&gt;

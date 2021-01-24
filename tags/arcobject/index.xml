@@ -11,9 +11,9 @@
     
     <item>
       <title>Quick &amp;#038; Dirty arcpy: Field Listings</title>
-      <link>https://maprantala.com/posts/2011-03-17-quick-dirty-field-listings-using-arcpy/</link>
+      <link>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</link>
       <pubDate>Thu, 17 Mar 2011 17:03:39 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-17-quick-dirty-field-listings-using-arcpy/</guid>
+      <guid>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</guid>
       <description>&lt;p&gt;I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven’t found it.  So, as is my nature, I decided to roll my own.&lt;/p&gt;
 &lt;p&gt;This is a &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;bare-bones script&lt;/a&gt; that iterates through the fields, printing the field name, type, width, and precision.  There are three optional features to it:&lt;/p&gt;
 &lt;ul&gt;
@@ -37,9 +37,9 @@
     
     <item>
       <title>Zipping a shapefile using python</title>
-      <link>https://maprantala.com/posts/2010-12-10-zipping-a-shapefile-using-python/</link>
+      <link>https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/</link>
       <pubDate>Fri, 10 Dec 2010 18:20:13 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-10-zipping-a-shapefile-using-python/</guid>
+      <guid>https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/</guid>
       <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;http://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;One of the tasks I’ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;

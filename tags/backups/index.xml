@@ -11,9 +11,9 @@
     
     <item>
       <title>Accessing Network Drives via Scheduled Python Task</title>
-      <link>https://maprantala.com/posts/2010-07-26-accessing-network-drives-via-scheduled-python-task/</link>
+      <link>https://maprantala.com/2010/07/26/accessing-network-drives-via-scheduled-python-task/</link>
       <pubDate>Mon, 26 Jul 2010 12:43:02 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-26-accessing-network-drives-via-scheduled-python-task/</guid>
+      <guid>https://maprantala.com/2010/07/26/accessing-network-drives-via-scheduled-python-task/</guid>
       <description>&lt;p&gt;As previously mentioned, I have a scheduled nightly backup that is written in Python.  Most of it has been working fine but I had not gotten it to copy files to network drives.  I finally got around to correcting that part.  My first attempt was just to map the network drives for the user account that is used to run the task.  No good.&lt;/p&gt;
 &lt;p&gt;My second attempt was to call a .bat file from python before accessing the network drives and that worked.&lt;/p&gt;
 &lt;p&gt;The batch file has two lines (one for each network drive):&lt;/p&gt;

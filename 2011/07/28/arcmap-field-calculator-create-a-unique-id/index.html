@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>ArcMap Field Calculator: Create a Unique ID – Node Dangles</title>
+<meta name="description" content="One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N. In ArcView 3.x, …">
+<meta name="created" content="2011-07-28T20:08:13-0500">
+<meta name="modified" content="2011-07-28T20:08:13-0500">
+<meta name="author" content="Matt">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="ArcMap Field Calculator: Create a Unique ID">
+<meta property="og:url" content="https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "ArcMap Field Calculator: Create a Unique ID",
+    "datePublished": "2011-07-28T20:08:13-05:00",
+    "dateModified": "2011-07-28T20:08:13-05:00",
+    "url" : "https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/",
+    "description": "One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N. In ArcView 3.x, …",
+    "keywords": ["arcgis 10","arcpy","ArcView 3.x","Field Calculator"],
+    "author": {
+      "@type": "Person",
+      "name": "Matt"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title ">ArcMap Field Calculator: Create a Unique ID</h1>
+<div class="tags">
+Tags:
+<ul>
+<li><a href="/tags/arcgis-10">arcgis 10</a></li>
+<li><a href="/tags/arcpy">arcpy</a></li>
+<li><a href="/tags/arcview-3.x">ArcView 3.x</a></li>
+<li><a href="/tags/field-calculator">Field Calculator</a></li>
+</ul>
+</div>
+</header>
+<div class="content">
+<p>One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N.  In ArcView 3.x, the formula was simply “rec + 1” if I wanted to start with the number 1.</p>
+<p>In ArcGIS, the process got a little more complex–you had to write a little VBA in Field Calculator as <a href="http://support.esri.com/en/knowledgebase/techarticles/detail/27427">described by ESRI</a>.</p>
+<p>While this option still exists in ArcGIS 10, I believe it will disappear when 10.1 comes out and VBA support is completely eliminated.  But it is doable using Python which will continue to be supported.</p>
+<p>Googling around, I did not find an exact answer but Dave Verbyla, Professor of GIS/Remote Sensing at the University of Alaska has a <a href="http://nrm.salrm.uaf.edu/~dverbyla/nrm638/lectures/Python_field_calculator.pdf">posted some samples</a> that served as a good starting point.</p>
+<p>In the Pre-Logic Script Code box, I declare a variable (counter) and a function. Then in the formula, I call the function.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy.png"><!-- raw HTML omitted --></a></p>
+<p>While composing this post, I actually wanted a concatenated value; “OC” plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:</p>
+<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy2.png"><!-- raw HTML omitted --></a></p>
+<!-- raw HTML omitted -->
+
+
+</div>
+</article>
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

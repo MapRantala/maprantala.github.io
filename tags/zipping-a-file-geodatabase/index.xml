@@ -11,9 +11,9 @@
     
     <item>
       <title>Zipping a File Geodatabase using Python</title>
-      <link>https://maprantala.com/posts/2011-02-08-zipping-a-file-geodatabase-using-python/</link>
+      <link>https://maprantala.com/2011/02/08/zipping-a-file-geodatabase-using-python/</link>
       <pubDate>Tue, 08 Feb 2011 13:44:34 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-08-zipping-a-file-geodatabase-using-python/</guid>
+      <guid>https://maprantala.com/2011/02/08/zipping-a-file-geodatabase-using-python/</guid>
       <description>&lt;p&gt;Ever since the ever-popular post, &lt;a href=&#34;http://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zipping a shapefile using python&lt;/a&gt;, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.&lt;/p&gt;
 &lt;p&gt;The key trick, as shown in line 17, is appending the basename of the file geodatabase (“nfg.gdb/” in my example) in front of each file as you write it to the zipfile.&lt;/p&gt;
 &lt;p&gt;UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp;amp; pasted and have work.  So I have posted a the code &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110208_Sample_Zip_FileGeodatabase.zip&#34;&gt;HERE&lt;/a&gt; for downloading.&lt;/p&gt;

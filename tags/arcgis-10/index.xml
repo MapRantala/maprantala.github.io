@@ -11,9 +11,9 @@
     
     <item>
       <title>Building a local, permanent cache of Bing Imagery.</title>
-      <link>https://maprantala.com/posts/2012-04-30-building-a-local-permanent-cache-of-bing-imagery/</link>
+      <link>https://maprantala.com/2012/04/30/building-a-local-permanent-cache-of-bing-imagery./</link>
       <pubDate>Mon, 30 Apr 2012 05:28:15 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-04-30-building-a-local-permanent-cache-of-bing-imagery/</guid>
+      <guid>https://maprantala.com/2012/04/30/building-a-local-permanent-cache-of-bing-imagery./</guid>
       <description>&lt;p&gt;I recently had an internal request to capture and store the Bing imagery for an area for future use. The user was interested in some specific images that were taken after a fire, making the ground surface-and certain geological features-much more visible. His concern was that in the future this imagery might get replaced with updated imagery taken when the vegetation has grown back.&lt;/p&gt;
 &lt;p&gt;Since it is unknown when/how this data might be used by us, we mostly wanted to capture it now &amp;amp; find a way to use it.&lt;/p&gt;
 &lt;p&gt;While we initiated the process of finding out what agency the data was available through, we also came up with a quick &amp;amp; dirty way to download the data.&lt;/p&gt;
@@ -27,9 +27,9 @@
     
     <item>
       <title>ArcMap Field Calculator: ArcPy Date to Decimal Function</title>
-      <link>https://maprantala.com/posts/2011-10-06-field-calculator-arcpy-date-to-decimal-function/</link>
+      <link>https://maprantala.com/2011/10/06/arcmap-field-calculator-arcpy-date-to-decimal-function/</link>
       <pubDate>Thu, 06 Oct 2011 21:08:35 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-10-06-field-calculator-arcpy-date-to-decimal-function/</guid>
+      <guid>https://maprantala.com/2011/10/06/arcmap-field-calculator-arcpy-date-to-decimal-function/</guid>
       <description>&lt;p&gt;One of the standards in our databases is to store dates as 8-digit integer values in the format of yyyymmdd. This requires us to occasionally convert values from date fields into this format.&lt;/p&gt;
 &lt;p&gt;We can do this in the ArcMap Field Calculator using this arcpy function:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -40,9 +40,9 @@
     
     <item>
       <title>ArcMap Field Calculator: Create a Unique ID</title>
-      <link>https://maprantala.com/posts/2011-07-28-using-arcpy-in-arcgis-10-field-calculater-to-create-a-unique-id/</link>
+      <link>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</link>
       <pubDate>Thu, 28 Jul 2011 20:08:13 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-07-28-using-arcpy-in-arcgis-10-field-calculater-to-create-a-unique-id/</guid>
+      <guid>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</guid>
       <description>&lt;p&gt;One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N.  In ArcView 3.x, the formula was simply “rec + 1” if I wanted to start with the number 1.&lt;/p&gt;
 &lt;p&gt;In ArcGIS, the process got a little more complex–you had to write a little VBA in Field Calculator as &lt;a href=&#34;http://support.esri.com/en/knowledgebase/techarticles/detail/27427&#34;&gt;described by ESRI&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;While this option still exists in ArcGIS 10, I believe it will disappear when 10.1 comes out and VBA support is completely eliminated.  But it is doable using Python which will continue to be supported.&lt;/p&gt;
@@ -59,9 +59,9 @@
     
     <item>
       <title>ArcGIS Add-In Custom Mouse Cursor</title>
-      <link>https://maprantala.com/posts/2011-07-19-arcgis-add-in-custom-mouse-cursor/</link>
+      <link>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</link>
       <pubDate>Tue, 19 Jul 2011 20:47:03 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-07-19-arcgis-add-in-custom-mouse-cursor/</guid>
+      <guid>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</guid>
       <description>&lt;p&gt;I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI’s instructions.  But, once you know how to do it, it is pretty easy.  In Visual Studio, Add a New Item:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/07/addresource.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Add a Cursor File:&lt;/p&gt;
@@ -77,9 +77,9 @@
     
     <item>
       <title>Renaming Raster Dataset and arcpy.Exists()</title>
-      <link>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</link>
+      <link>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</link>
       <pubDate>Tue, 03 May 2011 09:33:48 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</guid>
+      <guid>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</guid>
       <description>&lt;p&gt;Discovered something today. I was working on an arcpy script that copies a raster dataset from a file geodatabase into a Postgres SDE geodatabase and then does some boring routine tasks–building stats, creating a mosaic dataset, adding the raster to the mosaic dataset and making a couple referenced mosaic datasets.&lt;/p&gt;
 &lt;p&gt;It sometimes has trouble with the initial step of uploading the raster because of the sheer size of if (1m elevation raster for counties) and it failed today on one. It failed today so I used the ArcCatalog GUI to copy the raster and renamed it.&lt;/p&gt;
 &lt;p&gt;I then proceeded to run launch my script. Before each step, I use &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Exists/000v00000021000000/&#34;&gt;arcpy.Exists&lt;/a&gt;() extensively to check to see if various items exist before I attempt to create them. It was continuously reporting that my raster set did not exist even though I could see it in ArcCatalog.&lt;/p&gt;
@@ -92,9 +92,9 @@
     
     <item>
       <title>Sorting a Coded-Value Domain Add-In (ArcGIS 10)</title>
-      <link>https://maprantala.com/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/</link>
+      <link>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</link>
       <pubDate>Tue, 03 May 2011 03:33:01 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
+      <guid>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
       <description>&lt;p&gt;I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation.  So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.&lt;/p&gt;
 &lt;p&gt;This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.&lt;/p&gt;
 &lt;p&gt;In the past, I have gone through the tedious process of exporting the domain to a table, sorting the table, removing the domain from the necessary field(s), deleting the domain, re-importing the table back in a new domain and finally re-applying the domain to the necessary field(s). Let’s just say I didn’t do this until someone asked a few times and I didn’t have anything more exciting–like a root canal–I could busy myself with.&lt;/p&gt;
@@ -115,9 +115,9 @@
     
     <item>
       <title>Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
-      <link>https://maprantala.com/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</link>
+      <link>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
       <pubDate>Sun, 01 May 2011 05:01:50 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-01-quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</guid>
+      <guid>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
       <description>&lt;p&gt;For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.&lt;/p&gt;
 &lt;p&gt;Here is the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;bare-bones script&lt;/a&gt; that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.  Some cautionary notes:&lt;/p&gt;
 &lt;ul&gt;
@@ -137,9 +137,9 @@
     
     <item>
       <title>Change Detector arcpy Script</title>
-      <link>https://maprantala.com/posts/2011-04-08-change-detector-script-arcgis-resource-center/</link>
+      <link>https://maprantala.com/2011/04/08/change-detector-arcpy-script/</link>
       <pubDate>Fri, 08 Apr 2011 10:48:59 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-04-08-change-detector-script-arcgis-resource-center/</guid>
+      <guid>https://maprantala.com/2011/04/08/change-detector-arcpy-script/</guid>
       <description>&lt;p&gt;During a process I was working on, I needed to compare a feature class before and after some edits.  I did not quickly find anything in ArcToolbox but searching &lt;a href=&#34;http://resources.arcgis.com/&#34;&gt;ArcResources&lt;/a&gt; led me to &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=351BEE10-1422-2418-8815-82074A3E6B6C&#34;&gt;Change Detector script by Bruce Harold&lt;/a&gt;.  After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case “S” and in the other it was a lower case “s”.  I also discovered that it needs to export to the same format (personal geodatabase, file geodatabase, shapefile) as the source data (or at least one that uses the same field name deliminator).&lt;/p&gt;
 &lt;p&gt;After minor adjustments, though, it worked like a charm.  I’ll be submitting the changes I made to Bruce and let him incorporate the changes into the official code.&lt;/p&gt;
 &lt;p&gt;FOLLOW-UP: Mr. Harold quickly responded to my email &amp;amp; made the change (although I haven’t checked it). Way to go Bruce!  Thanks for a handy script.&lt;/p&gt;
@@ -149,9 +149,9 @@
     
     <item>
       <title>Quick &amp;#038; Dirty arcpy: Field Listings</title>
-      <link>https://maprantala.com/posts/2011-03-17-quick-dirty-field-listings-using-arcpy/</link>
+      <link>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</link>
       <pubDate>Thu, 17 Mar 2011 17:03:39 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-17-quick-dirty-field-listings-using-arcpy/</guid>
+      <guid>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</guid>
       <description>&lt;p&gt;I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven’t found it.  So, as is my nature, I decided to roll my own.&lt;/p&gt;
 &lt;p&gt;This is a &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;bare-bones script&lt;/a&gt; that iterates through the fields, printing the field name, type, width, and precision.  There are three optional features to it:&lt;/p&gt;
 &lt;ul&gt;
@@ -175,9 +175,9 @@
     
     <item>
       <title>Using arcpy to List Domains Assigned to Featureclass Fields</title>
-      <link>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</link>
+      <link>https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/</link>
       <pubDate>Mon, 14 Mar 2011 18:04:36 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-14-failed-to-delete-domain-from-dataset-the-domain-is-used-as-default-domain/</guid>
+      <guid>https://maprantala.com/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/</guid>
       <description>&lt;p&gt;I was making an edit (adding leading “0”s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
 &lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
 &lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;
@@ -192,9 +192,9 @@
     
     <item>
       <title>Referenced Mosaic Datasets Permissions on SDE</title>
-      <link>https://maprantala.com/posts/2011-03-09-referenced-mosaic-datasets-permissions-on-sde/</link>
+      <link>https://maprantala.com/2011/03/09/referenced-mosaic-datasets-permissions-on-sde/</link>
       <pubDate>Wed, 09 Mar 2011 09:08:27 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-09-referenced-mosaic-datasets-permissions-on-sde/</guid>
+      <guid>https://maprantala.com/2011/03/09/referenced-mosaic-datasets-permissions-on-sde/</guid>
       <description>&lt;p&gt;While I’m enjoying the functionality of the new &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//00170000008p000000.htm&#34;&gt;Referenced Mosaic Dataset&lt;/a&gt; that have been introduced in ArcGIS10, something that I stumbled over recently was administering the privileges to a referenced mosaic dataset.&lt;/p&gt;
 &lt;p&gt;A referenced mosaic dataset is a raster datatype that uses a mosaic dataset as a base.  For example, we loaded a series of DEMs into a mosaic dataset and then created a referenced mosaic dataset that does the meters to feet conversion for us.  This saved us from having to process each DEM before loading it.  We also created a referenced mosaic dataset hillshade from the original meter data.&lt;/p&gt;
 &lt;p&gt;The problem I came across, and this was more my oversight than anything, but I had a heck of a time trying to grant privileges to the referenced mosaic dataset.  The solution was actually very simple–I needed to also grant access to the mosaic dataset that was being used as the base.&lt;/p&gt;
@@ -205,9 +205,9 @@
     
     <item>
       <title>ArcMap Field Calculator: Calculating Geometry using arcpy</title>
-      <link>https://maprantala.com/posts/2011-03-08-calculating-geometry-using-arcpy-in-field-calculator/</link>
+      <link>https://maprantala.com/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/</link>
       <pubDate>Tue, 08 Mar 2011 09:30:40 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-08-calculating-geometry-using-arcpy-in-field-calculator/</guid>
+      <guid>https://maprantala.com/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/</guid>
       <description>&lt;p&gt;One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm&#34;&gt;Field Calculator&lt;/a&gt;.  When I stumbled upon a bug in the way the &lt;a href=&#34;http://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/&#34;&gt;Extract Values to Points&lt;/a&gt; tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.&lt;/p&gt;
 &lt;p&gt;I set the Parser to Python and the formula was simple once I figured out the syntax:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -221,9 +221,9 @@
     
     <item>
       <title>Extract Values to Points (Spatial Analyst) Bug</title>
-      <link>https://maprantala.com/posts/2011-03-07-extract-values-to-points-spatial-analyst-bug/</link>
+      <link>https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/</link>
       <pubDate>Mon, 07 Mar 2011 08:37:33 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-07-extract-values-to-points-spatial-analyst-bug/</guid>
+      <guid>https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/</guid>
       <description>&lt;p&gt;One of the Spatial Analyst tools we often use in ArcGIS is the “&lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//009z0000002t000000.htm&#34;&gt;Extract Values to Points&lt;/a&gt;” tool.  This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/extractvaluestopoints.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Today I was running it for the first time against an Image Service we recently published and I received a warning message,”WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry”.  But the script seemed to run and the final results said “Succeeded” so I thought it was probably fine.  But as I double-checked, I realized the results were wonky.&lt;/p&gt;
@@ -244,9 +244,9 @@
     
     <item>
       <title>Instantiating Add-In Objects at Load Time</title>
-      <link>https://maprantala.com/posts/2011-03-02-instantiating-add-in-objects-at-load-time/</link>
+      <link>https://maprantala.com/2011/03/02/instantiating-add-in-objects-at-load-time/</link>
       <pubDate>Wed, 02 Mar 2011 15:18:14 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-02-instantiating-add-in-objects-at-load-time/</guid>
+      <guid>https://maprantala.com/2011/03/02/instantiating-add-in-objects-at-load-time/</guid>
       <description>&lt;p&gt;In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0.  So far, I’m loving the functionality.&lt;/p&gt;
 &lt;p&gt;One thing, however, that I have to figure out is that the controls are not instantiated until they are clicked on.  One of the results is that the controls, by default, are enabled.  This is not the functionality I wanted.&lt;/p&gt;
 &lt;p&gt;I found the solution in ESRI’s topic, &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/&#34;&gt;Advanced add-in concepts (ArcObjects .NET 10 SDK)&lt;/a&gt; in the Delayed loading section:&lt;/p&gt;
@@ -261,9 +261,9 @@
     
     <item>
       <title>Loading Tiled, Same-Name Data in Batch Mode.</title>
-      <link>https://maprantala.com/posts/2011-02-28-loading-tiled-same-name-data-in-batch-mode/</link>
+      <link>https://maprantala.com/2011/02/28/loading-tiled-same-name-data-in-batch-mode./</link>
       <pubDate>Mon, 28 Feb 2011 12:30:43 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-28-loading-tiled-same-name-data-in-batch-mode/</guid>
+      <guid>https://maprantala.com/2011/02/28/loading-tiled-same-name-data-in-batch-mode./</guid>
       <description>&lt;p&gt;I have been loading existing raster data into a geodatabase to be included in a new Mosaic Dataset–a very cool and useful addition to ArcGIS 10. The most time-consuming part of the process for the human (at least this human) has been getting the names of the rasters right.&lt;/p&gt;
 &lt;p&gt;Our existing data is organized by tiles with the directory name representing the tile name and then the data within each tile directory having the same name.&lt;/p&gt;
 &lt;p&gt;For example:&lt;br&gt;
@@ -284,9 +284,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>ESRI Font Samples.pdf (application/pdf Object)</title>
-      <link>https://maprantala.com/posts/2011-02-23-esri-font-samples-pdf-applicationpdf-object/</link>
+      <link>https://maprantala.com/2011/02/23/esri-font-samples.pdf-application/pdf-object/</link>
       <pubDate>Wed, 23 Feb 2011 08:12:59 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-23-esri-font-samples-pdf-applicationpdf-object/</guid>
+      <guid>https://maprantala.com/2011/02/23/esri-font-samples.pdf-application/pdf-object/</guid>
       <description>&lt;p&gt;Whenever I want to skim through ESRI’s fonts to find some symbology I need for a specific purpose, I go through some laborious process to skim the fonts searching for an adequate symbol.&lt;/p&gt;
 &lt;p&gt;However, in the &lt;a href=&#34;http://blogs.esri.com/Support/blogs/mappingcenter/archive/2010/04/05/About-Fonts-in-ArcMap-Symbols.aspx&#34;&gt;ESRI Mapping Center blog post,&lt;/a&gt; user &lt;a href=&#34;http://blogs.esri.com/Support/user/Profile.aspx?UserID=24410&#34;&gt;use2b311&lt;/a&gt; post a link to a pre-made pdf showing &lt;a href=&#34;http://maprantala.com/wp-content/uploads/2011/02/ESRI-Font-Samples.pdf&#34;&gt;ESRI Font Samples.pdf (application/pdf Object)&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Back when ESRI use to actually print hard-copy manuals, there were similar diagrams available but either I haven’t searched enough of they don’t exist in the digital help systems so I was happy to stumble upon this.&lt;/p&gt;
@@ -297,9 +297,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Checking to see if a Field Index Exists Using Arcpy (ArGIS 10.0)</title>
-      <link>https://maprantala.com/posts/2011-02-21-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/</link>
+      <link>https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0/</link>
       <pubDate>Mon, 21 Feb 2011 09:55:35 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-21-checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/</guid>
+      <guid>https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0/</guid>
       <description>&lt;p&gt;Updating some python code from 9.3 that using geoprocessing  to 10.0 using arcpy and the first real object I’ve had to change relates to detecting whether or not an index exists on a table.&lt;/p&gt;
 &lt;p&gt;I previously &lt;a href=&#34;http://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;posted code&lt;/a&gt; using a 9.3 geoprocessing commands, the core of it being:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -313,9 +313,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Multiple geodatabases and ArcSDE services from one PostgreSQL server.</title>
-      <link>https://maprantala.com/posts/2011-02-17-multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/</link>
+      <link>https://maprantala.com/2011/02/17/multiple-geodatabases-and-arcsde-services-from-one-postgresql-server./</link>
       <pubDate>Thu, 17 Feb 2011 18:22:07 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-17-multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/</guid>
+      <guid>https://maprantala.com/2011/02/17/multiple-geodatabases-and-arcsde-services-from-one-postgresql-server./</guid>
       <description>&lt;p&gt;To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point).  A side question is why can’t tables and raster be placed in Feature Datasets?  This wouldn’t be an end-all solution for what we want to do but there are some messy consequences of this limitation.&lt;/p&gt;
 &lt;p&gt;ESRI has instructions on &lt;a href=&#34;http://help.arcgis.com/EN/ArcGISDesktop/10.0/Help/index.html#//002p00000011000000.htm&#34;&gt;Setting up multiple geodatabases in one PostgreSQL database cluster on Windows&lt;/a&gt; which was helpful but we repeatedly got an “The ArcSDE Repository was unsuccessfully completed.  Would you like to view this error?” error during the Repository Setup step, step two of four, of the ArcSDE Post Installation process. The odd thing, however, was that the wise_err.log was blank so I had no clue on why it was failing.  After much Googling and head-banging, I came across a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=158&amp;amp;f=2290&amp;amp;t=298474#941273&#34;&gt;post from&lt;/a&gt; &lt;a href=&#34;http://www.linkedin.com/profile/view?id=24468141&amp;amp;authType=name&amp;amp;authToken=VoHW&amp;amp;pvs=pp&amp;amp;trk=ppro_viewmore&#34;&gt;Kim Doty&lt;/a&gt; on ESRI’s forums reporting the same problem but they were able to create a service by just continuing through the process .  Figuring I had nothing to lose, I thought I might as well try to go through the entire ArcSDE Post Installation process and see what happened.  Although I received blank error messages, I was able to successfully create the second ArcSDE instance.&lt;/p&gt;
 &lt;p&gt;I will touch on some of the highlights of the process.  In my case, I was creating a database &amp;amp; service with these parameters:&lt;/p&gt;
@@ -355,9 +355,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)</title>
-      <link>https://maprantala.com/posts/2011-02-15-walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-net-10-sdk/</link>
+      <link>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</link>
       <pubDate>Tue, 15 Feb 2011 17:05:55 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-15-walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-net-10-sdk/</guid>
+      <guid>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</guid>
       <description>&lt;p&gt;I was working my way through this ESRI &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#//0001000001ms000000&#34;&gt;Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)&lt;/a&gt;.  And came across a couple minor errors that I had to correct during the process.&lt;/p&gt;
 &lt;p&gt;First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a “Name ‘ArcMap’ is not declared.” error.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/arcmapnotdeclared.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -385,9 +385,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>ArcGIS 9.3.1 to ArcSDE 10 Connection Error</title>
-      <link>https://maprantala.com/posts/2011-01-13-arcgis-9-3-1-to-arcsde-10-connection-error/</link>
+      <link>https://maprantala.com/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/</link>
       <pubDate>Thu, 13 Jan 2011 14:41:58 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-01-13-arcgis-9-3-1-to-arcsde-10-connection-error/</guid>
+      <guid>https://maprantala.com/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://maprantala.com/Users/mrantala/AppData/Local/Temp/moz-screenshot-7.png&#34; alt=&#34;&#34;&gt;We finally installed an instance of ArcSDE 10 today.  My first attempt at connecting in ArcCatalog 9.3.1 failed with the following error:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Failed to connect to the specified server.&lt;/p&gt;
@@ -406,9 +406,9 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
     
     <item>
       <title>Hogeweg: ArcGIS Editor for OpenStreetMap</title>
-      <link>https://maprantala.com/posts/2010-07-07-hogeweg-arcgis-editor-for-openstreetmap/</link>
+      <link>https://maprantala.com/2010/07/07/hogeweg-arcgis-editor-for-openstreetmap/</link>
       <pubDate>Wed, 07 Jul 2010 19:10:35 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-07-hogeweg-arcgis-editor-for-openstreetmap/</guid>
+      <guid>https://maprantala.com/2010/07/07/hogeweg-arcgis-editor-for-openstreetmap/</guid>
       <description>&lt;p&gt;As someone who lives in the boon-docks whose street (both my current and previous one) does not appear in the data for either &lt;a href=&#34;http://www.navteq.com/&#34;&gt;NAVTEQ&lt;/a&gt; or &lt;a href=&#34;http://www.teleatlas.com/&#34;&gt;TeleAtlas&lt;/a&gt; and someone who used both of those data sets extensively in his previous job, I’ve watched OpenStreetMap for awhile, although have not contributed.&lt;/p&gt;
 &lt;p&gt;Marten Hogeweg, &lt;!-- raw HTML omitted --&gt;ArcGIS Server Geoportal Extension Product Manager, ESRI announce in his blogs an &lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://martenhogeweg.blogspot.com/2010/07/announcing-arcgis-editor-for.html&#34;&gt;ArcGIS Editor for OpenStreetMap&lt;/a&gt;.  Sounds like a great idea, giving GIS professions–some whom have the source materials the ability to easily contribute should only help the project.&lt;/p&gt;
 &lt;p&gt;Unfortunately, it is only available at 10.0 but that gives me another reason to install it on a virtual machine and start playing more.&lt;/p&gt;

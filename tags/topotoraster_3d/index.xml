@@ -11,9 +11,9 @@
     
     <item>
       <title>Another TopoToRaster Error</title>
-      <link>https://maprantala.com/posts/2010-09-15-another-topotoraster-error/</link>
+      <link>https://maprantala.com/2010/09/15/another-topotoraster-error/</link>
       <pubDate>Wed, 15 Sep 2010 13:36:34 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-15-another-topotoraster-error/</guid>
+      <guid>https://maprantala.com/2010/09/15/another-topotoraster-error/</guid>
       <description>&lt;h3 id=&#34;subtitled-why-error-messages-are-good&#34;&gt;Subtitled:  Why error messages are good.&lt;/h3&gt;
 &lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn’t have to spend a day trying figure out what was wrong.&lt;br&gt;
 &lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/09/sixteen.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -24,9 +24,9 @@
     
     <item>
       <title>TopoToRaster Error</title>
-      <link>https://maprantala.com/posts/2010-09-13-topotoraster-error/</link>
+      <link>https://maprantala.com/2010/09/13/topotoraster-error/</link>
       <pubDate>Mon, 13 Sep 2010 20:25:01 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-13-topotoraster-error/</guid>
+      <guid>https://maprantala.com/2010/09/13/topotoraster-error/</guid>
       <description>&lt;p&gt;In running an automated process, I had a TopoToRaster repeatedly fail on me. The only input theme was a contour theme. The process ran fine when I used the envelope of the contour theme as the output extent but when I changed it to the envelope of a polygon theme, it would bomb. The polygon’s envelope was smaller than the contour theme.&lt;/p&gt;
 &lt;p&gt;ArcCatalog would bomb out without presenting any sort of useful message.&lt;/p&gt;
 &lt;p&gt;I determined eventually that If I set the left extent as 435210, the process would work if set the right extent to 446655 or greater but would bomb if I used 446654 or less. If the the left extent was 435209, the right extent had to be 446654 or greater.&lt;/p&gt;

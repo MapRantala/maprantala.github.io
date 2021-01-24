@@ -11,9 +11,9 @@
     
     <item>
       <title>Converting MXD to Layer file in Arcpy</title>
-      <link>https://maprantala.com/posts/2015-08-14-converting-mxd-to-layer-file-in-arcpy/</link>
+      <link>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</link>
       <pubDate>Fri, 14 Aug 2015 10:01:54 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2015-08-14-converting-mxd-to-layer-file-in-arcpy/</guid>
+      <guid>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</guid>
       <description>&lt;p&gt;Working on doing some &lt;!-- raw HTML omitted --&gt;advanced ArcGIS server printing&lt;!-- raw HTML omitted --&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;!-- raw HTML omitted --&gt;Petr Krebs&lt;!-- raw HTML omitted --&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
 &lt;p&gt;I created an ArcGIS toolbox with two options–one to convert a single .mxd and one to batch convert an entire folder. To use it, make sure to have the EmptyGroup.lyr in the same directory as the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the raw code or &lt;!-- raw HTML omitted --&gt;git it&lt;!-- raw HTML omitted --&gt;:&lt;/p&gt;
@@ -26,9 +26,9 @@
     
     <item>
       <title>Quick &amp;#038; Dirty ArcPy: Listing Data Sources</title>
-      <link>https://maprantala.com/posts/2014-12-03-quick-dirty-arcpy-listing-data-sources/</link>
+      <link>https://maprantala.com/2014/12/03/quick-#038-dirty-arcpy-listing-data-sources/</link>
       <pubDate>Wed, 03 Dec 2014 08:05:10 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2014-12-03-quick-dirty-arcpy-listing-data-sources/</guid>
+      <guid>https://maprantala.com/2014/12/03/quick-#038-dirty-arcpy-listing-data-sources/</guid>
       <description>&lt;p&gt;I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here’s the &lt;a href=&#34;https://github.com/MapRantala/Blog/blob/master/python/arcpy/20141203_ListDataSources/listDataSources.py&#34;&gt;bare-bones script&lt;/a&gt; I used instead:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -39,9 +39,9 @@
     
     <item>
       <title>Garmin GPX to Shapefile (SHP) conversion GPX2Shp.py</title>
-      <link>https://maprantala.com/posts/2014-05-16-garmin-gpx-to-shapefile-shp-conversion-gpx2shp-py/</link>
+      <link>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</link>
       <pubDate>Fri, 16 May 2014 21:11:20 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-05-16-garmin-gpx-to-shapefile-shp-conversion-gpx2shp-py/</guid>
+      <guid>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</guid>
       <description>&lt;p&gt;I mentioned using &lt;!-- raw HTML omitted --&gt;Tapiriik&lt;!-- raw HTML omitted --&gt; to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .&lt;!-- raw HTML omitted --&gt;GPX to shapefiles&lt;!-- raw HTML omitted --&gt; that worked but none seemed to recognize my heart rate data.&lt;/p&gt;
 &lt;p&gt;The trick is Garmin extends the GPX specification to incorporate the heart rate:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -67,9 +67,9 @@
     
     <item>
       <title>Friday Fave: Tapiriik</title>
-      <link>https://maprantala.com/posts/2014-04-25-friday-fave-tapiriik/</link>
+      <link>https://maprantala.com/2014/04/25/friday-fave-tapiriik/</link>
       <pubDate>Fri, 25 Apr 2014 05:55:13 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-04-25-friday-fave-tapiriik/</guid>
+      <guid>https://maprantala.com/2014/04/25/friday-fave-tapiriik/</guid>
       <description>&lt;p&gt;This &lt;a href=&#34;http://maprantala.com/category/fun-maps/friday-fave/&#34;&gt;Friday Fave&lt;/a&gt; is a little bit different.&lt;/p&gt;
 &lt;p&gt;My interest in geospatial technologies (although we just called it GIS back then) largely because I wanted to measure my running routes more accurately and efficiently than the paper map &amp;amp; scrap of paper method I was using in the early 90s. When I was introduced to GIS, I knew what I was going to use it for.&lt;/p&gt;
 &lt;p&gt;Now that GPS technology is ubiquitous–I’m currently using four different GPS devices, at the same time, on my bike rides–I seldom have to use a map to measure my routes. I may still use &lt;!-- raw HTML omitted --&gt;MapMyRun.com&lt;!-- raw HTML omitted --&gt; to plan a route ahead of time if I’m running in a new area or trying to plan a loop of a certain distance but GPS has really made it so simple to just go out and run.&lt;/p&gt;
@@ -89,9 +89,9 @@
     
     <item>
       <title>Friday Fave: Custom Maps App for Android</title>
-      <link>https://maprantala.com/posts/2014-04-18-friday-fave-custom-maps-app-for-android/</link>
+      <link>https://maprantala.com/2014/04/18/friday-fave-custom-maps-app-for-android/</link>
       <pubDate>Fri, 18 Apr 2014 06:11:58 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-04-18-friday-fave-custom-maps-app-for-android/</guid>
+      <guid>https://maprantala.com/2014/04/18/friday-fave-custom-maps-app-for-android/</guid>
       <description>&lt;p&gt;I admit, I love picking up freebie maps. Whether it is from the front desk of a hotel or from the bicycle shop, there is a certain appeal to seeing what people put on maps. I have maps organic orchards, breweries, &lt;!-- raw HTML omitted --&gt;Minnesota authors&lt;!-- raw HTML omitted --&gt;, rails to trails, zoos, fictional places, race maps, and a variety of other things that someone felt the need to cartographize.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://thefriends.org/wp-content/uploads/2012/12/mn_writers_on_the_map_web_download.pdf&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://thefriends.org/&#34;&gt;http://thefriends.org/&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;So, with all these paper maps lying around, I was thrilled to find &lt;!-- raw HTML omitted --&gt;Custom &lt;!-- raw HTML omitted --&gt;Maps&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;, a free app on&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Google Play&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
@@ -107,9 +107,9 @@
     
     <item>
       <title>Friday Fave: Cartozia Tales</title>
-      <link>https://maprantala.com/posts/2014-04-11-friday-fave-cartozia-tales/</link>
+      <link>https://maprantala.com/2014/04/11/friday-fave-cartozia-tales/</link>
       <pubDate>Fri, 11 Apr 2014 06:15:02 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2014-04-11-friday-fave-cartozia-tales/</guid>
+      <guid>https://maprantala.com/2014/04/11/friday-fave-cartozia-tales/</guid>
       <description>&lt;p&gt;Obviously Cartographers belong in the same category as other superheroes like Superman, Batman, and Spiderman and we finally have a our own comic book to prove it.&lt;/p&gt;
 &lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Cartozia Tales&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; is a collaborative effort of nine indy artists with two guest artist each issue.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/Cartozia.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -120,9 +120,9 @@
     
     <item>
       <title>Renaming Raster Dataset and arcpy.Exists()</title>
-      <link>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</link>
+      <link>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</link>
       <pubDate>Tue, 03 May 2011 09:33:48 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-03-renaming-raster-dataset-and-arcpy-exists/</guid>
+      <guid>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</guid>
       <description>&lt;p&gt;Discovered something today. I was working on an arcpy script that copies a raster dataset from a file geodatabase into a Postgres SDE geodatabase and then does some boring routine tasks–building stats, creating a mosaic dataset, adding the raster to the mosaic dataset and making a couple referenced mosaic datasets.&lt;/p&gt;
 &lt;p&gt;It sometimes has trouble with the initial step of uploading the raster because of the sheer size of if (1m elevation raster for counties) and it failed today on one. It failed today so I used the ArcCatalog GUI to copy the raster and renamed it.&lt;/p&gt;
 &lt;p&gt;I then proceeded to run launch my script. Before each step, I use &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Exists/000v00000021000000/&#34;&gt;arcpy.Exists&lt;/a&gt;() extensively to check to see if various items exist before I attempt to create them. It was continuously reporting that my raster set did not exist even though I could see it in ArcCatalog.&lt;/p&gt;
@@ -135,9 +135,9 @@
     
     <item>
       <title>Sorting a Coded-Value Domain Add-In (ArcGIS 10)</title>
-      <link>https://maprantala.com/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/</link>
+      <link>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</link>
       <pubDate>Tue, 03 May 2011 03:33:01 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-05-03-sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
+      <guid>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
       <description>&lt;p&gt;I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation.  So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.&lt;/p&gt;
 &lt;p&gt;This can be confusing for users–they go to select “Milli Vanilli” and look between “Madonna” and “Motley Crue” but can not find their favorite band there–they have to go to the end of the list to find their selection.&lt;/p&gt;
 &lt;p&gt;In the past, I have gone through the tedious process of exporting the domain to a table, sorting the table, removing the domain from the necessary field(s), deleting the domain, re-importing the table back in a new domain and finally re-applying the domain to the necessary field(s). Let’s just say I didn’t do this until someone asked a few times and I didn’t have anything more exciting–like a root canal–I could busy myself with.&lt;/p&gt;
@@ -158,9 +158,9 @@
     
     <item>
       <title>ArcMap Field Calculator: Calculating Geometry using arcpy</title>
-      <link>https://maprantala.com/posts/2011-03-08-calculating-geometry-using-arcpy-in-field-calculator/</link>
+      <link>https://maprantala.com/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/</link>
       <pubDate>Tue, 08 Mar 2011 09:30:40 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-08-calculating-geometry-using-arcpy-in-field-calculator/</guid>
+      <guid>https://maprantala.com/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/</guid>
       <description>&lt;p&gt;One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm&#34;&gt;Field Calculator&lt;/a&gt;.  When I stumbled upon a bug in the way the &lt;a href=&#34;http://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/&#34;&gt;Extract Values to Points&lt;/a&gt; tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.&lt;/p&gt;
 &lt;p&gt;I set the Parser to Python and the formula was simple once I figured out the syntax:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -174,9 +174,9 @@
     
     <item>
       <title>Another TopoToRaster Error</title>
-      <link>https://maprantala.com/posts/2010-09-15-another-topotoraster-error/</link>
+      <link>https://maprantala.com/2010/09/15/another-topotoraster-error/</link>
       <pubDate>Wed, 15 Sep 2010 13:36:34 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-15-another-topotoraster-error/</guid>
+      <guid>https://maprantala.com/2010/09/15/another-topotoraster-error/</guid>
       <description>&lt;h3 id=&#34;subtitled-why-error-messages-are-good&#34;&gt;Subtitled:  Why error messages are good.&lt;/h3&gt;
 &lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn’t have to spend a day trying figure out what was wrong.&lt;br&gt;
 &lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/09/sixteen.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -187,9 +187,9 @@
     
     <item>
       <title>Michigan Office of Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-22-michigan-office-of-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/22/michigan-office-of-geological-survey/</link>
       <pubDate>Thu, 22 Jul 2010 15:31:20 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-22-michigan-office-of-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/22/michigan-office-of-geological-survey/</guid>
       <description>&lt;p&gt;The Michigan &lt;a href=&#34;http://www.michigan.gov/deq/0,1607,7-135-3306_57064-87386--,00.html&#34;&gt;Office of Geological Survey&lt;/a&gt; appears to have pdf versions of all the documents in their &lt;a href=&#34;http://www.michigan.gov/documents/deq/GIMDL-Catalog-2010-01-20_307979_7.pdf&#34;&gt;Digital Geological Library&lt;/a&gt; available for download.  The transcripts of some early (beginning in 1871) &lt;a href=&#34;http://www.michigan.gov/documents/deq/OFR_19_Rominger_1871-1874_Aopt_306084_7.pdf&#34;&gt;field notes&lt;/a&gt; are a fun inclusion in the available archives.&lt;/p&gt;
 &lt;p&gt;Actual GIS data was a bit hard to find although I found both bedrock geology and quarternary geology available from the state &lt;a href=&#34;http://www.mcgi.state.mi.us/mgdl/?action=thm&#34;&gt;Geographic Data Library&lt;/a&gt; in shapefile format.  I also found oil and gas well data but did not download it.&lt;/p&gt;
 &lt;p&gt;The data carried minimal attribution, one interesting thing I found in the bedrock data was the red, green, blue values apparently used for each polygon.&lt;/p&gt;
@@ -202,9 +202,9 @@
     
     <item>
       <title>Wisconsin Geological and Natural History Survey</title>
-      <link>https://maprantala.com/posts/2010-07-15-wisconsin-geological-and-natural-history-survey/</link>
+      <link>https://maprantala.com/2010/07/15/wisconsin-geological-and-natural-history-survey/</link>
       <pubDate>Thu, 15 Jul 2010 13:18:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-15-wisconsin-geological-and-natural-history-survey/</guid>
+      <guid>https://maprantala.com/2010/07/15/wisconsin-geological-and-natural-history-survey/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.uwex.edu/wgnhs/&#34;&gt;Wisconsin Geological and Natural History Survey&lt;/a&gt; has a well organized, appealing website.  Their data is easy to find although there is not much GIS data available.&lt;/p&gt;
 &lt;p&gt;Although because I am more interested in sample data sets than anything, the &lt;a href=&#34;http://www.uwex.edu/wgnhs/gis.htm&#34;&gt;GIS data&lt;/a&gt; they do have–statewide geologic map; pleistocene geology, precambrian geology, quaternary geology, (surficial?) geology and bedrock geology for various counties–may actually be a great reference.  Other than the statewide geologic map, the data is available on a per-publication basis.&lt;/p&gt;
 &lt;p&gt;Some other data is available in the &lt;a href=&#34;http://www.uwex.edu/wgnhs/wofrs.htm&#34;&gt;open-file reports&lt;/a&gt;.&lt;/p&gt;
@@ -221,9 +221,9 @@
     
     <item>
       <title>Iowa Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-14-iowa-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/14/iowa-geological-survey/</link>
       <pubDate>Wed, 14 Jul 2010 13:01:47 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-14-iowa-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/14/iowa-geological-survey/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.igsb.uiowa.edu/&#34;&gt;Iowa Geological Survey&lt;/a&gt; has a lot of data available to download &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/nrgislibx/&#34;&gt;here&lt;/a&gt;.  PDF versions of many of their publications can be found in their &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/gsbpubs/&#34;&gt;List of Publications&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Their GIS data is minimally attributed for the most part, their public wells data set did have a more robust attribution scheme.  One cool feature I found in the wells data is that they provide a hyper-link for many features to an &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/geosam/Scripts/geocard.asp?wnumber=43873&#34;&gt;on-line site record&lt;/a&gt;.  Found both shapefiles and file geodatabases in the samples I downloaded.&lt;/p&gt;
 &lt;p&gt;More interestingly, I opened up their Bedrock Geological Map and noticed something odd to me.  See the bulls-eye just NW of center?  That, even to a non-geologist like me, does not look too geologic.&lt;/p&gt;
@@ -234,9 +234,9 @@
     
     <item>
       <title>Geology Information Systems</title>
-      <link>https://maprantala.com/posts/2010-05-24-geology-information-systems/</link>
+      <link>https://maprantala.com/2010/05/24/geology-information-systems/</link>
       <pubDate>Mon, 24 May 2010 02:52:24 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-24-geology-information-systems/</guid>
+      <guid>https://maprantala.com/2010/05/24/geology-information-systems/</guid>
       <description>&lt;p&gt;In the last couple months, I’ve had a bit of an eye-opening about Geography. People actually trained in geography may implicitly understand this but I, with my Accounting degree, have spent the last 16 years “doing” GIS without realizing the foundation of geography–geology. I picked up enough geography to understand some of the inter-relationships between people and the lands they live on.&lt;/p&gt;
 &lt;p&gt;But what I didn’t pick up on was how the lands we live on are formed. Maybe it is a moot point–how physical geography is arrived at doesn’t matter, just how we react to it. But, and now working for a Geological Survey, I better have this opinion, a better understanding of what our geology is and how it was formed really does form the foundation for the geography.&lt;/p&gt;
 &lt;p&gt;Two examples. First, in talking with my new supervisor, he was talking about how, because of the geology in the southeast part of the state, they have a lot of water quality issues–the water tends to have sulfur in it. With the recent interest in alternative energy sources, and in this case ethanol plants water quality is a concern when deciding where to build the plants because they require a considerable amount of water. For some reason there have been plants placed in this part of the state and they are having some problems finding sufficient water.&lt;/p&gt;
@@ -248,9 +248,9 @@
     
     <item>
       <title>Endpoints</title>
-      <link>https://maprantala.com/posts/2010-05-15-a-new-beginning/</link>
+      <link>https://maprantala.com/2010/05/15/endpoints/</link>
       <pubDate>Sat, 15 May 2010 13:27:09 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-15-a-new-beginning/</guid>
+      <guid>https://maprantala.com/2010/05/15/endpoints/</guid>
       <description>&lt;p&gt;I spent almost nine years working for a great company, &lt;a href=&#34;http://www.adc4gis.com/&#34;&gt;Applied Data Consultants&lt;/a&gt;, through a variety of roles–spent approximately 3 weeks doing Parcel work as a GIS Tech before I started working in Avenue for my own sanity. After that, spent several years doing various programming tasks including building tools for internal production and application development. The last couple years, I served more of a Consultant role, both for internal and external clients.&lt;/p&gt;
 &lt;p&gt;Where one polyline ends, another starts in this case.&lt;/p&gt;
 &lt;p&gt;In a couple days, I start my role as Geological Information Specialist at a state agency in Minnesota. I previously worked for the Wisconsin DNR (where I originally “discovered” GIS) and Pierce County, Wisconsin so I have some governmental experience but I am wondering how I will adapt to the organizational differences.&lt;/p&gt;

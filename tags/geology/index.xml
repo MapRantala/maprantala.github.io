@@ -11,9 +11,9 @@
     
     <item>
       <title>X-section Xacto Updated</title>
-      <link>https://maprantala.com/posts/2010-12-10-x-section-xacto-updated/</link>
+      <link>https://maprantala.com/2010/12/10/x-section-xacto-updated/</link>
       <pubDate>Fri, 10 Dec 2010 18:15:51 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2010-12-10-x-section-xacto-updated/</guid>
+      <guid>https://maprantala.com/2010/12/10/x-section-xacto-updated/</guid>
       <description>&lt;p&gt;I just happened to stumble upon an update of a tool to Create Geologic Cross Sections, eXacto Section v. 2.0, that I &lt;a href=&#34;http://maprantala.com/2010/07/23/create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/&#34;&gt;mentioned&lt;/a&gt; in July. Jennifer Carrell at the Illinois Geological Survey wrote this tool. The latest update is from December 8, 2010 and can be &lt;a href=&#34;http://resources.arcgis.com/gallery/file/geoprocessing/details?entryID=C83CC388-1422-2418-7F10-B4D3DF5F1EE6&#34;&gt;downloaded at ESRI’s ArcGIS Resource Center&lt;/a&gt;. Our office has used previous versions and finds in very useful in creating cross-sections. I have not tried this latest update.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
@@ -21,9 +21,9 @@
     
     <item>
       <title>Arizona Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-23-arizona-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/23/arizona-geological-survey/</link>
       <pubDate>Fri, 23 Jul 2010 19:07:52 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-23-arizona-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/23/arizona-geological-survey/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.azgs.az.gov/&#34;&gt;The Arizona Geological Survey&lt;/a&gt; has a great looking site with some good information.  They have a &lt;a href=&#34;http://www.azgs.az.gov/publications_online/pubslist_2008.pdf&#34;&gt;publication list&lt;/a&gt; that can either be downloaded or ordered and are making pdf versions of their recent publications available &lt;a href=&#34;http://www.azgs.az.gov/publications_online.shtml&#34;&gt;online&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I was going to note that there was no download-able data available until Google told me that they in fact had a &lt;a href=&#34;http://www.azgs.az.gov/services_azgeomap.shtml&#34;&gt;WMS/WFS available online&lt;/a&gt;.  The WMS is a great looking map, I have not gotten the WFS to work, however–probably more due to my abilities than the service.&lt;/p&gt;
 &lt;p&gt;They are also temporarily hosting a &lt;a href=&#34;http://services.azgs.az.gov/OnlineMaps/demos/nvClarkCounty.html&#34;&gt;surficial geology map&lt;/a&gt; of Clark County, Nevada.&lt;/p&gt;
@@ -33,9 +33,9 @@
     
     <item>
       <title>Michigan Office of Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-22-michigan-office-of-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/22/michigan-office-of-geological-survey/</link>
       <pubDate>Thu, 22 Jul 2010 15:31:20 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-22-michigan-office-of-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/22/michigan-office-of-geological-survey/</guid>
       <description>&lt;p&gt;The Michigan &lt;a href=&#34;http://www.michigan.gov/deq/0,1607,7-135-3306_57064-87386--,00.html&#34;&gt;Office of Geological Survey&lt;/a&gt; appears to have pdf versions of all the documents in their &lt;a href=&#34;http://www.michigan.gov/documents/deq/GIMDL-Catalog-2010-01-20_307979_7.pdf&#34;&gt;Digital Geological Library&lt;/a&gt; available for download.  The transcripts of some early (beginning in 1871) &lt;a href=&#34;http://www.michigan.gov/documents/deq/OFR_19_Rominger_1871-1874_Aopt_306084_7.pdf&#34;&gt;field notes&lt;/a&gt; are a fun inclusion in the available archives.&lt;/p&gt;
 &lt;p&gt;Actual GIS data was a bit hard to find although I found both bedrock geology and quarternary geology available from the state &lt;a href=&#34;http://www.mcgi.state.mi.us/mgdl/?action=thm&#34;&gt;Geographic Data Library&lt;/a&gt; in shapefile format.  I also found oil and gas well data but did not download it.&lt;/p&gt;
 &lt;p&gt;The data carried minimal attribution, one interesting thing I found in the bedrock data was the red, green, blue values apparently used for each polygon.&lt;/p&gt;
@@ -48,9 +48,9 @@
     
     <item>
       <title>Wisconsin Geological and Natural History Survey</title>
-      <link>https://maprantala.com/posts/2010-07-15-wisconsin-geological-and-natural-history-survey/</link>
+      <link>https://maprantala.com/2010/07/15/wisconsin-geological-and-natural-history-survey/</link>
       <pubDate>Thu, 15 Jul 2010 13:18:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-15-wisconsin-geological-and-natural-history-survey/</guid>
+      <guid>https://maprantala.com/2010/07/15/wisconsin-geological-and-natural-history-survey/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.uwex.edu/wgnhs/&#34;&gt;Wisconsin Geological and Natural History Survey&lt;/a&gt; has a well organized, appealing website.  Their data is easy to find although there is not much GIS data available.&lt;/p&gt;
 &lt;p&gt;Although because I am more interested in sample data sets than anything, the &lt;a href=&#34;http://www.uwex.edu/wgnhs/gis.htm&#34;&gt;GIS data&lt;/a&gt; they do have–statewide geologic map; pleistocene geology, precambrian geology, quaternary geology, (surficial?) geology and bedrock geology for various counties–may actually be a great reference.  Other than the statewide geologic map, the data is available on a per-publication basis.&lt;/p&gt;
 &lt;p&gt;Some other data is available in the &lt;a href=&#34;http://www.uwex.edu/wgnhs/wofrs.htm&#34;&gt;open-file reports&lt;/a&gt;.&lt;/p&gt;
@@ -67,9 +67,9 @@
     
     <item>
       <title>Iowa Geological Survey</title>
-      <link>https://maprantala.com/posts/2010-07-14-iowa-geological-survey/</link>
+      <link>https://maprantala.com/2010/07/14/iowa-geological-survey/</link>
       <pubDate>Wed, 14 Jul 2010 13:01:47 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-14-iowa-geological-survey/</guid>
+      <guid>https://maprantala.com/2010/07/14/iowa-geological-survey/</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;http://www.igsb.uiowa.edu/&#34;&gt;Iowa Geological Survey&lt;/a&gt; has a lot of data available to download &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/nrgislibx/&#34;&gt;here&lt;/a&gt;.  PDF versions of many of their publications can be found in their &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/gsbpubs/&#34;&gt;List of Publications&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Their GIS data is minimally attributed for the most part, their public wells data set did have a more robust attribution scheme.  One cool feature I found in the wells data is that they provide a hyper-link for many features to an &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/geosam/Scripts/geocard.asp?wnumber=43873&#34;&gt;on-line site record&lt;/a&gt;.  Found both shapefiles and file geodatabases in the samples I downloaded.&lt;/p&gt;
 &lt;p&gt;More interestingly, I opened up their Bedrock Geological Map and noticed something odd to me.  See the bulls-eye just NW of center?  That, even to a non-geologist like me, does not look too geologic.&lt;/p&gt;
@@ -80,9 +80,9 @@
     
     <item>
       <title>Geology Information Systems</title>
-      <link>https://maprantala.com/posts/2010-05-24-geology-information-systems/</link>
+      <link>https://maprantala.com/2010/05/24/geology-information-systems/</link>
       <pubDate>Mon, 24 May 2010 02:52:24 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-24-geology-information-systems/</guid>
+      <guid>https://maprantala.com/2010/05/24/geology-information-systems/</guid>
       <description>&lt;p&gt;In the last couple months, I’ve had a bit of an eye-opening about Geography. People actually trained in geography may implicitly understand this but I, with my Accounting degree, have spent the last 16 years “doing” GIS without realizing the foundation of geography–geology. I picked up enough geography to understand some of the inter-relationships between people and the lands they live on.&lt;/p&gt;
 &lt;p&gt;But what I didn’t pick up on was how the lands we live on are formed. Maybe it is a moot point–how physical geography is arrived at doesn’t matter, just how we react to it. But, and now working for a Geological Survey, I better have this opinion, a better understanding of what our geology is and how it was formed really does form the foundation for the geography.&lt;/p&gt;
 &lt;p&gt;Two examples. First, in talking with my new supervisor, he was talking about how, because of the geology in the southeast part of the state, they have a lot of water quality issues–the water tends to have sulfur in it. With the recent interest in alternative energy sources, and in this case ethanol plants water quality is a concern when deciding where to build the plants because they require a considerable amount of water. For some reason there have been plants placed in this part of the state and they are having some problems finding sufficient water.&lt;/p&gt;

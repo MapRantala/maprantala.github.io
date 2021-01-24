@@ -11,9 +11,9 @@
     
     <item>
       <title>Building a local, permanent cache of Bing Imagery.</title>
-      <link>https://maprantala.com/posts/2012-04-30-building-a-local-permanent-cache-of-bing-imagery/</link>
+      <link>https://maprantala.com/2012/04/30/building-a-local-permanent-cache-of-bing-imagery./</link>
       <pubDate>Mon, 30 Apr 2012 05:28:15 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2012-04-30-building-a-local-permanent-cache-of-bing-imagery/</guid>
+      <guid>https://maprantala.com/2012/04/30/building-a-local-permanent-cache-of-bing-imagery./</guid>
       <description>&lt;p&gt;I recently had an internal request to capture and store the Bing imagery for an area for future use. The user was interested in some specific images that were taken after a fire, making the ground surface-and certain geological features-much more visible. His concern was that in the future this imagery might get replaced with updated imagery taken when the vegetation has grown back.&lt;/p&gt;
 &lt;p&gt;Since it is unknown when/how this data might be used by us, we mostly wanted to capture it now &amp;amp; find a way to use it.&lt;/p&gt;
 &lt;p&gt;While we initiated the process of finding out what agency the data was available through, we also came up with a quick &amp;amp; dirty way to download the data.&lt;/p&gt;

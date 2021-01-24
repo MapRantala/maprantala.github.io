@@ -11,9 +11,9 @@
     
     <item>
       <title>Updating Access ODBC connections using VBA</title>
-      <link>https://maprantala.com/posts/2011-03-16-updating-access-odbc-connections-using-vba/</link>
+      <link>https://maprantala.com/2011/03/16/updating-access-odbc-connections-using-vba/</link>
       <pubDate>Wed, 16 Mar 2011 20:06:59 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2011-03-16-updating-access-odbc-connections-using-vba/</guid>
+      <guid>https://maprantala.com/2011/03/16/updating-access-odbc-connections-using-vba/</guid>
       <description>&lt;p&gt;I don’t do much in Access or VBA but sometimes you inherit things that force you, at least temporarily, to go retro.&lt;/p&gt;
 &lt;p&gt;We have an Access-based data extraction routine that uses several (21) pass-through queries that use an ODBC connection.  The queries are pulling data from an Oracle database maintained by a different agency that enforces a time-out of passwords every three months.&lt;/p&gt;
 &lt;p&gt;So every three months I have to go through the ODBC connections for these queries and change the password.  And before you chastise me for storing the password in the VBA code, I can only say “you’re right” but that’s the way it is done–not ideal but gets the job done and we’re not dealing with overly sensitive data.&lt;/p&gt;

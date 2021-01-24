@@ -11,9 +11,9 @@
     
     <item>
       <title>ArcMap-Excel Join Error</title>
-      <link>https://maprantala.com/posts/2010-05-28-arcmap-excel-join-error/</link>
+      <link>https://maprantala.com/2010/05/28/arcmap-excel-join-error/</link>
       <pubDate>Fri, 28 May 2010 02:02:37 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-05-28-arcmap-excel-join-error/</guid>
+      <guid>https://maprantala.com/2010/05/28/arcmap-excel-join-error/</guid>
       <description>&lt;p&gt;Came across a new ArcMap bug today. A staff member was trying to join an Excel 2007 file (.xlsx) to a point shapefile in ArcMap and it did not appear to be working. She only had Office 2003 on her machine so I tried it on my spanking new machine that has 2007 installed. Same result–the fields get appended but they are all blank.&lt;/p&gt;
 &lt;p&gt;I discovered, however, that when I had the table open, if I switched form showing ALL records to only the selected, Poof!!! The values filled in. From there I was able to successfully export the data to a new shapefile that always showed the values.&lt;/p&gt;
 &lt;p&gt;I have an inkling that the file name, which contained space and other special characters, may have been a factor.&lt;/p&gt;

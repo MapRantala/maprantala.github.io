@@ -11,9 +11,9 @@
     
     <item>
       <title>Forcing ArcGIS Online to Update Feature Layer Information</title>
-      <link>https://maprantala.com/posts/2018-06-22-forcing-arcgis-online-to-update-feature-layer-information/</link>
+      <link>https://maprantala.com/2018/06/22/forcing-arcgis-online-to-update-feature-layer-information/</link>
       <pubDate>Fri, 22 Jun 2018 20:26:28 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2018-06-22-forcing-arcgis-online-to-update-feature-layer-information/</guid>
+      <guid>https://maprantala.com/2018/06/22/forcing-arcgis-online-to-update-feature-layer-information/</guid>
       <description>&lt;p&gt;Because we use ArcGIS Online Web Maps in our daily work-flows, I created an AGO group that contains Feature Layers that are links to our self-hosted ArcGIS Server services. This way, users can quickly add data from our ArcGIS Server Site and not have to look up URLs/Usernames/Passwords (I’ve save the username/password as part of the ArcGIS Online service when appropriate).&lt;/p&gt;
 &lt;p&gt;But I’ve had a problem where if I change the service, the changes are not reflected in the AGO Feature Layer for that service and I have to monkey about to get the changes to migrate to the maps.&lt;/p&gt;
 &lt;p&gt;Finally annoyed with doing that for the Xth time, I decided to see if I could get the feature service information to refresh automatically. Documentation search found nothing; call in to tech support–still waiting. While experimenting, however, I found that newer Feature Layer I added this way do actually update when I made changes. WTH?!&lt;/p&gt;
@@ -30,9 +30,9 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
     
     <item>
       <title>ArcGIS Online Basemaps Now Free</title>
-      <link>https://maprantala.com/posts/2011-02-22-arcgis-online-basemaps-now-free/</link>
+      <link>https://maprantala.com/2011/02/22/arcgis-online-basemaps-now-free/</link>
       <pubDate>Tue, 22 Feb 2011 12:57:58 -0600</pubDate>
-      <guid>https://maprantala.com/posts/2011-02-22-arcgis-online-basemaps-now-free/</guid>
+      <guid>https://maprantala.com/2011/02/22/arcgis-online-basemaps-now-free/</guid>
       <description>&lt;p&gt;I’ve seen several posts like this &lt;a href=&#34;http://gisandscience.com/2011/02/19/arcgis-online-basemaps-now-freely-available-regardless-of-use/&#34;&gt;one&lt;/a&gt; that reiterate that ESRI has announced that:&lt;/p&gt;
 &lt;p&gt;“As of the end of January, ArcGIS Online basemaps published and hosted by Esri are now freely available to all users regardless of commercial, noncommercial, internal, or external use. This means that you no longer have to pay a subscription fee for including ArcGIS Online basemaps in your commercial-use web applications. Basemaps included in this new business model are World Imagery Map, World Street Map, World Topographic Map, USA Topographic Maps, and DeLorme World Basemap. The only restriction is a high-volume transaction limit of 50,000,000 transactions in a 12-month period, which is equivalent to 400,000,000 tile requests per year, or over 1,000,000 per day – a volume that most likely very few users will reach. ‘Read the &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;ArcGIS Online blog&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; to get the latest news and updates.&#39;”&lt;/p&gt;
 &lt;p&gt;I was unable to find a copy of the announcement on the ArcGIS Online blog or on on &lt;a href=&#34;http://www.esri.com/news/index.html&#34;&gt;ESRI’s news section&lt;/a&gt; although I did receive an email that Charles Convis, &lt;a href=&#34;http://www.conservationgis.org/&#34;&gt;ESRI Conservation Program Coordinator&lt;/a&gt;, sent to the &lt;a href=&#34;http://www.scgis.org/&#34;&gt;Society for Conservation GIS&lt;/a&gt; mailing list with the same information so I’m guessing it is true. Perhaps ESRI pulled the post hoping to release the information with more of a splash?&lt;/p&gt;

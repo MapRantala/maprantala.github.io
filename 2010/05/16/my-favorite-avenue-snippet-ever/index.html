@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>My Favorite Avenue Snippet Ever. – Node Dangles</title>
+<meta name="description" content="I worked in Avenue for many years but do not expect to do too much more. Before my Avenue skills erode to nothing, thought I would share my favorite Avenue snippet. …">
+<meta name="created" content="2010-05-16T16:33:30-0500">
+<meta name="modified" content="2010-05-16T16:33:30-0500">
+<meta name="author" content="Matt">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="My Favorite Avenue Snippet Ever.">
+<meta property="og:url" content="https://maprantala.com/2010/05/16/my-favorite-avenue-snippet-ever./">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/2010/05/16/my-favorite-avenue-snippet-ever./">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "My Favorite Avenue Snippet Ever.",
+    "datePublished": "2010-05-16T16:33:30-05:00",
+    "dateModified": "2010-05-16T16:33:30-05:00",
+    "url" : "https://maprantala.com/2010/05/16/my-favorite-avenue-snippet-ever./",
+    "description": "I worked in Avenue for many years but do not expect to do too much more. Before my Avenue skills erode to nothing, thought I would share my favorite Avenue snippet. …",
+    "keywords": ["ArcView","Avenue","global dictionary","global variables","self"],
+    "author": {
+      "@type": "Person",
+      "name": "Matt"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title ">My Favorite Avenue Snippet Ever.</h1>
+<div class="tags">
+Tags:
+<ul>
+<li><a href="/tags/arcview">ArcView</a></li>
+<li><a href="/tags/avenue">Avenue</a></li>
+<li><a href="/tags/global-dictionary">global dictionary</a></li>
+<li><a href="/tags/global-variables">global variables</a></li>
+<li><a href="/tags/self">self</a></li>
+</ul>
+</div>
+</header>
+<div class="content">
+<p>I worked in Avenue for many years but do not expect to do too much more. Before my Avenue skills erode to nothing, thought I would share my favorite Avenue snippet. Really, it involves two “function” scripts that clients scripts can use.</p>
+<p>What I got use to doing is instead of using a mess of global variables is using one global variable–a dictionary–that was used to store what essentially became global variables. The main advantage of doing this is that I started storing the parameters passed to each script as a global variable named after the script. This came in EXTREMELY useful for debugging purposes because when I was having trouble with a script I could write out my global dictionary to an ODB file at the beginning of that script, thereby storing the application’s state prior to the problem.</p>
+<p>The first script, MyApplication_Routine_AddSelfDict, is used to add/modify a dictionary entry:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>The second script, MyApplication_Routine_GetSelfDict,  is used to retrieve a value from the global dictionary.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Then I can have client scripts first add an entry (primary key = script name)to the global dictionary storing the parameters passed in (self).  Then I set a local variable to the entry just added.   Then, if I need to debug later, I can throw an exit (shown in red) into the script, run the process and after it exits, I can step through the script and pull the parameters passed in from the global dictionary.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>And that’s it.  Took me several years to refine this technique–for a long time I just stuck a check in at the beginning of each script to see if there were any parameters passed and if so, store them in a separate global.  But what I like abut this is I can write the whole global dictionary out to an ODB, quit out of ArcView and then return to the project, read in the ODB and reset my global dictionary and pick up from where I left off.</p>
+<p>The one addition that I added later was to remove entries from the global dictionary once a script ends.  I didn’t show it here.</p>
+<p>Having all this data in one global dictionary is probably a horrendous design approach to anyone with an Object-Orientated mindset but, as they say, it got the job done.</p>
+
+
+</div>
+</article>
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

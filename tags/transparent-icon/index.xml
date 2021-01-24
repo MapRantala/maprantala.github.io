@@ -11,9 +11,9 @@
     
     <item>
       <title>Icon Transparency</title>
-      <link>https://maprantala.com/posts/2010-09-08-icon-transparency/</link>
+      <link>https://maprantala.com/2010/09/08/icon-transparency/</link>
       <pubDate>Wed, 08 Sep 2010 15:47:36 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-09-08-icon-transparency/</guid>
+      <guid>https://maprantala.com/2010/09/08/icon-transparency/</guid>
       <description>&lt;p&gt;Maybe I am just dense, but skimming &lt;a href=&#34;https://c.na1.visual.force.com/apex/ideaView?id=0873000000088YVAAY&#34;&gt;ArcIdeas&lt;/a&gt;, I found out that the transparency for an icon is determined by the upper-left pixel.  Don’t know if this is an ESRI convention or not but thought I would pass it one.&lt;/p&gt;
 </description>
     </item>

@@ -11,9 +11,9 @@
     
     <item>
       <title>Sticky Move Tolerance</title>
-      <link>https://maprantala.com/posts/2010-07-01-sitcky-move-tolerance/</link>
+      <link>https://maprantala.com/2010/07/01/sticky-move-tolerance/</link>
       <pubDate>Thu, 01 Jul 2010 16:51:42 -0500</pubDate>
-      <guid>https://maprantala.com/posts/2010-07-01-sitcky-move-tolerance/</guid>
+      <guid>https://maprantala.com/2010/07/01/sticky-move-tolerance/</guid>
       <description>&lt;p&gt;While I am pretty experienced in editing data in previous generations of ESRI’s software, I have not done a lot in ArcGIS. So in my new position where I am supporting a group of geologists who do a lot of data creation in ArcMap, I am learning some of the intricacies of the ArcGIS platform.&lt;/p&gt;
 &lt;p&gt;One of the potential gotchas that a coworker informed me about that I was vaguely aware of was the issue of sticky move tolerances. What can happen, when editing existing features, is that each time you select a feature it can easily get moved very slightly if the mouse moves while the feature is selected. While the movement itself may be well within any allowable accuracy requirements, it can make a huge mess if you are working with a shapefile polygon coverage for example.&lt;/p&gt;
 &lt;p&gt;ArcMap has a setting, Sticky Move Tolerance, that helps prevent these tiny, accidental moving of features.  A feature will not be moved until the mouse moves at least as many screen pixels as this setting.  The default setting is 0, disabling this feature.&lt;/p&gt;
