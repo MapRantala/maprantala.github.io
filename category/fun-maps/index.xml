@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fun Maps on Node Dangles</title>
+    <link>https://maprantala.com/category/fun-maps/</link>
+    <description>Recent content in Fun Maps on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Apr 2014 05:55:13 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/category/fun-maps/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Friday Fave: Tapiriik</title>
+      <link>https://maprantala.com/2014/04/25/friday-fave-tapiriik/</link>
+      <pubDate>Fri, 25 Apr 2014 05:55:13 -0500</pubDate>
+      <guid>https://maprantala.com/2014/04/25/friday-fave-tapiriik/</guid>
+      <description>&lt;p&gt;This &lt;a href=&#34;https://maprantala.com/category/fun-maps/friday-fave/&#34;&gt;Friday Fave&lt;/a&gt; is a little bit different.&lt;/p&gt;
+&lt;p&gt;My interest in geospatial technologies (although we just called it GIS back then) largely because I wanted to measure my running routes more accurately and efficiently than the paper map &amp;amp; scrap of paper method I was using in the early 90s. When I was introduced to GIS, I knew what I was going to use it for.&lt;/p&gt;
+&lt;p&gt;Now that GPS technology is ubiquitous–I&amp;rsquo;m currently using four different GPS devices, at the same time, on my bike rides–I seldom have to use a map to measure my routes. I may still use &lt;!-- raw HTML omitted --&gt;MapMyRun.com&lt;!-- raw HTML omitted --&gt; to plan a route ahead of time if I&amp;rsquo;m running in a new area or trying to plan a loop of a certain distance but GPS has really made it so simple to just go out and run.&lt;/p&gt;
+&lt;p&gt;While there are several GPS options available, I have used Garmin ever since their 405 Forerunner came out. This was their first watch that didn&amp;rsquo;t get confused for a Timex-Sinclair 1000 strapped to your wrist.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2014/04/Zx81-timex-manipulated2.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Timex Sinclair 1000&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Garmin&amp;rsquo;s watches upload their data to &lt;!-- raw HTML omitted --&gt;Gamin Connect,&lt;!-- raw HTML omitted --&gt; which works fine, but for a project I recently started, I wanted to down load all my data which Garmin Connect does not make easy. I had over 1,000 data logs and downloading them individually was not going to happen.&lt;/p&gt;
+&lt;p&gt;A little Googling led me to &lt;!-- raw HTML omitted --&gt;tapiriik.com&lt;!-- raw HTML omitted --&gt;, which allows you to share data amongst several different online services that endurance athletes might use including Runkeeper, Strava, Garmin Connect, SportTracks, DropBox.com, and Training Peaks.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/Screen-Shot-2014-04-24-at-9.52.48-PM.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;You can use Tapiriik for free (you just need to visit their website to start synchronization) or for $2 per year they will automatically synchronize data between your accounts. You just provide your account information for whichever sites you want to synchronize and either visit their site or pay $2 and it will automatically share data between your accounts.&lt;/p&gt;
+&lt;p&gt;I linked to my Garmin Connect and Dropbox accounts and tapiriik and after some chugging, I had .GPX files for all of my data.&lt;/p&gt;
+&lt;p&gt;It was easy and didn&amp;rsquo;t take very long. Definitely met my needs–I haven&amp;rsquo;t shared data between other services but I do use the desktop version of SportTracks and considered using their web version of the software but didn&amp;rsquo;t know how I would upload all my data.  Now I know.&lt;/p&gt;
+&lt;p&gt;This product definitely saved me a bunch of time. The one thing I wonder, though, is what does &amp;lsquo;Tapiriik&amp;rsquo; means?&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Friday Fave: Custom Maps App for Android</title>
+      <link>https://maprantala.com/2014/04/18/friday-fave-custom-maps-app-for-android/</link>
+      <pubDate>Fri, 18 Apr 2014 06:11:58 -0500</pubDate>
+      <guid>https://maprantala.com/2014/04/18/friday-fave-custom-maps-app-for-android/</guid>
+      <description>&lt;p&gt;I admit, I love picking up freebie maps. Whether it is from the front desk of a hotel or from the bicycle shop, there is a certain appeal to seeing what people put on maps. I have maps organic orchards, breweries, &lt;!-- raw HTML omitted --&gt;Minnesota authors&lt;!-- raw HTML omitted --&gt;, rails to trails, zoos, fictional places, race maps, and a variety of other things that someone felt the need to cartographize.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://thefriends.org/wp-content/uploads/2012/12/mn_writers_on_the_map_web_download.pdf&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://thefriends.org/&#34;&gt;http://thefriends.org/&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;So, with all these paper maps lying around, I was thrilled to find &lt;!-- raw HTML omitted --&gt;Custom &lt;!-- raw HTML omitted --&gt;Maps&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;, a free app on&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Google Play&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;This app allows you to take a picture (or use an image on your device) and georeference it.  You can then view your location on the map. I&amp;rsquo;ve tried it with a few maps and have been happy with the results.&lt;/p&gt;
+&lt;p&gt;Similar to georeferencing in a desktop application, you select points on the map and then the same points on a control. You need at lest two or three points. After doing it a couple of times, the process becomes pretty easy and it just takes a minute or two from taking the picture to viewing your current location on the map.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/CustomMaps-AlignPoint.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://www.custommapsapp.com&#34;&gt;http://www.custommapsapp.com&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;An example use case scenario for this app is you are lugging your family around at an overwhelming large amusement park and never quite sure where you are. You can take a picture of the map you picked up at the entrance, georeference it, and your phone will then show exactly where you are on that map and where the nearest loo is.&lt;/p&gt;
+&lt;p&gt;The biggest limitation I&amp;rsquo;ve seen so far is that there is a limit of 3-5 megapixel size limit on the image. Apparently this is an android limitation on how much memory an app can consume. But if you adjust your camera settings not to exceed this, you should be good.&lt;/p&gt;
+&lt;p&gt;So far, I&amp;rsquo;m enjoying this app. The author, Marko Teittinen (a good Finn name), has made the source code &lt;a href=&#34;https://code.google.com/p/custom-maps/&#34;&gt;open source&lt;/a&gt; so I look forward to digging into it in more detail.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Friday Fave: Cartozia Tales</title>
+      <link>https://maprantala.com/2014/04/11/friday-fave-cartozia-tales/</link>
+      <pubDate>Fri, 11 Apr 2014 06:15:02 -0500</pubDate>
+      <guid>https://maprantala.com/2014/04/11/friday-fave-cartozia-tales/</guid>
+      <description>&lt;p&gt;Obviously Cartographers belong in the same category as other superheroes like Superman, Batman, and Spiderman and we finally have a our own comic book to prove it.&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Cartozia Tales&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; is a collaborative effort of nine indy artists with two guest artist each issue.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/Cartozia.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;They have an interesting plan, they&amp;rsquo;ve split the world into nine regions (what&amp;rsquo;s the name for the ninth of an area, nona-rant?) and the artist will tell a story from a different region each issue. They may build off the region&amp;rsquo;s story from the previous issue, continue on the story they told the previous issue, and start something fresh.&lt;/p&gt;
+&lt;p&gt;After being funded by a &lt;!-- raw HTML omitted --&gt;KickStarter campaign&lt;!-- raw HTML omitted --&gt;, they&amp;rsquo;ve shipped three issues already and have at least seven more promised. Think the project definitely deserve&amp;rsquo;s a look.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Friday Fave: Public Workout Maps</title>
+      <link>https://maprantala.com/2014/04/05/friday-fave-public-workout-maps/</link>
+      <pubDate>Sat, 05 Apr 2014 05:15:31 -0500</pubDate>
+      <guid>https://maprantala.com/2014/04/05/friday-fave-public-workout-maps/</guid>
+      <description>&lt;p&gt;When I first found out about GIS, the first application that came to mind was using it to map my running routes. At that time, I was using paper maps and scraps of paper to measure how far I was running each day. GIS obviously offered a better method.&lt;/p&gt;
+&lt;p&gt;Almost twenty years later, GPS has become so common place that I think we have four or five devices in our household that have GPS capabilities and measuring my runs has become ridiculously simple.&lt;/p&gt;
+&lt;p&gt;Given that background, you can understand why I love projects like &lt;!-- raw HTML omitted --&gt;this project&lt;!-- raw HTML omitted --&gt; by Nikita Barsukov, who compiled publicly available data from &lt;!-- raw HTML omitted --&gt;Endomondo&lt;!-- raw HTML omitted --&gt; and created maps of public running workout tracks for a variety of European Cities, including this sample from Helsinki.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/helsinki.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Barsukov.Net&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Flowing Data, using a similar concept, generated &lt;!-- raw HTML omitted --&gt;similar maps&lt;!-- raw HTML omitted --&gt; for several cities in the United States, including &lt;!-- raw HTML omitted --&gt;Minneapolis&lt;!-- raw HTML omitted --&gt;–some areas I know.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://flowingdata.com/2014/02/05/where-people-run/&#34;&gt;http://flowingdata.com/2014/02/05/where-people-run/&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve got about six years of running data of my own that I should use to generate a personal running route map but would be a fun project.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

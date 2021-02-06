@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ArcMap on Node Dangles</title>
+    <link>https://maprantala.com/category/arcmap/</link>
+    <description>Recent content in ArcMap on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 May 2018 17:56:09 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/category/arcmap/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using ArcPy.Mapping to update Definition Queries</title>
+      <link>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries/</link>
+      <pubDate>Tue, 08 May 2018 17:56:09 -0500</pubDate>
+      <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries/</guid>
+      <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the &amp;lsquo;lazy&amp;rsquo; GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
+&lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#These first 3 lines only need to be run once.
+mxd = arcpy.mapping.MapDocument(&amp;quot;CURRENT&amp;quot;)
+l = arcpy.mapping.ListDataFrames(mxd)[0] #Note the hard-code [0], meaning the first dataframe. YMMV
+ll = arcpy.mapping.ListLayers(l)
+
+#Everytime I wanted to update the definition queries just need to update the replace parameters.
+
+for l in ll:
+     try:
+        print(l.name)
+        print(l.definitionQuery)
+        z = l.definitionQuery.replace(&amp;quot;_011&amp;quot;,&amp;quot;_012&amp;quot;)
+        l.definitionQuery = z
+     except:
+        print(&amp;quot;&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>ArcMap Maximum Legend Items from a ArcGIS Server service</title>
+      <link>https://maprantala.com/2014/02/11/arcmap-maximum-legend-items-from-a-arcgis-server-service/</link>
+      <pubDate>Tue, 11 Feb 2014 06:02:42 -0600</pubDate>
+      <guid>https://maprantala.com/2014/02/11/arcmap-maximum-legend-items-from-a-arcgis-server-service/</guid>
+      <description>&lt;p&gt;Recently we took a call from a user who could not see the legend for one of the feature classes in one of our services. (Precambrian Bedrock in &lt;a href=&#34;http://mgsweb2.mngs.umn.edu/arcgis/services/state/mnbdrkgeology&#34;&gt;http://mgsweb2.mngs.umn.edu/arcgis/services/state/mnbdrkgeology&lt;/a&gt; )&lt;/p&gt;
+&lt;p&gt;After trying some standard things–restarting the service, checking the source .MXD–I turned to The Google Machine and quickly found help from ESRI: &lt;a href=&#34;http://support.esri.com/zh-cn/knowledgebase/techarticles/detail/33741&#34;&gt;http://support.esri.com/zh-cn/knowledgebase/techarticles/detail/33741&lt;/a&gt; .&lt;/p&gt;
+&lt;p&gt;Turns out the default number of legend items ArcMap will display from an ArcGIS Server map service layer is 100 and we had 102 in the problematic layer. (I plead innocence, blame the geologist for needing that many categories).&lt;/p&gt;
+&lt;p&gt;The solution was to edit the Windows registry and change the setting for &amp;lsquo;Maximum Legend Count&amp;rsquo; from 100 to something higher than 102. After doing that (see path note below) and restarting ArcMap, the legend showed for us.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Path Details&lt;/strong&gt;&lt;br&gt;
+The path turned out to be a little different on Windows 7 than the paths indicated in the help article.&lt;br&gt;
+ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ArcGIS 9.3.x: HKEY_CURRENT_USER &amp;gt; Software &amp;gt; ESRI &amp;gt; MapServerLayer&lt;/li&gt;
+&lt;li&gt;ArcGIS 10.0: HKEY_CURRENT_USER &amp;gt; Software &amp;gt; ESRI &amp;gt; Desktop10.0 &amp;gt; ArcMap &amp;gt; Server &amp;gt; MapServerLayer&lt;/li&gt;
+&lt;li&gt;ArcGIS 10.1: HKEY_CURRENT_USER &amp;gt; Software &amp;gt; ESRI &amp;gt; Desktop10.1 &amp;gt; ArcMap &amp;gt; Server &amp;gt; MapServerLayer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I actually changed this in a number of locations–presumably once for each user profile on my machine. Each followed a pattern something like:&lt;/p&gt;
+&lt;p&gt;HKEY_USERSS-1-5-23412341234-123412342134-12341234123-1302SoftwareESRIArcMapServerMapServerLayer&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Extra Information&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Out of cursiousity, I wondered if the 100 item limit was a per &lt;strong&gt;service&lt;/strong&gt; or per &lt;strong&gt;layer&lt;/strong&gt; limitation so I set my limit at 103. Because the service has several other layers, the total number of layers in the legend was about 130. Everything drew OK so it appears the limit applies per layer.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcMap Field Calculator: Number of parts in multi-part feature</title>
+      <link>https://maprantala.com/2013/09/05/arcmap-field-calculator-number-of-parts-in-multi-part-feature/</link>
+      <pubDate>Thu, 05 Sep 2013 14:04:40 -0500</pubDate>
+      <guid>https://maprantala.com/2013/09/05/arcmap-field-calculator-number-of-parts-in-multi-part-feature/</guid>
+      <description>&lt;p&gt;In the last week, I have looked for multi-part features a couple of times. Today, I was looking for multi-part polygons after dealing with the fall-out of a case of Clip Gone Wild as shown below.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/09/image.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I have not found a way to write a query to find these but Field Calculator does allow you to calculate a field’s value to the number of parts.&lt;/p&gt;
+&lt;p&gt;Using the Python parser, just write the formula (note that case matters): !shape!.partCount&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/09/image1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Unsupported Arc: &#39;Rebox&#39;ing or updating the extent of a feature class.</title>
+      <link>https://maprantala.com/2012/06/05/unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class./</link>
+      <pubDate>Tue, 05 Jun 2012 21:16:28 -0500</pubDate>
+      <guid>https://maprantala.com/2012/06/05/unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class./</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve found that sometimes I can not find the answer to a question until I know the answer &amp;amp; then it becomes ridiculously easy to find the answer.&lt;/p&gt;
+&lt;p&gt;One small annoying thing that I never spent much time was when you delete features from a feature class making it significantly smaller but the envelope does not get re-sized so the zoom extent (still the original extent) is too large. This often happens to use when we convert tables to an XY theme and there are blank records–most of our data shows in Minnesota but there are some in Oklahoma (I think). Once we eliminate or correct the blank records, our data view still pops out to include a large section of the United States even though we only have data in Minnesota.&lt;/p&gt;
+&lt;p&gt;A long, long time ago, &lt;!-- raw HTML omitted --&gt;Workstation ArcInfo&lt;!-- raw HTML omitted --&gt; had a simple command, &lt;!-- raw HTML omitted --&gt;Rebox&lt;!-- raw HTML omitted --&gt;, for just this purpose (actually it still does, I just don&amp;rsquo;t get to use it anymore)–it shrunk the extent to the smallest rectangle required to enclose all the data. Up until today, I thought &lt;!-- raw HTML omitted --&gt;the request&lt;!-- raw HTML omitted --&gt; for this feature was completely ignored.&lt;/p&gt;
+&lt;p&gt;While researching something else, I was digging around in the sde tables and found one, sde.sde_layers, that had the interesting fields, minx, miny, maxx, and maxy. My quick &amp;amp; dangerous test (I performed it on a throw-away feature class in a throw-away geodatabase) gave me the results I wanted–once I loaded the feature class into ArcMap, the extent was a nice, tight rectangle around my features.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2012/06/extent1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Is this a supported way to Rebox the extent? No.&lt;/p&gt;
+&lt;p&gt;Is it recommend by ESRI or me? No.&lt;/p&gt;
+&lt;p&gt;Will it screw up your entire geodatabase, making you lose all your data &amp;amp; costing you your job? Probably not but do you want to take that chance?&lt;/p&gt;
+&lt;p&gt;Will it get the job done? Maybe.  But in the process of writing this post, I found two safer ways to go about it. First, the straight-forward, sde command-line way that probably always existed that I never found until today, &lt;!-- raw HTML omitted --&gt;sdelayer -o alter had an -E option to reset the extent&lt;!-- raw HTML omitted --&gt;, including the ability to either specify it or have sde calculate it. Ok, that is usable for one person in our organization.&lt;/p&gt;
+&lt;p&gt;Previously, we had found either a VBA or other tool for doing this but had minimal success with it. Today, I found an &lt;!-- raw HTML omitted --&gt;ArcGIS 10 Add-In&lt;!-- raw HTML omitted --&gt; that is suppose to do the same thing. In my experiments (sample size n=1) it worked perfectly. If you need this sort of functionality, I would recommend trying out this Add-In first, if that fails go the sde command line route. Use the direct SQL method at your own risk!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcMap Field Calculator: Identifying Unique Cases, Single Field</title>
+      <link>https://maprantala.com/2012/04/28/arcmap-field-calculator-identifying-unique-cases-single-field/</link>
+      <pubDate>Sat, 28 Apr 2012 05:55:34 -0500</pubDate>
+      <guid>https://maprantala.com/2012/04/28/arcmap-field-calculator-identifying-unique-cases-single-field/</guid>
+      <description>&lt;p&gt;Seems like a lot of people are finding the ArcMap Field Calculator &lt;a href=&#34;https://maprantala.com/category/esri/arcmap-esri/field-calculator/&#34;&gt;examples&lt;/a&gt; that I have posted useful so I will make an effort to post more of them. Most posts are generated after I do something and think that others might want to know how to do it. (Or so I can go back and remember how I did something without re-inventing it).&lt;/p&gt;
+&lt;p&gt;Something I did today was create a field (!Case!) and then populated this with a unique identifier for each different value (case) that occurred in a different field (!Feature!).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note: python&amp;rsquo;s &lt;em&gt;index&lt;/em&gt; statement is a 0-based search so the first case will have the value 0, the second will have 1, and so on. If you want to start the results at 1, you can make the last line: &amp;lsquo;return caseList.index(inValue) + 1&amp;rsquo;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The basic structure for this is shown:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;caseList = [ ]
+
+def returnCase(inValue):
+   global caseList
+
+   if not inValue in caseList:
+      caseList.append(inValue)
+
+   return caseList.index(inValue)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcMap Field Calculator: Identifying Unique Cases, Multiple Fields</title>
+      <link>https://maprantala.com/2012/04/23/arcmap-field-calculator-identifying-unique-cases-multiple-fields/</link>
+      <pubDate>Mon, 23 Apr 2012 06:06:25 -0500</pubDate>
+      <guid>https://maprantala.com/2012/04/23/arcmap-field-calculator-identifying-unique-cases-multiple-fields/</guid>
+      <description>&lt;p&gt;You may have noticed that this post–&lt;a href=&#34;http://wp.me/pVrsJ-bf&#34;&gt;ArcMap Field Calculator: Identifying Unique Cases, Single Field&lt;/a&gt;–specifies &amp;lsquo;Single Field&amp;rsquo;. Yes, that was my version of a cliff-hanger post.&lt;/p&gt;
+&lt;p&gt;The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats &amp;lsquo;a&amp;rsquo; the same as &amp;lsquo;A&amp;rsquo;.&lt;/p&gt;
+&lt;p&gt;Today&amp;rsquo;s example groups records into different cases based off the values of two fields, !county_c! and !feature! and required only minor modifications.&lt;/p&gt;
+&lt;p&gt;The calling line was modified from:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;to:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;to accommodate passing both values.&lt;/p&gt;
+&lt;p&gt;The function definition likewise was modified to accept two values, this:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;to:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;And this line was added, creating a list from the two values passed in:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;**(Note: The same results could have be achieved by using the original function by creating the list in the calling statement:  returnCase([!county_c!,!feature!] )&lt;br&gt;
+**&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;caseList = [ ]
+
+def returnCase(inValue1, inValue2):
+   inValue = [inValue1, inValue2]
+   global caseList
+
+   if not inValue in caseList:
+      caseList.append(inValue)
+
+   return caseList.index(inValue)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2012/04/case_multiple.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcMap Field Calculator: Beware of Integer Division!</title>
+      <link>https://maprantala.com/2012/04/02/arcmap-field-calculator-beware-of-integer-division/</link>
+      <pubDate>Mon, 02 Apr 2012 05:34:54 -0500</pubDate>
+      <guid>https://maprantala.com/2012/04/02/arcmap-field-calculator-beware-of-integer-division/</guid>
+      <description>&lt;p&gt;Apparently, if you post one time about ArcMap field calculator, you&amp;rsquo;re bound to get additional questions.  After &lt;a href=&#34;https://maprantala.com/2012/03/28/arcmap-field-calculator-text-to-double/&#34;&gt;my recent post&lt;/a&gt; about using field calculator to convert text values to numeric, someone asked about a problem they were having with another calculation they were having.&lt;/p&gt;
+&lt;p&gt;The underlying problem was that python 2.6, which is installed with ArcGIS 10, &lt;a href=&#34;http://docs.python.org/release/2.6.7/library/stdtypes.html#numeric-types-int-float-long-complex&#34;&gt;uses integer division&lt;/a&gt; when both the numerator and denominator are integers. The result of integer division is an integer rounded towards negative infinity.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;re not aware of this (or forget) then you open yourself up to some unexpected results–they can be especially hard to catch if you are using it within a larger block of code.&lt;/p&gt;
+&lt;p&gt;In this example, I&amp;rsquo;m calculating a percentage but the result is 0 for all the records because of the rounding.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2012/03/calc1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The easiest thing to do in this simple example is just convert one of the two value to a non-integer value. This can be done by multiplying by 1.0 (not just &amp;lsquo;1&amp;rsquo;, you need to include the &amp;lsquo;.0&amp;rsquo;) which is a float datatype. Multiplying one of the values by a float makes that value a float and integer division no longer applies &amp;amp; we end up with a happy GISer.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/calc2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Another option if you are using a Codeblock is to include &amp;lsquo;from __future__ import division&amp;rsquo; in your code block. Python is slowly moving away from using integer division and the _\&lt;em&gt;_future__&lt;/em&gt; module overrides the default behavior.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/calc3.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcMap Field Calculator: Text to Double</title>
+      <link>https://maprantala.com/2012/03/28/arcmap-field-calculator-text-to-double/</link>
+      <pubDate>Wed, 28 Mar 2012 05:23:32 -0500</pubDate>
+      <guid>https://maprantala.com/2012/03/28/arcmap-field-calculator-text-to-double/</guid>
+      <description>&lt;p&gt;Received a request yesterday asking how to use the ArcMap Calculator to copy values from a Text field to a Double field using python syntax.  As any good blogger would do, I immediately thought, &amp;lsquo;Awesome! Someone&amp;rsquo;s question is the perfect topic for a new blog post&amp;rsquo;.&lt;/p&gt;
+&lt;p&gt;The python parser is actually pretty good at casting values on the fly so if the values in your text field (!Day! in my example) are valid values that can be converted to a Double value, it is as simple as just setting the formula to be the text field. In my example case, I wanted to copy the value from !Day! to !DecDay! so I set the formula to be DecDay = !Day!.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;That should work fine if you have clean values in your text field. In the example above, you might notice I had a selected set of 3 records that all had numeric values in the !Day! field. When I included the fourth row, which does not have a numeric value in the text field, I get this error message (&amp;lsquo;There was a failure during processing, check the Geoprocessing Results window for details.&amp;rsquo; when I use the same formula. Time to add in an error exception.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber2b.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For more advanced logic, the Field Calculator dialog allows you to use a python function if you check on the &amp;lsquo;Show Codeblock&amp;rsquo; option.  In the &amp;lsquo;Pre-Logic Script Code&amp;rsquo; area (Seriously, who at ESRI came up with that name?) I entered the following function. If the value in my text field (!Day!) can be cast to a number of type float, that value is returned. If the cast is unsuccessful (IE the value in !Day! is not a number), then I return -99.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def toNum(inValue):
+   try:
+      outValue = float(inValue)
+      return outValue
+   except:
+      return -99
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then in the formula portion of the dialog, I call the function, passing the value in the !Day! field: DecDay = toNum(!Day!).&lt;br&gt;
+&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Now, if you would prefer not to set all the records with non-numeric values to be -99 or other error value, not return anything. To do this, I replaced the &amp;lsquo;return -99&amp;rsquo; in the original function with a filler line (&amp;lsquo;doNothing = 4&amp;rsquo;) since the try block needs an non-empty except clause.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def toNum(inValue):
+   try:
+      outValue = float(inValue)
+      return outValue
+   except:
+      doNothing = 4
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber3.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;br&gt;
+And that should leave the values in the double field unscathed in your records with non-numeric values in the text field.&lt;/p&gt;
+&lt;p&gt;Shameless Plug: Check out my other blog posts on using ArcMap&amp;rsquo;s Field Calculator to &lt;a href=&#34;https://maprantala.com/2011/03/08/calculating-geometry-using-arcpy-in-field-calculator/&#34;&gt;calculate geometry&lt;/a&gt; and converting a date value to an &lt;a href=&#34;https://maprantala.com/2011/10/06/field-calculator-arcpy-date-to-decimal-function/&#34;&gt;8 digit numeric value&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcMap Field Calculator: ArcPy Date to Decimal Function</title>
+      <link>https://maprantala.com/2011/10/06/arcmap-field-calculator-arcpy-date-to-decimal-function/</link>
+      <pubDate>Thu, 06 Oct 2011 21:08:35 -0500</pubDate>
+      <guid>https://maprantala.com/2011/10/06/arcmap-field-calculator-arcpy-date-to-decimal-function/</guid>
+      <description>&lt;p&gt;One of the standards in our databases is to store dates as 8-digit integer values in the format of yyyymmdd. This requires us to occasionally convert values from date fields into this format.&lt;/p&gt;
+&lt;p&gt;We can do this in the ArcMap Field Calculator using this arcpy function:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def datetodouble(inNum):
+     splitList = str(inNum).split(&amp;quot;/&amp;quot;)
+     return  splitList [2]  +(&amp;quot;0&amp;quot;+ splitList [0])[-2:]  +(&amp;quot;0&amp;quot;+ splitList [1])[-2:]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/10/datetodouble.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcMap Field Calculator: Create a Unique ID</title>
+      <link>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</link>
+      <pubDate>Thu, 28 Jul 2011 20:08:13 -0500</pubDate>
+      <guid>https://maprantala.com/2011/07/28/arcmap-field-calculator-create-a-unique-id/</guid>
+      <description>&lt;p&gt;One of the common functions I have to do is assign each record in a feature class with a unique identifier–normally just a sequential number from 1 to N.  In ArcView 3.x, the formula was simply &amp;lsquo;rec + 1&amp;rsquo; if I wanted to start with the number 1.&lt;/p&gt;
+&lt;p&gt;In ArcGIS, the process got a little more complex–you had to write a little VBA in Field Calculator as &lt;a href=&#34;http://support.esri.com/en/knowledgebase/techarticles/detail/27427&#34;&gt;described by ESRI&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While this option still exists in ArcGIS 10, I believe it will disappear when 10.1 comes out and VBA support is completely eliminated.  But it is doable using Python which will continue to be supported.&lt;/p&gt;
+&lt;p&gt;Googling around, I did not find an exact answer but Dave Verbyla, Professor of GIS/Remote Sensing at the University of Alaska has a &lt;a href=&#34;http://nrm.salrm.uaf.edu/~dverbyla/nrm638/lectures/Python_field_calculator.pdf&#34;&gt;posted some samples&lt;/a&gt; that served as a good starting point.&lt;/p&gt;
+&lt;p&gt;In the Pre-Logic Script Code box, I declare a variable (counter) and a function. Then in the formula, I call the function.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;counter = 0
+def uniqueID():
+  global counter
+  counter += 1
+  return counter
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;While composing this post, I actually wanted a concatenated value; &amp;lsquo;OC&amp;rsquo; plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Renaming Raster Dataset and arcpy.Exists()</title>
+      <link>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</link>
+      <pubDate>Tue, 03 May 2011 09:33:48 -0500</pubDate>
+      <guid>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</guid>
+      <description>&lt;p&gt;Discovered something today. I was working on an arcpy script that copies a raster dataset from a file geodatabase into a Postgres SDE geodatabase and then does some boring routine tasks–building stats, creating a mosaic dataset, adding the raster to the mosaic dataset and making a couple referenced mosaic datasets.&lt;/p&gt;
+&lt;p&gt;It sometimes has trouble with the initial step of uploading the raster because of the sheer size of if (1m elevation raster for counties) and it failed today on one. It failed today so I used the ArcCatalog GUI to copy the raster and renamed it.&lt;/p&gt;
+&lt;p&gt;I then proceeded to run launch my script. Before each step, I use &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Exists/000v00000021000000/&#34;&gt;arcpy.Exists&lt;/a&gt;() extensively to check to see if various items exist before I attempt to create them. It was continuously reporting that my raster set did not exist even though I could see it in ArcCatalog.&lt;/p&gt;
+&lt;p&gt;Finally, I realized that I needed to close ArcCatalog before arcpy recognized the fact I had renamed something. To note, I was running arcpy from a separate PythonWin window, not from the ArcCatalog session I had renamed the raster dataset with.&lt;/p&gt;
+&lt;p&gt;Once I closed ArcCatalog, arcpy recognized the renaming and life was good.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)</title>
+      <link>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</link>
+      <pubDate>Tue, 15 Feb 2011 17:05:55 -0600</pubDate>
+      <guid>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</guid>
+      <description>&lt;p&gt;I was working my way through this ESRI &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#//0001000001ms000000&#34;&gt;Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)&lt;/a&gt;.  And came across a couple minor errors that I had to correct during the process.&lt;/p&gt;
+&lt;p&gt;First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a &amp;lsquo;Name ‘ArcMap&amp;rsquo; is not declared.&#39; error.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/arcmapnotdeclared.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&amp;rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The fix is just adding  &amp;lsquo;My.&amp;rsquo; to the namespace in this line:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To get this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(My.ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/errorlist.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The fixes in this case was also to use the complete name space path.  Examples:&lt;/p&gt;
+&lt;p&gt;Change this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(geometry.GeometryType) = esriGeometryType.esriGeometryPoint Then
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If (geometry.GeometryType) = ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPoint Then)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And change this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = ESRI.ArcGIS.Display.esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcBruTile</title>
+      <link>https://maprantala.com/2010/09/09/arcbrutile/</link>
+      <pubDate>Thu, 09 Sep 2010 14:38:46 -0500</pubDate>
+      <guid>https://maprantala.com/2010/09/09/arcbrutile/</guid>
+      <description>&lt;p&gt;Stumbled across &lt;a href=&#34;http://arcbrutile.codeplex.com/&#34;&gt;ArcBruTile&lt;/a&gt;, an ArcMap application that allows you to display map tile services–such as &lt;a href=&#34;http://www.openstreetmap.org/&#34;&gt;OpenStreetMap&lt;/a&gt;, &lt;a href=&#34;http://maps.google.com/&#34;&gt;Google Maps&lt;/a&gt;, &lt;a href=&#34;http://www.bing.com/maps/&#34;&gt;Bing&lt;/a&gt;, &lt;a href=&#34;http://www.spatialcloud.com/&#34;&gt;Spatial Cloud&lt;/a&gt;, and &lt;a href=&#34;http://wiki.osgeo.org/wiki/Tile_Map_Service_Specification&#34;&gt;Tile Map Service&lt;/a&gt; (TMS)–in your ArcMap documents.   It works pretty well from my preliminary testing of it.   I have found that at times that the graphical tiles are distorted but I am guessing it is because they are optimized for display in a specific projection, at specific scales and, in ArcMap, you can use any projection/scale combination you want.&lt;/p&gt;
+&lt;p&gt;This is a free, open-source project that is still in Beta but definitely an application I plan to keep an eye on.  As with any open-source project, the cool thing is the code is available for you to look at, learn from, and hopefully contribute to.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3</title>
+      <link>https://maprantala.com/2010/07/23/create-geologic-cross-sectionsexacto-section-v.-2.0-arcmap-9.3/</link>
+      <pubDate>Fri, 23 Jul 2010 13:59:44 -0500</pubDate>
+      <guid>https://maprantala.com/2010/07/23/create-geologic-cross-sectionsexacto-section-v.-2.0-arcmap-9.3/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://arcscripts.esri.com/details.asp?dbid=16734&#34;&gt;Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3&lt;/a&gt; written by Jennifer Carrell of the &lt;a href=&#34;http://www.isgs.illinois.edu/&#34;&gt;Illinois State Geological Survey&lt;/a&gt; is a handy tool for creating cross sections.&lt;/p&gt;
+&lt;p&gt;It requires ArcGIS and a 3D Analyst Extension license.&lt;/p&gt;
+&lt;p&gt;You can create profiles against multiple DEMs at once, define the vertical exaggeration, and have it include contact points.  It is well documented and comes with sample data to use with the tutorial.&lt;/p&gt;
+&lt;p&gt;I did not see it mentioned but it also include a personal geodatabase that include a grid that can be used along with the profiles you create.&lt;/p&gt;
+&lt;p&gt;If  you make profiles, think this is definitely an option you should look at.  The fact that it is a VBA application is a bit worrisome in that its lifespan is limited.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Michigan Office of Geological Survey</title>
+      <link>https://maprantala.com/2010/07/22/michigan-office-of-geological-survey/</link>
+      <pubDate>Thu, 22 Jul 2010 15:31:20 -0500</pubDate>
+      <guid>https://maprantala.com/2010/07/22/michigan-office-of-geological-survey/</guid>
+      <description>&lt;p&gt;The Michigan &lt;a href=&#34;http://www.michigan.gov/deq/0,1607,7-135-3306_57064-87386--,00.html&#34;&gt;Office of Geological Survey&lt;/a&gt; appears to have pdf versions of all the documents in their &lt;a href=&#34;http://www.michigan.gov/documents/deq/GIMDL-Catalog-2010-01-20_307979_7.pdf&#34;&gt;Digital Geological Library&lt;/a&gt; available for download.  The transcripts of some early (beginning in 1871) &lt;a href=&#34;http://www.michigan.gov/documents/deq/OFR_19_Rominger_1871-1874_Aopt_306084_7.pdf&#34;&gt;field notes&lt;/a&gt; are a fun inclusion in the available archives.&lt;/p&gt;
+&lt;p&gt;Actual GIS data was a bit hard to find although I found both bedrock geology and quarternary geology available from the state &lt;a href=&#34;http://www.mcgi.state.mi.us/mgdl/?action=thm&#34;&gt;Geographic Data Library&lt;/a&gt; in shapefile format.  I also found oil and gas well data but did not download it.&lt;/p&gt;
+&lt;p&gt;The data carried minimal attribution, one interesting thing I found in the bedrock data was the red, green, blue values apparently used for each polygon.&lt;/p&gt;
+&lt;p&gt;One thing to be aware of is that the shapefiles do not come with a prj file which could be a problem.  Michigan has their own defined coordinate system called &lt;a href=&#34;http://www.michigan.gov/documents/DNR_Map_Proj_and_MI_Georef_Info_20889_7.pdf&#34;&gt;Michigan GeoRef&lt;/a&gt;.  This coordinate system defines the entire state into a single zone instead of multiple zones like the USGS&#39; stateplane system does.  This is nice to work with UNLESS it comes undocumented as I found out while doing some consulting work in Au Train, Michigan a decade ago–I was able to finally find something online about it around 2 am one morning but I think I still have scars from the head-pounding that occurred that night.&lt;/p&gt;
+&lt;p&gt;ESRI, however, makes it easy to deal with this data–they include the specifications for Michigan GeoRef in inventory of predefined coordinate systems that ships with ArcGIS.  If you define the projection on each shapefile, it will then load automatically in real-world coordinates.  To define the projection on a shapefile, right-click on it in ArcCatalog and select &amp;lsquo;Properties…&#39;.  Select &amp;lsquo;XY Coordinate System&amp;rsquo; on the Shapefile Properties dialog.  Hit the &amp;lsquo;Select&amp;rsquo; button and navigate to Projected Coordinate Systems-State Sytems-NAD 1983 Michigan GeoRef (Meters).prj.  Hit the &amp;lsquo;Add&amp;rsquo; button and then the &amp;lsquo;Apply&amp;rsquo; button.  Repeat for any other shapefiles you download.&lt;/p&gt;
+&lt;p&gt;One item I found out about ArcGIS while doing this is that if you change the projection on a shapefile, it will recognize that change the next time you use that data.  I originally set the units to be feet on the data so it did not load in the proper real-world location.  I saved my ArcMap document, quit out, and corrected the problem.  When I re-opened the document, Michigan had migrated back to where we are used to seeing it.  This contrasts with how ArcView 3.x use to handle raster data, you had to actually remove the layer from your view and re-load it to recognize the change in spatial references.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sticky Move Tolerance</title>
+      <link>https://maprantala.com/2010/07/01/sticky-move-tolerance/</link>
+      <pubDate>Thu, 01 Jul 2010 16:51:42 -0500</pubDate>
+      <guid>https://maprantala.com/2010/07/01/sticky-move-tolerance/</guid>
+      <description>&lt;p&gt;While I am pretty experienced in editing data in previous generations of ESRI&amp;rsquo;s software, I have not done a lot in ArcGIS. So in my new position where I am supporting a group of geologists who do a lot of data creation in ArcMap, I am learning some of the intricacies of the ArcGIS platform.&lt;/p&gt;
+&lt;p&gt;One of the potential gotchas that a coworker informed me about that I was vaguely aware of was the issue of sticky move tolerances. What can happen, when editing existing features, is that each time you select a feature it can easily get moved very slightly if the mouse moves while the feature is selected. While the movement itself may be well within any allowable accuracy requirements, it can make a huge mess if you are working with a shapefile polygon coverage for example.&lt;/p&gt;
+&lt;p&gt;ArcMap has a setting, Sticky Move Tolerance, that helps prevent these tiny, accidental moving of features.  A feature will not be moved until the mouse moves at least as many screen pixels as this setting.  The default setting is 0, disabling this feature.&lt;/p&gt;
+&lt;p&gt;This setting can be set changed under Options on the Editor Toolbar.
+&lt;img src=&#34;https://maprantala.com/images/2010/07/setting.jpg&#34; alt=&#34;Settings&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The Sticky move tolerance is on the General tab.  In this example, I have my setting at 25 pixels which may be a bit high but I do not do a lot of data editing myself so it is workable.  The downside of having it set this high is if I want to move a feature just a tiny bit, I have to first drag the mouse relatively far away and then bring it tighter into where the feature is.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/07/options.jpg?resize=344%2C341g&#34; alt=&#34;Options&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Not sure how well this is documented although it can be found in the help system.&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;https://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Moving_features&#34;&gt;https://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Moving_features&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcMap-Excel Join Error</title>
+      <link>https://maprantala.com/2010/05/28/arcmap-excel-join-error/</link>
+      <pubDate>Fri, 28 May 2010 02:02:37 -0500</pubDate>
+      <guid>https://maprantala.com/2010/05/28/arcmap-excel-join-error/</guid>
+      <description>&lt;p&gt;Came across a new ArcMap bug today. A staff member was trying to join an Excel 2007 file (.xlsx) to a point shapefile in ArcMap and it did not appear to be working. She only had Office 2003 on her machine so I tried it on my spanking new machine that has 2007 installed. Same result–the fields get appended but they are all blank.&lt;/p&gt;
+&lt;p&gt;I discovered, however, that when I had the table open, if I switched form showing ALL records to only the selected, Poof!!! The values filled in. From there I was able to successfully export the data to a new shapefile that always showed the values.&lt;/p&gt;
+&lt;p&gt;I have an inkling that the file name, which contained space and other special characters, may have been a factor.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;August 11, 2010 Addendum:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I was just working with some more and, after joining a table to an Excel table, having all the fields look blank, I discovered that if I close and then re-open the table all looks good–all fields have values.&lt;/p&gt;
+&lt;p&gt;Another problem I had is that even after successfully joining a table to the Excel table and creating an XY Event Theme from it, I was unsuccessful in exporting it to either a shapefile or a personal geodatabase feature class.  My personal opinion at this point would be to convert the Excel file to a different format before working with it in ArcGIS.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

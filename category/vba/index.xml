@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VBA on Node Dangles</title>
+    <link>https://maprantala.com/category/vba/</link>
+    <description>Recent content in VBA on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Mar 2011 20:06:59 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/category/vba/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Updating Access ODBC connections using VBA</title>
+      <link>https://maprantala.com/2011/03/16/updating-access-odbc-connections-using-vba/</link>
+      <pubDate>Wed, 16 Mar 2011 20:06:59 -0500</pubDate>
+      <guid>https://maprantala.com/2011/03/16/updating-access-odbc-connections-using-vba/</guid>
+      <description>&lt;p&gt;I don&amp;rsquo;t do much in Access or VBA but sometimes you inherit things that force you, at least temporarily, to go retro.&lt;/p&gt;
+&lt;p&gt;We have an Access-based data extraction routine that uses several (21) pass-through queries that use an ODBC connection.  The queries are pulling data from an Oracle database maintained by a different agency that enforces a time-out of passwords every three months.&lt;/p&gt;
+&lt;p&gt;So every three months I have to go through the ODBC connections for these queries and change the password.  And before you chastise me for storing the password in the VBA code, I can only say &amp;lsquo;you&amp;rsquo;re right&amp;rsquo; but that&amp;rsquo;s the way it is done–not ideal but gets the job done and we&amp;rsquo;re not dealing with overly sensitive data.&lt;/p&gt;
+&lt;p&gt;Well, my three-month deadline was approaching and I figured I would simplify the process which I found error-prone.&lt;/p&gt;
+&lt;p&gt;Some searching and object model diagramming scouring and I came up with this barebones solution, of course, your connection string may vary.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Public Sub UpdateConnectStrings()
+
+Dim obj As AccessObject
+Dim dbs As Object
+Set dbs = Application.CurrentData
+
+Dim i As Integer
+
+Dim newConnectionString As String
+newConnectionString = &amp;quot;ODBC;DRIVER={Microsoft ODBC for Oracle};SERVER=vader;UID=luke;PWD=iMufathr;&amp;quot;
+
+Dim comparisionConnectionString As String
+comparisionConnectionString = &amp;quot;ODBC;Driver&amp;quot;
+
+For Each obj In dbs.AllQueries
+
+If (obj.Type = acQuery) Then
+  For i = 0 To CurrentDb.QueryDefs.Count - 1
+    If (CurrentDb.QueryDefs(i).Name = obj.Name) Then
+      If (Left(CurrentDb.QueryDefs(i).Connect, Len(comparisionConnectionString)) = comparisionConnectionString) Then
+        CurrentDb.QueryDefs(i).Connect = newConnectionString
+      End If
+    End If
+  Next i
+End If
+
+Next obj
+End Sub
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>X-section Xacto Updated</title>
+      <link>https://maprantala.com/2010/12/10/x-section-xacto-updated/</link>
+      <pubDate>Fri, 10 Dec 2010 18:15:51 -0600</pubDate>
+      <guid>https://maprantala.com/2010/12/10/x-section-xacto-updated/</guid>
+      <description>&lt;p&gt;I just happened to stumble upon an update of a tool to Create Geologic Cross Sections, eXacto Section v. 2.0, that I &lt;a href=&#34;https://maprantala.com/2010/07/23/create-geologic-cross-sections-exacto-section-v-2-0-arcmap-9-3/&#34;&gt;mentioned&lt;/a&gt; in July. Jennifer Carrell at the Illinois Geological Survey wrote this tool. The latest update is from December 8, 2010 and can be &lt;a href=&#34;http://resources.arcgis.com/gallery/file/geoprocessing/details?entryID=C83CC388-1422-2418-7F10-B4D3DF5F1EE6&#34;&gt;downloaded at ESRI&amp;rsquo;s ArcGIS Resource Center&lt;/a&gt;. Our office has used previous versions and finds in very useful in creating cross-sections. I have not tried this latest update.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3</title>
+      <link>https://maprantala.com/2010/07/23/create-geologic-cross-sectionsexacto-section-v.-2.0-arcmap-9.3/</link>
+      <pubDate>Fri, 23 Jul 2010 13:59:44 -0500</pubDate>
+      <guid>https://maprantala.com/2010/07/23/create-geologic-cross-sectionsexacto-section-v.-2.0-arcmap-9.3/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://arcscripts.esri.com/details.asp?dbid=16734&#34;&gt;Create Geologic Cross Sections–eXacto Section v. 2.0, ArcMap 9.3&lt;/a&gt; written by Jennifer Carrell of the &lt;a href=&#34;http://www.isgs.illinois.edu/&#34;&gt;Illinois State Geological Survey&lt;/a&gt; is a handy tool for creating cross sections.&lt;/p&gt;
+&lt;p&gt;It requires ArcGIS and a 3D Analyst Extension license.&lt;/p&gt;
+&lt;p&gt;You can create profiles against multiple DEMs at once, define the vertical exaggeration, and have it include contact points.  It is well documented and comes with sample data to use with the tutorial.&lt;/p&gt;
+&lt;p&gt;I did not see it mentioned but it also include a personal geodatabase that include a grid that can be used along with the profiles you create.&lt;/p&gt;
+&lt;p&gt;If  you make profiles, think this is definitely an option you should look at.  The fact that it is a VBA application is a bit worrisome in that its lifespan is limited.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

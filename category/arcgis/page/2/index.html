@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>ArcGIS – Node Dangles</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://maprantala.com/category/arcgis/index.xml">
+<meta name="description" content="">
+<meta name="created" content="2015-08-14T10:01:54-0500">
+<meta name="modified" content="2015-08-14T10:01:54-0500">
+<meta name="author" content="Matthew Rantala">
+<meta name="contact" content="webmaster@maprantala.com">
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="ArcGIS">
+<meta property="og:url" content="https://maprantala.com/category/arcgis/">
+<meta property="og:type" content="website">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/category/arcgis/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/mobile.2ab74aa64785dcab8114959e76ca140cf76207cd85989bc6d4fc3b12f734a09e.css" media="screen">
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url" : "https://maprantala.com/category/arcgis/",
+    "name": "ArcGIS",
+    "description": "Geospatial Programming Blog",
+    "author": {
+      "@type": "Person",
+      "name": "Matthew Rantala"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=1; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
+
+
+</head>
+
+<body class="list-page">
+<div class="page layout__page">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/" class="active" aria-current="page">Home</a></li>
+<li><a href="/posts/">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<h1 class="title">ArcGIS</h1>
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./">Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length.</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-05-01T05:01:50-05:00">1 May, 2011</time>
+</div>
+
+</header>
+<div class="content">
+For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.
+Here is the bare-bones script that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2011/03/25/arcideas-scale-dependant-settings./">ArcIdeas: Scale-Dependant Settings.</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-03-25T11:29:36-05:00">25 March, 2011</time>
+</div>
+
+</header>
+<div class="content">
+Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent. Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range. Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.
+I&rsquo;m not sure how rapidly ESRI takes &lsquo;Ideas&rsquo; into consideration but if you feel like it would benefit you, why not promote this idea: Scale Range, SQL Query and Symbology Rendering in ArcMap.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2011/03/14/using-arcpy-to-list-domains-assigned-to-featureclass-fields/">Using arcpy to List Domains Assigned to Featureclass Fields</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-03-14T18:04:36-05:00">14 March, 2011</time>
+</div>
+
+</header>
+<div class="content">
+I was making an edit (adding leading &lsquo;0&rsquo;s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain. Rows were moved to the bottom of the list when they were edited.
+So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2011/03/11/revoking-#8216public%238217-permissions-in-postgresql-arcsde/">Revoking &amp;#8216;Public&amp;#8217; Permissions in PostgreSQL ArcSDE</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-03-11T11:11:48-06:00">11 March, 2011</time>
+</div>
+
+</header>
+<div class="content">
+While banging my head on how to grant access to a referenced mosaic dataset , I did something out of frustration that I normally would not do–I granted ‘public' access to some data.
+Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:
+Error 999999: Error executing function.
+The Object being referenced does not exist [ERROR: role &lsquo;public&rsquo; does not exist::SQL state: 42704]
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2011/03/07/extract-values-to-points-spatial-analyst-bug/">Extract Values to Points (Spatial Analyst) Bug</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-03-07T08:37:33-06:00">7 March, 2011</time>
+</div>
+
+</header>
+<div class="content">
+One of the Spatial Analyst tools we often use in ArcGIS is the &lsquo;Extract Values to Points&rsquo; tool. This allows us to take a point file (well locations in our case) and attach a value (elevations) from a raster image (a DEM) to each point.
+
+Today I was running it for the first time against an Image Service we recently published and I received a warning message,&lsquo;WARNING 000957: Skipping feature(s) because of NULL or EMPTY geometry&rsquo;.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/">ArcGIS 9.3.1 to ArcSDE 10 Connection Error</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-01-13T14:41:58-06:00">13 January, 2011</time>
+</div>
+
+</header>
+<div class="content">
+We finally installed an instance of ArcSDE 10 today. My first attempt at connecting in ArcCatalog 9.3.1 failed with the following error:
+ Failed to connect to the specified server.
+This release of the GeoDatabase is either invalid or out of date. [Please run the
+ArcSDE setup utility using the -o install option.]
+DBMS table not found[sde.sde.GDB_Release]
+ 
+ Turns out the solution was simple, this article points out that Service pack 2 is required.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2010/12/13/launching-a-python-script-with-parameters3-methods./">Launching a Python script with parameters–3 methods.</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2010-12-13T14:56:43-06:00">13 December, 2010</time>
+</div>
+
+</header>
+<div class="content">
+Since I use python for different tasks, I launch python scripts a variety of ways. Depending on what I am doing, a single script may need to accept parameters from either:
+ Passed in from an ArcGIS Toolbox Tool. Re-occurring default value. Often used in scheduled processes, a nightly backup, for example. A temporary set of values used in an interactive, debugging session.  What I often do is make the parameter interpretation flexible to meet my needs.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2010/09/15/another-topotoraster-error/">Another TopoToRaster Error</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2010-09-15T13:36:34-05:00">15 September, 2010</time>
+</div>
+
+</header>
+<div class="content">
+Subtitled: Why error messages are good. Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution. Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like. I had intended to increase the elevation and inadvertently set them all to sixteen. I had saved the previous values before editing so it turned out to be a simple fix and I didn&rsquo;t have to spend a day trying figure out what was wrong.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2010/08/11/trying-to-perform-relate-in-model-builder/">Trying to perform &#39;relate&#39; in Model Builder</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2010-08-11T17:31:21-05:00">11 August, 2010</time>
+</div>
+
+</header>
+<div class="content">
+I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y') in another table (CWI.C5IX). There is not an existing tool for doing this in ArcGIS. I did find a post by Layne Seely in ArcForums titled &lsquo;trying to perform &lsquo;relate&rsquo; in Model Builder.&rsquo; that led me to the Make Table View under Data Management Tools-Make Table View and even had the basic syntax I was looking for (if it hadn&rsquo;t I probably would have guessed that it would not allow subqueries).
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2010/07/14/arcgis-ideas/">ArcGIS Ideas</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2010-07-14T14:20:47-05:00">14 July, 2010</time>
+</div>
+
+</header>
+<div class="content">
+Ok, maybe I have been hiding under a rock, but just saw this is a post from James Fee&rsquo;s Spatially Adjusted blog. ESRI has a public suggestion box called ArcGIS Ideas where users can submit suggestions for ESRI. One thing I like is that it is open for other users to see and comment. Not sure how responsive ESRI will be but at least it gives us a place to vent.
+</div>
+</article>
+
+<nav class="pager">
+<a href="/category/arcgis/" rel="prev" class="pager-item pager-prev">Prev</a>
+<a href="/category/arcgis/page/3/" rel="next" class="pager-item pager-next">Next</a>
+</nav>
+
+</main>
+
+
+<footer class="footer layout__footer">
+<p>Subscribe to section category: <a rel="alternate" type="application/rss&#43;xml" href="https://maprantala.com/category/arcgis/index.xml">RSS</a></p>
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+<div class="mobile-nav" dir="ltr">
+  <div class="mobile-nav__cover"></div>
+  <a href="#navigation" class="mobile-nav__toggle" aria-haspopup="true" role="button">Menu</a>
+  <div class="mobile-nav__sheet">
+    <div class="mobile-nav__region">
+    
+    </div>
+    <nav class="mobile-nav__main-menu">
+    <h2 class="visually-hidden">Main menu</h2>
+    <ul class="mobile-nav__navbar">
+    <li><a href="/" class="active" aria-current="page">Home</a></li>
+    <li><a href="/posts/">Posts</a></li>
+    </ul>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

@@ -10,10 +10,10 @@
     <atom:link href="https://maprantala.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Using ArcPy.Mapping to update Definition Queries.</title>
-      <link>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</link>
+      <title>Using ArcPy.Mapping to update Definition Queries</title>
+      <link>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries/</link>
       <pubDate>Tue, 08 May 2018 17:56:09 -0500</pubDate>
-      <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</guid>
+      <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries/</guid>
       <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the &amp;lsquo;lazy&amp;rsquo; GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
 &lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;#These first 3 lines only need to be run once.
@@ -520,10 +520,10 @@ else:
     </item>
     
     <item>
-      <title>Calling os.startfile and webbrowser.open from ArcGIS.</title>
-      <link>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis./</link>
+      <title>Calling os.startfile and webbrowser.open from ArcGIS</title>
+      <link>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis/</link>
       <pubDate>Wed, 31 Dec 2014 14:38:16 -0600</pubDate>
-      <guid>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis./</guid>
+      <guid>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis/</guid>
       <description>&lt;p&gt;Recently I&amp;rsquo;ve created &lt;!-- raw HTML omitted --&gt;Python add-ins&lt;!-- raw HTML omitted --&gt; for data entry for our staff. Most of these have a toolbar with a &amp;lsquo;Help&amp;rsquo; button that opens a help file in .pdf format.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/12/Toolbar.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Sample python add-in toolbar.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(&lt;em&gt;path to help.pdf&lt;/em&gt;).&lt;/p&gt;

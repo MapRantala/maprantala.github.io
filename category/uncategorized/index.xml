@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Uncategorized on Node Dangles</title>
+    <link>https://maprantala.com/category/uncategorized/</link>
+    <description>Recent content in Uncategorized on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 24 Aug 2018 18:11:30 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/category/uncategorized/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Quick and Dirty: REST calls via python</title>
+      <link>https://maprantala.com/2018/08/24/quick-and-dirty-rest-calls-via-python/</link>
+      <pubDate>Fri, 24 Aug 2018 18:11:30 -0500</pubDate>
+      <guid>https://maprantala.com/2018/08/24/quick-and-dirty-rest-calls-via-python/</guid>
+      <description>&lt;p&gt;Was sharing a python script with a php developer to illustrate how a couple of requests can be made to an ArcGIS REST endpoint.&lt;/p&gt;
+&lt;p&gt;Nothing fancy–one gets the data for one record, one gets data for all records, and the final gets the data for the record that intersects a point.&lt;/p&gt;
+&lt;p&gt;The only thing to note is that the original version that I shared gets a token because the service it uses is secured. I commented out the routine to get a token and just substituted in a blank string and pointed the code at one of esri&amp;rsquo;s sample services at https://sampleserver6.arcgisonline.com/arcgis/.&lt;/p&gt;
+&lt;p&gt;The file can be downloaded &lt;!-- raw HTML omitted --&gt;here&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import requests, urllib, httplib, urllib2, json
+
+serverURL = &#39;https://sampleserver6.arcgisonline.com/arcgis/&#39;
+tokenURL =  serverURL+&amp;quot;tokens/&amp;quot;
+phaseQueryURL = serverURL+&amp;quot;rest/services/Census/MapServer/3/query&amp;quot;
+
+#Fields to be aware of:
+# PhaseName = Name of the phase, a unique value.
+# Status_Date = Date a phase was marked as &amp;quot;Live&amp;quot;
+# PhaseStatus = Live, Provisioning, Pending
+
+def makeRequest(inURL,inPayload):
+    theRequest = urllib2.Request(url=inURL,data = urllib.urlencode(inPayload))
+    theResponse = urllib2.urlopen(theRequest)
+    responseString = theResponse.read()
+    theJSON = json.loads(responseString)
+    return theJSON
+
+def getToken(inUser,inPass):
+    inputData = {&#39;username&#39;:inUser,&#39;password&#39;:inPass, &#39;f&#39;:&#39;json&#39;}
+    theJSON = makeRequest(tokenURL,inputData)
+    print(theJSON)
+    token = theJSON[&#39;token&#39;]
+    return token
+
+def queryAllStates(inToken):
+    inputData = { &#39;where&#39;: &amp;quot;1=1&amp;quot;, &#39;f&#39;: &#39;geojson&#39;, &#39;outFields&#39;: &#39;*&#39; , &#39;outSR&#39;: 4326, &#39;token&#39;:inToken}
+    theJSON = makeRequest(phaseQueryURL,inputData)
+    return theJSON
+
+def queryState(inPhase,inToken):
+    inputData = { &#39;where&#39;: &amp;quot;STATE_NAME = &#39;{}&#39;&amp;quot;.format(inPhase), &#39;f&#39;: &#39;geojson&#39;, &#39;outFields&#39;: &#39;*&#39; , &#39;outSR&#39;: 4326, &#39;token&#39;:inToken}
+    theJSON = makeRequest(phaseQueryURL,inputData)
+    return theJSON
+
+def findStateForPoint(inX,inY,inToken):
+    inputData = {&#39;geometry&#39;: { &#39;x&#39;: inX, &#39;y&#39;: inY}, &#39;geometryType&#39;: &#39;esriGeometryPoint&#39;, &#39;inSR&#39;:4326, &#39;spatialRel&#39;:&#39;esriSpatialRelIntersects&#39;, &#39;outFields&#39;:&#39;*&#39;, &#39;f&#39;: &#39;json&#39;,&#39;token&#39;:inToken}
+
+    theJSON = makeRequest(phaseQueryURL,inputData)
+    return theJSON
+
+username = &amp;quot;&amp;quot;
+password = &amp;quot;&amp;quot;
+
+##theToken = getToken(username,password)
+theToken = &amp;quot;&amp;quot;
+print(theToken)
+
+#Attribute Query to get information about one State
+stateInfo = queryState(&#39;Wisconsin&#39;,theToken)
+print(stateInfo)
+
+#Attribute Query to get information about all States
+statesInfo = queryAllStates(theToken)
+print(statesInfo)
+
+
+#Find phase for a lat-lon
+theState = findStateForPoint(-93.280842,44.95531,theToken)
+print(theState)
+
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

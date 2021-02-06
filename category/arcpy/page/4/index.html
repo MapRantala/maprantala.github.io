@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>arcpy – Node Dangles</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://maprantala.com/category/arcpy/index.xml">
+<meta name="description" content="">
+<meta name="created" content="2018-05-08T17:56:09-0500">
+<meta name="modified" content="2018-05-08T17:56:09-0500">
+<meta name="author" content="Matthew Rantala">
+<meta name="contact" content="webmaster@maprantala.com">
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="arcpy">
+<meta property="og:url" content="https://maprantala.com/category/arcpy/">
+<meta property="og:type" content="website">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/category/arcpy/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/mobile.2ab74aa64785dcab8114959e76ca140cf76207cd85989bc6d4fc3b12f734a09e.css" media="screen">
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url" : "https://maprantala.com/category/arcpy/",
+    "name": "arcpy",
+    "description": "Geospatial Programming Blog",
+    "author": {
+      "@type": "Person",
+      "name": "Matthew Rantala"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=1; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
+
+
+</head>
+
+<body class="list-page">
+<div class="page layout__page">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/" class="active" aria-current="page">Home</a></li>
+<li><a href="/posts/">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<h1 class="title">arcpy</h1>
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/">ArcMap Field Calculator: Calculating Geometry using arcpy</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-03-08T09:30:40-06:00">8 March, 2011</time>
+</div>
+
+</header>
+<div class="content">
+One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the Field Calculator. When I stumbled upon a bug in the way the Extract Values to Points tool handles Null geometries, I figured it was time to figure it out. Setting the X, Y to 0,0 was sufficient for my needs.
+I set the Parser to Python and the formula was simple once I figured out the syntax:
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2011/02/28/loading-tiled-same-name-data-in-batch-mode./">Loading Tiled, Same-Name Data in Batch Mode.</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-02-28T12:30:43-06:00">28 February, 2011</time>
+</div>
+
+</header>
+<div class="content">
+I have been loading existing raster data into a geodatabase to be included in a new Mosaic Dataset–a very cool and useful addition to ArcGIS 10. The most time-consuming part of the process for the human (at least this human) has been getting the names of the rasters right.
+Our existing data is organized by tiles with the directory name representing the tile name and then the data within each tile directory having the same name.
+</div>
+</article>
+
+<article class="section-posts list-view">
+<header>
+<h2 class="title title-submitted"><a href="/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0/">Checking to see if a Field Index Exists Using Arcpy (ArGIS 10.0)</a></h2>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-02-21T09:55:35-06:00">21 February, 2011</time>
+</div>
+
+</header>
+<div class="content">
+Updating some python code from 9.3 that using geoprocessing to 10.0 using arcpy and the first real object I&rsquo;ve had to change relates to detecting whether or not an index exists on a table.
+I previously posted code using a 9.3 geoprocessing commands, the core of it being:
+indexList = gp.listindexes(tablename) for iIndex in indexList: if (iIndex.Name == indexname): return True return False With arcpy, ESRI has gone back to using the Describe methodology.
+</div>
+</article>
+
+<nav class="pager">
+<a href="/category/arcpy/page/3/" rel="prev" class="pager-item pager-prev">Prev</a>
+</nav>
+
+</main>
+
+
+<footer class="footer layout__footer">
+<p>Subscribe to section category: <a rel="alternate" type="application/rss&#43;xml" href="https://maprantala.com/category/arcpy/index.xml">RSS</a></p>
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+<div class="mobile-nav" dir="ltr">
+  <div class="mobile-nav__cover"></div>
+  <a href="#navigation" class="mobile-nav__toggle" aria-haspopup="true" role="button">Menu</a>
+  <div class="mobile-nav__sheet">
+    <div class="mobile-nav__region">
+    
+    </div>
+    <nav class="mobile-nav__main-menu">
+    <h2 class="visually-hidden">Main menu</h2>
+    <ul class="mobile-nav__navbar">
+    <li><a href="/" class="active" aria-current="page">Home</a></li>
+    <li><a href="/posts/">Posts</a></li>
+    </ul>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

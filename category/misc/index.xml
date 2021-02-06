@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Misc on Node Dangles</title>
+    <link>https://maprantala.com/category/misc/</link>
+    <description>Recent content in Misc on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 07 Aug 2017 19:48:08 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/category/misc/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ArcGIS Pro 2.0 Migration Overview</title>
+      <link>https://maprantala.com/2017/08/07/arcgis-pro-2.0-migration-overview/</link>
+      <pubDate>Mon, 07 Aug 2017 19:48:08 -0500</pubDate>
+      <guid>https://maprantala.com/2017/08/07/arcgis-pro-2.0-migration-overview/</guid>
+      <description>&lt;p&gt;In April I started a new position at a company that had no existing GIS.&lt;/p&gt;
+&lt;p&gt;Nothing.&lt;/p&gt;
+&lt;p&gt;There was a definite need for GIS and some GIS-type functions were occuring but basically when I started, I had an &lt;!-- raw HTML omitted --&gt;ArcGIS Enterprise&lt;!-- raw HTML omitted --&gt; license and a mess of KML files.&lt;/p&gt;
+&lt;p&gt;An exciting opportunity. And since I was starting from scratch, I had zero legacy concerns. No existing data, workflows, custom code, or maps to tie me to a specific software package. Knowing that ArcGIS Pro is taking over the world, I decided to transition to ArcPro and use that as our (GIS staff count of 1) company standard for desktop mapping.&lt;/p&gt;
+&lt;p&gt;That plan got side-tracked somewhat when we purchased a data management tool (&lt;!-- raw HTML omitted --&gt;CrescentLink Network Manager&lt;!-- raw HTML omitted --&gt;) that is only available for ArcMap. But I have still been using Pro on a regular basis.&lt;/p&gt;
+&lt;p&gt;I started a brilliant post about the transition–the pros, the cons, and my overall experience. But before I could finish it, &lt;!-- raw HTML omitted --&gt;out came 2.0&lt;!-- raw HTML omitted --&gt; and my post was suddenly out-dated. So I&amp;rsquo;ve decided to split that post into a bunch of smaller, more focused posts.&lt;/p&gt;
+&lt;h4 id=&#34;overview&#34;&gt;Overview&lt;/h4&gt;
+&lt;p&gt;Without getting into to deep on specific features or functionality, I do have some broad comments to make.&lt;/p&gt;
+&lt;h6 id=&#34;learning-curve&#34;&gt;Learning Curve&lt;/h6&gt;
+&lt;p&gt;There is definitely a learning curve in moving from ArcGIS Desktop to ArcGIS Pro–even though there is a lot of the same concepts between Pro &amp;amp; Desktop (the Toolboxes have barely changed), just finding the tools was a huge hurdle at first. I&amp;rsquo;ve never been a fan of the ribbon interface, I like my tools to be where they are and accessible.&lt;/p&gt;
+&lt;p&gt;But with regular use, I have gotten more adept at finding what I want to use. Still end up hunting for tools at times but it has gotten better. I&amp;rsquo;m probably at about 75% efficiency as compared to Desktop although I switch between the two on a regular basis because there are times where I just need to get something done.&lt;/p&gt;
+&lt;h6 id=&#34;stability&#34;&gt;Stability&lt;/h6&gt;
+&lt;p&gt;Even though I just had to force-stop a session, 2.0 has made significant strides in stability. I had near daily crashes with 1.5 but now it is maybe a once-a-week. Maybe I&amp;rsquo;ve learned what not to do in Pro but I don&amp;rsquo;t remember any pattern to the crashes I had with 1.5.&lt;/p&gt;
+&lt;h6 id=&#34;performance&#34;&gt;Performance&lt;/h6&gt;
+&lt;p&gt;Performance is still painful to me. There are too many times when the wait cursor shows up when you do simple things like clicking on a button. A lot of the processing has been routed through the geoprocessing system and it just seems much slower.&lt;/p&gt;
+&lt;h4 id=&#34;version-20-highlights&#34;&gt;Version 2.0 Highlights&lt;/h4&gt;
+&lt;p&gt;While I&amp;rsquo;ll probably do some whining about ArcGIS Pro in this planned series of posts, there were a couple of significant highlights to the 2.0 release that took care of two of my major usability concerns.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h4 id=&#34;summary&#34;&gt;Summary&lt;/h4&gt;
+&lt;p&gt;Overall, I&amp;rsquo;ve grown accustom to ArcPro. Like any new software, it takes time to get a feel for it. The transition is not that much different from going from ArcView 3.x to ArcGIS Desktop (or whatever 8.x was called). I am not yet as productive in it as Desktop but there are some things I really like about it to go along with my complaints.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>2016 Grandma&#39;s Marathon Map</title>
+      <link>https://maprantala.com/2016/05/16/2016-grandmas-marathon-map/</link>
+      <pubDate>Mon, 16 May 2016 23:26:12 -0500</pubDate>
+      <guid>https://maprantala.com/2016/05/16/2016-grandmas-marathon-map/</guid>
+      <description>&lt;p&gt;A Little Map I made for fun for Grandma&amp;rsquo;s Marathon ( &lt;a href=&#34;https://twitter.com/grandmasmara&#34;&gt;@grandmasmara&lt;/a&gt; ) or click &lt;!-- raw HTML omitted --&gt;Here &lt;!-- raw HTML omitted --&gt;for the stand-alone map.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcMap Field Calculator: Python Nulls (None)</title>
+      <link>https://maprantala.com/2014/10/10/arcmap-field-calculator-python-nulls-none/</link>
+      <pubDate>Fri, 10 Oct 2014 14:22:40 -0500</pubDate>
+      <guid>https://maprantala.com/2014/10/10/arcmap-field-calculator-python-nulls-none/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been asked this twice this week, so thought I should post it. Calculating Null values in the ArcMap Field Calculator is easy, if you can remember the right work for &amp;lsquo;Null&amp;rsquo;. The proper word is &amp;lsquo;None&amp;rsquo; (without the quotes). Good luck &amp;amp; have a good weekend.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2014/10/None.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcMap Field Calculator: Calculating Running Total with arcpy</title>
+      <link>https://maprantala.com/2014/02/13/arcmap-field-calculator-calculating-running-total-with-arcpy/</link>
+      <pubDate>Thu, 13 Feb 2014 06:06:37 -0600</pubDate>
+      <guid>https://maprantala.com/2014/02/13/arcmap-field-calculator-calculating-running-total-with-arcpy/</guid>
+      <description>&lt;p&gt;I had a user with a series of GPS points (that were in chronological order) that they wanted to know the accumulated distance from the start to each point in their shapefile. First, we calculated the distance from each point to the previous point into a field called [DistFt].&lt;/p&gt;
+&lt;p&gt;Then, we hacked out this quick python function to accumulate the total distance in Arcmap&amp;rsquo;s Field Calculator:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;totalDistance = 0
+
+def accumulateDistance(inDist):
+   global totalDistance
+   totalDistance += inDist
+   return totalDistance
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And we called it:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;accumulateDistance(!DistFt!)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/02/accumulatedist.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;And we got what we wanted.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using ArcGIS 9.3.1 Desktop to Extract Data From an ArcGIS 10 Server Geodata Service</title>
+      <link>https://maprantala.com/2011/02/04/using-arcgis-9.3.1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</link>
+      <pubDate>Fri, 04 Feb 2011 18:26:53 -0600</pubDate>
+      <guid>https://maprantala.com/2011/02/04/using-arcgis-9.3.1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</guid>
+      <description>&lt;p&gt;In building our Enterprise GIS Database, we need to support users with different needs.  Some of our users just need to see the data on a map while others may want to download a copy of the data so they can use it within their own desktop system.&lt;/p&gt;
+&lt;p&gt;After doing some exploring, one of the options that looks like it will feel the bulk of our internal needs is to create a &lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Map%20service&#34;&gt;Map Service&lt;/a&gt;/&lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Geodata%20service&#34;&gt;Geodata Servic&lt;/a&gt;e pair–by creating a Map Service, we can make an easy-to-use visual representation of our data.  Combining that with a paired Geodata Service–a Geodata Service with the same name as the Map Service–we can accommodate those users who want to extract the data to their hard drive.&lt;/p&gt;
+&lt;p&gt;A user who has added paired Map &amp;amp; Geodata Services to an ArcMap dataframe can use the Distributed Geodatabase Toolbar to extract data to a local geodatabase.  The Extract Data button is on the far right of the Distributed Geodatabase Toolbar.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/distributedgeodatabasetoolbar.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;Unfortunately, my first attempts at testing this did not work.  It would look like it was processing, I would end up with a .mdb or .gdb file on my hard drive but I could not open it.  I would get a &amp;lsquo;Failed to connect to database. This release of the GeoDatabase is eitehr invalid or out of date. [Unknown GeoDatabase release.]  The Microsoft Jet database engine cannot find the input table or query ‘GDB_ReleaseInfo&amp;rsquo;. Make sure it exists and that its name is spelled correctly.&#39; error.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/versionerror.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;When exporting to an .mdb file, I could open it in Access and see the data.&lt;/p&gt;
+&lt;p&gt;Luckily the error is fairly helpful–I was getting an ArcGIS &lt;a href=&#34;http://blogs.esri.com/Dev/blogs/geodatabase/archive/2010/03/15/The-Simplified-Geodatabase-Schema-in-ArcGIS-10.aspx&#34;&gt;10 Geodatabase&lt;/a&gt; even though I am running ArcGIS 9.3.1 on my desktop.  I was able to open the exported geodatabases using a copy of ArcGIS 10 on another machine.   The reason for the inconsistency is pretty interesting.  Our office is, and for the foreseeable future, running in a mixed-version environment.  We have a mixture of 9.3.1 and 10 desktops, a 9.3.1 ArcSDE server and a 10 ArcGIS Server.  The Extract Tool is a server-side function apparently that creates a version 10 Geodatabase.&lt;/p&gt;
+&lt;p&gt;The way to get around this is to extract the data to XML and then import the XML workspace into a geodatabase.  Not sure if that will work for all schemas but it was successful for me.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/exportxml.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcGIS 9.3.1 to ArcSDE 10 Connection Error</title>
+      <link>https://maprantala.com/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/</link>
+      <pubDate>Thu, 13 Jan 2011 14:41:58 -0600</pubDate>
+      <guid>https://maprantala.com/2011/01/13/arcgis-9.3.1-to-arcsde-10-connection-error/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://maprantala.com/Users/mrantala/AppData/Local/Temp/moz-screenshot-7.png&#34; alt=&#34;&#34;&gt;We finally installed an instance of ArcSDE 10 today.  My first attempt at connecting in ArcCatalog 9.3.1 failed with the following error:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Failed to connect to the specified server.&lt;/p&gt;
+&lt;p&gt;This release of the GeoDatabase is either invalid or out of date. [Please run the&lt;/p&gt;
+&lt;p&gt;ArcSDE setup utility using the -o install option.]&lt;/p&gt;
+&lt;p&gt;DBMS table not found[sde.sde.GDB_Release]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/01/connecterror2.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;Turns out the solution was simple, this &lt;a href=&#34;http://resources.arcgis.com/content/kbase?fa=articleShow&amp;amp;d=37385&#34;&gt;article&lt;/a&gt; points out that &lt;a href=&#34;http://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;amp;PID=17&amp;amp;MetaID=1620&#34;&gt;Service pack 2&lt;/a&gt; is required.  After updating my ArcGIS, the problem was solved:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/01/errormessage.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&amp;rsquo;s &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDe with the -o option as the first error message instructed me to do.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Multiple outputs for Python scripts</title>
+      <link>https://maprantala.com/2010/12/17/multiple-outputs-for-python-scripts/</link>
+      <pubDate>Fri, 17 Dec 2010 15:19:38 -0600</pubDate>
+      <guid>https://maprantala.com/2010/12/17/multiple-outputs-for-python-scripts/</guid>
+      <description>&lt;p&gt;Related to my &lt;a href=&#34;https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters-3-methods/&#34;&gt;post&lt;/a&gt; on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways.  This is largely due to the fact that some are called by ArcToolbox scripts.  Running in ESRI&amp;rsquo;s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.&lt;/p&gt;
+&lt;p&gt;If you assume one output method but then run your code in the opposite framework, you don&amp;rsquo;t get to see all the pretty little messages.  What I do is create a simple little routine that broadcasts the message both ways.  This is probably an obvious solution but took a few cases before I went ahead and started implementing it.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gp = arcgisscripting.create()
+
+#This will print both to the geoprocessing window or Python output window
+def gpprint(inmessage):
+ gp.addmessage(inmessage)
+ print inmessage
+
+&amp;amp;lt;Code to do stuff&amp;amp;gt;
+
+#Ok, I want to send a message:
+gpprint(&#39;Hello, sailor!&#39;)
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Zipping a shapefile via ArcToolbox</title>
+      <link>https://maprantala.com/2010/12/15/zipping-a-shapefile-via-arctoolbox/</link>
+      <pubDate>Wed, 15 Dec 2010 14:36:04 -0600</pubDate>
+      <guid>https://maprantala.com/2010/12/15/zipping-a-shapefile-via-arctoolbox/</guid>
+      <description>&lt;h2 id=&#34;update&#34;&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve received a request on how to use the &lt;a href=&#34;https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zip Shapefile&lt;/a&gt; code I posted last week from ArcGIS. Sorry, I did not set the code up to call directly from ArcGIS but only as an illustration of how it can be done.&lt;/p&gt;
+&lt;p&gt;I have, however, with some minor tweaking, made a version that can added to ArcToolbox. The steps to install are below, please note that at one point I had you download a *.zip file that had been renamed to *.jpg–this should now be corrected and the link should lead you directly to zipshapefile.zip.  Because of this steps two and three are obsolete.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Download the code from here.&lt;/li&gt;
+&lt;li&gt;&lt;!-- raw HTML omitted --&gt;Rename the file from zipshapefile-zip.jpg back to zipshapefile.zip.&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;Unzip the file.&lt;/li&gt;
+&lt;li&gt;Move ZipShapefile.py to C:Program FilesArcGISArcToolBoxScriptsZipShapefile.py.&lt;/li&gt;
+&lt;li&gt;Optionally, move Zip Shapefile.tbx, perhaps C:Program FilesArcGISArcToolBoxToolboxes.&lt;/li&gt;
+&lt;li&gt;Add the toolbox to ArcToolbox. ESRI has instructions &lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/tutorials/spatial/Spatial_14.htm&#34;&gt;here&lt;/a&gt; on how to do this.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You should now have a new toolbox named &amp;lsquo;Zip Shapefile&amp;rsquo; with a script named &amp;lsquo;Zip a Shapefile&amp;rsquo; in it. Clicking on on the tool will bring up this dialog.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/12/capture.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;****&lt;br&gt;
+In response to Chris:&lt;/p&gt;
+&lt;p&gt;I believe you need to copy the ZipShapefile.py file from the .zip that you downloaded to C:Program FilesArcGISArcToolBoxScripts, the error message is consistent with the tool not being about to find the python script there.&lt;/p&gt;
+&lt;p&gt;If you prefer to place the ZipShapefile.py in a different location, you will need to change the source on the tool. To do this, right click on the tool in ArcCatalog and change the path of the Script File as set in the Source tab (see below):&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2012/03/setpath.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Another TopoToRaster Error</title>
+      <link>https://maprantala.com/2010/09/15/another-topotoraster-error/</link>
+      <pubDate>Wed, 15 Sep 2010 13:36:34 -0500</pubDate>
+      <guid>https://maprantala.com/2010/09/15/another-topotoraster-error/</guid>
+      <description>&lt;h3 id=&#34;subtitled-why-error-messages-are-good&#34;&gt;Subtitled:  Why error messages are good.&lt;/h3&gt;
+&lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn&amp;rsquo;t have to spend a day trying figure out what was wrong.&lt;br&gt;
+&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/09/sixteen.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/wp-content/uploads/2010/09/topotorastererror1.jpg&#34;&gt;&lt;br&gt;
+&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcBruTile</title>
+      <link>https://maprantala.com/2010/09/09/arcbrutile/</link>
+      <pubDate>Thu, 09 Sep 2010 14:38:46 -0500</pubDate>
+      <guid>https://maprantala.com/2010/09/09/arcbrutile/</guid>
+      <description>&lt;p&gt;Stumbled across &lt;a href=&#34;http://arcbrutile.codeplex.com/&#34;&gt;ArcBruTile&lt;/a&gt;, an ArcMap application that allows you to display map tile services–such as &lt;a href=&#34;http://www.openstreetmap.org/&#34;&gt;OpenStreetMap&lt;/a&gt;, &lt;a href=&#34;http://maps.google.com/&#34;&gt;Google Maps&lt;/a&gt;, &lt;a href=&#34;http://www.bing.com/maps/&#34;&gt;Bing&lt;/a&gt;, &lt;a href=&#34;http://www.spatialcloud.com/&#34;&gt;Spatial Cloud&lt;/a&gt;, and &lt;a href=&#34;http://wiki.osgeo.org/wiki/Tile_Map_Service_Specification&#34;&gt;Tile Map Service&lt;/a&gt; (TMS)–in your ArcMap documents.   It works pretty well from my preliminary testing of it.   I have found that at times that the graphical tiles are distorted but I am guessing it is because they are optimized for display in a specific projection, at specific scales and, in ArcMap, you can use any projection/scale combination you want.&lt;/p&gt;
+&lt;p&gt;This is a free, open-source project that is still in Beta but definitely an application I plan to keep an eye on.  As with any open-source project, the cool thing is the code is available for you to look at, learn from, and hopefully contribute to.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Workstation Arc/Info Interchange Import Error</title>
+      <link>https://maprantala.com/2010/09/07/workstation-arc/info-interchange-import-error/</link>
+      <pubDate>Tue, 07 Sep 2010 19:08:39 -0500</pubDate>
+      <guid>https://maprantala.com/2010/09/07/workstation-arc/info-interchange-import-error/</guid>
+      <description>&lt;p&gt;I have been working on updating some data that was published using Arc/Info Workstation Export (.e00) files, converting them to shapefiles, or in the case of annotation, to a geodatabase feature class.&lt;/p&gt;
+&lt;p&gt;While converting some INFO tables, I have received this error:&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/09/importerror1.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Unable to encode the 38th item in the 65th record for the INFO file&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;It turns out that Workstation can create export files that contain values that did not fit within their field–I&amp;rsquo;m guessing that somehow you are actually able to enter invalid values into those fields but I did not confirm that.&lt;/p&gt;
+&lt;p&gt;The error, &amp;lsquo;Unable to encode the 38th item in the 65th record…&amp;rsquo; was only partially helpful.  The error was in the 65th record but I was not able figure out which field contained the error.  The nature assumption that it was the 38th column was incorrect, at least if you are counting from left to right.  Whatever logic that is used, is consistent, at least within a specific table, because I had numerous records with problems and when the error messages indicated it was the same item, it did turn out to be the same field.&lt;/p&gt;
+&lt;p&gt;What I ended up having to do was open the export file in my favorite text editor, locating the info for problematic record and go through the columns one-by-one, comparing the value in the text file with that in the table.  In this case, 14.1 was suppose to be the value in the WP_TIO2 field.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://maprantala.com/wp-content/uploads/2010/09/testfile.jpg&#34;&gt;…&#39;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;One thing I noticed, and this is consistent with behavior I have observed in ArcObjects in other cases, is that the record with the invalid value in a field ends up with the same value in that field as the previous record.  So in this case, the bad record has a value of 1.12 in the WP_TIO2 field because that is what previous record has.   That leads me to believe that ArcObjects is re-using a variable as it does the import, just updating each value, field-by-field.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2010/09/badvalue.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Just to make sure that I had diagnosed the problem right, I attempted to change the value to 14.1 in an ArcMap edit session and got this message:&lt;br&gt;
+&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/09/editerror1.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;A look at the field properties confirmed that the field would not accept 14.1 as a value. The precision (3) means the field can hold 3 digits with 2 (the Scale) of them being right of the decimal point–leaving only one digit available to the left of the decimal point.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2010/09/filedproperties.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Once I identified the problem, I used two methods to correct it. The majority of my cases were actually cases where a psuedo-null value was being used to indicate that a field was really Null. In some cases, either -999.9 or 100 were being used. In these cases, I just substituted a different psuedo-null value (-99.9) that conformed to the field limitations. The data I was working with was not tightly controlled in the past and there were other existing records that used these value for the same fields, so I was able to do this without much concern.&lt;/p&gt;
+&lt;p&gt;Some values, however, were not nulls and I felt needed to be retained. These, I had to add a new field that could contain the values, copy the values over and then edit the ones that had caused problems during the import. Once complete, I exported the data to a new table with the new table structure I created.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

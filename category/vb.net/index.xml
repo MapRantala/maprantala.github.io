@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VB.Net on Node Dangles</title>
+    <link>https://maprantala.com/category/vb.net/</link>
+    <description>Recent content in VB.Net on Node Dangles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 21 Mar 2012 18:19:03 -0500</lastBuildDate>
+    <atom:link href="https://maprantala.com/category/vb.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Domain Sorter Add-In Version 1.1</title>
+      <link>https://maprantala.com/2012/03/21/domain-sorter-add-in-version-1.1/</link>
+      <pubDate>Wed, 21 Mar 2012 18:19:03 -0500</pubDate>
+      <guid>https://maprantala.com/2012/03/21/domain-sorter-add-in-version-1.1/</guid>
+      <description>&lt;p&gt;Almost &lt;a href=&#34;https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/&#34;&gt;a year ago&lt;/a&gt;, I updated ERSI&amp;rsquo;s &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;Domain Sort code for VB 6&lt;/a&gt; to work with ArcGIS 10. Recently, I had a comment that this Add-In caused ArcCatalog to explode if you had an open OLE connection. When I tested it, it turned out the reports were accurate.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/arccatalog.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I got around to adding in a Try-Catch around the offending chunk of code &amp;amp; it is now better than ever. You can download just the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/DomainSorter.esriAddIn&#34;&gt;Add-In&lt;/a&gt; or the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120321_DomainSort.zip&#34;&gt;Add-In with source code&lt;/a&gt; or get it from &lt;a href=&#34;http://resources.arcgis.com/gallery/file/arcobjects-net-api/details?entryID=B5E1BB12-1422-2418-34B7-D3A6908560FA&#34;&gt;ESRI&amp;rsquo;s ArcGIS Resource Center&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ArcGIS Add-In Custom Mouse Cursor</title>
+      <link>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</link>
+      <pubDate>Tue, 19 Jul 2011 20:47:03 -0500</pubDate>
+      <guid>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</guid>
+      <description>&lt;p&gt;I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI&amp;rsquo;s instructions.  But, once you know how to do it, it is pretty easy.  In Visual Studio, Add a New Item:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/07/addresource.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Add a Cursor File:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/selectcursor.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is &amp;lsquo;Embedded Resource&amp;rsquo;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/07/embedded.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Then you can set your cursor with two lines of code. Not that my cursor is in my QDI.QdiAddIn Namespace:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Dim pCursorStream As System.IO.Stream = Me.GetType.Assembly.GetManifestResourceStream(&amp;quot;QDI.QdiAddIn.NewCursor.cur&amp;quot;)
+MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sorting a Coded-Value Domain Add-In (ArcGIS 10)</title>
+      <link>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</link>
+      <pubDate>Tue, 03 May 2011 03:33:01 -0500</pubDate>
+      <guid>https://maprantala.com/2011/05/03/sorting-a-coded-value-domain-add-in-arcgis-10/</guid>
+      <description>&lt;p&gt;I am working on an data-entry application to edit feature classes that contain several coded-value-domains. The problem with some of the domains, however, is that some entries have been added after the initial creation.  So the first 25 entries are in alphabetical order and there are some stragglers at the end that are in the order they were appended.&lt;/p&gt;
+&lt;p&gt;This can be confusing for users–they go to select &amp;lsquo;Milli Vanilli&amp;rsquo; and look between &amp;lsquo;Madonna&amp;rsquo; and &amp;lsquo;Motley Crue&amp;rsquo; but can not find their favorite band there–they have to go to the end of the list to find their selection.&lt;/p&gt;
+&lt;p&gt;In the past, I have gone through the tedious process of exporting the domain to a table, sorting the table, removing the domain from the necessary field(s), deleting the domain, re-importing the table back in a new domain and finally re-applying the domain to the necessary field(s). Let&amp;rsquo;s just say I didn&amp;rsquo;t do this until someone asked a few times and I didn&amp;rsquo;t have anything more exciting–like a root canal–I could busy myself with.&lt;/p&gt;
+&lt;p&gt;But this new application contains more domains than any of other datasets so it was time to find a better solution. ESRI does have a &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;Domain Sort&lt;/a&gt; Developer Sample.  It, however, did &lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;not play nice&lt;/a&gt; with ArcGIS 10.&lt;/p&gt;
+&lt;p&gt;So I went ahead and update it from VB 6 to VB.Net/ArcObjects 10.  I made an &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/DomainSorter.esriAddIn&#34;&gt;Add-In&lt;/a&gt; that can be installed by downloading the .esriaddin file and double-clicking on it.  The &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120321_DomainSort.zip&#34;&gt;source code&lt;/a&gt; is also available.&lt;/p&gt;
+&lt;p&gt;This will add an ArcCatalog Toolbar that can be added by going to Customize-Toolbars-Domain Sorter Toolbar.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This will add a toolbar with one button.  The button enables whenever you select a geodatabase with at least one coded-value domain.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This brings up a Windows form that lets you sort any domain by either the code or description, ascending or descending.  Once you hit &amp;lsquo;OK&amp;rsquo; it re-sorts your domain.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_3.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The only problem I have had is that only the owner of a domain is allowed to edit it on an SDE geodatabase.&lt;/p&gt;
+&lt;p&gt;But other than that, the button allows you to easily keep your domains sorted.&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Instantiating Add-In Objects at Load Time</title>
+      <link>https://maprantala.com/2011/03/02/instantiating-add-in-objects-at-load-time/</link>
+      <pubDate>Wed, 02 Mar 2011 15:18:14 -0600</pubDate>
+      <guid>https://maprantala.com/2011/03/02/instantiating-add-in-objects-at-load-time/</guid>
+      <description>&lt;p&gt;In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0.  So far, I&amp;rsquo;m loving the functionality.&lt;/p&gt;
+&lt;p&gt;One thing, however, that I have to figure out is that the controls are not instantiated until they are clicked on.  One of the results is that the controls, by default, are enabled.  This is not the functionality I wanted.&lt;/p&gt;
+&lt;p&gt;I found the solution in ESRI&amp;rsquo;s topic, &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/&#34;&gt;Advanced add-in concepts (ArcObjects .NET 10 SDK)&lt;/a&gt; in the Delayed loading section:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;The verbiage, &amp;lsquo;setting the onDemand Extensible Markup Language (XML) attribute to false&amp;rsquo; was a bit non-specific to me.  I guessed right, however, that they were referring to the control definiton in the Command section of Config.esriaddinx.  In the example below, I set the onDemand attribute to false by adding the  ‘onDemand=&amp;lsquo;false&amp;rsquo;‘ tag and the control did, in fact, get instantiated at load time, giving me the ability to disable it.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;amp;lt;Tool id=&amp;quot;MGS_QDIAddin_QDIAddTool&amp;quot; class=&amp;quot;QDIAddTool&amp;quot; message=&amp;quot;QDI Add New Location.&amp;quot; caption=&amp;quot;QDI Add Tool&amp;quot; tip=&amp;quot;QDI Add Tool.&amp;quot; category=&amp;quot;QDI Add-In Controls&amp;quot; image=&amp;quot;ImagesQDIAddTool.png&amp;quot; onDemand=&amp;quot;false&amp;quot;/&amp;amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)</title>
+      <link>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</link>
+      <pubDate>Tue, 15 Feb 2011 17:05:55 -0600</pubDate>
+      <guid>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</guid>
+      <description>&lt;p&gt;I was working my way through this ESRI &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#//0001000001ms000000&#34;&gt;Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)&lt;/a&gt;.  And came across a couple minor errors that I had to correct during the process.&lt;/p&gt;
+&lt;p&gt;First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a &amp;lsquo;Name ‘ArcMap&amp;rsquo; is not declared.&#39; error.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/arcmapnotdeclared.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&amp;rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The fix is just adding  &amp;lsquo;My.&amp;rsquo; to the namespace in this line:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To get this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(My.ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/errorlist.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The fixes in this case was also to use the complete name space path.  Examples:&lt;/p&gt;
+&lt;p&gt;Change this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(geometry.GeometryType) = esriGeometryType.esriGeometryPoint Then
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If (geometry.GeometryType) = ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPoint Then)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And change this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = ESRI.ArcGIS.Display.esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Example of how to add controls in data grid VB.NET</title>
+      <link>https://maprantala.com/2010/12/09/example-of-how-to-add-controls-in-data-grid-vb.net/</link>
+      <pubDate>Thu, 09 Dec 2010 17:15:35 -0600</pubDate>
+      <guid>https://maprantala.com/2010/12/09/example-of-how-to-add-controls-in-data-grid-vb.net/</guid>
+      <description>&lt;p&gt;I have been working on some data entry forms that utilize a DataGrid.  Using a PostGres Geodatabase that had domains set on several fields, I could not directly bind to the controls on my dialog.  So I am going the round-about way of populating my own comboboxes with valid names and displaying within the DataGrid.&lt;/p&gt;
+&lt;p&gt;Having not done this previously, I found this example: &lt;a href=&#34;http://www.eggheadcafe.com/community/aspnet/14/22477/example-of-how-to-add-controls-in-data-grid.aspx&#34;&gt;Example of how to add controls in data grid VB.NET&lt;/a&gt; very useful and just wanted to point it out to anyone.  &lt;a href=&#34;http://www.syncfusion.com/FAQ/windowsforms/faq_c44c.aspx#q1015q&#34;&gt;George Shephard&amp;rsquo;s Windows Forms FAQ&lt;/a&gt; also had several useful tips.&lt;/p&gt;
+&lt;p&gt;Finally, I has a problem with the masked textboxs I added to the Datagrid, they required users to click once to get focus and a second to start editing.  After much googling, I found used some information from &lt;a href=&#34;http://social.msdn.microsoft.com/Forums/en-US/vbgeneral/thread/8d3c1f98-9501-4902-b81b-82f6bbd4f3e5/&#34;&gt;MSDN&lt;/a&gt; that allowed me to find a work-around.  In my Mousedown event, I included this snippet (QdiControl is the control for the specific cell that the HitTestInfo says the mousedown hit):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;amp;lt;/pre&amp;amp;gt;
+Dim WindowsControl As System.Windows.Forms.Control = CType(QdiControl, System.Windows.Forms.Control)
+If (TypeOf WindowsControl Is MaskedTextBox) Then
+ Dim pTextBox As MaskedTextBox = CType(WindowsControl, MaskedTextBox)
+ Dim dgdtblStyle As DataGridColumnStyle = RelatedForm.DataGrid.TableStyles(0).GridColumnStyles(CurrentColumn)
+
+ RelatedForm.DataGrid.BeginEdit(dgdtblStyle, CurrentRow)
+ pTextBox.Select(pTextBox.Text.Length, 0)
+ WindowsControl.Focus()
+
+ End If
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Peace.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Entering a Null Value in VB.Net DateTimePicker</title>
+      <link>https://maprantala.com/2010/07/13/entering-a-null-value-in-vb.net-datetimepicker/</link>
+      <pubDate>Tue, 13 Jul 2010 16:26:45 -0500</pubDate>
+      <guid>https://maprantala.com/2010/07/13/entering-a-null-value-in-vb.net-datetimepicker/</guid>
+      <description>&lt;p&gt;While working on a VB.Net form to query a database that includes an optional date range query, I decided I wanted to display a datetimepicker with a blank value by default and then, if the user sets a date show the date.  By default, a datetimepicker can not have a Null date, so I went a&amp;rsquo;Googling and found this post, &lt;a href=&#34;http://dotnetref.blogspot.com/2009/03/setting-datetimepicker-to-blank-value.html&#34;&gt;.NET Reference: Setting the DateTimePicker to a Blank Value&lt;/a&gt; ,that had exactly the technique I wanted.&lt;/p&gt;
+&lt;p&gt;Basically, I set the datetimepicker&amp;rsquo;s CustomFormat to a space (&#39; &amp;lsquo;) when I want it to be Null and then when the user makes a selection, set the custom format to the date format I wanted to display.    This is the sample code I found:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Private Sub ToDateField_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+   Handles ToDateField.ValueChanged
+     Me.ToDateField.Format = Windows.Forms.DateTimePickerFormat.Custom
+     Me.ToDateField.CustomFormat = &amp;quot;M/dd/yyyy&amp;quot;
+End Sub
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To let the user delete the date they entered, I add this subroutine that handles the KeyDown event for the datetimepicker. If the user hits delete or backspace, I set the format back to my null CustomFormat.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Private Sub ClearDates_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) _
+ Handles ToDateField.KeyDown
+
+ If (e.KeyCode = Windows.Forms.Keys.Delete) Or (e.KeyCode = Windows.Forms.Keys.Back) Then
+ Dim mDateTimePicker As Windows.Forms.DateTimePicker
+          mDateTimePicker = TryCast(sender, Windows.Forms.DateTimePicker)
+          If Not (mDateTimePicker Is Nothing) Then
+               mDateTimePicker.CustomFormat = &amp;quot; &amp;quot;
+          End If
+End If
+End Sub
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When building my SQL statement, I check the .CustomFormat property to determine whether or not to include a condition for the data:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If Not (Me.ToDateField.CustomFormat = &amp;quot; &amp;quot;) Then
+ &#39;Code here to add to my SQL statement
+ End If
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
