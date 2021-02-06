@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -101,9 +114,12 @@ Tags:
 <p>While this option still exists in ArcGIS 10, I believe it will disappear when 10.1 comes out and VBA support is completely eliminated.  But it is doable using Python which will continue to be supported.</p>
 <p>Googling around, I did not find an exact answer but Dave Verbyla, Professor of GIS/Remote Sensing at the University of Alaska has a <a href="http://nrm.salrm.uaf.edu/~dverbyla/nrm638/lectures/Python_field_calculator.pdf">posted some samples</a> that served as a good starting point.</p>
 <p>In the Pre-Logic Script Code box, I declare a variable (counter) and a function. Then in the formula, I call the function.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy.png"><!-- raw HTML omitted --></a></p>
+<pre><code>counter = 0
+def uniqueID():
+  global counter
+  counter += 1
+  return counter
+</code></pre><p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy.png"><!-- raw HTML omitted --></a></p>
 <p>While composing this post, I actually wanted a concatenated value; &lsquo;OC&rsquo; plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:</p>
 <p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy2.png"><!-- raw HTML omitted --></a></p>
 <!-- raw HTML omitted -->

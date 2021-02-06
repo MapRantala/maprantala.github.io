@@ -17,11 +17,14 @@
       <description>&lt;p&gt;I was helping a co-worker who needed to check if a field exists in their arcpy script. Since we were located at their computer, I thought I would just do a quick Google search and pull the code off this blog. Seemed logical since I the original purpose was exactly that—to serve as a handy, public place to store code snippets that I use &amp;amp; that others might find handy.&lt;/p&gt;
 &lt;p&gt;Anyhow, my Google Search on “&lt;a href=&#34;https://www.google.com/#q=Node+Dangles+field+Exists&#34;&gt;Node Dangles field Exists&lt;/a&gt;” came up with a &lt;a href=&#34;https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;9.3 script&lt;/a&gt; to check if field index exists. And I also have a &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;10.0 version&lt;/a&gt; but did not come up with the field exists snippet. So here it is:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2013/09/image2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;def fieldExists(inFeatureClass, inFieldName):
+   fieldList = arcpy.ListFields(inFeatureClass)
+   for iField in fieldList:
+      if iField.name.lower() == inFieldName.lower():
+         return True
+   return False
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -32,11 +35,36 @@
       <description>&lt;p&gt;Question: How do I get ArcMap to automatically pan through an area.&lt;/p&gt;
 &lt;p&gt;As I mentioned in a &lt;a href=&#34;https://maprantala.com/2012/04/30/building-a-loc%E2%80%A6f-bing-imagery/&#34;&gt;previous post&lt;/a&gt;, I recently had the need to have ArcMap automatically pan through a project area. My first attempt was to print a series of data-driven pages (using a fishnet polygon layer as the index) this but that did not accomplish what I needed so I switched to arcpy, which made the task simple enough. Nothing special or tricky about this code, but just did not find it anywhere else.&lt;/p&gt;
 &lt;p&gt;The one thing to note is that I have a 1 second pause between pans–this was to allow image tiles to download. You will need to adjust the delay to meet your needs. &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120427_AutoPan.zip&#34;&gt;The toolbox and code can also be downloaded&lt;/a&gt;.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;import sys,arcpy,datetime
+inLayer = sys.argv[1]
+
+def printit(inMessage):
+    print inMessage
+    arcpy.AddMessage(inMessage)
+
+mxd = arcpy.mapping.MapDocument(&amp;quot;CURRENT&amp;quot;)
+
+arcpy.MakeFeatureLayer_management(inLayer, &amp;quot;indexLayer&amp;quot;)
+cur=arcpy.SearchCursor(&amp;quot;indexLayer&amp;quot;)
+
+df = arcpy.mapping.ListDataFrames(mxd)[0]
+newExtent = df.extent
+
+iCount = 0
+iTotal = (arcpy.GetCount_management(&amp;quot;indexLayer&amp;quot;).getOutput(0))
+
+for row in cur:
+    thisPoly = row.getValue(&amp;quot;Shape&amp;quot;)
+    newExtent.XMin, newExtent.YMin = thisPoly.extent.XMin, thisPoly.extent.YMin
+    newExtent.XMax, newExtent.YMax = thisPoly.extent.XMax, thisPoly.extent.YMax
+    df.extent = newExtent
+    time.sleep(1)
+    iCount+=1
+    printit(&amp;quot;Panned to feature {0} of {1}&amp;quot;.format(iCount,iTotal))
+
+del row
+del cur
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -56,10 +84,10 @@
     </item>
     
     <item>
-      <title>Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
-      <link>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
+      <title>Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
+      <link>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
       <pubDate>Sun, 01 May 2011 05:01:50 -0500</pubDate>
-      <guid>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
+      <guid>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
       <description>&lt;p&gt;For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.&lt;/p&gt;
 &lt;p&gt;Here is the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;bare-bones script&lt;/a&gt; that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.  Some cautionary notes:&lt;/p&gt;
 &lt;ul&gt;
@@ -71,9 +99,176 @@
 &lt;/ul&gt;
 &lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you&amp;rsquo;ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the code for the Googlebots, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;just downloading&lt;/a&gt; it.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import arcpy
+import sys, math
+
+def printit(inMessage):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print inMessage
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; arcpy.AddMessage(inMessage)
+
+if len(sys.argv) &amp;amp;gt; 1:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inFC = sys.argv[1]
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFC = sys.argv[2]
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDistin = sys.argv[3]
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDist = float(alongDistin)
+else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inFC = &amp;quot;C:/temp/asdfasdf.mdb/jkl&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; OutDir = &amp;quot;C:/temp/asdfasdf.mdb&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFCName = &amp;quot;jkl2d&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFC = OutDir+&amp;quot;/&amp;quot;+outFCName
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDist = 1000
+
+if (arcpy.Exists(inFC)):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print(inFC+&amp;quot; does exist&amp;quot;)
+else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print(&amp;quot;Cancelling, &amp;quot;+inFC+&amp;quot; does not exist&amp;quot;)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; sys.exit(0)
+
+def distPoint(p1, p2):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; calc1 = p1.X - p2.X
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; calc2 = p1.Y - p2.Y
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return math.sqrt((calc1**2)+(calc2**2))
+
+def midpoint(prevpoint,nextpoint,targetDist,totalDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newX = prevpoint.X + ((nextpoint.X - prevpoint.X) * (targetDist/totalDist))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newY = prevpoint.Y + ((nextpoint.Y - prevpoint.Y) * (targetDist/totalDist))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return arcpy.Point(newX, newY)
+
+def splitShape(feat,splitDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Count the number of points in the current multipart feature
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partcount = feat.partCount
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partnum = 0
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Enter while loop for each part in the feature (if a singlepart feature
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # this will occur only once)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray = arcpy.Array()
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while partnum &amp;amp;lt; partcount:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Print the part number
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print &amp;quot;Part &amp;quot; + str(partnum) + &amp;quot;:&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; part = feat.getPart(partnum)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print part.count
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pnt = part.next()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pntcount = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; prevpoint = None
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist = []
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Enter while loop for each vertex
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while pnt:
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if not (prevpoint is None):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; thisDist = distPoint(prevpoint,pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; maxAdditionalDist = splitDist - totalDist
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print thisDist, totalDist, maxAdditionalDist
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (totalDist+thisDist)&amp;amp;gt; splitDist:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while(totalDist+thisDist) &amp;amp;gt; splitDist:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; maxAdditionalDist = splitDist - totalDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print thisDist, totalDist, maxAdditionalDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newpoint = midpoint(prevpoint,pnt,maxAdditionalDist,thisDist)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(newpoint)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist.append(lineArray)
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray = arcpy.Array()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(newpoint)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; prevpoint = newpoint
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; thisDist = distPoint(prevpoint,pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist+=thisDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist+=thisDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #shapelist.append(lineArray)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; prevpoint = pnt&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pntcount += 1
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pnt = part.next()
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # If pnt is null, either the part is finished or there is an
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #&amp;amp;nbsp;&amp;amp;nbsp; interior ring
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if not pnt:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pnt = part.next()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if pnt:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print &amp;quot;Interior Ring:&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partnum += 1
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (lineArray.count &amp;amp;gt; 1):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist.append(lineArray)
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return shapelist
+
+if arcpy.Exists(outFC):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; arcpy.Delete_management(outFC)
+
+arcpy.Copy_management(inFC,outFC)
+
+#origDesc = arcpy.Describe(inFC)
+#sR = origDesc.spatialReference
+
+#revDesc = arcpy.Describe(outFC)
+#revDesc.ShapeFieldName
+
+deleterows = arcpy.UpdateCursor(outFC)
+for iDRow in deleterows:&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; deleterows.deleteRow(iDRow)
+
+del iDRow
+del deleterows
+
+inputRows = arcpy.SearchCursor(inFC)
+outputRows = arcpy.InsertCursor(outFC)
+fields = arcpy.ListFields(inFC)
+
+numRecords = int(arcpy.GetCount_management(inFC).getOutput(0))
+OnePercentThreshold = numRecords // 100
+
+printit(numRecords)
+
+iCounter = 0
+iCounter2 = 0
+
+for iInRow in inputRows:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inGeom = iInRow.shape
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter+=1
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter2+=1&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (iCounter2 &amp;amp;gt; (OnePercentThreshold+0)):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; printit(&amp;quot;Processing Record &amp;quot;+str(iCounter) + &amp;quot; of &amp;quot;+ str(numRecords))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter2=0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (inGeom.length &amp;amp;gt; alongDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapeList = splitShape(iInRow.shape,alongDist)
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; for itmp in shapeList:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newRow = outputRows.newRow()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; for ifield in fields:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (ifield.editable):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newRow.setValue(ifield.name,iInRow.getValue(ifield.name))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newRow.shape = itmp
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outputRows.insertRow(newRow)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outputRows.insertRow(iInRow)
+
+del inputRows
+del outputRows
+
+printit(&amp;quot;Done!&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -88,21 +283,21 @@
 &lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&amp;rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fix is just adding  &amp;lsquo;My.&amp;rsquo; to the namespace in this line:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To get this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To get this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(My.ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/errorlist.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fixes in this case was also to use the complete name space path.  Examples:&lt;/p&gt;
 &lt;p&gt;Change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(geometry.GeometryType) = esriGeometryType.esriGeometryPoint Then
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If (geometry.GeometryType) = ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPoint Then)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And change this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = ESRI.ArcGIS.Display.esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>

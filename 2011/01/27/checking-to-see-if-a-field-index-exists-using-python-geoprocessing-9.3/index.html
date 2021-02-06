@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -103,18 +116,27 @@ Tags:
 <p>NOTE:  I have a <a href="https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/">post here</a> that shows how to check if a field exists using arcpy in ArcGIS 10.0.</p>
 <p>In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.</p>
 <p>No problem creating the index, for example:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).</p>
-<!-- raw HTML omitted -->
-<p>I finally found this <a href="http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method">ArcGIS Desktop Help 9.3 – ListIndexes method</a> from ESRI.  Unfortunately, it doesn&rsquo;t work-it did not like the &lsquo;while&rsquo; loop construction.  I&rsquo;m guessing it worked in 9.2 and despite ESRI&rsquo;s own <a href="http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions">warning</a> about differences in 9.2 &amp; 9.3, they did not update the sample code.</p>
+<pre><code>gp.AddIndex_management(tablename, field, IndexName, &quot;NON_UNIQUE&quot;, &quot;NON_ASCENDING&quot;)
+</code></pre><p>But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).</p>
+<pre><code>gp.Exists(mgs_c5ix_fullname)
+</code></pre><p>I finally found this <a href="http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method">ArcGIS Desktop Help 9.3 – ListIndexes method</a> from ESRI.  Unfortunately, it doesn&rsquo;t work-it did not like the &lsquo;while&rsquo; loop construction.  I&rsquo;m guessing it worked in 9.2 and despite ESRI&rsquo;s own <a href="http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions">warning</a> about differences in 9.2 &amp; 9.3, they did not update the sample code.</p>
 <p>A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>To call it, just pass the table and indexname you are looking for.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code>gp = arcgisscripting.create(9.3)
+
+def indexExists(tablename,indexname):
+ if not gp.Exists(tablename):
+  return False
+
+ indexList = gp.listindexes(tablename)
+
+ for iIndex in indexList:
+  if (iIndex.Name == indexname):
+   return True
+
+ return False
+</code></pre><p>To call it, just pass the table and indexname you are looking for.</p>
+<pre><code>indexExists(tablename,indexname)
+</code></pre><!-- raw HTML omitted -->
 
 
 </div>

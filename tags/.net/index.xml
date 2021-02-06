@@ -20,21 +20,21 @@
 &lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&amp;rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fix is just adding  &amp;lsquo;My.&amp;rsquo; to the namespace in this line:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To get this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To get this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(My.ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/errorlist.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fixes in this case was also to use the complete name space path.  Examples:&lt;/p&gt;
 &lt;p&gt;Change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(geometry.GeometryType) = esriGeometryType.esriGeometryPoint Then
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If (geometry.GeometryType) = ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPoint Then)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And change this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = ESRI.ArcGIS.Display.esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>

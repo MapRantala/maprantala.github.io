@@ -35,12 +35,22 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
       <guid>https://maprantala.com/2017/08/06/esri-web-appbuilder-2.4-empty-basemap-gallery-follow-up/</guid>
       <description>&lt;p&gt;A while ago I &lt;!-- raw HTML omitted --&gt;posted &lt;!-- raw HTML omitted --&gt;a work-around for a problem I was having with a &lt;!-- raw HTML omitted --&gt;Web AppBuilder&lt;!-- raw HTML omitted --&gt; application. Working with Esri tech support, we determined what I was doing to cause the problem.&lt;/p&gt;
 &lt;p&gt;In my config.json, I was using a relative path to the proxy. Note that I had the proxy as a separate application at the root level of our domain because I intended to have a shared proxy for all of our applications instead of individual ones. So the WAB application would be using &lt;a href=&#34;http://ourarcgisdomain.com/proxy/proxy.ashx&#34;&gt;http://ourarcgisdomain.com/proxy/proxy.ashx&lt;/a&gt;.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Well, that was causing the hiccup in the &lt;!-- raw HTML omitted --&gt;Basemap Gallery Widget&lt;!-- raw HTML omitted --&gt;. I simply modified the url parameter to have the full path of our domain, undid my custom code, and the Basemap Gallery Widget was happy.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Score one for Esri Tech Support.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;httpProxy&amp;quot;: {
+	&amp;quot;useProxy&amp;quot;: true,
+	&amp;quot;alwaysUseProxy&amp;quot;: true,
+    &amp;quot;url&amp;quot;: &amp;quot;/proxy/proxy.ashx&amp;quot;,
+    &amp;quot;rules&amp;quot;: []
+  }
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Well, that was causing the hiccup in the &lt;!-- raw HTML omitted --&gt;Basemap Gallery Widget&lt;!-- raw HTML omitted --&gt;. I simply modified the url parameter to have the full path of our domain, undid my custom code, and the Basemap Gallery Widget was happy.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;httpProxy&amp;quot;: {
+     &amp;quot;useProxy&amp;quot;: true,
+     &amp;quot;alwaysUseProxy&amp;quot;: true,
+     &amp;quot;url&amp;quot;: &amp;quot;http://ourarcgisdomain.com/proxy/proxy.ashx&amp;quot;,
+     &amp;quot;rules&amp;quot;: []
+   }
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Score one for Esri Tech Support.&lt;/p&gt;
 &lt;p&gt;Although, in my defense the &lt;!-- raw HTML omitted --&gt;documentation on the configuring the proxy&lt;!-- raw HTML omitted --&gt; is silent on the pathing.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 </description>
@@ -58,9 +68,26 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
 &lt;p&gt;Luckily the &lt;!-- raw HTML omitted --&gt;Python development team at Esri&lt;!-- raw HTML omitted --&gt; already had a &lt;!-- raw HTML omitted --&gt;blog post&lt;!-- raw HTML omitted --&gt; about this at their &lt;!-- raw HTML omitted --&gt;ArcPy Café blog&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
 &lt;p&gt;They report that the root of the problem is &amp;lsquo;conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool&amp;rsquo;. But this can be overcome by using a &lt;!-- raw HTML omitted --&gt;decorator&lt;!-- raw HTML omitted --&gt; function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.&lt;/p&gt;
 &lt;p&gt;Example code is shown below:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&amp;rsquo;ve been able to tell, works fine without crashing your ArcMap session.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import functools
+import os
+import threading
+import webbrowser
+ 
+# A decorator that will run its wrapped function in a new thread
+def run_in_other_thread(function):
+    # functool.wraps will copy over the docstring and some other metadata
+    # from the original function
+    @functools.wraps(function)
+    def fn_(*args, **kwargs):
+        thread = threading.Thread(target=function, args=args, kwargs=kwargs)
+        thread.start()
+        thread.join()
+    return fn_
+ 
+# Our new wrapped versions of os.startfile and webbrowser.open
+startfile = run_in_other_thread(os.startfile)
+openbrowser = run_in_other_thread(webbrowser.open)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&amp;rsquo;ve been able to tell, works fine without crashing your ArcMap session.&lt;/p&gt;
 &lt;p&gt;Cheers!&lt;/p&gt;
 </description>
     </item>
@@ -73,9 +100,22 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
       <description>&lt;p&gt;I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&amp;rsquo;s &lt;!-- raw HTML omitted --&gt;ListFeatureClasses&lt;!-- raw HTML omitted --&gt; request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.&lt;/p&gt;
 &lt;p&gt;Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.&lt;/p&gt;
 &lt;p&gt;After discovering missing data in our backups, I reconstructed what happened and found this bug. Below is arcpy code that iterates through the feature datasets in a geodatabase and lists the feature classes:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And here is a screen shot of the contents of a test enterprise geodatabase, you&amp;rsquo;ll see it has a feature data set named &amp;lsquo;outcrops&amp;rsquo; that has a feature class also named &amp;lsquo;outcrops&amp;rsquo; within it:&lt;br&gt;
+&lt;pre&gt;&lt;code&gt;import arcpy
+
+def copyAll():
+    for iFeatureClass in arcpy.ListFeatureClasses():
+        print(&amp;quot; Feature Class: {0}&amp;quot;.format(iFeatureClass))
+    iFeatureClassFull = None
+
+testGDBname = &amp;quot;mgs_sandbox.sde&amp;quot;
+arcpy.env.workspace = testGDBname
+
+copyAll()
+for iFD in arcpy.ListDatasets(&amp;quot;&amp;quot;,&amp;quot;Feature&amp;quot;):
+    print(&amp;quot;Feature Dataset {0}:&amp;quot;.format(iFD))
+    arcpy.env.workspace = testGDBname+&amp;quot;/&amp;quot;+str(iFD)
+    copyAll()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And here is a screen shot of the contents of a test enterprise geodatabase, you&amp;rsquo;ll see it has a feature data set named &amp;lsquo;outcrops&amp;rsquo; that has a feature class also named &amp;lsquo;outcrops&amp;rsquo; within it:&lt;br&gt;
 &lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/sandbox.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;And the results list only the feature dataset:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/results.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -90,10 +130,10 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
     </item>
     
     <item>
-      <title>SDEINTERCEPT &amp;#038; SDEINTERCEPTLOC</title>
-      <link>https://maprantala.com/2012/08/01/sdeintercept-#038-sdeinterceptloc/</link>
+      <title>SDEINTERCEPT and SDEINTERCEPTLOC</title>
+      <link>https://maprantala.com/2012/08/01/sdeintercept-and-sdeinterceptloc/</link>
       <pubDate>Wed, 01 Aug 2012 07:17:41 -0500</pubDate>
-      <guid>https://maprantala.com/2012/08/01/sdeintercept-#038-sdeinterceptloc/</guid>
+      <guid>https://maprantala.com/2012/08/01/sdeintercept-and-sdeinterceptloc/</guid>
       <description>&lt;p&gt;Awhile ago, I had a ArcSDE problem that required &lt;a href=&#34;http://support.esri.com/en/&#34;&gt;ESRI technical support&lt;/a&gt; to help trouble-shoot. The problem was odd but was resolved by rebooting the server.&lt;br&gt;
 During the process, though, the support person had me set a couple of environment variables for logging SDE activity on the client machine.&lt;/p&gt;
 &lt;p&gt;The settings were SDEINTERCEPT and SDEINTERCEPTLOC.&lt;/p&gt;
@@ -130,9 +170,65 @@ During the process, though, the support person had me set a couple of environmen
 &lt;p&gt;Happy programmer.&lt;/p&gt;
 &lt;p&gt;&lt;!-- raw HTML omitted --&gt;I would recommend using this only while debugging a script–routinely running it could be a security risk since someone could copy a destructive python script into the directory and this would run it.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;Download: &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110711_tester.zip&#34;&gt;tester.py&lt;/a&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import sys, string, os
+import glob
+import datetime, shutil
+import time, inspect
+import getpass
+
+totalstarttime = datetime.datetime.now()
+
+dateString = datetime.date.today().strftime(&amp;quot;%Y%m%d_&amp;quot;)+datetime.datetime.now().strftime(&amp;quot;%H%M%S&amp;quot;) #datetime.date.today().strftime(&amp;quot;%Y%m%d&amp;quot;)
+debugfile = inspect.getfile(inspect.currentframe()).replace(&amp;quot;.py&amp;quot;,&amp;quot;_&amp;quot;+dateString+&amp;quot;_Debug.txt&amp;quot;)
+stopfile = inspect.getfile(inspect.currentframe()).replace(&amp;quot;.py&amp;quot;,&amp;quot;.stop&amp;quot;)
+newdebugfile = False
+
+codeDir = os.path.dirname(inspect.getfile(inspect.currentframe())).replace(&amp;quot;\&amp;quot;,&amp;quot;/&amp;quot;)
+
+def printit(inText):
+    global newdebugfile
+
+    print inText
+
+    if os.path.exists(debugfile):
+        if (newdebugfile == False):
+            tmpfile = open(debugfile,&amp;quot;w&amp;quot;)
+            newdebugfile = True
+        else:
+            tmpfile = open(debugfile,&amp;quot;a&amp;quot;)
+    else:
+        tmpfile = open(debugfile,&amp;quot;w&amp;quot;)
+
+    tmpfile.write(inText)
+    tmpfile.write(&amp;quot;n&amp;quot;)
+    tmpfile.close()
+    newdebugfile = True
+
+stopFileExists = False
+printit(&amp;quot;Code Directory: &amp;quot;+codeDir)
+printit(&amp;quot;Starting at: &amp;quot;+datetime.date.today().strftime(&amp;quot;%Y-%m-%d_&amp;quot;)+datetime.datetime.now().strftime(&amp;quot;%H:%M:%S&amp;quot;))
+printit(&amp;quot;Stopfile : &amp;quot;+stopfile+&amp;quot;/n&amp;quot;)
+while (stopFileExists == False):
+    for iFile in glob.glob(codeDir+&amp;quot;/test_*.py&amp;quot;):
+
+        thisStartfile = iFile.replace(&amp;quot;.py&amp;quot;,&amp;quot;.start&amp;quot;)
+
+        if not (os.path.exists(thisStartfile)):
+            printit (&amp;quot;Launching: &amp;quot;+iFile)
+            iTmpfile = open(thisStartfile,&amp;quot;w&amp;quot;)
+            iTmpfile.write(&amp;quot;started&amp;quot;)
+            iTmpfile.close()
+            os.system(&amp;quot;Start &amp;quot;+iFile)
+
+    if (os.path.exists(stopfile)):
+        stopFileExists = True
+    else:
+        time.sleep(60)
+
+    printit(&amp;quot;nEnd of Loop: &amp;quot;+datetime.date.today().strftime(&amp;quot;%Y-%m-%d_&amp;quot;)+datetime.datetime.now().strftime(&amp;quot;%H:%M:%S&amp;quot;)+&amp;quot;n&amp;quot;)    
+
+printit(&amp;quot;Done!&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -239,21 +335,21 @@ print fc&lt;/p&gt;
 &lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&amp;rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fix is just adding  &amp;lsquo;My.&amp;rsquo; to the namespace in this line:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To get this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To get this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(My.ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/errorlist.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fixes in this case was also to use the complete name space path.  Examples:&lt;/p&gt;
 &lt;p&gt;Change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(geometry.GeometryType) = esriGeometryType.esriGeometryPoint Then
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If (geometry.GeometryType) = ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPoint Then)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And change this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = ESRI.ArcGIS.Display.esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -266,18 +362,27 @@ print fc&lt;/p&gt;
       <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
 &lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
 &lt;p&gt;No problem creating the index, for example:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gp.AddIndex_management(tablename, field, IndexName, &amp;quot;NON_UNIQUE&amp;quot;, &amp;quot;NON_ASCENDING&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gp.Exists(mgs_c5ix_fullname)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
 &lt;p&gt;A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;gp = arcgisscripting.create(9.3)
+
+def indexExists(tablename,indexname):
+ if not gp.Exists(tablename):
+  return False
+
+ indexList = gp.listindexes(tablename)
+
+ for iIndex in indexList:
+  if (iIndex.Name == indexname):
+   return True
+
+ return False
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;indexExists(tablename,indexname)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

@@ -59,9 +59,34 @@ print fc&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/failedtodeletedomain.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The Google Machine led me to an &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=985&amp;amp;t=303616&#34;&gt;ArcForums post&lt;/a&gt; by  with some python code for listing all the fields with a domain.&lt;/p&gt;
 &lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the ‘listfc(&#39;&#39;)&amp;rsquo; line that is the first line of the def listds() module.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import arcpy
+
+min_workspace = r&amp;quot;C:\Users\mranter\AppData\Roaming\ESRI\Desktop10.0\ArcCatalog\min.minstaff.sde&amp;quot;
+
+infgdb=(min_workspace)
+arcpy.env.workspace = infgdb
+
+def listfc(inDataset):
+   featureclasses = arcpy.ListFeatureClasses(&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,inDataset)
+   for f in featureclasses:
+      print &amp;quot;feature class: &amp;quot;,f
+
+lfields=arcpy.ListFields(f)
+
+for lf in lfields:
+   if lf.domain &amp;amp;lt; &amp;quot;&amp;quot;:
+      print &amp;quot;      domain&amp;quot;,f, lf.name, lf.domain
+
+def listds():
+   listfc(&amp;quot;&amp;quot;)
+
+   datasets=arcpy.ListDatasets (&amp;quot;&amp;quot;,&amp;quot;&amp;quot;)
+   for d in datasets:
+      print &amp;quot;  dataset: &amp;quot;,d
+
+listfc(d)
+listds()
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -73,18 +98,27 @@ print fc&lt;/p&gt;
       <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
 &lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
 &lt;p&gt;No problem creating the index, for example:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gp.AddIndex_management(tablename, field, IndexName, &amp;quot;NON_UNIQUE&amp;quot;, &amp;quot;NON_ASCENDING&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gp.Exists(mgs_c5ix_fullname)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
 &lt;p&gt;A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;gp = arcgisscripting.create(9.3)
+
+def indexExists(tablename,indexname):
+ if not gp.Exists(tablename):
+  return False
+
+ indexList = gp.listindexes(tablename)
+
+ for iIndex in indexList:
+  if (iIndex.Name == indexname):
+   return True
+
+ return False
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;indexExists(tablename,indexname)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

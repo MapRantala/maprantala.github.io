@@ -16,11 +16,23 @@
       <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</guid>
       <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the &amp;lsquo;lazy&amp;rsquo; GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
 &lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;#These first 3 lines only need to be run once.
+mxd = arcpy.mapping.MapDocument(&amp;quot;CURRENT&amp;quot;)
+l = arcpy.mapping.ListDataFrames(mxd)[0] #Note the hard-code [0], meaning the first dataframe. YMMV
+ll = arcpy.mapping.ListLayers(l)
+
+#Everytime I wanted to update the definition queries just need to update the replace parameters.
+
+for l in ll:
+     try:
+        print(l.name)
+        print(l.definitionQuery)
+        z = l.definitionQuery.replace(&amp;quot;_011&amp;quot;,&amp;quot;_012&amp;quot;)
+        l.definitionQuery = z
+     except:
+        print(&amp;quot;&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -87,9 +99,16 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
 &lt;p&gt;Something I did today was create a field (!Case!) and then populated this with a unique identifier for each different value (case) that occurred in a different field (!Feature!).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Note: python&amp;rsquo;s &lt;em&gt;index&lt;/em&gt; statement is a 0-based search so the first case will have the value 0, the second will have 1, and so on. If you want to start the results at 1, you can make the last line: &amp;lsquo;return caseList.index(inValue) + 1&amp;rsquo;.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;The basic structure for this is shown:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;caseList = [ ]
+
+def returnCase(inValue):
+   global caseList
+
+   if not inValue in caseList:
+      caseList.append(inValue)
+
+   return caseList.index(inValue)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -116,9 +135,17 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
 &lt;p&gt;**(Note: The same results could have be achieved by using the original function by creating the list in the calling statement:  returnCase([!county_c!,!feature!] )&lt;br&gt;
 **&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2012/04/case_multiple.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;caseList = [ ]
+
+def returnCase(inValue1, inValue2):
+   inValue = [inValue1, inValue2]
+   global caseList
+
+   if not inValue in caseList:
+      caseList.append(inValue)
+
+   return caseList.index(inValue)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2012/04/case_multiple.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -150,14 +177,23 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
 &lt;p&gt;That should work fine if you have clean values in your text field. In the example above, you might notice I had a selected set of 3 records that all had numeric values in the !Day! field. When I included the fourth row, which does not have a numeric value in the text field, I get this error message (&amp;lsquo;There was a failure during processing, check the Geoprocessing Results window for details.&amp;rsquo; when I use the same formula. Time to add in an error exception.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber2b.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;For more advanced logic, the Field Calculator dialog allows you to use a python function if you check on the &amp;lsquo;Show Codeblock&amp;rsquo; option.  In the &amp;lsquo;Pre-Logic Script Code&amp;rsquo; area (Seriously, who at ESRI came up with that name?) I entered the following function. If the value in my text field (!Day!) can be cast to a number of type float, that value is returned. If the cast is unsuccessful (IE the value in !Day! is not a number), then I return -99.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Then in the formula portion of the dialog, I call the function, passing the value in the !Day! field: DecDay = toNum(!Day!).&lt;br&gt;
+&lt;pre&gt;&lt;code&gt;def toNum(inValue):
+   try:
+      outValue = float(inValue)
+      return outValue
+   except:
+      return -99
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then in the formula portion of the dialog, I call the function, passing the value in the !Day! field: DecDay = toNum(!Day!).&lt;br&gt;
 &lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Now, if you would prefer not to set all the records with non-numeric values to be -99 or other error value, not return anything. To do this, I replaced the &amp;lsquo;return -99&amp;rsquo; in the original function with a filler line (&amp;lsquo;doNothing = 4&amp;rsquo;) since the try block needs an non-empty except clause.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber3.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;br&gt;
+&lt;pre&gt;&lt;code&gt;def toNum(inValue):
+   try:
+      outValue = float(inValue)
+      return outValue
+   except:
+      doNothing = 4
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber3.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;br&gt;
 And that should leave the values in the double field unscathed in your records with non-numeric values in the text field.&lt;/p&gt;
 &lt;p&gt;Shameless Plug: Check out my other blog posts on using ArcMap&amp;rsquo;s Field Calculator to &lt;a href=&#34;https://maprantala.com/2011/03/08/calculating-geometry-using-arcpy-in-field-calculator/&#34;&gt;calculate geometry&lt;/a&gt; and converting a date value to an &lt;a href=&#34;https://maprantala.com/2011/10/06/field-calculator-arcpy-date-to-decimal-function/&#34;&gt;8 digit numeric value&lt;/a&gt;.&lt;/p&gt;
 </description>
@@ -170,9 +206,10 @@ And that should leave the values in the double field unscathed in your records w
       <guid>https://maprantala.com/2011/10/06/arcmap-field-calculator-arcpy-date-to-decimal-function/</guid>
       <description>&lt;p&gt;One of the standards in our databases is to store dates as 8-digit integer values in the format of yyyymmdd. This requires us to occasionally convert values from date fields into this format.&lt;/p&gt;
 &lt;p&gt;We can do this in the ArcMap Field Calculator using this arcpy function:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/10/datetodouble.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def datetodouble(inNum):
+     splitList = str(inNum).split(&amp;quot;/&amp;quot;)
+     return  splitList [2]  +(&amp;quot;0&amp;quot;+ splitList [0])[-2:]  +(&amp;quot;0&amp;quot;+ splitList [1])[-2:]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/10/datetodouble.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -186,9 +223,12 @@ And that should leave the values in the double field unscathed in your records w
 &lt;p&gt;While this option still exists in ArcGIS 10, I believe it will disappear when 10.1 comes out and VBA support is completely eliminated.  But it is doable using Python which will continue to be supported.&lt;/p&gt;
 &lt;p&gt;Googling around, I did not find an exact answer but Dave Verbyla, Professor of GIS/Remote Sensing at the University of Alaska has a &lt;a href=&#34;http://nrm.salrm.uaf.edu/~dverbyla/nrm638/lectures/Python_field_calculator.pdf&#34;&gt;posted some samples&lt;/a&gt; that served as a good starting point.&lt;/p&gt;
 &lt;p&gt;In the Pre-Logic Script Code box, I declare a variable (counter) and a function. Then in the formula, I call the function.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;counter = 0
+def uniqueID():
+  global counter
+  counter += 1
+  return counter
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;While composing this post, I actually wanted a concatenated value; &amp;lsquo;OC&amp;rsquo; plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -221,21 +261,21 @@ And that should leave the values in the double field unscathed in your records w
 &lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&amp;rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fix is just adding  &amp;lsquo;My.&amp;rsquo; to the namespace in this line:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To get this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To get this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(My.ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/errorlist.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fixes in this case was also to use the complete name space path.  Examples:&lt;/p&gt;
 &lt;p&gt;Change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(geometry.GeometryType) = esriGeometryType.esriGeometryPoint Then
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If (geometry.GeometryType) = ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPoint Then)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And change this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = ESRI.ArcGIS.Display.esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>

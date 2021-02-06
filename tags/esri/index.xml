@@ -35,11 +35,23 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
       <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</guid>
       <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the &amp;lsquo;lazy&amp;rsquo; GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
 &lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;#These first 3 lines only need to be run once.
+mxd = arcpy.mapping.MapDocument(&amp;quot;CURRENT&amp;quot;)
+l = arcpy.mapping.ListDataFrames(mxd)[0] #Note the hard-code [0], meaning the first dataframe. YMMV
+ll = arcpy.mapping.ListLayers(l)
+
+#Everytime I wanted to update the definition queries just need to update the replace parameters.
+
+for l in ll:
+     try:
+        print(l.name)
+        print(l.definitionQuery)
+        z = l.definitionQuery.replace(&amp;quot;_011&amp;quot;,&amp;quot;_012&amp;quot;)
+        l.definitionQuery = z
+     except:
+        print(&amp;quot;&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -49,12 +61,22 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
       <guid>https://maprantala.com/2017/08/06/esri-web-appbuilder-2.4-empty-basemap-gallery-follow-up/</guid>
       <description>&lt;p&gt;A while ago I &lt;!-- raw HTML omitted --&gt;posted &lt;!-- raw HTML omitted --&gt;a work-around for a problem I was having with a &lt;!-- raw HTML omitted --&gt;Web AppBuilder&lt;!-- raw HTML omitted --&gt; application. Working with Esri tech support, we determined what I was doing to cause the problem.&lt;/p&gt;
 &lt;p&gt;In my config.json, I was using a relative path to the proxy. Note that I had the proxy as a separate application at the root level of our domain because I intended to have a shared proxy for all of our applications instead of individual ones. So the WAB application would be using &lt;a href=&#34;http://ourarcgisdomain.com/proxy/proxy.ashx&#34;&gt;http://ourarcgisdomain.com/proxy/proxy.ashx&lt;/a&gt;.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Well, that was causing the hiccup in the &lt;!-- raw HTML omitted --&gt;Basemap Gallery Widget&lt;!-- raw HTML omitted --&gt;. I simply modified the url parameter to have the full path of our domain, undid my custom code, and the Basemap Gallery Widget was happy.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Score one for Esri Tech Support.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;httpProxy&amp;quot;: {
+	&amp;quot;useProxy&amp;quot;: true,
+	&amp;quot;alwaysUseProxy&amp;quot;: true,
+    &amp;quot;url&amp;quot;: &amp;quot;/proxy/proxy.ashx&amp;quot;,
+    &amp;quot;rules&amp;quot;: []
+  }
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Well, that was causing the hiccup in the &lt;!-- raw HTML omitted --&gt;Basemap Gallery Widget&lt;!-- raw HTML omitted --&gt;. I simply modified the url parameter to have the full path of our domain, undid my custom code, and the Basemap Gallery Widget was happy.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;httpProxy&amp;quot;: {
+     &amp;quot;useProxy&amp;quot;: true,
+     &amp;quot;alwaysUseProxy&amp;quot;: true,
+     &amp;quot;url&amp;quot;: &amp;quot;http://ourarcgisdomain.com/proxy/proxy.ashx&amp;quot;,
+     &amp;quot;rules&amp;quot;: []
+   }
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Score one for Esri Tech Support.&lt;/p&gt;
 &lt;p&gt;Although, in my defense the &lt;!-- raw HTML omitted --&gt;documentation on the configuring the proxy&lt;!-- raw HTML omitted --&gt; is silent on the pathing.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 </description>
@@ -68,11 +90,75 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
       <description>&lt;p&gt;Working on doing some &lt;!-- raw HTML omitted --&gt;advanced ArcGIS server printing&lt;!-- raw HTML omitted --&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;!-- raw HTML omitted --&gt;Petr Krebs&lt;!-- raw HTML omitted --&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
 &lt;p&gt;I created an ArcGIS toolbox with two options–one to convert a single .mxd and one to batch convert an entire folder. To use it, make sure to have the EmptyGroup.lyr in the same directory as the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the raw code or &lt;!-- raw HTML omitted --&gt;git it&lt;!-- raw HTML omitted --&gt;:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;import os
+import arcpy
+import inspect
+import glob
+import uuid
+import inspect
+
+codeDir = os.path.dirname(inspect.getfile(inspect.currentframe()))
+EmptyGroupLayerFile = codeDir+&amp;quot;/EmptyGroup.lyr&amp;quot;
+inArg1 = sys.argv[1]
+inArg2 = sys.argv[2]
+
+def printit(inMessage):
+    arcpy.AddMessage(inMessage)
+
+def makeLyrFromMXD(inMXD, outLyr):
+    if not (os.path.exists(inMXD)):
+        printit( &amp;quot;ERROR: {} does not exist&amp;quot;.format(inMXD))
+        return False
+    if not (os.path.exists(EmptyGroupLayerFile)):
+        printit( &amp;quot;ERROR: {} does not exist&amp;quot;.format(EmptyGroupLayerFile))
+        return False
+    if  (os.path.exists(outLyr)):
+        printit( &amp;quot;Skipping: {} already exists&amp;quot;.format(outLyr))
+        return True
+
+    printit( &amp;quot;Making Layer file: {0}&amp;quot;.format(outLyr))
+
+    mxd = arcpy.mapping.MapDocument(inMXD)
+    ###Right now, just doing the first Dataframe, this could be modified
+    df = arcpy.mapping.ListDataFrames(mxd)[0]
+
+    theUUID = str(uuid.uuid1())
+
+    iGroupLayerRaw = arcpy.mapping.Layer(EmptyGroupLayerFile)
+    iGroupLayerRaw.name = theUUID
+    arcpy.mapping.AddLayer(df,iGroupLayerRaw,&amp;quot;TOP&amp;quot;)
+    groupBaseName = os.path.basename(outLyr).split(&amp;quot;.&amp;quot;)[0]
+
+    for lyr in arcpy.mapping.ListLayers(df):
+        if not (lyr.name == theUUID):
+            if (lyr.longName == lyr.name):
+                arcpy.mapping.AddLayerToGroup (df, iGroupLayer, lyr, &amp;quot;Bottom&amp;quot;)
+        else:
+            iGroupLayer = lyr
+
+    iGroupLayer.name = groupBaseName
+    arcpy.SaveToLayerFile_management(iGroupLayer, outLyr)
+    return os.path.exists(outLyr)
+
+def doMultiple(inDir,outDir):
+    for iMxd in glob.glob(inDir+&amp;quot;/*.mxd&amp;quot;):
+        lyrFile = outDir+&amp;quot;/&amp;quot;+os.path.basename(iMxd).lower().replace(&amp;quot;.mxd&amp;quot;,&amp;quot;.lyr&amp;quot;)
+        makeLyrFromMXD(iMxd, lyrFile)
+
+if(not os.path.exists(EmptyGroupLayerFile)):
+    printit(&amp;quot;Error: {} is missing, can not run.&amp;quot;.format(EmptyGroupLayerFile))
+else:
+    if (os.path.isdir(inArg1) and (os.path.isdir(inArg2))):
+        doMultiple(inArg1,inArg2)
+    elif (os.path.isfile(inArg1)):
+        if (os.path.exists(inArg2)):
+            printit(&amp;quot;Error: {} already exists&amp;quot;.format(inArg2))
+        else:
+            makeLyrFromMXD(inArg1,inArg2)
+    else:
+        printit(&amp;quot;Unable to understand input parameters&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -87,31 +173,61 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
 &lt;p&gt;Luckily the &lt;!-- raw HTML omitted --&gt;Python development team at Esri&lt;!-- raw HTML omitted --&gt; already had a &lt;!-- raw HTML omitted --&gt;blog post&lt;!-- raw HTML omitted --&gt; about this at their &lt;!-- raw HTML omitted --&gt;ArcPy Café blog&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
 &lt;p&gt;They report that the root of the problem is &amp;lsquo;conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool&amp;rsquo;. But this can be overcome by using a &lt;!-- raw HTML omitted --&gt;decorator&lt;!-- raw HTML omitted --&gt; function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.&lt;/p&gt;
 &lt;p&gt;Example code is shown below:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&amp;rsquo;ve been able to tell, works fine without crashing your ArcMap session.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import functools
+import os
+import threading
+import webbrowser
+ 
+# A decorator that will run its wrapped function in a new thread
+def run_in_other_thread(function):
+    # functool.wraps will copy over the docstring and some other metadata
+    # from the original function
+    @functools.wraps(function)
+    def fn_(*args, **kwargs):
+        thread = threading.Thread(target=function, args=args, kwargs=kwargs)
+        thread.start()
+        thread.join()
+    return fn_
+ 
+# Our new wrapped versions of os.startfile and webbrowser.open
+startfile = run_in_other_thread(os.startfile)
+openbrowser = run_in_other_thread(webbrowser.open)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&amp;rsquo;ve been able to tell, works fine without crashing your ArcMap session.&lt;/p&gt;
 &lt;p&gt;Cheers!&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>Quick &amp;#038; Dirty ArcPy: Listing Data Sources</title>
-      <link>https://maprantala.com/2014/12/03/quick-#038-dirty-arcpy-listing-data-sources/</link>
+      <title>Quick and Dirty ArcPy: Listing Data Sources</title>
+      <link>https://maprantala.com/2014/12/03/quick-and-dirty-arcpy-listing-data-sources/</link>
       <pubDate>Wed, 03 Dec 2014 08:05:10 -0600</pubDate>
-      <guid>https://maprantala.com/2014/12/03/quick-#038-dirty-arcpy-listing-data-sources/</guid>
+      <guid>https://maprantala.com/2014/12/03/quick-and-dirty-arcpy-listing-data-sources/</guid>
       <description>&lt;p&gt;I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here&amp;rsquo;s the &lt;a href=&#34;https://github.com/MapRantala/Blog/blob/master/python/arcpy/20141203_ListDataSources/listDataSources.py&#34;&gt;bare-bones script&lt;/a&gt; I used instead:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;import arcpy, glob,os
+
+theDir = r&amp;quot;L:\gdrs\data\org\us_mn_state_dnr\elev_minnesota_lidar\\&amp;quot;
+os.chdir(theDir)
+
+for iFile in glob.glob(&amp;quot;*.lyr&amp;quot;):
+    print iFile
+    lyr = arcpy.mapping.Layer(iFile)
+    for i in arcpy.mapping.ListLayers(lyr):
+        try:
+            print &amp;quot;    {0}: {1}&amp;quot;.format(i,i.dataSource)
+        except:
+            print &amp;quot;    {0}: Does not support dataSource&amp;quot;.format(i)
+
+print &amp;quot;Done!&amp;quot;
+
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
-      <title>SDEINTERCEPT &amp;#038; SDEINTERCEPTLOC</title>
-      <link>https://maprantala.com/2012/08/01/sdeintercept-#038-sdeinterceptloc/</link>
+      <title>SDEINTERCEPT and SDEINTERCEPTLOC</title>
+      <link>https://maprantala.com/2012/08/01/sdeintercept-and-sdeinterceptloc/</link>
       <pubDate>Wed, 01 Aug 2012 07:17:41 -0500</pubDate>
-      <guid>https://maprantala.com/2012/08/01/sdeintercept-#038-sdeinterceptloc/</guid>
+      <guid>https://maprantala.com/2012/08/01/sdeintercept-and-sdeinterceptloc/</guid>
       <description>&lt;p&gt;Awhile ago, I had a ArcSDE problem that required &lt;a href=&#34;http://support.esri.com/en/&#34;&gt;ESRI technical support&lt;/a&gt; to help trouble-shoot. The problem was odd but was resolved by rebooting the server.&lt;br&gt;
 During the process, though, the support person had me set a couple of environment variables for logging SDE activity on the client machine.&lt;/p&gt;
 &lt;p&gt;The settings were SDEINTERCEPT and SDEINTERCEPTLOC.&lt;/p&gt;
@@ -193,10 +309,10 @@ print fc&lt;/p&gt;
     </item>
     
     <item>
-      <title>Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
-      <link>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
+      <title>Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
+      <link>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
       <pubDate>Sun, 01 May 2011 05:01:50 -0500</pubDate>
-      <guid>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
+      <guid>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
       <description>&lt;p&gt;For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.&lt;/p&gt;
 &lt;p&gt;Here is the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;bare-bones script&lt;/a&gt; that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.  Some cautionary notes:&lt;/p&gt;
 &lt;ul&gt;
@@ -208,17 +324,184 @@ print fc&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you&amp;rsquo;ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the code for the Googlebots, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;just downloading&lt;/a&gt; it.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import arcpy
+import sys, math
+
+def printit(inMessage):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print inMessage
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; arcpy.AddMessage(inMessage)
+
+if len(sys.argv) &amp;amp;gt; 1:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inFC = sys.argv[1]
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFC = sys.argv[2]
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDistin = sys.argv[3]
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDist = float(alongDistin)
+else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inFC = &amp;quot;C:/temp/asdfasdf.mdb/jkl&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; OutDir = &amp;quot;C:/temp/asdfasdf.mdb&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFCName = &amp;quot;jkl2d&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFC = OutDir+&amp;quot;/&amp;quot;+outFCName
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDist = 1000
+
+if (arcpy.Exists(inFC)):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print(inFC+&amp;quot; does exist&amp;quot;)
+else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print(&amp;quot;Cancelling, &amp;quot;+inFC+&amp;quot; does not exist&amp;quot;)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; sys.exit(0)
+
+def distPoint(p1, p2):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; calc1 = p1.X - p2.X
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; calc2 = p1.Y - p2.Y
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return math.sqrt((calc1**2)+(calc2**2))
+
+def midpoint(prevpoint,nextpoint,targetDist,totalDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newX = prevpoint.X + ((nextpoint.X - prevpoint.X) * (targetDist/totalDist))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newY = prevpoint.Y + ((nextpoint.Y - prevpoint.Y) * (targetDist/totalDist))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return arcpy.Point(newX, newY)
+
+def splitShape(feat,splitDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Count the number of points in the current multipart feature
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partcount = feat.partCount
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partnum = 0
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Enter while loop for each part in the feature (if a singlepart feature
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # this will occur only once)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray = arcpy.Array()
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while partnum &amp;amp;lt; partcount:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Print the part number
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print &amp;quot;Part &amp;quot; + str(partnum) + &amp;quot;:&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; part = feat.getPart(partnum)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print part.count
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pnt = part.next()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pntcount = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; prevpoint = None
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist = []
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Enter while loop for each vertex
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while pnt:
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if not (prevpoint is None):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; thisDist = distPoint(prevpoint,pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; maxAdditionalDist = splitDist - totalDist
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print thisDist, totalDist, maxAdditionalDist
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (totalDist+thisDist)&amp;amp;gt; splitDist:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while(totalDist+thisDist) &amp;amp;gt; splitDist:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; maxAdditionalDist = splitDist - totalDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print thisDist, totalDist, maxAdditionalDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newpoint = midpoint(prevpoint,pnt,maxAdditionalDist,thisDist)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(newpoint)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist.append(lineArray)
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray = arcpy.Array()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(newpoint)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; prevpoint = newpoint
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; thisDist = distPoint(prevpoint,pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist+=thisDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist+=thisDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #shapelist.append(lineArray)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; prevpoint = pnt&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pntcount += 1
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pnt = part.next()
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # If pnt is null, either the part is finished or there is an
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #&amp;amp;nbsp;&amp;amp;nbsp; interior ring
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if not pnt:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pnt = part.next()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if pnt:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print &amp;quot;Interior Ring:&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partnum += 1
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (lineArray.count &amp;amp;gt; 1):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist.append(lineArray)
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return shapelist
+
+if arcpy.Exists(outFC):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; arcpy.Delete_management(outFC)
+
+arcpy.Copy_management(inFC,outFC)
+
+#origDesc = arcpy.Describe(inFC)
+#sR = origDesc.spatialReference
+
+#revDesc = arcpy.Describe(outFC)
+#revDesc.ShapeFieldName
+
+deleterows = arcpy.UpdateCursor(outFC)
+for iDRow in deleterows:&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; deleterows.deleteRow(iDRow)
+
+del iDRow
+del deleterows
+
+inputRows = arcpy.SearchCursor(inFC)
+outputRows = arcpy.InsertCursor(outFC)
+fields = arcpy.ListFields(inFC)
+
+numRecords = int(arcpy.GetCount_management(inFC).getOutput(0))
+OnePercentThreshold = numRecords // 100
+
+printit(numRecords)
+
+iCounter = 0
+iCounter2 = 0
+
+for iInRow in inputRows:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inGeom = iInRow.shape
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter+=1
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter2+=1&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (iCounter2 &amp;amp;gt; (OnePercentThreshold+0)):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; printit(&amp;quot;Processing Record &amp;quot;+str(iCounter) + &amp;quot; of &amp;quot;+ str(numRecords))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter2=0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (inGeom.length &amp;amp;gt; alongDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapeList = splitShape(iInRow.shape,alongDist)
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; for itmp in shapeList:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newRow = outputRows.newRow()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; for ifield in fields:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (ifield.editable):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newRow.setValue(ifield.name,iInRow.getValue(ifield.name))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newRow.shape = itmp
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outputRows.insertRow(newRow)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outputRows.insertRow(iInRow)
+
+del inputRows
+del outputRows
+
+printit(&amp;quot;Done!&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
     <item>
-      <title>Quick &amp;#038; Dirty arcpy: Field Listings</title>
-      <link>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</link>
+      <title>Quick and Dirty arcpy: Field Listings</title>
+      <link>https://maprantala.com/2011/03/17/quick-and-dirty-arcpy-field-listings/</link>
       <pubDate>Thu, 17 Mar 2011 17:03:39 -0500</pubDate>
-      <guid>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</guid>
+      <guid>https://maprantala.com/2011/03/17/quick-and-dirty-arcpy-field-listings/</guid>
       <description>&lt;p&gt;I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven&amp;rsquo;t found it.  So, as is my nature, I decided to roll my own.&lt;/p&gt;
 &lt;p&gt;This is a &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;bare-bones script&lt;/a&gt; that iterates through the fields, printing the field name, type, width, and precision.  There are three optional features to it:&lt;/p&gt;
 &lt;ul&gt;
@@ -234,9 +517,115 @@ print fc&lt;/p&gt;
 &lt;li&gt;outputFile, File, Output, Optional (optional output file to write)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Here is the code, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;just downloading&lt;/a&gt; it since I haven&amp;rsquo;t figured out a good way to have WordPress play nicely with python&amp;rsquo;s indenting.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;# Name: ListFields-arcpy.py
+#
+# Purpose: Lists the fields, their type, width, and precision
+# Can either have it export it to a CSV file or copy
+# and paste from the results window.
+#
+# To use, create a tool from the script and add 3 parameters:
+#  1) Table, Input, Required
+#  2) Boolean, Input, Required (controls whether or not domains are exported)
+#  3) Boolean, Input, Rekquired (controls whether or not you want to get the number of
+#  Populated records.&amp;amp;nbsp; (Your defintion of populated may vary from my code)
+#  4) File, Output, Optional (optional output file to write)
+#
+#
+
+import arcpy,sys,os
+
+def printit(inMessage):
+ print inMessage
+ arcpy.AddMessage(inMessage)
+
+if len(sys.argv) &amp;gt; 4:
+ featureclass = sys.argv[1]
+ includedomainstring = sys.argv[2]
+ doCountsRespone = sys.argv[3]
+ outputFile = sys.argv[4]
+else:
+ featureclass = &amp;quot;C:/temp/before.shp&amp;quot;
+ includedomainstring = &amp;quot;false&amp;quot;
+ doCountsRespone = &amp;quot;true&amp;quot;
+ outputFile = &amp;quot;C:/temp/before.csv&amp;quot;
+
+if (outputFile == &amp;quot;&amp;quot;):
+ doOutputFile = False
+else:
+ doOutputFile = True
+
+if (str(doCountsRespone).lower() == &amp;quot;true&amp;quot;):
+ doCounts = True
+else:
+ doCounts = False
+
+if (str(includedomainstring).lower() == &amp;quot;true&amp;quot;):
+ includedomain = True
+else:
+ includedomain = False
+
+lfields=arcpy.ListFields(featureclass)
+
+d = arcpy.Describe(featureclass)
+printit(&amp;quot;Dataset: &amp;quot;+d.baseName)
+printit(&amp;quot;Type: &amp;quot;+d.dataType)
+printit(&amp;quot;Path: &amp;quot;+d.catalogPath)
+printit(&amp;quot; &amp;quot;)
+
+tableheaders = &#39;name,type,width,precision&#39;
+
+if (doCounts == True):
+ tableheaders+=&amp;quot;,count&amp;quot;
+
+if (includedomain == True):
+ tableheaders+=&amp;quot;,domain&amp;quot;
+
+if (doOutputFile):
+ tmpfile = open(outputFile,&amp;quot;w&amp;quot;)
+ tmpfile.write(tableheaders)
+ tmpfile.write(&amp;quot;n&amp;quot;)
+
+printit (tableheaders)
+for lf in lfields:
+
+ pThisline = lf.name+&amp;quot;,&amp;quot;+lf.type +&amp;quot;,&amp;quot;+str(lf.length)+&amp;quot;,&amp;quot;+str(lf.precision)
+
+ if (doCounts == True):
+
+ rowCount = 0
+
+ #Note that I do not account for all field types
+ #Also note that my definition of being populated may vary from yours.
+ #I am using -999 as a flag to indicate a field type was not successfully
+ #identified.
+ if (lf.type == &amp;quot;Double&amp;quot;) or (lf.type == &amp;quot;Single&amp;quot;)&amp;amp;nbsp; or (lf.type == &amp;quot;Integer&amp;quot;) or (lf.type == &amp;quot;SmallInteger&amp;quot;):
+  queryString = &#39;&amp;quot;&#39;+lf.name + &#39;&amp;quot; &amp;amp;gt; 0&#39;
+  rows = arcpy.SearchCursor(featureclass, queryString, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;)
+ elif (lf.type == &amp;quot;String&amp;quot;):
+  queryString = &#39;&amp;quot;&#39;+lf.name + &#39;&amp;quot; &amp;lt;&amp;gt; &#39; + &amp;quot;&#39;&#39;&amp;quot;
+  rows = arcpy.SearchCursor(featureclass, queryString, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;)
+ else:
+  rowCount = -999
+  #rows = arcpy.SearchCursor(featureclass, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;)
+
+ if (rowCount == 0):
+  for row in rows:
+   rowCount+=1
+
+ pThisline=pThisline+&amp;quot;,&amp;quot;+str(rowCount)
+
+ if (includedomain == True):
+  pThisline=pThisline+&amp;quot;,&amp;quot;+lf.domain
+
+ printit (pThisline)
+
+ if (doOutputFile):
+  tmpfile.write(pThisline)
+  tmpfile.write(&amp;quot;n&amp;quot;)
+
+if (doOutputFile):
+ tmpfile.close
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -251,9 +640,34 @@ print fc&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/failedtodeletedomain.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The Google Machine led me to an &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=985&amp;amp;t=303616&#34;&gt;ArcForums post&lt;/a&gt; by  with some python code for listing all the fields with a domain.&lt;/p&gt;
 &lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the ‘listfc(&#39;&#39;)&amp;rsquo; line that is the first line of the def listds() module.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import arcpy
+
+min_workspace = r&amp;quot;C:\Users\mranter\AppData\Roaming\ESRI\Desktop10.0\ArcCatalog\min.minstaff.sde&amp;quot;
+
+infgdb=(min_workspace)
+arcpy.env.workspace = infgdb
+
+def listfc(inDataset):
+   featureclasses = arcpy.ListFeatureClasses(&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,inDataset)
+   for f in featureclasses:
+      print &amp;quot;feature class: &amp;quot;,f
+
+lfields=arcpy.ListFields(f)
+
+for lf in lfields:
+   if lf.domain &amp;amp;lt; &amp;quot;&amp;quot;:
+      print &amp;quot;      domain&amp;quot;,f, lf.name, lf.domain
+
+def listds():
+   listfc(&amp;quot;&amp;quot;)
+
+   datasets=arcpy.ListDatasets (&amp;quot;&amp;quot;,&amp;quot;&amp;quot;)
+   for d in datasets:
+      print &amp;quot;  dataset: &amp;quot;,d
+
+listfc(d)
+listds()
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -277,11 +691,11 @@ print fc&lt;/p&gt;
       <guid>https://maprantala.com/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/</guid>
       <description>&lt;p&gt;One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm&#34;&gt;Field Calculator&lt;/a&gt;.  When I stumbled upon a bug in the way the &lt;a href=&#34;https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/&#34;&gt;Extract Values to Points&lt;/a&gt; tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.&lt;/p&gt;
 &lt;p&gt;I set the Parser to Python and the formula was simple once I figured out the syntax:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/origin.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pPoint = arcpy.Point(0,0)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/origin.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Then, to extend my knowledge, I wanted to see how to calculate the geometry based off of two fields (X and Y).   The only real trick is knowing the bracket field names using exclamation points instead of brackets:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/fields.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;arcpy.Point(!X!,!Y!)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/fields.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;So turns out everything it pretty easy and straight-forward.  Whew!&lt;/p&gt;
 </description>
     </item>
@@ -395,9 +809,40 @@ print fc&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;One of the tasks I&amp;rsquo;ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;
 &lt;p&gt;Not an overly complicated situation but a common one that ArcGIS does not have a solution out-of-the-box. Below is a bare-bones code snippet to do it. It has both the input shapefile and output zip file hard-coded. The call to the subroutine that does the work is: zipShapefile(wellsShapeFile,wellsZipFile)&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import zipfile
+import sys
+import os
+import glob
+wellsShapeFile = &amp;quot;C:/cwi5_bk/WELLS/wells.SHP&amp;quot;
+wellsZipFile = &amp;quot;C:/cwi5_bk/WELLS/test5.zip&amp;quot;
+
+def zipShapefile(inShapefile, newZipFN):
+   print &#39;Starting to Zip &#39;+inShapefile+&#39; to &#39;+newZipFN
+
+if not (os.path.exists(inShapefile)):
+   print inShapefile + &#39; Does Not Exist&#39;
+   return False
+
+if (os.path.exists(newZipFN)):
+   print &#39;Deleting &#39;+newZipFN
+   os.remove(newZipFN)
+
+if (os.path.exists(newZipFN)):
+   print &#39;Unable to Delete&#39;+newZipFN
+   return False
+
+zipobj = zipfile.ZipFile(newZipFN,&#39;w&#39;)
+
+for infile in glob.glob( inShapefile.lower().replace(&amp;quot;.shp&amp;quot;,&amp;quot;.*&amp;quot;)):
+   print infile
+   zipobj.write(infile,os.path.basename(infile),zipfile.ZIP_DEFLATED)
+
+zipobj.close()
+return True
+
+zipShapefile(wellsShapeFile,wellsZipFile)
+print &amp;quot;done!&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

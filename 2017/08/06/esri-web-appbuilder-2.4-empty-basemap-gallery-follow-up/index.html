@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -97,12 +110,22 @@ Tags:
 <div class="content">
 <p>A while ago I <!-- raw HTML omitted -->posted <!-- raw HTML omitted -->a work-around for a problem I was having with a <!-- raw HTML omitted -->Web AppBuilder<!-- raw HTML omitted --> application. Working with Esri tech support, we determined what I was doing to cause the problem.</p>
 <p>In my config.json, I was using a relative path to the proxy. Note that I had the proxy as a separate application at the root level of our domain because I intended to have a shared proxy for all of our applications instead of individual ones. So the WAB application would be using <a href="http://ourarcgisdomain.com/proxy/proxy.ashx">http://ourarcgisdomain.com/proxy/proxy.ashx</a>.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>Well, that was causing the hiccup in the <!-- raw HTML omitted -->Basemap Gallery Widget<!-- raw HTML omitted -->. I simply modified the url parameter to have the full path of our domain, undid my custom code, and the Basemap Gallery Widget was happy.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>Score one for Esri Tech Support.</p>
+<pre><code>&quot;httpProxy&quot;: {
+	&quot;useProxy&quot;: true,
+	&quot;alwaysUseProxy&quot;: true,
+    &quot;url&quot;: &quot;/proxy/proxy.ashx&quot;,
+    &quot;rules&quot;: []
+  }
+
+</code></pre><p>Well, that was causing the hiccup in the <!-- raw HTML omitted -->Basemap Gallery Widget<!-- raw HTML omitted -->. I simply modified the url parameter to have the full path of our domain, undid my custom code, and the Basemap Gallery Widget was happy.</p>
+<pre><code>&quot;httpProxy&quot;: {
+     &quot;useProxy&quot;: true,
+     &quot;alwaysUseProxy&quot;: true,
+     &quot;url&quot;: &quot;http://ourarcgisdomain.com/proxy/proxy.ashx&quot;,
+     &quot;rules&quot;: []
+   }
+
+</code></pre><p>Score one for Esri Tech Support.</p>
 <p>Although, in my defense the <!-- raw HTML omitted -->documentation on the configuring the proxy<!-- raw HTML omitted --> is silent on the pathing.</p>
 <p> </p>
 

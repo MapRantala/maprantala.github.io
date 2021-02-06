@@ -20,11 +20,9 @@
 &lt;p&gt;net use n: \domain1sharename mypassword /USER:domainusername&lt;br&gt;
 net use t: \domain2sharename mypassword /USER:domainusername&lt;/p&gt;
 &lt;p&gt;And my python script includes two lines to call it before I access the network locations:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;import os
+os.system(&#39;C:/cwi5_bk/mapDrive.bat&#39;)
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
   </channel>

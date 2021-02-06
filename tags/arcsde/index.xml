@@ -28,10 +28,10 @@
     </item>
     
     <item>
-      <title>SDEINTERCEPT &amp;#038; SDEINTERCEPTLOC</title>
-      <link>https://maprantala.com/2012/08/01/sdeintercept-#038-sdeinterceptloc/</link>
+      <title>SDEINTERCEPT and SDEINTERCEPTLOC</title>
+      <link>https://maprantala.com/2012/08/01/sdeintercept-and-sdeinterceptloc/</link>
       <pubDate>Wed, 01 Aug 2012 07:17:41 -0500</pubDate>
-      <guid>https://maprantala.com/2012/08/01/sdeintercept-#038-sdeinterceptloc/</guid>
+      <guid>https://maprantala.com/2012/08/01/sdeintercept-and-sdeinterceptloc/</guid>
       <description>&lt;p&gt;Awhile ago, I had a ArcSDE problem that required &lt;a href=&#34;http://support.esri.com/en/&#34;&gt;ESRI technical support&lt;/a&gt; to help trouble-shoot. The problem was odd but was resolved by rebooting the server.&lt;br&gt;
 During the process, though, the support person had me set a couple of environment variables for logging SDE activity on the client machine.&lt;/p&gt;
 &lt;p&gt;The settings were SDEINTERCEPT and SDEINTERCEPTLOC.&lt;/p&gt;
@@ -144,9 +144,24 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
 &lt;p&gt;I then created a new python script and pasted the one line.&lt;/p&gt;
 &lt;p&gt;I added some imports, accepted a parameter, some string manipulation, and some result outputs and I had a quick &amp;amp; easy script. In added the script in ArcToolbox and now I can right-click on it and run it in Batch mode. I do a quick search in Windows Explorer to get all the rasters I want to run it on and select &amp;amp; drag them to my ArcToolbox Batch Dialog.&lt;/p&gt;
 &lt;p&gt;Actual code can be downloaded &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110228_load_lidar_data.zip&#34;&gt;HERE&lt;/a&gt; and you don&amp;rsquo;t need to worry about WordPress messing up the spacing.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import arcpy
+import os, sys
+
+inRaster = sys.argv[1] 
+basedir = os.path.basename(os.path.dirname(inRaster)).lower()
+outRaster = &amp;quot;Database Connections/mgs_lidar.lidar.sde/mgs_lidar.lidar.&amp;quot;+basedir
+
+def printit(inMessage):
+    print inMessage
+    arcpy.AddMessage(inMessage)
+    
+if not (arcpy.Exists(outRaster)):
+    printit (&amp;quot;Importing: &amp;quot;+basedir)
+    arcpy.CopyRaster_management(inRaster,outRaster,&amp;quot;#&amp;quot;,&amp;quot;#&amp;quot;,&amp;quot;#&amp;quot;,&amp;quot;NONE&amp;quot;,&amp;quot;NONE&amp;quot;,&amp;quot;#&amp;quot;)
+else:
+    printit (&amp;quot;Skipping: &amp;quot;+basedir+&amp;quot; because it already exists!&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -222,18 +237,27 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
       <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
 &lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
 &lt;p&gt;No problem creating the index, for example:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gp.AddIndex_management(tablename, field, IndexName, &amp;quot;NON_UNIQUE&amp;quot;, &amp;quot;NON_ASCENDING&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gp.Exists(mgs_c5ix_fullname)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
 &lt;p&gt;A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;gp = arcgisscripting.create(9.3)
+
+def indexExists(tablename,indexname):
+ if not gp.Exists(tablename):
+  return False
+
+ indexList = gp.listindexes(tablename)
+
+ for iIndex in indexList:
+  if (iIndex.Name == indexname):
+   return True
+
+ return False
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;indexExists(tablename,indexname)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

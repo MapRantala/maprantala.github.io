@@ -16,11 +16,23 @@
       <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries./</guid>
       <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the &amp;lsquo;lazy&amp;rsquo; GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
 &lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;#These first 3 lines only need to be run once.
+mxd = arcpy.mapping.MapDocument(&amp;quot;CURRENT&amp;quot;)
+l = arcpy.mapping.ListDataFrames(mxd)[0] #Note the hard-code [0], meaning the first dataframe. YMMV
+ll = arcpy.mapping.ListLayers(l)
+
+#Everytime I wanted to update the definition queries just need to update the replace parameters.
+
+for l in ll:
+     try:
+        print(l.name)
+        print(l.definitionQuery)
+        z = l.definitionQuery.replace(&amp;quot;_011&amp;quot;,&amp;quot;_012&amp;quot;)
+        l.definitionQuery = z
+     except:
+        print(&amp;quot;&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -44,11 +56,36 @@
       <description>&lt;p&gt;Question: How do I get ArcMap to automatically pan through an area.&lt;/p&gt;
 &lt;p&gt;As I mentioned in a &lt;a href=&#34;https://maprantala.com/2012/04/30/building-a-loc%E2%80%A6f-bing-imagery/&#34;&gt;previous post&lt;/a&gt;, I recently had the need to have ArcMap automatically pan through a project area. My first attempt was to print a series of data-driven pages (using a fishnet polygon layer as the index) this but that did not accomplish what I needed so I switched to arcpy, which made the task simple enough. Nothing special or tricky about this code, but just did not find it anywhere else.&lt;/p&gt;
 &lt;p&gt;The one thing to note is that I have a 1 second pause between pans–this was to allow image tiles to download. You will need to adjust the delay to meet your needs. &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120427_AutoPan.zip&#34;&gt;The toolbox and code can also be downloaded&lt;/a&gt;.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;import sys,arcpy,datetime
+inLayer = sys.argv[1]
+
+def printit(inMessage):
+    print inMessage
+    arcpy.AddMessage(inMessage)
+
+mxd = arcpy.mapping.MapDocument(&amp;quot;CURRENT&amp;quot;)
+
+arcpy.MakeFeatureLayer_management(inLayer, &amp;quot;indexLayer&amp;quot;)
+cur=arcpy.SearchCursor(&amp;quot;indexLayer&amp;quot;)
+
+df = arcpy.mapping.ListDataFrames(mxd)[0]
+newExtent = df.extent
+
+iCount = 0
+iTotal = (arcpy.GetCount_management(&amp;quot;indexLayer&amp;quot;).getOutput(0))
+
+for row in cur:
+    thisPoly = row.getValue(&amp;quot;Shape&amp;quot;)
+    newExtent.XMin, newExtent.YMin = thisPoly.extent.XMin, thisPoly.extent.YMin
+    newExtent.XMax, newExtent.YMax = thisPoly.extent.XMax, thisPoly.extent.YMax
+    df.extent = newExtent
+    time.sleep(1)
+    iCount+=1
+    printit(&amp;quot;Panned to feature {0} of {1}&amp;quot;.format(iCount,iTotal))
+
+del row
+del cur
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -60,9 +97,16 @@
 &lt;p&gt;Something I did today was create a field (!Case!) and then populated this with a unique identifier for each different value (case) that occurred in a different field (!Feature!).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Note: python&amp;rsquo;s &lt;em&gt;index&lt;/em&gt; statement is a 0-based search so the first case will have the value 0, the second will have 1, and so on. If you want to start the results at 1, you can make the last line: &amp;lsquo;return caseList.index(inValue) + 1&amp;rsquo;.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;The basic structure for this is shown:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;caseList = [ ]
+
+def returnCase(inValue):
+   global caseList
+
+   if not inValue in caseList:
+      caseList.append(inValue)
+
+   return caseList.index(inValue)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -89,9 +133,17 @@
 &lt;p&gt;**(Note: The same results could have be achieved by using the original function by creating the list in the calling statement:  returnCase([!county_c!,!feature!] )&lt;br&gt;
 **&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2012/04/case_multiple.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;caseList = [ ]
+
+def returnCase(inValue1, inValue2):
+   inValue = [inValue1, inValue2]
+   global caseList
+
+   if not inValue in caseList:
+      caseList.append(inValue)
+
+   return caseList.index(inValue)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2012/04/case_multiple.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -102,9 +154,10 @@
       <guid>https://maprantala.com/2011/10/06/arcmap-field-calculator-arcpy-date-to-decimal-function/</guid>
       <description>&lt;p&gt;One of the standards in our databases is to store dates as 8-digit integer values in the format of yyyymmdd. This requires us to occasionally convert values from date fields into this format.&lt;/p&gt;
 &lt;p&gt;We can do this in the ArcMap Field Calculator using this arcpy function:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/10/datetodouble.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def datetodouble(inNum):
+     splitList = str(inNum).split(&amp;quot;/&amp;quot;)
+     return  splitList [2]  +(&amp;quot;0&amp;quot;+ splitList [0])[-2:]  +(&amp;quot;0&amp;quot;+ splitList [1])[-2:]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/10/datetodouble.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -120,9 +173,9 @@
 &lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is &amp;lsquo;Embedded Resource&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/07/embedded.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Then you can set your cursor with two lines of code. Not that my cursor is in my QDI.QdiAddIn Namespace:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;Dim pCursorStream As System.IO.Stream = Me.GetType.Assembly.GetManifestResourceStream(&amp;quot;QDI.QdiAddIn.NewCursor.cur&amp;quot;)
+MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -145,20 +198,20 @@
       <guid>https://maprantala.com/2011/03/08/arcmap-field-calculator-calculating-geometry-using-arcpy/</guid>
       <description>&lt;p&gt;One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm&#34;&gt;Field Calculator&lt;/a&gt;.  When I stumbled upon a bug in the way the &lt;a href=&#34;https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/&#34;&gt;Extract Values to Points&lt;/a&gt; tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.&lt;/p&gt;
 &lt;p&gt;I set the Parser to Python and the formula was simple once I figured out the syntax:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/origin.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pPoint = arcpy.Point(0,0)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/origin.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Then, to extend my knowledge, I wanted to see how to calculate the geometry based off of two fields (X and Y).   The only real trick is knowing the bracket field names using exclamation points instead of brackets:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/fields.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;arcpy.Point(!X!,!Y!)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/fields.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;So turns out everything it pretty easy and straight-forward.  Whew!&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>ArcMap Copy &amp;#038; Paste Features</title>
-      <link>https://maprantala.com/2010/10/13/arcmap-copy-#038-paste-features/</link>
+      <title>ArcMap Copy and Paste Features</title>
+      <link>https://maprantala.com/2010/10/13/arcmap-copy-and-paste-features/</link>
       <pubDate>Wed, 13 Oct 2010 16:28:39 -0500</pubDate>
-      <guid>https://maprantala.com/2010/10/13/arcmap-copy-#038-paste-features/</guid>
+      <guid>https://maprantala.com/2010/10/13/arcmap-copy-and-paste-features/</guid>
       <description>&lt;p&gt;Sometimes it seems like I could write the data down by long hand faster than ArcMap can copy &amp;amp; paste features from one feature class to another. geeeeezzz.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>

@@ -17,11 +17,75 @@
       <description>&lt;p&gt;Working on doing some &lt;!-- raw HTML omitted --&gt;advanced ArcGIS server printing&lt;!-- raw HTML omitted --&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;!-- raw HTML omitted --&gt;Petr Krebs&lt;!-- raw HTML omitted --&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
 &lt;p&gt;I created an ArcGIS toolbox with two options–one to convert a single .mxd and one to batch convert an entire folder. To use it, make sure to have the EmptyGroup.lyr in the same directory as the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the raw code or &lt;!-- raw HTML omitted --&gt;git it&lt;!-- raw HTML omitted --&gt;:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;import os
+import arcpy
+import inspect
+import glob
+import uuid
+import inspect
+
+codeDir = os.path.dirname(inspect.getfile(inspect.currentframe()))
+EmptyGroupLayerFile = codeDir+&amp;quot;/EmptyGroup.lyr&amp;quot;
+inArg1 = sys.argv[1]
+inArg2 = sys.argv[2]
+
+def printit(inMessage):
+    arcpy.AddMessage(inMessage)
+
+def makeLyrFromMXD(inMXD, outLyr):
+    if not (os.path.exists(inMXD)):
+        printit( &amp;quot;ERROR: {} does not exist&amp;quot;.format(inMXD))
+        return False
+    if not (os.path.exists(EmptyGroupLayerFile)):
+        printit( &amp;quot;ERROR: {} does not exist&amp;quot;.format(EmptyGroupLayerFile))
+        return False
+    if  (os.path.exists(outLyr)):
+        printit( &amp;quot;Skipping: {} already exists&amp;quot;.format(outLyr))
+        return True
+
+    printit( &amp;quot;Making Layer file: {0}&amp;quot;.format(outLyr))
+
+    mxd = arcpy.mapping.MapDocument(inMXD)
+    ###Right now, just doing the first Dataframe, this could be modified
+    df = arcpy.mapping.ListDataFrames(mxd)[0]
+
+    theUUID = str(uuid.uuid1())
+
+    iGroupLayerRaw = arcpy.mapping.Layer(EmptyGroupLayerFile)
+    iGroupLayerRaw.name = theUUID
+    arcpy.mapping.AddLayer(df,iGroupLayerRaw,&amp;quot;TOP&amp;quot;)
+    groupBaseName = os.path.basename(outLyr).split(&amp;quot;.&amp;quot;)[0]
+
+    for lyr in arcpy.mapping.ListLayers(df):
+        if not (lyr.name == theUUID):
+            if (lyr.longName == lyr.name):
+                arcpy.mapping.AddLayerToGroup (df, iGroupLayer, lyr, &amp;quot;Bottom&amp;quot;)
+        else:
+            iGroupLayer = lyr
+
+    iGroupLayer.name = groupBaseName
+    arcpy.SaveToLayerFile_management(iGroupLayer, outLyr)
+    return os.path.exists(outLyr)
+
+def doMultiple(inDir,outDir):
+    for iMxd in glob.glob(inDir+&amp;quot;/*.mxd&amp;quot;):
+        lyrFile = outDir+&amp;quot;/&amp;quot;+os.path.basename(iMxd).lower().replace(&amp;quot;.mxd&amp;quot;,&amp;quot;.lyr&amp;quot;)
+        makeLyrFromMXD(iMxd, lyrFile)
+
+if(not os.path.exists(EmptyGroupLayerFile)):
+    printit(&amp;quot;Error: {} is missing, can not run.&amp;quot;.format(EmptyGroupLayerFile))
+else:
+    if (os.path.isdir(inArg1) and (os.path.isdir(inArg2))):
+        doMultiple(inArg1,inArg2)
+    elif (os.path.isfile(inArg1)):
+        if (os.path.exists(inArg2)):
+            printit(&amp;quot;Error: {} already exists&amp;quot;.format(inArg2))
+        else:
+            makeLyrFromMXD(inArg1,inArg2)
+    else:
+        printit(&amp;quot;Unable to understand input parameters&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
   </channel>

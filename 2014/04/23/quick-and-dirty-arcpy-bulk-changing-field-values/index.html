@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Quick and Dirty arcpy: Bulk Changing Field Values – Node Dangles</title>
+<meta name="description" content="In mapping cross sections, our geologists often find themselves renaming their stratigraphic units midway, or at the end, of creating multiple cross sections. This can …">
+<meta name="created" content="2014-04-23T05:18:24-0500">
+<meta name="modified" content="2014-04-23T05:18:24-0500">
+<meta name="author" content="Matt">
+
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="Quick and Dirty arcpy: Bulk Changing Field Values">
+<meta property="og:url" content="https://maprantala.com/2014/04/23/quick-and-dirty-arcpy-bulk-changing-field-values/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/2014/04/23/quick-and-dirty-arcpy-bulk-changing-field-values/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Quick and Dirty arcpy: Bulk Changing Field Values",
+    "datePublished": "2014-04-23T05:18:24-05:00",
+    "dateModified": "2014-04-23T05:18:24-05:00",
+    "url" : "https://maprantala.com/2014/04/23/quick-and-dirty-arcpy-bulk-changing-field-values/",
+    "description": "In mapping cross sections, our geologists often find themselves renaming their stratigraphic units midway, or at the end, of creating multiple cross sections. This can …",
+    "author": {
+      "@type": "Person",
+      "name": "Matt"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title ">Quick and Dirty arcpy: Bulk Changing Field Values</h1>
+</header>
+<div class="content">
+<p>In mapping cross sections, our geologists often find themselves renaming their stratigraphic units midway, or at the end, of creating multiple cross sections.  This can cause a situation where we need to change multiple values in multiple fields in multiple feature classes–a situation that can get messy very fast.</p>
+<p>Perfect situation for a quick &amp; dirty arcpy script and, in this case, an <a href="https://github.com/MapRantala/Blog">ArcToolbox tool that can be downloaded</a>.</p>
+<p>This tool will change all feature classes in the O:\clay_cga\sand-distribution_model\dnrPackages\stratlines directory.</p>
+<p>It will look at two fields, [strat] and [unit] and make these changes:</p>
+<ul>
+<li>&lsquo;go&rsquo; becomes &lsquo;gro&rsquo;</li>
+<li>&lsquo;goc&rsquo; becomes &lsquo;grc&rsquo;</li>
+<li>&lsquo;sgb&rsquo; becomes &lsquo;grb&rsquo;</li>
+</ul>
+<p>And since I have Case Sensitive checked, &lsquo;Go&rsquo; will not get changed to &lsquo;gro&rsquo;.  Also note that only full values that match values in the Old Value List get changed, part matches are left as-is so &lsquo;got&rsquo; would be left as-is even though the first two characters match &lsquo;go&rsquo;.</p>
+<p> </p>
+<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/BulkFieldChange.png"><!-- raw HTML omitted --></a></p>
+<pre><code>import arcpy
+import sys, string, arcgisscripting
+import arcpy
+
+def printit(inString):
+    print inString
+    arcpy.AddMessage(inString)
+
+def printerr(inString):
+    print inString
+    arcpy.AddError(inString)
+
+def fieldExists(tablename,indexname):
+
+ if not arcpy.Exists(tablename):
+  return False
+
+ tabledescription = arcpy.Describe(tablename)
+
+ for iField in tabledescription.fields:
+     if (iField.Name.lower() == indexname.lower()):
+         return True
+
+ return False
+
+
+if len(sys.argv) &amp;gt; 1:
+    inDirectory = sys.argv[1]
+    inFieldNameRaw = sys.argv[2]
+    oldValue = sys.argv[3].replace(&quot;,&quot;,&quot; &quot;)
+    newValue = sys.argv[4].replace(&quot;,&quot;,&quot; &quot;)
+    caseSensitiveRaw = sys.argv[5]
+else:
+    inDirectory = r&quot;C:\temp\test\stratest&quot;
+    inFieldNameRaw = &quot;strat&quot;
+    oldValue = &quot;go, goc, sgb&quot;.replace(&quot;,&quot;,&quot; &quot;)
+    newValue = &quot;gro grc grb&quot;.replace(&quot;,&quot;,&quot; &quot;)
+    caseSensitiveRaw = &quot;true&quot;
+
+caseSensitive = (caseSensitiveRaw.lower() == &quot;true&quot;)
+fieldNameList = inFieldNameRaw.replace(&quot;,&quot;,&quot; &quot;).split()
+
+printit(&quot;Starting&quot;)
+printit(&quot; Workspace: &quot;+str(inDirectory))
+printit( &quot; inFieldName: &quot;+str(inFieldNameRaw))
+printit( &quot; oldValue: &quot;+str(oldValue))
+printit( &quot; newValue: &quot;+str(newValue))
+printit( &quot; caseSensitive: &quot;+str(caseSensitive))
+
+valueDict = dict()
+
+def initialQC():
+    global valueDict
+
+    if not (arcpy.Exists(inDirectory)):
+        printerr(&quot;Workspace {0} does not exist&quot;.format(inDirectory))
+        return False
+
+    if (len(oldValue.split()) &lt;&gt; len(newValue.split())):
+        printerr(&quot;Number of values in {0} does not equal number of values in {1}&quot;.format(oldValue,newValue))
+        return False
+
+    iValueIndex = 0
+    for iOldValue in oldValue.split():
+        if (caseSensitive):
+            thisKey = iOldValue
+        else:
+            thisKey = iOldValue.lower()
+
+        if (valueDict.has_key(thisKey)):
+            printerr(&quot;ERROR: Value, {0}, is repeated, cancelling...&quot;.format(thisKey))
+            return False
+
+        valueDict[thisKey] = newValue.split()[iValueIndex]
+        iValueIndex+=1
+    return True
+
+def makeFieldList(inFC):
+    thisFieldList = []
+
+    for iField in fieldNameList:
+        if (fieldExists(inFC,iField)):
+            thisFieldList.append(iField)
+
+    return thisFieldList
+
+
+def main():
+    arcpy.env.workspace = inDirectory
+    printit(valueDict)
+    for iFC in arcpy.ListFeatureClasses():
+        printit(&quot;Working on {0}&quot;.format(iFC))
+
+        iFieldList = makeFieldList(iFC)
+        if (len(iFieldList) == 0):
+            printit(&quot; No fields to change, Skipping...&quot;)
+            continue
+
+        rows = arcpy.UpdateCursor(iFC)
+
+        changes = 0
+        printit(&quot; Changing Rows&quot;)
+        for row in rows:
+            iChange = 0
+            for iField in iFieldList:
+                iValue = str(row.getValue(iField))
+                newValue = iValue
+
+                if valueDict.has_key(iValue):
+                    newValue = valueDict[iValue]
+                else:
+                    if not (caseSensitive):
+                        if valueDict.has_key(iValue.lower()):
+                            newValue = valueDict[iValue.lower()]
+
+                if (newValue &lt;&gt; iValue):
+                    printit(&quot;CHANGE {0}&quot;.format(newValue))
+                    row.setValue(iField,newValue)
+                    iChange+=1
+
+            if (iChange &amp;gt; 0):
+                changes+=1
+                rows.updateRow(row)
+        printit(&quot; Made {0} changes&quot;.format(changes))
+        del row
+        del rows
+
+    printit(&quot;Main&quot;)
+
+if (initialQC()==True):
+    main()
+
+printit(&quot;Done&quot;)
+
+</code></pre>
+
+</div>
+</article>
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+</body>
+</html>

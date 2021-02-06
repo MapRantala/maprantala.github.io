@@ -17,14 +17,36 @@
       <description>&lt;p&gt;So I have a nightly process that runs and I, being the lazy programmer I am, didn&amp;rsquo;t want to bother checking a log file each morning to see how it went. The natural answer is to have the results emailed to me because I do have to check my email.&lt;/p&gt;
 &lt;p&gt;Since the process is already handled mostly in python, thought I would implement the emailing via python. It was actually simple enough to do–just required figuring out the setting for my SMTP server (actually I didn&amp;rsquo;t figure it our for my work server so I&amp;rsquo;m using my GMail account).&lt;/p&gt;
 &lt;p&gt;I first wrote eMailer.py (see code below) and included it in my python path. Now, whenever I want to send code from a python application, it takes two easy lines:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;h2 id=&#34;emailerpy&#34;&gt;eMailer.py&lt;/h2&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;import eMailer
+eMailer.SendMess(&amp;quot;someoneg@company.com&amp;quot;,&amp;quot;Subject&amp;quot;,&amp;quot;Text Body&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;emailerpy&#34;&gt;eMailer.py&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;import smtplib
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+
+fromaddr = &#39;node.dangles AT gmail.com&#39;
+password = &#39;myFancyPassword&#39;
+smtpaddr = &#39;smtp.gmail.com&#39;
+smtpport = 587
+
+def SendMess(toadd, subject, body):
+
+msg = MIMEMultipart()
+msg[&#39;From&#39;] = fromaddr
+msg[&#39;To&#39;] = toadd
+msg[&#39;Subject&#39;] = subject
+msg.attach(MIMEText(body, &#39;plain&#39;))
+
+text = msg.as_string()
+
+server = smtplib.SMTP(smtpaddr, smtpport)
+server.ehlo()
+server.starttls()
+server.ehlo()
+server.login(fromaddr, password)
+
+server.sendmail(fromaddr, toadd, text)
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
   </channel>

@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -101,15 +114,28 @@ Tags:
 <div class="content">
 <p>While working on a VB.Net form to query a database that includes an optional date range query, I decided I wanted to display a datetimepicker with a blank value by default and then, if the user sets a date show the date.  By default, a datetimepicker can not have a Null date, so I went a&rsquo;Googling and found this post, <a href="http://dotnetref.blogspot.com/2009/03/setting-datetimepicker-to-blank-value.html">.NET Reference: Setting the DateTimePicker to a Blank Value</a> ,that had exactly the technique I wanted.</p>
 <p>Basically, I set the datetimepicker&rsquo;s CustomFormat to a space (' &lsquo;) when I want it to be Null and then when the user makes a selection, set the custom format to the date format I wanted to display.    This is the sample code I found:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>To let the user delete the date they entered, I add this subroutine that handles the KeyDown event for the datetimepicker. If the user hits delete or backspace, I set the format back to my null CustomFormat.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>When building my SQL statement, I check the .CustomFormat property to determine whether or not to include a condition for the data:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code>Private Sub ToDateField_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+   Handles ToDateField.ValueChanged
+     Me.ToDateField.Format = Windows.Forms.DateTimePickerFormat.Custom
+     Me.ToDateField.CustomFormat = &quot;M/dd/yyyy&quot;
+End Sub
+</code></pre><p>To let the user delete the date they entered, I add this subroutine that handles the KeyDown event for the datetimepicker. If the user hits delete or backspace, I set the format back to my null CustomFormat.</p>
+<pre><code>Private Sub ClearDates_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) _
+ Handles ToDateField.KeyDown
+
+ If (e.KeyCode = Windows.Forms.Keys.Delete) Or (e.KeyCode = Windows.Forms.Keys.Back) Then
+ Dim mDateTimePicker As Windows.Forms.DateTimePicker
+          mDateTimePicker = TryCast(sender, Windows.Forms.DateTimePicker)
+          If Not (mDateTimePicker Is Nothing) Then
+               mDateTimePicker.CustomFormat = &quot; &quot;
+          End If
+End If
+End Sub
+</code></pre><p>When building my SQL statement, I check the .CustomFormat property to determine whether or not to include a condition for the data:</p>
+<pre><code>If Not (Me.ToDateField.CustomFormat = &quot; &quot;) Then
+ 'Code here to add to my SQL statement
+ End If
+</code></pre><!-- raw HTML omitted -->
 
 
 </div>

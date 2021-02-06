@@ -21,9 +21,9 @@
 &lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is &amp;lsquo;Embedded Resource&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/07/embedded.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Then you can set your cursor with two lines of code. Not that my cursor is in my QDI.QdiAddIn Namespace:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;Dim pCursorStream As System.IO.Stream = Me.GetType.Assembly.GetManifestResourceStream(&amp;quot;QDI.QdiAddIn.NewCursor.cur&amp;quot;)
+MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -66,10 +66,10 @@
     </item>
     
     <item>
-      <title>Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
-      <link>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
+      <title>Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
+      <link>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
       <pubDate>Sun, 01 May 2011 05:01:50 -0500</pubDate>
-      <guid>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
+      <guid>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
       <description>&lt;p&gt;For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.&lt;/p&gt;
 &lt;p&gt;Here is the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;bare-bones script&lt;/a&gt; that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.  Some cautionary notes:&lt;/p&gt;
 &lt;ul&gt;
@@ -81,9 +81,176 @@
 &lt;/ul&gt;
 &lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you&amp;rsquo;ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the code for the Googlebots, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;just downloading&lt;/a&gt; it.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import arcpy
+import sys, math
+
+def printit(inMessage):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print inMessage
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; arcpy.AddMessage(inMessage)
+
+if len(sys.argv) &amp;amp;gt; 1:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inFC = sys.argv[1]
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFC = sys.argv[2]
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDistin = sys.argv[3]
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDist = float(alongDistin)
+else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inFC = &amp;quot;C:/temp/asdfasdf.mdb/jkl&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; OutDir = &amp;quot;C:/temp/asdfasdf.mdb&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFCName = &amp;quot;jkl2d&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFC = OutDir+&amp;quot;/&amp;quot;+outFCName
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDist = 1000
+
+if (arcpy.Exists(inFC)):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print(inFC+&amp;quot; does exist&amp;quot;)
+else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print(&amp;quot;Cancelling, &amp;quot;+inFC+&amp;quot; does not exist&amp;quot;)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; sys.exit(0)
+
+def distPoint(p1, p2):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; calc1 = p1.X - p2.X
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; calc2 = p1.Y - p2.Y
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return math.sqrt((calc1**2)+(calc2**2))
+
+def midpoint(prevpoint,nextpoint,targetDist,totalDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newX = prevpoint.X + ((nextpoint.X - prevpoint.X) * (targetDist/totalDist))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newY = prevpoint.Y + ((nextpoint.Y - prevpoint.Y) * (targetDist/totalDist))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return arcpy.Point(newX, newY)
+
+def splitShape(feat,splitDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Count the number of points in the current multipart feature
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partcount = feat.partCount
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partnum = 0
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Enter while loop for each part in the feature (if a singlepart feature
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # this will occur only once)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray = arcpy.Array()
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while partnum &amp;amp;lt; partcount:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Print the part number
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print &amp;quot;Part &amp;quot; + str(partnum) + &amp;quot;:&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; part = feat.getPart(partnum)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print part.count
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pnt = part.next()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pntcount = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; prevpoint = None
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist = []
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Enter while loop for each vertex
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while pnt:
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if not (prevpoint is None):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; thisDist = distPoint(prevpoint,pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; maxAdditionalDist = splitDist - totalDist
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print thisDist, totalDist, maxAdditionalDist
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (totalDist+thisDist)&amp;amp;gt; splitDist:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while(totalDist+thisDist) &amp;amp;gt; splitDist:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; maxAdditionalDist = splitDist - totalDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print thisDist, totalDist, maxAdditionalDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newpoint = midpoint(prevpoint,pnt,maxAdditionalDist,thisDist)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(newpoint)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist.append(lineArray)
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray = arcpy.Array()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(newpoint)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; prevpoint = newpoint
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; thisDist = distPoint(prevpoint,pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist+=thisDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist+=thisDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #shapelist.append(lineArray)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; prevpoint = pnt&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pntcount += 1
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pnt = part.next()
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # If pnt is null, either the part is finished or there is an
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #&amp;amp;nbsp;&amp;amp;nbsp; interior ring
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if not pnt:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pnt = part.next()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if pnt:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print &amp;quot;Interior Ring:&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partnum += 1
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (lineArray.count &amp;amp;gt; 1):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist.append(lineArray)
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return shapelist
+
+if arcpy.Exists(outFC):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; arcpy.Delete_management(outFC)
+
+arcpy.Copy_management(inFC,outFC)
+
+#origDesc = arcpy.Describe(inFC)
+#sR = origDesc.spatialReference
+
+#revDesc = arcpy.Describe(outFC)
+#revDesc.ShapeFieldName
+
+deleterows = arcpy.UpdateCursor(outFC)
+for iDRow in deleterows:&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; deleterows.deleteRow(iDRow)
+
+del iDRow
+del deleterows
+
+inputRows = arcpy.SearchCursor(inFC)
+outputRows = arcpy.InsertCursor(outFC)
+fields = arcpy.ListFields(inFC)
+
+numRecords = int(arcpy.GetCount_management(inFC).getOutput(0))
+OnePercentThreshold = numRecords // 100
+
+printit(numRecords)
+
+iCounter = 0
+iCounter2 = 0
+
+for iInRow in inputRows:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inGeom = iInRow.shape
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter+=1
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter2+=1&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (iCounter2 &amp;amp;gt; (OnePercentThreshold+0)):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; printit(&amp;quot;Processing Record &amp;quot;+str(iCounter) + &amp;quot; of &amp;quot;+ str(numRecords))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter2=0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (inGeom.length &amp;amp;gt; alongDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapeList = splitShape(iInRow.shape,alongDist)
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; for itmp in shapeList:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newRow = outputRows.newRow()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; for ifield in fields:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (ifield.editable):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newRow.setValue(ifield.name,iInRow.getValue(ifield.name))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newRow.shape = itmp
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outputRows.insertRow(newRow)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outputRows.insertRow(iInRow)
+
+del inputRows
+del outputRows
+
+printit(&amp;quot;Done!&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -120,11 +287,9 @@
 &lt;p&gt;I found the solution in ESRI&amp;rsquo;s topic, &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/&#34;&gt;Advanced add-in concepts (ArcObjects .NET 10 SDK)&lt;/a&gt; in the Delayed loading section:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;The verbiage, &amp;lsquo;setting the onDemand Extensible Markup Language (XML) attribute to false&amp;rsquo; was a bit non-specific to me.  I guessed right, however, that they were referring to the control definiton in the Command section of Config.esriaddinx.  In the example below, I set the onDemand attribute to false by adding the  ‘onDemand=&amp;lsquo;false&amp;rsquo;‘ tag and the control did, in fact, get instantiated at load time, giving me the ability to disable it.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;&amp;amp;lt;Tool id=&amp;quot;MGS_QDIAddin_QDIAddTool&amp;quot; class=&amp;quot;QDIAddTool&amp;quot; message=&amp;quot;QDI Add New Location.&amp;quot; caption=&amp;quot;QDI Add Tool&amp;quot; tip=&amp;quot;QDI Add Tool.&amp;quot; category=&amp;quot;QDI Add-In Controls&amp;quot; image=&amp;quot;ImagesQDIAddTool.png&amp;quot; onDemand=&amp;quot;false&amp;quot;/&amp;amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -138,21 +303,21 @@
 &lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&amp;rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fix is just adding  &amp;lsquo;My.&amp;rsquo; to the namespace in this line:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To get this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To get this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(My.ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/errorlist.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fixes in this case was also to use the complete name space path.  Examples:&lt;/p&gt;
 &lt;p&gt;Change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(geometry.GeometryType) = esriGeometryType.esriGeometryPoint Then
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If (geometry.GeometryType) = ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPoint Then)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And change this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = ESRI.ArcGIS.Display.esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -165,9 +330,18 @@
       <description>&lt;p&gt;I have been working on some data entry forms that utilize a DataGrid.  Using a PostGres Geodatabase that had domains set on several fields, I could not directly bind to the controls on my dialog.  So I am going the round-about way of populating my own comboboxes with valid names and displaying within the DataGrid.&lt;/p&gt;
 &lt;p&gt;Having not done this previously, I found this example: &lt;a href=&#34;http://www.eggheadcafe.com/community/aspnet/14/22477/example-of-how-to-add-controls-in-data-grid.aspx&#34;&gt;Example of how to add controls in data grid VB.NET&lt;/a&gt; very useful and just wanted to point it out to anyone.  &lt;a href=&#34;http://www.syncfusion.com/FAQ/windowsforms/faq_c44c.aspx#q1015q&#34;&gt;George Shephard&amp;rsquo;s Windows Forms FAQ&lt;/a&gt; also had several useful tips.&lt;/p&gt;
 &lt;p&gt;Finally, I has a problem with the masked textboxs I added to the Datagrid, they required users to click once to get focus and a second to start editing.  After much googling, I found used some information from &lt;a href=&#34;http://social.msdn.microsoft.com/Forums/en-US/vbgeneral/thread/8d3c1f98-9501-4902-b81b-82f6bbd4f3e5/&#34;&gt;MSDN&lt;/a&gt; that allowed me to find a work-around.  In my Mousedown event, I included this snippet (QdiControl is the control for the specific cell that the HitTestInfo says the mousedown hit):&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Peace.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;amp;lt;/pre&amp;amp;gt;
+Dim WindowsControl As System.Windows.Forms.Control = CType(QdiControl, System.Windows.Forms.Control)
+If (TypeOf WindowsControl Is MaskedTextBox) Then
+ Dim pTextBox As MaskedTextBox = CType(WindowsControl, MaskedTextBox)
+ Dim dgdtblStyle As DataGridColumnStyle = RelatedForm.DataGrid.TableStyles(0).GridColumnStyles(CurrentColumn)
+
+ RelatedForm.DataGrid.BeginEdit(dgdtblStyle, CurrentRow)
+ pTextBox.Select(pTextBox.Text.Length, 0)
+ WindowsControl.Focus()
+
+ End If
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Peace.&lt;/p&gt;
 </description>
     </item>
     

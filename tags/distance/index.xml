@@ -10,10 +10,10 @@
     <atom:link href="https://maprantala.com/tags/distance/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Measuring distance from a point to a line segment in Python.</title>
-      <link>https://maprantala.com/2010/05/16/measuring-distance-from-a-point-to-a-line-segment-in-python./</link>
+      <title>Measuring distance from a point to a line segment in Python</title>
+      <link>https://maprantala.com/2010/05/16/measuring-distance-from-a-point-to-a-line-segment-in-python/</link>
       <pubDate>Sun, 16 May 2010 17:14:23 -0500</pubDate>
-      <guid>https://maprantala.com/2010/05/16/measuring-distance-from-a-point-to-a-line-segment-in-python./</guid>
+      <guid>https://maprantala.com/2010/05/16/measuring-distance-from-a-point-to-a-line-segment-in-python/</guid>
       <description>&lt;p&gt;I recently had the need to calculate the distance from a point (address point) to a polyline (street segment) and wanted to avoid using any additional libraries because it was being done for an external client. Ok, I actually used arcgisscripting for reading the data but that lacked, from what I could tell, the fine-detail granularity of measuring distance between individual geometries.&lt;/p&gt;
 &lt;p&gt;But since the only spatial operations I needed were to measure the distance between two points and the distance between a point and polyline, I decided to just do it via brute force. The datasets being processed were not huge so it made this feasible.&lt;/p&gt;
 &lt;p&gt;Measuring point-to-point distance was easy enough. And while I knew I could work through the details of measuring the distance between a point and polyline, I decided NOT to re-invent the wheel if I did not have to. Google did not come up with any direct answers but I did come across this &lt;a href=&#34;http://local.wasp.uwa.edu.au/%7Epbourke/geometry/pointline/&#34;&gt;post&lt;/a&gt; from &lt;a href=&#34;http://local.wasp.uwa.edu.au/%7Epbourke/&#34; title=&#34;Paul Bourke&#34;&gt;Paul Bourke&lt;/a&gt; at the &lt;a href=&#34;http://wasp.uwa.edu.au/&#34;&gt;University of Western Australia&lt;/a&gt; about measuring the distance between a point and a line segment. A polyline is just a series of line segments so I used it as the basis of my measurement–I just loop through all the consecutive vertice pairs, using the minimum distance found.&lt;/p&gt;

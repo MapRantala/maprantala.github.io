@@ -53,9 +53,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -89,11 +102,45 @@
 <p>Back in 2010, I posted a <!-- raw HTML omitted -->python script <!-- raw HTML omitted -->and an <!-- raw HTML omitted -->ArcToolbox<!-- raw HTML omitted --> tool for zipping a shapefile.</p>
 <p>Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn&rsquo;t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from <!-- raw HTML omitted -->Github<!-- raw HTML omitted -->.</p>
 <p>The guts of the code is here, though:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<blockquote>
-</blockquote>
+<pre><code>import zipfile
+import sys
+import os
+import glob
 
+theShapeFile = sys.argv[1]
+outputZipFile = sys.argv[2]
+skipLockFile = sys.argv[3]
+
+def zipShapefile(inShapefile, newZipFN, skipLockFile):
+    print 'Starting to Zip '+inShapefile+' to '+newZipFN
+
+    if not (os.path.exists(inShapefile)):
+        print inShapefile + ' Does Not Exist'
+        return False
+
+    if (os.path.exists(newZipFN)):
+        print 'Deleting '+newZipFN
+        os.remove(newZipFN)
+
+        if (os.path.exists(newZipFN)):
+            print 'Unable to Delete'+newZipFN
+            return False
+
+    zipobj = zipfile.ZipFile(newZipFN,'w')
+
+    for infile in glob.glob( inShapefile.lower().replace(&quot;.shp&quot;,&quot;.*&quot;)):
+        print infile
+        if not ((os.path.splitext(infile.lower())[1] == &quot;.lock&quot;) and (skipLockFile.lower() == &quot;true&quot;)):
+            zipobj.write(infile,os.path.basename(infile),zipfile.ZIP_DEFLATED)
+
+    zipobj.close()
+
+    return True
+
+zipShapefile(theShapeFile,outputZipFile,skipLockFile)
+print &quot;done!&quot;
+
+</code></pre>
 
 </div>
 </article>

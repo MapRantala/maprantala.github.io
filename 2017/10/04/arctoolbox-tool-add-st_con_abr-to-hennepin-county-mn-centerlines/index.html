@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -103,11 +116,397 @@ Tags:
 <p>So, as you  might guess from the fact that I&rsquo;m posting about it, I wrote a script to add that field in and launch it from an ArcToolbox Tool. Nothing fancy going on in the code, just a series of replaces, depending on the field. Using dictionaries instead of arrays of paired values might have been better but the script takes just a few seconds to run so I can live with it as-is.</p>
 <p>The list of street type abbreviations came from a combination of <!-- raw HTML omitted -->ESRI&rsquo;s standards<!-- raw HTML omitted --> and those found in an older version of the Hennepin County data. There were no conflicting abbreviations between the two. The code warns if a street name occurs in the data that is not in the list.</p>
 <p>While I&rsquo;m including the code here for reference, it&rsquo;s probably best to <!-- raw HTML omitted -->download the code from GitHub.<!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<blockquote>
-</blockquote>
+<pre><code>#-------------------------------------------------------------------------------
+# Name:        usi_dataprep_Add_STCONABR
+#
+# Purpose:     This can be used to add [CT_CON_ABR] to Hennepin County, MN
+#              centerlines. This is a concatenated, abbreviated full name of
+#              the street. This used to be included in the data but
+#              disappeared from the downloads in the summer of 2017.
+#
+#              Data available at: http://www.hennepin.us/gisopendata
+#
+# Author:      mrantala
+#
+# Created:     2017.10.04
+#
+#------------------------------------------------------------------------------
 
+import arcpy
+
+############################################
+## Custom Variables
+#These are the fields that are concatenated. Hennepin has others but were always blank.
+requiredFieldList = [&quot;ST_PRE_DIR&quot;,&quot;ST_PRE_TYP&quot;,&quot;ST_NAME&quot;,&quot;ST_POS_TYP&quot;,&quot;ST_POS_DIR&quot;]
+#This is the name of the field to add
+newFieldName = &quot;ST_CON_ABR&quot;
+
+#These are the abbreviations for [ST_POS_TYPE]. The list was created using a sample of
+#Hennepin's centerline data &amp; Esri Tech article: http://support.esri.com/en/technical-article/000008454
+# Note that I intentionally left cases in where there is no abbreviation (Fall, for example) as a means of
+#documenting the fact that it should NOT change.
+
+abbList = []
+abbList.append([&quot;Alcove&quot;,&quot;Alcove&quot;]) #Hennepin Specific
+abbList.append([&quot;Alley&quot;,&quot;Aly&quot;])
+abbList.append([&quot;Annex&quot;,&quot;Anx&quot;])
+abbList.append([&quot;Arcade&quot;,&quot;Arc&quot;])
+abbList.append([&quot;Avenue&quot;,&quot;Ave&quot;])
+abbList.append([&quot;Bay&quot;,&quot;Bay&quot;]) #Hennepin Specific
+abbList.append([&quot;Bayoo&quot;,&quot;Byu&quot;])
+abbList.append([&quot;Beach&quot;,&quot;Bch&quot;])
+abbList.append([&quot;Bend&quot;,&quot;Bnd&quot;])
+abbList.append([&quot;Bluff&quot;,&quot;Blf&quot;])
+abbList.append([&quot;Bluffs&quot;,&quot;Blfs&quot;])
+abbList.append([&quot;Bottom&quot;,&quot;Btm&quot;])
+abbList.append([&quot;Boulevard&quot;,&quot;Blvd&quot;])
+abbList.append([&quot;Branch&quot;,&quot;Br&quot;])
+abbList.append([&quot;Bridge&quot;,&quot;Brg&quot;])
+abbList.append([&quot;Brook&quot;,&quot;Brk&quot;])
+abbList.append([&quot;Brooks&quot;,&quot;Brks&quot;])
+abbList.append([&quot;Burg&quot;,&quot;Bg&quot;])
+abbList.append([&quot;Burgs&quot;,&quot;Bgs&quot;])
+abbList.append([&quot;Bypass&quot;,&quot;Byp&quot;])
+abbList.append([&quot;Camp&quot;,&quot;Cp&quot;])
+abbList.append([&quot;Canyon&quot;,&quot;Cyn&quot;])
+abbList.append([&quot;Cape&quot;,&quot;Cpe&quot;])
+abbList.append([&quot;Causeway&quot;,&quot;Cswy&quot;])
+abbList.append([&quot;Center&quot;,&quot;Ctr&quot;])
+abbList.append([&quot;Centers&quot;,&quot;Ctrs&quot;])
+abbList.append([&quot;Crossings&quot;,&quot;Crossings&quot;]) #Hennepin Specific
+abbList.append([&quot;Crossroad&quot;,&quot;Xrd&quot;])
+abbList.append([&quot;Chase&quot;,&quot;Chase&quot;]) #Hennepin Specific
+abbList.append([&quot;Circle&quot;,&quot;Cir&quot;])
+abbList.append([&quot;Circles&quot;,&quot;Cirs&quot;])
+abbList.append([&quot;Cliff&quot;,&quot;Clf&quot;])
+abbList.append([&quot;Cliffs&quot;,&quot;Clfs&quot;])
+abbList.append([&quot;Club&quot;,&quot;Clb&quot;])
+abbList.append([&quot;Close&quot;,&quot;Close&quot;]) #Hennepin Specific
+abbList.append([&quot;Common&quot;,&quot;Cmn&quot;])
+abbList.append([&quot;Commons&quot;,&quot;Cmns&quot;]) #Hennepin Specific
+abbList.append([&quot;Corner&quot;,&quot;Cor&quot;])
+abbList.append([&quot;Corners&quot;,&quot;Cors&quot;])
+abbList.append([&quot;Corridor&quot;,&quot;Corridor&quot;]) #Hennepin Specific
+abbList.append([&quot;Course&quot;,&quot;Crse&quot;])
+abbList.append([&quot;Court&quot;,&quot;Ct&quot;])
+abbList.append([&quot;Courts&quot;,&quot;Cts&quot;])
+abbList.append([&quot;Cove&quot;,&quot;Cv&quot;])
+abbList.append([&quot;Coves&quot;,&quot;Cvs&quot;])
+abbList.append([&quot;Creek&quot;,&quot;Crk&quot;])
+abbList.append([&quot;Crescent&quot;,&quot;Cres&quot;])
+abbList.append([&quot;Crest&quot;,&quot;Crst&quot;])
+abbList.append([&quot;Cross&quot;,&quot;Cross&quot;]) #Hennepin Specific
+abbList.append([&quot;Crossing&quot;,&quot;Xing&quot;])
+abbList.append([&quot;Curve&quot;,&quot;Curve&quot;])
+abbList.append([&quot;Dale&quot;,&quot;Dl&quot;])
+abbList.append([&quot;Dam&quot;,&quot;Dm&quot;])
+abbList.append([&quot;Divide&quot;,&quot;Dv&quot;])
+abbList.append([&quot;Down&quot;,&quot;Down&quot;]) #Hennepin Specific
+abbList.append([&quot;Downs&quot;,&quot;Downs&quot;]) #Hennepin Specific
+abbList.append([&quot;Drive&quot;,&quot;Dr&quot;])
+abbList.append([&quot;Drives&quot;,&quot;Drs&quot;])
+abbList.append([&quot;Edge&quot;,&quot;Edge&quot;]) #Hennepin Specific
+abbList.append([&quot;Entry&quot;,&quot;Entry&quot;]) #Hennepin Specific
+abbList.append([&quot;Estate&quot;,&quot;Est&quot;])
+abbList.append([&quot;Estates&quot;,&quot;Ests&quot;])
+abbList.append([&quot;Expressway&quot;,&quot;Expy&quot;])
+abbList.append([&quot;Extension&quot;,&quot;Ext&quot;])
+abbList.append([&quot;Extensions&quot;,&quot;Exts&quot;])
+abbList.append([&quot;Fall&quot;,&quot;Fall&quot;])
+abbList.append([&quot;Falls&quot;,&quot;Fls&quot;])
+abbList.append([&quot;Ferry&quot;,&quot;Fry&quot;])
+abbList.append([&quot;Field&quot;,&quot;Fld&quot;])
+abbList.append([&quot;Fields&quot;,&quot;Flds&quot;])
+abbList.append([&quot;Flat&quot;,&quot;Flt&quot;])
+abbList.append([&quot;Flats&quot;,&quot;Flts&quot;])
+abbList.append([&quot;Ford&quot;,&quot;Frd&quot;])
+abbList.append([&quot;Fords&quot;,&quot;Frds&quot;])
+abbList.append([&quot;Forest&quot;,&quot;Frst&quot;])
+abbList.append([&quot;Forge&quot;,&quot;Frg&quot;])
+abbList.append([&quot;Forges&quot;,&quot;Frgs&quot;])
+abbList.append([&quot;Fork&quot;,&quot;Frk&quot;])
+abbList.append([&quot;Forks&quot;,&quot;Frks&quot;])
+abbList.append([&quot;Fort&quot;,&quot;Ft&quot;])
+abbList.append([&quot;Freeway&quot;,&quot;Fwy&quot;])
+abbList.append([&quot;Gables&quot;,&quot;Gables&quot;]) #Hennepin Specific
+abbList.append([&quot;Garden&quot;,&quot;Gdn&quot;])
+abbList.append([&quot;Gardens&quot;,&quot;Gdns&quot;])
+abbList.append([&quot;Gate&quot;,&quot;Gate&quot;]) #Hennepin Specific
+abbList.append([&quot;Gateway&quot;,&quot;Gtwy&quot;])
+abbList.append([&quot;Glade&quot;,&quot;Glade&quot;]) #Hennepin Specific
+abbList.append([&quot;Glen&quot;,&quot;Gln&quot;])
+abbList.append([&quot;Glens&quot;,&quot;Glns&quot;])
+abbList.append([&quot;Green&quot;,&quot;Grn&quot;])
+abbList.append([&quot;Greens&quot;,&quot;Grns&quot;])
+abbList.append([&quot;Greenway&quot;,&quot;Greenway&quot;]) #Hennepin Specific
+abbList.append([&quot;Grove&quot;,&quot;Grv&quot;])
+abbList.append([&quot;Groves&quot;,&quot;Grvs&quot;])
+abbList.append([&quot;Harbor&quot;,&quot;Hbr&quot;])
+abbList.append([&quot;Harbors&quot;,&quot;Hbrs&quot;])
+abbList.append([&quot;Haven&quot;,&quot;Hvn&quot;])
+abbList.append([&quot;Heights&quot;,&quot;Hts&quot;])
+abbList.append([&quot;Highway&quot;,&quot;Hwy&quot;])
+abbList.append([&quot;Hill&quot;,&quot;Hl&quot;])
+abbList.append([&quot;Hills&quot;,&quot;Hls&quot;])
+abbList.append([&quot;Hollow&quot;,&quot;Holw&quot;])
+abbList.append([&quot;Horn&quot;,&quot;Horn&quot;]) #Hennepin Specific
+abbList.append([&quot;Inlet&quot;,&quot;Inlt&quot;])
+abbList.append([&quot;Island&quot;,&quot;Is&quot;])
+abbList.append([&quot;Islands&quot;,&quot;Iss&quot;])
+abbList.append([&quot;Isle&quot;,&quot;Isle&quot;])
+abbList.append([&quot;Junction&quot;,&quot;Jct&quot;])
+abbList.append([&quot;Junctions&quot;,&quot;Jcts&quot;])
+abbList.append([&quot;Key&quot;,&quot;Ky&quot;])
+abbList.append([&quot;Keys&quot;,&quot;Kys&quot;])
+abbList.append([&quot;Knoll&quot;,&quot;Knl&quot;])
+abbList.append([&quot;Knolls&quot;,&quot;Knls&quot;])
+abbList.append([&quot;Lake&quot;,&quot;Lk&quot;])
+abbList.append([&quot;Lakes&quot;,&quot;Lks&quot;])
+abbList.append([&quot;Land&quot;,&quot;Land&quot;])
+abbList.append([&quot;Landing&quot;,&quot;Lndg&quot;])
+abbList.append([&quot;Lane&quot;,&quot;Ln&quot;])
+abbList.append([&quot;Light&quot;,&quot;Lgt&quot;])
+abbList.append([&quot;Lights&quot;,&quot;Lgts&quot;])
+abbList.append([&quot;Loaf&quot;,&quot;Lf&quot;])
+abbList.append([&quot;Lock&quot;,&quot;Lck&quot;])
+abbList.append([&quot;Locks&quot;,&quot;Lcks&quot;])
+abbList.append([&quot;Lodge&quot;,&quot;Ldg&quot;])
+abbList.append([&quot;Loop&quot;,&quot;Loop&quot;])
+abbList.append([&quot;Mall&quot;,&quot;Mall&quot;])
+abbList.append([&quot;Manor&quot;,&quot;Mnr&quot;])
+abbList.append([&quot;Manors&quot;,&quot;Mnrs&quot;])
+abbList.append([&quot;Meadow&quot;,&quot;Mdw&quot;])
+abbList.append([&quot;Meadows&quot;,&quot;Mdws&quot;])
+abbList.append([&quot;Mews&quot;,&quot;Mews&quot;])
+abbList.append([&quot;Mill&quot;,&quot;Ml&quot;])
+abbList.append([&quot;Mills&quot;,&quot;Mls&quot;])
+abbList.append([&quot;Mission&quot;,&quot;Msn&quot;])
+abbList.append([&quot;Motorway&quot;,&quot;Mtwy&quot;])
+abbList.append([&quot;Mount&quot;,&quot;Mt&quot;])
+abbList.append([&quot;Mountain&quot;,&quot;Mtn&quot;])
+abbList.append([&quot;Mountains&quot;,&quot;Mtns&quot;])
+abbList.append([&quot;Neck&quot;,&quot;Nck&quot;])
+abbList.append([&quot;Orchard&quot;,&quot;Orch&quot;])
+abbList.append([&quot;Oval&quot;,&quot;Oval&quot;])
+abbList.append([&quot;Overpass&quot;,&quot;Opas&quot;])
+abbList.append([&quot;Park&quot;,&quot;Park&quot;])
+abbList.append([&quot;Parks&quot;,&quot;Park&quot;])
+abbList.append([&quot;Parkway&quot;,&quot;Pkwy&quot;])
+abbList.append([&quot;Parkways&quot;,&quot;Pkwy&quot;])
+abbList.append([&quot;Pass&quot;,&quot;Pass&quot;])
+abbList.append([&quot;Passage&quot;,&quot;Psge&quot;])
+abbList.append([&quot;Path&quot;,&quot;Path&quot;])
+abbList.append([&quot;Pike&quot;,&quot;Pike&quot;])
+abbList.append([&quot;Pine&quot;,&quot;Pne&quot;])
+abbList.append([&quot;Pines&quot;,&quot;Pnes&quot;])
+abbList.append([&quot;Place&quot;,&quot;Pl&quot;])
+abbList.append([&quot;Plain&quot;,&quot;Pln&quot;])
+abbList.append([&quot;Plains&quot;,&quot;Plns&quot;])
+abbList.append([&quot;Plaza&quot;,&quot;Plz&quot;])
+abbList.append([&quot;Point&quot;,&quot;Pt&quot;])
+abbList.append([&quot;Points&quot;,&quot;Pts&quot;])
+abbList.append([&quot;Port&quot;,&quot;Prt&quot;])
+abbList.append([&quot;Ports&quot;,&quot;Prts&quot;])
+abbList.append([&quot;Prairie&quot;,&quot;Pr&quot;])
+abbList.append([&quot;Radial&quot;,&quot;Radl&quot;])
+abbList.append([&quot;Railroad&quot;,&quot;Railroad&quot;]) #Hennepin Specific
+abbList.append([&quot;Ramp&quot;,&quot;Ramp&quot;])
+abbList.append([&quot;Ranch&quot;,&quot;Rnch&quot;])
+abbList.append([&quot;Rapid&quot;,&quot;Rpd&quot;])
+abbList.append([&quot;Rapids&quot;,&quot;Rpds&quot;])
+abbList.append([&quot;Rest&quot;,&quot;Rst&quot;])
+abbList.append([&quot;Ridge&quot;,&quot;Rdg&quot;])
+abbList.append([&quot;Ridges&quot;,&quot;Rdgs&quot;])
+abbList.append([&quot;Rise&quot;,&quot;Rise&quot;]) #Hennepin Specific
+abbList.append([&quot;River&quot;,&quot;Riv&quot;])
+abbList.append([&quot;Road&quot;,&quot;Rd&quot;])
+abbList.append([&quot;Roads&quot;,&quot;Rds&quot;])
+abbList.append([&quot;Route&quot;,&quot;Rte&quot;])
+abbList.append([&quot;Row&quot;,&quot;Row&quot;])
+abbList.append([&quot;Rue&quot;,&quot;Rue&quot;])
+abbList.append([&quot;Run&quot;,&quot;Run&quot;])
+abbList.append([&quot;Shoal&quot;,&quot;Shl&quot;])
+abbList.append([&quot;Shoals&quot;,&quot;Shls&quot;])
+abbList.append([&quot;Shore&quot;,&quot;Shr&quot;])
+abbList.append([&quot;Shores&quot;,&quot;Shrs&quot;])
+abbList.append([&quot;Skies&quot;,&quot;Skies&quot;]) #Hennepin Specific
+abbList.append([&quot;Skyway&quot;,&quot;Skwy&quot;])
+abbList.append([&quot;Spring&quot;,&quot;Spg&quot;])
+abbList.append([&quot;Springs&quot;,&quot;Spgs&quot;])
+abbList.append([&quot;Spur&quot;,&quot;Spur&quot;])
+abbList.append([&quot;Spurs&quot;,&quot;Spur&quot;])
+abbList.append([&quot;Square&quot;,&quot;Sq&quot;])
+abbList.append([&quot;Squares&quot;,&quot;Sqrs&quot;])
+abbList.append([&quot;Station&quot;,&quot;Sta&quot;])
+abbList.append([&quot;Stravenue&quot;,&quot;Stra&quot;])
+abbList.append([&quot;Stream&quot;,&quot;Strm&quot;])
+abbList.append([&quot;Street&quot;,&quot;St&quot;])
+abbList.append([&quot;Streets&quot;,&quot;Sts&quot;])
+abbList.append([&quot;Summit&quot;,&quot;Smt&quot;])
+abbList.append([&quot;Terrace&quot;,&quot;Ter&quot;])
+abbList.append([&quot;Throughway&quot;,&quot;Trwy&quot;])
+abbList.append([&quot;Trace&quot;,&quot;Trce&quot;])
+abbList.append([&quot;Track&quot;,&quot;Trak&quot;])
+abbList.append([&quot;Trafficway&quot;,&quot;Trfy&quot;])
+abbList.append([&quot;Trail&quot;,&quot;Trl&quot;])
+abbList.append([&quot;Tunnel&quot;,&quot;Tunl&quot;])
+abbList.append([&quot;Turn&quot;,&quot;Turn&quot;]) #Hennepin Specific
+abbList.append([&quot;Turnpike&quot;,&quot;Tpke&quot;])
+abbList.append([&quot;Underpass&quot;,&quot;Upas&quot;])
+abbList.append([&quot;Union&quot;,&quot;Un&quot;])
+abbList.append([&quot;Unions&quot;,&quot;Uns&quot;])
+abbList.append([&quot;Valley&quot;,&quot;Vly&quot;])
+abbList.append([&quot;Valleys&quot;,&quot;Vlys&quot;])
+abbList.append([&quot;Viaduct&quot;,&quot;Via&quot;])
+abbList.append([&quot;View&quot;,&quot;Vw&quot;])
+abbList.append([&quot;Views&quot;,&quot;Vws&quot;])
+abbList.append([&quot;Village&quot;,&quot;Vlg&quot;])
+abbList.append([&quot;Villages&quot;,&quot;Vlgs&quot;])
+abbList.append([&quot;Ville&quot;,&quot;Vl&quot;])
+abbList.append([&quot;Vista&quot;,&quot;Vis&quot;])
+abbList.append([&quot;Walk&quot;,&quot;Walk&quot;])
+abbList.append([&quot;Walks&quot;,&quot;Walk&quot;])
+abbList.append([&quot;Wall&quot;,&quot;Wall&quot;])
+abbList.append([&quot;Way&quot;,&quot;Way&quot;])
+abbList.append([&quot;Ways&quot;,&quot;Ways&quot;])
+abbList.append([&quot;Well&quot;,&quot;Wl&quot;])
+abbList.append([&quot;Wells&quot;,&quot;Wls&quot;])
+
+#List of changes for [St_POS_Dir]
+posDirList = [[&quot;North&quot;,&quot;N&quot;],[&quot;East&quot;,&quot;E&quot;],[&quot;South&quot;,&quot;S&quot;],[&quot;West&quot;,&quot;W&quot;],[&quot;Northeast&quot;,&quot;NE&quot;],[&quot;Northwest&quot;,&quot;NW&quot;],[&quot;Southeast&quot;,&quot;SE&quot;],[&quot;Southwest&quot;,&quot;SW&quot;]]
+preDirList = [[&quot;North&quot;,&quot;N&quot;],[&quot;East&quot;,&quot;E&quot;],[&quot;South&quot;,&quot;S&quot;],[&quot;West&quot;,&quot;W&quot;]]
+############################################
+## Read Arguments
+
+if (len(sys.argv) &amp;gt; 1):
+    inFC = sys.argv[1]
+
+############################################
+# General Purpose Functions
+def printit(inputString):
+    try:
+        print(inputString)
+        arcpy.AddMessage(str(inputString))
+    except:
+        pass
+
+def printerror(inputString):
+    print (inputString)
+    arcpy.AddError(inputString)
+
+def getField(inFeatureClass, inFieldName):
+  fieldList = arcpy.ListFields(inFeatureClass)
+  for iField in fieldList:
+    if iField.name.lower() == inFieldName.lower():
+      return iField
+  return None
+
+def fieldExists(inFeatureClass, inFieldName):
+  return getField(inFeatureClass,inFieldName) &lt;&gt; None
+
+############################################
+# Initial QC
+
+def initialQC():
+    if (arcpy.Exists(inFC)):
+        printit(&quot;PASS: Feature Class {} Exists&quot;.format(inFC))
+    else:
+        printerror(&quot;ERROR: Feature Class {} Does Not Exist, Cancelling...&quot;.format(inFC))
+        return False
+
+    for iFld in requiredFieldList:
+        if (fieldExists(inFC,iFld)):
+            printit(&quot;PASS: Feature Class {} Has Field [{}]&quot;.format(inFC,iFld))
+        else:
+            printerror(&quot;ERROR: Feature Class {} Does Not Have Field [{}], Cancelling...&quot;.format(inFC,iFld))
+            return False
+
+    if not (fieldExists(inFC,newFieldName)):
+        printit(&quot;GOOD: Feature Class {} Does Not Already Have Field [{}]&quot;.format(inFC,newFieldName))
+        printit(&quot; ADDING Field [{}]&quot;.format(newFieldName))
+        try:
+            arcpy.AddField_management(in_table=inFC, field_name=newFieldName, field_type=&quot;TEXT&quot;, field_precision=&quot;&quot;, field_scale=&quot;&quot;, field_length=&quot;100&quot;, field_alias=&quot;&quot;, field_is_nullable=&quot;NULLABLE&quot;, field_is_required=&quot;NON_REQUIRED&quot;, field_domain=&quot;&quot;)
+        except:
+            printerror(&quot;ERROR: Error While Adding Field [{}], Cancelling...&quot;.format(newFieldName))
+            return False
+        if not (fieldExists(inFC,newFieldName)):
+            printerror(&quot;ERROR: Unable to Add Field [{}], Cancelling...&quot;.format(newFieldName))
+            return False
+    else:
+        printerror(&quot;ERROR: Feature Class {} Already Has Field [{}], Cancelling...&quot;.format(inFC,newFieldName))
+        return False
+
+    return True
+
+############################################
+# Main
+
+def makeSubstitution(inList,inValue,inFieldName):
+    for iAbbreviationPr in inList:
+        if (inValue == iAbbreviationPr[0]): #Found a Match
+            return iAbbreviationPr[1]
+    printit(&quot;WARNING: [{}] of {} does not have a value in the abbreviation list! Potential Error...&quot;.format(inFieldName,inValue))
+    return inValue
+
+def main():
+    cursorFieldList = requiredFieldList
+    cursorFieldList.append(newFieldName)
+
+    try:
+        iUCursor = arcpy.da.UpdateCursor(inFC,cursorFieldList)
+        iRowCount = 0
+        iRowMax = 1
+        for uRow in iUCursor:
+
+            #Just to give user an indicator that progress is being made
+            if (iRowCount&amp;gt;iRowMax):
+                printit(&quot; {}&quot;.format(iRowCount))
+                iRowMax *= 10
+                iRowCount+=1
+
+            abbreviateConcatenatedName = &quot;&quot;
+            iFldIndex = 0
+            for iFld in requiredFieldList:
+
+
+                if (iFld == newFieldName):
+                    uRow[iFldIndex] = abbreviateConcatenatedName
+                    iUCursor.updateRow(uRow)
+                else:
+                    iValue = uRow[iFldIndex].strip() #Strip is just a safe-guard
+
+
+                    if ((iValue != &quot;&quot;) and (iValue != None)):
+                        if (iFld == &quot;ST_PRE_DIR&quot;):
+                            iValue= makeSubstitution(preDirList,iValue,&quot;ST_PRE_DIR&quot;)
+                        if (iFld == &quot;ST_POS_TYP&quot;):
+                            iValue= makeSubstitution(abbList,iValue,&quot;ST_POS_TYPE&quot;)
+                        if (iFld == &quot;ST_POS_DIR&quot;):
+                            iValue = makeSubstitution(posDirList,iValue,&quot;ST_POS_DIR&quot;)
+
+                        if (abbreviateConcatenatedName == &quot;&quot;):
+                            abbreviateConcatenatedName = iValue
+                        else:
+                            abbreviateConcatenatedName+=&quot; &quot;+iValue
+                iFldIndex += 1
+
+        del iUCursor
+    except RuntimeError as e:
+        printerror(&quot;ERROR: Error {} Occurred, Cancelling...&quot;.format(e))
+        try:
+            del iUCursor
+            del uRow
+        except:
+            return False
+    return True
+
+
+if __name__ == '__main__':
+    if (initialQC() == True):
+        if (main() == True):
+            printit(&quot;Done!&quot;)
+
+</code></pre>
 
 </div>
 </article>

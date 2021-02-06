@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -102,9 +115,40 @@ Tags:
 <p><a href="https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/">After receiving a request to modify the code to ignore .lock files, I have an updated to this post.</a></p>
 <p>One of the tasks I&rsquo;ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.</p>
 <p>Not an overly complicated situation but a common one that ArcGIS does not have a solution out-of-the-box. Below is a bare-bones code snippet to do it. It has both the input shapefile and output zip file hard-coded. The call to the subroutine that does the work is: zipShapefile(wellsShapeFile,wellsZipFile)</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code>import zipfile
+import sys
+import os
+import glob
+wellsShapeFile = &quot;C:/cwi5_bk/WELLS/wells.SHP&quot;
+wellsZipFile = &quot;C:/cwi5_bk/WELLS/test5.zip&quot;
+
+def zipShapefile(inShapefile, newZipFN):
+   print 'Starting to Zip '+inShapefile+' to '+newZipFN
+
+if not (os.path.exists(inShapefile)):
+   print inShapefile + ' Does Not Exist'
+   return False
+
+if (os.path.exists(newZipFN)):
+   print 'Deleting '+newZipFN
+   os.remove(newZipFN)
+
+if (os.path.exists(newZipFN)):
+   print 'Unable to Delete'+newZipFN
+   return False
+
+zipobj = zipfile.ZipFile(newZipFN,'w')
+
+for infile in glob.glob( inShapefile.lower().replace(&quot;.shp&quot;,&quot;.*&quot;)):
+   print infile
+   zipobj.write(infile,os.path.basename(infile),zipfile.ZIP_DEFLATED)
+
+zipobj.close()
+return True
+
+zipShapefile(wellsShapeFile,wellsZipFile)
+print &quot;done!&quot;
+</code></pre><!-- raw HTML omitted -->
 
 
 </div>

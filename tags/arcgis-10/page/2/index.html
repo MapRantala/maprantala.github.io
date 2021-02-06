@@ -52,9 +52,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -157,7 +170,7 @@ Back when ESRI use to actually print hard-copy manuals, there were similar diagr
 <div class="content">
 Updating some python code from 9.3 that using geoprocessing to 10.0 using arcpy and the first real object I&rsquo;ve had to change relates to detecting whether or not an index exists on a table.
 I previously posted code using a 9.3 geoprocessing commands, the core of it being:
-With arcpy, ESRI has gone back to using the Describe methodology. Way back when GISers use to type most of their commands into their wood-burning computers, the command &lsquo;Describe&rsquo; was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).
+indexList = gp.listindexes(tablename) for iIndex in indexList: if (iIndex.Name == indexname): return True return False With arcpy, ESRI has gone back to using the Describe methodology.
 </div>
 </article>
 

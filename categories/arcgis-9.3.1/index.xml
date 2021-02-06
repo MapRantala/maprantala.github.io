@@ -17,11 +17,45 @@
       <description>&lt;p&gt;Back in 2010, I posted a &lt;!-- raw HTML omitted --&gt;python script &lt;!-- raw HTML omitted --&gt;and an &lt;!-- raw HTML omitted --&gt;ArcToolbox&lt;!-- raw HTML omitted --&gt; tool for zipping a shapefile.&lt;/p&gt;
 &lt;p&gt;Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn&amp;rsquo;t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from &lt;!-- raw HTML omitted --&gt;Github&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
 &lt;p&gt;The guts of the code is here, though:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;import zipfile
+import sys
+import os
+import glob
+
+theShapeFile = sys.argv[1]
+outputZipFile = sys.argv[2]
+skipLockFile = sys.argv[3]
+
+def zipShapefile(inShapefile, newZipFN, skipLockFile):
+    print &#39;Starting to Zip &#39;+inShapefile+&#39; to &#39;+newZipFN
+
+    if not (os.path.exists(inShapefile)):
+        print inShapefile + &#39; Does Not Exist&#39;
+        return False
+
+    if (os.path.exists(newZipFN)):
+        print &#39;Deleting &#39;+newZipFN
+        os.remove(newZipFN)
+
+        if (os.path.exists(newZipFN)):
+            print &#39;Unable to Delete&#39;+newZipFN
+            return False
+
+    zipobj = zipfile.ZipFile(newZipFN,&#39;w&#39;)
+
+    for infile in glob.glob( inShapefile.lower().replace(&amp;quot;.shp&amp;quot;,&amp;quot;.*&amp;quot;)):
+        print infile
+        if not ((os.path.splitext(infile.lower())[1] == &amp;quot;.lock&amp;quot;) and (skipLockFile.lower() == &amp;quot;true&amp;quot;)):
+            zipobj.write(infile,os.path.basename(infile),zipfile.ZIP_DEFLATED)
+
+    zipobj.close()
+
+    return True
+
+zipShapefile(theShapeFile,outputZipFile,skipLockFile)
+print &amp;quot;done!&amp;quot;
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -47,9 +81,34 @@
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/failedtodeletedomain.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The Google Machine led me to an &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=985&amp;amp;t=303616&#34;&gt;ArcForums post&lt;/a&gt; by  with some python code for listing all the fields with a domain.&lt;/p&gt;
 &lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the ‘listfc(&#39;&#39;)&amp;rsquo; line that is the first line of the def listds() module.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import arcpy
+
+min_workspace = r&amp;quot;C:\Users\mranter\AppData\Roaming\ESRI\Desktop10.0\ArcCatalog\min.minstaff.sde&amp;quot;
+
+infgdb=(min_workspace)
+arcpy.env.workspace = infgdb
+
+def listfc(inDataset):
+   featureclasses = arcpy.ListFeatureClasses(&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,inDataset)
+   for f in featureclasses:
+      print &amp;quot;feature class: &amp;quot;,f
+
+lfields=arcpy.ListFields(f)
+
+for lf in lfields:
+   if lf.domain &amp;amp;lt; &amp;quot;&amp;quot;:
+      print &amp;quot;      domain&amp;quot;,f, lf.name, lf.domain
+
+def listds():
+   listfc(&amp;quot;&amp;quot;)
+
+   datasets=arcpy.ListDatasets (&amp;quot;&amp;quot;,&amp;quot;&amp;quot;)
+   for d in datasets:
+      print &amp;quot;  dataset: &amp;quot;,d
+
+listfc(d)
+listds()
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

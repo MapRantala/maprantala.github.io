@@ -52,9 +52,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -140,25 +153,26 @@ The python parser is actually pretty good at casting values on the fly so if the
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2012/03/14/quicker-#038-cleaner-python-recursive-folder-search/">Quicker &amp;#038; Cleaner python recursive folder search</a></h2>
+<h2 class="title "><a href="/2012/03/14/quicker-and-cleaner-python-recursive-folder-search/">Quicker and Cleaner python recursive folder search</a></h2>
 
 </header>
 <div class="content">
 As contributor of the day, Jason Scheirer, pointed out, python has a simple, direct way to browse through the subdirectories of a directory–os.walk
 Here is a bare-bones example of using it to print out the subdirectories in a path. The files variable of the 3-tuple is a list of files similar to the dirs variable that I loop through.
 Thanks Jason for pointing out something I missed.
+import os theDir = 'c:/temp/' for root, dirs, files in os.
 </div>
 </article>
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2012/03/13/quick-#038-dirty-python-recursive-folder-search/">Quick &amp;#038; Dirty python recursive folder search</a></h2>
+<h2 class="title "><a href="/2012/03/13/quick-and-dirty-python-recursive-folder-search/">Quick and Dirty python recursive folder search</a></h2>
 
 </header>
 <div class="content">
 Someone asked how to have python recursively search a folder structure. There may be a better way but this is how I typically do it–it basically starts with one directory and loops through the contents compiling a list of sub-directories as it goes through the contents.
 
-  
+import glob, os theDir = 'c:/temp/' theDirList = [] theDirList.append(theDir) while len(theDirList) &amp;gt; 0: newDirList = [] for iDir in theDirList: print iDir for iFile in glob.
 </div>
 </article>
 
@@ -170,6 +184,7 @@ Someone asked how to have python recursively search a folder structure. There ma
 <div class="content">
 One of the standards in our databases is to store dates as 8-digit integer values in the format of yyyymmdd. This requires us to occasionally convert values from date fields into this format.
 We can do this in the ArcMap Field Calculator using this arcpy function:
+def datetodouble(inNum): splitList = str(inNum).split(&quot;/&quot;) return splitList [2] +(&quot;0&quot;+ splitList [0])[-2:] +(&quot;0&quot;+ splitList [1])[-2:]
 </div>
 </article>
 

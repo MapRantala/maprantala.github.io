@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -106,9 +119,34 @@ Tags:
 <p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/failedtodeletedomain.png"><!-- raw HTML omitted --></a></p>
 <p>The Google Machine led me to an <a href="http://forums.esri.com/Thread.asp?c=93&amp;f=985&amp;t=303616">ArcForums post</a> by  with some python code for listing all the fields with a domain.</p>
 <p>I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip">9.3 version</a> and the <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip">10.0 version</a>, but here is a quick look.  The key addition is the ‘listfc('')&rsquo; line that is the first line of the def listds() module.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code>import arcpy
+
+min_workspace = r&quot;C:\Users\mranter\AppData\Roaming\ESRI\Desktop10.0\ArcCatalog\min.minstaff.sde&quot;
+
+infgdb=(min_workspace)
+arcpy.env.workspace = infgdb
+
+def listfc(inDataset):
+   featureclasses = arcpy.ListFeatureClasses(&quot;&quot;,&quot;&quot;,inDataset)
+   for f in featureclasses:
+      print &quot;feature class: &quot;,f
+
+lfields=arcpy.ListFields(f)
+
+for lf in lfields:
+   if lf.domain &amp;lt; &quot;&quot;:
+      print &quot;      domain&quot;,f, lf.name, lf.domain
+
+def listds():
+   listfc(&quot;&quot;)
+
+   datasets=arcpy.ListDatasets (&quot;&quot;,&quot;&quot;)
+   for d in datasets:
+      print &quot;  dataset: &quot;,d
+
+listfc(d)
+listds()
+</code></pre><!-- raw HTML omitted -->
 
 
 </div>

@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -98,9 +111,22 @@ Tags:
 <p>I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&rsquo;s <!-- raw HTML omitted -->ListFeatureClasses<!-- raw HTML omitted --> request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.</p>
 <p>Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.</p>
 <p>After discovering missing data in our backups, I reconstructed what happened and found this bug. Below is arcpy code that iterates through the feature datasets in a geodatabase and lists the feature classes:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>And here is a screen shot of the contents of a test enterprise geodatabase, you&rsquo;ll see it has a feature data set named &lsquo;outcrops&rsquo; that has a feature class also named &lsquo;outcrops&rsquo; within it:<br>
+<pre><code>import arcpy
+
+def copyAll():
+    for iFeatureClass in arcpy.ListFeatureClasses():
+        print(&quot; Feature Class: {0}&quot;.format(iFeatureClass))
+    iFeatureClassFull = None
+
+testGDBname = &quot;mgs_sandbox.sde&quot;
+arcpy.env.workspace = testGDBname
+
+copyAll()
+for iFD in arcpy.ListDatasets(&quot;&quot;,&quot;Feature&quot;):
+    print(&quot;Feature Dataset {0}:&quot;.format(iFD))
+    arcpy.env.workspace = testGDBname+&quot;/&quot;+str(iFD)
+    copyAll()
+</code></pre><p>And here is a screen shot of the contents of a test enterprise geodatabase, you&rsquo;ll see it has a feature data set named &lsquo;outcrops&rsquo; that has a feature class also named &lsquo;outcrops&rsquo; within it:<br>
 <a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/sandbox.png"><!-- raw HTML omitted --></a></p>
 <p>And the results list only the feature dataset:</p>
 <p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/results.png"><!-- raw HTML omitted --></a></p>

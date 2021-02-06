@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -103,9 +116,37 @@ Tags:
 <p>So every three months I have to go through the ODBC connections for these queries and change the password.  And before you chastise me for storing the password in the VBA code, I can only say &lsquo;you&rsquo;re right&rsquo; but that&rsquo;s the way it is done–not ideal but gets the job done and we&rsquo;re not dealing with overly sensitive data.</p>
 <p>Well, my three-month deadline was approaching and I figured I would simplify the process which I found error-prone.</p>
 <p>Some searching and object model diagramming scouring and I came up with this barebones solution, of course, your connection string may vary.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code>Public Sub UpdateConnectStrings()
+
+Dim obj As AccessObject
+Dim dbs As Object
+Set dbs = Application.CurrentData
+
+Dim i As Integer
+
+Dim newConnectionString As String
+newConnectionString = &quot;ODBC;DRIVER={Microsoft ODBC for Oracle};SERVER=vader;UID=luke;PWD=iMufathr;&quot;
+
+Dim comparisionConnectionString As String
+comparisionConnectionString = &quot;ODBC;Driver&quot;
+
+For Each obj In dbs.AllQueries
+
+If (obj.Type = acQuery) Then
+  For i = 0 To CurrentDb.QueryDefs.Count - 1
+    If (CurrentDb.QueryDefs(i).Name = obj.Name) Then
+      If (Left(CurrentDb.QueryDefs(i).Connect, Len(comparisionConnectionString)) = comparisionConnectionString) Then
+        CurrentDb.QueryDefs(i).Connect = newConnectionString
+      End If
+    End If
+  Next i
+End If
+
+Next obj
+End Sub
+
+
+</code></pre><!-- raw HTML omitted -->
 
 
 </div>

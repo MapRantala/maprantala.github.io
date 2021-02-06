@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -101,9 +114,33 @@ Tags:
 <p>Ever since the ever-popular post, <a href="https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/">Zipping a shapefile using python</a>, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.</p>
 <p>The key trick, as shown in line 17, is appending the basename of the file geodatabase (&lsquo;nfg.gdb/&rsquo; in my example) in front of each file as you write it to the zipfile.</p>
 <p>UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp; pasted and have work.  So I have posted a the code <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110208_Sample_Zip_FileGeodatabase.zip">HERE</a> for downloading.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code>import os
+import zipfile
+import glob
+
+infile = &quot;c:/temp/nfg.gdb&quot;
+outfile = &quot;c:/temp/nfg.zip&quot;
+def zipFileGeodatabase(inFileGeodatabase, newZipFN):
+   if not (os.path.exists(inFileGeodatabase)):
+      return False
+
+   if (os.path.exists(newZipFN)):
+      os.remove(newZipFN)
+
+   zipobj = zipfile.ZipFile(newZipFN,'w')
+
+   for infile in glob.glob(inFileGeodatabase+&quot;/*&quot;):
+      zipobj.write(infile, os.path.basename(inFileGeodatabase)+&quot;/&quot;+os.path.basename(infile), zipfile.ZIP_DEFLATED)
+      print (&quot;Zipping: &quot;+infile)
+
+   zipobj.close()
+
+   return True
+
+zipFileGeodatabase(infile,outfile)
+
+
+</code></pre><!-- raw HTML omitted -->
 
 
 </div>

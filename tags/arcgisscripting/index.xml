@@ -43,18 +43,27 @@ return True&lt;/p&gt;
       <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
 &lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
 &lt;p&gt;No problem creating the index, for example:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gp.AddIndex_management(tablename, field, IndexName, &amp;quot;NON_UNIQUE&amp;quot;, &amp;quot;NON_ASCENDING&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gp.Exists(mgs_c5ix_fullname)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
 &lt;p&gt;A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;gp = arcgisscripting.create(9.3)
+
+def indexExists(tablename,indexname):
+ if not gp.Exists(tablename):
+  return False
+
+ indexList = gp.listindexes(tablename)
+
+ for iIndex in indexList:
+  if (iIndex.Name == indexname):
+   return True
+
+ return False
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;indexExists(tablename,indexname)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -87,10 +96,10 @@ In response to Chris:&lt;/p&gt;
     </item>
     
     <item>
-      <title>Measuring distance from a point to a line segment in Python.</title>
-      <link>https://maprantala.com/2010/05/16/measuring-distance-from-a-point-to-a-line-segment-in-python./</link>
+      <title>Measuring distance from a point to a line segment in Python</title>
+      <link>https://maprantala.com/2010/05/16/measuring-distance-from-a-point-to-a-line-segment-in-python/</link>
       <pubDate>Sun, 16 May 2010 17:14:23 -0500</pubDate>
-      <guid>https://maprantala.com/2010/05/16/measuring-distance-from-a-point-to-a-line-segment-in-python./</guid>
+      <guid>https://maprantala.com/2010/05/16/measuring-distance-from-a-point-to-a-line-segment-in-python/</guid>
       <description>&lt;p&gt;I recently had the need to calculate the distance from a point (address point) to a polyline (street segment) and wanted to avoid using any additional libraries because it was being done for an external client. Ok, I actually used arcgisscripting for reading the data but that lacked, from what I could tell, the fine-detail granularity of measuring distance between individual geometries.&lt;/p&gt;
 &lt;p&gt;But since the only spatial operations I needed were to measure the distance between two points and the distance between a point and polyline, I decided to just do it via brute force. The datasets being processed were not huge so it made this feasible.&lt;/p&gt;
 &lt;p&gt;Measuring point-to-point distance was easy enough. And while I knew I could work through the details of measuring the distance between a point and polyline, I decided NOT to re-invent the wheel if I did not have to. Google did not come up with any direct answers but I did come across this &lt;a href=&#34;http://local.wasp.uwa.edu.au/%7Epbourke/geometry/pointline/&#34;&gt;post&lt;/a&gt; from &lt;a href=&#34;http://local.wasp.uwa.edu.au/%7Epbourke/&#34; title=&#34;Paul Bourke&#34;&gt;Paul Bourke&lt;/a&gt; at the &lt;a href=&#34;http://wasp.uwa.edu.au/&#34;&gt;University of Western Australia&lt;/a&gt; about measuring the distance between a point and a line segment. A polyline is just a series of line segments so I used it as the basis of my measurement–I just loop through all the consecutive vertice pairs, using the minimum distance found.&lt;/p&gt;

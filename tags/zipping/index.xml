@@ -17,9 +17,33 @@
       <description>&lt;p&gt;Ever since the ever-popular post, &lt;a href=&#34;https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zipping a shapefile using python&lt;/a&gt;, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.&lt;/p&gt;
 &lt;p&gt;The key trick, as shown in line 17, is appending the basename of the file geodatabase (&amp;lsquo;nfg.gdb/&amp;rsquo; in my example) in front of each file as you write it to the zipfile.&lt;/p&gt;
 &lt;p&gt;UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp;amp; pasted and have work.  So I have posted a the code &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110208_Sample_Zip_FileGeodatabase.zip&#34;&gt;HERE&lt;/a&gt; for downloading.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import os
+import zipfile
+import glob
+
+infile = &amp;quot;c:/temp/nfg.gdb&amp;quot;
+outfile = &amp;quot;c:/temp/nfg.zip&amp;quot;
+def zipFileGeodatabase(inFileGeodatabase, newZipFN):
+   if not (os.path.exists(inFileGeodatabase)):
+      return False
+
+   if (os.path.exists(newZipFN)):
+      os.remove(newZipFN)
+
+   zipobj = zipfile.ZipFile(newZipFN,&#39;w&#39;)
+
+   for infile in glob.glob(inFileGeodatabase+&amp;quot;/*&amp;quot;):
+      zipobj.write(infile, os.path.basename(inFileGeodatabase)+&amp;quot;/&amp;quot;+os.path.basename(infile), zipfile.ZIP_DEFLATED)
+      print (&amp;quot;Zipping: &amp;quot;+infile)
+
+   zipobj.close()
+
+   return True
+
+zipFileGeodatabase(infile,outfile)
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -32,9 +56,40 @@
 &lt;p&gt;&lt;a href=&#34;https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;One of the tasks I&amp;rsquo;ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;
 &lt;p&gt;Not an overly complicated situation but a common one that ArcGIS does not have a solution out-of-the-box. Below is a bare-bones code snippet to do it. It has both the input shapefile and output zip file hard-coded. The call to the subroutine that does the work is: zipShapefile(wellsShapeFile,wellsZipFile)&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import zipfile
+import sys
+import os
+import glob
+wellsShapeFile = &amp;quot;C:/cwi5_bk/WELLS/wells.SHP&amp;quot;
+wellsZipFile = &amp;quot;C:/cwi5_bk/WELLS/test5.zip&amp;quot;
+
+def zipShapefile(inShapefile, newZipFN):
+   print &#39;Starting to Zip &#39;+inShapefile+&#39; to &#39;+newZipFN
+
+if not (os.path.exists(inShapefile)):
+   print inShapefile + &#39; Does Not Exist&#39;
+   return False
+
+if (os.path.exists(newZipFN)):
+   print &#39;Deleting &#39;+newZipFN
+   os.remove(newZipFN)
+
+if (os.path.exists(newZipFN)):
+   print &#39;Unable to Delete&#39;+newZipFN
+   return False
+
+zipobj = zipfile.ZipFile(newZipFN,&#39;w&#39;)
+
+for infile in glob.glob( inShapefile.lower().replace(&amp;quot;.shp&amp;quot;,&amp;quot;.*&amp;quot;)):
+   print infile
+   zipobj.write(infile,os.path.basename(infile),zipfile.ZIP_DEFLATED)
+
+zipobj.close()
+return True
+
+zipShapefile(wellsShapeFile,wellsZipFile)
+print &amp;quot;done!&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

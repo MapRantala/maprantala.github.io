@@ -17,9 +17,22 @@
       <description>&lt;p&gt;I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&amp;rsquo;s &lt;!-- raw HTML omitted --&gt;ListFeatureClasses&lt;!-- raw HTML omitted --&gt; request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.&lt;/p&gt;
 &lt;p&gt;Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.&lt;/p&gt;
 &lt;p&gt;After discovering missing data in our backups, I reconstructed what happened and found this bug. Below is arcpy code that iterates through the feature datasets in a geodatabase and lists the feature classes:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And here is a screen shot of the contents of a test enterprise geodatabase, you&amp;rsquo;ll see it has a feature data set named &amp;lsquo;outcrops&amp;rsquo; that has a feature class also named &amp;lsquo;outcrops&amp;rsquo; within it:&lt;br&gt;
+&lt;pre&gt;&lt;code&gt;import arcpy
+
+def copyAll():
+    for iFeatureClass in arcpy.ListFeatureClasses():
+        print(&amp;quot; Feature Class: {0}&amp;quot;.format(iFeatureClass))
+    iFeatureClassFull = None
+
+testGDBname = &amp;quot;mgs_sandbox.sde&amp;quot;
+arcpy.env.workspace = testGDBname
+
+copyAll()
+for iFD in arcpy.ListDatasets(&amp;quot;&amp;quot;,&amp;quot;Feature&amp;quot;):
+    print(&amp;quot;Feature Dataset {0}:&amp;quot;.format(iFD))
+    arcpy.env.workspace = testGDBname+&amp;quot;/&amp;quot;+str(iFD)
+    copyAll()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And here is a screen shot of the contents of a test enterprise geodatabase, you&amp;rsquo;ll see it has a feature data set named &amp;lsquo;outcrops&amp;rsquo; that has a feature class also named &amp;lsquo;outcrops&amp;rsquo; within it:&lt;br&gt;
 &lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/sandbox.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;And the results list only the feature dataset:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/results.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
@@ -74,9 +87,9 @@
 &lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is &amp;lsquo;Embedded Resource&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/07/embedded.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Then you can set your cursor with two lines of code. Not that my cursor is in my QDI.QdiAddIn Namespace:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;Dim pCursorStream As System.IO.Stream = Me.GetType.Assembly.GetManifestResourceStream(&amp;quot;QDI.QdiAddIn.NewCursor.cur&amp;quot;)
+MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -128,11 +141,9 @@
 &lt;p&gt;I found the solution in ESRI&amp;rsquo;s topic, &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/&#34;&gt;Advanced add-in concepts (ArcObjects .NET 10 SDK)&lt;/a&gt; in the Delayed loading section:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;The verbiage, &amp;lsquo;setting the onDemand Extensible Markup Language (XML) attribute to false&amp;rsquo; was a bit non-specific to me.  I guessed right, however, that they were referring to the control definiton in the Command section of Config.esriaddinx.  In the example below, I set the onDemand attribute to false by adding the  ‘onDemand=&amp;lsquo;false&amp;rsquo;‘ tag and the control did, in fact, get instantiated at load time, giving me the ability to disable it.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;&amp;amp;lt;Tool id=&amp;quot;MGS_QDIAddin_QDIAddTool&amp;quot; class=&amp;quot;QDIAddTool&amp;quot; message=&amp;quot;QDI Add New Location.&amp;quot; caption=&amp;quot;QDI Add Tool&amp;quot; tip=&amp;quot;QDI Add Tool.&amp;quot; category=&amp;quot;QDI Add-In Controls&amp;quot; image=&amp;quot;ImagesQDIAddTool.png&amp;quot; onDemand=&amp;quot;false&amp;quot;/&amp;amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -146,21 +157,21 @@
 &lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&amp;rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fix is just adding  &amp;lsquo;My.&amp;rsquo; to the namespace in this line:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To get this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To get this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(My.ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/errorlist.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fixes in this case was also to use the complete name space path.  Examples:&lt;/p&gt;
 &lt;p&gt;Change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(geometry.GeometryType) = esriGeometryType.esriGeometryPoint Then
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If (geometry.GeometryType) = ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPoint Then)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And change this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = ESRI.ArcGIS.Display.esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -178,9 +189,57 @@
 &lt;/ol&gt;
 &lt;p&gt;What I often do is make the parameter interpretation flexible to meet my needs.  The sample below shows how I do this.  The logic first checks to see if the correct number of parameters were used to launch the script (i.e. if it is called by an Arc Toolbox tool), where the files for the default files exist or if the debug values are valid, including checking the current date against a hard-coded date variable.  Juggling the conditional structure would allow you to prioritize the options differently.&lt;/p&gt;
 &lt;p&gt;I am also using Tkinter to display an interactive dialog if none of the three conditions are successfully met.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import os.path
+import datetime
+import shutil
+import sys
+
+theEmailText = &amp;quot;nStart: &amp;quot; + str(datetime.datetime.now())
+
+#This example shows three different ways for a script to receive input paramters.
+#
+# First, if it was run with the necessary number of parameters, as if launched by
+# an ArcToolbox tool, it uses those parameters.
+
+if len(sys.argv) == 2:
+    wellsShapeFile = sys.argv[0]
+    unwellsShapeFile = sys.argv[1]
+    theEmailText = theEmailText + &amp;quot;nUsing Parameters Passed In:nn Located Wells File: &amp;quot;+wellsShapeFile+&amp;quot;n Unlocated Wells File: &amp;quot;+unwellsShapeFile
+else:
+    dateString = datetime.date.today().strftime(&amp;quot;%Y%m%d&amp;quot;)
+    wellsShapeFile = &amp;quot;C:/cwi5_bk/wells/temp/wells_.shp&amp;quot;
+    unwellsShapeFile = &amp;quot;C:/cwi5_bk/wells/temp/unloc_wells.shp&amp;quot;
+
+    #Second attempt is if there are default values that should be used.
+    #I use this for a process that is run via scheduled Windows Task
+    if (os.path.exists(wellsShapeFile)) and (os.path.exists(unwellsShapeFile)):
+        theEmailText = theEmailText + &amp;quot;nUsing Automated Date-Based file names:nn Located Wells File: &amp;quot;+wellsShapeFile+&amp;quot;n Unlocated Wells File: &amp;quot;+unwellsShapeFile
+    else:
+        #The third method is used for debugging/running in the IDE.
+        #I put a check condition so this is valid for one day only
+        #And then hard-code the temporary paths.
+        #
+        #Note that you may want to modify the structure of the IF statement
+        #used for methods 2 &amp;amp; 3 so that it checks for the manual-override (3rd)
+        #method first
+        if dateString == &#39;20101213&#39;:
+            wellsShapeFile = &amp;quot;C:/cwi5_bk/wells/temp/wells.shp&amp;quot;
+            unwellsShapeFile = &amp;quot;C:/cwi5_bk/wells/temp/unloc.shp&amp;quot;
+            theEmailText = theEmailText + &amp;quot;nUsing Manual Override file names:nn Located Wells File: &amp;quot;+wellsShapeFile+&amp;quot;n Unlocated Wells File: &amp;quot;+unwellsShapeFile
+        else:
+            theEmailText = theEmailText + &amp;quot;n Manual Override for file names does not meet data filter&amp;quot;
+
+    if (not os.path.exists(wellsShapeFile)) or (not os.path.exists(unwellsShapeFile)):
+        from Tkinter import *
+        msgbox = Tk()
+        msgbox.title(&#39;Error&#39;)
+        Message(msgbox,text=&amp;quot;Must either use ArcTool to launch or edit file parameters&amp;quot;, bg=&#39;royalblue&#39;,fg=&#39;ivory&#39;, relief=GROOVE).pack(padx=10, pady=10)
+        msgbox.mainloop()
+        print theEmailText
+        quit()
+
+print theEmailText
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -192,9 +251,18 @@
       <description>&lt;p&gt;I have been working on some data entry forms that utilize a DataGrid.  Using a PostGres Geodatabase that had domains set on several fields, I could not directly bind to the controls on my dialog.  So I am going the round-about way of populating my own comboboxes with valid names and displaying within the DataGrid.&lt;/p&gt;
 &lt;p&gt;Having not done this previously, I found this example: &lt;a href=&#34;http://www.eggheadcafe.com/community/aspnet/14/22477/example-of-how-to-add-controls-in-data-grid.aspx&#34;&gt;Example of how to add controls in data grid VB.NET&lt;/a&gt; very useful and just wanted to point it out to anyone.  &lt;a href=&#34;http://www.syncfusion.com/FAQ/windowsforms/faq_c44c.aspx#q1015q&#34;&gt;George Shephard&amp;rsquo;s Windows Forms FAQ&lt;/a&gt; also had several useful tips.&lt;/p&gt;
 &lt;p&gt;Finally, I has a problem with the masked textboxs I added to the Datagrid, they required users to click once to get focus and a second to start editing.  After much googling, I found used some information from &lt;a href=&#34;http://social.msdn.microsoft.com/Forums/en-US/vbgeneral/thread/8d3c1f98-9501-4902-b81b-82f6bbd4f3e5/&#34;&gt;MSDN&lt;/a&gt; that allowed me to find a work-around.  In my Mousedown event, I included this snippet (QdiControl is the control for the specific cell that the HitTestInfo says the mousedown hit):&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Peace.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;amp;lt;/pre&amp;amp;gt;
+Dim WindowsControl As System.Windows.Forms.Control = CType(QdiControl, System.Windows.Forms.Control)
+If (TypeOf WindowsControl Is MaskedTextBox) Then
+ Dim pTextBox As MaskedTextBox = CType(WindowsControl, MaskedTextBox)
+ Dim dgdtblStyle As DataGridColumnStyle = RelatedForm.DataGrid.TableStyles(0).GridColumnStyles(CurrentColumn)
+
+ RelatedForm.DataGrid.BeginEdit(dgdtblStyle, CurrentRow)
+ pTextBox.Select(pTextBox.Text.Length, 0)
+ WindowsControl.Focus()
+
+ End If
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Peace.&lt;/p&gt;
 </description>
     </item>
     

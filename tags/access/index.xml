@@ -19,9 +19,37 @@
 &lt;p&gt;So every three months I have to go through the ODBC connections for these queries and change the password.  And before you chastise me for storing the password in the VBA code, I can only say &amp;lsquo;you&amp;rsquo;re right&amp;rsquo; but that&amp;rsquo;s the way it is done–not ideal but gets the job done and we&amp;rsquo;re not dealing with overly sensitive data.&lt;/p&gt;
 &lt;p&gt;Well, my three-month deadline was approaching and I figured I would simplify the process which I found error-prone.&lt;/p&gt;
 &lt;p&gt;Some searching and object model diagramming scouring and I came up with this barebones solution, of course, your connection string may vary.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;Public Sub UpdateConnectStrings()
+
+Dim obj As AccessObject
+Dim dbs As Object
+Set dbs = Application.CurrentData
+
+Dim i As Integer
+
+Dim newConnectionString As String
+newConnectionString = &amp;quot;ODBC;DRIVER={Microsoft ODBC for Oracle};SERVER=vader;UID=luke;PWD=iMufathr;&amp;quot;
+
+Dim comparisionConnectionString As String
+comparisionConnectionString = &amp;quot;ODBC;Driver&amp;quot;
+
+For Each obj In dbs.AllQueries
+
+If (obj.Type = acQuery) Then
+  For i = 0 To CurrentDb.QueryDefs.Count - 1
+    If (CurrentDb.QueryDefs(i).Name = obj.Name) Then
+      If (Left(CurrentDb.QueryDefs(i).Connect, Len(comparisionConnectionString)) = comparisionConnectionString) Then
+        CurrentDb.QueryDefs(i).Connect = newConnectionString
+      End If
+    End If
+  Next i
+End If
+
+Next obj
+End Sub
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

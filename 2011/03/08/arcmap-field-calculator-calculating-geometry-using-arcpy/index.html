@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -104,11 +117,11 @@ Tags:
 <div class="content">
 <p>One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm">Field Calculator</a>.  When I stumbled upon a bug in the way the <a href="https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/">Extract Values to Points</a> tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.</p>
 <p>I set the Parser to Python and the formula was simple once I figured out the syntax:</p>
-<!-- raw HTML omitted -->
-<p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/origin.jpg"><!-- raw HTML omitted --></a></p>
+<pre><code>pPoint = arcpy.Point(0,0)
+</code></pre><p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/origin.jpg"><!-- raw HTML omitted --></a></p>
 <p>Then, to extend my knowledge, I wanted to see how to calculate the geometry based off of two fields (X and Y).   The only real trick is knowing the bracket field names using exclamation points instead of brackets:</p>
-<!-- raw HTML omitted -->
-<p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/fields.jpg"><!-- raw HTML omitted --></a></p>
+<pre><code>arcpy.Point(!X!,!Y!)
+</code></pre><p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/fields.jpg"><!-- raw HTML omitted --></a></p>
 <p>So turns out everything it pretty easy and straight-forward.  Whew!</p>
 
 

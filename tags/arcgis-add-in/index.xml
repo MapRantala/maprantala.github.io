@@ -19,11 +19,9 @@
 &lt;p&gt;I found the solution in ESRI&amp;rsquo;s topic, &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/&#34;&gt;Advanced add-in concepts (ArcObjects .NET 10 SDK)&lt;/a&gt; in the Delayed loading section:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;The verbiage, &amp;lsquo;setting the onDemand Extensible Markup Language (XML) attribute to false&amp;rsquo; was a bit non-specific to me.  I guessed right, however, that they were referring to the control definiton in the Command section of Config.esriaddinx.  In the example below, I set the onDemand attribute to false by adding the  ‘onDemand=&amp;lsquo;false&amp;rsquo;‘ tag and the control did, in fact, get instantiated at load time, giving me the ability to disable it.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;&amp;amp;lt;Tool id=&amp;quot;MGS_QDIAddin_QDIAddTool&amp;quot; class=&amp;quot;QDIAddTool&amp;quot; message=&amp;quot;QDI Add New Location.&amp;quot; caption=&amp;quot;QDI Add Tool&amp;quot; tip=&amp;quot;QDI Add Tool.&amp;quot; category=&amp;quot;QDI Add-In Controls&amp;quot; image=&amp;quot;ImagesQDIAddTool.png&amp;quot; onDemand=&amp;quot;false&amp;quot;/&amp;amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
   </channel>

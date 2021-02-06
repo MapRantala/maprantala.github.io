@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -101,11 +114,9 @@ Tags:
 <p>I found the solution in ESRI&rsquo;s topic, <a href="http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/">Advanced add-in concepts (ArcObjects .NET 10 SDK)</a> in the Delayed loading section:</p>
 <!-- raw HTML omitted -->
 <p>The verbiage, &lsquo;setting the onDemand Extensible Markup Language (XML) attribute to false&rsquo; was a bit non-specific to me.  I guessed right, however, that they were referring to the control definiton in the Command section of Config.esriaddinx.  In the example below, I set the onDemand attribute to false by adding the  ‘onDemand=&lsquo;false&rsquo;‘ tag and the control did, in fact, get instantiated at load time, giving me the ability to disable it.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<blockquote>
-</blockquote>
+<pre><code>&amp;lt;Tool id=&quot;MGS_QDIAddin_QDIAddTool&quot; class=&quot;QDIAddTool&quot; message=&quot;QDI Add New Location.&quot; caption=&quot;QDI Add Tool&quot; tip=&quot;QDI Add Tool.&quot; category=&quot;QDI Add-In Controls&quot; image=&quot;ImagesQDIAddTool.png&quot; onDemand=&quot;false&quot;/&amp;gt;
 
+</code></pre>
 
 </div>
 </article>

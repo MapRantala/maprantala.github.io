@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -108,9 +121,24 @@ C:\GIS_dataBuchetteparcels.shp</p>
 <p>I then created a new python script and pasted the one line.</p>
 <p>I added some imports, accepted a parameter, some string manipulation, and some result outputs and I had a quick &amp; easy script. In added the script in ArcToolbox and now I can right-click on it and run it in Batch mode. I do a quick search in Windows Explorer to get all the rasters I want to run it on and select &amp; drag them to my ArcToolbox Batch Dialog.</p>
 <p>Actual code can be downloaded <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110228_load_lidar_data.zip">HERE</a> and you don&rsquo;t need to worry about WordPress messing up the spacing.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code>import arcpy
+import os, sys
+
+inRaster = sys.argv[1] 
+basedir = os.path.basename(os.path.dirname(inRaster)).lower()
+outRaster = &quot;Database Connections/mgs_lidar.lidar.sde/mgs_lidar.lidar.&quot;+basedir
+
+def printit(inMessage):
+    print inMessage
+    arcpy.AddMessage(inMessage)
+    
+if not (arcpy.Exists(outRaster)):
+    printit (&quot;Importing: &quot;+basedir)
+    arcpy.CopyRaster_management(inRaster,outRaster,&quot;#&quot;,&quot;#&quot;,&quot;#&quot;,&quot;NONE&quot;,&quot;NONE&quot;,&quot;#&quot;)
+else:
+    printit (&quot;Skipping: &quot;+basedir+&quot; because it already exists!&quot;)
+
+</code></pre><!-- raw HTML omitted -->
 
 
 </div>

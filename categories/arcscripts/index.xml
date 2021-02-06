@@ -21,11 +21,397 @@
 &lt;p&gt;So, as you  might guess from the fact that I&amp;rsquo;m posting about it, I wrote a script to add that field in and launch it from an ArcToolbox Tool. Nothing fancy going on in the code, just a series of replaces, depending on the field. Using dictionaries instead of arrays of paired values might have been better but the script takes just a few seconds to run so I can live with it as-is.&lt;/p&gt;
 &lt;p&gt;The list of street type abbreviations came from a combination of &lt;!-- raw HTML omitted --&gt;ESRI&amp;rsquo;s standards&lt;!-- raw HTML omitted --&gt; and those found in an older version of the Hennepin County data. There were no conflicting abbreviations between the two. The code warns if a street name occurs in the data that is not in the list.&lt;/p&gt;
 &lt;p&gt;While I&amp;rsquo;m including the code here for reference, it&amp;rsquo;s probably best to &lt;!-- raw HTML omitted --&gt;download the code from GitHub.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;#-------------------------------------------------------------------------------
+# Name:        usi_dataprep_Add_STCONABR
+#
+# Purpose:     This can be used to add [CT_CON_ABR] to Hennepin County, MN
+#              centerlines. This is a concatenated, abbreviated full name of
+#              the street. This used to be included in the data but
+#              disappeared from the downloads in the summer of 2017.
+#
+#              Data available at: http://www.hennepin.us/gisopendata
+#
+# Author:      mrantala
+#
+# Created:     2017.10.04
+#
+#------------------------------------------------------------------------------
+
+import arcpy
+
+############################################
+## Custom Variables
+#These are the fields that are concatenated. Hennepin has others but were always blank.
+requiredFieldList = [&amp;quot;ST_PRE_DIR&amp;quot;,&amp;quot;ST_PRE_TYP&amp;quot;,&amp;quot;ST_NAME&amp;quot;,&amp;quot;ST_POS_TYP&amp;quot;,&amp;quot;ST_POS_DIR&amp;quot;]
+#This is the name of the field to add
+newFieldName = &amp;quot;ST_CON_ABR&amp;quot;
+
+#These are the abbreviations for [ST_POS_TYPE]. The list was created using a sample of
+#Hennepin&#39;s centerline data &amp;amp; Esri Tech article: http://support.esri.com/en/technical-article/000008454
+# Note that I intentionally left cases in where there is no abbreviation (Fall, for example) as a means of
+#documenting the fact that it should NOT change.
+
+abbList = []
+abbList.append([&amp;quot;Alcove&amp;quot;,&amp;quot;Alcove&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Alley&amp;quot;,&amp;quot;Aly&amp;quot;])
+abbList.append([&amp;quot;Annex&amp;quot;,&amp;quot;Anx&amp;quot;])
+abbList.append([&amp;quot;Arcade&amp;quot;,&amp;quot;Arc&amp;quot;])
+abbList.append([&amp;quot;Avenue&amp;quot;,&amp;quot;Ave&amp;quot;])
+abbList.append([&amp;quot;Bay&amp;quot;,&amp;quot;Bay&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Bayoo&amp;quot;,&amp;quot;Byu&amp;quot;])
+abbList.append([&amp;quot;Beach&amp;quot;,&amp;quot;Bch&amp;quot;])
+abbList.append([&amp;quot;Bend&amp;quot;,&amp;quot;Bnd&amp;quot;])
+abbList.append([&amp;quot;Bluff&amp;quot;,&amp;quot;Blf&amp;quot;])
+abbList.append([&amp;quot;Bluffs&amp;quot;,&amp;quot;Blfs&amp;quot;])
+abbList.append([&amp;quot;Bottom&amp;quot;,&amp;quot;Btm&amp;quot;])
+abbList.append([&amp;quot;Boulevard&amp;quot;,&amp;quot;Blvd&amp;quot;])
+abbList.append([&amp;quot;Branch&amp;quot;,&amp;quot;Br&amp;quot;])
+abbList.append([&amp;quot;Bridge&amp;quot;,&amp;quot;Brg&amp;quot;])
+abbList.append([&amp;quot;Brook&amp;quot;,&amp;quot;Brk&amp;quot;])
+abbList.append([&amp;quot;Brooks&amp;quot;,&amp;quot;Brks&amp;quot;])
+abbList.append([&amp;quot;Burg&amp;quot;,&amp;quot;Bg&amp;quot;])
+abbList.append([&amp;quot;Burgs&amp;quot;,&amp;quot;Bgs&amp;quot;])
+abbList.append([&amp;quot;Bypass&amp;quot;,&amp;quot;Byp&amp;quot;])
+abbList.append([&amp;quot;Camp&amp;quot;,&amp;quot;Cp&amp;quot;])
+abbList.append([&amp;quot;Canyon&amp;quot;,&amp;quot;Cyn&amp;quot;])
+abbList.append([&amp;quot;Cape&amp;quot;,&amp;quot;Cpe&amp;quot;])
+abbList.append([&amp;quot;Causeway&amp;quot;,&amp;quot;Cswy&amp;quot;])
+abbList.append([&amp;quot;Center&amp;quot;,&amp;quot;Ctr&amp;quot;])
+abbList.append([&amp;quot;Centers&amp;quot;,&amp;quot;Ctrs&amp;quot;])
+abbList.append([&amp;quot;Crossings&amp;quot;,&amp;quot;Crossings&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Crossroad&amp;quot;,&amp;quot;Xrd&amp;quot;])
+abbList.append([&amp;quot;Chase&amp;quot;,&amp;quot;Chase&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Circle&amp;quot;,&amp;quot;Cir&amp;quot;])
+abbList.append([&amp;quot;Circles&amp;quot;,&amp;quot;Cirs&amp;quot;])
+abbList.append([&amp;quot;Cliff&amp;quot;,&amp;quot;Clf&amp;quot;])
+abbList.append([&amp;quot;Cliffs&amp;quot;,&amp;quot;Clfs&amp;quot;])
+abbList.append([&amp;quot;Club&amp;quot;,&amp;quot;Clb&amp;quot;])
+abbList.append([&amp;quot;Close&amp;quot;,&amp;quot;Close&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Common&amp;quot;,&amp;quot;Cmn&amp;quot;])
+abbList.append([&amp;quot;Commons&amp;quot;,&amp;quot;Cmns&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Corner&amp;quot;,&amp;quot;Cor&amp;quot;])
+abbList.append([&amp;quot;Corners&amp;quot;,&amp;quot;Cors&amp;quot;])
+abbList.append([&amp;quot;Corridor&amp;quot;,&amp;quot;Corridor&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Course&amp;quot;,&amp;quot;Crse&amp;quot;])
+abbList.append([&amp;quot;Court&amp;quot;,&amp;quot;Ct&amp;quot;])
+abbList.append([&amp;quot;Courts&amp;quot;,&amp;quot;Cts&amp;quot;])
+abbList.append([&amp;quot;Cove&amp;quot;,&amp;quot;Cv&amp;quot;])
+abbList.append([&amp;quot;Coves&amp;quot;,&amp;quot;Cvs&amp;quot;])
+abbList.append([&amp;quot;Creek&amp;quot;,&amp;quot;Crk&amp;quot;])
+abbList.append([&amp;quot;Crescent&amp;quot;,&amp;quot;Cres&amp;quot;])
+abbList.append([&amp;quot;Crest&amp;quot;,&amp;quot;Crst&amp;quot;])
+abbList.append([&amp;quot;Cross&amp;quot;,&amp;quot;Cross&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Crossing&amp;quot;,&amp;quot;Xing&amp;quot;])
+abbList.append([&amp;quot;Curve&amp;quot;,&amp;quot;Curve&amp;quot;])
+abbList.append([&amp;quot;Dale&amp;quot;,&amp;quot;Dl&amp;quot;])
+abbList.append([&amp;quot;Dam&amp;quot;,&amp;quot;Dm&amp;quot;])
+abbList.append([&amp;quot;Divide&amp;quot;,&amp;quot;Dv&amp;quot;])
+abbList.append([&amp;quot;Down&amp;quot;,&amp;quot;Down&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Downs&amp;quot;,&amp;quot;Downs&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Drive&amp;quot;,&amp;quot;Dr&amp;quot;])
+abbList.append([&amp;quot;Drives&amp;quot;,&amp;quot;Drs&amp;quot;])
+abbList.append([&amp;quot;Edge&amp;quot;,&amp;quot;Edge&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Entry&amp;quot;,&amp;quot;Entry&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Estate&amp;quot;,&amp;quot;Est&amp;quot;])
+abbList.append([&amp;quot;Estates&amp;quot;,&amp;quot;Ests&amp;quot;])
+abbList.append([&amp;quot;Expressway&amp;quot;,&amp;quot;Expy&amp;quot;])
+abbList.append([&amp;quot;Extension&amp;quot;,&amp;quot;Ext&amp;quot;])
+abbList.append([&amp;quot;Extensions&amp;quot;,&amp;quot;Exts&amp;quot;])
+abbList.append([&amp;quot;Fall&amp;quot;,&amp;quot;Fall&amp;quot;])
+abbList.append([&amp;quot;Falls&amp;quot;,&amp;quot;Fls&amp;quot;])
+abbList.append([&amp;quot;Ferry&amp;quot;,&amp;quot;Fry&amp;quot;])
+abbList.append([&amp;quot;Field&amp;quot;,&amp;quot;Fld&amp;quot;])
+abbList.append([&amp;quot;Fields&amp;quot;,&amp;quot;Flds&amp;quot;])
+abbList.append([&amp;quot;Flat&amp;quot;,&amp;quot;Flt&amp;quot;])
+abbList.append([&amp;quot;Flats&amp;quot;,&amp;quot;Flts&amp;quot;])
+abbList.append([&amp;quot;Ford&amp;quot;,&amp;quot;Frd&amp;quot;])
+abbList.append([&amp;quot;Fords&amp;quot;,&amp;quot;Frds&amp;quot;])
+abbList.append([&amp;quot;Forest&amp;quot;,&amp;quot;Frst&amp;quot;])
+abbList.append([&amp;quot;Forge&amp;quot;,&amp;quot;Frg&amp;quot;])
+abbList.append([&amp;quot;Forges&amp;quot;,&amp;quot;Frgs&amp;quot;])
+abbList.append([&amp;quot;Fork&amp;quot;,&amp;quot;Frk&amp;quot;])
+abbList.append([&amp;quot;Forks&amp;quot;,&amp;quot;Frks&amp;quot;])
+abbList.append([&amp;quot;Fort&amp;quot;,&amp;quot;Ft&amp;quot;])
+abbList.append([&amp;quot;Freeway&amp;quot;,&amp;quot;Fwy&amp;quot;])
+abbList.append([&amp;quot;Gables&amp;quot;,&amp;quot;Gables&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Garden&amp;quot;,&amp;quot;Gdn&amp;quot;])
+abbList.append([&amp;quot;Gardens&amp;quot;,&amp;quot;Gdns&amp;quot;])
+abbList.append([&amp;quot;Gate&amp;quot;,&amp;quot;Gate&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Gateway&amp;quot;,&amp;quot;Gtwy&amp;quot;])
+abbList.append([&amp;quot;Glade&amp;quot;,&amp;quot;Glade&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Glen&amp;quot;,&amp;quot;Gln&amp;quot;])
+abbList.append([&amp;quot;Glens&amp;quot;,&amp;quot;Glns&amp;quot;])
+abbList.append([&amp;quot;Green&amp;quot;,&amp;quot;Grn&amp;quot;])
+abbList.append([&amp;quot;Greens&amp;quot;,&amp;quot;Grns&amp;quot;])
+abbList.append([&amp;quot;Greenway&amp;quot;,&amp;quot;Greenway&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Grove&amp;quot;,&amp;quot;Grv&amp;quot;])
+abbList.append([&amp;quot;Groves&amp;quot;,&amp;quot;Grvs&amp;quot;])
+abbList.append([&amp;quot;Harbor&amp;quot;,&amp;quot;Hbr&amp;quot;])
+abbList.append([&amp;quot;Harbors&amp;quot;,&amp;quot;Hbrs&amp;quot;])
+abbList.append([&amp;quot;Haven&amp;quot;,&amp;quot;Hvn&amp;quot;])
+abbList.append([&amp;quot;Heights&amp;quot;,&amp;quot;Hts&amp;quot;])
+abbList.append([&amp;quot;Highway&amp;quot;,&amp;quot;Hwy&amp;quot;])
+abbList.append([&amp;quot;Hill&amp;quot;,&amp;quot;Hl&amp;quot;])
+abbList.append([&amp;quot;Hills&amp;quot;,&amp;quot;Hls&amp;quot;])
+abbList.append([&amp;quot;Hollow&amp;quot;,&amp;quot;Holw&amp;quot;])
+abbList.append([&amp;quot;Horn&amp;quot;,&amp;quot;Horn&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Inlet&amp;quot;,&amp;quot;Inlt&amp;quot;])
+abbList.append([&amp;quot;Island&amp;quot;,&amp;quot;Is&amp;quot;])
+abbList.append([&amp;quot;Islands&amp;quot;,&amp;quot;Iss&amp;quot;])
+abbList.append([&amp;quot;Isle&amp;quot;,&amp;quot;Isle&amp;quot;])
+abbList.append([&amp;quot;Junction&amp;quot;,&amp;quot;Jct&amp;quot;])
+abbList.append([&amp;quot;Junctions&amp;quot;,&amp;quot;Jcts&amp;quot;])
+abbList.append([&amp;quot;Key&amp;quot;,&amp;quot;Ky&amp;quot;])
+abbList.append([&amp;quot;Keys&amp;quot;,&amp;quot;Kys&amp;quot;])
+abbList.append([&amp;quot;Knoll&amp;quot;,&amp;quot;Knl&amp;quot;])
+abbList.append([&amp;quot;Knolls&amp;quot;,&amp;quot;Knls&amp;quot;])
+abbList.append([&amp;quot;Lake&amp;quot;,&amp;quot;Lk&amp;quot;])
+abbList.append([&amp;quot;Lakes&amp;quot;,&amp;quot;Lks&amp;quot;])
+abbList.append([&amp;quot;Land&amp;quot;,&amp;quot;Land&amp;quot;])
+abbList.append([&amp;quot;Landing&amp;quot;,&amp;quot;Lndg&amp;quot;])
+abbList.append([&amp;quot;Lane&amp;quot;,&amp;quot;Ln&amp;quot;])
+abbList.append([&amp;quot;Light&amp;quot;,&amp;quot;Lgt&amp;quot;])
+abbList.append([&amp;quot;Lights&amp;quot;,&amp;quot;Lgts&amp;quot;])
+abbList.append([&amp;quot;Loaf&amp;quot;,&amp;quot;Lf&amp;quot;])
+abbList.append([&amp;quot;Lock&amp;quot;,&amp;quot;Lck&amp;quot;])
+abbList.append([&amp;quot;Locks&amp;quot;,&amp;quot;Lcks&amp;quot;])
+abbList.append([&amp;quot;Lodge&amp;quot;,&amp;quot;Ldg&amp;quot;])
+abbList.append([&amp;quot;Loop&amp;quot;,&amp;quot;Loop&amp;quot;])
+abbList.append([&amp;quot;Mall&amp;quot;,&amp;quot;Mall&amp;quot;])
+abbList.append([&amp;quot;Manor&amp;quot;,&amp;quot;Mnr&amp;quot;])
+abbList.append([&amp;quot;Manors&amp;quot;,&amp;quot;Mnrs&amp;quot;])
+abbList.append([&amp;quot;Meadow&amp;quot;,&amp;quot;Mdw&amp;quot;])
+abbList.append([&amp;quot;Meadows&amp;quot;,&amp;quot;Mdws&amp;quot;])
+abbList.append([&amp;quot;Mews&amp;quot;,&amp;quot;Mews&amp;quot;])
+abbList.append([&amp;quot;Mill&amp;quot;,&amp;quot;Ml&amp;quot;])
+abbList.append([&amp;quot;Mills&amp;quot;,&amp;quot;Mls&amp;quot;])
+abbList.append([&amp;quot;Mission&amp;quot;,&amp;quot;Msn&amp;quot;])
+abbList.append([&amp;quot;Motorway&amp;quot;,&amp;quot;Mtwy&amp;quot;])
+abbList.append([&amp;quot;Mount&amp;quot;,&amp;quot;Mt&amp;quot;])
+abbList.append([&amp;quot;Mountain&amp;quot;,&amp;quot;Mtn&amp;quot;])
+abbList.append([&amp;quot;Mountains&amp;quot;,&amp;quot;Mtns&amp;quot;])
+abbList.append([&amp;quot;Neck&amp;quot;,&amp;quot;Nck&amp;quot;])
+abbList.append([&amp;quot;Orchard&amp;quot;,&amp;quot;Orch&amp;quot;])
+abbList.append([&amp;quot;Oval&amp;quot;,&amp;quot;Oval&amp;quot;])
+abbList.append([&amp;quot;Overpass&amp;quot;,&amp;quot;Opas&amp;quot;])
+abbList.append([&amp;quot;Park&amp;quot;,&amp;quot;Park&amp;quot;])
+abbList.append([&amp;quot;Parks&amp;quot;,&amp;quot;Park&amp;quot;])
+abbList.append([&amp;quot;Parkway&amp;quot;,&amp;quot;Pkwy&amp;quot;])
+abbList.append([&amp;quot;Parkways&amp;quot;,&amp;quot;Pkwy&amp;quot;])
+abbList.append([&amp;quot;Pass&amp;quot;,&amp;quot;Pass&amp;quot;])
+abbList.append([&amp;quot;Passage&amp;quot;,&amp;quot;Psge&amp;quot;])
+abbList.append([&amp;quot;Path&amp;quot;,&amp;quot;Path&amp;quot;])
+abbList.append([&amp;quot;Pike&amp;quot;,&amp;quot;Pike&amp;quot;])
+abbList.append([&amp;quot;Pine&amp;quot;,&amp;quot;Pne&amp;quot;])
+abbList.append([&amp;quot;Pines&amp;quot;,&amp;quot;Pnes&amp;quot;])
+abbList.append([&amp;quot;Place&amp;quot;,&amp;quot;Pl&amp;quot;])
+abbList.append([&amp;quot;Plain&amp;quot;,&amp;quot;Pln&amp;quot;])
+abbList.append([&amp;quot;Plains&amp;quot;,&amp;quot;Plns&amp;quot;])
+abbList.append([&amp;quot;Plaza&amp;quot;,&amp;quot;Plz&amp;quot;])
+abbList.append([&amp;quot;Point&amp;quot;,&amp;quot;Pt&amp;quot;])
+abbList.append([&amp;quot;Points&amp;quot;,&amp;quot;Pts&amp;quot;])
+abbList.append([&amp;quot;Port&amp;quot;,&amp;quot;Prt&amp;quot;])
+abbList.append([&amp;quot;Ports&amp;quot;,&amp;quot;Prts&amp;quot;])
+abbList.append([&amp;quot;Prairie&amp;quot;,&amp;quot;Pr&amp;quot;])
+abbList.append([&amp;quot;Radial&amp;quot;,&amp;quot;Radl&amp;quot;])
+abbList.append([&amp;quot;Railroad&amp;quot;,&amp;quot;Railroad&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Ramp&amp;quot;,&amp;quot;Ramp&amp;quot;])
+abbList.append([&amp;quot;Ranch&amp;quot;,&amp;quot;Rnch&amp;quot;])
+abbList.append([&amp;quot;Rapid&amp;quot;,&amp;quot;Rpd&amp;quot;])
+abbList.append([&amp;quot;Rapids&amp;quot;,&amp;quot;Rpds&amp;quot;])
+abbList.append([&amp;quot;Rest&amp;quot;,&amp;quot;Rst&amp;quot;])
+abbList.append([&amp;quot;Ridge&amp;quot;,&amp;quot;Rdg&amp;quot;])
+abbList.append([&amp;quot;Ridges&amp;quot;,&amp;quot;Rdgs&amp;quot;])
+abbList.append([&amp;quot;Rise&amp;quot;,&amp;quot;Rise&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;River&amp;quot;,&amp;quot;Riv&amp;quot;])
+abbList.append([&amp;quot;Road&amp;quot;,&amp;quot;Rd&amp;quot;])
+abbList.append([&amp;quot;Roads&amp;quot;,&amp;quot;Rds&amp;quot;])
+abbList.append([&amp;quot;Route&amp;quot;,&amp;quot;Rte&amp;quot;])
+abbList.append([&amp;quot;Row&amp;quot;,&amp;quot;Row&amp;quot;])
+abbList.append([&amp;quot;Rue&amp;quot;,&amp;quot;Rue&amp;quot;])
+abbList.append([&amp;quot;Run&amp;quot;,&amp;quot;Run&amp;quot;])
+abbList.append([&amp;quot;Shoal&amp;quot;,&amp;quot;Shl&amp;quot;])
+abbList.append([&amp;quot;Shoals&amp;quot;,&amp;quot;Shls&amp;quot;])
+abbList.append([&amp;quot;Shore&amp;quot;,&amp;quot;Shr&amp;quot;])
+abbList.append([&amp;quot;Shores&amp;quot;,&amp;quot;Shrs&amp;quot;])
+abbList.append([&amp;quot;Skies&amp;quot;,&amp;quot;Skies&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Skyway&amp;quot;,&amp;quot;Skwy&amp;quot;])
+abbList.append([&amp;quot;Spring&amp;quot;,&amp;quot;Spg&amp;quot;])
+abbList.append([&amp;quot;Springs&amp;quot;,&amp;quot;Spgs&amp;quot;])
+abbList.append([&amp;quot;Spur&amp;quot;,&amp;quot;Spur&amp;quot;])
+abbList.append([&amp;quot;Spurs&amp;quot;,&amp;quot;Spur&amp;quot;])
+abbList.append([&amp;quot;Square&amp;quot;,&amp;quot;Sq&amp;quot;])
+abbList.append([&amp;quot;Squares&amp;quot;,&amp;quot;Sqrs&amp;quot;])
+abbList.append([&amp;quot;Station&amp;quot;,&amp;quot;Sta&amp;quot;])
+abbList.append([&amp;quot;Stravenue&amp;quot;,&amp;quot;Stra&amp;quot;])
+abbList.append([&amp;quot;Stream&amp;quot;,&amp;quot;Strm&amp;quot;])
+abbList.append([&amp;quot;Street&amp;quot;,&amp;quot;St&amp;quot;])
+abbList.append([&amp;quot;Streets&amp;quot;,&amp;quot;Sts&amp;quot;])
+abbList.append([&amp;quot;Summit&amp;quot;,&amp;quot;Smt&amp;quot;])
+abbList.append([&amp;quot;Terrace&amp;quot;,&amp;quot;Ter&amp;quot;])
+abbList.append([&amp;quot;Throughway&amp;quot;,&amp;quot;Trwy&amp;quot;])
+abbList.append([&amp;quot;Trace&amp;quot;,&amp;quot;Trce&amp;quot;])
+abbList.append([&amp;quot;Track&amp;quot;,&amp;quot;Trak&amp;quot;])
+abbList.append([&amp;quot;Trafficway&amp;quot;,&amp;quot;Trfy&amp;quot;])
+abbList.append([&amp;quot;Trail&amp;quot;,&amp;quot;Trl&amp;quot;])
+abbList.append([&amp;quot;Tunnel&amp;quot;,&amp;quot;Tunl&amp;quot;])
+abbList.append([&amp;quot;Turn&amp;quot;,&amp;quot;Turn&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Turnpike&amp;quot;,&amp;quot;Tpke&amp;quot;])
+abbList.append([&amp;quot;Underpass&amp;quot;,&amp;quot;Upas&amp;quot;])
+abbList.append([&amp;quot;Union&amp;quot;,&amp;quot;Un&amp;quot;])
+abbList.append([&amp;quot;Unions&amp;quot;,&amp;quot;Uns&amp;quot;])
+abbList.append([&amp;quot;Valley&amp;quot;,&amp;quot;Vly&amp;quot;])
+abbList.append([&amp;quot;Valleys&amp;quot;,&amp;quot;Vlys&amp;quot;])
+abbList.append([&amp;quot;Viaduct&amp;quot;,&amp;quot;Via&amp;quot;])
+abbList.append([&amp;quot;View&amp;quot;,&amp;quot;Vw&amp;quot;])
+abbList.append([&amp;quot;Views&amp;quot;,&amp;quot;Vws&amp;quot;])
+abbList.append([&amp;quot;Village&amp;quot;,&amp;quot;Vlg&amp;quot;])
+abbList.append([&amp;quot;Villages&amp;quot;,&amp;quot;Vlgs&amp;quot;])
+abbList.append([&amp;quot;Ville&amp;quot;,&amp;quot;Vl&amp;quot;])
+abbList.append([&amp;quot;Vista&amp;quot;,&amp;quot;Vis&amp;quot;])
+abbList.append([&amp;quot;Walk&amp;quot;,&amp;quot;Walk&amp;quot;])
+abbList.append([&amp;quot;Walks&amp;quot;,&amp;quot;Walk&amp;quot;])
+abbList.append([&amp;quot;Wall&amp;quot;,&amp;quot;Wall&amp;quot;])
+abbList.append([&amp;quot;Way&amp;quot;,&amp;quot;Way&amp;quot;])
+abbList.append([&amp;quot;Ways&amp;quot;,&amp;quot;Ways&amp;quot;])
+abbList.append([&amp;quot;Well&amp;quot;,&amp;quot;Wl&amp;quot;])
+abbList.append([&amp;quot;Wells&amp;quot;,&amp;quot;Wls&amp;quot;])
+
+#List of changes for [St_POS_Dir]
+posDirList = [[&amp;quot;North&amp;quot;,&amp;quot;N&amp;quot;],[&amp;quot;East&amp;quot;,&amp;quot;E&amp;quot;],[&amp;quot;South&amp;quot;,&amp;quot;S&amp;quot;],[&amp;quot;West&amp;quot;,&amp;quot;W&amp;quot;],[&amp;quot;Northeast&amp;quot;,&amp;quot;NE&amp;quot;],[&amp;quot;Northwest&amp;quot;,&amp;quot;NW&amp;quot;],[&amp;quot;Southeast&amp;quot;,&amp;quot;SE&amp;quot;],[&amp;quot;Southwest&amp;quot;,&amp;quot;SW&amp;quot;]]
+preDirList = [[&amp;quot;North&amp;quot;,&amp;quot;N&amp;quot;],[&amp;quot;East&amp;quot;,&amp;quot;E&amp;quot;],[&amp;quot;South&amp;quot;,&amp;quot;S&amp;quot;],[&amp;quot;West&amp;quot;,&amp;quot;W&amp;quot;]]
+############################################
+## Read Arguments
+
+if (len(sys.argv) &amp;amp;gt; 1):
+    inFC = sys.argv[1]
+
+############################################
+# General Purpose Functions
+def printit(inputString):
+    try:
+        print(inputString)
+        arcpy.AddMessage(str(inputString))
+    except:
+        pass
+
+def printerror(inputString):
+    print (inputString)
+    arcpy.AddError(inputString)
+
+def getField(inFeatureClass, inFieldName):
+  fieldList = arcpy.ListFields(inFeatureClass)
+  for iField in fieldList:
+    if iField.name.lower() == inFieldName.lower():
+      return iField
+  return None
+
+def fieldExists(inFeatureClass, inFieldName):
+  return getField(inFeatureClass,inFieldName) &amp;lt;&amp;gt; None
+
+############################################
+# Initial QC
+
+def initialQC():
+    if (arcpy.Exists(inFC)):
+        printit(&amp;quot;PASS: Feature Class {} Exists&amp;quot;.format(inFC))
+    else:
+        printerror(&amp;quot;ERROR: Feature Class {} Does Not Exist, Cancelling...&amp;quot;.format(inFC))
+        return False
+
+    for iFld in requiredFieldList:
+        if (fieldExists(inFC,iFld)):
+            printit(&amp;quot;PASS: Feature Class {} Has Field [{}]&amp;quot;.format(inFC,iFld))
+        else:
+            printerror(&amp;quot;ERROR: Feature Class {} Does Not Have Field [{}], Cancelling...&amp;quot;.format(inFC,iFld))
+            return False
+
+    if not (fieldExists(inFC,newFieldName)):
+        printit(&amp;quot;GOOD: Feature Class {} Does Not Already Have Field [{}]&amp;quot;.format(inFC,newFieldName))
+        printit(&amp;quot; ADDING Field [{}]&amp;quot;.format(newFieldName))
+        try:
+            arcpy.AddField_management(in_table=inFC, field_name=newFieldName, field_type=&amp;quot;TEXT&amp;quot;, field_precision=&amp;quot;&amp;quot;, field_scale=&amp;quot;&amp;quot;, field_length=&amp;quot;100&amp;quot;, field_alias=&amp;quot;&amp;quot;, field_is_nullable=&amp;quot;NULLABLE&amp;quot;, field_is_required=&amp;quot;NON_REQUIRED&amp;quot;, field_domain=&amp;quot;&amp;quot;)
+        except:
+            printerror(&amp;quot;ERROR: Error While Adding Field [{}], Cancelling...&amp;quot;.format(newFieldName))
+            return False
+        if not (fieldExists(inFC,newFieldName)):
+            printerror(&amp;quot;ERROR: Unable to Add Field [{}], Cancelling...&amp;quot;.format(newFieldName))
+            return False
+    else:
+        printerror(&amp;quot;ERROR: Feature Class {} Already Has Field [{}], Cancelling...&amp;quot;.format(inFC,newFieldName))
+        return False
+
+    return True
+
+############################################
+# Main
+
+def makeSubstitution(inList,inValue,inFieldName):
+    for iAbbreviationPr in inList:
+        if (inValue == iAbbreviationPr[0]): #Found a Match
+            return iAbbreviationPr[1]
+    printit(&amp;quot;WARNING: [{}] of {} does not have a value in the abbreviation list! Potential Error...&amp;quot;.format(inFieldName,inValue))
+    return inValue
+
+def main():
+    cursorFieldList = requiredFieldList
+    cursorFieldList.append(newFieldName)
+
+    try:
+        iUCursor = arcpy.da.UpdateCursor(inFC,cursorFieldList)
+        iRowCount = 0
+        iRowMax = 1
+        for uRow in iUCursor:
+
+            #Just to give user an indicator that progress is being made
+            if (iRowCount&amp;amp;gt;iRowMax):
+                printit(&amp;quot; {}&amp;quot;.format(iRowCount))
+                iRowMax *= 10
+                iRowCount+=1
+
+            abbreviateConcatenatedName = &amp;quot;&amp;quot;
+            iFldIndex = 0
+            for iFld in requiredFieldList:
+
+
+                if (iFld == newFieldName):
+                    uRow[iFldIndex] = abbreviateConcatenatedName
+                    iUCursor.updateRow(uRow)
+                else:
+                    iValue = uRow[iFldIndex].strip() #Strip is just a safe-guard
+
+
+                    if ((iValue != &amp;quot;&amp;quot;) and (iValue != None)):
+                        if (iFld == &amp;quot;ST_PRE_DIR&amp;quot;):
+                            iValue= makeSubstitution(preDirList,iValue,&amp;quot;ST_PRE_DIR&amp;quot;)
+                        if (iFld == &amp;quot;ST_POS_TYP&amp;quot;):
+                            iValue= makeSubstitution(abbList,iValue,&amp;quot;ST_POS_TYPE&amp;quot;)
+                        if (iFld == &amp;quot;ST_POS_DIR&amp;quot;):
+                            iValue = makeSubstitution(posDirList,iValue,&amp;quot;ST_POS_DIR&amp;quot;)
+
+                        if (abbreviateConcatenatedName == &amp;quot;&amp;quot;):
+                            abbreviateConcatenatedName = iValue
+                        else:
+                            abbreviateConcatenatedName+=&amp;quot; &amp;quot;+iValue
+                iFldIndex += 1
+
+        del iUCursor
+    except RuntimeError as e:
+        printerror(&amp;quot;ERROR: Error {} Occurred, Cancelling...&amp;quot;.format(e))
+        try:
+            del iUCursor
+            del uRow
+        except:
+            return False
+    return True
+
+
+if __name__ == &#39;__main__&#39;:
+    if (initialQC() == True):
+        if (main() == True):
+            printit(&amp;quot;Done!&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -36,11 +422,75 @@
       <description>&lt;p&gt;Working on doing some &lt;!-- raw HTML omitted --&gt;advanced ArcGIS server printing&lt;!-- raw HTML omitted --&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;!-- raw HTML omitted --&gt;Petr Krebs&lt;!-- raw HTML omitted --&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
 &lt;p&gt;I created an ArcGIS toolbox with two options–one to convert a single .mxd and one to batch convert an entire folder. To use it, make sure to have the EmptyGroup.lyr in the same directory as the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the raw code or &lt;!-- raw HTML omitted --&gt;git it&lt;!-- raw HTML omitted --&gt;:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;import os
+import arcpy
+import inspect
+import glob
+import uuid
+import inspect
+
+codeDir = os.path.dirname(inspect.getfile(inspect.currentframe()))
+EmptyGroupLayerFile = codeDir+&amp;quot;/EmptyGroup.lyr&amp;quot;
+inArg1 = sys.argv[1]
+inArg2 = sys.argv[2]
+
+def printit(inMessage):
+    arcpy.AddMessage(inMessage)
+
+def makeLyrFromMXD(inMXD, outLyr):
+    if not (os.path.exists(inMXD)):
+        printit( &amp;quot;ERROR: {} does not exist&amp;quot;.format(inMXD))
+        return False
+    if not (os.path.exists(EmptyGroupLayerFile)):
+        printit( &amp;quot;ERROR: {} does not exist&amp;quot;.format(EmptyGroupLayerFile))
+        return False
+    if  (os.path.exists(outLyr)):
+        printit( &amp;quot;Skipping: {} already exists&amp;quot;.format(outLyr))
+        return True
+
+    printit( &amp;quot;Making Layer file: {0}&amp;quot;.format(outLyr))
+
+    mxd = arcpy.mapping.MapDocument(inMXD)
+    ###Right now, just doing the first Dataframe, this could be modified
+    df = arcpy.mapping.ListDataFrames(mxd)[0]
+
+    theUUID = str(uuid.uuid1())
+
+    iGroupLayerRaw = arcpy.mapping.Layer(EmptyGroupLayerFile)
+    iGroupLayerRaw.name = theUUID
+    arcpy.mapping.AddLayer(df,iGroupLayerRaw,&amp;quot;TOP&amp;quot;)
+    groupBaseName = os.path.basename(outLyr).split(&amp;quot;.&amp;quot;)[0]
+
+    for lyr in arcpy.mapping.ListLayers(df):
+        if not (lyr.name == theUUID):
+            if (lyr.longName == lyr.name):
+                arcpy.mapping.AddLayerToGroup (df, iGroupLayer, lyr, &amp;quot;Bottom&amp;quot;)
+        else:
+            iGroupLayer = lyr
+
+    iGroupLayer.name = groupBaseName
+    arcpy.SaveToLayerFile_management(iGroupLayer, outLyr)
+    return os.path.exists(outLyr)
+
+def doMultiple(inDir,outDir):
+    for iMxd in glob.glob(inDir+&amp;quot;/*.mxd&amp;quot;):
+        lyrFile = outDir+&amp;quot;/&amp;quot;+os.path.basename(iMxd).lower().replace(&amp;quot;.mxd&amp;quot;,&amp;quot;.lyr&amp;quot;)
+        makeLyrFromMXD(iMxd, lyrFile)
+
+if(not os.path.exists(EmptyGroupLayerFile)):
+    printit(&amp;quot;Error: {} is missing, can not run.&amp;quot;.format(EmptyGroupLayerFile))
+else:
+    if (os.path.isdir(inArg1) and (os.path.isdir(inArg2))):
+        doMultiple(inArg1,inArg2)
+    elif (os.path.isfile(inArg1)):
+        if (os.path.exists(inArg2)):
+            printit(&amp;quot;Error: {} already exists&amp;quot;.format(inArg2))
+        else:
+            makeLyrFromMXD(inArg1,inArg2)
+    else:
+        printit(&amp;quot;Unable to understand input parameters&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -55,34 +505,102 @@
 &lt;p&gt;Luckily the &lt;!-- raw HTML omitted --&gt;Python development team at Esri&lt;!-- raw HTML omitted --&gt; already had a &lt;!-- raw HTML omitted --&gt;blog post&lt;!-- raw HTML omitted --&gt; about this at their &lt;!-- raw HTML omitted --&gt;ArcPy Café blog&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
 &lt;p&gt;They report that the root of the problem is &amp;lsquo;conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool&amp;rsquo;. But this can be overcome by using a &lt;!-- raw HTML omitted --&gt;decorator&lt;!-- raw HTML omitted --&gt; function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.&lt;/p&gt;
 &lt;p&gt;Example code is shown below:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&amp;rsquo;ve been able to tell, works fine without crashing your ArcMap session.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import functools
+import os
+import threading
+import webbrowser
+ 
+# A decorator that will run its wrapped function in a new thread
+def run_in_other_thread(function):
+    # functool.wraps will copy over the docstring and some other metadata
+    # from the original function
+    @functools.wraps(function)
+    def fn_(*args, **kwargs):
+        thread = threading.Thread(target=function, args=args, kwargs=kwargs)
+        thread.start()
+        thread.join()
+    return fn_
+ 
+# Our new wrapped versions of os.startfile and webbrowser.open
+startfile = run_in_other_thread(os.startfile)
+openbrowser = run_in_other_thread(webbrowser.open)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&amp;rsquo;ve been able to tell, works fine without crashing your ArcMap session.&lt;/p&gt;
 &lt;p&gt;Cheers!&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>Quick &amp;#038; Dirty Arcpy: Verify a Coded Value Domain Code</title>
-      <link>https://maprantala.com/2014/12/18/quick-#038-dirty-arcpy-verify-a-coded-value-domain-code/</link>
+      <title>Quick and Dirty Arcpy: Verify a Coded Value Domain Code</title>
+      <link>https://maprantala.com/2014/12/18/quick-and-dirty-arcpy-verify-a-coded-value-domain-code/</link>
       <pubDate>Thu, 18 Dec 2014 22:32:11 -0600</pubDate>
-      <guid>https://maprantala.com/2014/12/18/quick-#038-dirty-arcpy-verify-a-coded-value-domain-code/</guid>
+      <guid>https://maprantala.com/2014/12/18/quick-and-dirty-arcpy-verify-a-coded-value-domain-code/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a &lt;!-- raw HTML omitted --&gt;Coded Value Domain&lt;!-- raw HTML omitted --&gt; is valid.&lt;/p&gt;
 &lt;p&gt;The logic of the code is pretty straight-forward. Get a field&amp;rsquo;s domain and check that a potential value is one of the code values. The biggest &amp;lsquo;trick&amp;rsquo; in this code is that &lt;!-- raw HTML omitted --&gt;arcpy.da.ListDomains&lt;!-- raw HTML omitted --&gt;, which locates a field&amp;rsquo;s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.&lt;/p&gt;
 &lt;p&gt;A couple caveats about the code. It only returns True if a field exists, has a coded value domain, and the value tested is one of the (case-sensitive) valid codes. While I have an ArcToolbox tool to call it for illustration purposes, I&amp;rsquo;m only calling it from code so I wanted tight requirements.&lt;/p&gt;
 &lt;p&gt;Anyhow, here is the code or &lt;!-- raw HTML omitted --&gt;download it&lt;!-- raw HTML omitted --&gt; from GitHub.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;import arcpy
+
+inFeatureClass = sys.argv[1]
+inField = sys.argv[2]
+inValue = sys.argv[3]
+
+# getFeatureClassParentWorkspace: This script gets the geodatabase for a
+# feature class. The trick here is that feature classes can be within a
+# feature dataset so you need to account for two possible levels in the
+# directory structure.
+def getFeatureClassParentWorkspace(inFeatureClass):
+    describeFC = arcpy.Describe(inFeatureClass)
+    if (describeFC.dataType == &#39;FeatureClass&#39;) or (describeFC.dataType == &#39;Table&#39;):
+        workspace1 = describeFC.path
+        describeWorkspace1 = arcpy.Describe(workspace1)
+        if (describeWorkspace1.dataType == &#39;FeatureDataset&#39;):
+            return describeWorkspace1.path
+        return workspace1
+
+    return None
+
+# Find a field within a feature class
+def getField(inFeatureClass, inFieldName):
+  fieldList = arcpy.ListFields(inFeatureClass)
+  for iField in fieldList:
+    if iField.name.lower() == inFieldName.lower():
+      return iField
+  return None
+
+#Get a field&#39;s domain
+def getDomain(inFeatureClass, inField):
+    theField = getField(inFeatureClass,inField)
+    if (theField &amp;amp;lt;&amp;gt; None):
+        searchDomainName = theField.domain
+        if (searchDomainName &amp;amp;lt;&amp;gt; &amp;quot;&amp;quot;):
+            for iDomain in arcpy.da.ListDomains(getFeatureClassParentWorkspace(inFeatureClass)):
+                if iDomain.name == searchDomainName:
+                    return iDomain
+    return None
+
+#Get the domain.
+def validDomainValue(inFeatureClass,inField,inValue):
+    theDomain = getDomain(inFeatureClass,inField)
+
+    if not (theDomain is None):
+        if (theDomain.domainType == &amp;quot;CodedValue&amp;quot;):
+            if theDomain.codedValues.has_key(inValue):
+                return True
+    return False
+
+if (validDomainValue(inFeatureClass,inField,inValue)):
+    arcpy.AddMessage(&amp;quot;Value ({0}) is valid for field [{1}].&amp;quot;.format(inValue,inField))
+else:
+    arcpy.AddError(&amp;quot;ERROR: Value ({0}) is invalid for field [{1}].&amp;quot;.format(inValue,inField))
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
-      <title>Quick &amp;#038; Dirty arcpy: Bulk Changing Field Values</title>
-      <link>https://maprantala.com/2014/04/23/quick-#038-dirty-arcpy-bulk-changing-field-values/</link>
+      <title>Quick and Dirty arcpy: Bulk Changing Field Values</title>
+      <link>https://maprantala.com/2014/04/23/quick-and-dirty-arcpy-bulk-changing-field-values/</link>
       <pubDate>Wed, 23 Apr 2014 05:18:24 -0500</pubDate>
-      <guid>https://maprantala.com/2014/04/23/quick-#038-dirty-arcpy-bulk-changing-field-values/</guid>
+      <guid>https://maprantala.com/2014/04/23/quick-and-dirty-arcpy-bulk-changing-field-values/</guid>
       <description>&lt;p&gt;In mapping cross sections, our geologists often find themselves renaming their stratigraphic units midway, or at the end, of creating multiple cross sections.  This can cause a situation where we need to change multiple values in multiple fields in multiple feature classes–a situation that can get messy very fast.&lt;/p&gt;
 &lt;p&gt;Perfect situation for a quick &amp;amp; dirty arcpy script and, in this case, an &lt;a href=&#34;https://github.com/MapRantala/Blog&#34;&gt;ArcToolbox tool that can be downloaded&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This tool will change all feature classes in the O:\clay_cga\sand-distribution_model\dnrPackages\stratlines directory.&lt;/p&gt;
@@ -95,11 +613,141 @@
 &lt;p&gt;And since I have Case Sensitive checked, &amp;lsquo;Go&amp;rsquo; will not get changed to &amp;lsquo;gro&amp;rsquo;.  Also note that only full values that match values in the Old Value List get changed, part matches are left as-is so &amp;lsquo;got&amp;rsquo; would be left as-is even though the first two characters match &amp;lsquo;go&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/BulkFieldChange.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;import arcpy
+import sys, string, arcgisscripting
+import arcpy
+
+def printit(inString):
+    print inString
+    arcpy.AddMessage(inString)
+
+def printerr(inString):
+    print inString
+    arcpy.AddError(inString)
+
+def fieldExists(tablename,indexname):
+
+ if not arcpy.Exists(tablename):
+  return False
+
+ tabledescription = arcpy.Describe(tablename)
+
+ for iField in tabledescription.fields:
+     if (iField.Name.lower() == indexname.lower()):
+         return True
+
+ return False
+
+
+if len(sys.argv) &amp;amp;gt; 1:
+    inDirectory = sys.argv[1]
+    inFieldNameRaw = sys.argv[2]
+    oldValue = sys.argv[3].replace(&amp;quot;,&amp;quot;,&amp;quot; &amp;quot;)
+    newValue = sys.argv[4].replace(&amp;quot;,&amp;quot;,&amp;quot; &amp;quot;)
+    caseSensitiveRaw = sys.argv[5]
+else:
+    inDirectory = r&amp;quot;C:\temp\test\stratest&amp;quot;
+    inFieldNameRaw = &amp;quot;strat&amp;quot;
+    oldValue = &amp;quot;go, goc, sgb&amp;quot;.replace(&amp;quot;,&amp;quot;,&amp;quot; &amp;quot;)
+    newValue = &amp;quot;gro grc grb&amp;quot;.replace(&amp;quot;,&amp;quot;,&amp;quot; &amp;quot;)
+    caseSensitiveRaw = &amp;quot;true&amp;quot;
+
+caseSensitive = (caseSensitiveRaw.lower() == &amp;quot;true&amp;quot;)
+fieldNameList = inFieldNameRaw.replace(&amp;quot;,&amp;quot;,&amp;quot; &amp;quot;).split()
+
+printit(&amp;quot;Starting&amp;quot;)
+printit(&amp;quot; Workspace: &amp;quot;+str(inDirectory))
+printit( &amp;quot; inFieldName: &amp;quot;+str(inFieldNameRaw))
+printit( &amp;quot; oldValue: &amp;quot;+str(oldValue))
+printit( &amp;quot; newValue: &amp;quot;+str(newValue))
+printit( &amp;quot; caseSensitive: &amp;quot;+str(caseSensitive))
+
+valueDict = dict()
+
+def initialQC():
+    global valueDict
+
+    if not (arcpy.Exists(inDirectory)):
+        printerr(&amp;quot;Workspace {0} does not exist&amp;quot;.format(inDirectory))
+        return False
+
+    if (len(oldValue.split()) &amp;lt;&amp;gt; len(newValue.split())):
+        printerr(&amp;quot;Number of values in {0} does not equal number of values in {1}&amp;quot;.format(oldValue,newValue))
+        return False
+
+    iValueIndex = 0
+    for iOldValue in oldValue.split():
+        if (caseSensitive):
+            thisKey = iOldValue
+        else:
+            thisKey = iOldValue.lower()
+
+        if (valueDict.has_key(thisKey)):
+            printerr(&amp;quot;ERROR: Value, {0}, is repeated, cancelling...&amp;quot;.format(thisKey))
+            return False
+
+        valueDict[thisKey] = newValue.split()[iValueIndex]
+        iValueIndex+=1
+    return True
+
+def makeFieldList(inFC):
+    thisFieldList = []
+
+    for iField in fieldNameList:
+        if (fieldExists(inFC,iField)):
+            thisFieldList.append(iField)
+
+    return thisFieldList
+
+
+def main():
+    arcpy.env.workspace = inDirectory
+    printit(valueDict)
+    for iFC in arcpy.ListFeatureClasses():
+        printit(&amp;quot;Working on {0}&amp;quot;.format(iFC))
+
+        iFieldList = makeFieldList(iFC)
+        if (len(iFieldList) == 0):
+            printit(&amp;quot; No fields to change, Skipping...&amp;quot;)
+            continue
+
+        rows = arcpy.UpdateCursor(iFC)
+
+        changes = 0
+        printit(&amp;quot; Changing Rows&amp;quot;)
+        for row in rows:
+            iChange = 0
+            for iField in iFieldList:
+                iValue = str(row.getValue(iField))
+                newValue = iValue
+
+                if valueDict.has_key(iValue):
+                    newValue = valueDict[iValue]
+                else:
+                    if not (caseSensitive):
+                        if valueDict.has_key(iValue.lower()):
+                            newValue = valueDict[iValue.lower()]
+
+                if (newValue &amp;lt;&amp;gt; iValue):
+                    printit(&amp;quot;CHANGE {0}&amp;quot;.format(newValue))
+                    row.setValue(iField,newValue)
+                    iChange+=1
+
+            if (iChange &amp;amp;gt; 0):
+                changes+=1
+                rows.updateRow(row)
+        printit(&amp;quot; Made {0} changes&amp;quot;.format(changes))
+        del row
+        del rows
+
+    printit(&amp;quot;Main&amp;quot;)
+
+if (initialQC()==True):
+    main()
+
+printit(&amp;quot;Done&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -110,11 +758,14 @@
       <description>&lt;p&gt;I was helping a co-worker who needed to check if a field exists in their arcpy script. Since we were located at their computer, I thought I would just do a quick Google search and pull the code off this blog. Seemed logical since I the original purpose was exactly that—to serve as a handy, public place to store code snippets that I use &amp;amp; that others might find handy.&lt;/p&gt;
 &lt;p&gt;Anyhow, my Google Search on “&lt;a href=&#34;https://www.google.com/#q=Node+Dangles+field+Exists&#34;&gt;Node Dangles field Exists&lt;/a&gt;” came up with a &lt;a href=&#34;https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;9.3 script&lt;/a&gt; to check if field index exists. And I also have a &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;10.0 version&lt;/a&gt; but did not come up with the field exists snippet. So here it is:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2013/09/image2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;def fieldExists(inFeatureClass, inFieldName):
+   fieldList = arcpy.ListFields(inFeatureClass)
+   for iField in fieldList:
+      if iField.name.lower() == inFieldName.lower():
+         return True
+   return False
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -143,11 +794,36 @@
       <description>&lt;p&gt;Question: How do I get ArcMap to automatically pan through an area.&lt;/p&gt;
 &lt;p&gt;As I mentioned in a &lt;a href=&#34;https://maprantala.com/2012/04/30/building-a-loc%E2%80%A6f-bing-imagery/&#34;&gt;previous post&lt;/a&gt;, I recently had the need to have ArcMap automatically pan through a project area. My first attempt was to print a series of data-driven pages (using a fishnet polygon layer as the index) this but that did not accomplish what I needed so I switched to arcpy, which made the task simple enough. Nothing special or tricky about this code, but just did not find it anywhere else.&lt;/p&gt;
 &lt;p&gt;The one thing to note is that I have a 1 second pause between pans–this was to allow image tiles to download. You will need to adjust the delay to meet your needs. &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120427_AutoPan.zip&#34;&gt;The toolbox and code can also be downloaded&lt;/a&gt;.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;import sys,arcpy,datetime
+inLayer = sys.argv[1]
+
+def printit(inMessage):
+    print inMessage
+    arcpy.AddMessage(inMessage)
+
+mxd = arcpy.mapping.MapDocument(&amp;quot;CURRENT&amp;quot;)
+
+arcpy.MakeFeatureLayer_management(inLayer, &amp;quot;indexLayer&amp;quot;)
+cur=arcpy.SearchCursor(&amp;quot;indexLayer&amp;quot;)
+
+df = arcpy.mapping.ListDataFrames(mxd)[0]
+newExtent = df.extent
+
+iCount = 0
+iTotal = (arcpy.GetCount_management(&amp;quot;indexLayer&amp;quot;).getOutput(0))
+
+for row in cur:
+    thisPoly = row.getValue(&amp;quot;Shape&amp;quot;)
+    newExtent.XMin, newExtent.YMin = thisPoly.extent.XMin, thisPoly.extent.YMin
+    newExtent.XMax, newExtent.YMax = thisPoly.extent.XMax, thisPoly.extent.YMax
+    df.extent = newExtent
+    time.sleep(1)
+    iCount+=1
+    printit(&amp;quot;Panned to feature {0} of {1}&amp;quot;.format(iCount,iTotal))
+
+del row
+del cur
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -171,9 +847,12 @@
 &lt;p&gt;While this option still exists in ArcGIS 10, I believe it will disappear when 10.1 comes out and VBA support is completely eliminated.  But it is doable using Python which will continue to be supported.&lt;/p&gt;
 &lt;p&gt;Googling around, I did not find an exact answer but Dave Verbyla, Professor of GIS/Remote Sensing at the University of Alaska has a &lt;a href=&#34;http://nrm.salrm.uaf.edu/~dverbyla/nrm638/lectures/Python_field_calculator.pdf&#34;&gt;posted some samples&lt;/a&gt; that served as a good starting point.&lt;/p&gt;
 &lt;p&gt;In the Pre-Logic Script Code box, I declare a variable (counter) and a function. Then in the formula, I call the function.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;counter = 0
+def uniqueID():
+  global counter
+  counter += 1
+  return counter
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;While composing this post, I actually wanted a concatenated value; &amp;lsquo;OC&amp;rsquo; plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/fc-arcpy2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -192,9 +871,9 @@
 &lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is &amp;lsquo;Embedded Resource&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/07/embedded.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Then you can set your cursor with two lines of code. Not that my cursor is in my QDI.QdiAddIn Namespace:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;Dim pCursorStream As System.IO.Stream = Me.GetType.Assembly.GetManifestResourceStream(&amp;quot;QDI.QdiAddIn.NewCursor.cur&amp;quot;)
+MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -285,21 +964,21 @@ return True&lt;/p&gt;
 &lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&amp;rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fix is just adding  &amp;lsquo;My.&amp;rsquo; to the namespace in this line:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To get this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To get this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(My.ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/errorlist.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fixes in this case was also to use the complete name space path.  Examples:&lt;/p&gt;
 &lt;p&gt;Change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(geometry.GeometryType) = esriGeometryType.esriGeometryPoint Then
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If (geometry.GeometryType) = ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPoint Then)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And change this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = ESRI.ArcGIS.Display.esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -312,9 +991,33 @@ return True&lt;/p&gt;
       <description>&lt;p&gt;Ever since the ever-popular post, &lt;a href=&#34;https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zipping a shapefile using python&lt;/a&gt;, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.&lt;/p&gt;
 &lt;p&gt;The key trick, as shown in line 17, is appending the basename of the file geodatabase (&amp;lsquo;nfg.gdb/&amp;rsquo; in my example) in front of each file as you write it to the zipfile.&lt;/p&gt;
 &lt;p&gt;UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp;amp; pasted and have work.  So I have posted a the code &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110208_Sample_Zip_FileGeodatabase.zip&#34;&gt;HERE&lt;/a&gt; for downloading.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import os
+import zipfile
+import glob
+
+infile = &amp;quot;c:/temp/nfg.gdb&amp;quot;
+outfile = &amp;quot;c:/temp/nfg.zip&amp;quot;
+def zipFileGeodatabase(inFileGeodatabase, newZipFN):
+   if not (os.path.exists(inFileGeodatabase)):
+      return False
+
+   if (os.path.exists(newZipFN)):
+      os.remove(newZipFN)
+
+   zipobj = zipfile.ZipFile(newZipFN,&#39;w&#39;)
+
+   for infile in glob.glob(inFileGeodatabase+&amp;quot;/*&amp;quot;):
+      zipobj.write(infile, os.path.basename(inFileGeodatabase)+&amp;quot;/&amp;quot;+os.path.basename(infile), zipfile.ZIP_DEFLATED)
+      print (&amp;quot;Zipping: &amp;quot;+infile)
+
+   zipobj.close()
+
+   return True
+
+zipFileGeodatabase(infile,outfile)
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -326,18 +1029,27 @@ return True&lt;/p&gt;
       <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
 &lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
 &lt;p&gt;No problem creating the index, for example:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gp.AddIndex_management(tablename, field, IndexName, &amp;quot;NON_UNIQUE&amp;quot;, &amp;quot;NON_ASCENDING&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gp.Exists(mgs_c5ix_fullname)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
 &lt;p&gt;A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;gp = arcgisscripting.create(9.3)
+
+def indexExists(tablename,indexname):
+ if not gp.Exists(tablename):
+  return False
+
+ indexList = gp.listindexes(tablename)
+
+ for iIndex in indexList:
+  if (iIndex.Name == indexname):
+   return True
+
+ return False
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;indexExists(tablename,indexname)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -348,11 +1060,18 @@ return True&lt;/p&gt;
       <guid>https://maprantala.com/2010/12/17/multiple-outputs-for-python-scripts/</guid>
       <description>&lt;p&gt;Related to my &lt;a href=&#34;https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters-3-methods/&#34;&gt;post&lt;/a&gt; on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways.  This is largely due to the fact that some are called by ArcToolbox scripts.  Running in ESRI&amp;rsquo;s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.&lt;/p&gt;
 &lt;p&gt;If you assume one output method but then run your code in the opposite framework, you don&amp;rsquo;t get to see all the pretty little messages.  What I do is create a simple little routine that broadcasts the message both ways.  This is probably an obvious solution but took a few cases before I went ahead and started implementing it.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;gp = arcgisscripting.create()
+
+#This will print both to the geoprocessing window or Python output window
+def gpprint(inmessage):
+ gp.addmessage(inmessage)
+ print inmessage
+
+&amp;amp;lt;Code to do stuff&amp;amp;gt;
+
+#Ok, I want to send a message:
+gpprint(&#39;Hello, sailor!&#39;)
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -364,9 +1083,40 @@ return True&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/&#34;&gt;After receiving a request to modify the code to ignore .lock files, I have an updated to this post.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;One of the tasks I&amp;rsquo;ve been automating is publishing a weekly data update to a website. The update consists of shapefile. The trouble with shapefiles is they consist of 3 or more files with the same basename but different extensions in the same directory.&lt;/p&gt;
 &lt;p&gt;Not an overly complicated situation but a common one that ArcGIS does not have a solution out-of-the-box. Below is a bare-bones code snippet to do it. It has both the input shapefile and output zip file hard-coded. The call to the subroutine that does the work is: zipShapefile(wellsShapeFile,wellsZipFile)&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import zipfile
+import sys
+import os
+import glob
+wellsShapeFile = &amp;quot;C:/cwi5_bk/WELLS/wells.SHP&amp;quot;
+wellsZipFile = &amp;quot;C:/cwi5_bk/WELLS/test5.zip&amp;quot;
+
+def zipShapefile(inShapefile, newZipFN):
+   print &#39;Starting to Zip &#39;+inShapefile+&#39; to &#39;+newZipFN
+
+if not (os.path.exists(inShapefile)):
+   print inShapefile + &#39; Does Not Exist&#39;
+   return False
+
+if (os.path.exists(newZipFN)):
+   print &#39;Deleting &#39;+newZipFN
+   os.remove(newZipFN)
+
+if (os.path.exists(newZipFN)):
+   print &#39;Unable to Delete&#39;+newZipFN
+   return False
+
+zipobj = zipfile.ZipFile(newZipFN,&#39;w&#39;)
+
+for infile in glob.glob( inShapefile.lower().replace(&amp;quot;.shp&amp;quot;,&amp;quot;.*&amp;quot;)):
+   print infile
+   zipobj.write(infile,os.path.basename(infile),zipfile.ZIP_DEFLATED)
+
+zipobj.close()
+return True
+
+zipShapefile(wellsShapeFile,wellsZipFile)
+print &amp;quot;done!&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

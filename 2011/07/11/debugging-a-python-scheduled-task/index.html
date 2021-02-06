@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -104,9 +117,65 @@ Tags:
 <p>Happy programmer.</p>
 <p><!-- raw HTML omitted -->I would recommend using this only while debugging a script–routinely running it could be a security risk since someone could copy a destructive python script into the directory and this would run it.<!-- raw HTML omitted --></p>
 <p>Download: <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110711_tester.zip">tester.py</a></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code>import sys, string, os
+import glob
+import datetime, shutil
+import time, inspect
+import getpass
+
+totalstarttime = datetime.datetime.now()
+
+dateString = datetime.date.today().strftime(&quot;%Y%m%d_&quot;)+datetime.datetime.now().strftime(&quot;%H%M%S&quot;) #datetime.date.today().strftime(&quot;%Y%m%d&quot;)
+debugfile = inspect.getfile(inspect.currentframe()).replace(&quot;.py&quot;,&quot;_&quot;+dateString+&quot;_Debug.txt&quot;)
+stopfile = inspect.getfile(inspect.currentframe()).replace(&quot;.py&quot;,&quot;.stop&quot;)
+newdebugfile = False
+
+codeDir = os.path.dirname(inspect.getfile(inspect.currentframe())).replace(&quot;\&quot;,&quot;/&quot;)
+
+def printit(inText):
+    global newdebugfile
+
+    print inText
+
+    if os.path.exists(debugfile):
+        if (newdebugfile == False):
+            tmpfile = open(debugfile,&quot;w&quot;)
+            newdebugfile = True
+        else:
+            tmpfile = open(debugfile,&quot;a&quot;)
+    else:
+        tmpfile = open(debugfile,&quot;w&quot;)
+
+    tmpfile.write(inText)
+    tmpfile.write(&quot;n&quot;)
+    tmpfile.close()
+    newdebugfile = True
+
+stopFileExists = False
+printit(&quot;Code Directory: &quot;+codeDir)
+printit(&quot;Starting at: &quot;+datetime.date.today().strftime(&quot;%Y-%m-%d_&quot;)+datetime.datetime.now().strftime(&quot;%H:%M:%S&quot;))
+printit(&quot;Stopfile : &quot;+stopfile+&quot;/n&quot;)
+while (stopFileExists == False):
+    for iFile in glob.glob(codeDir+&quot;/test_*.py&quot;):
+
+        thisStartfile = iFile.replace(&quot;.py&quot;,&quot;.start&quot;)
+
+        if not (os.path.exists(thisStartfile)):
+            printit (&quot;Launching: &quot;+iFile)
+            iTmpfile = open(thisStartfile,&quot;w&quot;)
+            iTmpfile.write(&quot;started&quot;)
+            iTmpfile.close()
+            os.system(&quot;Start &quot;+iFile)
+
+    if (os.path.exists(stopfile)):
+        stopFileExists = True
+    else:
+        time.sleep(60)
+
+    printit(&quot;nEnd of Loop: &quot;+datetime.date.today().strftime(&quot;%Y-%m-%d_&quot;)+datetime.datetime.now().strftime(&quot;%H:%M:%S&quot;)+&quot;n&quot;)    
+
+printit(&quot;Done!&quot;)
+</code></pre><!-- raw HTML omitted -->
 
 
 </div>

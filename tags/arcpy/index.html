@@ -52,9 +52,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -126,12 +139,12 @@ Luckily the Python development team at Esrialready had a blog postabout this at 
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2014/12/03/quick-#038-dirty-arcpy-listing-data-sources/">Quick &amp;#038; Dirty ArcPy: Listing Data Sources</a></h2>
+<h2 class="title "><a href="/2014/12/03/quick-and-dirty-arcpy-listing-data-sources/">Quick and Dirty ArcPy: Listing Data Sources</a></h2>
 
 </header>
 <div class="content">
 I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here&rsquo;s the bare-bones script I used instead:
-  
+import arcpy, glob,os theDir = r&quot;L:\gdrs\data\org\us_mn_state_dnr\elev_minnesota_lidar\\&quot; os.chdir(theDir) for iFile in glob.glob(&quot;*.lyr&quot;): print iFile lyr = arcpy.mapping.Layer(iFile) for i in arcpy.mapping.ListLayers(lyr): try: print &quot; {0}: {1}&quot;.format(i,i.dataSource) except: print &quot; {0}: Does not support dataSource&quot;.
 </div>
 </article>
 
@@ -143,7 +156,7 @@ I just had the need to go through a directory containing many (100+) layer files
 <div class="content">
 I mentioned using Tapiriikto batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .GPX to shapefilesthat worked but none seemed to recognize my heart rate data.
 The trick is Garmin extends the GPX specification to incorporate the heart rate:
-Each track point looks like this:
+&lt;span style=&quot;color: #333333;&quot;&gt;xmlns:gpxtpx=&quot;http://www.garmin.com/xmlschemas/TrackPointExtension/v1&quot;&lt;/span&gt; Each track point looks like this:
  Since the first few exiting GPX converters failed to meet my needs, I decided to make my own, at least partially.
 </div>
 </article>

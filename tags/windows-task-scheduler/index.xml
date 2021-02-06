@@ -22,9 +22,65 @@
 &lt;p&gt;Happy programmer.&lt;/p&gt;
 &lt;p&gt;&lt;!-- raw HTML omitted --&gt;I would recommend using this only while debugging a script–routinely running it could be a security risk since someone could copy a destructive python script into the directory and this would run it.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;Download: &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110711_tester.zip&#34;&gt;tester.py&lt;/a&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import sys, string, os
+import glob
+import datetime, shutil
+import time, inspect
+import getpass
+
+totalstarttime = datetime.datetime.now()
+
+dateString = datetime.date.today().strftime(&amp;quot;%Y%m%d_&amp;quot;)+datetime.datetime.now().strftime(&amp;quot;%H%M%S&amp;quot;) #datetime.date.today().strftime(&amp;quot;%Y%m%d&amp;quot;)
+debugfile = inspect.getfile(inspect.currentframe()).replace(&amp;quot;.py&amp;quot;,&amp;quot;_&amp;quot;+dateString+&amp;quot;_Debug.txt&amp;quot;)
+stopfile = inspect.getfile(inspect.currentframe()).replace(&amp;quot;.py&amp;quot;,&amp;quot;.stop&amp;quot;)
+newdebugfile = False
+
+codeDir = os.path.dirname(inspect.getfile(inspect.currentframe())).replace(&amp;quot;\&amp;quot;,&amp;quot;/&amp;quot;)
+
+def printit(inText):
+    global newdebugfile
+
+    print inText
+
+    if os.path.exists(debugfile):
+        if (newdebugfile == False):
+            tmpfile = open(debugfile,&amp;quot;w&amp;quot;)
+            newdebugfile = True
+        else:
+            tmpfile = open(debugfile,&amp;quot;a&amp;quot;)
+    else:
+        tmpfile = open(debugfile,&amp;quot;w&amp;quot;)
+
+    tmpfile.write(inText)
+    tmpfile.write(&amp;quot;n&amp;quot;)
+    tmpfile.close()
+    newdebugfile = True
+
+stopFileExists = False
+printit(&amp;quot;Code Directory: &amp;quot;+codeDir)
+printit(&amp;quot;Starting at: &amp;quot;+datetime.date.today().strftime(&amp;quot;%Y-%m-%d_&amp;quot;)+datetime.datetime.now().strftime(&amp;quot;%H:%M:%S&amp;quot;))
+printit(&amp;quot;Stopfile : &amp;quot;+stopfile+&amp;quot;/n&amp;quot;)
+while (stopFileExists == False):
+    for iFile in glob.glob(codeDir+&amp;quot;/test_*.py&amp;quot;):
+
+        thisStartfile = iFile.replace(&amp;quot;.py&amp;quot;,&amp;quot;.start&amp;quot;)
+
+        if not (os.path.exists(thisStartfile)):
+            printit (&amp;quot;Launching: &amp;quot;+iFile)
+            iTmpfile = open(thisStartfile,&amp;quot;w&amp;quot;)
+            iTmpfile.write(&amp;quot;started&amp;quot;)
+            iTmpfile.close()
+            os.system(&amp;quot;Start &amp;quot;+iFile)
+
+    if (os.path.exists(stopfile)):
+        stopFileExists = True
+    else:
+        time.sleep(60)
+
+    printit(&amp;quot;nEnd of Loop: &amp;quot;+datetime.date.today().strftime(&amp;quot;%Y-%m-%d_&amp;quot;)+datetime.datetime.now().strftime(&amp;quot;%H:%M:%S&amp;quot;)+&amp;quot;n&amp;quot;)    
+
+printit(&amp;quot;Done!&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

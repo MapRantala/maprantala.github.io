@@ -16,8 +16,8 @@
       <guid>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</guid>
       <description>&lt;p&gt;I mentioned using &lt;!-- raw HTML omitted --&gt;Tapiriik&lt;!-- raw HTML omitted --&gt; to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .&lt;!-- raw HTML omitted --&gt;GPX to shapefiles&lt;!-- raw HTML omitted --&gt; that worked but none seemed to recognize my heart rate data.&lt;/p&gt;
 &lt;p&gt;The trick is Garmin extends the GPX specification to incorporate the heart rate:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Each track point looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;span style=&amp;quot;color: #333333;&amp;quot;&amp;gt;xmlns:gpxtpx=&amp;quot;http://www.garmin.com/xmlschemas/TrackPointExtension/v1&amp;quot;&amp;lt;/span&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Each track point looks like this:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -31,9 +31,186 @@
 &lt;p&gt;Since the first few exiting GPX converters failed to meet my needs, I decided to make my own, at least partially.&lt;/p&gt;
 &lt;p&gt;I used Joel Lawhead of &lt;!-- raw HTML omitted --&gt;GeospatialPython.com&lt;!-- raw HTML omitted --&gt;‘s &lt;!-- raw HTML omitted --&gt;pyshp&lt;!-- raw HTML omitted --&gt; library to handle writing the shapefile. I added some basic loop and I stuck a template.prj in the workspace that gets copied once for each shapefile.&lt;/p&gt;
 &lt;p&gt;Otherwise, nothing too fancy going on.  The code can be downloaded from &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/python/python/20140516_GPX2SHP&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt; &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import glob, os
+import xml.etree.ElementTree as ET
+import shapefile
+import shutil
+
+theNS = &amp;quot;{http://www.topografix.com/GPX/1/1}&amp;quot;.lower()
+theNS2 = &amp;quot;{http://www.garmin.com/xmlschemas/TrackPointExtension/v1}&amp;quot;.lower()
+templatePRJfile = &amp;quot;template.prj&amp;quot;
+
+def elementIs(inElement,inTag):
+    item1 = inTag.lower()
+    item2 = elementName(inElement)
+    return (inTag.lower() == elementName(inElement).lower())
+
+def elementName(inElement):
+    item1= inElement.tag.lower().replace(theNS,&amp;quot;&amp;quot;).replace(theNS2,&amp;quot;&amp;quot;)
+    return item1
+
+def convertTimeToSeconds(inTime):
+    theSeconds = -1
+
+    if (inTime.count(&amp;quot;:&amp;quot;)) == 2:
+        try:
+            inHour = inTime.split(&amp;quot;:&amp;quot;)[0]
+            inMin = inTime.split(&amp;quot;:&amp;quot;)[1]
+            inSec = inTime.split(&amp;quot;:&amp;quot;)[2]
+
+            totalSec = float(inSec)
+            totalSec += (float(inMin) * 60)
+            totalSec += (float(inHour) * 3600)
+            theSeconds = totalSec
+        except:
+            pass
+
+    return theSeconds
+
+
+def writeSHP(inSourceFile,inTrkList):
+    w = shapefile.Writer(shapefile.POINT)
+    w.field(&amp;quot;file&amp;quot;)
+    w.field(&amp;quot;segment&amp;quot;,&amp;quot;N&amp;quot;,&amp;quot;8&amp;quot;,0)
+    w.field(&amp;quot;vertex&amp;quot;,&amp;quot;N&amp;quot;,&amp;quot;8&amp;quot;,0)
+    w.field(&amp;quot;datetime&amp;quot;,&amp;quot;C&amp;quot;,30)
+    w.field(&amp;quot;date&amp;quot;,&amp;quot;C&amp;quot;,&amp;quot;10&amp;quot;,0)
+    w.field(&amp;quot;time&amp;quot;,&amp;quot;C&amp;quot;,&amp;quot;8&amp;quot;,0)
+    w.field(&amp;quot;sec&amp;quot;,&amp;quot;N&amp;quot;,&amp;quot;8&amp;quot;,0)
+    w.field(&amp;quot;isec&amp;quot;,&amp;quot;N&amp;quot;,&amp;quot;8&amp;quot;,0)
+    w.field(&amp;quot;totsec&amp;quot;,&amp;quot;N&amp;quot;,&amp;quot;8&amp;quot;,0)
+    w.field(&amp;quot;elev&amp;quot;,&amp;quot;N&amp;quot;,&amp;quot;24&amp;quot;,14)
+    w.field(&amp;quot;hr&amp;quot;,&amp;quot;N&amp;quot;,&amp;quot;8&amp;quot;,0)
+    w.field(&amp;quot;last&amp;quot;,&amp;quot;N&amp;quot;,&amp;quot;1&amp;quot;,0)
+    w.field(&amp;quot;lat&amp;quot;,&amp;quot;N&amp;quot;,&amp;quot;24&amp;quot;,16)
+    w.field(&amp;quot;lon&amp;quot;,&amp;quot;N&amp;quot;,&amp;quot;24&amp;quot;,16)
+
+    iTrkSegIndex = 0
+    startSec =-1
+    prevSec = -1
+    for iTrkSeg in inTrkList:
+        iTrkPtIndex = 0
+        for iTrkPtDict in iTrkSeg:
+            thisLine = &amp;quot;{0},{1},{2},*time*,*ele*,*hr*,*lat*,*lon*&amp;quot;.format(inSourceFile,iTrkSegIndex,iTrkPtIndex)
+
+            theLat = None
+            if (iTrkPtDict.has_key(&#39;lat&#39;)):
+                try:
+                    theLat = float(iTrkPtDict[&#39;lat&#39;])
+                except:
+                    pass
+
+            theLon = None
+
+            if (iTrkPtDict.has_key(&#39;lon&#39;)):
+                try:
+                    theLon = float(iTrkPtDict[&#39;lon&#39;])
+                except:
+                    pass
+
+            theDate = None
+            theTime = None
+            theSeconds = -1
+            segSeconds = -1
+            totSeconds = -1
+
+            if (iTrkPtDict.has_key(&#39;time&#39;)):
+                theDateTime = iTrkPtDict[&#39;time&#39;]
+                if (&amp;quot;T&amp;quot; in theDateTime):
+                    theDate = theDateTime.split(&amp;quot;T&amp;quot;)[0]
+                    theTimePlue = theDateTime.split(&amp;quot;T&amp;quot;)[1]
+                    if (&amp;quot;+&amp;quot; in theTimePlue):
+                        theTime = theTimePlue.split(&amp;quot;+&amp;quot;)[0]
+                        theSeconds = convertTimeToSeconds(theTime)
+
+                        if (prevSec &amp;amp;lt; 0):
+                            prevSec = theSeconds
+                        if (startSec&amp;amp;lt;0):
+                            startSec = theSeconds
+
+                        segSeconds = theSeconds - prevSec
+                        prevSec = theSeconds
+                        totSeconds = theSeconds - startSec
+            else:
+                theDateTime = None
+
+            if (iTrkPtDict.has_key(&#39;ele&#39;)):
+                theElev = iTrkPtDict[&#39;ele&#39;]
+            else:
+                theElev = None
+
+            if (iTrkPtDict.has_key(&#39;hr&#39;)):
+                theHR = iTrkPtDict[&#39;hr&#39;]
+            else:
+                theHR = None
+
+            if (iTrkPtIndex == len(iTrkSeg) - 1):
+                theLast = 1
+            else:
+                theLast = 0
+
+            w.point(theLon, theLat)
+            try:
+                                  w.record(inSourceFile.replace(&amp;quot;.gpx&amp;quot;,&amp;quot;&amp;quot;),iTrkSegIndex,iTrkPtIndex,theDateTime,theDate,theTime,theSeconds,segSeconds,totSeconds,theElev,theHR,theLast,theLat,theLon)
+
+            except:
+                print &amp;quot;############## ERROR ####################&amp;quot;
+            iTrkPtIndex+=1
+
+        iTrkSegIndex+=1
+
+
+    w.save(inSourceFile.lower().replace(&amp;quot;.gpx&amp;quot;,&amp;quot;&amp;quot;))
+    w = None
+    if (os.path.exists(templatePRJfile)):
+        newPRJFN = inSourceFile.lower().replace(&amp;quot;.gpx&amp;quot;,&amp;quot;.prj&amp;quot;)
+        shutil.copyfile(templatePRJfile,newPRJFN)
+
+def mainLoop():
+    for iFile in glob.glob(&amp;quot;*.gpx&amp;quot;):
+        print iFile
+        tree = ET.parse(iFile)
+        root=tree.getroot()
+
+        theTrkList = []
+
+        for iRoot in root:
+            if elementIs(iRoot,&amp;quot;trk&amp;quot;): #&amp;quot;http://www.topografix.com/gpx/1/1}trk&amp;quot; in iRoot.tag.lower():
+                for iTrkSeg in iRoot:
+                    if not elementIs(iTrkSeg,&amp;quot;trkseg&amp;quot;):
+                        continue
+                    thisTrk = []
+
+                    pntIndex = 0
+                    for iTrkPt in iTrkSeg:
+                        if not elementIs(iTrkPt,&amp;quot;trkpt&amp;quot;):
+                            continue
+                        trkPntDict = dict()
+                        trkPntDict[&amp;quot;pntIndex&amp;quot;] = pntIndex
+                        trkPntDict[&#39;lat&#39;] = iTrkPt.get(&#39;lat&#39;)
+                        trkPntDict[&#39;lon&#39;] = iTrkPt.get(&#39;lon&#39;)
+
+                        pntIndex+=1
+                        for iElem in iTrkPt:
+                            if elementIs(iElem,&amp;quot;extensions&amp;quot;):
+                                for iSubElem in iElem:
+                                    if (elementIs(iSubElem,&amp;quot;TrackPointExtension&amp;quot;)):
+                                        for iExtensionElem in iSubElem:
+                                            if elementIs(iExtensionElem,&amp;quot;hr&amp;quot;):
+                                                trkPntDict[elementName(iExtensionElem)] = iExtensionElem.text
+                            else:
+                                trkPntDict[elementName(iElem)] = iElem.text
+
+                        #print trkPntDict
+                        thisTrk.append(trkPntDict)
+
+                    theTrkList.append(thisTrk)
+        writeSHP(iFile.lower(), theTrkList)
+
+
+theLineList = mainLoop()
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;/p&gt;
 </description>
     </item>
     

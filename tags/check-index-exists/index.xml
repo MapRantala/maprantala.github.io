@@ -16,12 +16,27 @@
       <guid>https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0/</guid>
       <description>&lt;p&gt;Updating some python code from 9.3 that using geoprocessing  to 10.0 using arcpy and the first real object I&amp;rsquo;ve had to change relates to detecting whether or not an index exists on a table.&lt;/p&gt;
 &lt;p&gt;I previously &lt;a href=&#34;https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;posted code&lt;/a&gt; using a 9.3 geoprocessing commands, the core of it being:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;With arcpy, ESRI has gone back to using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Describe/000v00000026000000/&#34;&gt;Describe&lt;/a&gt; methodology.  Way back when GISers use to type most of their commands into their wood-burning computers, the command &amp;lsquo;Describe&amp;rsquo; was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).  The snippet below shows a function for checking to see if a table has an index with a specified named.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;indexList = gp.listindexes(tablename)
+for iIndex in indexList:
+    if (iIndex.Name == indexname):
+       return True
+return False
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;With arcpy, ESRI has gone back to using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Describe/000v00000026000000/&#34;&gt;Describe&lt;/a&gt; methodology.  Way back when GISers use to type most of their commands into their wood-burning computers, the command &amp;lsquo;Describe&amp;rsquo; was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).  The snippet below shows a function for checking to see if a table has an index with a specified named.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def indexExists(tablename,indexname):
+
+ if not arcpy.Exists(tablename):
+  return False
+
+ tabledescription = arcpy.Describe(tablename)
+
+ for iIndex in tabledescription.indexes:
+  if (iIndex.Name == indexname):
+   return True
+
+ return False
+
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

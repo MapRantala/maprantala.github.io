@@ -10,10 +10,10 @@
     <atom:link href="https://maprantala.com/tags/table-fields/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Quick &amp;#038; Dirty arcpy: Field Listings</title>
-      <link>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</link>
+      <title>Quick and Dirty arcpy: Field Listings</title>
+      <link>https://maprantala.com/2011/03/17/quick-and-dirty-arcpy-field-listings/</link>
       <pubDate>Thu, 17 Mar 2011 17:03:39 -0500</pubDate>
-      <guid>https://maprantala.com/2011/03/17/quick-#038-dirty-arcpy-field-listings/</guid>
+      <guid>https://maprantala.com/2011/03/17/quick-and-dirty-arcpy-field-listings/</guid>
       <description>&lt;p&gt;I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven&amp;rsquo;t found it.  So, as is my nature, I decided to roll my own.&lt;/p&gt;
 &lt;p&gt;This is a &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;bare-bones script&lt;/a&gt; that iterates through the fields, printing the field name, type, width, and precision.  There are three optional features to it:&lt;/p&gt;
 &lt;ul&gt;
@@ -29,9 +29,115 @@
 &lt;li&gt;outputFile, File, Output, Optional (optional output file to write)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Here is the code, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;just downloading&lt;/a&gt; it since I haven&amp;rsquo;t figured out a good way to have WordPress play nicely with python&amp;rsquo;s indenting.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;# Name: ListFields-arcpy.py
+#
+# Purpose: Lists the fields, their type, width, and precision
+# Can either have it export it to a CSV file or copy
+# and paste from the results window.
+#
+# To use, create a tool from the script and add 3 parameters:
+#  1) Table, Input, Required
+#  2) Boolean, Input, Required (controls whether or not domains are exported)
+#  3) Boolean, Input, Rekquired (controls whether or not you want to get the number of
+#  Populated records.&amp;amp;nbsp; (Your defintion of populated may vary from my code)
+#  4) File, Output, Optional (optional output file to write)
+#
+#
+
+import arcpy,sys,os
+
+def printit(inMessage):
+ print inMessage
+ arcpy.AddMessage(inMessage)
+
+if len(sys.argv) &amp;gt; 4:
+ featureclass = sys.argv[1]
+ includedomainstring = sys.argv[2]
+ doCountsRespone = sys.argv[3]
+ outputFile = sys.argv[4]
+else:
+ featureclass = &amp;quot;C:/temp/before.shp&amp;quot;
+ includedomainstring = &amp;quot;false&amp;quot;
+ doCountsRespone = &amp;quot;true&amp;quot;
+ outputFile = &amp;quot;C:/temp/before.csv&amp;quot;
+
+if (outputFile == &amp;quot;&amp;quot;):
+ doOutputFile = False
+else:
+ doOutputFile = True
+
+if (str(doCountsRespone).lower() == &amp;quot;true&amp;quot;):
+ doCounts = True
+else:
+ doCounts = False
+
+if (str(includedomainstring).lower() == &amp;quot;true&amp;quot;):
+ includedomain = True
+else:
+ includedomain = False
+
+lfields=arcpy.ListFields(featureclass)
+
+d = arcpy.Describe(featureclass)
+printit(&amp;quot;Dataset: &amp;quot;+d.baseName)
+printit(&amp;quot;Type: &amp;quot;+d.dataType)
+printit(&amp;quot;Path: &amp;quot;+d.catalogPath)
+printit(&amp;quot; &amp;quot;)
+
+tableheaders = &#39;name,type,width,precision&#39;
+
+if (doCounts == True):
+ tableheaders+=&amp;quot;,count&amp;quot;
+
+if (includedomain == True):
+ tableheaders+=&amp;quot;,domain&amp;quot;
+
+if (doOutputFile):
+ tmpfile = open(outputFile,&amp;quot;w&amp;quot;)
+ tmpfile.write(tableheaders)
+ tmpfile.write(&amp;quot;n&amp;quot;)
+
+printit (tableheaders)
+for lf in lfields:
+
+ pThisline = lf.name+&amp;quot;,&amp;quot;+lf.type +&amp;quot;,&amp;quot;+str(lf.length)+&amp;quot;,&amp;quot;+str(lf.precision)
+
+ if (doCounts == True):
+
+ rowCount = 0
+
+ #Note that I do not account for all field types
+ #Also note that my definition of being populated may vary from yours.
+ #I am using -999 as a flag to indicate a field type was not successfully
+ #identified.
+ if (lf.type == &amp;quot;Double&amp;quot;) or (lf.type == &amp;quot;Single&amp;quot;)&amp;amp;nbsp; or (lf.type == &amp;quot;Integer&amp;quot;) or (lf.type == &amp;quot;SmallInteger&amp;quot;):
+  queryString = &#39;&amp;quot;&#39;+lf.name + &#39;&amp;quot; &amp;amp;gt; 0&#39;
+  rows = arcpy.SearchCursor(featureclass, queryString, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;)
+ elif (lf.type == &amp;quot;String&amp;quot;):
+  queryString = &#39;&amp;quot;&#39;+lf.name + &#39;&amp;quot; &amp;lt;&amp;gt; &#39; + &amp;quot;&#39;&#39;&amp;quot;
+  rows = arcpy.SearchCursor(featureclass, queryString, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;)
+ else:
+  rowCount = -999
+  #rows = arcpy.SearchCursor(featureclass, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;)
+
+ if (rowCount == 0):
+  for row in rows:
+   rowCount+=1
+
+ pThisline=pThisline+&amp;quot;,&amp;quot;+str(rowCount)
+
+ if (includedomain == True):
+  pThisline=pThisline+&amp;quot;,&amp;quot;+lf.domain
+
+ printit (pThisline)
+
+ if (doOutputFile):
+  tmpfile.write(pThisline)
+  tmpfile.write(&amp;quot;n&amp;quot;)
+
+if (doOutputFile):
+ tmpfile.close
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

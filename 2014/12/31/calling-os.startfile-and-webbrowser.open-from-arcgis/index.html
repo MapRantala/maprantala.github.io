@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -102,9 +115,26 @@ Tags:
 <p>Luckily the <!-- raw HTML omitted -->Python development team at Esri<!-- raw HTML omitted --> already had a <!-- raw HTML omitted -->blog post<!-- raw HTML omitted --> about this at their <!-- raw HTML omitted -->ArcPy Café blog<!-- raw HTML omitted -->.</p>
 <p>They report that the root of the problem is &lsquo;conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool&rsquo;. But this can be overcome by using a <!-- raw HTML omitted -->decorator<!-- raw HTML omitted --> function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.</p>
 <p>Example code is shown below:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&rsquo;ve been able to tell, works fine without crashing your ArcMap session.</p>
+<pre><code>import functools
+import os
+import threading
+import webbrowser
+ 
+# A decorator that will run its wrapped function in a new thread
+def run_in_other_thread(function):
+    # functool.wraps will copy over the docstring and some other metadata
+    # from the original function
+    @functools.wraps(function)
+    def fn_(*args, **kwargs):
+        thread = threading.Thread(target=function, args=args, kwargs=kwargs)
+        thread.start()
+        thread.join()
+    return fn_
+ 
+# Our new wrapped versions of os.startfile and webbrowser.open
+startfile = run_in_other_thread(os.startfile)
+openbrowser = run_in_other_thread(webbrowser.open)
+</code></pre><p>Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&rsquo;ve been able to tell, works fine without crashing your ArcMap session.</p>
 <p>Cheers!</p>
 
 

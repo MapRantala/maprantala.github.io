@@ -19,9 +19,37 @@
 &lt;p&gt;So every three months I have to go through the ODBC connections for these queries and change the password.  And before you chastise me for storing the password in the VBA code, I can only say &amp;lsquo;you&amp;rsquo;re right&amp;rsquo; but that&amp;rsquo;s the way it is done–not ideal but gets the job done and we&amp;rsquo;re not dealing with overly sensitive data.&lt;/p&gt;
 &lt;p&gt;Well, my three-month deadline was approaching and I figured I would simplify the process which I found error-prone.&lt;/p&gt;
 &lt;p&gt;Some searching and object model diagramming scouring and I came up with this barebones solution, of course, your connection string may vary.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;Public Sub UpdateConnectStrings()
+
+Dim obj As AccessObject
+Dim dbs As Object
+Set dbs = Application.CurrentData
+
+Dim i As Integer
+
+Dim newConnectionString As String
+newConnectionString = &amp;quot;ODBC;DRIVER={Microsoft ODBC for Oracle};SERVER=vader;UID=luke;PWD=iMufathr;&amp;quot;
+
+Dim comparisionConnectionString As String
+comparisionConnectionString = &amp;quot;ODBC;Driver&amp;quot;
+
+For Each obj In dbs.AllQueries
+
+If (obj.Type = acQuery) Then
+  For i = 0 To CurrentDb.QueryDefs.Count - 1
+    If (CurrentDb.QueryDefs(i).Name = obj.Name) Then
+      If (Left(CurrentDb.QueryDefs(i).Connect, Len(comparisionConnectionString)) = comparisionConnectionString) Then
+        CurrentDb.QueryDefs(i).Connect = newConnectionString
+      End If
+    End If
+  Next i
+End If
+
+Next obj
+End Sub
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -32,15 +60,28 @@
       <guid>https://maprantala.com/2010/07/13/entering-a-null-value-in-vb.net-datetimepicker/</guid>
       <description>&lt;p&gt;While working on a VB.Net form to query a database that includes an optional date range query, I decided I wanted to display a datetimepicker with a blank value by default and then, if the user sets a date show the date.  By default, a datetimepicker can not have a Null date, so I went a&amp;rsquo;Googling and found this post, &lt;a href=&#34;http://dotnetref.blogspot.com/2009/03/setting-datetimepicker-to-blank-value.html&#34;&gt;.NET Reference: Setting the DateTimePicker to a Blank Value&lt;/a&gt; ,that had exactly the technique I wanted.&lt;/p&gt;
 &lt;p&gt;Basically, I set the datetimepicker&amp;rsquo;s CustomFormat to a space (&#39; &amp;lsquo;) when I want it to be Null and then when the user makes a selection, set the custom format to the date format I wanted to display.    This is the sample code I found:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To let the user delete the date they entered, I add this subroutine that handles the KeyDown event for the datetimepicker. If the user hits delete or backspace, I set the format back to my null CustomFormat.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;When building my SQL statement, I check the .CustomFormat property to determine whether or not to include a condition for the data:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;Private Sub ToDateField_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+   Handles ToDateField.ValueChanged
+     Me.ToDateField.Format = Windows.Forms.DateTimePickerFormat.Custom
+     Me.ToDateField.CustomFormat = &amp;quot;M/dd/yyyy&amp;quot;
+End Sub
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To let the user delete the date they entered, I add this subroutine that handles the KeyDown event for the datetimepicker. If the user hits delete or backspace, I set the format back to my null CustomFormat.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Private Sub ClearDates_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) _
+ Handles ToDateField.KeyDown
+
+ If (e.KeyCode = Windows.Forms.Keys.Delete) Or (e.KeyCode = Windows.Forms.Keys.Back) Then
+ Dim mDateTimePicker As Windows.Forms.DateTimePicker
+          mDateTimePicker = TryCast(sender, Windows.Forms.DateTimePicker)
+          If Not (mDateTimePicker Is Nothing) Then
+               mDateTimePicker.CustomFormat = &amp;quot; &amp;quot;
+          End If
+End If
+End Sub
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When building my SQL statement, I check the .CustomFormat property to determine whether or not to include a condition for the data:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If Not (Me.ToDateField.CustomFormat = &amp;quot; &amp;quot;) Then
+ &#39;Code here to add to my SQL statement
+ End If
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

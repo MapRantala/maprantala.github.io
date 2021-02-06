@@ -17,9 +17,33 @@
       <description>&lt;p&gt;Ever since the ever-popular post, &lt;a href=&#34;https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zipping a shapefile using python&lt;/a&gt;, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.&lt;/p&gt;
 &lt;p&gt;The key trick, as shown in line 17, is appending the basename of the file geodatabase (&amp;lsquo;nfg.gdb/&amp;rsquo; in my example) in front of each file as you write it to the zipfile.&lt;/p&gt;
 &lt;p&gt;UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp;amp; pasted and have work.  So I have posted a the code &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110208_Sample_Zip_FileGeodatabase.zip&#34;&gt;HERE&lt;/a&gt; for downloading.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import os
+import zipfile
+import glob
+
+infile = &amp;quot;c:/temp/nfg.gdb&amp;quot;
+outfile = &amp;quot;c:/temp/nfg.zip&amp;quot;
+def zipFileGeodatabase(inFileGeodatabase, newZipFN):
+   if not (os.path.exists(inFileGeodatabase)):
+      return False
+
+   if (os.path.exists(newZipFN)):
+      os.remove(newZipFN)
+
+   zipobj = zipfile.ZipFile(newZipFN,&#39;w&#39;)
+
+   for infile in glob.glob(inFileGeodatabase+&amp;quot;/*&amp;quot;):
+      zipobj.write(infile, os.path.basename(inFileGeodatabase)+&amp;quot;/&amp;quot;+os.path.basename(infile), zipfile.ZIP_DEFLATED)
+      print (&amp;quot;Zipping: &amp;quot;+infile)
+
+   zipobj.close()
+
+   return True
+
+zipFileGeodatabase(infile,outfile)
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

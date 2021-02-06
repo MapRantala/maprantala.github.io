@@ -21,18 +21,404 @@
 &lt;p&gt;So, as you  might guess from the fact that I&amp;rsquo;m posting about it, I wrote a script to add that field in and launch it from an ArcToolbox Tool. Nothing fancy going on in the code, just a series of replaces, depending on the field. Using dictionaries instead of arrays of paired values might have been better but the script takes just a few seconds to run so I can live with it as-is.&lt;/p&gt;
 &lt;p&gt;The list of street type abbreviations came from a combination of &lt;!-- raw HTML omitted --&gt;ESRI&amp;rsquo;s standards&lt;!-- raw HTML omitted --&gt; and those found in an older version of the Hennepin County data. There were no conflicting abbreviations between the two. The code warns if a street name occurs in the data that is not in the list.&lt;/p&gt;
 &lt;p&gt;While I&amp;rsquo;m including the code here for reference, it&amp;rsquo;s probably best to &lt;!-- raw HTML omitted --&gt;download the code from GitHub.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;#-------------------------------------------------------------------------------
+# Name:        usi_dataprep_Add_STCONABR
+#
+# Purpose:     This can be used to add [CT_CON_ABR] to Hennepin County, MN
+#              centerlines. This is a concatenated, abbreviated full name of
+#              the street. This used to be included in the data but
+#              disappeared from the downloads in the summer of 2017.
+#
+#              Data available at: http://www.hennepin.us/gisopendata
+#
+# Author:      mrantala
+#
+# Created:     2017.10.04
+#
+#------------------------------------------------------------------------------
+
+import arcpy
+
+############################################
+## Custom Variables
+#These are the fields that are concatenated. Hennepin has others but were always blank.
+requiredFieldList = [&amp;quot;ST_PRE_DIR&amp;quot;,&amp;quot;ST_PRE_TYP&amp;quot;,&amp;quot;ST_NAME&amp;quot;,&amp;quot;ST_POS_TYP&amp;quot;,&amp;quot;ST_POS_DIR&amp;quot;]
+#This is the name of the field to add
+newFieldName = &amp;quot;ST_CON_ABR&amp;quot;
+
+#These are the abbreviations for [ST_POS_TYPE]. The list was created using a sample of
+#Hennepin&#39;s centerline data &amp;amp; Esri Tech article: http://support.esri.com/en/technical-article/000008454
+# Note that I intentionally left cases in where there is no abbreviation (Fall, for example) as a means of
+#documenting the fact that it should NOT change.
+
+abbList = []
+abbList.append([&amp;quot;Alcove&amp;quot;,&amp;quot;Alcove&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Alley&amp;quot;,&amp;quot;Aly&amp;quot;])
+abbList.append([&amp;quot;Annex&amp;quot;,&amp;quot;Anx&amp;quot;])
+abbList.append([&amp;quot;Arcade&amp;quot;,&amp;quot;Arc&amp;quot;])
+abbList.append([&amp;quot;Avenue&amp;quot;,&amp;quot;Ave&amp;quot;])
+abbList.append([&amp;quot;Bay&amp;quot;,&amp;quot;Bay&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Bayoo&amp;quot;,&amp;quot;Byu&amp;quot;])
+abbList.append([&amp;quot;Beach&amp;quot;,&amp;quot;Bch&amp;quot;])
+abbList.append([&amp;quot;Bend&amp;quot;,&amp;quot;Bnd&amp;quot;])
+abbList.append([&amp;quot;Bluff&amp;quot;,&amp;quot;Blf&amp;quot;])
+abbList.append([&amp;quot;Bluffs&amp;quot;,&amp;quot;Blfs&amp;quot;])
+abbList.append([&amp;quot;Bottom&amp;quot;,&amp;quot;Btm&amp;quot;])
+abbList.append([&amp;quot;Boulevard&amp;quot;,&amp;quot;Blvd&amp;quot;])
+abbList.append([&amp;quot;Branch&amp;quot;,&amp;quot;Br&amp;quot;])
+abbList.append([&amp;quot;Bridge&amp;quot;,&amp;quot;Brg&amp;quot;])
+abbList.append([&amp;quot;Brook&amp;quot;,&amp;quot;Brk&amp;quot;])
+abbList.append([&amp;quot;Brooks&amp;quot;,&amp;quot;Brks&amp;quot;])
+abbList.append([&amp;quot;Burg&amp;quot;,&amp;quot;Bg&amp;quot;])
+abbList.append([&amp;quot;Burgs&amp;quot;,&amp;quot;Bgs&amp;quot;])
+abbList.append([&amp;quot;Bypass&amp;quot;,&amp;quot;Byp&amp;quot;])
+abbList.append([&amp;quot;Camp&amp;quot;,&amp;quot;Cp&amp;quot;])
+abbList.append([&amp;quot;Canyon&amp;quot;,&amp;quot;Cyn&amp;quot;])
+abbList.append([&amp;quot;Cape&amp;quot;,&amp;quot;Cpe&amp;quot;])
+abbList.append([&amp;quot;Causeway&amp;quot;,&amp;quot;Cswy&amp;quot;])
+abbList.append([&amp;quot;Center&amp;quot;,&amp;quot;Ctr&amp;quot;])
+abbList.append([&amp;quot;Centers&amp;quot;,&amp;quot;Ctrs&amp;quot;])
+abbList.append([&amp;quot;Crossings&amp;quot;,&amp;quot;Crossings&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Crossroad&amp;quot;,&amp;quot;Xrd&amp;quot;])
+abbList.append([&amp;quot;Chase&amp;quot;,&amp;quot;Chase&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Circle&amp;quot;,&amp;quot;Cir&amp;quot;])
+abbList.append([&amp;quot;Circles&amp;quot;,&amp;quot;Cirs&amp;quot;])
+abbList.append([&amp;quot;Cliff&amp;quot;,&amp;quot;Clf&amp;quot;])
+abbList.append([&amp;quot;Cliffs&amp;quot;,&amp;quot;Clfs&amp;quot;])
+abbList.append([&amp;quot;Club&amp;quot;,&amp;quot;Clb&amp;quot;])
+abbList.append([&amp;quot;Close&amp;quot;,&amp;quot;Close&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Common&amp;quot;,&amp;quot;Cmn&amp;quot;])
+abbList.append([&amp;quot;Commons&amp;quot;,&amp;quot;Cmns&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Corner&amp;quot;,&amp;quot;Cor&amp;quot;])
+abbList.append([&amp;quot;Corners&amp;quot;,&amp;quot;Cors&amp;quot;])
+abbList.append([&amp;quot;Corridor&amp;quot;,&amp;quot;Corridor&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Course&amp;quot;,&amp;quot;Crse&amp;quot;])
+abbList.append([&amp;quot;Court&amp;quot;,&amp;quot;Ct&amp;quot;])
+abbList.append([&amp;quot;Courts&amp;quot;,&amp;quot;Cts&amp;quot;])
+abbList.append([&amp;quot;Cove&amp;quot;,&amp;quot;Cv&amp;quot;])
+abbList.append([&amp;quot;Coves&amp;quot;,&amp;quot;Cvs&amp;quot;])
+abbList.append([&amp;quot;Creek&amp;quot;,&amp;quot;Crk&amp;quot;])
+abbList.append([&amp;quot;Crescent&amp;quot;,&amp;quot;Cres&amp;quot;])
+abbList.append([&amp;quot;Crest&amp;quot;,&amp;quot;Crst&amp;quot;])
+abbList.append([&amp;quot;Cross&amp;quot;,&amp;quot;Cross&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Crossing&amp;quot;,&amp;quot;Xing&amp;quot;])
+abbList.append([&amp;quot;Curve&amp;quot;,&amp;quot;Curve&amp;quot;])
+abbList.append([&amp;quot;Dale&amp;quot;,&amp;quot;Dl&amp;quot;])
+abbList.append([&amp;quot;Dam&amp;quot;,&amp;quot;Dm&amp;quot;])
+abbList.append([&amp;quot;Divide&amp;quot;,&amp;quot;Dv&amp;quot;])
+abbList.append([&amp;quot;Down&amp;quot;,&amp;quot;Down&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Downs&amp;quot;,&amp;quot;Downs&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Drive&amp;quot;,&amp;quot;Dr&amp;quot;])
+abbList.append([&amp;quot;Drives&amp;quot;,&amp;quot;Drs&amp;quot;])
+abbList.append([&amp;quot;Edge&amp;quot;,&amp;quot;Edge&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Entry&amp;quot;,&amp;quot;Entry&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Estate&amp;quot;,&amp;quot;Est&amp;quot;])
+abbList.append([&amp;quot;Estates&amp;quot;,&amp;quot;Ests&amp;quot;])
+abbList.append([&amp;quot;Expressway&amp;quot;,&amp;quot;Expy&amp;quot;])
+abbList.append([&amp;quot;Extension&amp;quot;,&amp;quot;Ext&amp;quot;])
+abbList.append([&amp;quot;Extensions&amp;quot;,&amp;quot;Exts&amp;quot;])
+abbList.append([&amp;quot;Fall&amp;quot;,&amp;quot;Fall&amp;quot;])
+abbList.append([&amp;quot;Falls&amp;quot;,&amp;quot;Fls&amp;quot;])
+abbList.append([&amp;quot;Ferry&amp;quot;,&amp;quot;Fry&amp;quot;])
+abbList.append([&amp;quot;Field&amp;quot;,&amp;quot;Fld&amp;quot;])
+abbList.append([&amp;quot;Fields&amp;quot;,&amp;quot;Flds&amp;quot;])
+abbList.append([&amp;quot;Flat&amp;quot;,&amp;quot;Flt&amp;quot;])
+abbList.append([&amp;quot;Flats&amp;quot;,&amp;quot;Flts&amp;quot;])
+abbList.append([&amp;quot;Ford&amp;quot;,&amp;quot;Frd&amp;quot;])
+abbList.append([&amp;quot;Fords&amp;quot;,&amp;quot;Frds&amp;quot;])
+abbList.append([&amp;quot;Forest&amp;quot;,&amp;quot;Frst&amp;quot;])
+abbList.append([&amp;quot;Forge&amp;quot;,&amp;quot;Frg&amp;quot;])
+abbList.append([&amp;quot;Forges&amp;quot;,&amp;quot;Frgs&amp;quot;])
+abbList.append([&amp;quot;Fork&amp;quot;,&amp;quot;Frk&amp;quot;])
+abbList.append([&amp;quot;Forks&amp;quot;,&amp;quot;Frks&amp;quot;])
+abbList.append([&amp;quot;Fort&amp;quot;,&amp;quot;Ft&amp;quot;])
+abbList.append([&amp;quot;Freeway&amp;quot;,&amp;quot;Fwy&amp;quot;])
+abbList.append([&amp;quot;Gables&amp;quot;,&amp;quot;Gables&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Garden&amp;quot;,&amp;quot;Gdn&amp;quot;])
+abbList.append([&amp;quot;Gardens&amp;quot;,&amp;quot;Gdns&amp;quot;])
+abbList.append([&amp;quot;Gate&amp;quot;,&amp;quot;Gate&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Gateway&amp;quot;,&amp;quot;Gtwy&amp;quot;])
+abbList.append([&amp;quot;Glade&amp;quot;,&amp;quot;Glade&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Glen&amp;quot;,&amp;quot;Gln&amp;quot;])
+abbList.append([&amp;quot;Glens&amp;quot;,&amp;quot;Glns&amp;quot;])
+abbList.append([&amp;quot;Green&amp;quot;,&amp;quot;Grn&amp;quot;])
+abbList.append([&amp;quot;Greens&amp;quot;,&amp;quot;Grns&amp;quot;])
+abbList.append([&amp;quot;Greenway&amp;quot;,&amp;quot;Greenway&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Grove&amp;quot;,&amp;quot;Grv&amp;quot;])
+abbList.append([&amp;quot;Groves&amp;quot;,&amp;quot;Grvs&amp;quot;])
+abbList.append([&amp;quot;Harbor&amp;quot;,&amp;quot;Hbr&amp;quot;])
+abbList.append([&amp;quot;Harbors&amp;quot;,&amp;quot;Hbrs&amp;quot;])
+abbList.append([&amp;quot;Haven&amp;quot;,&amp;quot;Hvn&amp;quot;])
+abbList.append([&amp;quot;Heights&amp;quot;,&amp;quot;Hts&amp;quot;])
+abbList.append([&amp;quot;Highway&amp;quot;,&amp;quot;Hwy&amp;quot;])
+abbList.append([&amp;quot;Hill&amp;quot;,&amp;quot;Hl&amp;quot;])
+abbList.append([&amp;quot;Hills&amp;quot;,&amp;quot;Hls&amp;quot;])
+abbList.append([&amp;quot;Hollow&amp;quot;,&amp;quot;Holw&amp;quot;])
+abbList.append([&amp;quot;Horn&amp;quot;,&amp;quot;Horn&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Inlet&amp;quot;,&amp;quot;Inlt&amp;quot;])
+abbList.append([&amp;quot;Island&amp;quot;,&amp;quot;Is&amp;quot;])
+abbList.append([&amp;quot;Islands&amp;quot;,&amp;quot;Iss&amp;quot;])
+abbList.append([&amp;quot;Isle&amp;quot;,&amp;quot;Isle&amp;quot;])
+abbList.append([&amp;quot;Junction&amp;quot;,&amp;quot;Jct&amp;quot;])
+abbList.append([&amp;quot;Junctions&amp;quot;,&amp;quot;Jcts&amp;quot;])
+abbList.append([&amp;quot;Key&amp;quot;,&amp;quot;Ky&amp;quot;])
+abbList.append([&amp;quot;Keys&amp;quot;,&amp;quot;Kys&amp;quot;])
+abbList.append([&amp;quot;Knoll&amp;quot;,&amp;quot;Knl&amp;quot;])
+abbList.append([&amp;quot;Knolls&amp;quot;,&amp;quot;Knls&amp;quot;])
+abbList.append([&amp;quot;Lake&amp;quot;,&amp;quot;Lk&amp;quot;])
+abbList.append([&amp;quot;Lakes&amp;quot;,&amp;quot;Lks&amp;quot;])
+abbList.append([&amp;quot;Land&amp;quot;,&amp;quot;Land&amp;quot;])
+abbList.append([&amp;quot;Landing&amp;quot;,&amp;quot;Lndg&amp;quot;])
+abbList.append([&amp;quot;Lane&amp;quot;,&amp;quot;Ln&amp;quot;])
+abbList.append([&amp;quot;Light&amp;quot;,&amp;quot;Lgt&amp;quot;])
+abbList.append([&amp;quot;Lights&amp;quot;,&amp;quot;Lgts&amp;quot;])
+abbList.append([&amp;quot;Loaf&amp;quot;,&amp;quot;Lf&amp;quot;])
+abbList.append([&amp;quot;Lock&amp;quot;,&amp;quot;Lck&amp;quot;])
+abbList.append([&amp;quot;Locks&amp;quot;,&amp;quot;Lcks&amp;quot;])
+abbList.append([&amp;quot;Lodge&amp;quot;,&amp;quot;Ldg&amp;quot;])
+abbList.append([&amp;quot;Loop&amp;quot;,&amp;quot;Loop&amp;quot;])
+abbList.append([&amp;quot;Mall&amp;quot;,&amp;quot;Mall&amp;quot;])
+abbList.append([&amp;quot;Manor&amp;quot;,&amp;quot;Mnr&amp;quot;])
+abbList.append([&amp;quot;Manors&amp;quot;,&amp;quot;Mnrs&amp;quot;])
+abbList.append([&amp;quot;Meadow&amp;quot;,&amp;quot;Mdw&amp;quot;])
+abbList.append([&amp;quot;Meadows&amp;quot;,&amp;quot;Mdws&amp;quot;])
+abbList.append([&amp;quot;Mews&amp;quot;,&amp;quot;Mews&amp;quot;])
+abbList.append([&amp;quot;Mill&amp;quot;,&amp;quot;Ml&amp;quot;])
+abbList.append([&amp;quot;Mills&amp;quot;,&amp;quot;Mls&amp;quot;])
+abbList.append([&amp;quot;Mission&amp;quot;,&amp;quot;Msn&amp;quot;])
+abbList.append([&amp;quot;Motorway&amp;quot;,&amp;quot;Mtwy&amp;quot;])
+abbList.append([&amp;quot;Mount&amp;quot;,&amp;quot;Mt&amp;quot;])
+abbList.append([&amp;quot;Mountain&amp;quot;,&amp;quot;Mtn&amp;quot;])
+abbList.append([&amp;quot;Mountains&amp;quot;,&amp;quot;Mtns&amp;quot;])
+abbList.append([&amp;quot;Neck&amp;quot;,&amp;quot;Nck&amp;quot;])
+abbList.append([&amp;quot;Orchard&amp;quot;,&amp;quot;Orch&amp;quot;])
+abbList.append([&amp;quot;Oval&amp;quot;,&amp;quot;Oval&amp;quot;])
+abbList.append([&amp;quot;Overpass&amp;quot;,&amp;quot;Opas&amp;quot;])
+abbList.append([&amp;quot;Park&amp;quot;,&amp;quot;Park&amp;quot;])
+abbList.append([&amp;quot;Parks&amp;quot;,&amp;quot;Park&amp;quot;])
+abbList.append([&amp;quot;Parkway&amp;quot;,&amp;quot;Pkwy&amp;quot;])
+abbList.append([&amp;quot;Parkways&amp;quot;,&amp;quot;Pkwy&amp;quot;])
+abbList.append([&amp;quot;Pass&amp;quot;,&amp;quot;Pass&amp;quot;])
+abbList.append([&amp;quot;Passage&amp;quot;,&amp;quot;Psge&amp;quot;])
+abbList.append([&amp;quot;Path&amp;quot;,&amp;quot;Path&amp;quot;])
+abbList.append([&amp;quot;Pike&amp;quot;,&amp;quot;Pike&amp;quot;])
+abbList.append([&amp;quot;Pine&amp;quot;,&amp;quot;Pne&amp;quot;])
+abbList.append([&amp;quot;Pines&amp;quot;,&amp;quot;Pnes&amp;quot;])
+abbList.append([&amp;quot;Place&amp;quot;,&amp;quot;Pl&amp;quot;])
+abbList.append([&amp;quot;Plain&amp;quot;,&amp;quot;Pln&amp;quot;])
+abbList.append([&amp;quot;Plains&amp;quot;,&amp;quot;Plns&amp;quot;])
+abbList.append([&amp;quot;Plaza&amp;quot;,&amp;quot;Plz&amp;quot;])
+abbList.append([&amp;quot;Point&amp;quot;,&amp;quot;Pt&amp;quot;])
+abbList.append([&amp;quot;Points&amp;quot;,&amp;quot;Pts&amp;quot;])
+abbList.append([&amp;quot;Port&amp;quot;,&amp;quot;Prt&amp;quot;])
+abbList.append([&amp;quot;Ports&amp;quot;,&amp;quot;Prts&amp;quot;])
+abbList.append([&amp;quot;Prairie&amp;quot;,&amp;quot;Pr&amp;quot;])
+abbList.append([&amp;quot;Radial&amp;quot;,&amp;quot;Radl&amp;quot;])
+abbList.append([&amp;quot;Railroad&amp;quot;,&amp;quot;Railroad&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Ramp&amp;quot;,&amp;quot;Ramp&amp;quot;])
+abbList.append([&amp;quot;Ranch&amp;quot;,&amp;quot;Rnch&amp;quot;])
+abbList.append([&amp;quot;Rapid&amp;quot;,&amp;quot;Rpd&amp;quot;])
+abbList.append([&amp;quot;Rapids&amp;quot;,&amp;quot;Rpds&amp;quot;])
+abbList.append([&amp;quot;Rest&amp;quot;,&amp;quot;Rst&amp;quot;])
+abbList.append([&amp;quot;Ridge&amp;quot;,&amp;quot;Rdg&amp;quot;])
+abbList.append([&amp;quot;Ridges&amp;quot;,&amp;quot;Rdgs&amp;quot;])
+abbList.append([&amp;quot;Rise&amp;quot;,&amp;quot;Rise&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;River&amp;quot;,&amp;quot;Riv&amp;quot;])
+abbList.append([&amp;quot;Road&amp;quot;,&amp;quot;Rd&amp;quot;])
+abbList.append([&amp;quot;Roads&amp;quot;,&amp;quot;Rds&amp;quot;])
+abbList.append([&amp;quot;Route&amp;quot;,&amp;quot;Rte&amp;quot;])
+abbList.append([&amp;quot;Row&amp;quot;,&amp;quot;Row&amp;quot;])
+abbList.append([&amp;quot;Rue&amp;quot;,&amp;quot;Rue&amp;quot;])
+abbList.append([&amp;quot;Run&amp;quot;,&amp;quot;Run&amp;quot;])
+abbList.append([&amp;quot;Shoal&amp;quot;,&amp;quot;Shl&amp;quot;])
+abbList.append([&amp;quot;Shoals&amp;quot;,&amp;quot;Shls&amp;quot;])
+abbList.append([&amp;quot;Shore&amp;quot;,&amp;quot;Shr&amp;quot;])
+abbList.append([&amp;quot;Shores&amp;quot;,&amp;quot;Shrs&amp;quot;])
+abbList.append([&amp;quot;Skies&amp;quot;,&amp;quot;Skies&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Skyway&amp;quot;,&amp;quot;Skwy&amp;quot;])
+abbList.append([&amp;quot;Spring&amp;quot;,&amp;quot;Spg&amp;quot;])
+abbList.append([&amp;quot;Springs&amp;quot;,&amp;quot;Spgs&amp;quot;])
+abbList.append([&amp;quot;Spur&amp;quot;,&amp;quot;Spur&amp;quot;])
+abbList.append([&amp;quot;Spurs&amp;quot;,&amp;quot;Spur&amp;quot;])
+abbList.append([&amp;quot;Square&amp;quot;,&amp;quot;Sq&amp;quot;])
+abbList.append([&amp;quot;Squares&amp;quot;,&amp;quot;Sqrs&amp;quot;])
+abbList.append([&amp;quot;Station&amp;quot;,&amp;quot;Sta&amp;quot;])
+abbList.append([&amp;quot;Stravenue&amp;quot;,&amp;quot;Stra&amp;quot;])
+abbList.append([&amp;quot;Stream&amp;quot;,&amp;quot;Strm&amp;quot;])
+abbList.append([&amp;quot;Street&amp;quot;,&amp;quot;St&amp;quot;])
+abbList.append([&amp;quot;Streets&amp;quot;,&amp;quot;Sts&amp;quot;])
+abbList.append([&amp;quot;Summit&amp;quot;,&amp;quot;Smt&amp;quot;])
+abbList.append([&amp;quot;Terrace&amp;quot;,&amp;quot;Ter&amp;quot;])
+abbList.append([&amp;quot;Throughway&amp;quot;,&amp;quot;Trwy&amp;quot;])
+abbList.append([&amp;quot;Trace&amp;quot;,&amp;quot;Trce&amp;quot;])
+abbList.append([&amp;quot;Track&amp;quot;,&amp;quot;Trak&amp;quot;])
+abbList.append([&amp;quot;Trafficway&amp;quot;,&amp;quot;Trfy&amp;quot;])
+abbList.append([&amp;quot;Trail&amp;quot;,&amp;quot;Trl&amp;quot;])
+abbList.append([&amp;quot;Tunnel&amp;quot;,&amp;quot;Tunl&amp;quot;])
+abbList.append([&amp;quot;Turn&amp;quot;,&amp;quot;Turn&amp;quot;]) #Hennepin Specific
+abbList.append([&amp;quot;Turnpike&amp;quot;,&amp;quot;Tpke&amp;quot;])
+abbList.append([&amp;quot;Underpass&amp;quot;,&amp;quot;Upas&amp;quot;])
+abbList.append([&amp;quot;Union&amp;quot;,&amp;quot;Un&amp;quot;])
+abbList.append([&amp;quot;Unions&amp;quot;,&amp;quot;Uns&amp;quot;])
+abbList.append([&amp;quot;Valley&amp;quot;,&amp;quot;Vly&amp;quot;])
+abbList.append([&amp;quot;Valleys&amp;quot;,&amp;quot;Vlys&amp;quot;])
+abbList.append([&amp;quot;Viaduct&amp;quot;,&amp;quot;Via&amp;quot;])
+abbList.append([&amp;quot;View&amp;quot;,&amp;quot;Vw&amp;quot;])
+abbList.append([&amp;quot;Views&amp;quot;,&amp;quot;Vws&amp;quot;])
+abbList.append([&amp;quot;Village&amp;quot;,&amp;quot;Vlg&amp;quot;])
+abbList.append([&amp;quot;Villages&amp;quot;,&amp;quot;Vlgs&amp;quot;])
+abbList.append([&amp;quot;Ville&amp;quot;,&amp;quot;Vl&amp;quot;])
+abbList.append([&amp;quot;Vista&amp;quot;,&amp;quot;Vis&amp;quot;])
+abbList.append([&amp;quot;Walk&amp;quot;,&amp;quot;Walk&amp;quot;])
+abbList.append([&amp;quot;Walks&amp;quot;,&amp;quot;Walk&amp;quot;])
+abbList.append([&amp;quot;Wall&amp;quot;,&amp;quot;Wall&amp;quot;])
+abbList.append([&amp;quot;Way&amp;quot;,&amp;quot;Way&amp;quot;])
+abbList.append([&amp;quot;Ways&amp;quot;,&amp;quot;Ways&amp;quot;])
+abbList.append([&amp;quot;Well&amp;quot;,&amp;quot;Wl&amp;quot;])
+abbList.append([&amp;quot;Wells&amp;quot;,&amp;quot;Wls&amp;quot;])
+
+#List of changes for [St_POS_Dir]
+posDirList = [[&amp;quot;North&amp;quot;,&amp;quot;N&amp;quot;],[&amp;quot;East&amp;quot;,&amp;quot;E&amp;quot;],[&amp;quot;South&amp;quot;,&amp;quot;S&amp;quot;],[&amp;quot;West&amp;quot;,&amp;quot;W&amp;quot;],[&amp;quot;Northeast&amp;quot;,&amp;quot;NE&amp;quot;],[&amp;quot;Northwest&amp;quot;,&amp;quot;NW&amp;quot;],[&amp;quot;Southeast&amp;quot;,&amp;quot;SE&amp;quot;],[&amp;quot;Southwest&amp;quot;,&amp;quot;SW&amp;quot;]]
+preDirList = [[&amp;quot;North&amp;quot;,&amp;quot;N&amp;quot;],[&amp;quot;East&amp;quot;,&amp;quot;E&amp;quot;],[&amp;quot;South&amp;quot;,&amp;quot;S&amp;quot;],[&amp;quot;West&amp;quot;,&amp;quot;W&amp;quot;]]
+############################################
+## Read Arguments
+
+if (len(sys.argv) &amp;amp;gt; 1):
+    inFC = sys.argv[1]
+
+############################################
+# General Purpose Functions
+def printit(inputString):
+    try:
+        print(inputString)
+        arcpy.AddMessage(str(inputString))
+    except:
+        pass
+
+def printerror(inputString):
+    print (inputString)
+    arcpy.AddError(inputString)
+
+def getField(inFeatureClass, inFieldName):
+  fieldList = arcpy.ListFields(inFeatureClass)
+  for iField in fieldList:
+    if iField.name.lower() == inFieldName.lower():
+      return iField
+  return None
+
+def fieldExists(inFeatureClass, inFieldName):
+  return getField(inFeatureClass,inFieldName) &amp;lt;&amp;gt; None
+
+############################################
+# Initial QC
+
+def initialQC():
+    if (arcpy.Exists(inFC)):
+        printit(&amp;quot;PASS: Feature Class {} Exists&amp;quot;.format(inFC))
+    else:
+        printerror(&amp;quot;ERROR: Feature Class {} Does Not Exist, Cancelling...&amp;quot;.format(inFC))
+        return False
+
+    for iFld in requiredFieldList:
+        if (fieldExists(inFC,iFld)):
+            printit(&amp;quot;PASS: Feature Class {} Has Field [{}]&amp;quot;.format(inFC,iFld))
+        else:
+            printerror(&amp;quot;ERROR: Feature Class {} Does Not Have Field [{}], Cancelling...&amp;quot;.format(inFC,iFld))
+            return False
+
+    if not (fieldExists(inFC,newFieldName)):
+        printit(&amp;quot;GOOD: Feature Class {} Does Not Already Have Field [{}]&amp;quot;.format(inFC,newFieldName))
+        printit(&amp;quot; ADDING Field [{}]&amp;quot;.format(newFieldName))
+        try:
+            arcpy.AddField_management(in_table=inFC, field_name=newFieldName, field_type=&amp;quot;TEXT&amp;quot;, field_precision=&amp;quot;&amp;quot;, field_scale=&amp;quot;&amp;quot;, field_length=&amp;quot;100&amp;quot;, field_alias=&amp;quot;&amp;quot;, field_is_nullable=&amp;quot;NULLABLE&amp;quot;, field_is_required=&amp;quot;NON_REQUIRED&amp;quot;, field_domain=&amp;quot;&amp;quot;)
+        except:
+            printerror(&amp;quot;ERROR: Error While Adding Field [{}], Cancelling...&amp;quot;.format(newFieldName))
+            return False
+        if not (fieldExists(inFC,newFieldName)):
+            printerror(&amp;quot;ERROR: Unable to Add Field [{}], Cancelling...&amp;quot;.format(newFieldName))
+            return False
+    else:
+        printerror(&amp;quot;ERROR: Feature Class {} Already Has Field [{}], Cancelling...&amp;quot;.format(inFC,newFieldName))
+        return False
+
+    return True
+
+############################################
+# Main
+
+def makeSubstitution(inList,inValue,inFieldName):
+    for iAbbreviationPr in inList:
+        if (inValue == iAbbreviationPr[0]): #Found a Match
+            return iAbbreviationPr[1]
+    printit(&amp;quot;WARNING: [{}] of {} does not have a value in the abbreviation list! Potential Error...&amp;quot;.format(inFieldName,inValue))
+    return inValue
+
+def main():
+    cursorFieldList = requiredFieldList
+    cursorFieldList.append(newFieldName)
+
+    try:
+        iUCursor = arcpy.da.UpdateCursor(inFC,cursorFieldList)
+        iRowCount = 0
+        iRowMax = 1
+        for uRow in iUCursor:
+
+            #Just to give user an indicator that progress is being made
+            if (iRowCount&amp;amp;gt;iRowMax):
+                printit(&amp;quot; {}&amp;quot;.format(iRowCount))
+                iRowMax *= 10
+                iRowCount+=1
+
+            abbreviateConcatenatedName = &amp;quot;&amp;quot;
+            iFldIndex = 0
+            for iFld in requiredFieldList:
+
+
+                if (iFld == newFieldName):
+                    uRow[iFldIndex] = abbreviateConcatenatedName
+                    iUCursor.updateRow(uRow)
+                else:
+                    iValue = uRow[iFldIndex].strip() #Strip is just a safe-guard
+
+
+                    if ((iValue != &amp;quot;&amp;quot;) and (iValue != None)):
+                        if (iFld == &amp;quot;ST_PRE_DIR&amp;quot;):
+                            iValue= makeSubstitution(preDirList,iValue,&amp;quot;ST_PRE_DIR&amp;quot;)
+                        if (iFld == &amp;quot;ST_POS_TYP&amp;quot;):
+                            iValue= makeSubstitution(abbList,iValue,&amp;quot;ST_POS_TYPE&amp;quot;)
+                        if (iFld == &amp;quot;ST_POS_DIR&amp;quot;):
+                            iValue = makeSubstitution(posDirList,iValue,&amp;quot;ST_POS_DIR&amp;quot;)
+
+                        if (abbreviateConcatenatedName == &amp;quot;&amp;quot;):
+                            abbreviateConcatenatedName = iValue
+                        else:
+                            abbreviateConcatenatedName+=&amp;quot; &amp;quot;+iValue
+                iFldIndex += 1
+
+        del iUCursor
+    except RuntimeError as e:
+        printerror(&amp;quot;ERROR: Error {} Occurred, Cancelling...&amp;quot;.format(e))
+        try:
+            del iUCursor
+            del uRow
+        except:
+            return False
+    return True
+
+
+if __name__ == &#39;__main__&#39;:
+    if (initialQC() == True):
+        if (main() == True):
+            printit(&amp;quot;Done!&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
-      <title>Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
-      <link>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
+      <title>Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
+      <link>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
       <pubDate>Sun, 01 May 2011 05:01:50 -0500</pubDate>
-      <guid>https://maprantala.com/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
+      <guid>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
       <description>&lt;p&gt;For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.&lt;/p&gt;
 &lt;p&gt;Here is the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;bare-bones script&lt;/a&gt; that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.  Some cautionary notes:&lt;/p&gt;
 &lt;ul&gt;
@@ -44,9 +430,176 @@
 &lt;/ul&gt;
 &lt;p&gt;I have included both a toolbox file (.tbx) and python script (.py).  After loading the toolbox, you&amp;rsquo;ll have to change the Source of the script by right-clicking on it, selecting the Source tab, and then navigating to the .py file.&lt;/p&gt;
 &lt;p&gt;Here is the code for the Googlebots, but you are better off &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;just downloading&lt;/a&gt; it.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import arcpy
+import sys, math
+
+def printit(inMessage):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print inMessage
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; arcpy.AddMessage(inMessage)
+
+if len(sys.argv) &amp;amp;gt; 1:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inFC = sys.argv[1]
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFC = sys.argv[2]
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDistin = sys.argv[3]
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDist = float(alongDistin)
+else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inFC = &amp;quot;C:/temp/asdfasdf.mdb/jkl&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; OutDir = &amp;quot;C:/temp/asdfasdf.mdb&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFCName = &amp;quot;jkl2d&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFC = OutDir+&amp;quot;/&amp;quot;+outFCName
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDist = 1000
+
+if (arcpy.Exists(inFC)):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print(inFC+&amp;quot; does exist&amp;quot;)
+else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print(&amp;quot;Cancelling, &amp;quot;+inFC+&amp;quot; does not exist&amp;quot;)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; sys.exit(0)
+
+def distPoint(p1, p2):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; calc1 = p1.X - p2.X
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; calc2 = p1.Y - p2.Y
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return math.sqrt((calc1**2)+(calc2**2))
+
+def midpoint(prevpoint,nextpoint,targetDist,totalDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newX = prevpoint.X + ((nextpoint.X - prevpoint.X) * (targetDist/totalDist))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newY = prevpoint.Y + ((nextpoint.Y - prevpoint.Y) * (targetDist/totalDist))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return arcpy.Point(newX, newY)
+
+def splitShape(feat,splitDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Count the number of points in the current multipart feature
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partcount = feat.partCount
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partnum = 0
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Enter while loop for each part in the feature (if a singlepart feature
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # this will occur only once)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray = arcpy.Array()
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while partnum &amp;amp;lt; partcount:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Print the part number
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print &amp;quot;Part &amp;quot; + str(partnum) + &amp;quot;:&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; part = feat.getPart(partnum)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print part.count
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pnt = part.next()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pntcount = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; prevpoint = None
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist = []
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Enter while loop for each vertex
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while pnt:
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if not (prevpoint is None):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; thisDist = distPoint(prevpoint,pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; maxAdditionalDist = splitDist - totalDist
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print thisDist, totalDist, maxAdditionalDist
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (totalDist+thisDist)&amp;amp;gt; splitDist:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while(totalDist+thisDist) &amp;amp;gt; splitDist:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; maxAdditionalDist = splitDist - totalDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print thisDist, totalDist, maxAdditionalDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newpoint = midpoint(prevpoint,pnt,maxAdditionalDist,thisDist)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(newpoint)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist.append(lineArray)
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray = arcpy.Array()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(newpoint)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; prevpoint = newpoint
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; thisDist = distPoint(prevpoint,pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist+=thisDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist+=thisDist
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #shapelist.append(lineArray)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray.add(pnt)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; totalDist = 0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; prevpoint = pnt&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pntcount += 1
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pnt = part.next()
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # If pnt is null, either the part is finished or there is an
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #&amp;amp;nbsp;&amp;amp;nbsp; interior ring
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if not pnt:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; pnt = part.next()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if pnt:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print &amp;quot;Interior Ring:&amp;quot;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partnum += 1
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (lineArray.count &amp;amp;gt; 1):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist.append(lineArray)
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return shapelist
+
+if arcpy.Exists(outFC):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; arcpy.Delete_management(outFC)
+
+arcpy.Copy_management(inFC,outFC)
+
+#origDesc = arcpy.Describe(inFC)
+#sR = origDesc.spatialReference
+
+#revDesc = arcpy.Describe(outFC)
+#revDesc.ShapeFieldName
+
+deleterows = arcpy.UpdateCursor(outFC)
+for iDRow in deleterows:&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; deleterows.deleteRow(iDRow)
+
+del iDRow
+del deleterows
+
+inputRows = arcpy.SearchCursor(inFC)
+outputRows = arcpy.InsertCursor(outFC)
+fields = arcpy.ListFields(inFC)
+
+numRecords = int(arcpy.GetCount_management(inFC).getOutput(0))
+OnePercentThreshold = numRecords // 100
+
+printit(numRecords)
+
+iCounter = 0
+iCounter2 = 0
+
+for iInRow in inputRows:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inGeom = iInRow.shape
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter+=1
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter2+=1&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (iCounter2 &amp;amp;gt; (OnePercentThreshold+0)):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; printit(&amp;quot;Processing Record &amp;quot;+str(iCounter) + &amp;quot; of &amp;quot;+ str(numRecords))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter2=0
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (inGeom.length &amp;amp;gt; alongDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapeList = splitShape(iInRow.shape,alongDist)
+
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; for itmp in shapeList:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newRow = outputRows.newRow()
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; for ifield in fields:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (ifield.editable):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newRow.setValue(ifield.name,iInRow.getValue(ifield.name))
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newRow.shape = itmp
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outputRows.insertRow(newRow)
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; else:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outputRows.insertRow(iInRow)
+
+del inputRows
+del outputRows
+
+printit(&amp;quot;Done!&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -86,9 +639,57 @@
 &lt;/ol&gt;
 &lt;p&gt;What I often do is make the parameter interpretation flexible to meet my needs.  The sample below shows how I do this.  The logic first checks to see if the correct number of parameters were used to launch the script (i.e. if it is called by an Arc Toolbox tool), where the files for the default files exist or if the debug values are valid, including checking the current date against a hard-coded date variable.  Juggling the conditional structure would allow you to prioritize the options differently.&lt;/p&gt;
 &lt;p&gt;I am also using Tkinter to display an interactive dialog if none of the three conditions are successfully met.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;import os.path
+import datetime
+import shutil
+import sys
+
+theEmailText = &amp;quot;nStart: &amp;quot; + str(datetime.datetime.now())
+
+#This example shows three different ways for a script to receive input paramters.
+#
+# First, if it was run with the necessary number of parameters, as if launched by
+# an ArcToolbox tool, it uses those parameters.
+
+if len(sys.argv) == 2:
+    wellsShapeFile = sys.argv[0]
+    unwellsShapeFile = sys.argv[1]
+    theEmailText = theEmailText + &amp;quot;nUsing Parameters Passed In:nn Located Wells File: &amp;quot;+wellsShapeFile+&amp;quot;n Unlocated Wells File: &amp;quot;+unwellsShapeFile
+else:
+    dateString = datetime.date.today().strftime(&amp;quot;%Y%m%d&amp;quot;)
+    wellsShapeFile = &amp;quot;C:/cwi5_bk/wells/temp/wells_.shp&amp;quot;
+    unwellsShapeFile = &amp;quot;C:/cwi5_bk/wells/temp/unloc_wells.shp&amp;quot;
+
+    #Second attempt is if there are default values that should be used.
+    #I use this for a process that is run via scheduled Windows Task
+    if (os.path.exists(wellsShapeFile)) and (os.path.exists(unwellsShapeFile)):
+        theEmailText = theEmailText + &amp;quot;nUsing Automated Date-Based file names:nn Located Wells File: &amp;quot;+wellsShapeFile+&amp;quot;n Unlocated Wells File: &amp;quot;+unwellsShapeFile
+    else:
+        #The third method is used for debugging/running in the IDE.
+        #I put a check condition so this is valid for one day only
+        #And then hard-code the temporary paths.
+        #
+        #Note that you may want to modify the structure of the IF statement
+        #used for methods 2 &amp;amp; 3 so that it checks for the manual-override (3rd)
+        #method first
+        if dateString == &#39;20101213&#39;:
+            wellsShapeFile = &amp;quot;C:/cwi5_bk/wells/temp/wells.shp&amp;quot;
+            unwellsShapeFile = &amp;quot;C:/cwi5_bk/wells/temp/unloc.shp&amp;quot;
+            theEmailText = theEmailText + &amp;quot;nUsing Manual Override file names:nn Located Wells File: &amp;quot;+wellsShapeFile+&amp;quot;n Unlocated Wells File: &amp;quot;+unwellsShapeFile
+        else:
+            theEmailText = theEmailText + &amp;quot;n Manual Override for file names does not meet data filter&amp;quot;
+
+    if (not os.path.exists(wellsShapeFile)) or (not os.path.exists(unwellsShapeFile)):
+        from Tkinter import *
+        msgbox = Tk()
+        msgbox.title(&#39;Error&#39;)
+        Message(msgbox,text=&amp;quot;Must either use ArcTool to launch or edit file parameters&amp;quot;, bg=&#39;royalblue&#39;,fg=&#39;ivory&#39;, relief=GROOVE).pack(padx=10, pady=10)
+        msgbox.mainloop()
+        print theEmailText
+        quit()
+
+print theEmailText
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

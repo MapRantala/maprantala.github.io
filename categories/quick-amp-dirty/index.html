@@ -52,9 +52,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -93,7 +106,7 @@ Working with a routine process today that I normally only do once in awhile but 
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2014/12/18/quick-#038-dirty-arcpy-verify-a-coded-value-domain-code/">Quick &amp;#038; Dirty Arcpy: Verify a Coded Value Domain Code</a></h2>
+<h2 class="title "><a href="/2014/12/18/quick-and-dirty-arcpy-verify-a-coded-value-domain-code/">Quick and Dirty Arcpy: Verify a Coded Value Domain Code</a></h2>
 
 </header>
 <div class="content">
@@ -104,18 +117,18 @@ The logic of the code is pretty straight-forward. Get a field&rsquo;s domain and
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2014/12/03/quick-#038-dirty-arcpy-listing-data-sources/">Quick &amp;#038; Dirty ArcPy: Listing Data Sources</a></h2>
+<h2 class="title "><a href="/2014/12/03/quick-and-dirty-arcpy-listing-data-sources/">Quick and Dirty ArcPy: Listing Data Sources</a></h2>
 
 </header>
 <div class="content">
 I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here&rsquo;s the bare-bones script I used instead:
-  
+import arcpy, glob,os theDir = r&quot;L:\gdrs\data\org\us_mn_state_dnr\elev_minnesota_lidar\\&quot; os.chdir(theDir) for iFile in glob.glob(&quot;*.lyr&quot;): print iFile lyr = arcpy.mapping.Layer(iFile) for i in arcpy.mapping.ListLayers(lyr): try: print &quot; {0}: {1}&quot;.format(i,i.dataSource) except: print &quot; {0}: Does not support dataSource&quot;.
 </div>
 </article>
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2014/07/07/quick-#038-dirty-arcpy-compare-feature-class-table-schemas/">Quick &amp;#038; Dirty arcpy: Compare Feature Class Table Schemas</a></h2>
+<h2 class="title "><a href="/2014/07/07/quick-and-dirty-arcpy-compare-feature-class-table-schemas/">Quick and Dirty arcpy: Compare Feature Class Table Schemas</a></h2>
 
 </header>
 <div class="content">
@@ -127,7 +140,7 @@ And while ArcGIS does have a good toolfor this, there were a couple tweaks I wan
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2014/04/23/quick-#038-dirty-arcpy-bulk-changing-field-values/">Quick &amp;#038; Dirty arcpy: Bulk Changing Field Values</a></h2>
+<h2 class="title "><a href="/2014/04/23/quick-and-dirty-arcpy-bulk-changing-field-values/">Quick and Dirty arcpy: Bulk Changing Field Values</a></h2>
 
 </header>
 <div class="content">
@@ -160,31 +173,32 @@ As I mentioned in a previous post, I recently had the need to have ArcMap automa
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2012/03/14/quicker-#038-cleaner-python-recursive-folder-search/">Quicker &amp;#038; Cleaner python recursive folder search</a></h2>
+<h2 class="title "><a href="/2012/03/14/quicker-and-cleaner-python-recursive-folder-search/">Quicker and Cleaner python recursive folder search</a></h2>
 
 </header>
 <div class="content">
 As contributor of the day, Jason Scheirer, pointed out, python has a simple, direct way to browse through the subdirectories of a directory–os.walk
 Here is a bare-bones example of using it to print out the subdirectories in a path. The files variable of the 3-tuple is a list of files similar to the dirs variable that I loop through.
 Thanks Jason for pointing out something I missed.
+import os theDir = 'c:/temp/' for root, dirs, files in os.
 </div>
 </article>
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2012/03/13/quick-#038-dirty-python-recursive-folder-search/">Quick &amp;#038; Dirty python recursive folder search</a></h2>
+<h2 class="title "><a href="/2012/03/13/quick-and-dirty-python-recursive-folder-search/">Quick and Dirty python recursive folder search</a></h2>
 
 </header>
 <div class="content">
 Someone asked how to have python recursively search a folder structure. There may be a better way but this is how I typically do it–it basically starts with one directory and loops through the contents compiling a list of sub-directories as it goes through the contents.
 
-  
+import glob, os theDir = 'c:/temp/' theDirList = [] theDirList.append(theDir) while len(theDirList) &amp;gt; 0: newDirList = [] for iDir in theDirList: print iDir for iFile in glob.
 </div>
 </article>
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title "><a href="/2011/05/01/quick-#038-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./">Quick &amp;#038; Dirty arcpy: Batch Splitting Polylines to a Specific Length.</a></h2>
+<h2 class="title "><a href="/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./">Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length.</a></h2>
 
 </header>
 <div class="content">

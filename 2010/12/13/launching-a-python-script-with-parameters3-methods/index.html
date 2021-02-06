@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -105,9 +118,57 @@ Tags:
 </ol>
 <p>What I often do is make the parameter interpretation flexible to meet my needs.  The sample below shows how I do this.  The logic first checks to see if the correct number of parameters were used to launch the script (i.e. if it is called by an Arc Toolbox tool), where the files for the default files exist or if the debug values are valid, including checking the current date against a hard-coded date variable.  Juggling the conditional structure would allow you to prioritize the options differently.</p>
 <p>I am also using Tkinter to display an interactive dialog if none of the three conditions are successfully met.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code>import os.path
+import datetime
+import shutil
+import sys
+
+theEmailText = &quot;nStart: &quot; + str(datetime.datetime.now())
+
+#This example shows three different ways for a script to receive input paramters.
+#
+# First, if it was run with the necessary number of parameters, as if launched by
+# an ArcToolbox tool, it uses those parameters.
+
+if len(sys.argv) == 2:
+    wellsShapeFile = sys.argv[0]
+    unwellsShapeFile = sys.argv[1]
+    theEmailText = theEmailText + &quot;nUsing Parameters Passed In:nn Located Wells File: &quot;+wellsShapeFile+&quot;n Unlocated Wells File: &quot;+unwellsShapeFile
+else:
+    dateString = datetime.date.today().strftime(&quot;%Y%m%d&quot;)
+    wellsShapeFile = &quot;C:/cwi5_bk/wells/temp/wells_.shp&quot;
+    unwellsShapeFile = &quot;C:/cwi5_bk/wells/temp/unloc_wells.shp&quot;
+
+    #Second attempt is if there are default values that should be used.
+    #I use this for a process that is run via scheduled Windows Task
+    if (os.path.exists(wellsShapeFile)) and (os.path.exists(unwellsShapeFile)):
+        theEmailText = theEmailText + &quot;nUsing Automated Date-Based file names:nn Located Wells File: &quot;+wellsShapeFile+&quot;n Unlocated Wells File: &quot;+unwellsShapeFile
+    else:
+        #The third method is used for debugging/running in the IDE.
+        #I put a check condition so this is valid for one day only
+        #And then hard-code the temporary paths.
+        #
+        #Note that you may want to modify the structure of the IF statement
+        #used for methods 2 &amp; 3 so that it checks for the manual-override (3rd)
+        #method first
+        if dateString == '20101213':
+            wellsShapeFile = &quot;C:/cwi5_bk/wells/temp/wells.shp&quot;
+            unwellsShapeFile = &quot;C:/cwi5_bk/wells/temp/unloc.shp&quot;
+            theEmailText = theEmailText + &quot;nUsing Manual Override file names:nn Located Wells File: &quot;+wellsShapeFile+&quot;n Unlocated Wells File: &quot;+unwellsShapeFile
+        else:
+            theEmailText = theEmailText + &quot;n Manual Override for file names does not meet data filter&quot;
+
+    if (not os.path.exists(wellsShapeFile)) or (not os.path.exists(unwellsShapeFile)):
+        from Tkinter import *
+        msgbox = Tk()
+        msgbox.title('Error')
+        Message(msgbox,text=&quot;Must either use ArcTool to launch or edit file parameters&quot;, bg='royalblue',fg='ivory', relief=GROOVE).pack(padx=10, pady=10)
+        msgbox.mainloop()
+        print theEmailText
+        quit()
+
+print theEmailText
+</code></pre><!-- raw HTML omitted -->
 
 
 </div>

@@ -32,9 +32,9 @@
 &lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is &amp;lsquo;Embedded Resource&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/07/embedded.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Then you can set your cursor with two lines of code. Not that my cursor is in my QDI.QdiAddIn Namespace:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;Dim pCursorStream As System.IO.Stream = Me.GetType.Assembly.GetManifestResourceStream(&amp;quot;QDI.QdiAddIn.NewCursor.cur&amp;quot;)
+MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -71,11 +71,9 @@
 &lt;p&gt;I found the solution in ESRI&amp;rsquo;s topic, &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/&#34;&gt;Advanced add-in concepts (ArcObjects .NET 10 SDK)&lt;/a&gt; in the Delayed loading section:&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;The verbiage, &amp;lsquo;setting the onDemand Extensible Markup Language (XML) attribute to false&amp;rsquo; was a bit non-specific to me.  I guessed right, however, that they were referring to the control definiton in the Command section of Config.esriaddinx.  In the example below, I set the onDemand attribute to false by adding the  ‘onDemand=&amp;lsquo;false&amp;rsquo;‘ tag and the control did, in fact, get instantiated at load time, giving me the ability to disable it.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;pre&gt;&lt;code&gt;&amp;amp;lt;Tool id=&amp;quot;MGS_QDIAddin_QDIAddTool&amp;quot; class=&amp;quot;QDIAddTool&amp;quot; message=&amp;quot;QDI Add New Location.&amp;quot; caption=&amp;quot;QDI Add Tool&amp;quot; tip=&amp;quot;QDI Add Tool.&amp;quot; category=&amp;quot;QDI Add-In Controls&amp;quot; image=&amp;quot;ImagesQDIAddTool.png&amp;quot; onDemand=&amp;quot;false&amp;quot;/&amp;amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -89,21 +87,21 @@
 &lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&amp;rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fix is just adding  &amp;lsquo;My.&amp;rsquo; to the namespace in this line:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To get this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To get this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ZoomToActiveLayerInTOC(TryCast(My.ArcMap.Application.Document, IMxDocument))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/errorlist.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The fixes in this case was also to use the complete name space path.  Examples:&lt;/p&gt;
 &lt;p&gt;Change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And change this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(geometry.GeometryType) = esriGeometryType.esriGeometryPoint Then
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If (geometry.GeometryType) = ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPoint Then)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And change this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = ESRI.ArcGIS.Display.esriSimpleMarkerStyle.esriSMSCircle
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -116,9 +114,18 @@
       <description>&lt;p&gt;I have been working on some data entry forms that utilize a DataGrid.  Using a PostGres Geodatabase that had domains set on several fields, I could not directly bind to the controls on my dialog.  So I am going the round-about way of populating my own comboboxes with valid names and displaying within the DataGrid.&lt;/p&gt;
 &lt;p&gt;Having not done this previously, I found this example: &lt;a href=&#34;http://www.eggheadcafe.com/community/aspnet/14/22477/example-of-how-to-add-controls-in-data-grid.aspx&#34;&gt;Example of how to add controls in data grid VB.NET&lt;/a&gt; very useful and just wanted to point it out to anyone.  &lt;a href=&#34;http://www.syncfusion.com/FAQ/windowsforms/faq_c44c.aspx#q1015q&#34;&gt;George Shephard&amp;rsquo;s Windows Forms FAQ&lt;/a&gt; also had several useful tips.&lt;/p&gt;
 &lt;p&gt;Finally, I has a problem with the masked textboxs I added to the Datagrid, they required users to click once to get focus and a second to start editing.  After much googling, I found used some information from &lt;a href=&#34;http://social.msdn.microsoft.com/Forums/en-US/vbgeneral/thread/8d3c1f98-9501-4902-b81b-82f6bbd4f3e5/&#34;&gt;MSDN&lt;/a&gt; that allowed me to find a work-around.  In my Mousedown event, I included this snippet (QdiControl is the control for the specific cell that the HitTestInfo says the mousedown hit):&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Peace.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;amp;lt;/pre&amp;amp;gt;
+Dim WindowsControl As System.Windows.Forms.Control = CType(QdiControl, System.Windows.Forms.Control)
+If (TypeOf WindowsControl Is MaskedTextBox) Then
+ Dim pTextBox As MaskedTextBox = CType(WindowsControl, MaskedTextBox)
+ Dim dgdtblStyle As DataGridColumnStyle = RelatedForm.DataGrid.TableStyles(0).GridColumnStyles(CurrentColumn)
+
+ RelatedForm.DataGrid.BeginEdit(dgdtblStyle, CurrentRow)
+ pTextBox.Select(pTextBox.Text.Length, 0)
+ WindowsControl.Focus()
+
+ End If
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Peace.&lt;/p&gt;
 </description>
     </item>
     
@@ -129,15 +136,28 @@
       <guid>https://maprantala.com/2010/07/13/entering-a-null-value-in-vb.net-datetimepicker/</guid>
       <description>&lt;p&gt;While working on a VB.Net form to query a database that includes an optional date range query, I decided I wanted to display a datetimepicker with a blank value by default and then, if the user sets a date show the date.  By default, a datetimepicker can not have a Null date, so I went a&amp;rsquo;Googling and found this post, &lt;a href=&#34;http://dotnetref.blogspot.com/2009/03/setting-datetimepicker-to-blank-value.html&#34;&gt;.NET Reference: Setting the DateTimePicker to a Blank Value&lt;/a&gt; ,that had exactly the technique I wanted.&lt;/p&gt;
 &lt;p&gt;Basically, I set the datetimepicker&amp;rsquo;s CustomFormat to a space (&#39; &amp;lsquo;) when I want it to be Null and then when the user makes a selection, set the custom format to the date format I wanted to display.    This is the sample code I found:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;To let the user delete the date they entered, I add this subroutine that handles the KeyDown event for the datetimepicker. If the user hits delete or backspace, I set the format back to my null CustomFormat.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;When building my SQL statement, I check the .CustomFormat property to determine whether or not to include a condition for the data:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;Private Sub ToDateField_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+   Handles ToDateField.ValueChanged
+     Me.ToDateField.Format = Windows.Forms.DateTimePickerFormat.Custom
+     Me.ToDateField.CustomFormat = &amp;quot;M/dd/yyyy&amp;quot;
+End Sub
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To let the user delete the date they entered, I add this subroutine that handles the KeyDown event for the datetimepicker. If the user hits delete or backspace, I set the format back to my null CustomFormat.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Private Sub ClearDates_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) _
+ Handles ToDateField.KeyDown
+
+ If (e.KeyCode = Windows.Forms.Keys.Delete) Or (e.KeyCode = Windows.Forms.Keys.Back) Then
+ Dim mDateTimePicker As Windows.Forms.DateTimePicker
+          mDateTimePicker = TryCast(sender, Windows.Forms.DateTimePicker)
+          If Not (mDateTimePicker Is Nothing) Then
+               mDateTimePicker.CustomFormat = &amp;quot; &amp;quot;
+          End If
+End If
+End Sub
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When building my SQL statement, I check the .CustomFormat property to determine whether or not to include a condition for the data:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;If Not (Me.ToDateField.CustomFormat = &amp;quot; &amp;quot;) Then
+ &#39;Code here to add to my SQL statement
+ End If
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     

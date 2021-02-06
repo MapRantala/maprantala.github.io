@@ -53,9 +53,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -92,14 +105,23 @@
 <p>That should work fine if you have clean values in your text field. In the example above, you might notice I had a selected set of 3 records that all had numeric values in the !Day! field. When I included the fourth row, which does not have a numeric value in the text field, I get this error message (&lsquo;There was a failure during processing, check the Geoprocessing Results window for details.&rsquo; when I use the same formula. Time to add in an error exception.</p>
 <p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber2b.png"><!-- raw HTML omitted --></a></p>
 <p>For more advanced logic, the Field Calculator dialog allows you to use a python function if you check on the &lsquo;Show Codeblock&rsquo; option.  In the &lsquo;Pre-Logic Script Code&rsquo; area (Seriously, who at ESRI came up with that name?) I entered the following function. If the value in my text field (!Day!) can be cast to a number of type float, that value is returned. If the cast is unsuccessful (IE the value in !Day! is not a number), then I return -99.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>Then in the formula portion of the dialog, I call the function, passing the value in the !Day! field: DecDay = toNum(!Day!).<br>
+<pre><code>def toNum(inValue):
+   try:
+      outValue = float(inValue)
+      return outValue
+   except:
+      return -99
+</code></pre><p>Then in the formula portion of the dialog, I call the function, passing the value in the !Day! field: DecDay = toNum(!Day!).<br>
 <a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber2.png"><!-- raw HTML omitted --></a></p>
 <p>Now, if you would prefer not to set all the records with non-numeric values to be -99 or other error value, not return anything. To do this, I replaced the &lsquo;return -99&rsquo; in the original function with a filler line (&lsquo;doNothing = 4&rsquo;) since the try block needs an non-empty except clause.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber3.png"><!-- raw HTML omitted --></a><br>
+<pre><code>def toNum(inValue):
+   try:
+      outValue = float(inValue)
+      return outValue
+   except:
+      doNothing = 4
+
+</code></pre><p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2012/03/tonumber3.png"><!-- raw HTML omitted --></a><br>
 And that should leave the values in the double field unscathed in your records with non-numeric values in the text field.</p>
 <p>Shameless Plug: Check out my other blog posts on using ArcMap&rsquo;s Field Calculator to <a href="https://maprantala.com/2011/03/08/calculating-geometry-using-arcpy-in-field-calculator/">calculate geometry</a> and converting a date value to an <a href="https://maprantala.com/2011/10/06/field-calculator-arcpy-date-to-decimal-function/">8 digit numeric value</a>.</p>
 

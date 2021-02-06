@@ -54,9 +54,22 @@
   }
 </script>
 
-<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
-<script defer src="/js/lib/umbrella.min.e2bb46ea729a2df1793c868bff01df1f4a4889a5c8c97a2f176aebb9c514b3e6.js"></script>
-<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=0; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
 
 
 </head>
@@ -102,12 +115,36 @@ Tags:
 <div class="content">
 <p>This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without any freeware that could handle the 53 page document–there are some cool websites that do text to mp3 like <!-- raw HTML omitted -->vozme <!-- raw HTML omitted -->and <!-- raw HTML omitted -->YAKiToMe<!-- raw HTML omitted -->! but they didn&rsquo;t convert the whole document. I then found <!-- raw HTML omitted -->pyTTS<!-- raw HTML omitted -->, a python package that serves as a wrapper to the <!-- raw HTML omitted -->Microsoft Speech API (SAPI) <!-- raw HTML omitted -->, which has <!-- raw HTML omitted -->been in version 5 since 2000.<!-- raw HTML omitted --> But I didn&rsquo;t easily find a version of pyTTS for python 2.6. So I decided to see if I could roll my own.</p>
 <p>As it turns out, getting python to talk using SAPI is relatively easy. Reading a plain text file can be done in a few lines.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>And it wasn&rsquo;t that much more to have it write out a .wav file:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>And with that chunk of code, I was able to convert my 54 page document into a 4 hour long .wav file (over 600 MB) that I used another software package to convert to .mp3 (200 MB). The voice is a bit robotic but not too bad, I just hope the content that I converted (a database specification standard) doesn&rsquo;t put me to sleep while I drive.</p>
+<pre><code>from comtypes.client import CreateObject
+
+infile = &quot;c:/temp/text.txt&quot;
+
+engine = CreateObject(&quot;SAPI.SpVoice&quot;)
+
+f = open(infile, 'r')
+theText = f.read()
+f.close()
+
+engine.speak(theText)
+</code></pre><p>And it wasn&rsquo;t that much more to have it write out a .wav file:</p>
+<pre><code>from comtypes.client import CreateObject
+
+engine = CreateObject(&quot;SAPI.SpVoice&quot;)
+stream = CreateObject(&quot;SAPI.SpFileStream&quot;)
+
+infile = &quot;c:/temp/text.txt&quot;
+outfile = &quot;c:/temp/text4.wav&quot;
+stream.Open(outfile, SpeechLib.SSFMCreateForWrite)
+engine.AudioOutputStream = stream
+
+f = open(infile, 'r')
+theText = f.read()
+f.close()
+
+engine.speak(theText)
+
+stream.Close()
+</code></pre><p>And with that chunk of code, I was able to convert my 54 page document into a 4 hour long .wav file (over 600 MB) that I used another software package to convert to .mp3 (200 MB). The voice is a bit robotic but not too bad, I just hope the content that I converted (a database specification standard) doesn&rsquo;t put me to sleep while I drive.</p>
 
 
 </div>
