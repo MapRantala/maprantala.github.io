@@ -117,15 +117,15 @@ Tags:
 <div class="content">
 <p>I was working my way through this ESRI <a href="http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#//0001000001ms000000">Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)</a>.  And came across a couple minor errors that I had to correct during the process.</p>
 <p>First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a &lsquo;Name ‘ArcMap&rsquo; is not declared.' error.</p>
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/arcmapnotdeclared.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/arcmapnotdeclared.jpg" alt="ArcMap Not Declared"></p>
 <p>In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.</p>
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/objectbrowser.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/objectbrowser.jpg" alt="Object Browser"></p>
 <p>The fix is just adding  &lsquo;My.&rsquo; to the namespace in this line:</p>
 <pre><code>ZoomToActiveLayerInTOC(TryCast(ArcMap.Application.Document, IMxDocument))
 </code></pre><p>To get this:</p>
 <pre><code>ZoomToActiveLayerInTOC(TryCast(My.ArcMap.Application.Document, IMxDocument))
 </code></pre><p>When I added the code for AddGraphics.vb, I got 8 errors.  There was essentially two errors, repeated four times.  I took a screen shot after fixing the first error pair:</p>
-<p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/errorlist.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/errorlist.jpg" alt="Add Graphics Error List"></p>
 <p>The fixes in this case was also to use the complete name space path.  Examples:</p>
 <p>Change this:</p>
 <pre><code>(geometry.GeometryType) = esriGeometryType.esriGeometryPoint Then

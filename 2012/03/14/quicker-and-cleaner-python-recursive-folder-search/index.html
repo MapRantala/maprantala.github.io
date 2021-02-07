@@ -106,14 +106,14 @@ StatCounter"></a></div></noscript>
 <p>As contributor of the day, <a href="http://www.cleanstick.net/jason/">Jason Scheirer</a>, <a href="https://maprantala.com/2012/03/13/quick-dirty-python-recursive-folder-search-2/#comments">pointed out</a>, python has a simple, direct way to browse through the subdirectories of a directory–<a href="http://docs.python.org/library/os.html#os.walk">os.walk</a></p>
 <p>Here is a bare-bones example of using it to print out the subdirectories in a path. The files variable of the 3-tuple is a list of files similar to the dirs variable that I loop through.</p>
 <p>Thanks Jason for pointing out something I missed.</p>
-<pre><code>import os
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
 
-theDir = 'c:/temp/'
+theDir <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;c:/temp/&#39;</span>
 
-for root, dirs, files in os.walk(theDir,True,None):
-    for idir in dirs:
-        print &quot;     directory:   {0}/{1}&quot;.format(root,idir)
-</code></pre><p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2012/03/dirstalker21.png"><!-- raw HTML omitted --></a></p>
+<span style="color:#66d9ef">for</span> root, dirs, files <span style="color:#f92672">in</span> os<span style="color:#f92672">.</span>walk(theDir,True,None):
+    <span style="color:#66d9ef">for</span> idir <span style="color:#f92672">in</span> dirs:
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;     directory:   {0}/{1}&#34;</span><span style="color:#f92672">.</span>format(root,idir)
+</code></pre></div><p><img src="/images/2012/03/dirstalker21.png" alt="DirStalker2"></p>
 
 
 </div>

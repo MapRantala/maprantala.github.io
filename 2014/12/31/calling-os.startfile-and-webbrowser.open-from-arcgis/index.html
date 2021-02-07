@@ -113,32 +113,33 @@ Tags:
 </header>
 <div class="content">
 <p>Recently I&rsquo;ve created <!-- raw HTML omitted -->Python add-ins<!-- raw HTML omitted --> for data entry for our staff. Most of these have a toolbar with a &lsquo;Help&rsquo; button that opens a help file in .pdf format.<!-- raw HTML omitted --></p>
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2014/12/Toolbar.png"><!-- raw HTML omitted --></a><!-- raw HTML omitted -->Sample python add-in toolbar.<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><img src="/images/2014/12/Toolbar.png" alt="Sample python add-in toolbar."></p>
+<!-- raw HTML omitted -->
 <p>The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(<em>path to help.pdf</em>).</p>
 <p>However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!</p>
 <p>Luckily the <!-- raw HTML omitted -->Python development team at Esri<!-- raw HTML omitted --> already had a <!-- raw HTML omitted -->blog post<!-- raw HTML omitted --> about this at their <!-- raw HTML omitted -->ArcPy Café blog<!-- raw HTML omitted -->.</p>
 <p>They report that the root of the problem is &lsquo;conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool&rsquo;. But this can be overcome by using a <!-- raw HTML omitted -->decorator<!-- raw HTML omitted --> function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.</p>
 <p>Example code is shown below:</p>
-<pre><code>import functools
-import os
-import threading
-import webbrowser
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> functools
+<span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> threading
+<span style="color:#f92672">import</span> webbrowser
  
-# A decorator that will run its wrapped function in a new thread
-def run_in_other_thread(function):
-    # functool.wraps will copy over the docstring and some other metadata
-    # from the original function
-    @functools.wraps(function)
-    def fn_(*args, **kwargs):
-        thread = threading.Thread(target=function, args=args, kwargs=kwargs)
-        thread.start()
-        thread.join()
-    return fn_
+<span style="color:#75715e"># A decorator that will run its wrapped function in a new thread</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_in_other_thread</span>(function):
+    <span style="color:#75715e"># functool.wraps will copy over the docstring and some other metadata</span>
+    <span style="color:#75715e"># from the original function</span>
+    <span style="color:#a6e22e">@functools.wraps</span>(function)
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fn_</span>(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs):
+        thread <span style="color:#f92672">=</span> threading<span style="color:#f92672">.</span>Thread(target<span style="color:#f92672">=</span>function, args<span style="color:#f92672">=</span>args, kwargs<span style="color:#f92672">=</span>kwargs)
+        thread<span style="color:#f92672">.</span>start()
+        thread<span style="color:#f92672">.</span>join()
+    <span style="color:#66d9ef">return</span> fn_
  
-# Our new wrapped versions of os.startfile and webbrowser.open
-startfile = run_in_other_thread(os.startfile)
-openbrowser = run_in_other_thread(webbrowser.open)
-</code></pre><p>Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&rsquo;ve been able to tell, works fine without crashing your ArcMap session.</p>
+<span style="color:#75715e"># Our new wrapped versions of os.startfile and webbrowser.open</span>
+startfile <span style="color:#f92672">=</span> run_in_other_thread(os<span style="color:#f92672">.</span>startfile)
+openbrowser <span style="color:#f92672">=</span> run_in_other_thread(webbrowser<span style="color:#f92672">.</span>open)
+</code></pre></div><p>Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&rsquo;ve been able to tell, works fine without crashing your ArcMap session.</p>
 <p>Cheers!</p>
 
 

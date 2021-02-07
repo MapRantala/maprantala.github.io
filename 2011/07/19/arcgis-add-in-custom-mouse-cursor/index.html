@@ -114,14 +114,15 @@ Tags:
 </header>
 <div class="content">
 <p>I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI&rsquo;s instructions.  But, once you know how to do it, it is pretty easy.  In Visual Studio, Add a New Item:</p>
-<p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/07/addresource.png"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/07/addresource.png" alt="Add Resource"></p>
 <p>Add a Cursor File:</p>
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/selectcursor.png"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/07/selectcursor.png" alt="SelectCursor"></p>
 <p>You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is &lsquo;Embedded Resource&rsquo;.</p>
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2011/07/embedded.png"><!-- raw HTML omitted --></a></p>
-<p>Then you can set your cursor with two lines of code. Not that my cursor is in my QDI.QdiAddIn Namespace:</p>
+<p><img src="/images/2011/07/embedded.png" alt="Embedded"></p>
+<p>Then you can set your cursor with two lines of code. Note that my cursor is in my QDI.QdiAddIn Namespace:</p>
 <pre><code>Dim pCursorStream As System.IO.Stream = Me.GetType.Assembly.GetManifestResourceStream(&quot;QDI.QdiAddIn.NewCursor.cur&quot;)
 MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
+
 </code></pre><!-- raw HTML omitted -->
 
 

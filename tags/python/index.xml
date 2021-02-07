@@ -43,401 +43,401 @@ for l in ll:
       <description>&lt;p&gt;One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a &amp;lsquo;recover-our-cost&amp;rsquo; mentality to more of an &amp;lsquo;Open Data&amp;rsquo;. Minnesota, for example, has launched their &lt;!-- raw HTML omitted --&gt;Geospatial Commons&lt;!-- raw HTML omitted --&gt; as a platform for sharing data.&lt;/p&gt;
 &lt;p&gt;And while getting free, authoritative data is awesome, it can leave you in a bind if the structure of the data changes. Sometime between April and September, Hennepin County, Minnesota, changed the schema of their &lt;!-- raw HTML omitted --&gt;publicly available street centerlines data&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
 &lt;p&gt;The data used to have both a full, concatenated street name field ([ST_CONCAT]) and an abbreviated version ([ST_CON_ABR]). A record might have &amp;lsquo;James Lofton Avenue North&amp;rsquo; and &amp;lsquo;James Lofton Ave N&amp;rsquo;, respectively, in these two fields. The abbreviated version was nice for labeling but it disappeared from the most recent updates.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2017/10/Streetnames.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2017/10/Streetnames.jpg&#34; alt=&#34;Options&#34;&gt;&lt;/p&gt;
 &lt;p&gt;So, as you  might guess from the fact that I&amp;rsquo;m posting about it, I wrote a script to add that field in and launch it from an ArcToolbox Tool. Nothing fancy going on in the code, just a series of replaces, depending on the field. Using dictionaries instead of arrays of paired values might have been better but the script takes just a few seconds to run so I can live with it as-is.&lt;/p&gt;
 &lt;p&gt;The list of street type abbreviations came from a combination of &lt;!-- raw HTML omitted --&gt;ESRI&amp;rsquo;s standards&lt;!-- raw HTML omitted --&gt; and those found in an older version of the Hennepin County data. There were no conflicting abbreviations between the two. The code warns if a street name occurs in the data that is not in the list.&lt;/p&gt;
 &lt;p&gt;While I&amp;rsquo;m including the code here for reference, it&amp;rsquo;s probably best to &lt;!-- raw HTML omitted --&gt;download the code from GitHub.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#-------------------------------------------------------------------------------
-# Name:        usi_dataprep_Add_STCONABR
-#
-# Purpose:     This can be used to add [CT_CON_ABR] to Hennepin County, MN
-#              centerlines. This is a concatenated, abbreviated full name of
-#              the street. This used to be included in the data but
-#              disappeared from the downloads in the summer of 2017.
-#
-#              Data available at: http://www.hennepin.us/gisopendata
-#
-# Author:      mrantala
-#
-# Created:     2017.10.04
-#
-#------------------------------------------------------------------------------
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#-------------------------------------------------------------------------------&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# Name:        usi_dataprep_Add_STCONABR&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# Purpose:     This can be used to add [CT_CON_ABR] to Hennepin County, MN&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#              centerlines. This is a concatenated, abbreviated full name of&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#              the street. This used to be included in the data but&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#              disappeared from the downloads in the summer of 2017.&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#              Data available at: http://www.hennepin.us/gisopendata&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# Author:      mrantala&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# Created:     2017.10.04&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
 
-import arcpy
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; arcpy
 
-############################################
-## Custom Variables
-#These are the fields that are concatenated. Hennepin has others but were always blank.
-requiredFieldList = [&amp;quot;ST_PRE_DIR&amp;quot;,&amp;quot;ST_PRE_TYP&amp;quot;,&amp;quot;ST_NAME&amp;quot;,&amp;quot;ST_POS_TYP&amp;quot;,&amp;quot;ST_POS_DIR&amp;quot;]
-#This is the name of the field to add
-newFieldName = &amp;quot;ST_CON_ABR&amp;quot;
+&lt;span style=&#34;color:#75715e&#34;&gt;############################################&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;## Custom Variables&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#These are the fields that are concatenated. Hennepin has others but were always blank.&lt;/span&gt;
+requiredFieldList &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ST_PRE_DIR&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ST_PRE_TYP&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ST_NAME&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ST_POS_TYP&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ST_POS_DIR&amp;#34;&lt;/span&gt;]
+&lt;span style=&#34;color:#75715e&#34;&gt;#This is the name of the field to add&lt;/span&gt;
+newFieldName &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ST_CON_ABR&amp;#34;&lt;/span&gt;
 
-#These are the abbreviations for [ST_POS_TYPE]. The list was created using a sample of
-#Hennepin&#39;s centerline data &amp;amp; Esri Tech article: http://support.esri.com/en/technical-article/000008454
-# Note that I intentionally left cases in where there is no abbreviation (Fall, for example) as a means of
-#documenting the fact that it should NOT change.
+&lt;span style=&#34;color:#75715e&#34;&gt;#These are the abbreviations for [ST_POS_TYPE]. The list was created using a sample of&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin&amp;#39;s centerline data &amp;amp; Esri Tech article: http://support.esri.com/en/technical-article/000008454&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# Note that I intentionally left cases in where there is no abbreviation (Fall, for example) as a means of&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#documenting the fact that it should NOT change.&lt;/span&gt;
 
-abbList = []
-abbList.append([&amp;quot;Alcove&amp;quot;,&amp;quot;Alcove&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Alley&amp;quot;,&amp;quot;Aly&amp;quot;])
-abbList.append([&amp;quot;Annex&amp;quot;,&amp;quot;Anx&amp;quot;])
-abbList.append([&amp;quot;Arcade&amp;quot;,&amp;quot;Arc&amp;quot;])
-abbList.append([&amp;quot;Avenue&amp;quot;,&amp;quot;Ave&amp;quot;])
-abbList.append([&amp;quot;Bay&amp;quot;,&amp;quot;Bay&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Bayoo&amp;quot;,&amp;quot;Byu&amp;quot;])
-abbList.append([&amp;quot;Beach&amp;quot;,&amp;quot;Bch&amp;quot;])
-abbList.append([&amp;quot;Bend&amp;quot;,&amp;quot;Bnd&amp;quot;])
-abbList.append([&amp;quot;Bluff&amp;quot;,&amp;quot;Blf&amp;quot;])
-abbList.append([&amp;quot;Bluffs&amp;quot;,&amp;quot;Blfs&amp;quot;])
-abbList.append([&amp;quot;Bottom&amp;quot;,&amp;quot;Btm&amp;quot;])
-abbList.append([&amp;quot;Boulevard&amp;quot;,&amp;quot;Blvd&amp;quot;])
-abbList.append([&amp;quot;Branch&amp;quot;,&amp;quot;Br&amp;quot;])
-abbList.append([&amp;quot;Bridge&amp;quot;,&amp;quot;Brg&amp;quot;])
-abbList.append([&amp;quot;Brook&amp;quot;,&amp;quot;Brk&amp;quot;])
-abbList.append([&amp;quot;Brooks&amp;quot;,&amp;quot;Brks&amp;quot;])
-abbList.append([&amp;quot;Burg&amp;quot;,&amp;quot;Bg&amp;quot;])
-abbList.append([&amp;quot;Burgs&amp;quot;,&amp;quot;Bgs&amp;quot;])
-abbList.append([&amp;quot;Bypass&amp;quot;,&amp;quot;Byp&amp;quot;])
-abbList.append([&amp;quot;Camp&amp;quot;,&amp;quot;Cp&amp;quot;])
-abbList.append([&amp;quot;Canyon&amp;quot;,&amp;quot;Cyn&amp;quot;])
-abbList.append([&amp;quot;Cape&amp;quot;,&amp;quot;Cpe&amp;quot;])
-abbList.append([&amp;quot;Causeway&amp;quot;,&amp;quot;Cswy&amp;quot;])
-abbList.append([&amp;quot;Center&amp;quot;,&amp;quot;Ctr&amp;quot;])
-abbList.append([&amp;quot;Centers&amp;quot;,&amp;quot;Ctrs&amp;quot;])
-abbList.append([&amp;quot;Crossings&amp;quot;,&amp;quot;Crossings&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Crossroad&amp;quot;,&amp;quot;Xrd&amp;quot;])
-abbList.append([&amp;quot;Chase&amp;quot;,&amp;quot;Chase&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Circle&amp;quot;,&amp;quot;Cir&amp;quot;])
-abbList.append([&amp;quot;Circles&amp;quot;,&amp;quot;Cirs&amp;quot;])
-abbList.append([&amp;quot;Cliff&amp;quot;,&amp;quot;Clf&amp;quot;])
-abbList.append([&amp;quot;Cliffs&amp;quot;,&amp;quot;Clfs&amp;quot;])
-abbList.append([&amp;quot;Club&amp;quot;,&amp;quot;Clb&amp;quot;])
-abbList.append([&amp;quot;Close&amp;quot;,&amp;quot;Close&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Common&amp;quot;,&amp;quot;Cmn&amp;quot;])
-abbList.append([&amp;quot;Commons&amp;quot;,&amp;quot;Cmns&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Corner&amp;quot;,&amp;quot;Cor&amp;quot;])
-abbList.append([&amp;quot;Corners&amp;quot;,&amp;quot;Cors&amp;quot;])
-abbList.append([&amp;quot;Corridor&amp;quot;,&amp;quot;Corridor&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Course&amp;quot;,&amp;quot;Crse&amp;quot;])
-abbList.append([&amp;quot;Court&amp;quot;,&amp;quot;Ct&amp;quot;])
-abbList.append([&amp;quot;Courts&amp;quot;,&amp;quot;Cts&amp;quot;])
-abbList.append([&amp;quot;Cove&amp;quot;,&amp;quot;Cv&amp;quot;])
-abbList.append([&amp;quot;Coves&amp;quot;,&amp;quot;Cvs&amp;quot;])
-abbList.append([&amp;quot;Creek&amp;quot;,&amp;quot;Crk&amp;quot;])
-abbList.append([&amp;quot;Crescent&amp;quot;,&amp;quot;Cres&amp;quot;])
-abbList.append([&amp;quot;Crest&amp;quot;,&amp;quot;Crst&amp;quot;])
-abbList.append([&amp;quot;Cross&amp;quot;,&amp;quot;Cross&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Crossing&amp;quot;,&amp;quot;Xing&amp;quot;])
-abbList.append([&amp;quot;Curve&amp;quot;,&amp;quot;Curve&amp;quot;])
-abbList.append([&amp;quot;Dale&amp;quot;,&amp;quot;Dl&amp;quot;])
-abbList.append([&amp;quot;Dam&amp;quot;,&amp;quot;Dm&amp;quot;])
-abbList.append([&amp;quot;Divide&amp;quot;,&amp;quot;Dv&amp;quot;])
-abbList.append([&amp;quot;Down&amp;quot;,&amp;quot;Down&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Downs&amp;quot;,&amp;quot;Downs&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Drive&amp;quot;,&amp;quot;Dr&amp;quot;])
-abbList.append([&amp;quot;Drives&amp;quot;,&amp;quot;Drs&amp;quot;])
-abbList.append([&amp;quot;Edge&amp;quot;,&amp;quot;Edge&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Entry&amp;quot;,&amp;quot;Entry&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Estate&amp;quot;,&amp;quot;Est&amp;quot;])
-abbList.append([&amp;quot;Estates&amp;quot;,&amp;quot;Ests&amp;quot;])
-abbList.append([&amp;quot;Expressway&amp;quot;,&amp;quot;Expy&amp;quot;])
-abbList.append([&amp;quot;Extension&amp;quot;,&amp;quot;Ext&amp;quot;])
-abbList.append([&amp;quot;Extensions&amp;quot;,&amp;quot;Exts&amp;quot;])
-abbList.append([&amp;quot;Fall&amp;quot;,&amp;quot;Fall&amp;quot;])
-abbList.append([&amp;quot;Falls&amp;quot;,&amp;quot;Fls&amp;quot;])
-abbList.append([&amp;quot;Ferry&amp;quot;,&amp;quot;Fry&amp;quot;])
-abbList.append([&amp;quot;Field&amp;quot;,&amp;quot;Fld&amp;quot;])
-abbList.append([&amp;quot;Fields&amp;quot;,&amp;quot;Flds&amp;quot;])
-abbList.append([&amp;quot;Flat&amp;quot;,&amp;quot;Flt&amp;quot;])
-abbList.append([&amp;quot;Flats&amp;quot;,&amp;quot;Flts&amp;quot;])
-abbList.append([&amp;quot;Ford&amp;quot;,&amp;quot;Frd&amp;quot;])
-abbList.append([&amp;quot;Fords&amp;quot;,&amp;quot;Frds&amp;quot;])
-abbList.append([&amp;quot;Forest&amp;quot;,&amp;quot;Frst&amp;quot;])
-abbList.append([&amp;quot;Forge&amp;quot;,&amp;quot;Frg&amp;quot;])
-abbList.append([&amp;quot;Forges&amp;quot;,&amp;quot;Frgs&amp;quot;])
-abbList.append([&amp;quot;Fork&amp;quot;,&amp;quot;Frk&amp;quot;])
-abbList.append([&amp;quot;Forks&amp;quot;,&amp;quot;Frks&amp;quot;])
-abbList.append([&amp;quot;Fort&amp;quot;,&amp;quot;Ft&amp;quot;])
-abbList.append([&amp;quot;Freeway&amp;quot;,&amp;quot;Fwy&amp;quot;])
-abbList.append([&amp;quot;Gables&amp;quot;,&amp;quot;Gables&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Garden&amp;quot;,&amp;quot;Gdn&amp;quot;])
-abbList.append([&amp;quot;Gardens&amp;quot;,&amp;quot;Gdns&amp;quot;])
-abbList.append([&amp;quot;Gate&amp;quot;,&amp;quot;Gate&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Gateway&amp;quot;,&amp;quot;Gtwy&amp;quot;])
-abbList.append([&amp;quot;Glade&amp;quot;,&amp;quot;Glade&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Glen&amp;quot;,&amp;quot;Gln&amp;quot;])
-abbList.append([&amp;quot;Glens&amp;quot;,&amp;quot;Glns&amp;quot;])
-abbList.append([&amp;quot;Green&amp;quot;,&amp;quot;Grn&amp;quot;])
-abbList.append([&amp;quot;Greens&amp;quot;,&amp;quot;Grns&amp;quot;])
-abbList.append([&amp;quot;Greenway&amp;quot;,&amp;quot;Greenway&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Grove&amp;quot;,&amp;quot;Grv&amp;quot;])
-abbList.append([&amp;quot;Groves&amp;quot;,&amp;quot;Grvs&amp;quot;])
-abbList.append([&amp;quot;Harbor&amp;quot;,&amp;quot;Hbr&amp;quot;])
-abbList.append([&amp;quot;Harbors&amp;quot;,&amp;quot;Hbrs&amp;quot;])
-abbList.append([&amp;quot;Haven&amp;quot;,&amp;quot;Hvn&amp;quot;])
-abbList.append([&amp;quot;Heights&amp;quot;,&amp;quot;Hts&amp;quot;])
-abbList.append([&amp;quot;Highway&amp;quot;,&amp;quot;Hwy&amp;quot;])
-abbList.append([&amp;quot;Hill&amp;quot;,&amp;quot;Hl&amp;quot;])
-abbList.append([&amp;quot;Hills&amp;quot;,&amp;quot;Hls&amp;quot;])
-abbList.append([&amp;quot;Hollow&amp;quot;,&amp;quot;Holw&amp;quot;])
-abbList.append([&amp;quot;Horn&amp;quot;,&amp;quot;Horn&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Inlet&amp;quot;,&amp;quot;Inlt&amp;quot;])
-abbList.append([&amp;quot;Island&amp;quot;,&amp;quot;Is&amp;quot;])
-abbList.append([&amp;quot;Islands&amp;quot;,&amp;quot;Iss&amp;quot;])
-abbList.append([&amp;quot;Isle&amp;quot;,&amp;quot;Isle&amp;quot;])
-abbList.append([&amp;quot;Junction&amp;quot;,&amp;quot;Jct&amp;quot;])
-abbList.append([&amp;quot;Junctions&amp;quot;,&amp;quot;Jcts&amp;quot;])
-abbList.append([&amp;quot;Key&amp;quot;,&amp;quot;Ky&amp;quot;])
-abbList.append([&amp;quot;Keys&amp;quot;,&amp;quot;Kys&amp;quot;])
-abbList.append([&amp;quot;Knoll&amp;quot;,&amp;quot;Knl&amp;quot;])
-abbList.append([&amp;quot;Knolls&amp;quot;,&amp;quot;Knls&amp;quot;])
-abbList.append([&amp;quot;Lake&amp;quot;,&amp;quot;Lk&amp;quot;])
-abbList.append([&amp;quot;Lakes&amp;quot;,&amp;quot;Lks&amp;quot;])
-abbList.append([&amp;quot;Land&amp;quot;,&amp;quot;Land&amp;quot;])
-abbList.append([&amp;quot;Landing&amp;quot;,&amp;quot;Lndg&amp;quot;])
-abbList.append([&amp;quot;Lane&amp;quot;,&amp;quot;Ln&amp;quot;])
-abbList.append([&amp;quot;Light&amp;quot;,&amp;quot;Lgt&amp;quot;])
-abbList.append([&amp;quot;Lights&amp;quot;,&amp;quot;Lgts&amp;quot;])
-abbList.append([&amp;quot;Loaf&amp;quot;,&amp;quot;Lf&amp;quot;])
-abbList.append([&amp;quot;Lock&amp;quot;,&amp;quot;Lck&amp;quot;])
-abbList.append([&amp;quot;Locks&amp;quot;,&amp;quot;Lcks&amp;quot;])
-abbList.append([&amp;quot;Lodge&amp;quot;,&amp;quot;Ldg&amp;quot;])
-abbList.append([&amp;quot;Loop&amp;quot;,&amp;quot;Loop&amp;quot;])
-abbList.append([&amp;quot;Mall&amp;quot;,&amp;quot;Mall&amp;quot;])
-abbList.append([&amp;quot;Manor&amp;quot;,&amp;quot;Mnr&amp;quot;])
-abbList.append([&amp;quot;Manors&amp;quot;,&amp;quot;Mnrs&amp;quot;])
-abbList.append([&amp;quot;Meadow&amp;quot;,&amp;quot;Mdw&amp;quot;])
-abbList.append([&amp;quot;Meadows&amp;quot;,&amp;quot;Mdws&amp;quot;])
-abbList.append([&amp;quot;Mews&amp;quot;,&amp;quot;Mews&amp;quot;])
-abbList.append([&amp;quot;Mill&amp;quot;,&amp;quot;Ml&amp;quot;])
-abbList.append([&amp;quot;Mills&amp;quot;,&amp;quot;Mls&amp;quot;])
-abbList.append([&amp;quot;Mission&amp;quot;,&amp;quot;Msn&amp;quot;])
-abbList.append([&amp;quot;Motorway&amp;quot;,&amp;quot;Mtwy&amp;quot;])
-abbList.append([&amp;quot;Mount&amp;quot;,&amp;quot;Mt&amp;quot;])
-abbList.append([&amp;quot;Mountain&amp;quot;,&amp;quot;Mtn&amp;quot;])
-abbList.append([&amp;quot;Mountains&amp;quot;,&amp;quot;Mtns&amp;quot;])
-abbList.append([&amp;quot;Neck&amp;quot;,&amp;quot;Nck&amp;quot;])
-abbList.append([&amp;quot;Orchard&amp;quot;,&amp;quot;Orch&amp;quot;])
-abbList.append([&amp;quot;Oval&amp;quot;,&amp;quot;Oval&amp;quot;])
-abbList.append([&amp;quot;Overpass&amp;quot;,&amp;quot;Opas&amp;quot;])
-abbList.append([&amp;quot;Park&amp;quot;,&amp;quot;Park&amp;quot;])
-abbList.append([&amp;quot;Parks&amp;quot;,&amp;quot;Park&amp;quot;])
-abbList.append([&amp;quot;Parkway&amp;quot;,&amp;quot;Pkwy&amp;quot;])
-abbList.append([&amp;quot;Parkways&amp;quot;,&amp;quot;Pkwy&amp;quot;])
-abbList.append([&amp;quot;Pass&amp;quot;,&amp;quot;Pass&amp;quot;])
-abbList.append([&amp;quot;Passage&amp;quot;,&amp;quot;Psge&amp;quot;])
-abbList.append([&amp;quot;Path&amp;quot;,&amp;quot;Path&amp;quot;])
-abbList.append([&amp;quot;Pike&amp;quot;,&amp;quot;Pike&amp;quot;])
-abbList.append([&amp;quot;Pine&amp;quot;,&amp;quot;Pne&amp;quot;])
-abbList.append([&amp;quot;Pines&amp;quot;,&amp;quot;Pnes&amp;quot;])
-abbList.append([&amp;quot;Place&amp;quot;,&amp;quot;Pl&amp;quot;])
-abbList.append([&amp;quot;Plain&amp;quot;,&amp;quot;Pln&amp;quot;])
-abbList.append([&amp;quot;Plains&amp;quot;,&amp;quot;Plns&amp;quot;])
-abbList.append([&amp;quot;Plaza&amp;quot;,&amp;quot;Plz&amp;quot;])
-abbList.append([&amp;quot;Point&amp;quot;,&amp;quot;Pt&amp;quot;])
-abbList.append([&amp;quot;Points&amp;quot;,&amp;quot;Pts&amp;quot;])
-abbList.append([&amp;quot;Port&amp;quot;,&amp;quot;Prt&amp;quot;])
-abbList.append([&amp;quot;Ports&amp;quot;,&amp;quot;Prts&amp;quot;])
-abbList.append([&amp;quot;Prairie&amp;quot;,&amp;quot;Pr&amp;quot;])
-abbList.append([&amp;quot;Radial&amp;quot;,&amp;quot;Radl&amp;quot;])
-abbList.append([&amp;quot;Railroad&amp;quot;,&amp;quot;Railroad&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Ramp&amp;quot;,&amp;quot;Ramp&amp;quot;])
-abbList.append([&amp;quot;Ranch&amp;quot;,&amp;quot;Rnch&amp;quot;])
-abbList.append([&amp;quot;Rapid&amp;quot;,&amp;quot;Rpd&amp;quot;])
-abbList.append([&amp;quot;Rapids&amp;quot;,&amp;quot;Rpds&amp;quot;])
-abbList.append([&amp;quot;Rest&amp;quot;,&amp;quot;Rst&amp;quot;])
-abbList.append([&amp;quot;Ridge&amp;quot;,&amp;quot;Rdg&amp;quot;])
-abbList.append([&amp;quot;Ridges&amp;quot;,&amp;quot;Rdgs&amp;quot;])
-abbList.append([&amp;quot;Rise&amp;quot;,&amp;quot;Rise&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;River&amp;quot;,&amp;quot;Riv&amp;quot;])
-abbList.append([&amp;quot;Road&amp;quot;,&amp;quot;Rd&amp;quot;])
-abbList.append([&amp;quot;Roads&amp;quot;,&amp;quot;Rds&amp;quot;])
-abbList.append([&amp;quot;Route&amp;quot;,&amp;quot;Rte&amp;quot;])
-abbList.append([&amp;quot;Row&amp;quot;,&amp;quot;Row&amp;quot;])
-abbList.append([&amp;quot;Rue&amp;quot;,&amp;quot;Rue&amp;quot;])
-abbList.append([&amp;quot;Run&amp;quot;,&amp;quot;Run&amp;quot;])
-abbList.append([&amp;quot;Shoal&amp;quot;,&amp;quot;Shl&amp;quot;])
-abbList.append([&amp;quot;Shoals&amp;quot;,&amp;quot;Shls&amp;quot;])
-abbList.append([&amp;quot;Shore&amp;quot;,&amp;quot;Shr&amp;quot;])
-abbList.append([&amp;quot;Shores&amp;quot;,&amp;quot;Shrs&amp;quot;])
-abbList.append([&amp;quot;Skies&amp;quot;,&amp;quot;Skies&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Skyway&amp;quot;,&amp;quot;Skwy&amp;quot;])
-abbList.append([&amp;quot;Spring&amp;quot;,&amp;quot;Spg&amp;quot;])
-abbList.append([&amp;quot;Springs&amp;quot;,&amp;quot;Spgs&amp;quot;])
-abbList.append([&amp;quot;Spur&amp;quot;,&amp;quot;Spur&amp;quot;])
-abbList.append([&amp;quot;Spurs&amp;quot;,&amp;quot;Spur&amp;quot;])
-abbList.append([&amp;quot;Square&amp;quot;,&amp;quot;Sq&amp;quot;])
-abbList.append([&amp;quot;Squares&amp;quot;,&amp;quot;Sqrs&amp;quot;])
-abbList.append([&amp;quot;Station&amp;quot;,&amp;quot;Sta&amp;quot;])
-abbList.append([&amp;quot;Stravenue&amp;quot;,&amp;quot;Stra&amp;quot;])
-abbList.append([&amp;quot;Stream&amp;quot;,&amp;quot;Strm&amp;quot;])
-abbList.append([&amp;quot;Street&amp;quot;,&amp;quot;St&amp;quot;])
-abbList.append([&amp;quot;Streets&amp;quot;,&amp;quot;Sts&amp;quot;])
-abbList.append([&amp;quot;Summit&amp;quot;,&amp;quot;Smt&amp;quot;])
-abbList.append([&amp;quot;Terrace&amp;quot;,&amp;quot;Ter&amp;quot;])
-abbList.append([&amp;quot;Throughway&amp;quot;,&amp;quot;Trwy&amp;quot;])
-abbList.append([&amp;quot;Trace&amp;quot;,&amp;quot;Trce&amp;quot;])
-abbList.append([&amp;quot;Track&amp;quot;,&amp;quot;Trak&amp;quot;])
-abbList.append([&amp;quot;Trafficway&amp;quot;,&amp;quot;Trfy&amp;quot;])
-abbList.append([&amp;quot;Trail&amp;quot;,&amp;quot;Trl&amp;quot;])
-abbList.append([&amp;quot;Tunnel&amp;quot;,&amp;quot;Tunl&amp;quot;])
-abbList.append([&amp;quot;Turn&amp;quot;,&amp;quot;Turn&amp;quot;]) #Hennepin Specific
-abbList.append([&amp;quot;Turnpike&amp;quot;,&amp;quot;Tpke&amp;quot;])
-abbList.append([&amp;quot;Underpass&amp;quot;,&amp;quot;Upas&amp;quot;])
-abbList.append([&amp;quot;Union&amp;quot;,&amp;quot;Un&amp;quot;])
-abbList.append([&amp;quot;Unions&amp;quot;,&amp;quot;Uns&amp;quot;])
-abbList.append([&amp;quot;Valley&amp;quot;,&amp;quot;Vly&amp;quot;])
-abbList.append([&amp;quot;Valleys&amp;quot;,&amp;quot;Vlys&amp;quot;])
-abbList.append([&amp;quot;Viaduct&amp;quot;,&amp;quot;Via&amp;quot;])
-abbList.append([&amp;quot;View&amp;quot;,&amp;quot;Vw&amp;quot;])
-abbList.append([&amp;quot;Views&amp;quot;,&amp;quot;Vws&amp;quot;])
-abbList.append([&amp;quot;Village&amp;quot;,&amp;quot;Vlg&amp;quot;])
-abbList.append([&amp;quot;Villages&amp;quot;,&amp;quot;Vlgs&amp;quot;])
-abbList.append([&amp;quot;Ville&amp;quot;,&amp;quot;Vl&amp;quot;])
-abbList.append([&amp;quot;Vista&amp;quot;,&amp;quot;Vis&amp;quot;])
-abbList.append([&amp;quot;Walk&amp;quot;,&amp;quot;Walk&amp;quot;])
-abbList.append([&amp;quot;Walks&amp;quot;,&amp;quot;Walk&amp;quot;])
-abbList.append([&amp;quot;Wall&amp;quot;,&amp;quot;Wall&amp;quot;])
-abbList.append([&amp;quot;Way&amp;quot;,&amp;quot;Way&amp;quot;])
-abbList.append([&amp;quot;Ways&amp;quot;,&amp;quot;Ways&amp;quot;])
-abbList.append([&amp;quot;Well&amp;quot;,&amp;quot;Wl&amp;quot;])
-abbList.append([&amp;quot;Wells&amp;quot;,&amp;quot;Wls&amp;quot;])
+abbList &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Alcove&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Alcove&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Alley&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Aly&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Annex&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Anx&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Arcade&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Arc&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Avenue&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ave&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bay&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bay&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bayoo&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Byu&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Beach&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bch&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bend&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bnd&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bluff&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Blf&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bluffs&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Blfs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bottom&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Btm&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Boulevard&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Blvd&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Branch&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Br&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bridge&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Brg&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Brook&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Brk&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Brooks&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Brks&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Burg&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bg&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Burgs&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bgs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bypass&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Byp&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Camp&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cp&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Canyon&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cyn&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cape&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cpe&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Causeway&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cswy&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Center&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ctr&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Centers&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ctrs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Crossings&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Crossings&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Crossroad&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Xrd&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Chase&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Chase&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Circle&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cir&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Circles&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cirs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cliff&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Clf&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cliffs&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Clfs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Club&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Clb&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Close&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Close&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Common&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cmn&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Commons&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cmns&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Corner&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cor&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Corners&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cors&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Corridor&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Corridor&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Course&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Crse&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Court&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ct&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Courts&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cts&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cove&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cv&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Coves&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cvs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Creek&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Crk&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Crescent&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cres&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Crest&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Crst&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cross&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cross&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Crossing&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Xing&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Curve&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Curve&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Dale&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Dl&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Dam&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Dm&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Divide&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Dv&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Down&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Down&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Downs&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Downs&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Drive&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Dr&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Drives&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Drs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Edge&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Edge&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Entry&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Entry&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Estate&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Est&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Estates&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ests&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Expressway&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Expy&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Extension&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ext&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Extensions&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Exts&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fall&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fall&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Falls&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fls&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ferry&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fry&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Field&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fld&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fields&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Flds&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Flat&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Flt&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Flats&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Flts&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ford&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Frd&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fords&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Frds&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Forest&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Frst&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Forge&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Frg&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Forges&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Frgs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fork&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Frk&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Forks&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Frks&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fort&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ft&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Freeway&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fwy&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gables&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gables&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Garden&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gdn&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gardens&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gdns&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gate&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gate&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gateway&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gtwy&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Glade&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Glade&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Glen&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Gln&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Glens&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Glns&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Green&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Grn&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Greens&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Grns&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Greenway&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Greenway&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Grove&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Grv&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Groves&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Grvs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Harbor&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hbr&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Harbors&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hbrs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Haven&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hvn&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Heights&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hts&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Highway&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hwy&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hill&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hl&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hills&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hls&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hollow&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Holw&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Horn&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Horn&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Inlet&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Inlt&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Island&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Is&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Islands&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Iss&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Isle&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Isle&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Junction&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Jct&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Junctions&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Jcts&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Key&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ky&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Keys&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Kys&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Knoll&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Knl&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Knolls&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Knls&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lake&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lk&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lakes&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lks&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Land&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Land&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Landing&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lndg&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lane&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ln&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Light&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lgt&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lights&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lgts&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Loaf&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lf&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lock&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lck&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Locks&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lcks&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lodge&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ldg&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Loop&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Loop&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mall&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mall&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Manor&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mnr&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Manors&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mnrs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Meadow&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mdw&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Meadows&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mdws&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mews&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mews&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mill&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ml&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mills&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mls&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mission&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Msn&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Motorway&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mtwy&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mount&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mt&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mountain&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mtn&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mountains&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Mtns&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Neck&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Nck&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Orchard&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Orch&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Oval&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Oval&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Overpass&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Opas&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Park&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Park&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Parks&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Park&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Parkway&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pkwy&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Parkways&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pkwy&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pass&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pass&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Passage&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Psge&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Path&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Path&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pike&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pike&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pine&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pne&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pines&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pnes&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Place&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pl&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Plain&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pln&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Plains&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Plns&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Plaza&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Plz&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Point&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pt&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Points&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pts&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Port&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Prt&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ports&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Prts&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Prairie&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pr&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Radial&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Radl&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Railroad&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Railroad&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ramp&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ramp&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ranch&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rnch&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rapid&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rpd&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rapids&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rpds&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rest&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rst&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ridge&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rdg&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ridges&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rdgs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rise&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rise&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;River&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Riv&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Road&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rd&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Roads&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rds&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Route&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rte&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Row&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Row&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rue&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Rue&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Run&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Run&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Shoal&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Shl&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Shoals&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Shls&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Shore&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Shr&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Shores&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Shrs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Skies&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Skies&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Skyway&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Skwy&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Spring&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Spg&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Springs&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Spgs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Spur&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Spur&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Spurs&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Spur&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Square&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Sq&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Squares&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Sqrs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Station&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Sta&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Stravenue&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Stra&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Stream&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Strm&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Street&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;St&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Streets&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Sts&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Summit&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Smt&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Terrace&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ter&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Throughway&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Trwy&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Trace&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Trce&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Track&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Trak&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Trafficway&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Trfy&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Trail&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Trl&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Tunnel&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Tunl&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Turn&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Turn&amp;#34;&lt;/span&gt;]) &lt;span style=&#34;color:#75715e&#34;&gt;#Hennepin Specific&lt;/span&gt;
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Turnpike&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Tpke&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Underpass&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Upas&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Union&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Un&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Unions&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Uns&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Valley&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Vly&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Valleys&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Vlys&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Viaduct&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Via&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;View&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Vw&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Views&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Vws&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Village&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Vlg&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Villages&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Vlgs&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ville&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Vl&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Vista&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Vis&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Walk&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Walk&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Walks&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Walk&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Wall&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Wall&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Way&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Way&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ways&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Ways&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Well&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Wl&amp;#34;&lt;/span&gt;])
+abbList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Wells&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Wls&amp;#34;&lt;/span&gt;])
 
-#List of changes for [St_POS_Dir]
-posDirList = [[&amp;quot;North&amp;quot;,&amp;quot;N&amp;quot;],[&amp;quot;East&amp;quot;,&amp;quot;E&amp;quot;],[&amp;quot;South&amp;quot;,&amp;quot;S&amp;quot;],[&amp;quot;West&amp;quot;,&amp;quot;W&amp;quot;],[&amp;quot;Northeast&amp;quot;,&amp;quot;NE&amp;quot;],[&amp;quot;Northwest&amp;quot;,&amp;quot;NW&amp;quot;],[&amp;quot;Southeast&amp;quot;,&amp;quot;SE&amp;quot;],[&amp;quot;Southwest&amp;quot;,&amp;quot;SW&amp;quot;]]
-preDirList = [[&amp;quot;North&amp;quot;,&amp;quot;N&amp;quot;],[&amp;quot;East&amp;quot;,&amp;quot;E&amp;quot;],[&amp;quot;South&amp;quot;,&amp;quot;S&amp;quot;],[&amp;quot;West&amp;quot;,&amp;quot;W&amp;quot;]]
-############################################
-## Read Arguments
+&lt;span style=&#34;color:#75715e&#34;&gt;#List of changes for [St_POS_Dir]&lt;/span&gt;
+posDirList &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;North&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;N&amp;#34;&lt;/span&gt;],[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;East&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;E&amp;#34;&lt;/span&gt;],[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;South&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt;],[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;West&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;W&amp;#34;&lt;/span&gt;],[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Northeast&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NE&amp;#34;&lt;/span&gt;],[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Northwest&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NW&amp;#34;&lt;/span&gt;],[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Southeast&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SE&amp;#34;&lt;/span&gt;],[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Southwest&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SW&amp;#34;&lt;/span&gt;]]
+preDirList &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;North&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;N&amp;#34;&lt;/span&gt;],[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;East&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;E&amp;#34;&lt;/span&gt;],[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;South&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt;],[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;West&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;W&amp;#34;&lt;/span&gt;]]
+&lt;span style=&#34;color:#75715e&#34;&gt;############################################&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;## Read Arguments&lt;/span&gt;
 
-if (len(sys.argv) &amp;amp;gt; 1):
-    inFC = sys.argv[1]
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (len(sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;argv) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+    inFC &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;argv[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
 
-############################################
-# General Purpose Functions
-def printit(inputString):
-    try:
-        print(inputString)
-        arcpy.AddMessage(str(inputString))
-    except:
-        pass
+&lt;span style=&#34;color:#75715e&#34;&gt;############################################&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# General Purpose Functions&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;printit&lt;/span&gt;(inputString):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(inputString)
+        arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AddMessage(str(inputString))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;pass&lt;/span&gt;
 
-def printerror(inputString):
-    print (inputString)
-    arcpy.AddError(inputString)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;printerror&lt;/span&gt;(inputString):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; (inputString)
+    arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AddError(inputString)
 
-def getField(inFeatureClass, inFieldName):
-  fieldList = arcpy.ListFields(inFeatureClass)
-  for iField in fieldList:
-    if iField.name.lower() == inFieldName.lower():
-      return iField
-  return None
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;getField&lt;/span&gt;(inFeatureClass, inFieldName):
+  fieldList &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ListFields(inFeatureClass)
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; iField &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; fieldList:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; iField&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;name&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;lower() &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; inFieldName&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;lower():
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; iField
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; None
 
-def fieldExists(inFeatureClass, inFieldName):
-  return getField(inFeatureClass,inFieldName) &amp;lt;&amp;gt; None
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fieldExists&lt;/span&gt;(inFeatureClass, inFieldName):
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; getField(inFeatureClass,inFieldName) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt; None
 
-############################################
-# Initial QC
+&lt;span style=&#34;color:#75715e&#34;&gt;############################################&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# Initial QC&lt;/span&gt;
 
-def initialQC():
-    if (arcpy.Exists(inFC)):
-        printit(&amp;quot;PASS: Feature Class {} Exists&amp;quot;.format(inFC))
-    else:
-        printerror(&amp;quot;ERROR: Feature Class {} Does Not Exist, Cancelling...&amp;quot;.format(inFC))
-        return False
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;initialQC&lt;/span&gt;():
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Exists(inFC)):
+        printit(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;PASS: Feature Class {} Exists&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(inFC))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        printerror(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ERROR: Feature Class {} Does Not Exist, Cancelling...&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(inFC))
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
 
-    for iFld in requiredFieldList:
-        if (fieldExists(inFC,iFld)):
-            printit(&amp;quot;PASS: Feature Class {} Has Field [{}]&amp;quot;.format(inFC,iFld))
-        else:
-            printerror(&amp;quot;ERROR: Feature Class {} Does Not Have Field [{}], Cancelling...&amp;quot;.format(inFC,iFld))
-            return False
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; iFld &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; requiredFieldList:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (fieldExists(inFC,iFld)):
+            printit(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;PASS: Feature Class {} Has Field [{}]&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(inFC,iFld))
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+            printerror(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ERROR: Feature Class {} Does Not Have Field [{}], Cancelling...&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(inFC,iFld))
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
 
-    if not (fieldExists(inFC,newFieldName)):
-        printit(&amp;quot;GOOD: Feature Class {} Does Not Already Have Field [{}]&amp;quot;.format(inFC,newFieldName))
-        printit(&amp;quot; ADDING Field [{}]&amp;quot;.format(newFieldName))
-        try:
-            arcpy.AddField_management(in_table=inFC, field_name=newFieldName, field_type=&amp;quot;TEXT&amp;quot;, field_precision=&amp;quot;&amp;quot;, field_scale=&amp;quot;&amp;quot;, field_length=&amp;quot;100&amp;quot;, field_alias=&amp;quot;&amp;quot;, field_is_nullable=&amp;quot;NULLABLE&amp;quot;, field_is_required=&amp;quot;NON_REQUIRED&amp;quot;, field_domain=&amp;quot;&amp;quot;)
-        except:
-            printerror(&amp;quot;ERROR: Error While Adding Field [{}], Cancelling...&amp;quot;.format(newFieldName))
-            return False
-        if not (fieldExists(inFC,newFieldName)):
-            printerror(&amp;quot;ERROR: Unable to Add Field [{}], Cancelling...&amp;quot;.format(newFieldName))
-            return False
-    else:
-        printerror(&amp;quot;ERROR: Feature Class {} Already Has Field [{}], Cancelling...&amp;quot;.format(inFC,newFieldName))
-        return False
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; (fieldExists(inFC,newFieldName)):
+        printit(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;GOOD: Feature Class {} Does Not Already Have Field [{}]&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(inFC,newFieldName))
+        printit(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; ADDING Field [{}]&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(newFieldName))
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+            arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AddField_management(in_table&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;inFC, field_name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;newFieldName, field_type&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;TEXT&amp;#34;&lt;/span&gt;, field_precision&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;, field_scale&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;, field_length&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;100&amp;#34;&lt;/span&gt;, field_alias&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;, field_is_nullable&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NULLABLE&amp;#34;&lt;/span&gt;, field_is_required&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NON_REQUIRED&amp;#34;&lt;/span&gt;, field_domain&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt;:
+            printerror(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ERROR: Error While Adding Field [{}], Cancelling...&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(newFieldName))
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; (fieldExists(inFC,newFieldName)):
+            printerror(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ERROR: Unable to Add Field [{}], Cancelling...&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(newFieldName))
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        printerror(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ERROR: Feature Class {} Already Has Field [{}], Cancelling...&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(inFC,newFieldName))
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
 
-    return True
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; True
 
-############################################
-# Main
+&lt;span style=&#34;color:#75715e&#34;&gt;############################################&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# Main&lt;/span&gt;
 
-def makeSubstitution(inList,inValue,inFieldName):
-    for iAbbreviationPr in inList:
-        if (inValue == iAbbreviationPr[0]): #Found a Match
-            return iAbbreviationPr[1]
-    printit(&amp;quot;WARNING: [{}] of {} does not have a value in the abbreviation list! Potential Error...&amp;quot;.format(inFieldName,inValue))
-    return inValue
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;makeSubstitution&lt;/span&gt;(inList,inValue,inFieldName):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; iAbbreviationPr &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; inList:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (inValue &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; iAbbreviationPr[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]): &lt;span style=&#34;color:#75715e&#34;&gt;#Found a Match&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; iAbbreviationPr[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+    printit(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;WARNING: [{}] of {} does not have a value in the abbreviation list! Potential Error...&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(inFieldName,inValue))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; inValue
 
-def main():
-    cursorFieldList = requiredFieldList
-    cursorFieldList.append(newFieldName)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;():
+    cursorFieldList &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; requiredFieldList
+    cursorFieldList&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(newFieldName)
 
-    try:
-        iUCursor = arcpy.da.UpdateCursor(inFC,cursorFieldList)
-        iRowCount = 0
-        iRowMax = 1
-        for uRow in iUCursor:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+        iUCursor &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;da&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;UpdateCursor(inFC,cursorFieldList)
+        iRowCount &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        iRowMax &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; uRow &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; iUCursor:
 
-            #Just to give user an indicator that progress is being made
-            if (iRowCount&amp;amp;gt;iRowMax):
-                printit(&amp;quot; {}&amp;quot;.format(iRowCount))
-                iRowMax *= 10
-                iRowCount+=1
+            &lt;span style=&#34;color:#75715e&#34;&gt;#Just to give user an indicator that progress is being made&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (iRowCount &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; iRowMax):
+                printit(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; {}&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(iRowCount))
+                iRowMax &lt;span style=&#34;color:#f92672&#34;&gt;*=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;
+                iRowCount&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
 
-            abbreviateConcatenatedName = &amp;quot;&amp;quot;
-            iFldIndex = 0
-            for iFld in requiredFieldList:
-
-
-                if (iFld == newFieldName):
-                    uRow[iFldIndex] = abbreviateConcatenatedName
-                    iUCursor.updateRow(uRow)
-                else:
-                    iValue = uRow[iFldIndex].strip() #Strip is just a safe-guard
+            abbreviateConcatenatedName &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+            iFldIndex &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; iFld &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; requiredFieldList:
 
 
-                    if ((iValue != &amp;quot;&amp;quot;) and (iValue != None)):
-                        if (iFld == &amp;quot;ST_PRE_DIR&amp;quot;):
-                            iValue= makeSubstitution(preDirList,iValue,&amp;quot;ST_PRE_DIR&amp;quot;)
-                        if (iFld == &amp;quot;ST_POS_TYP&amp;quot;):
-                            iValue= makeSubstitution(abbList,iValue,&amp;quot;ST_POS_TYPE&amp;quot;)
-                        if (iFld == &amp;quot;ST_POS_DIR&amp;quot;):
-                            iValue = makeSubstitution(posDirList,iValue,&amp;quot;ST_POS_DIR&amp;quot;)
-
-                        if (abbreviateConcatenatedName == &amp;quot;&amp;quot;):
-                            abbreviateConcatenatedName = iValue
-                        else:
-                            abbreviateConcatenatedName+=&amp;quot; &amp;quot;+iValue
-                iFldIndex += 1
-
-        del iUCursor
-    except RuntimeError as e:
-        printerror(&amp;quot;ERROR: Error {} Occurred, Cancelling...&amp;quot;.format(e))
-        try:
-            del iUCursor
-            del uRow
-        except:
-            return False
-    return True
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (iFld &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; newFieldName):
+                    uRow[iFldIndex] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; abbreviateConcatenatedName
+                    iUCursor&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;updateRow(uRow)
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+                    iValue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; uRow[iFldIndex]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;strip() &lt;span style=&#34;color:#75715e&#34;&gt;#Strip is just a safe-guard&lt;/span&gt;
 
 
-if __name__ == &#39;__main__&#39;:
-    if (initialQC() == True):
-        if (main() == True):
-            printit(&amp;quot;Done!&amp;quot;)
+                    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ((iValue &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; (iValue &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; None)):
+                        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (iFld &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ST_PRE_DIR&amp;#34;&lt;/span&gt;):
+                            iValue&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; makeSubstitution(preDirList,iValue,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ST_PRE_DIR&amp;#34;&lt;/span&gt;)
+                        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (iFld &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ST_POS_TYP&amp;#34;&lt;/span&gt;):
+                            iValue&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; makeSubstitution(abbList,iValue,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ST_POS_TYPE&amp;#34;&lt;/span&gt;)
+                        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (iFld &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ST_POS_DIR&amp;#34;&lt;/span&gt;):
+                            iValue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; makeSubstitution(posDirList,iValue,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ST_POS_DIR&amp;#34;&lt;/span&gt;)
 
-&lt;/code&gt;&lt;/pre&gt;</description>
+                        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (abbreviateConcatenatedName &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;):
+                            abbreviateConcatenatedName &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; iValue
+                        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+                            abbreviateConcatenatedName&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;iValue
+                iFldIndex &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;del&lt;/span&gt; iUCursor
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;RuntimeError&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; e:
+        printerror(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ERROR: Error {} Occurred, Cancelling...&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(e))
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;del&lt;/span&gt; iUCursor
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;del&lt;/span&gt; uRow
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt;:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; True
+
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; __name__ &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (initialQC() &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; True):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (main() &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; True):
+            printit(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Done!&amp;#34;&lt;/span&gt;)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -525,60 +525,61 @@ else:
       <pubDate>Wed, 31 Dec 2014 14:38:16 -0600</pubDate>
       <guid>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis/</guid>
       <description>&lt;p&gt;Recently I&amp;rsquo;ve created &lt;!-- raw HTML omitted --&gt;Python add-ins&lt;!-- raw HTML omitted --&gt; for data entry for our staff. Most of these have a toolbar with a &amp;lsquo;Help&amp;rsquo; button that opens a help file in .pdf format.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2014/12/Toolbar.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Sample python add-in toolbar.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/12/Toolbar.png&#34; alt=&#34;Sample python add-in toolbar.&#34;&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(&lt;em&gt;path to help.pdf&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!&lt;/p&gt;
 &lt;p&gt;Luckily the &lt;!-- raw HTML omitted --&gt;Python development team at Esri&lt;!-- raw HTML omitted --&gt; already had a &lt;!-- raw HTML omitted --&gt;blog post&lt;!-- raw HTML omitted --&gt; about this at their &lt;!-- raw HTML omitted --&gt;ArcPy Café blog&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
 &lt;p&gt;They report that the root of the problem is &amp;lsquo;conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool&amp;rsquo;. But this can be overcome by using a &lt;!-- raw HTML omitted --&gt;decorator&lt;!-- raw HTML omitted --&gt; function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.&lt;/p&gt;
 &lt;p&gt;Example code is shown below:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import functools
-import os
-import threading
-import webbrowser
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; functools
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; os
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; threading
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; webbrowser
  
-# A decorator that will run its wrapped function in a new thread
-def run_in_other_thread(function):
-    # functool.wraps will copy over the docstring and some other metadata
-    # from the original function
-    @functools.wraps(function)
-    def fn_(*args, **kwargs):
-        thread = threading.Thread(target=function, args=args, kwargs=kwargs)
-        thread.start()
-        thread.join()
-    return fn_
+&lt;span style=&#34;color:#75715e&#34;&gt;# A decorator that will run its wrapped function in a new thread&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;run_in_other_thread&lt;/span&gt;(function):
+    &lt;span style=&#34;color:#75715e&#34;&gt;# functool.wraps will copy over the docstring and some other metadata&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;# from the original function&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;@functools.wraps&lt;/span&gt;(function)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fn_&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;args, &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;kwargs):
+        thread &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; threading&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Thread(target&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;function, args&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;args, kwargs&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;kwargs)
+        thread&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;start()
+        thread&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join()
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; fn_
  
-# Our new wrapped versions of os.startfile and webbrowser.open
-startfile = run_in_other_thread(os.startfile)
-openbrowser = run_in_other_thread(webbrowser.open)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&amp;rsquo;ve been able to tell, works fine without crashing your ArcMap session.&lt;/p&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# Our new wrapped versions of os.startfile and webbrowser.open&lt;/span&gt;
+startfile &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; run_in_other_thread(os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;startfile)
+openbrowser &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; run_in_other_thread(webbrowser&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;open)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then whenever you call startfile or openbrowser, it will be routed through your decorator function and, as far as I&amp;rsquo;ve been able to tell, works fine without crashing your ArcMap session.&lt;/p&gt;
 &lt;p&gt;Cheers!&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>Quick and Dirty ArcPy: Listing Data Sources</title>
-      <link>https://maprantala.com/2014/12/03/quick-and-dirty-arcpy-listing-data-sources/</link>
+      <title>Quick &amp; Dirty ArcPy: Listing Data Sources</title>
+      <link>https://maprantala.com/2014/12/03/quick-dirty-arcpy-listing-data-sources/</link>
       <pubDate>Wed, 03 Dec 2014 08:05:10 -0600</pubDate>
-      <guid>https://maprantala.com/2014/12/03/quick-and-dirty-arcpy-listing-data-sources/</guid>
+      <guid>https://maprantala.com/2014/12/03/quick-dirty-arcpy-listing-data-sources/</guid>
       <description>&lt;p&gt;I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here&amp;rsquo;s the &lt;a href=&#34;https://github.com/MapRantala/Blog/blob/master/python/arcpy/20141203_ListDataSources/listDataSources.py&#34;&gt;bare-bones script&lt;/a&gt; I used instead:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import arcpy, glob,os
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; glob&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt;os
 
-theDir = r&amp;quot;L:\gdrs\data\org\us_mn_state_dnr\elev_minnesota_lidar\\&amp;quot;
-os.chdir(theDir)
+theDir &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;r&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;L:\gdrs\data\org\us_mn_state_dnr\elev_minnesota_lidar&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\\&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;chdir(theDir)
 
-for iFile in glob.glob(&amp;quot;*.lyr&amp;quot;):
-    print iFile
-    lyr = arcpy.mapping.Layer(iFile)
-    for i in arcpy.mapping.ListLayers(lyr):
-        try:
-            print &amp;quot;    {0}: {1}&amp;quot;.format(i,i.dataSource)
-        except:
-            print &amp;quot;    {0}: Does not support dataSource&amp;quot;.format(i)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; iFile &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; glob&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;glob(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;*.lyr&amp;#34;&lt;/span&gt;):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; iFile
+    lyr &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mapping&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Layer(iFile)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mapping&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ListLayers(lyr):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;    {0}: {1}&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(i,i&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dataSource)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt;:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;    {0}: Does not support dataSource&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(i)
 
-print &amp;quot;Done!&amp;quot;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Done!&amp;#34;&lt;/span&gt;
 
 
-&lt;/code&gt;&lt;/pre&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -695,9 +696,9 @@ def writeSHP(inSourceFile,inTrkList):
                         theTime = theTimePlue.split(&amp;quot;+&amp;quot;)[0]
                         theSeconds = convertTimeToSeconds(theTime)
 
-                        if (prevSec &amp;amp;lt; 0):
+                        if (prevSec &amp;lt; 0):
                             prevSec = theSeconds
-                        if (startSec&amp;amp;lt;0):
+                        if (startSec &amp;lt; 0):
                             startSec = theSeconds
 
                         segSeconds = theSeconds - prevSec
@@ -862,29 +863,30 @@ printit(&amp;quot;Done!&amp;quot;)
     </item>
     
     <item>
-      <title>Feature classes and Tables with names starting with &#39;nd_&#39;.</title>
-      <link>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./</link>
+      <title>Feature classes and Tables with names starting with &#39;nd_&#39;</title>
+      <link>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_/</link>
       <pubDate>Mon, 23 May 2011 15:55:24 -0500</pubDate>
-      <guid>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./</guid>
+      <guid>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_/</guid>
       <description>&lt;p&gt;Random luck me to discovering a bug related to feature classes whose names start with &amp;lsquo;nd_&#39;.  It appears that you are allowed to create feature classes starting with &amp;lsquo;nd_&amp;rsquo; but ArcCatalog will not display them.  Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases,  personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.&lt;/p&gt;
 &lt;p&gt;I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.  After importing 15 shapefiles, I only had thirteen feature classes despite receiving no errors during the process.  The two shapefiles that failed to import were named ND_oil_and_gas.shp and ND_Bendix_Study.shp.  Subsequent attempts to import them individually returned an error &amp;lsquo;Invalid Target Name&amp;rsquo;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/05/invalidtargetname.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/05/invalidtargetname.png&#34; alt=&#34;Invalid Target Name&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I discovered in pgAdmin III (Postgres SDE Geodatabase) that the table existed and there was an entry in sde.sde_layers for the feature class but ArcCatalog refused to show it.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/05/nd_2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/05/nd_2.png&#34; alt=&#34;nd_&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I used some un-supported methods to try to resolve the problem and despite some sweating, I failed to find a way to get ArcCatalog to display these feature classes.  I did, however, at least found a way to delete them–arcpy can detect that the feature classes exists so it is able to delete them.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/05/arcpy_delete.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/05/arcpy_delete.png&#34; alt=&#34;arcpy.delete_management&#34;&gt;&lt;/p&gt;
 &lt;p&gt;At least by deleting them, I can prevent leaving &amp;lsquo;invisible&amp;rsquo; feature classes from hanging out in my geodatabase.&lt;/p&gt;
-&lt;p&gt;I suspect the problems stems from how ESRI has implemented the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002p0000007m000000.htm&#34;&gt;Network dataset table-naming structure&lt;/a&gt; –dirty areas are stored in tables named &lt;em&gt;nd_&lt;!-- raw HTML omitted --&gt;_dirtyareas _ and &lt;em&gt;nd_&lt;!-- raw HTML omitted --&gt;_dirtyobjects&lt;/em&gt;.  Possibly the developer  working on the ArcCatalog GUI ended up suppressing showing feature classes and tables whose names start with &amp;lsquo;nd&lt;/em&gt;&amp;rsquo;.&lt;/p&gt;
+&lt;p&gt;I suspect the problems stems from how ESRI has implemented the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002p0000007m000000.htm&#34;&gt;Network dataset table-naming structure&lt;/a&gt; –dirty areas are stored in tables named _nd__dirtyareas and &lt;em&gt;nd__dirtyobjects. Possibly the developer  working on the ArcCatalog GUI ended up suppressing showing feature classes and tables whose names start with &amp;lsquo;nd&lt;/em&gt;&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;And, just for posterity&amp;rsquo;s sake, here is a python code snippet listing the feature classes in a workspace:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;import arcpy&lt;/p&gt;
-&lt;p&gt;arcpy.env.workspace = &amp;lsquo;c:/temp/_nd/F.gdb&amp;rsquo;&lt;/p&gt;
-&lt;p&gt;print arcpy.env.workspace&lt;br&gt;
-for fc in arcpy.ListFeatureClasses():&lt;br&gt;
-print fc&lt;/p&gt;
-&lt;p&gt;print &amp;lsquo;Done!&amp;rsquo;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; arcpy
+ 
+arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;env&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;workspace &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;c:/temp/_nd/F.gdb&amp;#39;&lt;/span&gt;
+ 
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;env&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;workspace  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; fc &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ListFeatureClasses():  
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; fc
+ 
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Done!&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -904,10 +906,10 @@ print fc&lt;/p&gt;
     </item>
     
     <item>
-      <title>Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
-      <link>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
+      <title>Quick &amp; Dirty arcpy: Batch Splitting Polylines to a Specific Length</title>
+      <link>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</link>
       <pubDate>Sun, 01 May 2011 05:01:50 -0500</pubDate>
-      <guid>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
+      <guid>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</guid>
       <description>&lt;p&gt;For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.&lt;/p&gt;
 &lt;p&gt;Here is the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;bare-bones script&lt;/a&gt; that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.  Some cautionary notes:&lt;/p&gt;
 &lt;ul&gt;
@@ -926,7 +928,7 @@ def printit(inMessage):
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print inMessage
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; arcpy.AddMessage(inMessage)
 
-if len(sys.argv) &amp;amp;gt; 1:
+if len(sys.argv) &amp;gt; 1:
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inFC = sys.argv[1]
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFC = sys.argv[2]
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDistin = sys.argv[3]
@@ -965,7 +967,7 @@ def splitShape(feat,splitDist):
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray = arcpy.Array()
 
-&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while partnum &amp;amp;lt; partcount:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while partnum &amp;lt; partcount:
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Print the part number
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print &amp;quot;Part &amp;quot; + str(partnum) + &amp;quot;:&amp;quot;
@@ -990,8 +992,8 @@ def splitShape(feat,splitDist):
 
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print thisDist, totalDist, maxAdditionalDist
 
-&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (totalDist+thisDist)&amp;amp;gt; splitDist:
-&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while(totalDist+thisDist) &amp;amp;gt; splitDist:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (totalDist+thisDist)&amp;gt; splitDist:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while(totalDist+thisDist) &amp;gt; splitDist:
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; maxAdditionalDist = splitDist - totalDist
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print thisDist, totalDist, maxAdditionalDist
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newpoint = midpoint(prevpoint,pnt,maxAdditionalDist,thisDist)
@@ -1028,7 +1030,7 @@ def splitShape(feat,splitDist):
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print &amp;quot;Interior Ring:&amp;quot;
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partnum += 1
 
-&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (lineArray.count &amp;amp;gt; 1):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (lineArray.count &amp;gt; 1):
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist.append(lineArray)
 
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return shapelist
@@ -1067,11 +1069,11 @@ for iInRow in inputRows:
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inGeom = iInRow.shape
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter+=1
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter2+=1&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
-&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (iCounter2 &amp;amp;gt; (OnePercentThreshold+0)):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (iCounter2 &amp;gt; (OnePercentThreshold+0)):
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; printit(&amp;quot;Processing Record &amp;quot;+str(iCounter) + &amp;quot; of &amp;quot;+ str(numRecords))
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter2=0
 
-&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (inGeom.length &amp;amp;gt; alongDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (inGeom.length &amp;gt; alongDist):
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapeList = splitShape(iInRow.shape,alongDist)
 
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; for itmp in shapeList:
@@ -1112,7 +1114,7 @@ printit(&amp;quot;Done!&amp;quot;)
       <description>&lt;p&gt;I was making an edit (adding leading &amp;lsquo;0&amp;rsquo;s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
 &lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
 &lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/failedtodeletedomain.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/03/failedtodeletedomain.png&#34; alt=&#34;The domain is used as a default domain.&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The Google Machine led me to an &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=985&amp;amp;t=303616&#34;&gt;ArcForums post&lt;/a&gt; by  with some python code for listing all the fields with a domain.&lt;/p&gt;
 &lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the ‘listfc(&#39;&#39;)&amp;rsquo; line that is the first line of the def listds() module.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import arcpy
@@ -1130,7 +1132,7 @@ def listfc(inDataset):
 lfields=arcpy.ListFields(f)
 
 for lf in lfields:
-   if lf.domain &amp;amp;lt; &amp;quot;&amp;quot;:
+   if lf.domain &amp;lt; &amp;quot;&amp;quot;:
       print &amp;quot;      domain&amp;quot;,f, lf.name, lf.domain
 
 def listds():
@@ -1154,10 +1156,10 @@ listds()
       <description>&lt;p&gt;One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm&#34;&gt;Field Calculator&lt;/a&gt;.  When I stumbled upon a bug in the way the &lt;a href=&#34;https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/&#34;&gt;Extract Values to Points&lt;/a&gt; tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.&lt;/p&gt;
 &lt;p&gt;I set the Parser to Python and the formula was simple once I figured out the syntax:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;pPoint = arcpy.Point(0,0)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/origin.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/03/origin.jpg&#34; alt=&#34;Use Field Calculator to Calculate Geometry&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Then, to extend my knowledge, I wanted to see how to calculate the geometry based off of two fields (X and Y).   The only real trick is knowing the bracket field names using exclamation points instead of brackets:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;arcpy.Point(!X!,!Y!)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/fields.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/03/fields.jpg&#34; alt=&#34;Using Field Calculating to Calculate Geometry Using Attributes&#34;&gt;&lt;/p&gt;
 &lt;p&gt;So turns out everything it pretty easy and straight-forward.  Whew!&lt;/p&gt;
 </description>
     </item>
@@ -1283,7 +1285,7 @@ def gpprint(inmessage):
  gp.addmessage(inmessage)
  print inmessage
 
-&amp;amp;lt;Code to do stuff&amp;amp;gt;
+&amp;lt;Code to do stuff&amp;gt;
 
 #Ok, I want to send a message:
 gpprint(&#39;Hello, sailor!&#39;)
@@ -1309,11 +1311,12 @@ gpprint(&#39;Hello, sailor!&#39;)
 &lt;li&gt;Add the toolbox to ArcToolbox. ESRI has instructions &lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/tutorials/spatial/Spatial_14.htm&#34;&gt;here&lt;/a&gt; on how to do this.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;You should now have a new toolbox named &amp;lsquo;Zip Shapefile&amp;rsquo; with a script named &amp;lsquo;Zip a Shapefile&amp;rsquo; in it. Clicking on on the tool will bring up this dialog.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/12/capture.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/12/capture.jpg?resize=271%2C71&#34; alt=&#34;Zip a Shapefile Dialog&#34;&gt;&lt;/p&gt;
 &lt;p&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;****&lt;br&gt;
 In response to Chris:&lt;/p&gt;
 &lt;p&gt;I believe you need to copy the ZipShapefile.py file from the .zip that you downloaded to C:Program FilesArcGISArcToolBoxScripts, the error message is consistent with the tool not being about to find the python script there.&lt;/p&gt;
-&lt;p&gt;If you prefer to place the ZipShapefile.py in a different location, you will need to change the source on the tool. To do this, right click on the tool in ArcCatalog and change the path of the Script File as set in the Source tab (see below):&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2012/03/setpath.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you prefer to place the ZipShapefile.py in a different location, you will need to change the source on the tool. To do this, right click on the tool in ArcCatalog and change the path of the Script File as set in the Source tab (see below):
+&lt;img src=&#34;https://maprantala.com/images/2012/03/setpath.png?resize=494%2C265&#34; alt=&#34;set Path&#34;&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -1440,9 +1443,9 @@ print &amp;quot;done!&amp;quot;
 &lt;p&gt;ArcCatalog would bomb out without presenting any sort of useful message.&lt;/p&gt;
 &lt;p&gt;I determined eventually that If I set the left extent as 435210, the process would work if set the right extent to 446655 or greater but would bomb if I used 446654 or less. If the the left extent was 435209, the right extent had to be 446654 or greater.&lt;/p&gt;
 &lt;p&gt;The image below shows the contours (with vertexes) and the polygon theme I was using. The two circle graphics show the approximate extent I was clipping to.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2010/09/topotoraster.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I eventually wrote python script to do a series of tests with the intent of determining the pattern of what does and does not work. The unexpected benefit was I actually got some sort of error message back. Turns out it had to do with my lack of vertices–I densified my polylines and it ran fine. Something I should have thought of earlier but it was difficult lacking any feedback.&lt;br&gt;
-&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/09/untitled.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images//2010/09/topotoraster.jpg?resize=453%2C381&#34; alt=&#34;topotoRaster&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I eventually wrote python script to do a series of tests with the intent of determining the pattern of what does and does not work. The unexpected benefit was I actually got some sort of error message back. Turns out it had to do with my lack of vertices–I densified my polylines and it ran fine. Something I should have thought of earlier but it was difficult lacking any feedback.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/09/untitled.jpg?resize=535%2C271&#34; alt=&#34;Options&#34;&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -1470,36 +1473,36 @@ os.system(&#39;C:/cwi5_bk/mapDrive.bat&#39;)
       <description>&lt;p&gt;So I have a nightly process that runs and I, being the lazy programmer I am, didn&amp;rsquo;t want to bother checking a log file each morning to see how it went. The natural answer is to have the results emailed to me because I do have to check my email.&lt;/p&gt;
 &lt;p&gt;Since the process is already handled mostly in python, thought I would implement the emailing via python. It was actually simple enough to do–just required figuring out the setting for my SMTP server (actually I didn&amp;rsquo;t figure it our for my work server so I&amp;rsquo;m using my GMail account).&lt;/p&gt;
 &lt;p&gt;I first wrote eMailer.py (see code below) and included it in my python path. Now, whenever I want to send code from a python application, it takes two easy lines:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import eMailer
-eMailer.SendMess(&amp;quot;someoneg@company.com&amp;quot;,&amp;quot;Subject&amp;quot;,&amp;quot;Text Body&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;emailerpy&#34;&gt;eMailer.py&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;import smtplib
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; eMailer
+eMailer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;SendMess(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;someoneg@company.com&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Subject&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Text Body&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;emailerpy&#34;&gt;eMailer.py&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; smtplib
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; email.MIMEMultipart &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; MIMEMultipart
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; email.MIMEText &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; MIMEText
 
-fromaddr = &#39;node.dangles AT gmail.com&#39;
-password = &#39;myFancyPassword&#39;
-smtpaddr = &#39;smtp.gmail.com&#39;
-smtpport = 587
+fromaddr &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;node.dangles AT gmail.com&amp;#39;&lt;/span&gt;
+password &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myFancyPassword&amp;#39;&lt;/span&gt;
+smtpaddr &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;smtp.gmail.com&amp;#39;&lt;/span&gt;
+smtpport &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;587&lt;/span&gt;
 
-def SendMess(toadd, subject, body):
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SendMess&lt;/span&gt;(toadd, subject, body):
 
-msg = MIMEMultipart()
-msg[&#39;From&#39;] = fromaddr
-msg[&#39;To&#39;] = toadd
-msg[&#39;Subject&#39;] = subject
-msg.attach(MIMEText(body, &#39;plain&#39;))
+msg &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; MIMEMultipart()
+msg[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;From&amp;#39;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fromaddr
+msg[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;To&amp;#39;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; toadd
+msg[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Subject&amp;#39;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; subject
+msg&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;attach(MIMEText(body, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;plain&amp;#39;&lt;/span&gt;))
 
-text = msg.as_string()
+text &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; msg&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;as_string()
 
-server = smtplib.SMTP(smtpaddr, smtpport)
-server.ehlo()
-server.starttls()
-server.ehlo()
-server.login(fromaddr, password)
+server &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; smtplib&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;SMTP(smtpaddr, smtpport)
+server&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ehlo()
+server&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;starttls()
+server&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ehlo()
+server&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;login(fromaddr, password)
 
-server.sendmail(fromaddr, toadd, text)
-&lt;/code&gt;&lt;/pre&gt;</description>
+server&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sendmail(fromaddr, toadd, text)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -1511,113 +1514,113 @@ server.sendmail(fromaddr, toadd, text)
 &lt;p&gt;One of the benefits of working for the public sector is that I can more freely publish code without worrying about &amp;lsquo;trade secrets&amp;rsquo; or what have you so I thought I would put my code out for anyone to see, maybe someone will find it useful.  It is split into two separate files, mostly because I used &lt;!-- raw HTML omitted --&gt;Model Builder&lt;!-- raw HTML omitted --&gt; to generate the main processing chunk of code (Project_Reclassify.py) and another script to control looping, etc. The code isn&amp;rsquo;t pretty and you&amp;rsquo;ll see the results of my development process with two subroutines in LaunchScript.py that could really be one.&lt;/p&gt;
 &lt;h3 id=&#34;heading&#34;&gt;&lt;/h3&gt;
 &lt;h3 id=&#34;launchscriptpy&#34;&gt;LaunchScript.py&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;import Project_Reclassify
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Project_Reclassify
 
-mConversion = &amp;quot;3.28084&amp;quot;
-mProjection = &amp;quot;PROJCS[&#39;NAD_1983_UTM_Zone_15N&#39;,GEOGCS[&#39;GCS_North_American_1983&#39;,DATUM[&#39;D_North_American_1983&#39;,SPHEROID[&#39;GRS_1980&#39;,6378137.0,298.257222101]],PRIMEM[&#39;Greenwich&#39;,0.0],UNIT[&#39;Degree&#39;,0.0174532925199433]],PROJECTION[&#39;Transverse_Mercator&#39;],PARAMETER[&#39;False_Easting&#39;,500000.0],PARAMETER[&#39;False_Northing&#39;,0.0],PARAMETER[&#39;Central_Meridian&#39;,-93.0],PARAMETER[&#39;Scale_Factor&#39;,0.9996],PARAMETER[&#39;Latitude_Of_Origin&#39;,0.0],UNIT[&#39;Meter&#39;,1.0]]&amp;quot;
-mCellSize = &amp;quot;10&amp;quot;
+mConversion &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3.28084&amp;#34;&lt;/span&gt;
+mProjection &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;PROJCS[&amp;#39;NAD_1983_UTM_Zone_15N&amp;#39;,GEOGCS[&amp;#39;GCS_North_American_1983&amp;#39;,DATUM[&amp;#39;D_North_American_1983&amp;#39;,SPHEROID[&amp;#39;GRS_1980&amp;#39;,6378137.0,298.257222101]],PRIMEM[&amp;#39;Greenwich&amp;#39;,0.0],UNIT[&amp;#39;Degree&amp;#39;,0.0174532925199433]],PROJECTION[&amp;#39;Transverse_Mercator&amp;#39;],PARAMETER[&amp;#39;False_Easting&amp;#39;,500000.0],PARAMETER[&amp;#39;False_Northing&amp;#39;,0.0],PARAMETER[&amp;#39;Central_Meridian&amp;#39;,-93.0],PARAMETER[&amp;#39;Scale_Factor&amp;#39;,0.9996],PARAMETER[&amp;#39;Latitude_Of_Origin&amp;#39;,0.0],UNIT[&amp;#39;Meter&amp;#39;,1.0]]&amp;#34;&lt;/span&gt;
+mCellSize &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;10&amp;#34;&lt;/span&gt;
 
-#Project_Reclassify.Process(&amp;quot;C:\mgs\Projects\NED_10m\n44w092\grdn44w092_13&amp;quot;, mProjection, mConversion,&amp;quot;C:\mgs\Projects\NED_10m\n44w092\try30&amp;quot;,mCellSize)
+&lt;span style=&#34;color:#75715e&#34;&gt;#Project_Reclassify.Process(&amp;#34;C:\mgs\Projects\NED_10m\n44w092\grdn44w092_13&amp;#34;, mProjection, mConversion,&amp;#34;C:\mgs\Projects\NED_10m\n44w092\try30&amp;#34;,mCellSize)&lt;/span&gt;
 
-def CallIt (inDir,inGrid,outGrid):
-fullinFN = inDir+&#39;\&#39;+inGrid
-fulloutFN = &#39;C:\mgs\Projects\NED_10m\Output\&#39;+outGrid
-tmpGridFN = &#39;c:\temp\t&#39;+outGrid
-Project_Reclassify.Process(fullinFN, mProjection, mConversion,fulloutFN,mCellSize,tmpGridFN)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;CallIt&lt;/span&gt; (inDir,inGrid,outGrid):
+fullinFN &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inDir&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;+inGrid&lt;/span&gt;
+fulloutFN &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;C:\mgs\Projects\NED_10m\Output&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;+outGrid&lt;/span&gt;
+tmpGridFN &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;c:&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\t&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;emp&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\t&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;outGrid
+Project_Reclassify&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Process(fullinFN, mProjection, mConversion,fulloutFN,mCellSize,tmpGridFN)
 
-def CallIt2 (inGrd,inoutGrd):
-outDir = &#39;C:\mgs\Projects\NED_10m\&#39; + inGrd + &#39;\&#39; + inGrd
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;CallIt2&lt;/span&gt; (inGrd,inoutGrd):
+outDir &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;C:\mgs\Projects\NED_10m&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; + inGrd + &amp;#39;&lt;/span&gt;\&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; + inGrd&lt;/span&gt;
 
-outGrd = &#39;grd&#39;+inGrd+&#39;_13&#39;
+outGrd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;grd&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;inGrd&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;_13&amp;#39;&lt;/span&gt;
 
 CallIt(outDir,outGrd,inoutGrd)
 
-#CallIt2(&amp;quot;n44w092&amp;quot;,&amp;quot;LaCrosse_W&amp;quot;)
-CallIt2(&amp;quot;n44w093&amp;quot;,&amp;quot;MasonCity_E&amp;quot;)
-CallIt2(&amp;quot;n44w094&amp;quot;,&amp;quot;MasonCity_W&amp;quot;)
-CallIt2(&amp;quot;n44w095&amp;quot;,&amp;quot;Fairmont_E&amp;quot;)
-CallIt2(&amp;quot;n44w096&amp;quot;,&amp;quot;Fairmont_W&amp;quot;)
-CallIt2(&amp;quot;n44w097&amp;quot;,&amp;quot;SiouxFalls_E&amp;quot;)
-#CallIt2(&amp;quot;n45w092&amp;quot;,&amp;quot;EauClaire_W&amp;quot;)
-CallIt2(&amp;quot;n45w093&amp;quot;,&amp;quot;StPaul_E&amp;quot;)
-CallIt2(&amp;quot;n45w094&amp;quot;,&amp;quot;StPaul_W&amp;quot;)
-CallIt2(&amp;quot;n45w095&amp;quot;,&amp;quot;NewUlm_E&amp;quot;)
-CallIt2(&amp;quot;n45w096&amp;quot;,&amp;quot;NewUlm_W&amp;quot;)
-CallIt2(&amp;quot;n45w097&amp;quot;,&amp;quot;Watertown_E&amp;quot;)
-#CallIt2(&amp;quot;n46w093&amp;quot;,&amp;quot;Stillwater_E&amp;quot;)
-#CallIt2(&amp;quot;n46w094&amp;quot;,&amp;quot;Stillwater_W&amp;quot;)
-#CallIt2(&amp;quot;n46w095&amp;quot;,&amp;quot;StCloud_E&amp;quot;)
-CallIt2(&amp;quot;n46w096&amp;quot;,&amp;quot;StCloud_W&amp;quot;)
-CallIt2(&amp;quot;n46w097&amp;quot;,&amp;quot;Milbank_E&amp;quot;)
-#CallIt2(&amp;quot;n47w092&amp;quot;,&amp;quot;Ashland_W&amp;quot;)
-#CallIt2(&amp;quot;n47w093&amp;quot;,&amp;quot;Duluth_E&amp;quot;)
-CallIt2(&amp;quot;n47w094&amp;quot;,&amp;quot;Duluth_W&amp;quot;)
-CallIt2(&amp;quot;n47w095&amp;quot;,&amp;quot;Brainerd_E&amp;quot;)
-CallIt2(&amp;quot;n47w096&amp;quot;,&amp;quot;Brainerd_W&amp;quot;)
-CallIt2(&amp;quot;n47w097&amp;quot;,&amp;quot;Fargo_E&amp;quot;)
-#CallIt2(&amp;quot;n48w090&amp;quot;,&amp;quot;Hancock_W&amp;quot;)
-#CallIt2(&amp;quot;n48w091&amp;quot;,&amp;quot;TwoHarbors_E&amp;quot;)
-#CallIt2(&amp;quot;n48w092&amp;quot;,&amp;quot;TwoHarbors_W&amp;quot;)
-#CallIt2(&amp;quot;n48w093&amp;quot;,&amp;quot;Hibbing_E&amp;quot;)
-#CallIt2(&amp;quot;n48w094&amp;quot;,&amp;quot;Hibbing_W&amp;quot;)
-CallIt2(&amp;quot;n48w095&amp;quot;,&amp;quot;Bemidji_E&amp;quot;)
-CallIt2(&amp;quot;n48w096&amp;quot;,&amp;quot;Bemidji_W&amp;quot;)
-CallIt2(&amp;quot;n48w097&amp;quot;,&amp;quot;GrandForks_E&amp;quot;)
-#CallIt2(&amp;quot;n48w098&amp;quot;,&amp;quot;GrandForks_W&amp;quot;)
-#CallIt2(&amp;quot;n49w090&amp;quot;,&amp;quot;ThunderBay_W&amp;quot;)
-#CallIt2(&amp;quot;n49w091&amp;quot;,&amp;quot;Quetico_E&amp;quot;)
-#CallIt2(&amp;quot;n49w092&amp;quot;,&amp;quot;Quetico_W&amp;quot;)
-#CallIt2(&amp;quot;n49w093&amp;quot;,&amp;quot;InternationFalls_E&amp;quot;)
-#CallIt2(&amp;quot;n49w094&amp;quot;,&amp;quot;InternationFalls_W&amp;quot;)
-CallIt2(&amp;quot;n49w095&amp;quot;,&amp;quot;Roseau_E&amp;quot;)
-CallIt2(&amp;quot;n49w096&amp;quot;,&amp;quot;Roseau_W&amp;quot;)
-#CallIt2(&amp;quot;n49w097&amp;quot;,&amp;quot;ThiefRiverFalls_E&amp;quot;)
-CallIt2(&amp;quot;n49w098&amp;quot;,&amp;quot;ThiefRiverFalls_W&amp;quot;)
-#CallIt2(&amp;quot;n50w095&amp;quot;,&amp;quot;Kenora_E&amp;quot;)
-#CallIt2(&amp;quot;n50w096&amp;quot;,&amp;quot;Kenora_W&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;projectreclassifypy&#34;&gt;Project.Reclassify.py&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;# Import system modules
-import sys, string, os, arcgisscripting
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n44w092&amp;#34;,&amp;#34;LaCrosse_W&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n44w093&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MasonCity_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n44w094&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MasonCity_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n44w095&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fairmont_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n44w096&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fairmont_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n44w097&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SiouxFalls_E&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n45w092&amp;#34;,&amp;#34;EauClaire_W&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n45w093&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;StPaul_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n45w094&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;StPaul_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n45w095&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NewUlm_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n45w096&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NewUlm_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n45w097&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Watertown_E&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n46w093&amp;#34;,&amp;#34;Stillwater_E&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n46w094&amp;#34;,&amp;#34;Stillwater_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n46w095&amp;#34;,&amp;#34;StCloud_E&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n46w096&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;StCloud_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n46w097&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Milbank_E&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n47w092&amp;#34;,&amp;#34;Ashland_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n47w093&amp;#34;,&amp;#34;Duluth_E&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n47w094&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Duluth_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n47w095&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Brainerd_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n47w096&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Brainerd_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n47w097&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fargo_E&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n48w090&amp;#34;,&amp;#34;Hancock_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n48w091&amp;#34;,&amp;#34;TwoHarbors_E&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n48w092&amp;#34;,&amp;#34;TwoHarbors_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n48w093&amp;#34;,&amp;#34;Hibbing_E&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n48w094&amp;#34;,&amp;#34;Hibbing_W&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n48w095&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bemidji_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n48w096&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bemidji_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n48w097&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;GrandForks_E&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n48w098&amp;#34;,&amp;#34;GrandForks_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n49w090&amp;#34;,&amp;#34;ThunderBay_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n49w091&amp;#34;,&amp;#34;Quetico_E&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n49w092&amp;#34;,&amp;#34;Quetico_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n49w093&amp;#34;,&amp;#34;InternationFalls_E&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n49w094&amp;#34;,&amp;#34;InternationFalls_W&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n49w095&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Roseau_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n49w096&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Roseau_W&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n49w097&amp;#34;,&amp;#34;ThiefRiverFalls_E&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n49w098&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ThiefRiverFalls_W&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n50w095&amp;#34;,&amp;#34;Kenora_E&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n50w096&amp;#34;,&amp;#34;Kenora_W&amp;#34;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;projectreclassifypy&#34;&gt;Project.Reclassify.py&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Import system modules&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; sys&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; string&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; arcgisscripting
 
-# Create the Geoprocessor object
-gp = arcgisscripting.create()
+&lt;span style=&#34;color:#75715e&#34;&gt;# Create the Geoprocessor object&lt;/span&gt;
+gp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; arcgisscripting&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;create()
 
-# Check out any necessary licenses
-gp.CheckOutExtension(&amp;quot;spatial&amp;quot;)
+&lt;span style=&#34;color:#75715e&#34;&gt;# Check out any necessary licenses&lt;/span&gt;
+gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;CheckOutExtension(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;spatial&amp;#34;&lt;/span&gt;)
 
-# Load required toolboxes...
-gp.AddToolbox(&amp;quot;C:/Program Files/ArcGIS/ArcToolbox/Toolboxes/Spatial Analyst Tools.tbx&amp;quot;)
-gp.AddToolbox(&amp;quot;C:/Program Files/ArcGIS/ArcToolbox/Toolboxes/Data Management Tools.tbx&amp;quot;)
+&lt;span style=&#34;color:#75715e&#34;&gt;# Load required toolboxes...&lt;/span&gt;
+gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AddToolbox(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C:/Program Files/ArcGIS/ArcToolbox/Toolboxes/Spatial Analyst Tools.tbx&amp;#34;&lt;/span&gt;)
+gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AddToolbox(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C:/Program Files/ArcGIS/ArcToolbox/Toolboxes/Data Management Tools.tbx&amp;#34;&lt;/span&gt;)
 
-# Script arguments...
-def Process( inInputRaster, inOutputCoord, inConversionFactor, inOutputRaster, inCellSize, intempRasterFN):
-Input_Raster = inInputRaster #sys.argv[1]
-Output_Coordinate_System = inOutputCoord #sys.argv[3]
-Input_raster_or_constant_value_2 = inConversionFactor #sys.argv[4]
-Output_CellSize = inCellSize
+&lt;span style=&#34;color:#75715e&#34;&gt;# Script arguments...&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Process&lt;/span&gt;( inInputRaster, inOutputCoord, inConversionFactor, inOutputRaster, inCellSize, intempRasterFN):
+Input_Raster &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inInputRaster &lt;span style=&#34;color:#75715e&#34;&gt;#sys.argv[1]&lt;/span&gt;
+Output_Coordinate_System &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inOutputCoord &lt;span style=&#34;color:#75715e&#34;&gt;#sys.argv[3]&lt;/span&gt;
+Input_raster_or_constant_value_2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inConversionFactor &lt;span style=&#34;color:#75715e&#34;&gt;#sys.argv[4]&lt;/span&gt;
+Output_CellSize &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inCellSize
 
-#if Input_raster_or_constant_value_2 == &#39;#&#39;:
-# Input_raster_or_constant_value_2 = &amp;quot;3.28084&amp;quot; # provide a default value if unspecified
+&lt;span style=&#34;color:#75715e&#34;&gt;#if Input_raster_or_constant_value_2 == &amp;#39;#&amp;#39;:&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# Input_raster_or_constant_value_2 = &amp;#34;3.28084&amp;#34; # provide a default value if unspecified&lt;/span&gt;
 
-Output_raster = inOutputRaster
+Output_raster &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inOutputRaster
 
-# Local variables...
-Temp_Raster = intempRasterFN
+&lt;span style=&#34;color:#75715e&#34;&gt;# Local variables...&lt;/span&gt;
+Temp_Raster &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; intempRasterFN
 
-print Input_Raster
-print Temp_Raster
-print Output_Coordinate_System
-print inCellSize
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; Input_Raster
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; Temp_Raster
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; Output_Coordinate_System
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; inCellSize
 
-# Process: Project Raster...
-gp.ProjectRaster_management(Input_Raster, Temp_Raster, Output_Coordinate_System, &amp;quot;CUBIC&amp;quot;, Output_CellSize, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;)
+&lt;span style=&#34;color:#75715e&#34;&gt;# Process: Project Raster...&lt;/span&gt;
+gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ProjectRaster_management(Input_Raster, Temp_Raster, Output_Coordinate_System, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CUBIC&amp;#34;&lt;/span&gt;, Output_CellSize, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;)
 
-print Input_raster_or_constant_value_2
-print Output_raster
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; Input_raster_or_constant_value_2
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; Output_raster
 
-# Process: Times...
-gp.Times_sa(Temp_Raster, Input_raster_or_constant_value_2, Output_raster)
-&lt;/code&gt;&lt;/pre&gt;</description>
+&lt;span style=&#34;color:#75715e&#34;&gt;# Process: Times...&lt;/span&gt;
+gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Times_sa(Temp_Raster, Input_raster_or_constant_value_2, Output_raster)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -1638,19 +1641,19 @@ gp.Times_sa(Temp_Raster, Input_raster_or_constant_value_2, Output_raster)
     &lt;span style=&#34;color:#75715e&#34;&gt;#http://local.wasp.uwa.edu.au/~pbourke/geometry/pointline/source.vba&lt;/span&gt;
     LineMag &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(x1, y1, x2, y2)
 
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; LineMag &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00000001&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; LineMag &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00000001&lt;/span&gt;:
         DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9999&lt;/span&gt;
         &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; DistancePointLine
 
     u1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (((px &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (x2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1)) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; ((py &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (y2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1)))
     u &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; u1 &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (LineMag &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; LineMag)
 
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00001&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00001&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
         &lt;span style=&#34;color:#75715e&#34;&gt;#// closest point does not fall within the line segment, take the shorter distance&lt;/span&gt;
         &lt;span style=&#34;color:#75715e&#34;&gt;#// to an endpoint&lt;/span&gt;
         ix &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(px, py, x1, y1)
         iy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(px, py, x2, y2)
-        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ix &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;gt; iy:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ix &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; iy:
             DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; iy
         &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
             DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ix

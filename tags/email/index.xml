@@ -17,36 +17,36 @@
       <description>&lt;p&gt;So I have a nightly process that runs and I, being the lazy programmer I am, didn&amp;rsquo;t want to bother checking a log file each morning to see how it went. The natural answer is to have the results emailed to me because I do have to check my email.&lt;/p&gt;
 &lt;p&gt;Since the process is already handled mostly in python, thought I would implement the emailing via python. It was actually simple enough to do–just required figuring out the setting for my SMTP server (actually I didn&amp;rsquo;t figure it our for my work server so I&amp;rsquo;m using my GMail account).&lt;/p&gt;
 &lt;p&gt;I first wrote eMailer.py (see code below) and included it in my python path. Now, whenever I want to send code from a python application, it takes two easy lines:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import eMailer
-eMailer.SendMess(&amp;quot;someoneg@company.com&amp;quot;,&amp;quot;Subject&amp;quot;,&amp;quot;Text Body&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;emailerpy&#34;&gt;eMailer.py&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;import smtplib
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; eMailer
+eMailer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;SendMess(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;someoneg@company.com&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Subject&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Text Body&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;emailerpy&#34;&gt;eMailer.py&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; smtplib
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; email.MIMEMultipart &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; MIMEMultipart
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; email.MIMEText &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; MIMEText
 
-fromaddr = &#39;node.dangles AT gmail.com&#39;
-password = &#39;myFancyPassword&#39;
-smtpaddr = &#39;smtp.gmail.com&#39;
-smtpport = 587
+fromaddr &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;node.dangles AT gmail.com&amp;#39;&lt;/span&gt;
+password &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myFancyPassword&amp;#39;&lt;/span&gt;
+smtpaddr &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;smtp.gmail.com&amp;#39;&lt;/span&gt;
+smtpport &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;587&lt;/span&gt;
 
-def SendMess(toadd, subject, body):
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SendMess&lt;/span&gt;(toadd, subject, body):
 
-msg = MIMEMultipart()
-msg[&#39;From&#39;] = fromaddr
-msg[&#39;To&#39;] = toadd
-msg[&#39;Subject&#39;] = subject
-msg.attach(MIMEText(body, &#39;plain&#39;))
+msg &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; MIMEMultipart()
+msg[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;From&amp;#39;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fromaddr
+msg[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;To&amp;#39;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; toadd
+msg[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Subject&amp;#39;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; subject
+msg&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;attach(MIMEText(body, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;plain&amp;#39;&lt;/span&gt;))
 
-text = msg.as_string()
+text &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; msg&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;as_string()
 
-server = smtplib.SMTP(smtpaddr, smtpport)
-server.ehlo()
-server.starttls()
-server.ehlo()
-server.login(fromaddr, password)
+server &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; smtplib&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;SMTP(smtpaddr, smtpport)
+server&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ehlo()
+server&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;starttls()
+server&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ehlo()
+server&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;login(fromaddr, password)
 
-server.sendmail(fromaddr, toadd, text)
-&lt;/code&gt;&lt;/pre&gt;</description>
+server&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sendmail(fromaddr, toadd, text)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
   </channel>

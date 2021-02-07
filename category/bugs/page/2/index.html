@@ -106,7 +106,6 @@ StatCounter"></a></div></noscript>
 <div class="content">
 I was working my way through this ESRI Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK). And came across a couple minor errors that I had to correct during the process.
 First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a &lsquo;Name ‘ArcMap&rsquo; is not declared.' error.
-
 In the walk-through, they mention that the ArcMap method of your class. For me, however, it appeared under the .
 </div>
 </article>
@@ -140,9 +139,8 @@ We finally installed an instance of ArcSDE 10 today. My first attempt at connec
  Failed to connect to the specified server.
 This release of the GeoDatabase is either invalid or out of date. [Please run the
 ArcSDE setup utility using the -o install option.]
-DBMS table not found[sde.sde.GDB_Release]
- 
- Turns out the solution was simple, this article points out that Service pack 2 is required.
+DBMS table not found [sde.sde.GDB_Release]
+  Turns out the solution was simple, this article points out that Service pack 2 is required.
 </div>
 </article>
 
@@ -175,7 +173,7 @@ ArcCatalog would bomb out without presenting any sort of useful message.
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title title-submitted"><a href="/2010/09/07/workstation-arc/info-interchange-import-error/">Workstation Arc/Info Interchange Import Error</a></h2>
+<h2 class="title title-submitted"><a href="/2010/09/07/workstation-arcinfo-interchange-import-error/">Workstation ArcInfo Interchange Import Error</a></h2>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2010-09-07T19:08:39-05:00">7 September, 2010</time>
 </div>
@@ -183,7 +181,8 @@ ArcCatalog would bomb out without presenting any sort of useful message.
 </header>
 <div class="content">
 I have been working on updating some data that was published using Arc/Info Workstation Export (.e00) files, converting them to shapefiles, or in the case of annotation, to a geodatabase feature class.
-While converting some INFO tables, I have received this error:Unable to encode the 38th item in the 65th record for the INFO fileIt turns out that Workstation can create export files that contain values that did not fit within their field–I&rsquo;m guessing that somehow you are actually able to enter invalid values into those fields but I did not confirm that.
+While converting some INFO tables, I have received this error:
+It turns out that Workstation can create export files that contain values that did not fit within their field–I&rsquo;m guessing that somehow you are actually able to enter invalid values into those fields but I did not confirm that.
 </div>
 </article>
 

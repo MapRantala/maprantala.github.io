@@ -68,10 +68,10 @@ return True&lt;/p&gt;
     </item>
     
     <item>
-      <title>Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length.</title>
-      <link>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</link>
+      <title>Quick &amp; Dirty arcpy: Batch Splitting Polylines to a Specific Length</title>
+      <link>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</link>
       <pubDate>Sun, 01 May 2011 05:01:50 -0500</pubDate>
-      <guid>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./</guid>
+      <guid>https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/</guid>
       <description>&lt;p&gt;For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would become two or more separate polyline records.&lt;/p&gt;
 &lt;p&gt;Here is the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110429_Polyline%20Dicer.zip&#34;&gt;bare-bones script&lt;/a&gt; that copies an existing feature class into a new feature class then processes each record, splitting it into multiple records if the polyline is longer than the user-specified tolerance.  Some cautionary notes:&lt;/p&gt;
 &lt;ul&gt;
@@ -90,7 +90,7 @@ def printit(inMessage):
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print inMessage
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; arcpy.AddMessage(inMessage)
 
-if len(sys.argv) &amp;amp;gt; 1:
+if len(sys.argv) &amp;gt; 1:
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inFC = sys.argv[1]
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; outFC = sys.argv[2]
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; alongDistin = sys.argv[3]
@@ -129,7 +129,7 @@ def splitShape(feat,splitDist):
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; lineArray = arcpy.Array()
 
-&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while partnum &amp;amp;lt; partcount:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while partnum &amp;lt; partcount:
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; # Print the part number
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print &amp;quot;Part &amp;quot; + str(partnum) + &amp;quot;:&amp;quot;
@@ -154,8 +154,8 @@ def splitShape(feat,splitDist):
 
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print thisDist, totalDist, maxAdditionalDist
 
-&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (totalDist+thisDist)&amp;amp;gt; splitDist:
-&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while(totalDist+thisDist) &amp;amp;gt; splitDist:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (totalDist+thisDist)&amp;gt; splitDist:
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; while(totalDist+thisDist) &amp;gt; splitDist:
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; maxAdditionalDist = splitDist - totalDist
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; #print thisDist, totalDist, maxAdditionalDist
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; newpoint = midpoint(prevpoint,pnt,maxAdditionalDist,thisDist)
@@ -192,7 +192,7 @@ def splitShape(feat,splitDist):
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; print &amp;quot;Interior Ring:&amp;quot;
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; partnum += 1
 
-&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (lineArray.count &amp;amp;gt; 1):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (lineArray.count &amp;gt; 1):
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapelist.append(lineArray)
 
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; return shapelist
@@ -231,11 +231,11 @@ for iInRow in inputRows:
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; inGeom = iInRow.shape
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter+=1
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter2+=1&amp;amp;nbsp;&amp;amp;nbsp; &amp;amp;nbsp;
-&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (iCounter2 &amp;amp;gt; (OnePercentThreshold+0)):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (iCounter2 &amp;gt; (OnePercentThreshold+0)):
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; printit(&amp;quot;Processing Record &amp;quot;+str(iCounter) + &amp;quot; of &amp;quot;+ str(numRecords))
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; iCounter2=0
 
-&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (inGeom.length &amp;amp;gt; alongDist):
+&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; if (inGeom.length &amp;gt; alongDist):
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; shapeList = splitShape(iInRow.shape,alongDist)
 
 &amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp; for itmp in shapeList:
@@ -276,7 +276,7 @@ printit(&amp;quot;Done!&amp;quot;)
       <description>&lt;p&gt;I was making an edit (adding leading &amp;lsquo;0&amp;rsquo;s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
 &lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
 &lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/failedtodeletedomain.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/03/failedtodeletedomain.png&#34; alt=&#34;The domain is used as a default domain.&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The Google Machine led me to an &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=985&amp;amp;t=303616&#34;&gt;ArcForums post&lt;/a&gt; by  with some python code for listing all the fields with a domain.&lt;/p&gt;
 &lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the ‘listfc(&#39;&#39;)&amp;rsquo; line that is the first line of the def listds() module.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import arcpy
@@ -294,7 +294,7 @@ def listfc(inDataset):
 lfields=arcpy.ListFields(f)
 
 for lf in lfields:
-   if lf.domain &amp;amp;lt; &amp;quot;&amp;quot;:
+   if lf.domain &amp;lt; &amp;quot;&amp;quot;:
       print &amp;quot;      domain&amp;quot;,f, lf.name, lf.domain
 
 def listds():
@@ -394,7 +394,7 @@ def gpprint(inmessage):
  gp.addmessage(inmessage)
  print inmessage
 
-&amp;amp;lt;Code to do stuff&amp;amp;gt;
+&amp;lt;Code to do stuff&amp;gt;
 
 #Ok, I want to send a message:
 gpprint(&#39;Hello, sailor!&#39;)
@@ -408,7 +408,7 @@ gpprint(&#39;Hello, sailor!&#39;)
       <guid>https://maprantala.com/2010/08/11/trying-to-perform-relate-in-model-builder/</guid>
       <description>&lt;p&gt;I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y&#39;) in another table (CWI.C5IX).  There is not an existing tool for doing this in ArcGIS.  I did find a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=1728&amp;amp;t=257179&amp;amp;g=1&#34;&gt;post&lt;/a&gt; by Layne Seely in &lt;a href=&#34;http://forums.esri.com/&#34;&gt;ArcForums&lt;/a&gt; titled &amp;lsquo;trying to perform &amp;lsquo;relate&amp;rsquo; in Model Builder.&amp;rsquo; that led me to the Make Table View under Data Management Tools-Make Table View and even had  the basic syntax I was looking for (if it hadn&amp;rsquo;t I probably would have guessed that it would not allow subqueries).&lt;/p&gt;
 &lt;p&gt;Since I always like to see exactly the syntax someone uses, I decided to show the syntax I used in case that helps anyone else.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/08/tableview.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Sample of a Table View using a subquery&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/08/tableview.jpg?resize=615%2C392&#34; alt=&#34;tableView&#34;&gt;&lt;/p&gt;
 &lt;p&gt;It does require that the tables reside in the same workspace, which is a reasonable limitation that I can live with.  Another drawback is that if you export the model to a python script, the command can get pretty long, especially if you have many fields.&lt;/p&gt;
 </description>
     </item>
@@ -422,113 +422,113 @@ gpprint(&#39;Hello, sailor!&#39;)
 &lt;p&gt;One of the benefits of working for the public sector is that I can more freely publish code without worrying about &amp;lsquo;trade secrets&amp;rsquo; or what have you so I thought I would put my code out for anyone to see, maybe someone will find it useful.  It is split into two separate files, mostly because I used &lt;!-- raw HTML omitted --&gt;Model Builder&lt;!-- raw HTML omitted --&gt; to generate the main processing chunk of code (Project_Reclassify.py) and another script to control looping, etc. The code isn&amp;rsquo;t pretty and you&amp;rsquo;ll see the results of my development process with two subroutines in LaunchScript.py that could really be one.&lt;/p&gt;
 &lt;h3 id=&#34;heading&#34;&gt;&lt;/h3&gt;
 &lt;h3 id=&#34;launchscriptpy&#34;&gt;LaunchScript.py&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;import Project_Reclassify
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Project_Reclassify
 
-mConversion = &amp;quot;3.28084&amp;quot;
-mProjection = &amp;quot;PROJCS[&#39;NAD_1983_UTM_Zone_15N&#39;,GEOGCS[&#39;GCS_North_American_1983&#39;,DATUM[&#39;D_North_American_1983&#39;,SPHEROID[&#39;GRS_1980&#39;,6378137.0,298.257222101]],PRIMEM[&#39;Greenwich&#39;,0.0],UNIT[&#39;Degree&#39;,0.0174532925199433]],PROJECTION[&#39;Transverse_Mercator&#39;],PARAMETER[&#39;False_Easting&#39;,500000.0],PARAMETER[&#39;False_Northing&#39;,0.0],PARAMETER[&#39;Central_Meridian&#39;,-93.0],PARAMETER[&#39;Scale_Factor&#39;,0.9996],PARAMETER[&#39;Latitude_Of_Origin&#39;,0.0],UNIT[&#39;Meter&#39;,1.0]]&amp;quot;
-mCellSize = &amp;quot;10&amp;quot;
+mConversion &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3.28084&amp;#34;&lt;/span&gt;
+mProjection &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;PROJCS[&amp;#39;NAD_1983_UTM_Zone_15N&amp;#39;,GEOGCS[&amp;#39;GCS_North_American_1983&amp;#39;,DATUM[&amp;#39;D_North_American_1983&amp;#39;,SPHEROID[&amp;#39;GRS_1980&amp;#39;,6378137.0,298.257222101]],PRIMEM[&amp;#39;Greenwich&amp;#39;,0.0],UNIT[&amp;#39;Degree&amp;#39;,0.0174532925199433]],PROJECTION[&amp;#39;Transverse_Mercator&amp;#39;],PARAMETER[&amp;#39;False_Easting&amp;#39;,500000.0],PARAMETER[&amp;#39;False_Northing&amp;#39;,0.0],PARAMETER[&amp;#39;Central_Meridian&amp;#39;,-93.0],PARAMETER[&amp;#39;Scale_Factor&amp;#39;,0.9996],PARAMETER[&amp;#39;Latitude_Of_Origin&amp;#39;,0.0],UNIT[&amp;#39;Meter&amp;#39;,1.0]]&amp;#34;&lt;/span&gt;
+mCellSize &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;10&amp;#34;&lt;/span&gt;
 
-#Project_Reclassify.Process(&amp;quot;C:\mgs\Projects\NED_10m\n44w092\grdn44w092_13&amp;quot;, mProjection, mConversion,&amp;quot;C:\mgs\Projects\NED_10m\n44w092\try30&amp;quot;,mCellSize)
+&lt;span style=&#34;color:#75715e&#34;&gt;#Project_Reclassify.Process(&amp;#34;C:\mgs\Projects\NED_10m\n44w092\grdn44w092_13&amp;#34;, mProjection, mConversion,&amp;#34;C:\mgs\Projects\NED_10m\n44w092\try30&amp;#34;,mCellSize)&lt;/span&gt;
 
-def CallIt (inDir,inGrid,outGrid):
-fullinFN = inDir+&#39;\&#39;+inGrid
-fulloutFN = &#39;C:\mgs\Projects\NED_10m\Output\&#39;+outGrid
-tmpGridFN = &#39;c:\temp\t&#39;+outGrid
-Project_Reclassify.Process(fullinFN, mProjection, mConversion,fulloutFN,mCellSize,tmpGridFN)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;CallIt&lt;/span&gt; (inDir,inGrid,outGrid):
+fullinFN &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inDir&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;+inGrid&lt;/span&gt;
+fulloutFN &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;C:\mgs\Projects\NED_10m\Output&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;+outGrid&lt;/span&gt;
+tmpGridFN &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;c:&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\t&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;emp&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\t&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;outGrid
+Project_Reclassify&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Process(fullinFN, mProjection, mConversion,fulloutFN,mCellSize,tmpGridFN)
 
-def CallIt2 (inGrd,inoutGrd):
-outDir = &#39;C:\mgs\Projects\NED_10m\&#39; + inGrd + &#39;\&#39; + inGrd
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;CallIt2&lt;/span&gt; (inGrd,inoutGrd):
+outDir &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;C:\mgs\Projects\NED_10m&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; + inGrd + &amp;#39;&lt;/span&gt;\&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; + inGrd&lt;/span&gt;
 
-outGrd = &#39;grd&#39;+inGrd+&#39;_13&#39;
+outGrd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;grd&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;inGrd&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;_13&amp;#39;&lt;/span&gt;
 
 CallIt(outDir,outGrd,inoutGrd)
 
-#CallIt2(&amp;quot;n44w092&amp;quot;,&amp;quot;LaCrosse_W&amp;quot;)
-CallIt2(&amp;quot;n44w093&amp;quot;,&amp;quot;MasonCity_E&amp;quot;)
-CallIt2(&amp;quot;n44w094&amp;quot;,&amp;quot;MasonCity_W&amp;quot;)
-CallIt2(&amp;quot;n44w095&amp;quot;,&amp;quot;Fairmont_E&amp;quot;)
-CallIt2(&amp;quot;n44w096&amp;quot;,&amp;quot;Fairmont_W&amp;quot;)
-CallIt2(&amp;quot;n44w097&amp;quot;,&amp;quot;SiouxFalls_E&amp;quot;)
-#CallIt2(&amp;quot;n45w092&amp;quot;,&amp;quot;EauClaire_W&amp;quot;)
-CallIt2(&amp;quot;n45w093&amp;quot;,&amp;quot;StPaul_E&amp;quot;)
-CallIt2(&amp;quot;n45w094&amp;quot;,&amp;quot;StPaul_W&amp;quot;)
-CallIt2(&amp;quot;n45w095&amp;quot;,&amp;quot;NewUlm_E&amp;quot;)
-CallIt2(&amp;quot;n45w096&amp;quot;,&amp;quot;NewUlm_W&amp;quot;)
-CallIt2(&amp;quot;n45w097&amp;quot;,&amp;quot;Watertown_E&amp;quot;)
-#CallIt2(&amp;quot;n46w093&amp;quot;,&amp;quot;Stillwater_E&amp;quot;)
-#CallIt2(&amp;quot;n46w094&amp;quot;,&amp;quot;Stillwater_W&amp;quot;)
-#CallIt2(&amp;quot;n46w095&amp;quot;,&amp;quot;StCloud_E&amp;quot;)
-CallIt2(&amp;quot;n46w096&amp;quot;,&amp;quot;StCloud_W&amp;quot;)
-CallIt2(&amp;quot;n46w097&amp;quot;,&amp;quot;Milbank_E&amp;quot;)
-#CallIt2(&amp;quot;n47w092&amp;quot;,&amp;quot;Ashland_W&amp;quot;)
-#CallIt2(&amp;quot;n47w093&amp;quot;,&amp;quot;Duluth_E&amp;quot;)
-CallIt2(&amp;quot;n47w094&amp;quot;,&amp;quot;Duluth_W&amp;quot;)
-CallIt2(&amp;quot;n47w095&amp;quot;,&amp;quot;Brainerd_E&amp;quot;)
-CallIt2(&amp;quot;n47w096&amp;quot;,&amp;quot;Brainerd_W&amp;quot;)
-CallIt2(&amp;quot;n47w097&amp;quot;,&amp;quot;Fargo_E&amp;quot;)
-#CallIt2(&amp;quot;n48w090&amp;quot;,&amp;quot;Hancock_W&amp;quot;)
-#CallIt2(&amp;quot;n48w091&amp;quot;,&amp;quot;TwoHarbors_E&amp;quot;)
-#CallIt2(&amp;quot;n48w092&amp;quot;,&amp;quot;TwoHarbors_W&amp;quot;)
-#CallIt2(&amp;quot;n48w093&amp;quot;,&amp;quot;Hibbing_E&amp;quot;)
-#CallIt2(&amp;quot;n48w094&amp;quot;,&amp;quot;Hibbing_W&amp;quot;)
-CallIt2(&amp;quot;n48w095&amp;quot;,&amp;quot;Bemidji_E&amp;quot;)
-CallIt2(&amp;quot;n48w096&amp;quot;,&amp;quot;Bemidji_W&amp;quot;)
-CallIt2(&amp;quot;n48w097&amp;quot;,&amp;quot;GrandForks_E&amp;quot;)
-#CallIt2(&amp;quot;n48w098&amp;quot;,&amp;quot;GrandForks_W&amp;quot;)
-#CallIt2(&amp;quot;n49w090&amp;quot;,&amp;quot;ThunderBay_W&amp;quot;)
-#CallIt2(&amp;quot;n49w091&amp;quot;,&amp;quot;Quetico_E&amp;quot;)
-#CallIt2(&amp;quot;n49w092&amp;quot;,&amp;quot;Quetico_W&amp;quot;)
-#CallIt2(&amp;quot;n49w093&amp;quot;,&amp;quot;InternationFalls_E&amp;quot;)
-#CallIt2(&amp;quot;n49w094&amp;quot;,&amp;quot;InternationFalls_W&amp;quot;)
-CallIt2(&amp;quot;n49w095&amp;quot;,&amp;quot;Roseau_E&amp;quot;)
-CallIt2(&amp;quot;n49w096&amp;quot;,&amp;quot;Roseau_W&amp;quot;)
-#CallIt2(&amp;quot;n49w097&amp;quot;,&amp;quot;ThiefRiverFalls_E&amp;quot;)
-CallIt2(&amp;quot;n49w098&amp;quot;,&amp;quot;ThiefRiverFalls_W&amp;quot;)
-#CallIt2(&amp;quot;n50w095&amp;quot;,&amp;quot;Kenora_E&amp;quot;)
-#CallIt2(&amp;quot;n50w096&amp;quot;,&amp;quot;Kenora_W&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;projectreclassifypy&#34;&gt;Project.Reclassify.py&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;# Import system modules
-import sys, string, os, arcgisscripting
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n44w092&amp;#34;,&amp;#34;LaCrosse_W&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n44w093&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MasonCity_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n44w094&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MasonCity_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n44w095&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fairmont_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n44w096&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fairmont_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n44w097&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SiouxFalls_E&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n45w092&amp;#34;,&amp;#34;EauClaire_W&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n45w093&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;StPaul_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n45w094&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;StPaul_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n45w095&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NewUlm_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n45w096&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NewUlm_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n45w097&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Watertown_E&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n46w093&amp;#34;,&amp;#34;Stillwater_E&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n46w094&amp;#34;,&amp;#34;Stillwater_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n46w095&amp;#34;,&amp;#34;StCloud_E&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n46w096&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;StCloud_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n46w097&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Milbank_E&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n47w092&amp;#34;,&amp;#34;Ashland_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n47w093&amp;#34;,&amp;#34;Duluth_E&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n47w094&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Duluth_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n47w095&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Brainerd_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n47w096&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Brainerd_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n47w097&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Fargo_E&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n48w090&amp;#34;,&amp;#34;Hancock_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n48w091&amp;#34;,&amp;#34;TwoHarbors_E&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n48w092&amp;#34;,&amp;#34;TwoHarbors_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n48w093&amp;#34;,&amp;#34;Hibbing_E&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n48w094&amp;#34;,&amp;#34;Hibbing_W&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n48w095&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bemidji_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n48w096&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bemidji_W&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n48w097&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;GrandForks_E&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n48w098&amp;#34;,&amp;#34;GrandForks_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n49w090&amp;#34;,&amp;#34;ThunderBay_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n49w091&amp;#34;,&amp;#34;Quetico_E&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n49w092&amp;#34;,&amp;#34;Quetico_W&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n49w093&amp;#34;,&amp;#34;InternationFalls_E&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n49w094&amp;#34;,&amp;#34;InternationFalls_W&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n49w095&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Roseau_E&amp;#34;&lt;/span&gt;)
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n49w096&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Roseau_W&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n49w097&amp;#34;,&amp;#34;ThiefRiverFalls_E&amp;#34;)&lt;/span&gt;
+CallIt2(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;n49w098&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ThiefRiverFalls_W&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n50w095&amp;#34;,&amp;#34;Kenora_E&amp;#34;)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;#CallIt2(&amp;#34;n50w096&amp;#34;,&amp;#34;Kenora_W&amp;#34;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;projectreclassifypy&#34;&gt;Project.Reclassify.py&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Import system modules&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; sys&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; string&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; arcgisscripting
 
-# Create the Geoprocessor object
-gp = arcgisscripting.create()
+&lt;span style=&#34;color:#75715e&#34;&gt;# Create the Geoprocessor object&lt;/span&gt;
+gp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; arcgisscripting&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;create()
 
-# Check out any necessary licenses
-gp.CheckOutExtension(&amp;quot;spatial&amp;quot;)
+&lt;span style=&#34;color:#75715e&#34;&gt;# Check out any necessary licenses&lt;/span&gt;
+gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;CheckOutExtension(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;spatial&amp;#34;&lt;/span&gt;)
 
-# Load required toolboxes...
-gp.AddToolbox(&amp;quot;C:/Program Files/ArcGIS/ArcToolbox/Toolboxes/Spatial Analyst Tools.tbx&amp;quot;)
-gp.AddToolbox(&amp;quot;C:/Program Files/ArcGIS/ArcToolbox/Toolboxes/Data Management Tools.tbx&amp;quot;)
+&lt;span style=&#34;color:#75715e&#34;&gt;# Load required toolboxes...&lt;/span&gt;
+gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AddToolbox(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C:/Program Files/ArcGIS/ArcToolbox/Toolboxes/Spatial Analyst Tools.tbx&amp;#34;&lt;/span&gt;)
+gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AddToolbox(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C:/Program Files/ArcGIS/ArcToolbox/Toolboxes/Data Management Tools.tbx&amp;#34;&lt;/span&gt;)
 
-# Script arguments...
-def Process( inInputRaster, inOutputCoord, inConversionFactor, inOutputRaster, inCellSize, intempRasterFN):
-Input_Raster = inInputRaster #sys.argv[1]
-Output_Coordinate_System = inOutputCoord #sys.argv[3]
-Input_raster_or_constant_value_2 = inConversionFactor #sys.argv[4]
-Output_CellSize = inCellSize
+&lt;span style=&#34;color:#75715e&#34;&gt;# Script arguments...&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Process&lt;/span&gt;( inInputRaster, inOutputCoord, inConversionFactor, inOutputRaster, inCellSize, intempRasterFN):
+Input_Raster &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inInputRaster &lt;span style=&#34;color:#75715e&#34;&gt;#sys.argv[1]&lt;/span&gt;
+Output_Coordinate_System &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inOutputCoord &lt;span style=&#34;color:#75715e&#34;&gt;#sys.argv[3]&lt;/span&gt;
+Input_raster_or_constant_value_2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inConversionFactor &lt;span style=&#34;color:#75715e&#34;&gt;#sys.argv[4]&lt;/span&gt;
+Output_CellSize &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inCellSize
 
-#if Input_raster_or_constant_value_2 == &#39;#&#39;:
-# Input_raster_or_constant_value_2 = &amp;quot;3.28084&amp;quot; # provide a default value if unspecified
+&lt;span style=&#34;color:#75715e&#34;&gt;#if Input_raster_or_constant_value_2 == &amp;#39;#&amp;#39;:&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# Input_raster_or_constant_value_2 = &amp;#34;3.28084&amp;#34; # provide a default value if unspecified&lt;/span&gt;
 
-Output_raster = inOutputRaster
+Output_raster &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inOutputRaster
 
-# Local variables...
-Temp_Raster = intempRasterFN
+&lt;span style=&#34;color:#75715e&#34;&gt;# Local variables...&lt;/span&gt;
+Temp_Raster &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; intempRasterFN
 
-print Input_Raster
-print Temp_Raster
-print Output_Coordinate_System
-print inCellSize
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; Input_Raster
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; Temp_Raster
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; Output_Coordinate_System
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; inCellSize
 
-# Process: Project Raster...
-gp.ProjectRaster_management(Input_Raster, Temp_Raster, Output_Coordinate_System, &amp;quot;CUBIC&amp;quot;, Output_CellSize, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;)
+&lt;span style=&#34;color:#75715e&#34;&gt;# Process: Project Raster...&lt;/span&gt;
+gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ProjectRaster_management(Input_Raster, Temp_Raster, Output_Coordinate_System, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CUBIC&amp;#34;&lt;/span&gt;, Output_CellSize, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;)
 
-print Input_raster_or_constant_value_2
-print Output_raster
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; Input_raster_or_constant_value_2
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; Output_raster
 
-# Process: Times...
-gp.Times_sa(Temp_Raster, Input_raster_or_constant_value_2, Output_raster)
-&lt;/code&gt;&lt;/pre&gt;</description>
+&lt;span style=&#34;color:#75715e&#34;&gt;# Process: Times...&lt;/span&gt;
+gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Times_sa(Temp_Raster, Input_raster_or_constant_value_2, Output_raster)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
   </channel>

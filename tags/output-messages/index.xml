@@ -23,7 +23,7 @@ def gpprint(inmessage):
  gp.addmessage(inmessage)
  print inmessage
 
-&amp;amp;lt;Code to do stuff&amp;amp;gt;
+&amp;lt;Code to do stuff&amp;gt;
 
 #Ok, I want to send a message:
 gpprint(&#39;Hello, sailor!&#39;)

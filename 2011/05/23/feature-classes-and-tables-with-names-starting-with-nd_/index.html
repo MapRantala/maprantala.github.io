@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Feature classes and Tables with names starting with &#39;nd_&#39;. – Node Dangles</title>
+<title>Feature classes and Tables with names starting with &#39;nd_&#39; – Node Dangles</title>
 <meta name="description" content="Random luck me to discovering a bug related to feature classes whose names start with &amp;amp;lsquo;nd_&amp;#39;. It appears that you are allowed to create feature classes starting with …">
 <meta name="created" content="2011-05-23T15:55:24-0500">
 <meta name="modified" content="2011-05-23T15:55:24-0500">
 <meta name="author" content="Matt">
 <meta name="contact" content="webmaster@maprantala.com">
 <meta property="og:site_name" content="Node Dangles">
-<meta property="og:title" content="Feature classes and Tables with names starting with &#39;nd_&#39;.">
-<meta property="og:url" content="https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./">
+<meta property="og:title" content="Feature classes and Tables with names starting with &#39;nd_&#39;">
+<meta property="og:url" content="https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_/">
 <meta property="og:type" content="article">
 
 <meta name="generator" content="Hugo 0.80.0" />
@@ -19,7 +19,7 @@
 <meta name="theme-color" content="#ffffff">
 
 
-<link rel="canonical" href="https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./">
+<link rel="canonical" href="https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_/">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -33,10 +33,10 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "Feature classes and Tables with names starting with 'nd_'.",
+    "headline": "Feature classes and Tables with names starting with 'nd_'",
     "datePublished": "2011-05-23T15:55:24-05:00",
     "dateModified": "2011-05-23T15:55:24-05:00",
-    "url" : "https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./",
+    "url" : "https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_/",
     "description": "Random luck me to discovering a bug related to feature classes whose names start with \u0026amp;lsquo;nd_\u0026#39;. It appears that you are allowed to create feature classes starting with …",
     "keywords": ["ArcCatalog","arcgis","ArcSDE","Bugs","ESRI","geodatabase","python"],
     "author": {
@@ -98,7 +98,7 @@ StatCounter"></a></div></noscript>
 <main class="main layout__main">
 <article class="section-posts single-view">
 <header>
-<h1 class="title title-submitted">Feature classes and Tables with names starting with &#39;nd_&#39;.</h1>
+<h1 class="title title-submitted">Feature classes and Tables with names starting with &#39;nd_&#39;</h1>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-05-23T15:55:24-05:00">23 May, 2011</time>
 </div>
@@ -118,23 +118,24 @@ Tags:
 <div class="content">
 <p>Random luck me to discovering a bug related to feature classes whose names start with &lsquo;nd_'.  It appears that you are allowed to create feature classes starting with &lsquo;nd_&rsquo; but ArcCatalog will not display them.  Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases,  personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.</p>
 <p>I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.  After importing 15 shapefiles, I only had thirteen feature classes despite receiving no errors during the process.  The two shapefiles that failed to import were named ND_oil_and_gas.shp and ND_Bendix_Study.shp.  Subsequent attempts to import them individually returned an error &lsquo;Invalid Target Name&rsquo;.</p>
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/05/invalidtargetname.png"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/05/invalidtargetname.png" alt="Invalid Target Name"></p>
 <p>I discovered in pgAdmin III (Postgres SDE Geodatabase) that the table existed and there was an entry in sde.sde_layers for the feature class but ArcCatalog refused to show it.</p>
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2011/05/nd_2.png"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/05/nd_2.png" alt="nd_"></p>
 <p>I used some un-supported methods to try to resolve the problem and despite some sweating, I failed to find a way to get ArcCatalog to display these feature classes.  I did, however, at least found a way to delete them–arcpy can detect that the feature classes exists so it is able to delete them.</p>
-<p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/05/arcpy_delete.png"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/05/arcpy_delete.png" alt="arcpy.delete_management"></p>
 <p>At least by deleting them, I can prevent leaving &lsquo;invisible&rsquo; feature classes from hanging out in my geodatabase.</p>
-<p>I suspect the problems stems from how ESRI has implemented the <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002p0000007m000000.htm">Network dataset table-naming structure</a> –dirty areas are stored in tables named <em>nd_<!-- raw HTML omitted -->_dirtyareas _ and <em>nd_<!-- raw HTML omitted -->_dirtyobjects</em>.  Possibly the developer  working on the ArcCatalog GUI ended up suppressing showing feature classes and tables whose names start with &lsquo;nd</em>&rsquo;.</p>
+<p>I suspect the problems stems from how ESRI has implemented the <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002p0000007m000000.htm">Network dataset table-naming structure</a> –dirty areas are stored in tables named _nd__dirtyareas and <em>nd__dirtyobjects. Possibly the developer  working on the ArcCatalog GUI ended up suppressing showing feature classes and tables whose names start with &lsquo;nd</em>&rsquo;.</p>
 <p>And, just for posterity&rsquo;s sake, here is a python code snippet listing the feature classes in a workspace:</p>
-<blockquote>
-<p>import arcpy</p>
-<p>arcpy.env.workspace = &lsquo;c:/temp/_nd/F.gdb&rsquo;</p>
-<p>print arcpy.env.workspace<br>
-for fc in arcpy.ListFeatureClasses():<br>
-print fc</p>
-<p>print &lsquo;Done!&rsquo;</p>
-</blockquote>
-<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> arcpy
+ 
+arcpy<span style="color:#f92672">.</span>env<span style="color:#f92672">.</span>workspace <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;c:/temp/_nd/F.gdb&#39;</span>
+ 
+<span style="color:#66d9ef">print</span> arcpy<span style="color:#f92672">.</span>env<span style="color:#f92672">.</span>workspace  
+<span style="color:#66d9ef">for</span> fc <span style="color:#f92672">in</span> arcpy<span style="color:#f92672">.</span>ListFeatureClasses():  
+   <span style="color:#66d9ef">print</span> fc
+ 
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;Done!&#39;</span>
+</code></pre></div><!-- raw HTML omitted -->
 
 
 </div>

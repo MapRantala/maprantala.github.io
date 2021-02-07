@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Quick &amp; Dirty arcpy: Field Listings – Node Dangles</title>
+<meta name="description" content="I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document. There might be an easy way to do this in ArcGIS …">
+<meta name="created" content="2011-03-17T17:03:39-0500">
+<meta name="modified" content="2011-03-17T17:03:39-0500">
+<meta name="author" content="Matt">
+<meta name="contact" content="webmaster@maprantala.com">
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="Quick &amp; Dirty arcpy: Field Listings">
+<meta property="og:url" content="https://maprantala.com/2011/03/17/quick-dirty-arcpy-field-listings/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/2011/03/17/quick-dirty-arcpy-field-listings/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/mobile.2ab74aa64785dcab8114959e76ca140cf76207cd85989bc6d4fc3b12f734a09e.css" media="screen">
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Quick \u0026 Dirty arcpy: Field Listings",
+    "datePublished": "2011-03-17T17:03:39-05:00",
+    "dateModified": "2011-03-17T17:03:39-05:00",
+    "url" : "https://maprantala.com/2011/03/17/quick-dirty-arcpy-field-listings/",
+    "description": "I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document. There might be an easy way to do this in ArcGIS …",
+    "keywords": ["arcgis 10","arcobject","arcpy","domain","ESRI","geoprocessing","record counts","table fields"],
+    "author": {
+      "@type": "Person",
+      "name": "Matt"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=1; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title title-submitted">Quick &amp; Dirty arcpy: Field Listings</h1>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-03-17T17:03:39-05:00">17 March, 2011</time>
+</div>
+<div class="tags">
+Tags:
+<ul>
+<li><a href="/tags/arcgis-10">arcgis 10</a></li>
+<li><a href="/tags/arcobject">arcobject</a></li>
+<li><a href="/tags/arcpy">arcpy</a></li>
+<li><a href="/tags/domain">domain</a></li>
+<li><a href="/tags/esri">ESRI</a></li>
+<li><a href="/tags/geoprocessing">geoprocessing</a></li>
+<li><a href="/tags/record-counts">record counts</a></li>
+<li><a href="/tags/table-fields">table fields</a></li>
+</ul>
+</div>
+</header>
+<div class="content">
+<p>I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven&rsquo;t found it.  So, as is my nature, I decided to roll my own.</p>
+<p>This is a <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip">bare-bones script</a> that iterates through the fields, printing the field name, type, width, and precision.  There are three optional features to it:</p>
+<ul>
+<li>You can choose to have it list the domain, if there is one, on each field.</li>
+<li>You can have it write to a text file (otherwise you can just copy &amp; paste the results from the results window).</li>
+<li>You can have it count the number of populated records.  This can take a long time if working with a large dataset.  Also note that my logic for determining what constitutes being populated may not be what you need but the structure is there.  I also do not account for all field types, if the field is of a type I have not account for, the code will return -999.</li>
+</ul>
+<p>To use the script from ArcToolbox, you need to pass it four parameters, their Names, type, whether they are input or output, and whether they are required or optional are:</p>
+<ul>
+<li>featureclass, Table, Input, Required</li>
+<li>includedomainstring, Boolean, Input, Required (controls whether or not domains are exported)</li>
+<li>doCountsRespone, Boolean, Input, Required (controls whether or not you want to get the number of populated records.  (Your definition of populated may vary from my code)</li>
+<li>outputFile, File, Output, Optional (optional output file to write)</li>
+</ul>
+<p>Here is the code, but you are better off <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip">just downloading</a> it since I haven&rsquo;t figured out a good way to have WordPress play nicely with python&rsquo;s indenting.</p>
+<pre><code># Name: ListFields-arcpy.py
+#
+# Purpose: Lists the fields, their type, width, and precision
+# Can either have it export it to a CSV file or copy
+# and paste from the results window.
+#
+# To use, create a tool from the script and add 3 parameters:
+#  1) Table, Input, Required
+#  2) Boolean, Input, Required (controls whether or not domains are exported)
+#  3) Boolean, Input, Rekquired (controls whether or not you want to get the number of
+#  Populated records.&amp;nbsp; (Your defintion of populated may vary from my code)
+#  4) File, Output, Optional (optional output file to write)
+#
+#
+
+import arcpy,sys,os
+
+def printit(inMessage):
+ print inMessage
+ arcpy.AddMessage(inMessage)
+
+if len(sys.argv) &gt; 4:
+ featureclass = sys.argv[1]
+ includedomainstring = sys.argv[2]
+ doCountsRespone = sys.argv[3]
+ outputFile = sys.argv[4]
+else:
+ featureclass = &quot;C:/temp/before.shp&quot;
+ includedomainstring = &quot;false&quot;
+ doCountsRespone = &quot;true&quot;
+ outputFile = &quot;C:/temp/before.csv&quot;
+
+if (outputFile == &quot;&quot;):
+ doOutputFile = False
+else:
+ doOutputFile = True
+
+if (str(doCountsRespone).lower() == &quot;true&quot;):
+ doCounts = True
+else:
+ doCounts = False
+
+if (str(includedomainstring).lower() == &quot;true&quot;):
+ includedomain = True
+else:
+ includedomain = False
+
+lfields=arcpy.ListFields(featureclass)
+
+d = arcpy.Describe(featureclass)
+printit(&quot;Dataset: &quot;+d.baseName)
+printit(&quot;Type: &quot;+d.dataType)
+printit(&quot;Path: &quot;+d.catalogPath)
+printit(&quot; &quot;)
+
+tableheaders = 'name,type,width,precision'
+
+if (doCounts == True):
+ tableheaders+=&quot;,count&quot;
+
+if (includedomain == True):
+ tableheaders+=&quot;,domain&quot;
+
+if (doOutputFile):
+ tmpfile = open(outputFile,&quot;w&quot;)
+ tmpfile.write(tableheaders)
+ tmpfile.write(&quot;n&quot;)
+
+printit (tableheaders)
+for lf in lfields:
+
+ pThisline = lf.name+&quot;,&quot;+lf.type +&quot;,&quot;+str(lf.length)+&quot;,&quot;+str(lf.precision)
+
+ if (doCounts == True):
+
+ rowCount = 0
+
+ #Note that I do not account for all field types
+ #Also note that my definition of being populated may vary from yours.
+ #I am using -999 as a flag to indicate a field type was not successfully
+ #identified.
+ if (lf.type == &quot;Double&quot;) or (lf.type == &quot;Single&quot;)&amp;nbsp; or (lf.type == &quot;Integer&quot;) or (lf.type == &quot;SmallInteger&quot;):
+  queryString = '&quot;'+lf.name + '&quot; &gt; 0'
+  rows = arcpy.SearchCursor(featureclass, queryString, &quot;&quot;, &quot;&quot;, &quot;&quot;)
+ elif (lf.type == &quot;String&quot;):
+  queryString = '&quot;'+lf.name + '&quot; &lt;&gt; ' + &quot;''&quot;
+  rows = arcpy.SearchCursor(featureclass, queryString, &quot;&quot;, &quot;&quot;, &quot;&quot;)
+ else:
+  rowCount = -999
+  #rows = arcpy.SearchCursor(featureclass, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;)
+
+ if (rowCount == 0):
+  for row in rows:
+   rowCount+=1
+
+ pThisline=pThisline+&quot;,&quot;+str(rowCount)
+
+ if (includedomain == True):
+  pThisline=pThisline+&quot;,&quot;+lf.domain
+
+ printit (pThisline)
+
+ if (doOutputFile):
+  tmpfile.write(pThisline)
+  tmpfile.write(&quot;n&quot;)
+
+if (doOutputFile):
+ tmpfile.close
+</code></pre><!-- raw HTML omitted -->
+
+
+</div>
+</article>
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+<div class="mobile-nav" dir="ltr">
+  <div class="mobile-nav__cover"></div>
+  <a href="#navigation" class="mobile-nav__toggle" aria-haspopup="true" role="button">Menu</a>
+  <div class="mobile-nav__sheet">
+    <div class="mobile-nav__region">
+    
+    </div>
+    <nav class="mobile-nav__main-menu">
+    <h2 class="visually-hidden">Main menu</h2>
+    <ul class="mobile-nav__navbar">
+    <li><a href="/">Home</a></li>
+    <li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+    </ul>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

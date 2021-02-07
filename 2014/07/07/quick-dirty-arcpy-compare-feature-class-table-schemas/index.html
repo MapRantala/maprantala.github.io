@@ -1,1 +1,203 @@
-<!DOCTYPE html><html><head><title>https://maprantala.com/2014/07/07/quick-and-dirty-arcpy-compare-feature-class-table-schemas/</title><link rel="canonical" href="https://maprantala.com/2014/07/07/quick-and-dirty-arcpy-compare-feature-class-table-schemas/"/><meta name="robots" content="noindex"><meta charset="utf-8" /><meta http-equiv="refresh" content="0; url=https://maprantala.com/2014/07/07/quick-and-dirty-arcpy-compare-feature-class-table-schemas/" /></head></html>
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Quick &amp; Dirty arcpy: Compare Feature Class Table Schemas – Node Dangles</title>
+<meta name="description" content="I&amp;amp;rsquo;m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some psycopg2). One of the QC checks …">
+<meta name="created" content="2014-07-07T05:06:18-0500">
+<meta name="modified" content="2014-07-07T05:06:18-0500">
+<meta name="author" content="Matt">
+<meta name="contact" content="webmaster@maprantala.com">
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="Quick &amp; Dirty arcpy: Compare Feature Class Table Schemas">
+<meta property="og:url" content="https://maprantala.com/2014/07/07/quick-dirty-arcpy-compare-feature-class-table-schemas/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/2014/07/07/quick-dirty-arcpy-compare-feature-class-table-schemas/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/mobile.2ab74aa64785dcab8114959e76ca140cf76207cd85989bc6d4fc3b12f734a09e.css" media="screen">
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Quick \u0026 Dirty arcpy: Compare Feature Class Table Schemas",
+    "datePublished": "2014-07-07T05:06:18-05:00",
+    "dateModified": "2014-07-07T05:06:18-05:00",
+    "url" : "https://maprantala.com/2014/07/07/quick-dirty-arcpy-compare-feature-class-table-schemas/",
+    "description": "I\u0026amp;rsquo;m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some psycopg2). One of the QC checks …",
+    "author": {
+      "@type": "Person",
+      "name": "Matt"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=1; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title title-submitted">Quick &amp; Dirty arcpy: Compare Feature Class Table Schemas</h1>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2014-07-07T05:06:18-05:00">7 July, 2014</time>
+</div>
+</header>
+<div class="content">
+<p>I&rsquo;m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some <!-- raw HTML omitted -->psycopg2<!-- raw HTML omitted -->).</p>
+<p>One of the QC checks I&rsquo;m doing at the end of this re-write is just verifying that the feature class schemas are the same (or that the differences are intended)  under the new process as they were in the old process.</p>
+<p>And while ArcGIS does have a <!-- raw HTML omitted -->good tool<!-- raw HTML omitted --> for this, there were a couple tweaks I wanted to make. Most notably, I wanted a list of fields that are not in both feature classes.</p>
+<p><img src="/images/2014/07/TableCompare.png" alt="ArcGIS Table Compare"></p>
+<p>So I made a quick &amp; dirty script to do that, nothing especially clever but I&rsquo;ve found it useful. Download it from <a href="https://github.com/MapRantala/Blog/tree/master/ArcToolbox/ArcGIS_10_2/20140702_CompareTableFields">GitHub</a>. I have it currently set up to work on feature layers but you should be able to change the toolbox parameter types to allow feature classes or tables.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> arcpy<span style="color:#f92672">,</span>sys<span style="color:#f92672">,</span>os
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">printit</span>(inMessage):
+    <span style="color:#66d9ef">print</span> inMessage
+    arcpy<span style="color:#f92672">.</span>AddMessage(inMessage)
+
+featureclass1 <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>]
+featureclass2 <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">2</span>]
+
+tableheaders <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;name, type, width, precision, domain&#39;</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">makeFieldDict</span>(inFC):
+    d <span style="color:#f92672">=</span> arcpy<span style="color:#f92672">.</span>Describe(inFC)
+    printit(<span style="color:#e6db74">&#34;Dataset: &#34;</span><span style="color:#f92672">+</span>d<span style="color:#f92672">.</span>baseName)
+    printit(<span style="color:#e6db74">&#34;Type: &#34;</span><span style="color:#f92672">+</span>d<span style="color:#f92672">.</span>dataType)
+    printit(<span style="color:#e6db74">&#34;Path: &#34;</span><span style="color:#f92672">+</span>d<span style="color:#f92672">.</span>catalogPath)
+    printit(<span style="color:#e6db74">&#34; &#34;</span>)
+
+    lFields<span style="color:#f92672">=</span>arcpy<span style="color:#f92672">.</span>ListFields(inFC)
+
+    printit (tableheaders)
+    fieldDict <span style="color:#f92672">=</span> dict()
+    printit (lFields)
+    <span style="color:#66d9ef">for</span> lf <span style="color:#f92672">in</span> lFields:
+        fieldDict[lf<span style="color:#f92672">.</span>name] <span style="color:#f92672">=</span> [lf<span style="color:#f92672">.</span>name,lf<span style="color:#f92672">.</span>type,lf<span style="color:#f92672">.</span>length,lf<span style="color:#f92672">.</span>precision,lf<span style="color:#f92672">.</span>domain]
+        printit (lf<span style="color:#f92672">.</span>name<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">+</span>lf<span style="color:#f92672">.</span>type <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">+</span>str(lf<span style="color:#f92672">.</span>length)<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">+</span>str(lf<span style="color:#f92672">.</span>precision)<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">+</span>lf<span style="color:#f92672">.</span>domain)
+    <span style="color:#66d9ef">return</span> fieldDict
+
+fieldDict1 <span style="color:#f92672">=</span> makeFieldDict(featureclass1)
+fieldDict2 <span style="color:#f92672">=</span> makeFieldDict(featureclass2)
+errorList <span style="color:#f92672">=</span> []
+printit(<span style="color:#e6db74">&#34; &#34;</span>)
+printit(<span style="color:#e6db74">&#34; &#34;</span>)
+printit(<span style="color:#e6db74">&#34;Comparing Fields:&#34;</span>)
+<span style="color:#66d9ef">for</span> iField <span style="color:#f92672">in</span> sorted(list(set(fieldDict1<span style="color:#f92672">.</span>keys()<span style="color:#f92672">+</span>fieldDict2<span style="color:#f92672">.</span>keys()))):
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> (fieldDict1<span style="color:#f92672">.</span>has_key(iField)):
+        theResult <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; {0} not found in {1}&#34;</span><span style="color:#f92672">.</span>format(iField,featureclass1)
+        errorList<span style="color:#f92672">.</span>append(theResult)
+    <span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> (fieldDict2<span style="color:#f92672">.</span>has_key(iField)):
+        theResult <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; {0} not found in {1}&#34;</span><span style="color:#f92672">.</span>format(iField,featureclass2)
+        errorList<span style="color:#f92672">.</span>append(theResult)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">if</span> (fieldDict1[iField] <span style="color:#f92672">==</span> fieldDict2[iField]):
+            theResult <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; {0} OK&#34;</span><span style="color:#f92672">.</span>format(iField)
+        <span style="color:#66d9ef">else</span>:
+            theResult <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; {0} Have Different Definitions </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">   {1}: {2}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">   {3}: {4}&#34;</span><span style="color:#f92672">.</span>format(iField,featureclass1,fieldDict1[iField],featureclass2,fieldDict2[iField])
+            errorList<span style="color:#f92672">.</span>append(theResult)
+
+    printit( theResult )
+
+printit(<span style="color:#e6db74">&#34; &#34;</span>)
+printit(<span style="color:#e6db74">&#34; &#34;</span>)
+<span style="color:#66d9ef">if</span> len(errorList) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+    printit(<span style="color:#e6db74">&#34;GOOD! No difference Found!&#34;</span>)
+<span style="color:#66d9ef">else</span>:
+    printit(<span style="color:#e6db74">&#34;These Differences Found:&#34;</span>)
+    <span style="color:#66d9ef">for</span> iError <span style="color:#f92672">in</span> errorList:
+        printit(iError)
+
+printit(<span style="color:#e6db74">&#34;Done!&#34;</span>)
+
+</code></pre></div>
+
+</div>
+</article>
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+<div class="mobile-nav" dir="ltr">
+  <div class="mobile-nav__cover"></div>
+  <a href="#navigation" class="mobile-nav__toggle" aria-haspopup="true" role="button">Menu</a>
+  <div class="mobile-nav__sheet">
+    <div class="mobile-nav__region">
+    
+    </div>
+    <nav class="mobile-nav__main-menu">
+    <h2 class="visually-hidden">Main menu</h2>
+    <ul class="mobile-nav__navbar">
+    <li><a href="/">Home</a></li>
+    <li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+    </ul>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

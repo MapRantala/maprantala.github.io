@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Quick &amp; Dirty python: Converting a text file to audio (.wav) – Node Dangles</title>
+<meta name="description" content="This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without …">
+<meta name="created" content="2012-05-31T23:12:28-0500">
+<meta name="modified" content="2012-05-31T23:12:28-0500">
+<meta name="author" content="Matt">
+<meta name="contact" content="webmaster@maprantala.com">
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="Quick &amp; Dirty python: Converting a text file to audio (.wav)">
+<meta property="og:url" content="https://maprantala.com/2012/05/31/quick-dirty-python-converting-a-text-file-to-audio-.wav/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/2012/05/31/quick-dirty-python-converting-a-text-file-to-audio-.wav/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/mobile.2ab74aa64785dcab8114959e76ca140cf76207cd85989bc6d4fc3b12f734a09e.css" media="screen">
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Quick \u0026 Dirty python: Converting a text file to audio (.wav)",
+    "datePublished": "2012-05-31T23:12:28-05:00",
+    "dateModified": "2012-05-31T23:12:28-05:00",
+    "url" : "https://maprantala.com/2012/05/31/quick-dirty-python-converting-a-text-file-to-audio-.wav/",
+    "description": "This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without …",
+    "keywords": ["arcpy","Microsoft Speech API","pyTTS","sapi","text to audio","text to mp3","text to speech","text to wav"],
+    "author": {
+      "@type": "Person",
+      "name": "Matt"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=1; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title title-submitted">Quick &amp; Dirty python: Converting a text file to audio (.wav)</h1>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2012-05-31T23:12:28-05:00">31 May, 2012</time>
+</div>
+<div class="tags">
+Tags:
+<ul>
+<li><a href="/tags/arcpy">arcpy</a></li>
+<li><a href="/tags/microsoft-speech-api">Microsoft Speech API</a></li>
+<li><a href="/tags/pytts">pyTTS</a></li>
+<li><a href="/tags/sapi">sapi</a></li>
+<li><a href="/tags/text-to-audio">text to audio</a></li>
+<li><a href="/tags/text-to-mp3">text to mp3</a></li>
+<li><a href="/tags/text-to-speech">text to speech</a></li>
+<li><a href="/tags/text-to-wav">text to wav</a></li>
+</ul>
+</div>
+</header>
+<div class="content">
+<p>This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without any freeware that could handle the 53 page document–there are some cool websites that do text to mp3 like <!-- raw HTML omitted -->vozme <!-- raw HTML omitted -->and <!-- raw HTML omitted -->YAKiToMe<!-- raw HTML omitted -->! but they didn&rsquo;t convert the whole document. I then found <!-- raw HTML omitted -->pyTTS<!-- raw HTML omitted -->, a python package that serves as a wrapper to the <!-- raw HTML omitted -->Microsoft Speech API (SAPI) <!-- raw HTML omitted -->, which has <!-- raw HTML omitted -->been in version 5 since 2000.<!-- raw HTML omitted --> But I didn&rsquo;t easily find a version of pyTTS for python 2.6. So I decided to see if I could roll my own.</p>
+<p>As it turns out, getting python to talk using SAPI is relatively easy. Reading a plain text file can be done in a few lines.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> comtypes.client <span style="color:#f92672">import</span> CreateObject
+
+infile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;c:/temp/text.txt&#34;</span>
+
+engine <span style="color:#f92672">=</span> CreateObject(<span style="color:#e6db74">&#34;SAPI.SpVoice&#34;</span>)
+
+f <span style="color:#f92672">=</span> open(infile, <span style="color:#e6db74">&#39;r&#39;</span>)
+theText <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+f<span style="color:#f92672">.</span>close()
+
+engine<span style="color:#f92672">.</span>speak(theText)
+</code></pre></div><p>And it wasn&rsquo;t that much more to have it write out a .wav file:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> comtypes.client <span style="color:#f92672">import</span> CreateObject
+
+engine <span style="color:#f92672">=</span> CreateObject(<span style="color:#e6db74">&#34;SAPI.SpVoice&#34;</span>)
+stream <span style="color:#f92672">=</span> CreateObject(<span style="color:#e6db74">&#34;SAPI.SpFileStream&#34;</span>)
+
+infile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;c:/temp/text.txt&#34;</span>
+outfile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;c:/temp/text4.wav&#34;</span>
+stream<span style="color:#f92672">.</span>Open(outfile, SpeechLib<span style="color:#f92672">.</span>SSFMCreateForWrite)
+engine<span style="color:#f92672">.</span>AudioOutputStream <span style="color:#f92672">=</span> stream
+
+f <span style="color:#f92672">=</span> open(infile, <span style="color:#e6db74">&#39;r&#39;</span>)
+theText <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+f<span style="color:#f92672">.</span>close()
+
+engine<span style="color:#f92672">.</span>speak(theText)
+
+stream<span style="color:#f92672">.</span>Close()
+</code></pre></div><p>And with that chunk of code, I was able to convert my 54 page document into a 4 hour long .wav file (over 600 MB) that I used another software package to convert to .mp3 (200 MB). The voice is a bit robotic but not too bad, I just hope the content that I converted (a database specification standard) doesn&rsquo;t put me to sleep while I drive.</p>
+
+
+</div>
+</article>
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+<div class="mobile-nav" dir="ltr">
+  <div class="mobile-nav__cover"></div>
+  <a href="#navigation" class="mobile-nav__toggle" aria-haspopup="true" role="button">Menu</a>
+  <div class="mobile-nav__sheet">
+    <div class="mobile-nav__region">
+    
+    </div>
+    <nav class="mobile-nav__main-menu">
+    <h2 class="visually-hidden">Main menu</h2>
+    <ul class="mobile-nav__navbar">
+    <li><a href="/">Home</a></li>
+    <li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+    </ul>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

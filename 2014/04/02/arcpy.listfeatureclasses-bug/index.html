@@ -115,27 +115,27 @@ Tags:
 <p>I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&rsquo;s <!-- raw HTML omitted -->ListFeatureClasses<!-- raw HTML omitted --> request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.</p>
 <p>Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.</p>
 <p>After discovering missing data in our backups, I reconstructed what happened and found this bug. Below is arcpy code that iterates through the feature datasets in a geodatabase and lists the feature classes:</p>
-<pre><code>import arcpy
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> arcpy
 
-def copyAll():
-    for iFeatureClass in arcpy.ListFeatureClasses():
-        print(&quot; Feature Class: {0}&quot;.format(iFeatureClass))
-    iFeatureClassFull = None
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">copyAll</span>():
+    <span style="color:#66d9ef">for</span> iFeatureClass <span style="color:#f92672">in</span> arcpy<span style="color:#f92672">.</span>ListFeatureClasses():
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34; Feature Class: {0}&#34;</span><span style="color:#f92672">.</span>format(iFeatureClass))
+    iFeatureClassFull <span style="color:#f92672">=</span> None
 
-testGDBname = &quot;mgs_sandbox.sde&quot;
-arcpy.env.workspace = testGDBname
+testGDBname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mgs_sandbox.sde&#34;</span>
+arcpy<span style="color:#f92672">.</span>env<span style="color:#f92672">.</span>workspace <span style="color:#f92672">=</span> testGDBname
 
 copyAll()
-for iFD in arcpy.ListDatasets(&quot;&quot;,&quot;Feature&quot;):
-    print(&quot;Feature Dataset {0}:&quot;.format(iFD))
-    arcpy.env.workspace = testGDBname+&quot;/&quot;+str(iFD)
+<span style="color:#66d9ef">for</span> iFD <span style="color:#f92672">in</span> arcpy<span style="color:#f92672">.</span>ListDatasets(<span style="color:#e6db74">&#34;&#34;</span>,<span style="color:#e6db74">&#34;Feature&#34;</span>):
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Feature Dataset {0}:&#34;</span><span style="color:#f92672">.</span>format(iFD))
+    arcpy<span style="color:#f92672">.</span>env<span style="color:#f92672">.</span>workspace <span style="color:#f92672">=</span> testGDBname<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">+</span>str(iFD)
     copyAll()
-</code></pre><p>And here is a screen shot of the contents of a test enterprise geodatabase, you&rsquo;ll see it has a feature data set named &lsquo;outcrops&rsquo; that has a feature class also named &lsquo;outcrops&rsquo; within it:<br>
-<a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2014/04/sandbox.png"><!-- raw HTML omitted --></a></p>
+</code></pre></div><p>And here is a screen shot of the contents of a test enterprise geodatabase, you&rsquo;ll see it has a feature data set named &lsquo;outcrops&rsquo; that has a feature class also named &lsquo;outcrops&rsquo; within it:<br>
+<img src="/images/2014/04/sandbox.png" alt="sandbox"></p>
 <p>And the results list only the feature dataset:</p>
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/results.png"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2014/04/results.png" alt="results"></p>
 <p>But if I rename the feature dataset (e.g. outcrop_fd), the results are what I would hope for:</p>
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2014/04/results.png"><!-- raw HTML omitted --></a> <a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2014/04/results2.png"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2014/04/results2.png" alt="results"></p>
 <p>I found that the feature class does not even need to be within the feature dataset and also the problem does not always occur, I have had the code successfully run in some cases.</p>
 <p>Once I confirmed the problem, I did find <!-- raw HTML omitted -->this thread<!-- raw HTML omitted --> from almost three years ago that mentions the bug. One poster indicated the same thing occurs in ArcObjects which leads me to think something may not be getting registered right in the sde tables.</p>
 <p>I was not able to re-create this using either personal or file geodatabases.</p>

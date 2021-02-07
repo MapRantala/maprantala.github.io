@@ -117,18 +117,18 @@ Tags:
 <p>The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats &lsquo;a&rsquo; the same as &lsquo;A&rsquo;.</p>
 <p>Today&rsquo;s example groups records into different cases based off the values of two fields, !county_c! and !feature! and required only minor modifications.</p>
 <p>The calling line was modified from:</p>
-<!-- raw HTML omitted -->
-<p>to:</p>
-<!-- raw HTML omitted -->
-<p>to accommodate passing both values.</p>
+<p>From:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   returnCase(<span style="color:#960050;background-color:#1e0010">!</span>feature<span style="color:#960050;background-color:#1e0010">!</span>)
+</code></pre></div><p>To:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   returnCase(<span style="color:#960050;background-color:#1e0010">!</span>county_c<span style="color:#960050;background-color:#1e0010">!</span>,<span style="color:#960050;background-color:#1e0010">!</span>feature<span style="color:#960050;background-color:#1e0010">!</span>)
+</code></pre></div><p>to accommodate passing both values.</p>
 <p>The function definition likewise was modified to accept two values, this:</p>
-<!-- raw HTML omitted -->
-<p>to:</p>
-<!-- raw HTML omitted -->
-<p>And this line was added, creating a list from the two values passed in:</p>
-<!-- raw HTML omitted -->
-<p> </p>
-<p>**(Note: The same results could have be achieved by using the original function by creating the list in the calling statement:  returnCase([!county_c!,!feature!] )<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">returnCase</span>(inValue1):
+</code></pre></div><p>to:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">returnCase</span>(inValue1, inValue2)
+</code></pre></div><p>And this line was added, creating a list from the two values passed in:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   inValue <span style="color:#f92672">=</span> [inValue1, inValue2]
+</code></pre></div><p>**(Note: The same results could have be achieved by using the original function by creating the list in the calling statement:  returnCase([!county_c!,!feature!] )<br>
 **</p>
 <p> </p>
 <pre><code>caseList = [ ]
@@ -141,7 +141,7 @@ def returnCase(inValue1, inValue2):
       caseList.append(inValue)
 
    return caseList.index(inValue)
-</code></pre><p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2012/04/case_multiple.png"><!-- raw HTML omitted --></a></p>
+</code></pre><p><img src="/images/2012/04/case_multiple.png" alt="Case_Multiple"></p>
 
 
 </div>

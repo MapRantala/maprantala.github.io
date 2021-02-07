@@ -224,9 +224,9 @@ def writeSHP(inSourceFile,inTrkList):
                         theTime = theTimePlue.split(&quot;+&quot;)[0]
                         theSeconds = convertTimeToSeconds(theTime)
 
-                        if (prevSec &amp;lt; 0):
+                        if (prevSec &lt; 0):
                             prevSec = theSeconds
-                        if (startSec&amp;lt;0):
+                        if (startSec &lt; 0):
                             startSec = theSeconds
 
                         segSeconds = theSeconds - prevSec

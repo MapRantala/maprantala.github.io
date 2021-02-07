@@ -49,10 +49,10 @@ for l in ll:
     </item>
     
     <item>
-      <title>Quick &amp;#038; Dirty arcpy: Autopan ArcMap using arcpy</title>
-      <link>https://maprantala.com/2012/05/02/quick-#038-dirty-arcpy-autopan-arcmap-using-arcpy/</link>
+      <title>Quick &amp; Dirty arcpy: Autopan ArcMap using arcpy</title>
+      <link>https://maprantala.com/2012/05/02/quick-dirty-arcpy-autopan-arcmap-using-arcpy/</link>
       <pubDate>Wed, 02 May 2012 05:19:40 -0500</pubDate>
-      <guid>https://maprantala.com/2012/05/02/quick-#038-dirty-arcpy-autopan-arcmap-using-arcpy/</guid>
+      <guid>https://maprantala.com/2012/05/02/quick-dirty-arcpy-autopan-arcmap-using-arcpy/</guid>
       <description>&lt;p&gt;Question: How do I get ArcMap to automatically pan through an area.&lt;/p&gt;
 &lt;p&gt;As I mentioned in a &lt;a href=&#34;https://maprantala.com/2012/04/30/building-a-loc%E2%80%A6f-bing-imagery/&#34;&gt;previous post&lt;/a&gt;, I recently had the need to have ArcMap automatically pan through a project area. My first attempt was to print a series of data-driven pages (using a fishnet polygon layer as the index) this but that did not accomplish what I needed so I switched to arcpy, which made the task simple enough. Nothing special or tricky about this code, but just did not find it anywhere else.&lt;/p&gt;
 &lt;p&gt;The one thing to note is that I have a 1 second pause between pans–this was to allow image tiles to download. You will need to adjust the delay to meet your needs. &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20120427_AutoPan.zip&#34;&gt;The toolbox and code can also be downloaded&lt;/a&gt;.&lt;/p&gt;
@@ -119,18 +119,18 @@ def returnCase(inValue):
 &lt;p&gt;The basic structure I listed in that post can be expanded on to satisfy your needs. The example in my earlier post was case sensitive for example, you could modify it so it treats &amp;lsquo;a&amp;rsquo; the same as &amp;lsquo;A&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;Today&amp;rsquo;s example groups records into different cases based off the values of two fields, !county_c! and !feature! and required only minor modifications.&lt;/p&gt;
 &lt;p&gt;The calling line was modified from:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;to:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;to accommodate passing both values.&lt;/p&gt;
+&lt;p&gt;From:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;   returnCase(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;!&lt;/span&gt;feature&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;!&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;   returnCase(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;!&lt;/span&gt;county_c&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;!&lt;/span&gt;,&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;!&lt;/span&gt;feature&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;!&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;to accommodate passing both values.&lt;/p&gt;
 &lt;p&gt;The function definition likewise was modified to accept two values, this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;to:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;And this line was added, creating a list from the two values passed in:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt; &lt;/p&gt;
-&lt;p&gt;**(Note: The same results could have be achieved by using the original function by creating the list in the calling statement:  returnCase([!county_c!,!feature!] )&lt;br&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;   &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;returnCase&lt;/span&gt;(inValue1):
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;to:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;returnCase&lt;/span&gt;(inValue1, inValue2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And this line was added, creating a list from the two values passed in:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;   inValue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [inValue1, inValue2]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;**(Note: The same results could have be achieved by using the original function by creating the list in the calling statement:  returnCase([!county_c!,!feature!] )&lt;br&gt;
 **&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;caseList = [ ]
@@ -143,7 +143,7 @@ def returnCase(inValue1, inValue2):
       caseList.append(inValue)
 
    return caseList.index(inValue)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2012/04/case_multiple.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2012/04/case_multiple.png&#34; alt=&#34;Case_Multiple&#34;&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -154,10 +154,10 @@ def returnCase(inValue1, inValue2):
       <guid>https://maprantala.com/2011/10/06/arcmap-field-calculator-arcpy-date-to-decimal-function/</guid>
       <description>&lt;p&gt;One of the standards in our databases is to store dates as 8-digit integer values in the format of yyyymmdd. This requires us to occasionally convert values from date fields into this format.&lt;/p&gt;
 &lt;p&gt;We can do this in the ArcMap Field Calculator using this arcpy function:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;def datetodouble(inNum):
-     splitList = str(inNum).split(&amp;quot;/&amp;quot;)
-     return  splitList [2]  +(&amp;quot;0&amp;quot;+ splitList [0])[-2:]  +(&amp;quot;0&amp;quot;+ splitList [1])[-2:]
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/10/datetodouble.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;datetodouble&lt;/span&gt;(inNum):
+   splitList &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; str(inNum)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;split(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;)
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;  splitList [&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;]  &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; splitList [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;])[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;:]  &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; splitList [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;])[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;:]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/10/datetodouble.png&#34; alt=&#34;Date To Double&#34;&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -167,14 +167,15 @@ def returnCase(inValue1, inValue2):
       <pubDate>Tue, 19 Jul 2011 20:47:03 -0500</pubDate>
       <guid>https://maprantala.com/2011/07/19/arcgis-add-in-custom-mouse-cursor/</guid>
       <description>&lt;p&gt;I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI&amp;rsquo;s instructions.  But, once you know how to do it, it is pretty easy.  In Visual Studio, Add a New Item:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/07/addresource.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/07/addresource.png&#34; alt=&#34;Add Resource&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Add a Cursor File:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/07/selectcursor.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/07/selectcursor.png&#34; alt=&#34;SelectCursor&#34;&gt;&lt;/p&gt;
 &lt;p&gt;You can edit your cursor with the editor program in Visual Studio.  Once you satisfied with how it looks, make sure that the Build Action on the cursor is &amp;lsquo;Embedded Resource&amp;rsquo;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/07/embedded.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Then you can set your cursor with two lines of code. Not that my cursor is in my QDI.QdiAddIn Namespace:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/07/embedded.png&#34; alt=&#34;Embedded&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Then you can set your cursor with two lines of code. Note that my cursor is in my QDI.QdiAddIn Namespace:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Dim pCursorStream As System.IO.Stream = Me.GetType.Assembly.GetManifestResourceStream(&amp;quot;QDI.QdiAddIn.NewCursor.cur&amp;quot;)
 MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
+
 &lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -199,10 +200,10 @@ MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
       <description>&lt;p&gt;One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm&#34;&gt;Field Calculator&lt;/a&gt;.  When I stumbled upon a bug in the way the &lt;a href=&#34;https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/&#34;&gt;Extract Values to Points&lt;/a&gt; tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.&lt;/p&gt;
 &lt;p&gt;I set the Parser to Python and the formula was simple once I figured out the syntax:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;pPoint = arcpy.Point(0,0)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/origin.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/03/origin.jpg&#34; alt=&#34;Use Field Calculator to Calculate Geometry&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Then, to extend my knowledge, I wanted to see how to calculate the geometry based off of two fields (X and Y).   The only real trick is knowing the bracket field names using exclamation points instead of brackets:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;arcpy.Point(!X!,!Y!)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/fields.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/03/fields.jpg&#34; alt=&#34;Using Field Calculating to Calculate Geometry Using Attributes&#34;&gt;&lt;/p&gt;
 &lt;p&gt;So turns out everything it pretty easy and straight-forward.  Whew!&lt;/p&gt;
 </description>
     </item>
@@ -223,10 +224,8 @@ MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
       <pubDate>Wed, 15 Sep 2010 13:36:34 -0500</pubDate>
       <guid>https://maprantala.com/2010/09/15/another-topotoraster-error/</guid>
       <description>&lt;h3 id=&#34;subtitled-why-error-messages-are-good&#34;&gt;Subtitled:  Why error messages are good.&lt;/h3&gt;
-&lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn&amp;rsquo;t have to spend a day trying figure out what was wrong.&lt;br&gt;
-&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/09/sixteen.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://maprantala.com/wp-content/uploads/2010/09/topotorastererror1.jpg&#34;&gt;&lt;br&gt;
-&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Came up with another error while running TopoToRaster but this time ArcGIS gave an error message that led to a solution.  Turned out all my contour lines had an elevation of 16 which TopoToRaster did not like.  I had intended to increase the elevation and inadvertently set them all to sixteen.  I had saved the previous values before editing so it turned out to be a simple fix and I didn&amp;rsquo;t have to spend a day trying figure out what was wrong.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/09/sixteen.jpg?resize=630%2C225&#34; alt=&#34;Sixteen&#34;&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -239,9 +238,9 @@ MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
 &lt;p&gt;ArcCatalog would bomb out without presenting any sort of useful message.&lt;/p&gt;
 &lt;p&gt;I determined eventually that If I set the left extent as 435210, the process would work if set the right extent to 446655 or greater but would bomb if I used 446654 or less. If the the left extent was 435209, the right extent had to be 446654 or greater.&lt;/p&gt;
 &lt;p&gt;The image below shows the contours (with vertexes) and the polygon theme I was using. The two circle graphics show the approximate extent I was clipping to.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2010/09/topotoraster.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I eventually wrote python script to do a series of tests with the intent of determining the pattern of what does and does not work. The unexpected benefit was I actually got some sort of error message back. Turns out it had to do with my lack of vertices–I densified my polylines and it ran fine. Something I should have thought of earlier but it was difficult lacking any feedback.&lt;br&gt;
-&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/09/untitled.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images//2010/09/topotoraster.jpg?resize=453%2C381&#34; alt=&#34;topotoRaster&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I eventually wrote python script to do a series of tests with the intent of determining the pattern of what does and does not work. The unexpected benefit was I actually got some sort of error message back. Turns out it had to do with my lack of vertices–I densified my polylines and it ran fine. Something I should have thought of earlier but it was difficult lacking any feedback.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/09/untitled.jpg?resize=535%2C271&#34; alt=&#34;Options&#34;&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -256,23 +255,23 @@ MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
     </item>
     
     <item>
-      <title>Workstation Arc/Info Interchange Import Error</title>
-      <link>https://maprantala.com/2010/09/07/workstation-arc/info-interchange-import-error/</link>
+      <title>Workstation ArcInfo Interchange Import Error</title>
+      <link>https://maprantala.com/2010/09/07/workstation-arcinfo-interchange-import-error/</link>
       <pubDate>Tue, 07 Sep 2010 19:08:39 -0500</pubDate>
-      <guid>https://maprantala.com/2010/09/07/workstation-arc/info-interchange-import-error/</guid>
+      <guid>https://maprantala.com/2010/09/07/workstation-arcinfo-interchange-import-error/</guid>
       <description>&lt;p&gt;I have been working on updating some data that was published using Arc/Info Workstation Export (.e00) files, converting them to shapefiles, or in the case of annotation, to a geodatabase feature class.&lt;/p&gt;
-&lt;p&gt;While converting some INFO tables, I have received this error:&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/09/importerror1.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;Unable to encode the 38th item in the 65th record for the INFO file&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;While converting some INFO tables, I have received this error:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/09/importerror1.jpg?resize=630%2C255&#34; alt=&#34;ImportError&#34;&gt;&lt;/p&gt;
 &lt;p&gt;It turns out that Workstation can create export files that contain values that did not fit within their field–I&amp;rsquo;m guessing that somehow you are actually able to enter invalid values into those fields but I did not confirm that.&lt;/p&gt;
 &lt;p&gt;The error, &amp;lsquo;Unable to encode the 38th item in the 65th record…&amp;rsquo; was only partially helpful.  The error was in the 65th record but I was not able figure out which field contained the error.  The nature assumption that it was the 38th column was incorrect, at least if you are counting from left to right.  Whatever logic that is used, is consistent, at least within a specific table, because I had numerous records with problems and when the error messages indicated it was the same item, it did turn out to be the same field.&lt;/p&gt;
 &lt;p&gt;What I ended up having to do was open the export file in my favorite text editor, locating the info for problematic record and go through the columns one-by-one, comparing the value in the text file with that in the table.  In this case, 14.1 was suppose to be the value in the WP_TIO2 field.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://maprantala.com/wp-content/uploads/2010/09/testfile.jpg&#34;&gt;…&#39;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;One thing I noticed, and this is consistent with behavior I have observed in ArcObjects in other cases, is that the record with the invalid value in a field ends up with the same value in that field as the previous record.  So in this case, the bad record has a value of 1.12 in the WP_TIO2 field because that is what previous record has.   That leads me to believe that ArcObjects is re-using a variable as it does the import, just updating each value, field-by-field.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2010/09/badvalue.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/09/testfile.jpg?resize=630%2C352&#34; alt=&#34;TestFile&#34;&gt;&lt;/p&gt;
+&lt;p&gt;One thing I noticed, and this is consistent with behavior I have observed in ArcObjects in other cases, is that the record with the invalid value in a field ends up with the same value in that field as the previous record.  So in this case, the bad record has a value of 1.12 in the WP_TIO2 field because that is what previous record has.   That leads me to believe that ArcObjects is re-using a variable as it does the import, just updating each value, field-by-field.
+&lt;img src=&#34;https://maprantala.com/images/2010/09/badvalue.jpg?resize=630%2C100%22&#34; alt=&#34;BadValue&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Just to make sure that I had diagnosed the problem right, I attempted to change the value to 14.1 in an ArcMap edit session and got this message:&lt;br&gt;
-&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2010/09/editerror1.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;img src=&#34;https://maprantala.com/images/2010/09/editerror1.jpg?resize=630%2C196&#34; alt=&#34;EditError&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A look at the field properties confirmed that the field would not accept 14.1 as a value. The precision (3) means the field can hold 3 digits with 2 (the Scale) of them being right of the decimal point–leaving only one digit available to the left of the decimal point.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2010/09/filedproperties.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/09/filedproperties.jpg?resize=437%2C419&#34; alt=&#34;FiledProperties&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Once I identified the problem, I used two methods to correct it. The majority of my cases were actually cases where a psuedo-null value was being used to indicate that a field was really Null. In some cases, either -999.9 or 100 were being used. In these cases, I just substituted a different psuedo-null value (-99.9) that conformed to the field limitations. The data I was working with was not tightly controlled in the past and there were other existing records that used these value for the same fields, so I was able to do this without much concern.&lt;/p&gt;
 &lt;p&gt;Some values, however, were not nulls and I felt needed to be retained. These, I had to add a new field that could contain the values, copy the values over and then edit the ones that had caused problems during the import. Once complete, I exported the data to a new table with the new table structure I created.&lt;/p&gt;
 </description>

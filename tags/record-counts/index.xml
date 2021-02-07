@@ -10,10 +10,10 @@
     <atom:link href="https://maprantala.com/tags/record-counts/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Quick and Dirty arcpy: Field Listings</title>
-      <link>https://maprantala.com/2011/03/17/quick-and-dirty-arcpy-field-listings/</link>
+      <title>Quick &amp; Dirty arcpy: Field Listings</title>
+      <link>https://maprantala.com/2011/03/17/quick-dirty-arcpy-field-listings/</link>
       <pubDate>Thu, 17 Mar 2011 17:03:39 -0500</pubDate>
-      <guid>https://maprantala.com/2011/03/17/quick-and-dirty-arcpy-field-listings/</guid>
+      <guid>https://maprantala.com/2011/03/17/quick-dirty-arcpy-field-listings/</guid>
       <description>&lt;p&gt;I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven&amp;rsquo;t found it.  So, as is my nature, I decided to roll my own.&lt;/p&gt;
 &lt;p&gt;This is a &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip&#34;&gt;bare-bones script&lt;/a&gt; that iterates through the fields, printing the field name, type, width, and precision.  There are three optional features to it:&lt;/p&gt;
 &lt;ul&gt;
@@ -111,7 +111,7 @@ for lf in lfields:
  #I am using -999 as a flag to indicate a field type was not successfully
  #identified.
  if (lf.type == &amp;quot;Double&amp;quot;) or (lf.type == &amp;quot;Single&amp;quot;)&amp;amp;nbsp; or (lf.type == &amp;quot;Integer&amp;quot;) or (lf.type == &amp;quot;SmallInteger&amp;quot;):
-  queryString = &#39;&amp;quot;&#39;+lf.name + &#39;&amp;quot; &amp;amp;gt; 0&#39;
+  queryString = &#39;&amp;quot;&#39;+lf.name + &#39;&amp;quot; &amp;gt; 0&#39;
   rows = arcpy.SearchCursor(featureclass, queryString, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;)
  elif (lf.type == &amp;quot;String&amp;quot;):
   queryString = &#39;&amp;quot;&#39;+lf.name + &#39;&amp;quot; &amp;lt;&amp;gt; &#39; + &amp;quot;&#39;&#39;&amp;quot;

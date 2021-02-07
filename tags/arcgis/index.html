@@ -110,7 +110,7 @@ Working on doing some advanced ArcGIS server printingand had the need to batch c
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title title-submitted"><a href="/2014/12/03/quick-and-dirty-arcpy-listing-data-sources/">Quick and Dirty ArcPy: Listing Data Sources</a></h2>
+<h2 class="title title-submitted"><a href="/2014/12/03/quick-dirty-arcpy-listing-data-sources/">Quick &amp; Dirty ArcPy: Listing Data Sources</a></h2>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2014-12-03T08:05:10-06:00">3 December, 2014</time>
 </div>
@@ -118,7 +118,7 @@ Working on doing some advanced ArcGIS server printingand had the need to batch c
 </header>
 <div class="content">
 I just had the need to go through a directory containing many (100+) layer files (.lyr) and verify the data sources in each. I could have loaded each into ArcMap and checked the properties, but choose not to. Here&rsquo;s the bare-bones script I used instead:
-import arcpy, glob,os theDir = r&quot;L:\gdrs\data\org\us_mn_state_dnr\elev_minnesota_lidar\\&quot; os.chdir(theDir) for iFile in glob.glob(&quot;*.lyr&quot;): print iFile lyr = arcpy.mapping.Layer(iFile) for i in arcpy.mapping.ListLayers(lyr): try: print &quot; {0}: {1}&quot;.format(i,i.dataSource) except: print &quot; {0}: Does not support dataSource&quot;.
+import arcpy, glob,os theDir = r&#34;L:\gdrs\data\org\us_mn_state_dnr\elev_minnesota_lidar\\&#34; os.chdir(theDir) for iFile in glob.glob(&#34;*.lyr&#34;): print iFile lyr = arcpy.mapping.Layer(iFile) for i in arcpy.mapping.ListLayers(lyr): try: print &#34; {0}: {1}&#34;.format(i,i.dataSource) except: print &#34; {0}: Does not support dataSource&#34;.
 </div>
 </article>
 
@@ -139,7 +139,7 @@ After discovering missing data in our backups, I reconstructed what happened and
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title title-submitted"><a href="/2012/05/02/quick-#038-dirty-arcpy-autopan-arcmap-using-arcpy/">Quick &amp;#038; Dirty arcpy: Autopan ArcMap using arcpy</a></h2>
+<h2 class="title title-submitted"><a href="/2012/05/02/quick-dirty-arcpy-autopan-arcmap-using-arcpy/">Quick &amp; Dirty arcpy: Autopan ArcMap using arcpy</a></h2>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2012-05-02T05:19:40-05:00">2 May, 2012</time>
 </div>
@@ -195,7 +195,7 @@ I have been working on a python script that I want (NEED) to run as a scheduled 
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title title-submitted"><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./">Feature classes and Tables with names starting with &#39;nd_&#39;.</a></h2>
+<h2 class="title title-submitted"><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_/">Feature classes and Tables with names starting with &#39;nd_&#39;</a></h2>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-05-23T15:55:24-05:00">23 May, 2011</time>
 </div>

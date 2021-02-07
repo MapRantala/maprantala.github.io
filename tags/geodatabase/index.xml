@@ -10,29 +10,30 @@
     <atom:link href="https://maprantala.com/tags/geodatabase/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Feature classes and Tables with names starting with &#39;nd_&#39;.</title>
-      <link>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./</link>
+      <title>Feature classes and Tables with names starting with &#39;nd_&#39;</title>
+      <link>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_/</link>
       <pubDate>Mon, 23 May 2011 15:55:24 -0500</pubDate>
-      <guid>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./</guid>
+      <guid>https://maprantala.com/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_/</guid>
       <description>&lt;p&gt;Random luck me to discovering a bug related to feature classes whose names start with &amp;lsquo;nd_&#39;.  It appears that you are allowed to create feature classes starting with &amp;lsquo;nd_&amp;rsquo; but ArcCatalog will not display them.  Further research shows this behavior also occurs for table and for ArcSDE (PostGres) geodatabases,  personal geodatabase, and file geodatabases–I am using ArcCatalog 10.0.&lt;/p&gt;
 &lt;p&gt;I first noticed something odd was occurring while importing a series of shapefiles into a geodatabases.  After importing 15 shapefiles, I only had thirteen feature classes despite receiving no errors during the process.  The two shapefiles that failed to import were named ND_oil_and_gas.shp and ND_Bendix_Study.shp.  Subsequent attempts to import them individually returned an error &amp;lsquo;Invalid Target Name&amp;rsquo;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/05/invalidtargetname.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/05/invalidtargetname.png&#34; alt=&#34;Invalid Target Name&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I discovered in pgAdmin III (Postgres SDE Geodatabase) that the table existed and there was an entry in sde.sde_layers for the feature class but ArcCatalog refused to show it.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2011/05/nd_2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/05/nd_2.png&#34; alt=&#34;nd_&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I used some un-supported methods to try to resolve the problem and despite some sweating, I failed to find a way to get ArcCatalog to display these feature classes.  I did, however, at least found a way to delete them–arcpy can detect that the feature classes exists so it is able to delete them.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2011/05/arcpy_delete.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/05/arcpy_delete.png&#34; alt=&#34;arcpy.delete_management&#34;&gt;&lt;/p&gt;
 &lt;p&gt;At least by deleting them, I can prevent leaving &amp;lsquo;invisible&amp;rsquo; feature classes from hanging out in my geodatabase.&lt;/p&gt;
-&lt;p&gt;I suspect the problems stems from how ESRI has implemented the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002p0000007m000000.htm&#34;&gt;Network dataset table-naming structure&lt;/a&gt; –dirty areas are stored in tables named &lt;em&gt;nd_&lt;!-- raw HTML omitted --&gt;_dirtyareas _ and &lt;em&gt;nd_&lt;!-- raw HTML omitted --&gt;_dirtyobjects&lt;/em&gt;.  Possibly the developer  working on the ArcCatalog GUI ended up suppressing showing feature classes and tables whose names start with &amp;lsquo;nd&lt;/em&gt;&amp;rsquo;.&lt;/p&gt;
+&lt;p&gt;I suspect the problems stems from how ESRI has implemented the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//002p0000007m000000.htm&#34;&gt;Network dataset table-naming structure&lt;/a&gt; –dirty areas are stored in tables named _nd__dirtyareas and &lt;em&gt;nd__dirtyobjects. Possibly the developer  working on the ArcCatalog GUI ended up suppressing showing feature classes and tables whose names start with &amp;lsquo;nd&lt;/em&gt;&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;And, just for posterity&amp;rsquo;s sake, here is a python code snippet listing the feature classes in a workspace:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;import arcpy&lt;/p&gt;
-&lt;p&gt;arcpy.env.workspace = &amp;lsquo;c:/temp/_nd/F.gdb&amp;rsquo;&lt;/p&gt;
-&lt;p&gt;print arcpy.env.workspace&lt;br&gt;
-for fc in arcpy.ListFeatureClasses():&lt;br&gt;
-print fc&lt;/p&gt;
-&lt;p&gt;print &amp;lsquo;Done!&amp;rsquo;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; arcpy
+ 
+arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;env&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;workspace &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;c:/temp/_nd/F.gdb&amp;#39;&lt;/span&gt;
+ 
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;env&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;workspace  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; fc &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ListFeatureClasses():  
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; fc
+ 
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Done!&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
     
@@ -56,7 +57,7 @@ print fc&lt;/p&gt;
       <description>&lt;p&gt;I was making an edit (adding leading &amp;lsquo;0&amp;rsquo;s) to a coded-value domain in an SDE database and realized that my edits were changing the order of the rows of my domain.  Rows were moved to the bottom of the list when they were edited.&lt;/p&gt;
 &lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
 &lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2011/03/failedtodeletedomain.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/03/failedtodeletedomain.png&#34; alt=&#34;The domain is used as a default domain.&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The Google Machine led me to an &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=985&amp;amp;t=303616&#34;&gt;ArcForums post&lt;/a&gt; by  with some python code for listing all the fields with a domain.&lt;/p&gt;
 &lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the ‘listfc(&#39;&#39;)&amp;rsquo; line that is the first line of the def listds() module.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import arcpy
@@ -74,7 +75,7 @@ def listfc(inDataset):
 lfields=arcpy.ListFields(f)
 
 for lf in lfields:
-   if lf.domain &amp;amp;lt; &amp;quot;&amp;quot;:
+   if lf.domain &amp;lt; &amp;quot;&amp;quot;:
       print &amp;quot;      domain&amp;quot;,f, lf.name, lf.domain
 
 def listds():

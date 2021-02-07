@@ -27,19 +27,19 @@
     &lt;span style=&#34;color:#75715e&#34;&gt;#http://local.wasp.uwa.edu.au/~pbourke/geometry/pointline/source.vba&lt;/span&gt;
     LineMag &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(x1, y1, x2, y2)
 
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; LineMag &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00000001&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; LineMag &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00000001&lt;/span&gt;:
         DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9999&lt;/span&gt;
         &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; DistancePointLine
 
     u1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (((px &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (x2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1)) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; ((py &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (y2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1)))
     u &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; u1 &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (LineMag &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; LineMag)
 
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00001&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00001&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
         &lt;span style=&#34;color:#75715e&#34;&gt;#// closest point does not fall within the line segment, take the shorter distance&lt;/span&gt;
         &lt;span style=&#34;color:#75715e&#34;&gt;#// to an endpoint&lt;/span&gt;
         ix &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(px, py, x1, y1)
         iy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(px, py, x2, y2)
-        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ix &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;gt; iy:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ix &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; iy:
             DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; iy
         &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
             DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ix

@@ -126,19 +126,19 @@ Tags:
     <span style="color:#75715e">#http://local.wasp.uwa.edu.au/~pbourke/geometry/pointline/source.vba</span>
     LineMag <span style="color:#f92672">=</span> lineMagnitude(x1, y1, x2, y2)
 
-    <span style="color:#66d9ef">if</span> LineMag <span style="color:#f92672">&amp;</span>lt; <span style="color:#ae81ff">0.00000001</span>:
+    <span style="color:#66d9ef">if</span> LineMag <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.00000001</span>:
         DistancePointLine <span style="color:#f92672">=</span> <span style="color:#ae81ff">9999</span>
         <span style="color:#66d9ef">return</span> DistancePointLine
 
     u1 <span style="color:#f92672">=</span> (((px <span style="color:#f92672">-</span> x1) <span style="color:#f92672">*</span> (x2 <span style="color:#f92672">-</span> x1)) <span style="color:#f92672">+</span> ((py <span style="color:#f92672">-</span> y1) <span style="color:#f92672">*</span> (y2 <span style="color:#f92672">-</span> y1)))
     u <span style="color:#f92672">=</span> u1 <span style="color:#f92672">/</span> (LineMag <span style="color:#f92672">*</span> LineMag)
 
-    <span style="color:#66d9ef">if</span> (u <span style="color:#f92672">&amp;</span>lt; <span style="color:#ae81ff">0.00001</span>) <span style="color:#f92672">or</span> (u <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">1</span>):
+    <span style="color:#66d9ef">if</span> (u <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.00001</span>) <span style="color:#f92672">or</span> (u <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>):
         <span style="color:#75715e">#// closest point does not fall within the line segment, take the shorter distance</span>
         <span style="color:#75715e">#// to an endpoint</span>
         ix <span style="color:#f92672">=</span> lineMagnitude(px, py, x1, y1)
         iy <span style="color:#f92672">=</span> lineMagnitude(px, py, x2, y2)
-        <span style="color:#66d9ef">if</span> ix <span style="color:#f92672">&amp;</span>gt; iy:
+        <span style="color:#66d9ef">if</span> ix <span style="color:#f92672">&gt;</span> iy:
             DistancePointLine <span style="color:#f92672">=</span> iy
         <span style="color:#66d9ef">else</span>:
             DistancePointLine <span style="color:#f92672">=</span> ix

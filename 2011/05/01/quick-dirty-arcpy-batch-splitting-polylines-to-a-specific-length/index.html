@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length. – Node Dangles</title>
+<title>Quick &amp; Dirty arcpy: Batch Splitting Polylines to a Specific Length – Node Dangles</title>
 <meta name="description" content="For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would …">
 <meta name="created" content="2011-05-01T05:01:50-0500">
 <meta name="modified" content="2011-05-01T05:01:50-0500">
 <meta name="author" content="Matt">
 <meta name="contact" content="webmaster@maprantala.com">
 <meta property="og:site_name" content="Node Dangles">
-<meta property="og:title" content="Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length.">
-<meta property="og:url" content="https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./">
+<meta property="og:title" content="Quick &amp; Dirty arcpy: Batch Splitting Polylines to a Specific Length">
+<meta property="og:url" content="https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/">
 <meta property="og:type" content="article">
 
 <meta name="generator" content="Hugo 0.80.0" />
@@ -19,7 +19,7 @@
 <meta name="theme-color" content="#ffffff">
 
 
-<link rel="canonical" href="https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./">
+<link rel="canonical" href="https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -33,10 +33,10 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length.",
+    "headline": "Quick \u0026 Dirty arcpy: Batch Splitting Polylines to a Specific Length",
     "datePublished": "2011-05-01T05:01:50-05:00",
     "dateModified": "2011-05-01T05:01:50-05:00",
-    "url" : "https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./",
+    "url" : "https://maprantala.com/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/",
     "description": "For some odd reason, I wanted to split all the arcs in a polyline feature class to a specific length–if a specific feature was longer than the target length, it would …",
     "keywords": ["arcgis","arcgis 10","ArcObjects","arcpy","ArcScripts","arctoolbox","ESRI","geoprocessing","polylines","python"],
     "author": {
@@ -98,7 +98,7 @@ StatCounter"></a></div></noscript>
 <main class="main layout__main">
 <article class="section-posts single-view">
 <header>
-<h1 class="title title-submitted">Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length.</h1>
+<h1 class="title title-submitted">Quick &amp; Dirty arcpy: Batch Splitting Polylines to a Specific Length</h1>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-05-01T05:01:50-05:00">1 May, 2011</time>
 </div>
@@ -137,7 +137,7 @@ def printit(inMessage):
 &amp;nbsp;&amp;nbsp;&amp;nbsp; print inMessage
 &amp;nbsp;&amp;nbsp;&amp;nbsp; arcpy.AddMessage(inMessage)
 
-if len(sys.argv) &amp;gt; 1:
+if len(sys.argv) &gt; 1:
 &amp;nbsp;&amp;nbsp;&amp;nbsp; inFC = sys.argv[1]
 &amp;nbsp;&amp;nbsp;&amp;nbsp; outFC = sys.argv[2]
 &amp;nbsp;&amp;nbsp;&amp;nbsp; alongDistin = sys.argv[3]
@@ -176,7 +176,7 @@ def splitShape(feat,splitDist):
 &amp;nbsp;&amp;nbsp;&amp;nbsp; #
 &amp;nbsp;&amp;nbsp;&amp;nbsp; lineArray = arcpy.Array()
 
-&amp;nbsp;&amp;nbsp;&amp;nbsp; while partnum &amp;lt; partcount:
+&amp;nbsp;&amp;nbsp;&amp;nbsp; while partnum &lt; partcount:
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; # Print the part number
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; #
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; #print &quot;Part &quot; + str(partnum) + &quot;:&quot;
@@ -201,8 +201,8 @@ def splitShape(feat,splitDist):
 
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; print thisDist, totalDist, maxAdditionalDist
 
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; if (totalDist+thisDist)&amp;gt; splitDist:
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; while(totalDist+thisDist) &amp;gt; splitDist:
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; if (totalDist+thisDist)&gt; splitDist:
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; while(totalDist+thisDist) &gt; splitDist:
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; maxAdditionalDist = splitDist - totalDist
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; #print thisDist, totalDist, maxAdditionalDist
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; newpoint = midpoint(prevpoint,pnt,maxAdditionalDist,thisDist)
@@ -239,7 +239,7 @@ def splitShape(feat,splitDist):
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; print &quot;Interior Ring:&quot;
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; partnum += 1
 
-&amp;nbsp;&amp;nbsp;&amp;nbsp; if (lineArray.count &amp;gt; 1):
+&amp;nbsp;&amp;nbsp;&amp;nbsp; if (lineArray.count &gt; 1):
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; shapelist.append(lineArray)
 
 &amp;nbsp;&amp;nbsp;&amp;nbsp; return shapelist
@@ -278,11 +278,11 @@ for iInRow in inputRows:
 &amp;nbsp;&amp;nbsp;&amp;nbsp; inGeom = iInRow.shape
 &amp;nbsp;&amp;nbsp;&amp;nbsp; iCounter+=1
 &amp;nbsp;&amp;nbsp;&amp;nbsp; iCounter2+=1&amp;nbsp;&amp;nbsp; &amp;nbsp;
-&amp;nbsp;&amp;nbsp;&amp;nbsp; if (iCounter2 &amp;gt; (OnePercentThreshold+0)):
+&amp;nbsp;&amp;nbsp;&amp;nbsp; if (iCounter2 &gt; (OnePercentThreshold+0)):
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; printit(&quot;Processing Record &quot;+str(iCounter) + &quot; of &quot;+ str(numRecords))
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; iCounter2=0
 
-&amp;nbsp;&amp;nbsp;&amp;nbsp; if (inGeom.length &amp;gt; alongDist):
+&amp;nbsp;&amp;nbsp;&amp;nbsp; if (inGeom.length &gt; alongDist):
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; shapeList = splitShape(iInRow.shape,alongDist)
 
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; for itmp in shapeList:

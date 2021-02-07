@@ -123,11 +123,11 @@ Tags:
 <p>But this new application contains more domains than any of other datasets so it was time to find a better solution. ESRI does have a <a href="http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm">Domain Sort</a> Developer Sample.  It, however, did <a href="http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm">not play nice</a> with ArcGIS 10.</p>
 <p>So I went ahead and update it from VB 6 to VB.Net/ArcObjects 10.  I made an <a href="http://dl.dropbox.com/u/22241283/NodeDangles/DomainSorter.esriAddIn">Add-In</a> that can be installed by downloading the .esriaddin file and double-clicking on it.  The <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20120321_DomainSort.zip">source code</a> is also available.</p>
 <p>This will add an ArcCatalog Toolbar that can be added by going to Customize-Toolbars-Domain Sorter Toolbar.</p>
-<p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_1.png"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/04/ds_1.png" alt="Sort Domain-Add Toolbar"></p>
 <p>This will add a toolbar with one button.  The button enables whenever you select a geodatabase with at least one coded-value domain.</p>
-<p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_2.png"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/04/ds_2.png" alt="Domain Sorter Button"></p>
 <p>This brings up a Windows form that lets you sort any domain by either the code or description, ascending or descending.  Once you hit &lsquo;OK&rsquo; it re-sorts your domain.</p>
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/04/ds_3.png"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/04/ds_3.png" alt="Domain Sorter Dialog"></p>
 <p>The only problem I have had is that only the owner of a domain is allowed to edit it on an SDE geodatabase.</p>
 <p>But other than that, the button allows you to easily keep your domains sorted.</p>
 <p><!-- raw HTML omitted --><a href="http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm">http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm</a><!-- raw HTML omitted --></p>

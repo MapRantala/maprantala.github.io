@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Multiple geodatabases and ArcSDE services from one PostgreSQL server. – Node Dangles</title>
+<title>Multiple geodatabases and ArcSDE services from one PostgreSQL server – Node Dangles</title>
 <meta name="description" content="To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 …">
 <meta name="created" content="2011-02-17T18:22:07-0600">
 <meta name="modified" content="2011-02-17T18:22:07-0600">
 <meta name="author" content="Matt">
 <meta name="contact" content="webmaster@maprantala.com">
 <meta property="og:site_name" content="Node Dangles">
-<meta property="og:title" content="Multiple geodatabases and ArcSDE services from one PostgreSQL server.">
-<meta property="og:url" content="https://maprantala.com/2011/02/17/multiple-geodatabases-and-arcsde-services-from-one-postgresql-server./">
+<meta property="og:title" content="Multiple geodatabases and ArcSDE services from one PostgreSQL server">
+<meta property="og:url" content="https://maprantala.com/2011/02/17/multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/">
 <meta property="og:type" content="article">
 
 <meta name="generator" content="Hugo 0.80.0" />
@@ -19,7 +19,7 @@
 <meta name="theme-color" content="#ffffff">
 
 
-<link rel="canonical" href="https://maprantala.com/2011/02/17/multiple-geodatabases-and-arcsde-services-from-one-postgresql-server./">
+<link rel="canonical" href="https://maprantala.com/2011/02/17/multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -33,10 +33,10 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "Multiple geodatabases and ArcSDE services from one PostgreSQL server.",
+    "headline": "Multiple geodatabases and ArcSDE services from one PostgreSQL server",
     "datePublished": "2011-02-17T18:22:07-06:00",
     "dateModified": "2011-02-17T18:22:07-06:00",
-    "url" : "https://maprantala.com/2011/02/17/multiple-geodatabases-and-arcsde-services-from-one-postgresql-server./",
+    "url" : "https://maprantala.com/2011/02/17/multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/",
     "description": "To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 …",
     "keywords": ["arcgis","arcgis 10","ArcSDE","ArcSDE Post Installation","ArcSDE Service","ESRI","PostGreSQL","Windows Server 2008 R2"],
     "author": {
@@ -98,7 +98,7 @@ StatCounter"></a></div></noscript>
 <main class="main layout__main">
 <article class="section-posts single-view">
 <header>
-<h1 class="title title-submitted">Multiple geodatabases and ArcSDE services from one PostgreSQL server.</h1>
+<h1 class="title title-submitted">Multiple geodatabases and ArcSDE services from one PostgreSQL server</h1>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-02-17T18:22:07-06:00">17 February, 2011</time>
 </div>
@@ -126,29 +126,29 @@ Tags:
 <li>Tablespace folder: D:mgsdb1dmgsgdb_lidar</li>
 </ul>
 <p>Following ESRI&rsquo;s instructions, I first made custom copies of dbinit.sde, dbtune.sde, and giomgr.defs that contain the service name (mgs1_sde) within the file name.  These copies were named dbinit_mgs1_sde.sde, dbtune_mgs1_sde.sde, and giomgr_mgs1_sde.defs.</p>
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/files1.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/files1.jpg" alt="Custom Files"></p>
 <p>When I have trouble with the ArcSDE Post Installation, I like to go through the four steps individually so I select a &lsquo;Custom&rsquo; install.</p>
-<p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/custom.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/custom.jpg" alt="Custom Setup"></p>
 <p>The four steps making up the ArcSDE Post Installation process are shown on the next dialog.</p>
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/steps.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/steps.jpg" alt="Individual Steps"></p>
 <p>I was able to complete the first step, Define SDE User Environment, without any problems.</p>
 <p>Make sure to set your database name, default tablespace, and tablespace folders are distinct from your first installation.</p>
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/databaseinfo.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/databaseinfo.jpg" alt="Database name and workspace"></p>
 <p>During the second step of the ArcSDE Post Installation process, Repository Setup, make sure to use the custom files you made earlier when you come to the ArcSDE configuratino files dialog.</p>
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/customfiles.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/customfiles.jpg" alt="Custom Files"></p>
 <p>Later in the Repository Setup, make sure to use the correct database name:</p>
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/step2-databasename.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/step2-databasename.jpg" alt="Step2, Set Database Name"></p>
 <p>This is the first error message I received in the process (still during Repository Setup):</p>
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2011/02/viewerror.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/viewerror.jpg" alt="View Error"></p>
 <p>Clicking &lsquo;Yes&rsquo;, however, shows an empty wise_err.log file:</p>
-<p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/02/emptylog.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/emptylog.jpg" alt="Empty Log"></p>
 <p>After viewing this, I canceled out of the Repository Setup step.</p>
 <p>Taking a look in pgAdmin III, however, I can see that both my database (mgsgdb_lidar) and tablespace (mgsgdb_lidar) were created:</p>
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/step2-inpgadminiii.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/step2-inpgadminiii.jpg" alt="pgAdminIII"></p>
 <p>I received the same error message during the third step, Authorize ArcSDE, as in the second step:</p>
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/step3error.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/step3error.jpg" alt="Step 3 Error"></p>
 <p>But running the fourth step, Create ArcSDE Service, resulted in this sweet message:</p>
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/02/success.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/02/success.jpg" alt="Success"></p>
 <p>After editing my pg_hba.conf and opening the port in my firewall, the service was created, running, and visible.  So far, it seems to be fully functional and without problems.</p>
 <!-- raw HTML omitted -->
 

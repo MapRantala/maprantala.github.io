@@ -142,7 +142,7 @@ From ESRI&rsquo;s Help, SDEINTERCEPT specifies what activity to log and SDEINTER
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title title-submitted"><a href="/2012/05/02/quick-#038-dirty-arcpy-autopan-arcmap-using-arcpy/">Quick &amp;#038; Dirty arcpy: Autopan ArcMap using arcpy</a></h2>
+<h2 class="title title-submitted"><a href="/2012/05/02/quick-dirty-arcpy-autopan-arcmap-using-arcpy/">Quick &amp; Dirty arcpy: Autopan ArcMap using arcpy</a></h2>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2012-05-02T05:19:40-05:00">2 May, 2012</time>
 </div>
@@ -223,13 +223,13 @@ The python parser is actually pretty good at casting values on the fly so if the
 As contributor of the day, Jason Scheirer, pointed out, python has a simple, direct way to browse through the subdirectories of a directory–os.walk
 Here is a bare-bones example of using it to print out the subdirectories in a path. The files variable of the 3-tuple is a list of files similar to the dirs variable that I loop through.
 Thanks Jason for pointing out something I missed.
-import os theDir = 'c:/temp/' for root, dirs, files in os.
+import os theDir = &#39;c:/temp/&#39; for root, dirs, files in os.
 </div>
 </article>
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title title-submitted"><a href="/2012/03/13/quick-and-dirty-python-recursive-folder-search/">Quick and Dirty python recursive folder search</a></h2>
+<h2 class="title title-submitted"><a href="/2012/03/13/quick-dirty-python-recursive-folder-search/">Quick &amp; Dirty python recursive folder search</a></h2>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2012-03-13T15:55:55-05:00">13 March, 2012</time>
 </div>
@@ -237,8 +237,7 @@ import os theDir = 'c:/temp/' for root, dirs, files in os.
 </header>
 <div class="content">
 Someone asked how to have python recursively search a folder structure. There may be a better way but this is how I typically do it–it basically starts with one directory and loops through the contents compiling a list of sub-directories as it goes through the contents.
-
-import glob, os theDir = 'c:/temp/' theDirList = [] theDirList.append(theDir) while len(theDirList) &amp;gt; 0: newDirList = [] for iDir in theDirList: print iDir for iFile in glob.
+import glob, os theDir = &#39;c:/temp/&#39; theDirList = [] theDirList.append(theDir) while len(theDirList)&gt; 0: newDirList = [] for iDir in theDirList: print iDir for iFile in glob.
 </div>
 </article>
 

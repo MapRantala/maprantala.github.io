@@ -122,13 +122,13 @@ Tags:
 <p>Failed to connect to the specified server.</p>
 <p>This release of the GeoDatabase is either invalid or out of date. [Please run the</p>
 <p>ArcSDE setup utility using the -o install option.]</p>
-<p>DBMS table not found[sde.sde.GDB_Release]</p>
+<p>DBMS table not found [sde.sde.GDB_Release]</p>
 </blockquote>
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2011/01/connecterror2.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2011/01/connecterror2.jpg" alt="ConnectError2"></p>
 <p> </p>
 <p>Turns out the solution was simple, this <a href="http://resources.arcgis.com/content/kbase?fa=articleShow&amp;d=37385">article</a> points out that <a href="http://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;PID=17&amp;MetaID=1620">Service pack 2</a> is required.  After updating my ArcGIS, the problem was solved:</p>
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2011/01/errormessage.jpg"><!-- raw HTML omitted --></a></p>
-<p>I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that <a href="http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server">9.3.1 and older versions of ArcGIS</a> are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&rsquo;s <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/">clear information</a> on this topic.  At least I never actually tried to install ArcSDe with the -o option as the first error message instructed me to do.</p>
+<p><img src="/images/2011/01/errormessage.jpg" alt="ErrorMessage"></p>
+<p>I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that <a href="http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server">9.3.1 and older versions of ArcGIS</a> are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&rsquo;s <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/">clear information</a> on this topic.  At least I never actually tried to install ArcSDE with the -o option as the first error message instructed me to do.</p>
 <!-- raw HTML omitted -->
 
 

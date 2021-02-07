@@ -116,113 +116,113 @@ Tags:
 <p>One of the benefits of working for the public sector is that I can more freely publish code without worrying about &lsquo;trade secrets&rsquo; or what have you so I thought I would put my code out for anyone to see, maybe someone will find it useful.  It is split into two separate files, mostly because I used <!-- raw HTML omitted -->Model Builder<!-- raw HTML omitted --> to generate the main processing chunk of code (Project_Reclassify.py) and another script to control looping, etc. The code isn&rsquo;t pretty and you&rsquo;ll see the results of my development process with two subroutines in LaunchScript.py that could really be one.</p>
 <h3 id="heading"></h3>
 <h3 id="launchscriptpy">LaunchScript.py</h3>
-<pre><code>import Project_Reclassify
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> Project_Reclassify
 
-mConversion = &quot;3.28084&quot;
-mProjection = &quot;PROJCS['NAD_1983_UTM_Zone_15N',GEOGCS['GCS_North_American_1983',DATUM['D_North_American_1983',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-93.0],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0.0],UNIT['Meter',1.0]]&quot;
-mCellSize = &quot;10&quot;
+mConversion <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;3.28084&#34;</span>
+mProjection <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;PROJCS[&#39;NAD_1983_UTM_Zone_15N&#39;,GEOGCS[&#39;GCS_North_American_1983&#39;,DATUM[&#39;D_North_American_1983&#39;,SPHEROID[&#39;GRS_1980&#39;,6378137.0,298.257222101]],PRIMEM[&#39;Greenwich&#39;,0.0],UNIT[&#39;Degree&#39;,0.0174532925199433]],PROJECTION[&#39;Transverse_Mercator&#39;],PARAMETER[&#39;False_Easting&#39;,500000.0],PARAMETER[&#39;False_Northing&#39;,0.0],PARAMETER[&#39;Central_Meridian&#39;,-93.0],PARAMETER[&#39;Scale_Factor&#39;,0.9996],PARAMETER[&#39;Latitude_Of_Origin&#39;,0.0],UNIT[&#39;Meter&#39;,1.0]]&#34;</span>
+mCellSize <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;10&#34;</span>
 
-#Project_Reclassify.Process(&quot;C:\mgs\Projects\NED_10m\n44w092\grdn44w092_13&quot;, mProjection, mConversion,&quot;C:\mgs\Projects\NED_10m\n44w092\try30&quot;,mCellSize)
+<span style="color:#75715e">#Project_Reclassify.Process(&#34;C:\mgs\Projects\NED_10m\n44w092\grdn44w092_13&#34;, mProjection, mConversion,&#34;C:\mgs\Projects\NED_10m\n44w092\try30&#34;,mCellSize)</span>
 
-def CallIt (inDir,inGrid,outGrid):
-fullinFN = inDir+'\'+inGrid
-fulloutFN = 'C:\mgs\Projects\NED_10m\Output\'+outGrid
-tmpGridFN = 'c:\temp\t'+outGrid
-Project_Reclassify.Process(fullinFN, mProjection, mConversion,fulloutFN,mCellSize,tmpGridFN)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">CallIt</span> (inDir,inGrid,outGrid):
+fullinFN <span style="color:#f92672">=</span> inDir<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\&#39;</span><span style="color:#e6db74">+inGrid</span>
+fulloutFN <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;C:\mgs\Projects\NED_10m\Output</span><span style="color:#ae81ff">\&#39;</span><span style="color:#e6db74">+outGrid</span>
+tmpGridFN <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;c:</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">emp</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">+</span>outGrid
+Project_Reclassify<span style="color:#f92672">.</span>Process(fullinFN, mProjection, mConversion,fulloutFN,mCellSize,tmpGridFN)
 
-def CallIt2 (inGrd,inoutGrd):
-outDir = 'C:\mgs\Projects\NED_10m\' + inGrd + '\' + inGrd
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">CallIt2</span> (inGrd,inoutGrd):
+outDir <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;C:\mgs\Projects\NED_10m</span><span style="color:#ae81ff">\&#39;</span><span style="color:#e6db74"> + inGrd + &#39;</span>\<span style="color:#e6db74">&#39; + inGrd</span>
 
-outGrd = 'grd'+inGrd+'_13'
+outGrd <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;grd&#39;</span><span style="color:#f92672">+</span>inGrd<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;_13&#39;</span>
 
 CallIt(outDir,outGrd,inoutGrd)
 
-#CallIt2(&quot;n44w092&quot;,&quot;LaCrosse_W&quot;)
-CallIt2(&quot;n44w093&quot;,&quot;MasonCity_E&quot;)
-CallIt2(&quot;n44w094&quot;,&quot;MasonCity_W&quot;)
-CallIt2(&quot;n44w095&quot;,&quot;Fairmont_E&quot;)
-CallIt2(&quot;n44w096&quot;,&quot;Fairmont_W&quot;)
-CallIt2(&quot;n44w097&quot;,&quot;SiouxFalls_E&quot;)
-#CallIt2(&quot;n45w092&quot;,&quot;EauClaire_W&quot;)
-CallIt2(&quot;n45w093&quot;,&quot;StPaul_E&quot;)
-CallIt2(&quot;n45w094&quot;,&quot;StPaul_W&quot;)
-CallIt2(&quot;n45w095&quot;,&quot;NewUlm_E&quot;)
-CallIt2(&quot;n45w096&quot;,&quot;NewUlm_W&quot;)
-CallIt2(&quot;n45w097&quot;,&quot;Watertown_E&quot;)
-#CallIt2(&quot;n46w093&quot;,&quot;Stillwater_E&quot;)
-#CallIt2(&quot;n46w094&quot;,&quot;Stillwater_W&quot;)
-#CallIt2(&quot;n46w095&quot;,&quot;StCloud_E&quot;)
-CallIt2(&quot;n46w096&quot;,&quot;StCloud_W&quot;)
-CallIt2(&quot;n46w097&quot;,&quot;Milbank_E&quot;)
-#CallIt2(&quot;n47w092&quot;,&quot;Ashland_W&quot;)
-#CallIt2(&quot;n47w093&quot;,&quot;Duluth_E&quot;)
-CallIt2(&quot;n47w094&quot;,&quot;Duluth_W&quot;)
-CallIt2(&quot;n47w095&quot;,&quot;Brainerd_E&quot;)
-CallIt2(&quot;n47w096&quot;,&quot;Brainerd_W&quot;)
-CallIt2(&quot;n47w097&quot;,&quot;Fargo_E&quot;)
-#CallIt2(&quot;n48w090&quot;,&quot;Hancock_W&quot;)
-#CallIt2(&quot;n48w091&quot;,&quot;TwoHarbors_E&quot;)
-#CallIt2(&quot;n48w092&quot;,&quot;TwoHarbors_W&quot;)
-#CallIt2(&quot;n48w093&quot;,&quot;Hibbing_E&quot;)
-#CallIt2(&quot;n48w094&quot;,&quot;Hibbing_W&quot;)
-CallIt2(&quot;n48w095&quot;,&quot;Bemidji_E&quot;)
-CallIt2(&quot;n48w096&quot;,&quot;Bemidji_W&quot;)
-CallIt2(&quot;n48w097&quot;,&quot;GrandForks_E&quot;)
-#CallIt2(&quot;n48w098&quot;,&quot;GrandForks_W&quot;)
-#CallIt2(&quot;n49w090&quot;,&quot;ThunderBay_W&quot;)
-#CallIt2(&quot;n49w091&quot;,&quot;Quetico_E&quot;)
-#CallIt2(&quot;n49w092&quot;,&quot;Quetico_W&quot;)
-#CallIt2(&quot;n49w093&quot;,&quot;InternationFalls_E&quot;)
-#CallIt2(&quot;n49w094&quot;,&quot;InternationFalls_W&quot;)
-CallIt2(&quot;n49w095&quot;,&quot;Roseau_E&quot;)
-CallIt2(&quot;n49w096&quot;,&quot;Roseau_W&quot;)
-#CallIt2(&quot;n49w097&quot;,&quot;ThiefRiverFalls_E&quot;)
-CallIt2(&quot;n49w098&quot;,&quot;ThiefRiverFalls_W&quot;)
-#CallIt2(&quot;n50w095&quot;,&quot;Kenora_E&quot;)
-#CallIt2(&quot;n50w096&quot;,&quot;Kenora_W&quot;)
-</code></pre><h3 id="projectreclassifypy">Project.Reclassify.py</h3>
-<pre><code># Import system modules
-import sys, string, os, arcgisscripting
+<span style="color:#75715e">#CallIt2(&#34;n44w092&#34;,&#34;LaCrosse_W&#34;)</span>
+CallIt2(<span style="color:#e6db74">&#34;n44w093&#34;</span>,<span style="color:#e6db74">&#34;MasonCity_E&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n44w094&#34;</span>,<span style="color:#e6db74">&#34;MasonCity_W&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n44w095&#34;</span>,<span style="color:#e6db74">&#34;Fairmont_E&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n44w096&#34;</span>,<span style="color:#e6db74">&#34;Fairmont_W&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n44w097&#34;</span>,<span style="color:#e6db74">&#34;SiouxFalls_E&#34;</span>)
+<span style="color:#75715e">#CallIt2(&#34;n45w092&#34;,&#34;EauClaire_W&#34;)</span>
+CallIt2(<span style="color:#e6db74">&#34;n45w093&#34;</span>,<span style="color:#e6db74">&#34;StPaul_E&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n45w094&#34;</span>,<span style="color:#e6db74">&#34;StPaul_W&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n45w095&#34;</span>,<span style="color:#e6db74">&#34;NewUlm_E&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n45w096&#34;</span>,<span style="color:#e6db74">&#34;NewUlm_W&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n45w097&#34;</span>,<span style="color:#e6db74">&#34;Watertown_E&#34;</span>)
+<span style="color:#75715e">#CallIt2(&#34;n46w093&#34;,&#34;Stillwater_E&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n46w094&#34;,&#34;Stillwater_W&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n46w095&#34;,&#34;StCloud_E&#34;)</span>
+CallIt2(<span style="color:#e6db74">&#34;n46w096&#34;</span>,<span style="color:#e6db74">&#34;StCloud_W&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n46w097&#34;</span>,<span style="color:#e6db74">&#34;Milbank_E&#34;</span>)
+<span style="color:#75715e">#CallIt2(&#34;n47w092&#34;,&#34;Ashland_W&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n47w093&#34;,&#34;Duluth_E&#34;)</span>
+CallIt2(<span style="color:#e6db74">&#34;n47w094&#34;</span>,<span style="color:#e6db74">&#34;Duluth_W&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n47w095&#34;</span>,<span style="color:#e6db74">&#34;Brainerd_E&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n47w096&#34;</span>,<span style="color:#e6db74">&#34;Brainerd_W&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n47w097&#34;</span>,<span style="color:#e6db74">&#34;Fargo_E&#34;</span>)
+<span style="color:#75715e">#CallIt2(&#34;n48w090&#34;,&#34;Hancock_W&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n48w091&#34;,&#34;TwoHarbors_E&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n48w092&#34;,&#34;TwoHarbors_W&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n48w093&#34;,&#34;Hibbing_E&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n48w094&#34;,&#34;Hibbing_W&#34;)</span>
+CallIt2(<span style="color:#e6db74">&#34;n48w095&#34;</span>,<span style="color:#e6db74">&#34;Bemidji_E&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n48w096&#34;</span>,<span style="color:#e6db74">&#34;Bemidji_W&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n48w097&#34;</span>,<span style="color:#e6db74">&#34;GrandForks_E&#34;</span>)
+<span style="color:#75715e">#CallIt2(&#34;n48w098&#34;,&#34;GrandForks_W&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n49w090&#34;,&#34;ThunderBay_W&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n49w091&#34;,&#34;Quetico_E&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n49w092&#34;,&#34;Quetico_W&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n49w093&#34;,&#34;InternationFalls_E&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n49w094&#34;,&#34;InternationFalls_W&#34;)</span>
+CallIt2(<span style="color:#e6db74">&#34;n49w095&#34;</span>,<span style="color:#e6db74">&#34;Roseau_E&#34;</span>)
+CallIt2(<span style="color:#e6db74">&#34;n49w096&#34;</span>,<span style="color:#e6db74">&#34;Roseau_W&#34;</span>)
+<span style="color:#75715e">#CallIt2(&#34;n49w097&#34;,&#34;ThiefRiverFalls_E&#34;)</span>
+CallIt2(<span style="color:#e6db74">&#34;n49w098&#34;</span>,<span style="color:#e6db74">&#34;ThiefRiverFalls_W&#34;</span>)
+<span style="color:#75715e">#CallIt2(&#34;n50w095&#34;,&#34;Kenora_E&#34;)</span>
+<span style="color:#75715e">#CallIt2(&#34;n50w096&#34;,&#34;Kenora_W&#34;)</span>
+</code></pre></div><h3 id="projectreclassifypy">Project.Reclassify.py</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Import system modules</span>
+<span style="color:#f92672">import</span> sys<span style="color:#f92672">,</span> string<span style="color:#f92672">,</span> os<span style="color:#f92672">,</span> arcgisscripting
 
-# Create the Geoprocessor object
-gp = arcgisscripting.create()
+<span style="color:#75715e"># Create the Geoprocessor object</span>
+gp <span style="color:#f92672">=</span> arcgisscripting<span style="color:#f92672">.</span>create()
 
-# Check out any necessary licenses
-gp.CheckOutExtension(&quot;spatial&quot;)
+<span style="color:#75715e"># Check out any necessary licenses</span>
+gp<span style="color:#f92672">.</span>CheckOutExtension(<span style="color:#e6db74">&#34;spatial&#34;</span>)
 
-# Load required toolboxes...
-gp.AddToolbox(&quot;C:/Program Files/ArcGIS/ArcToolbox/Toolboxes/Spatial Analyst Tools.tbx&quot;)
-gp.AddToolbox(&quot;C:/Program Files/ArcGIS/ArcToolbox/Toolboxes/Data Management Tools.tbx&quot;)
+<span style="color:#75715e"># Load required toolboxes...</span>
+gp<span style="color:#f92672">.</span>AddToolbox(<span style="color:#e6db74">&#34;C:/Program Files/ArcGIS/ArcToolbox/Toolboxes/Spatial Analyst Tools.tbx&#34;</span>)
+gp<span style="color:#f92672">.</span>AddToolbox(<span style="color:#e6db74">&#34;C:/Program Files/ArcGIS/ArcToolbox/Toolboxes/Data Management Tools.tbx&#34;</span>)
 
-# Script arguments...
-def Process( inInputRaster, inOutputCoord, inConversionFactor, inOutputRaster, inCellSize, intempRasterFN):
-Input_Raster = inInputRaster #sys.argv[1]
-Output_Coordinate_System = inOutputCoord #sys.argv[3]
-Input_raster_or_constant_value_2 = inConversionFactor #sys.argv[4]
-Output_CellSize = inCellSize
+<span style="color:#75715e"># Script arguments...</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Process</span>( inInputRaster, inOutputCoord, inConversionFactor, inOutputRaster, inCellSize, intempRasterFN):
+Input_Raster <span style="color:#f92672">=</span> inInputRaster <span style="color:#75715e">#sys.argv[1]</span>
+Output_Coordinate_System <span style="color:#f92672">=</span> inOutputCoord <span style="color:#75715e">#sys.argv[3]</span>
+Input_raster_or_constant_value_2 <span style="color:#f92672">=</span> inConversionFactor <span style="color:#75715e">#sys.argv[4]</span>
+Output_CellSize <span style="color:#f92672">=</span> inCellSize
 
-#if Input_raster_or_constant_value_2 == '#':
-# Input_raster_or_constant_value_2 = &quot;3.28084&quot; # provide a default value if unspecified
+<span style="color:#75715e">#if Input_raster_or_constant_value_2 == &#39;#&#39;:</span>
+<span style="color:#75715e"># Input_raster_or_constant_value_2 = &#34;3.28084&#34; # provide a default value if unspecified</span>
 
-Output_raster = inOutputRaster
+Output_raster <span style="color:#f92672">=</span> inOutputRaster
 
-# Local variables...
-Temp_Raster = intempRasterFN
+<span style="color:#75715e"># Local variables...</span>
+Temp_Raster <span style="color:#f92672">=</span> intempRasterFN
 
-print Input_Raster
-print Temp_Raster
-print Output_Coordinate_System
-print inCellSize
+<span style="color:#66d9ef">print</span> Input_Raster
+<span style="color:#66d9ef">print</span> Temp_Raster
+<span style="color:#66d9ef">print</span> Output_Coordinate_System
+<span style="color:#66d9ef">print</span> inCellSize
 
-# Process: Project Raster...
-gp.ProjectRaster_management(Input_Raster, Temp_Raster, Output_Coordinate_System, &quot;CUBIC&quot;, Output_CellSize, &quot;&quot;, &quot;&quot;, &quot;&quot;)
+<span style="color:#75715e"># Process: Project Raster...</span>
+gp<span style="color:#f92672">.</span>ProjectRaster_management(Input_Raster, Temp_Raster, Output_Coordinate_System, <span style="color:#e6db74">&#34;CUBIC&#34;</span>, Output_CellSize, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)
 
-print Input_raster_or_constant_value_2
-print Output_raster
+<span style="color:#66d9ef">print</span> Input_raster_or_constant_value_2
+<span style="color:#66d9ef">print</span> Output_raster
 
-# Process: Times...
-gp.Times_sa(Temp_Raster, Input_raster_or_constant_value_2, Output_raster)
-</code></pre>
+<span style="color:#75715e"># Process: Times...</span>
+gp<span style="color:#f92672">.</span>Times_sa(Temp_Raster, Input_raster_or_constant_value_2, Output_raster)
+</code></pre></div>
 
 </div>
 </article>

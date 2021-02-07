@@ -10,42 +10,42 @@
     <atom:link href="https://maprantala.com/tags/text-to-mp3/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Quick &amp;#038; Dirty python: Converting a text file to audio (.wav)</title>
-      <link>https://maprantala.com/2012/05/31/quick-#038-dirty-python-converting-a-text-file-to-audio-.wav/</link>
+      <title>Quick &amp; Dirty python: Converting a text file to audio (.wav)</title>
+      <link>https://maprantala.com/2012/05/31/quick-dirty-python-converting-a-text-file-to-audio-.wav/</link>
       <pubDate>Thu, 31 May 2012 23:12:28 -0500</pubDate>
-      <guid>https://maprantala.com/2012/05/31/quick-#038-dirty-python-converting-a-text-file-to-audio-.wav/</guid>
+      <guid>https://maprantala.com/2012/05/31/quick-dirty-python-converting-a-text-file-to-audio-.wav/</guid>
       <description>&lt;p&gt;This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without any freeware that could handle the 53 page document–there are some cool websites that do text to mp3 like &lt;!-- raw HTML omitted --&gt;vozme &lt;!-- raw HTML omitted --&gt;and &lt;!-- raw HTML omitted --&gt;YAKiToMe&lt;!-- raw HTML omitted --&gt;! but they didn&amp;rsquo;t convert the whole document. I then found &lt;!-- raw HTML omitted --&gt;pyTTS&lt;!-- raw HTML omitted --&gt;, a python package that serves as a wrapper to the &lt;!-- raw HTML omitted --&gt;Microsoft Speech API (SAPI) &lt;!-- raw HTML omitted --&gt;, which has &lt;!-- raw HTML omitted --&gt;been in version 5 since 2000.&lt;!-- raw HTML omitted --&gt; But I didn&amp;rsquo;t easily find a version of pyTTS for python 2.6. So I decided to see if I could roll my own.&lt;/p&gt;
 &lt;p&gt;As it turns out, getting python to talk using SAPI is relatively easy. Reading a plain text file can be done in a few lines.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;from comtypes.client import CreateObject
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; comtypes.client &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; CreateObject
 
-infile = &amp;quot;c:/temp/text.txt&amp;quot;
+infile &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;c:/temp/text.txt&amp;#34;&lt;/span&gt;
 
-engine = CreateObject(&amp;quot;SAPI.SpVoice&amp;quot;)
+engine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CreateObject(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SAPI.SpVoice&amp;#34;&lt;/span&gt;)
 
-f = open(infile, &#39;r&#39;)
-theText = f.read()
-f.close()
+f &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; open(infile, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;)
+theText &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; f&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;read()
+f&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;close()
 
-engine.speak(theText)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And it wasn&amp;rsquo;t that much more to have it write out a .wav file:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;from comtypes.client import CreateObject
+engine&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;speak(theText)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And it wasn&amp;rsquo;t that much more to have it write out a .wav file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; comtypes.client &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; CreateObject
 
-engine = CreateObject(&amp;quot;SAPI.SpVoice&amp;quot;)
-stream = CreateObject(&amp;quot;SAPI.SpFileStream&amp;quot;)
+engine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CreateObject(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SAPI.SpVoice&amp;#34;&lt;/span&gt;)
+stream &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CreateObject(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SAPI.SpFileStream&amp;#34;&lt;/span&gt;)
 
-infile = &amp;quot;c:/temp/text.txt&amp;quot;
-outfile = &amp;quot;c:/temp/text4.wav&amp;quot;
-stream.Open(outfile, SpeechLib.SSFMCreateForWrite)
-engine.AudioOutputStream = stream
+infile &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;c:/temp/text.txt&amp;#34;&lt;/span&gt;
+outfile &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;c:/temp/text4.wav&amp;#34;&lt;/span&gt;
+stream&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Open(outfile, SpeechLib&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;SSFMCreateForWrite)
+engine&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AudioOutputStream &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; stream
 
-f = open(infile, &#39;r&#39;)
-theText = f.read()
-f.close()
+f &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; open(infile, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;)
+theText &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; f&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;read()
+f&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;close()
 
-engine.speak(theText)
+engine&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;speak(theText)
 
-stream.Close()
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And with that chunk of code, I was able to convert my 54 page document into a 4 hour long .wav file (over 600 MB) that I used another software package to convert to .mp3 (200 MB). The voice is a bit robotic but not too bad, I just hope the content that I converted (a database specification standard) doesn&amp;rsquo;t put me to sleep while I drive.&lt;/p&gt;
+stream&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Close()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And with that chunk of code, I was able to convert my 54 page document into a 4 hour long .wav file (over 600 MB) that I used another software package to convert to .mp3 (200 MB). The voice is a bit robotic but not too bad, I just hope the content that I converted (a database specification standard) doesn&amp;rsquo;t put me to sleep while I drive.&lt;/p&gt;
 </description>
     </item>
     

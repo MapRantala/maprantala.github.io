@@ -126,7 +126,7 @@ Using the Python parser, just write the formula (note that case matters): !
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title title-submitted"><a href="/2012/05/02/quick-#038-dirty-arcpy-autopan-arcmap-using-arcpy/">Quick &amp;#038; Dirty arcpy: Autopan ArcMap using arcpy</a></h2>
+<h2 class="title title-submitted"><a href="/2012/05/02/quick-dirty-arcpy-autopan-arcmap-using-arcpy/">Quick &amp; Dirty arcpy: Autopan ArcMap using arcpy</a></h2>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2012-05-02T05:19:40-05:00">2 May, 2012</time>
 </div>
@@ -178,7 +178,7 @@ Today&rsquo;s example groups records into different cases based off the values o
 <div class="content">
 One of the standards in our databases is to store dates as 8-digit integer values in the format of yyyymmdd. This requires us to occasionally convert values from date fields into this format.
 We can do this in the ArcMap Field Calculator using this arcpy function:
-def datetodouble(inNum): splitList = str(inNum).split(&quot;/&quot;) return splitList [2] +(&quot;0&quot;+ splitList [0])[-2:] +(&quot;0&quot;+ splitList [1])[-2:]
+def datetodouble(inNum): splitList = str(inNum).split(&#34;/&#34;) return splitList [2] +(&#34;0&#34;+ splitList [0])[-2:] +(&#34;0&#34;+ splitList [1])[-2:] 
 </div>
 </article>
 
@@ -192,9 +192,7 @@ def datetodouble(inNum): splitList = str(inNum).split(&quot;/&quot;) return spli
 </header>
 <div class="content">
 I was working on a project and wanted my own custom mouse cursor and did not easily find a way to make your own in ESRI&rsquo;s instructions. But, once you know how to do it, it is pretty easy. In Visual Studio, Add a New Item:
-
 Add a Cursor File:
-
 You can edit your cursor with the editor program in Visual Studio. Once you satisfied with how it looks, make sure that the Build Action on the cursor is &lsquo;Embedded Resource&rsquo;.
 </div>
 </article>

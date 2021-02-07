@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Unsupported Arc: &#39;Rebox&#39;ing or updating the extent of a feature class. – Node Dangles</title>
+<title>Unsupported Arc: &#39;Rebox&#39;ing or updating the extent of a feature class – Node Dangles</title>
 <meta name="description" content="I&amp;amp;rsquo;ve found that sometimes I can not find the answer to a question until I know the answer &amp;amp;amp; then it becomes ridiculously easy to find the answer. One small …">
 <meta name="created" content="2012-06-05T21:16:28-0500">
 <meta name="modified" content="2012-06-05T21:16:28-0500">
 <meta name="author" content="Matt">
 <meta name="contact" content="webmaster@maprantala.com">
 <meta property="og:site_name" content="Node Dangles">
-<meta property="og:title" content="Unsupported Arc: &#39;Rebox&#39;ing or updating the extent of a feature class.">
-<meta property="og:url" content="https://maprantala.com/2012/06/05/unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class./">
+<meta property="og:title" content="Unsupported Arc: &#39;Rebox&#39;ing or updating the extent of a feature class">
+<meta property="og:url" content="https://maprantala.com/2012/06/05/unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class/">
 <meta property="og:type" content="article">
 
 <meta name="generator" content="Hugo 0.80.0" />
@@ -19,7 +19,7 @@
 <meta name="theme-color" content="#ffffff">
 
 
-<link rel="canonical" href="https://maprantala.com/2012/06/05/unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class./">
+<link rel="canonical" href="https://maprantala.com/2012/06/05/unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class/">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -33,10 +33,10 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "Unsupported Arc: 'Rebox'ing or updating the extent of a feature class.",
+    "headline": "Unsupported Arc: 'Rebox'ing or updating the extent of a feature class",
     "datePublished": "2012-06-05T21:16:28-05:00",
     "dateModified": "2012-06-05T21:16:28-05:00",
-    "url" : "https://maprantala.com/2012/06/05/unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class./",
+    "url" : "https://maprantala.com/2012/06/05/unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class/",
     "description": "I\u0026amp;rsquo;ve found that sometimes I can not find the answer to a question until I know the answer \u0026amp;amp; then it becomes ridiculously easy to find the answer. One small …",
     "author": {
       "@type": "Person",
@@ -97,7 +97,7 @@ StatCounter"></a></div></noscript>
 <main class="main layout__main">
 <article class="section-posts single-view">
 <header>
-<h1 class="title title-submitted">Unsupported Arc: &#39;Rebox&#39;ing or updating the extent of a feature class.</h1>
+<h1 class="title title-submitted">Unsupported Arc: &#39;Rebox&#39;ing or updating the extent of a feature class</h1>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2012-06-05T21:16:28-05:00">5 June, 2012</time>
 </div>
@@ -107,7 +107,7 @@ StatCounter"></a></div></noscript>
 <p>One small annoying thing that I never spent much time was when you delete features from a feature class making it significantly smaller but the envelope does not get re-sized so the zoom extent (still the original extent) is too large. This often happens to use when we convert tables to an XY theme and there are blank records–most of our data shows in Minnesota but there are some in Oklahoma (I think). Once we eliminate or correct the blank records, our data view still pops out to include a large section of the United States even though we only have data in Minnesota.</p>
 <p>A long, long time ago, <!-- raw HTML omitted -->Workstation ArcInfo<!-- raw HTML omitted --> had a simple command, <!-- raw HTML omitted -->Rebox<!-- raw HTML omitted -->, for just this purpose (actually it still does, I just don&rsquo;t get to use it anymore)–it shrunk the extent to the smallest rectangle required to enclose all the data. Up until today, I thought <!-- raw HTML omitted -->the request<!-- raw HTML omitted --> for this feature was completely ignored.</p>
 <p>While researching something else, I was digging around in the sde tables and found one, sde.sde_layers, that had the interesting fields, minx, miny, maxx, and maxy. My quick &amp; dangerous test (I performed it on a throw-away feature class in a throw-away geodatabase) gave me the results I wanted–once I loaded the feature class into ArcMap, the extent was a nice, tight rectangle around my features.</p>
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2012/06/extent1.png"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2012/06/extent1.png" alt="Extent"></p>
 <p>Is this a supported way to Rebox the extent? No.</p>
 <p>Is it recommend by ESRI or me? No.</p>
 <p>Will it screw up your entire geodatabase, making you lose all your data &amp; costing you your job? Probably not but do you want to take that chance?</p>

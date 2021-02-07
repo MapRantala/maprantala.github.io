@@ -106,7 +106,7 @@ StatCounter"></a></div></noscript>
 <div class="content">
 One of the standards in our databases is to store dates as 8-digit integer values in the format of yyyymmdd. This requires us to occasionally convert values from date fields into this format.
 We can do this in the ArcMap Field Calculator using this arcpy function:
-def datetodouble(inNum): splitList = str(inNum).split(&quot;/&quot;) return splitList [2] +(&quot;0&quot;+ splitList [0])[-2:] +(&quot;0&quot;+ splitList [1])[-2:]
+def datetodouble(inNum): splitList = str(inNum).split(&#34;/&#34;) return splitList [2] +(&#34;0&#34;+ splitList [0])[-2:] +(&#34;0&#34;+ splitList [1])[-2:] 
 </div>
 </article>
 
@@ -153,7 +153,7 @@ Recently I have been working on a process that was using this code but it was no
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title title-submitted"><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_./">Feature classes and Tables with names starting with &#39;nd_&#39;.</a></h2>
+<h2 class="title title-submitted"><a href="/2011/05/23/feature-classes-and-tables-with-names-starting-with-nd_/">Feature classes and Tables with names starting with &#39;nd_&#39;</a></h2>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-05-23T15:55:24-05:00">23 May, 2011</time>
 </div>
@@ -181,7 +181,7 @@ It sometimes has trouble with the initial step of uploading the raster because o
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title title-submitted"><a href="/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length./">Quick Dirty arcpy: Batch Splitting Polylines to a Specific Length.</a></h2>
+<h2 class="title title-submitted"><a href="/2011/05/01/quick-dirty-arcpy-batch-splitting-polylines-to-a-specific-length/">Quick &amp; Dirty arcpy: Batch Splitting Polylines to a Specific Length</a></h2>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-05-01T05:01:50-05:00">1 May, 2011</time>
 </div>
@@ -208,7 +208,7 @@ During a process I was working on, I needed to compare a feature class before an
 
 <article class="section-posts list-view">
 <header>
-<h2 class="title title-submitted"><a href="/2011/03/17/quick-and-dirty-arcpy-field-listings/">Quick and Dirty arcpy: Field Listings</a></h2>
+<h2 class="title title-submitted"><a href="/2011/03/17/quick-dirty-arcpy-field-listings/">Quick &amp; Dirty arcpy: Field Listings</a></h2>
 <div class="submitted">
 <span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2011-03-17T17:03:39-05:00">17 March, 2011</time>
 </div>

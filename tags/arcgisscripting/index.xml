@@ -86,11 +86,12 @@ def indexExists(tablename,indexname):
 &lt;li&gt;Add the toolbox to ArcToolbox. ESRI has instructions &lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/tutorials/spatial/Spatial_14.htm&#34;&gt;here&lt;/a&gt; on how to do this.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;You should now have a new toolbox named &amp;lsquo;Zip Shapefile&amp;rsquo; with a script named &amp;lsquo;Zip a Shapefile&amp;rsquo; in it. Clicking on on the tool will bring up this dialog.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2010/12/capture.jpg&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/12/capture.jpg?resize=271%2C71&#34; alt=&#34;Zip a Shapefile Dialog&#34;&gt;&lt;/p&gt;
 &lt;p&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;*&lt;strong&gt;*&lt;/strong&gt;****&lt;br&gt;
 In response to Chris:&lt;/p&gt;
 &lt;p&gt;I believe you need to copy the ZipShapefile.py file from the .zip that you downloaded to C:Program FilesArcGISArcToolBoxScripts, the error message is consistent with the tool not being about to find the python script there.&lt;/p&gt;
-&lt;p&gt;If you prefer to place the ZipShapefile.py in a different location, you will need to change the source on the tool. To do this, right click on the tool in ArcCatalog and change the path of the Script File as set in the Source tab (see below):&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2012/03/setpath.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you prefer to place the ZipShapefile.py in a different location, you will need to change the source on the tool. To do this, right click on the tool in ArcCatalog and change the path of the Script File as set in the Source tab (see below):
+&lt;img src=&#34;https://maprantala.com/images/2012/03/setpath.png?resize=494%2C265&#34; alt=&#34;set Path&#34;&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
     </item>
@@ -113,19 +114,19 @@ In response to Chris:&lt;/p&gt;
     &lt;span style=&#34;color:#75715e&#34;&gt;#http://local.wasp.uwa.edu.au/~pbourke/geometry/pointline/source.vba&lt;/span&gt;
     LineMag &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(x1, y1, x2, y2)
 
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; LineMag &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00000001&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; LineMag &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00000001&lt;/span&gt;:
         DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9999&lt;/span&gt;
         &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; DistancePointLine
 
     u1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (((px &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (x2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1)) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; ((py &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (y2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1)))
     u &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; u1 &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (LineMag &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; LineMag)
 
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00001&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.00001&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; (u &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
         &lt;span style=&#34;color:#75715e&#34;&gt;#// closest point does not fall within the line segment, take the shorter distance&lt;/span&gt;
         &lt;span style=&#34;color:#75715e&#34;&gt;#// to an endpoint&lt;/span&gt;
         ix &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(px, py, x1, y1)
         iy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; lineMagnitude(px, py, x2, y2)
-        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ix &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;gt; iy:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ix &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; iy:
             DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; iy
         &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
             DistancePointLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ix

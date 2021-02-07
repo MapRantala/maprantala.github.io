@@ -105,15 +105,16 @@ StatCounter"></a></div></noscript>
 <div class="content">
 <p>I had a user with a series of GPS points (that were in chronological order) that they wanted to know the accumulated distance from the start to each point in their shapefile. First, we calculated the distance from each point to the previous point into a field called [DistFt].</p>
 <p>Then, we hacked out this quick python function to accumulate the total distance in Arcmap&rsquo;s Field Calculator:</p>
-<pre><code>totalDistance = 0
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">totalDistance <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 
-def accumulateDistance(inDist):
-   global totalDistance
-   totalDistance += inDist
-   return totalDistance
-</code></pre><p>And we called it:</p>
-<pre><code>accumulateDistance(!DistFt!)
-</code></pre><p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2014/02/accumulatedist.png"><!-- raw HTML omitted --></a>And we got what we wanted.</p>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">accumulateDistance</span>(inDist):
+   <span style="color:#66d9ef">global</span> totalDistance
+   totalDistance <span style="color:#f92672">+=</span> inDist
+   <span style="color:#66d9ef">return</span> totalDistance
+</code></pre></div><p>And we called it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">accumulateDistance(<span style="color:#960050;background-color:#1e0010">!</span>DistFt<span style="color:#960050;background-color:#1e0010">!</span>)
+</code></pre></div><p><img src="/images/2014/02/accumulatedist.png" alt="accumulateDist"></p>
+<p>And we got what we wanted.</p>
 
 
 </div>

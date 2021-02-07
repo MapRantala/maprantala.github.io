@@ -1,1 +1,196 @@
-<!DOCTYPE html><html><head><title>https://maprantala.com/2014/12/18/quick-and-dirty-arcpy-verify-a-coded-value-domain-code/</title><link rel="canonical" href="https://maprantala.com/2014/12/18/quick-and-dirty-arcpy-verify-a-coded-value-domain-code/"/><meta name="robots" content="noindex"><meta charset="utf-8" /><meta http-equiv="refresh" content="0; url=https://maprantala.com/2014/12/18/quick-and-dirty-arcpy-verify-a-coded-value-domain-code/" /></head></html>
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Quick &amp; Dirty Arcpy: Verify a Coded Value Domain Code – Node Dangles</title>
+<meta name="description" content="I&amp;amp;rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into …">
+<meta name="created" content="2014-12-18T22:32:11-0600">
+<meta name="modified" content="2014-12-18T22:32:11-0600">
+<meta name="author" content="Matt">
+<meta name="contact" content="webmaster@maprantala.com">
+<meta property="og:site_name" content="Node Dangles">
+<meta property="og:title" content="Quick &amp; Dirty Arcpy: Verify a Coded Value Domain Code">
+<meta property="og:url" content="https://maprantala.com/2014/12/18/quick-dirty-arcpy-verify-a-coded-value-domain-code/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://maprantala.com/2014/12/18/quick-dirty-arcpy-verify-a-coded-value-domain-code/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/mobile.2ab74aa64785dcab8114959e76ca140cf76207cd85989bc6d4fc3b12f734a09e.css" media="screen">
+<link rel="stylesheet" href="/css/styles.159e5347492c734a666a2678db9a478c339b9ad376372e062cd19572540448a1.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Quick \u0026 Dirty Arcpy: Verify a Coded Value Domain Code",
+    "datePublished": "2014-12-18T22:32:11-06:00",
+    "dateModified": "2014-12-18T22:32:11-06:00",
+    "url" : "https://maprantala.com/2014/12/18/quick-dirty-arcpy-verify-a-coded-value-domain-code/",
+    "description": "I\u0026amp;rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into …",
+    "author": {
+      "@type": "Person",
+      "name": "Matt"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://maprantala.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Node Dangles",
+      "url": "https://maprantala.com"
+    }
+  }
+</script>
+
+
+<script type="text/javascript">
+var sc_project=6046986; 
+var sc_invisible=1; 
+var sc_security="827ace42"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - StatCounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/6046986/0/827ace42/0/"
+alt="Web Analytics Made Easy -
+StatCounter"></a></div></noscript>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Node Dangles</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title title-submitted">Quick &amp; Dirty Arcpy: Verify a Coded Value Domain Code</h1>
+<div class="submitted">
+<span class="author" itemprop="author">Matt</span> - <time class="created-date" datetime="2014-12-18T22:32:11-06:00">18 December, 2014</time>
+</div>
+</header>
+<div class="content">
+<p>I&rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a <!-- raw HTML omitted -->Coded Value Domain<!-- raw HTML omitted --> is valid.</p>
+<p>The logic of the code is pretty straight-forward. Get a field&rsquo;s domain and check that a potential value is one of the code values. The biggest &lsquo;trick&rsquo; in this code is that <!-- raw HTML omitted -->arcpy.da.ListDomains<!-- raw HTML omitted -->, which locates a field&rsquo;s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.</p>
+<p>A couple caveats about the code. It only returns True if a field exists, has a coded value domain, and the value tested is one of the (case-sensitive) valid codes. While I have an ArcToolbox tool to call it for illustration purposes, I&rsquo;m only calling it from code so I wanted tight requirements.</p>
+<p>Anyhow, here is the code or <!-- raw HTML omitted -->download it<!-- raw HTML omitted --> from GitHub.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> arcpy
+
+inFeatureClass <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>]
+inField <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">2</span>]
+inValue <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">3</span>]
+
+<span style="color:#75715e"># getFeatureClassParentWorkspace: This script gets the geodatabase for a</span>
+<span style="color:#75715e"># feature class. The trick here is that feature classes can be within a</span>
+<span style="color:#75715e"># feature dataset so you need to account for two possible levels in the</span>
+<span style="color:#75715e"># directory structure.</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getFeatureClassParentWorkspace</span>(inFeatureClass):
+    describeFC <span style="color:#f92672">=</span> arcpy<span style="color:#f92672">.</span>Describe(inFeatureClass)
+    <span style="color:#66d9ef">if</span> (describeFC<span style="color:#f92672">.</span>dataType <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;FeatureClass&#39;</span>) <span style="color:#f92672">or</span> (describeFC<span style="color:#f92672">.</span>dataType <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Table&#39;</span>):
+        workspace1 <span style="color:#f92672">=</span> describeFC<span style="color:#f92672">.</span>path
+        describeWorkspace1 <span style="color:#f92672">=</span> arcpy<span style="color:#f92672">.</span>Describe(workspace1)
+        <span style="color:#66d9ef">if</span> (describeWorkspace1<span style="color:#f92672">.</span>dataType <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;FeatureDataset&#39;</span>):
+            <span style="color:#66d9ef">return</span> describeWorkspace1<span style="color:#f92672">.</span>path
+        <span style="color:#66d9ef">return</span> workspace1
+
+    <span style="color:#66d9ef">return</span> None
+
+<span style="color:#75715e"># Find a field within a feature class</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getField</span>(inFeatureClass, inFieldName):
+  fieldList <span style="color:#f92672">=</span> arcpy<span style="color:#f92672">.</span>ListFields(inFeatureClass)
+  <span style="color:#66d9ef">for</span> iField <span style="color:#f92672">in</span> fieldList:
+    <span style="color:#66d9ef">if</span> iField<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>lower() <span style="color:#f92672">==</span> inFieldName<span style="color:#f92672">.</span>lower():
+      <span style="color:#66d9ef">return</span> iField
+  <span style="color:#66d9ef">return</span> None
+
+<span style="color:#75715e">#Get a field&#39;s domain</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getDomain</span>(inFeatureClass, inField):
+    theField <span style="color:#f92672">=</span> getField(inFeatureClass,inField)
+    <span style="color:#66d9ef">if</span> (theField <span style="color:#f92672">&lt;&gt;</span> None):
+        searchDomainName <span style="color:#f92672">=</span> theField<span style="color:#f92672">.</span>domain
+        <span style="color:#66d9ef">if</span> (searchDomainName <span style="color:#f92672">&lt;&gt;</span> <span style="color:#e6db74">&#34;&#34;</span>):
+            <span style="color:#66d9ef">for</span> iDomain <span style="color:#f92672">in</span> arcpy<span style="color:#f92672">.</span>da<span style="color:#f92672">.</span>ListDomains(getFeatureClassParentWorkspace(inFeatureClass)):
+                <span style="color:#66d9ef">if</span> iDomain<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> searchDomainName:
+                    <span style="color:#66d9ef">return</span> iDomain
+    <span style="color:#66d9ef">return</span> None
+
+<span style="color:#75715e">#Get the domain.</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">validDomainValue</span>(inFeatureClass,inField,inValue):
+    theDomain <span style="color:#f92672">=</span> getDomain(inFeatureClass,inField)
+
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> (theDomain <span style="color:#f92672">is</span> None):
+        <span style="color:#66d9ef">if</span> (theDomain<span style="color:#f92672">.</span>domainType <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;CodedValue&#34;</span>):
+            <span style="color:#66d9ef">if</span> theDomain<span style="color:#f92672">.</span>codedValues<span style="color:#f92672">.</span>has_key(inValue):
+                <span style="color:#66d9ef">return</span> True
+    <span style="color:#66d9ef">return</span> False
+
+<span style="color:#66d9ef">if</span> (validDomainValue(inFeatureClass,inField,inValue)):
+    arcpy<span style="color:#f92672">.</span>AddMessage(<span style="color:#e6db74">&#34;Value ({0}) is valid for field [{1}].&#34;</span><span style="color:#f92672">.</span>format(inValue,inField))
+<span style="color:#66d9ef">else</span>:
+    arcpy<span style="color:#f92672">.</span>AddError(<span style="color:#e6db74">&#34;ERROR: Value ({0}) is invalid for field [{1}].&#34;</span><span style="color:#f92672">.</span>format(inValue,inField))
+
+</code></pre></div>
+
+</div>
+</article>
+</main>
+
+
+<footer class="footer layout__footer">
+<p><span>© Node Dangles</span></p>
+
+
+</footer>
+
+</div>
+<div class="mobile-nav" dir="ltr">
+  <div class="mobile-nav__cover"></div>
+  <a href="#navigation" class="mobile-nav__toggle" aria-haspopup="true" role="button">Menu</a>
+  <div class="mobile-nav__sheet">
+    <div class="mobile-nav__region">
+    
+    </div>
+    <nav class="mobile-nav__main-menu">
+    <h2 class="visually-hidden">Main menu</h2>
+    <ul class="mobile-nav__navbar">
+    <li><a href="/">Home</a></li>
+    <li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+    </ul>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

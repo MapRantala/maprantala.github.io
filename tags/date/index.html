@@ -106,7 +106,7 @@ StatCounter"></a></div></noscript>
 <div class="content">
 One of the standards in our databases is to store dates as 8-digit integer values in the format of yyyymmdd. This requires us to occasionally convert values from date fields into this format.
 We can do this in the ArcMap Field Calculator using this arcpy function:
-def datetodouble(inNum): splitList = str(inNum).split(&quot;/&quot;) return splitList [2] +(&quot;0&quot;+ splitList [0])[-2:] +(&quot;0&quot;+ splitList [1])[-2:]
+def datetodouble(inNum): splitList = str(inNum).split(&#34;/&#34;) return splitList [2] +(&#34;0&#34;+ splitList [0])[-2:] +(&#34;0&#34;+ splitList [1])[-2:] 
 </div>
 </article>
 

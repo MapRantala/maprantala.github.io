@@ -122,10 +122,10 @@ Tags:
 <p>One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm">Field Calculator</a>.  When I stumbled upon a bug in the way the <a href="https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/">Extract Values to Points</a> tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.</p>
 <p>I set the Parser to Python and the formula was simple once I figured out the syntax:</p>
 <pre><code>pPoint = arcpy.Point(0,0)
-</code></pre><p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/origin.jpg"><!-- raw HTML omitted --></a></p>
+</code></pre><p><img src="/images/2011/03/origin.jpg" alt="Use Field Calculator to Calculate Geometry"></p>
 <p>Then, to extend my knowledge, I wanted to see how to calculate the geometry based off of two fields (X and Y).   The only real trick is knowing the bracket field names using exclamation points instead of brackets:</p>
 <pre><code>arcpy.Point(!X!,!Y!)
-</code></pre><p><a href="https://i2.wp.com/maprantala.com/wp-content/uploads/2011/03/fields.jpg"><!-- raw HTML omitted --></a></p>
+</code></pre><p><img src="/images/2011/03/fields.jpg" alt="Using Field Calculating to Calculate Geometry Using Attributes"></p>
 <p>So turns out everything it pretty easy and straight-forward.  Whew!</p>
 
 

@@ -116,401 +116,401 @@ Tags:
 <p>One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a &lsquo;recover-our-cost&rsquo; mentality to more of an &lsquo;Open Data&rsquo;. Minnesota, for example, has launched their <!-- raw HTML omitted -->Geospatial Commons<!-- raw HTML omitted --> as a platform for sharing data.</p>
 <p>And while getting free, authoritative data is awesome, it can leave you in a bind if the structure of the data changes. Sometime between April and September, Hennepin County, Minnesota, changed the schema of their <!-- raw HTML omitted -->publicly available street centerlines data<!-- raw HTML omitted -->.</p>
 <p>The data used to have both a full, concatenated street name field ([ST_CONCAT]) and an abbreviated version ([ST_CON_ABR]). A record might have &lsquo;James Lofton Avenue North&rsquo; and &lsquo;James Lofton Ave N&rsquo;, respectively, in these two fields. The abbreviated version was nice for labeling but it disappeared from the most recent updates.</p>
-<p><a href="https://i1.wp.com/maprantala.com/wp-content/uploads/2017/10/Streetnames.jpg"><!-- raw HTML omitted --></a></p>
+<p><img src="/images/2017/10/Streetnames.jpg" alt="Options"></p>
 <p>So, as you  might guess from the fact that I&rsquo;m posting about it, I wrote a script to add that field in and launch it from an ArcToolbox Tool. Nothing fancy going on in the code, just a series of replaces, depending on the field. Using dictionaries instead of arrays of paired values might have been better but the script takes just a few seconds to run so I can live with it as-is.</p>
 <p>The list of street type abbreviations came from a combination of <!-- raw HTML omitted -->ESRI&rsquo;s standards<!-- raw HTML omitted --> and those found in an older version of the Hennepin County data. There were no conflicting abbreviations between the two. The code warns if a street name occurs in the data that is not in the list.</p>
 <p>While I&rsquo;m including the code here for reference, it&rsquo;s probably best to <!-- raw HTML omitted -->download the code from GitHub.<!-- raw HTML omitted --></p>
-<pre><code>#-------------------------------------------------------------------------------
-# Name:        usi_dataprep_Add_STCONABR
-#
-# Purpose:     This can be used to add [CT_CON_ABR] to Hennepin County, MN
-#              centerlines. This is a concatenated, abbreviated full name of
-#              the street. This used to be included in the data but
-#              disappeared from the downloads in the summer of 2017.
-#
-#              Data available at: http://www.hennepin.us/gisopendata
-#
-# Author:      mrantala
-#
-# Created:     2017.10.04
-#
-#------------------------------------------------------------------------------
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#-------------------------------------------------------------------------------</span>
+<span style="color:#75715e"># Name:        usi_dataprep_Add_STCONABR</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># Purpose:     This can be used to add [CT_CON_ABR] to Hennepin County, MN</span>
+<span style="color:#75715e">#              centerlines. This is a concatenated, abbreviated full name of</span>
+<span style="color:#75715e">#              the street. This used to be included in the data but</span>
+<span style="color:#75715e">#              disappeared from the downloads in the summer of 2017.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#              Data available at: http://www.hennepin.us/gisopendata</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># Author:      mrantala</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># Created:     2017.10.04</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#------------------------------------------------------------------------------</span>
 
-import arcpy
+<span style="color:#f92672">import</span> arcpy
 
-############################################
-## Custom Variables
-#These are the fields that are concatenated. Hennepin has others but were always blank.
-requiredFieldList = [&quot;ST_PRE_DIR&quot;,&quot;ST_PRE_TYP&quot;,&quot;ST_NAME&quot;,&quot;ST_POS_TYP&quot;,&quot;ST_POS_DIR&quot;]
-#This is the name of the field to add
-newFieldName = &quot;ST_CON_ABR&quot;
+<span style="color:#75715e">############################################</span>
+<span style="color:#75715e">## Custom Variables</span>
+<span style="color:#75715e">#These are the fields that are concatenated. Hennepin has others but were always blank.</span>
+requiredFieldList <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;ST_PRE_DIR&#34;</span>,<span style="color:#e6db74">&#34;ST_PRE_TYP&#34;</span>,<span style="color:#e6db74">&#34;ST_NAME&#34;</span>,<span style="color:#e6db74">&#34;ST_POS_TYP&#34;</span>,<span style="color:#e6db74">&#34;ST_POS_DIR&#34;</span>]
+<span style="color:#75715e">#This is the name of the field to add</span>
+newFieldName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ST_CON_ABR&#34;</span>
 
-#These are the abbreviations for [ST_POS_TYPE]. The list was created using a sample of
-#Hennepin's centerline data &amp; Esri Tech article: http://support.esri.com/en/technical-article/000008454
-# Note that I intentionally left cases in where there is no abbreviation (Fall, for example) as a means of
-#documenting the fact that it should NOT change.
+<span style="color:#75715e">#These are the abbreviations for [ST_POS_TYPE]. The list was created using a sample of</span>
+<span style="color:#75715e">#Hennepin&#39;s centerline data &amp; Esri Tech article: http://support.esri.com/en/technical-article/000008454</span>
+<span style="color:#75715e"># Note that I intentionally left cases in where there is no abbreviation (Fall, for example) as a means of</span>
+<span style="color:#75715e">#documenting the fact that it should NOT change.</span>
 
-abbList = []
-abbList.append([&quot;Alcove&quot;,&quot;Alcove&quot;]) #Hennepin Specific
-abbList.append([&quot;Alley&quot;,&quot;Aly&quot;])
-abbList.append([&quot;Annex&quot;,&quot;Anx&quot;])
-abbList.append([&quot;Arcade&quot;,&quot;Arc&quot;])
-abbList.append([&quot;Avenue&quot;,&quot;Ave&quot;])
-abbList.append([&quot;Bay&quot;,&quot;Bay&quot;]) #Hennepin Specific
-abbList.append([&quot;Bayoo&quot;,&quot;Byu&quot;])
-abbList.append([&quot;Beach&quot;,&quot;Bch&quot;])
-abbList.append([&quot;Bend&quot;,&quot;Bnd&quot;])
-abbList.append([&quot;Bluff&quot;,&quot;Blf&quot;])
-abbList.append([&quot;Bluffs&quot;,&quot;Blfs&quot;])
-abbList.append([&quot;Bottom&quot;,&quot;Btm&quot;])
-abbList.append([&quot;Boulevard&quot;,&quot;Blvd&quot;])
-abbList.append([&quot;Branch&quot;,&quot;Br&quot;])
-abbList.append([&quot;Bridge&quot;,&quot;Brg&quot;])
-abbList.append([&quot;Brook&quot;,&quot;Brk&quot;])
-abbList.append([&quot;Brooks&quot;,&quot;Brks&quot;])
-abbList.append([&quot;Burg&quot;,&quot;Bg&quot;])
-abbList.append([&quot;Burgs&quot;,&quot;Bgs&quot;])
-abbList.append([&quot;Bypass&quot;,&quot;Byp&quot;])
-abbList.append([&quot;Camp&quot;,&quot;Cp&quot;])
-abbList.append([&quot;Canyon&quot;,&quot;Cyn&quot;])
-abbList.append([&quot;Cape&quot;,&quot;Cpe&quot;])
-abbList.append([&quot;Causeway&quot;,&quot;Cswy&quot;])
-abbList.append([&quot;Center&quot;,&quot;Ctr&quot;])
-abbList.append([&quot;Centers&quot;,&quot;Ctrs&quot;])
-abbList.append([&quot;Crossings&quot;,&quot;Crossings&quot;]) #Hennepin Specific
-abbList.append([&quot;Crossroad&quot;,&quot;Xrd&quot;])
-abbList.append([&quot;Chase&quot;,&quot;Chase&quot;]) #Hennepin Specific
-abbList.append([&quot;Circle&quot;,&quot;Cir&quot;])
-abbList.append([&quot;Circles&quot;,&quot;Cirs&quot;])
-abbList.append([&quot;Cliff&quot;,&quot;Clf&quot;])
-abbList.append([&quot;Cliffs&quot;,&quot;Clfs&quot;])
-abbList.append([&quot;Club&quot;,&quot;Clb&quot;])
-abbList.append([&quot;Close&quot;,&quot;Close&quot;]) #Hennepin Specific
-abbList.append([&quot;Common&quot;,&quot;Cmn&quot;])
-abbList.append([&quot;Commons&quot;,&quot;Cmns&quot;]) #Hennepin Specific
-abbList.append([&quot;Corner&quot;,&quot;Cor&quot;])
-abbList.append([&quot;Corners&quot;,&quot;Cors&quot;])
-abbList.append([&quot;Corridor&quot;,&quot;Corridor&quot;]) #Hennepin Specific
-abbList.append([&quot;Course&quot;,&quot;Crse&quot;])
-abbList.append([&quot;Court&quot;,&quot;Ct&quot;])
-abbList.append([&quot;Courts&quot;,&quot;Cts&quot;])
-abbList.append([&quot;Cove&quot;,&quot;Cv&quot;])
-abbList.append([&quot;Coves&quot;,&quot;Cvs&quot;])
-abbList.append([&quot;Creek&quot;,&quot;Crk&quot;])
-abbList.append([&quot;Crescent&quot;,&quot;Cres&quot;])
-abbList.append([&quot;Crest&quot;,&quot;Crst&quot;])
-abbList.append([&quot;Cross&quot;,&quot;Cross&quot;]) #Hennepin Specific
-abbList.append([&quot;Crossing&quot;,&quot;Xing&quot;])
-abbList.append([&quot;Curve&quot;,&quot;Curve&quot;])
-abbList.append([&quot;Dale&quot;,&quot;Dl&quot;])
-abbList.append([&quot;Dam&quot;,&quot;Dm&quot;])
-abbList.append([&quot;Divide&quot;,&quot;Dv&quot;])
-abbList.append([&quot;Down&quot;,&quot;Down&quot;]) #Hennepin Specific
-abbList.append([&quot;Downs&quot;,&quot;Downs&quot;]) #Hennepin Specific
-abbList.append([&quot;Drive&quot;,&quot;Dr&quot;])
-abbList.append([&quot;Drives&quot;,&quot;Drs&quot;])
-abbList.append([&quot;Edge&quot;,&quot;Edge&quot;]) #Hennepin Specific
-abbList.append([&quot;Entry&quot;,&quot;Entry&quot;]) #Hennepin Specific
-abbList.append([&quot;Estate&quot;,&quot;Est&quot;])
-abbList.append([&quot;Estates&quot;,&quot;Ests&quot;])
-abbList.append([&quot;Expressway&quot;,&quot;Expy&quot;])
-abbList.append([&quot;Extension&quot;,&quot;Ext&quot;])
-abbList.append([&quot;Extensions&quot;,&quot;Exts&quot;])
-abbList.append([&quot;Fall&quot;,&quot;Fall&quot;])
-abbList.append([&quot;Falls&quot;,&quot;Fls&quot;])
-abbList.append([&quot;Ferry&quot;,&quot;Fry&quot;])
-abbList.append([&quot;Field&quot;,&quot;Fld&quot;])
-abbList.append([&quot;Fields&quot;,&quot;Flds&quot;])
-abbList.append([&quot;Flat&quot;,&quot;Flt&quot;])
-abbList.append([&quot;Flats&quot;,&quot;Flts&quot;])
-abbList.append([&quot;Ford&quot;,&quot;Frd&quot;])
-abbList.append([&quot;Fords&quot;,&quot;Frds&quot;])
-abbList.append([&quot;Forest&quot;,&quot;Frst&quot;])
-abbList.append([&quot;Forge&quot;,&quot;Frg&quot;])
-abbList.append([&quot;Forges&quot;,&quot;Frgs&quot;])
-abbList.append([&quot;Fork&quot;,&quot;Frk&quot;])
-abbList.append([&quot;Forks&quot;,&quot;Frks&quot;])
-abbList.append([&quot;Fort&quot;,&quot;Ft&quot;])
-abbList.append([&quot;Freeway&quot;,&quot;Fwy&quot;])
-abbList.append([&quot;Gables&quot;,&quot;Gables&quot;]) #Hennepin Specific
-abbList.append([&quot;Garden&quot;,&quot;Gdn&quot;])
-abbList.append([&quot;Gardens&quot;,&quot;Gdns&quot;])
-abbList.append([&quot;Gate&quot;,&quot;Gate&quot;]) #Hennepin Specific
-abbList.append([&quot;Gateway&quot;,&quot;Gtwy&quot;])
-abbList.append([&quot;Glade&quot;,&quot;Glade&quot;]) #Hennepin Specific
-abbList.append([&quot;Glen&quot;,&quot;Gln&quot;])
-abbList.append([&quot;Glens&quot;,&quot;Glns&quot;])
-abbList.append([&quot;Green&quot;,&quot;Grn&quot;])
-abbList.append([&quot;Greens&quot;,&quot;Grns&quot;])
-abbList.append([&quot;Greenway&quot;,&quot;Greenway&quot;]) #Hennepin Specific
-abbList.append([&quot;Grove&quot;,&quot;Grv&quot;])
-abbList.append([&quot;Groves&quot;,&quot;Grvs&quot;])
-abbList.append([&quot;Harbor&quot;,&quot;Hbr&quot;])
-abbList.append([&quot;Harbors&quot;,&quot;Hbrs&quot;])
-abbList.append([&quot;Haven&quot;,&quot;Hvn&quot;])
-abbList.append([&quot;Heights&quot;,&quot;Hts&quot;])
-abbList.append([&quot;Highway&quot;,&quot;Hwy&quot;])
-abbList.append([&quot;Hill&quot;,&quot;Hl&quot;])
-abbList.append([&quot;Hills&quot;,&quot;Hls&quot;])
-abbList.append([&quot;Hollow&quot;,&quot;Holw&quot;])
-abbList.append([&quot;Horn&quot;,&quot;Horn&quot;]) #Hennepin Specific
-abbList.append([&quot;Inlet&quot;,&quot;Inlt&quot;])
-abbList.append([&quot;Island&quot;,&quot;Is&quot;])
-abbList.append([&quot;Islands&quot;,&quot;Iss&quot;])
-abbList.append([&quot;Isle&quot;,&quot;Isle&quot;])
-abbList.append([&quot;Junction&quot;,&quot;Jct&quot;])
-abbList.append([&quot;Junctions&quot;,&quot;Jcts&quot;])
-abbList.append([&quot;Key&quot;,&quot;Ky&quot;])
-abbList.append([&quot;Keys&quot;,&quot;Kys&quot;])
-abbList.append([&quot;Knoll&quot;,&quot;Knl&quot;])
-abbList.append([&quot;Knolls&quot;,&quot;Knls&quot;])
-abbList.append([&quot;Lake&quot;,&quot;Lk&quot;])
-abbList.append([&quot;Lakes&quot;,&quot;Lks&quot;])
-abbList.append([&quot;Land&quot;,&quot;Land&quot;])
-abbList.append([&quot;Landing&quot;,&quot;Lndg&quot;])
-abbList.append([&quot;Lane&quot;,&quot;Ln&quot;])
-abbList.append([&quot;Light&quot;,&quot;Lgt&quot;])
-abbList.append([&quot;Lights&quot;,&quot;Lgts&quot;])
-abbList.append([&quot;Loaf&quot;,&quot;Lf&quot;])
-abbList.append([&quot;Lock&quot;,&quot;Lck&quot;])
-abbList.append([&quot;Locks&quot;,&quot;Lcks&quot;])
-abbList.append([&quot;Lodge&quot;,&quot;Ldg&quot;])
-abbList.append([&quot;Loop&quot;,&quot;Loop&quot;])
-abbList.append([&quot;Mall&quot;,&quot;Mall&quot;])
-abbList.append([&quot;Manor&quot;,&quot;Mnr&quot;])
-abbList.append([&quot;Manors&quot;,&quot;Mnrs&quot;])
-abbList.append([&quot;Meadow&quot;,&quot;Mdw&quot;])
-abbList.append([&quot;Meadows&quot;,&quot;Mdws&quot;])
-abbList.append([&quot;Mews&quot;,&quot;Mews&quot;])
-abbList.append([&quot;Mill&quot;,&quot;Ml&quot;])
-abbList.append([&quot;Mills&quot;,&quot;Mls&quot;])
-abbList.append([&quot;Mission&quot;,&quot;Msn&quot;])
-abbList.append([&quot;Motorway&quot;,&quot;Mtwy&quot;])
-abbList.append([&quot;Mount&quot;,&quot;Mt&quot;])
-abbList.append([&quot;Mountain&quot;,&quot;Mtn&quot;])
-abbList.append([&quot;Mountains&quot;,&quot;Mtns&quot;])
-abbList.append([&quot;Neck&quot;,&quot;Nck&quot;])
-abbList.append([&quot;Orchard&quot;,&quot;Orch&quot;])
-abbList.append([&quot;Oval&quot;,&quot;Oval&quot;])
-abbList.append([&quot;Overpass&quot;,&quot;Opas&quot;])
-abbList.append([&quot;Park&quot;,&quot;Park&quot;])
-abbList.append([&quot;Parks&quot;,&quot;Park&quot;])
-abbList.append([&quot;Parkway&quot;,&quot;Pkwy&quot;])
-abbList.append([&quot;Parkways&quot;,&quot;Pkwy&quot;])
-abbList.append([&quot;Pass&quot;,&quot;Pass&quot;])
-abbList.append([&quot;Passage&quot;,&quot;Psge&quot;])
-abbList.append([&quot;Path&quot;,&quot;Path&quot;])
-abbList.append([&quot;Pike&quot;,&quot;Pike&quot;])
-abbList.append([&quot;Pine&quot;,&quot;Pne&quot;])
-abbList.append([&quot;Pines&quot;,&quot;Pnes&quot;])
-abbList.append([&quot;Place&quot;,&quot;Pl&quot;])
-abbList.append([&quot;Plain&quot;,&quot;Pln&quot;])
-abbList.append([&quot;Plains&quot;,&quot;Plns&quot;])
-abbList.append([&quot;Plaza&quot;,&quot;Plz&quot;])
-abbList.append([&quot;Point&quot;,&quot;Pt&quot;])
-abbList.append([&quot;Points&quot;,&quot;Pts&quot;])
-abbList.append([&quot;Port&quot;,&quot;Prt&quot;])
-abbList.append([&quot;Ports&quot;,&quot;Prts&quot;])
-abbList.append([&quot;Prairie&quot;,&quot;Pr&quot;])
-abbList.append([&quot;Radial&quot;,&quot;Radl&quot;])
-abbList.append([&quot;Railroad&quot;,&quot;Railroad&quot;]) #Hennepin Specific
-abbList.append([&quot;Ramp&quot;,&quot;Ramp&quot;])
-abbList.append([&quot;Ranch&quot;,&quot;Rnch&quot;])
-abbList.append([&quot;Rapid&quot;,&quot;Rpd&quot;])
-abbList.append([&quot;Rapids&quot;,&quot;Rpds&quot;])
-abbList.append([&quot;Rest&quot;,&quot;Rst&quot;])
-abbList.append([&quot;Ridge&quot;,&quot;Rdg&quot;])
-abbList.append([&quot;Ridges&quot;,&quot;Rdgs&quot;])
-abbList.append([&quot;Rise&quot;,&quot;Rise&quot;]) #Hennepin Specific
-abbList.append([&quot;River&quot;,&quot;Riv&quot;])
-abbList.append([&quot;Road&quot;,&quot;Rd&quot;])
-abbList.append([&quot;Roads&quot;,&quot;Rds&quot;])
-abbList.append([&quot;Route&quot;,&quot;Rte&quot;])
-abbList.append([&quot;Row&quot;,&quot;Row&quot;])
-abbList.append([&quot;Rue&quot;,&quot;Rue&quot;])
-abbList.append([&quot;Run&quot;,&quot;Run&quot;])
-abbList.append([&quot;Shoal&quot;,&quot;Shl&quot;])
-abbList.append([&quot;Shoals&quot;,&quot;Shls&quot;])
-abbList.append([&quot;Shore&quot;,&quot;Shr&quot;])
-abbList.append([&quot;Shores&quot;,&quot;Shrs&quot;])
-abbList.append([&quot;Skies&quot;,&quot;Skies&quot;]) #Hennepin Specific
-abbList.append([&quot;Skyway&quot;,&quot;Skwy&quot;])
-abbList.append([&quot;Spring&quot;,&quot;Spg&quot;])
-abbList.append([&quot;Springs&quot;,&quot;Spgs&quot;])
-abbList.append([&quot;Spur&quot;,&quot;Spur&quot;])
-abbList.append([&quot;Spurs&quot;,&quot;Spur&quot;])
-abbList.append([&quot;Square&quot;,&quot;Sq&quot;])
-abbList.append([&quot;Squares&quot;,&quot;Sqrs&quot;])
-abbList.append([&quot;Station&quot;,&quot;Sta&quot;])
-abbList.append([&quot;Stravenue&quot;,&quot;Stra&quot;])
-abbList.append([&quot;Stream&quot;,&quot;Strm&quot;])
-abbList.append([&quot;Street&quot;,&quot;St&quot;])
-abbList.append([&quot;Streets&quot;,&quot;Sts&quot;])
-abbList.append([&quot;Summit&quot;,&quot;Smt&quot;])
-abbList.append([&quot;Terrace&quot;,&quot;Ter&quot;])
-abbList.append([&quot;Throughway&quot;,&quot;Trwy&quot;])
-abbList.append([&quot;Trace&quot;,&quot;Trce&quot;])
-abbList.append([&quot;Track&quot;,&quot;Trak&quot;])
-abbList.append([&quot;Trafficway&quot;,&quot;Trfy&quot;])
-abbList.append([&quot;Trail&quot;,&quot;Trl&quot;])
-abbList.append([&quot;Tunnel&quot;,&quot;Tunl&quot;])
-abbList.append([&quot;Turn&quot;,&quot;Turn&quot;]) #Hennepin Specific
-abbList.append([&quot;Turnpike&quot;,&quot;Tpke&quot;])
-abbList.append([&quot;Underpass&quot;,&quot;Upas&quot;])
-abbList.append([&quot;Union&quot;,&quot;Un&quot;])
-abbList.append([&quot;Unions&quot;,&quot;Uns&quot;])
-abbList.append([&quot;Valley&quot;,&quot;Vly&quot;])
-abbList.append([&quot;Valleys&quot;,&quot;Vlys&quot;])
-abbList.append([&quot;Viaduct&quot;,&quot;Via&quot;])
-abbList.append([&quot;View&quot;,&quot;Vw&quot;])
-abbList.append([&quot;Views&quot;,&quot;Vws&quot;])
-abbList.append([&quot;Village&quot;,&quot;Vlg&quot;])
-abbList.append([&quot;Villages&quot;,&quot;Vlgs&quot;])
-abbList.append([&quot;Ville&quot;,&quot;Vl&quot;])
-abbList.append([&quot;Vista&quot;,&quot;Vis&quot;])
-abbList.append([&quot;Walk&quot;,&quot;Walk&quot;])
-abbList.append([&quot;Walks&quot;,&quot;Walk&quot;])
-abbList.append([&quot;Wall&quot;,&quot;Wall&quot;])
-abbList.append([&quot;Way&quot;,&quot;Way&quot;])
-abbList.append([&quot;Ways&quot;,&quot;Ways&quot;])
-abbList.append([&quot;Well&quot;,&quot;Wl&quot;])
-abbList.append([&quot;Wells&quot;,&quot;Wls&quot;])
+abbList <span style="color:#f92672">=</span> []
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Alcove&#34;</span>,<span style="color:#e6db74">&#34;Alcove&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Alley&#34;</span>,<span style="color:#e6db74">&#34;Aly&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Annex&#34;</span>,<span style="color:#e6db74">&#34;Anx&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Arcade&#34;</span>,<span style="color:#e6db74">&#34;Arc&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Avenue&#34;</span>,<span style="color:#e6db74">&#34;Ave&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Bay&#34;</span>,<span style="color:#e6db74">&#34;Bay&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Bayoo&#34;</span>,<span style="color:#e6db74">&#34;Byu&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Beach&#34;</span>,<span style="color:#e6db74">&#34;Bch&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Bend&#34;</span>,<span style="color:#e6db74">&#34;Bnd&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Bluff&#34;</span>,<span style="color:#e6db74">&#34;Blf&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Bluffs&#34;</span>,<span style="color:#e6db74">&#34;Blfs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Bottom&#34;</span>,<span style="color:#e6db74">&#34;Btm&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Boulevard&#34;</span>,<span style="color:#e6db74">&#34;Blvd&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Branch&#34;</span>,<span style="color:#e6db74">&#34;Br&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Bridge&#34;</span>,<span style="color:#e6db74">&#34;Brg&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Brook&#34;</span>,<span style="color:#e6db74">&#34;Brk&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Brooks&#34;</span>,<span style="color:#e6db74">&#34;Brks&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Burg&#34;</span>,<span style="color:#e6db74">&#34;Bg&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Burgs&#34;</span>,<span style="color:#e6db74">&#34;Bgs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Bypass&#34;</span>,<span style="color:#e6db74">&#34;Byp&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Camp&#34;</span>,<span style="color:#e6db74">&#34;Cp&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Canyon&#34;</span>,<span style="color:#e6db74">&#34;Cyn&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Cape&#34;</span>,<span style="color:#e6db74">&#34;Cpe&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Causeway&#34;</span>,<span style="color:#e6db74">&#34;Cswy&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Center&#34;</span>,<span style="color:#e6db74">&#34;Ctr&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Centers&#34;</span>,<span style="color:#e6db74">&#34;Ctrs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Crossings&#34;</span>,<span style="color:#e6db74">&#34;Crossings&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Crossroad&#34;</span>,<span style="color:#e6db74">&#34;Xrd&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Chase&#34;</span>,<span style="color:#e6db74">&#34;Chase&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Circle&#34;</span>,<span style="color:#e6db74">&#34;Cir&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Circles&#34;</span>,<span style="color:#e6db74">&#34;Cirs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Cliff&#34;</span>,<span style="color:#e6db74">&#34;Clf&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Cliffs&#34;</span>,<span style="color:#e6db74">&#34;Clfs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Club&#34;</span>,<span style="color:#e6db74">&#34;Clb&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Close&#34;</span>,<span style="color:#e6db74">&#34;Close&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Common&#34;</span>,<span style="color:#e6db74">&#34;Cmn&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Commons&#34;</span>,<span style="color:#e6db74">&#34;Cmns&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Corner&#34;</span>,<span style="color:#e6db74">&#34;Cor&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Corners&#34;</span>,<span style="color:#e6db74">&#34;Cors&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Corridor&#34;</span>,<span style="color:#e6db74">&#34;Corridor&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Course&#34;</span>,<span style="color:#e6db74">&#34;Crse&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Court&#34;</span>,<span style="color:#e6db74">&#34;Ct&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Courts&#34;</span>,<span style="color:#e6db74">&#34;Cts&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Cove&#34;</span>,<span style="color:#e6db74">&#34;Cv&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Coves&#34;</span>,<span style="color:#e6db74">&#34;Cvs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Creek&#34;</span>,<span style="color:#e6db74">&#34;Crk&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Crescent&#34;</span>,<span style="color:#e6db74">&#34;Cres&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Crest&#34;</span>,<span style="color:#e6db74">&#34;Crst&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Cross&#34;</span>,<span style="color:#e6db74">&#34;Cross&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Crossing&#34;</span>,<span style="color:#e6db74">&#34;Xing&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Curve&#34;</span>,<span style="color:#e6db74">&#34;Curve&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Dale&#34;</span>,<span style="color:#e6db74">&#34;Dl&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Dam&#34;</span>,<span style="color:#e6db74">&#34;Dm&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Divide&#34;</span>,<span style="color:#e6db74">&#34;Dv&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Down&#34;</span>,<span style="color:#e6db74">&#34;Down&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Downs&#34;</span>,<span style="color:#e6db74">&#34;Downs&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Drive&#34;</span>,<span style="color:#e6db74">&#34;Dr&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Drives&#34;</span>,<span style="color:#e6db74">&#34;Drs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Edge&#34;</span>,<span style="color:#e6db74">&#34;Edge&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Entry&#34;</span>,<span style="color:#e6db74">&#34;Entry&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Estate&#34;</span>,<span style="color:#e6db74">&#34;Est&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Estates&#34;</span>,<span style="color:#e6db74">&#34;Ests&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Expressway&#34;</span>,<span style="color:#e6db74">&#34;Expy&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Extension&#34;</span>,<span style="color:#e6db74">&#34;Ext&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Extensions&#34;</span>,<span style="color:#e6db74">&#34;Exts&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Fall&#34;</span>,<span style="color:#e6db74">&#34;Fall&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Falls&#34;</span>,<span style="color:#e6db74">&#34;Fls&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Ferry&#34;</span>,<span style="color:#e6db74">&#34;Fry&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Field&#34;</span>,<span style="color:#e6db74">&#34;Fld&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Fields&#34;</span>,<span style="color:#e6db74">&#34;Flds&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Flat&#34;</span>,<span style="color:#e6db74">&#34;Flt&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Flats&#34;</span>,<span style="color:#e6db74">&#34;Flts&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Ford&#34;</span>,<span style="color:#e6db74">&#34;Frd&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Fords&#34;</span>,<span style="color:#e6db74">&#34;Frds&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Forest&#34;</span>,<span style="color:#e6db74">&#34;Frst&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Forge&#34;</span>,<span style="color:#e6db74">&#34;Frg&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Forges&#34;</span>,<span style="color:#e6db74">&#34;Frgs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Fork&#34;</span>,<span style="color:#e6db74">&#34;Frk&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Forks&#34;</span>,<span style="color:#e6db74">&#34;Frks&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Fort&#34;</span>,<span style="color:#e6db74">&#34;Ft&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Freeway&#34;</span>,<span style="color:#e6db74">&#34;Fwy&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Gables&#34;</span>,<span style="color:#e6db74">&#34;Gables&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Garden&#34;</span>,<span style="color:#e6db74">&#34;Gdn&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Gardens&#34;</span>,<span style="color:#e6db74">&#34;Gdns&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Gate&#34;</span>,<span style="color:#e6db74">&#34;Gate&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Gateway&#34;</span>,<span style="color:#e6db74">&#34;Gtwy&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Glade&#34;</span>,<span style="color:#e6db74">&#34;Glade&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Glen&#34;</span>,<span style="color:#e6db74">&#34;Gln&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Glens&#34;</span>,<span style="color:#e6db74">&#34;Glns&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Green&#34;</span>,<span style="color:#e6db74">&#34;Grn&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Greens&#34;</span>,<span style="color:#e6db74">&#34;Grns&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Greenway&#34;</span>,<span style="color:#e6db74">&#34;Greenway&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Grove&#34;</span>,<span style="color:#e6db74">&#34;Grv&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Groves&#34;</span>,<span style="color:#e6db74">&#34;Grvs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Harbor&#34;</span>,<span style="color:#e6db74">&#34;Hbr&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Harbors&#34;</span>,<span style="color:#e6db74">&#34;Hbrs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Haven&#34;</span>,<span style="color:#e6db74">&#34;Hvn&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Heights&#34;</span>,<span style="color:#e6db74">&#34;Hts&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Highway&#34;</span>,<span style="color:#e6db74">&#34;Hwy&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Hill&#34;</span>,<span style="color:#e6db74">&#34;Hl&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Hills&#34;</span>,<span style="color:#e6db74">&#34;Hls&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Hollow&#34;</span>,<span style="color:#e6db74">&#34;Holw&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Horn&#34;</span>,<span style="color:#e6db74">&#34;Horn&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Inlet&#34;</span>,<span style="color:#e6db74">&#34;Inlt&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Island&#34;</span>,<span style="color:#e6db74">&#34;Is&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Islands&#34;</span>,<span style="color:#e6db74">&#34;Iss&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Isle&#34;</span>,<span style="color:#e6db74">&#34;Isle&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Junction&#34;</span>,<span style="color:#e6db74">&#34;Jct&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Junctions&#34;</span>,<span style="color:#e6db74">&#34;Jcts&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Key&#34;</span>,<span style="color:#e6db74">&#34;Ky&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Keys&#34;</span>,<span style="color:#e6db74">&#34;Kys&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Knoll&#34;</span>,<span style="color:#e6db74">&#34;Knl&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Knolls&#34;</span>,<span style="color:#e6db74">&#34;Knls&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Lake&#34;</span>,<span style="color:#e6db74">&#34;Lk&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Lakes&#34;</span>,<span style="color:#e6db74">&#34;Lks&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Land&#34;</span>,<span style="color:#e6db74">&#34;Land&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Landing&#34;</span>,<span style="color:#e6db74">&#34;Lndg&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Lane&#34;</span>,<span style="color:#e6db74">&#34;Ln&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Light&#34;</span>,<span style="color:#e6db74">&#34;Lgt&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Lights&#34;</span>,<span style="color:#e6db74">&#34;Lgts&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Loaf&#34;</span>,<span style="color:#e6db74">&#34;Lf&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Lock&#34;</span>,<span style="color:#e6db74">&#34;Lck&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Locks&#34;</span>,<span style="color:#e6db74">&#34;Lcks&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Lodge&#34;</span>,<span style="color:#e6db74">&#34;Ldg&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Loop&#34;</span>,<span style="color:#e6db74">&#34;Loop&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Mall&#34;</span>,<span style="color:#e6db74">&#34;Mall&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Manor&#34;</span>,<span style="color:#e6db74">&#34;Mnr&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Manors&#34;</span>,<span style="color:#e6db74">&#34;Mnrs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Meadow&#34;</span>,<span style="color:#e6db74">&#34;Mdw&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Meadows&#34;</span>,<span style="color:#e6db74">&#34;Mdws&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Mews&#34;</span>,<span style="color:#e6db74">&#34;Mews&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Mill&#34;</span>,<span style="color:#e6db74">&#34;Ml&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Mills&#34;</span>,<span style="color:#e6db74">&#34;Mls&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Mission&#34;</span>,<span style="color:#e6db74">&#34;Msn&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Motorway&#34;</span>,<span style="color:#e6db74">&#34;Mtwy&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Mount&#34;</span>,<span style="color:#e6db74">&#34;Mt&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Mountain&#34;</span>,<span style="color:#e6db74">&#34;Mtn&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Mountains&#34;</span>,<span style="color:#e6db74">&#34;Mtns&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Neck&#34;</span>,<span style="color:#e6db74">&#34;Nck&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Orchard&#34;</span>,<span style="color:#e6db74">&#34;Orch&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Oval&#34;</span>,<span style="color:#e6db74">&#34;Oval&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Overpass&#34;</span>,<span style="color:#e6db74">&#34;Opas&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Park&#34;</span>,<span style="color:#e6db74">&#34;Park&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Parks&#34;</span>,<span style="color:#e6db74">&#34;Park&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Parkway&#34;</span>,<span style="color:#e6db74">&#34;Pkwy&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Parkways&#34;</span>,<span style="color:#e6db74">&#34;Pkwy&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Pass&#34;</span>,<span style="color:#e6db74">&#34;Pass&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Passage&#34;</span>,<span style="color:#e6db74">&#34;Psge&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Path&#34;</span>,<span style="color:#e6db74">&#34;Path&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Pike&#34;</span>,<span style="color:#e6db74">&#34;Pike&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Pine&#34;</span>,<span style="color:#e6db74">&#34;Pne&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Pines&#34;</span>,<span style="color:#e6db74">&#34;Pnes&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Place&#34;</span>,<span style="color:#e6db74">&#34;Pl&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Plain&#34;</span>,<span style="color:#e6db74">&#34;Pln&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Plains&#34;</span>,<span style="color:#e6db74">&#34;Plns&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Plaza&#34;</span>,<span style="color:#e6db74">&#34;Plz&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Point&#34;</span>,<span style="color:#e6db74">&#34;Pt&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Points&#34;</span>,<span style="color:#e6db74">&#34;Pts&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Port&#34;</span>,<span style="color:#e6db74">&#34;Prt&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Ports&#34;</span>,<span style="color:#e6db74">&#34;Prts&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Prairie&#34;</span>,<span style="color:#e6db74">&#34;Pr&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Radial&#34;</span>,<span style="color:#e6db74">&#34;Radl&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Railroad&#34;</span>,<span style="color:#e6db74">&#34;Railroad&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Ramp&#34;</span>,<span style="color:#e6db74">&#34;Ramp&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Ranch&#34;</span>,<span style="color:#e6db74">&#34;Rnch&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Rapid&#34;</span>,<span style="color:#e6db74">&#34;Rpd&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Rapids&#34;</span>,<span style="color:#e6db74">&#34;Rpds&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Rest&#34;</span>,<span style="color:#e6db74">&#34;Rst&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Ridge&#34;</span>,<span style="color:#e6db74">&#34;Rdg&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Ridges&#34;</span>,<span style="color:#e6db74">&#34;Rdgs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Rise&#34;</span>,<span style="color:#e6db74">&#34;Rise&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;River&#34;</span>,<span style="color:#e6db74">&#34;Riv&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Road&#34;</span>,<span style="color:#e6db74">&#34;Rd&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Roads&#34;</span>,<span style="color:#e6db74">&#34;Rds&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Route&#34;</span>,<span style="color:#e6db74">&#34;Rte&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Row&#34;</span>,<span style="color:#e6db74">&#34;Row&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Rue&#34;</span>,<span style="color:#e6db74">&#34;Rue&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Run&#34;</span>,<span style="color:#e6db74">&#34;Run&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Shoal&#34;</span>,<span style="color:#e6db74">&#34;Shl&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Shoals&#34;</span>,<span style="color:#e6db74">&#34;Shls&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Shore&#34;</span>,<span style="color:#e6db74">&#34;Shr&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Shores&#34;</span>,<span style="color:#e6db74">&#34;Shrs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Skies&#34;</span>,<span style="color:#e6db74">&#34;Skies&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Skyway&#34;</span>,<span style="color:#e6db74">&#34;Skwy&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Spring&#34;</span>,<span style="color:#e6db74">&#34;Spg&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Springs&#34;</span>,<span style="color:#e6db74">&#34;Spgs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Spur&#34;</span>,<span style="color:#e6db74">&#34;Spur&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Spurs&#34;</span>,<span style="color:#e6db74">&#34;Spur&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Square&#34;</span>,<span style="color:#e6db74">&#34;Sq&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Squares&#34;</span>,<span style="color:#e6db74">&#34;Sqrs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Station&#34;</span>,<span style="color:#e6db74">&#34;Sta&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Stravenue&#34;</span>,<span style="color:#e6db74">&#34;Stra&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Stream&#34;</span>,<span style="color:#e6db74">&#34;Strm&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Street&#34;</span>,<span style="color:#e6db74">&#34;St&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Streets&#34;</span>,<span style="color:#e6db74">&#34;Sts&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Summit&#34;</span>,<span style="color:#e6db74">&#34;Smt&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Terrace&#34;</span>,<span style="color:#e6db74">&#34;Ter&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Throughway&#34;</span>,<span style="color:#e6db74">&#34;Trwy&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Trace&#34;</span>,<span style="color:#e6db74">&#34;Trce&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Track&#34;</span>,<span style="color:#e6db74">&#34;Trak&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Trafficway&#34;</span>,<span style="color:#e6db74">&#34;Trfy&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Trail&#34;</span>,<span style="color:#e6db74">&#34;Trl&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Tunnel&#34;</span>,<span style="color:#e6db74">&#34;Tunl&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Turn&#34;</span>,<span style="color:#e6db74">&#34;Turn&#34;</span>]) <span style="color:#75715e">#Hennepin Specific</span>
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Turnpike&#34;</span>,<span style="color:#e6db74">&#34;Tpke&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Underpass&#34;</span>,<span style="color:#e6db74">&#34;Upas&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Union&#34;</span>,<span style="color:#e6db74">&#34;Un&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Unions&#34;</span>,<span style="color:#e6db74">&#34;Uns&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Valley&#34;</span>,<span style="color:#e6db74">&#34;Vly&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Valleys&#34;</span>,<span style="color:#e6db74">&#34;Vlys&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Viaduct&#34;</span>,<span style="color:#e6db74">&#34;Via&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;View&#34;</span>,<span style="color:#e6db74">&#34;Vw&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Views&#34;</span>,<span style="color:#e6db74">&#34;Vws&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Village&#34;</span>,<span style="color:#e6db74">&#34;Vlg&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Villages&#34;</span>,<span style="color:#e6db74">&#34;Vlgs&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Ville&#34;</span>,<span style="color:#e6db74">&#34;Vl&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Vista&#34;</span>,<span style="color:#e6db74">&#34;Vis&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Walk&#34;</span>,<span style="color:#e6db74">&#34;Walk&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Walks&#34;</span>,<span style="color:#e6db74">&#34;Walk&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Wall&#34;</span>,<span style="color:#e6db74">&#34;Wall&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Way&#34;</span>,<span style="color:#e6db74">&#34;Way&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Ways&#34;</span>,<span style="color:#e6db74">&#34;Ways&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Well&#34;</span>,<span style="color:#e6db74">&#34;Wl&#34;</span>])
+abbList<span style="color:#f92672">.</span>append([<span style="color:#e6db74">&#34;Wells&#34;</span>,<span style="color:#e6db74">&#34;Wls&#34;</span>])
 
-#List of changes for [St_POS_Dir]
-posDirList = [[&quot;North&quot;,&quot;N&quot;],[&quot;East&quot;,&quot;E&quot;],[&quot;South&quot;,&quot;S&quot;],[&quot;West&quot;,&quot;W&quot;],[&quot;Northeast&quot;,&quot;NE&quot;],[&quot;Northwest&quot;,&quot;NW&quot;],[&quot;Southeast&quot;,&quot;SE&quot;],[&quot;Southwest&quot;,&quot;SW&quot;]]
-preDirList = [[&quot;North&quot;,&quot;N&quot;],[&quot;East&quot;,&quot;E&quot;],[&quot;South&quot;,&quot;S&quot;],[&quot;West&quot;,&quot;W&quot;]]
-############################################
-## Read Arguments
+<span style="color:#75715e">#List of changes for [St_POS_Dir]</span>
+posDirList <span style="color:#f92672">=</span> [[<span style="color:#e6db74">&#34;North&#34;</span>,<span style="color:#e6db74">&#34;N&#34;</span>],[<span style="color:#e6db74">&#34;East&#34;</span>,<span style="color:#e6db74">&#34;E&#34;</span>],[<span style="color:#e6db74">&#34;South&#34;</span>,<span style="color:#e6db74">&#34;S&#34;</span>],[<span style="color:#e6db74">&#34;West&#34;</span>,<span style="color:#e6db74">&#34;W&#34;</span>],[<span style="color:#e6db74">&#34;Northeast&#34;</span>,<span style="color:#e6db74">&#34;NE&#34;</span>],[<span style="color:#e6db74">&#34;Northwest&#34;</span>,<span style="color:#e6db74">&#34;NW&#34;</span>],[<span style="color:#e6db74">&#34;Southeast&#34;</span>,<span style="color:#e6db74">&#34;SE&#34;</span>],[<span style="color:#e6db74">&#34;Southwest&#34;</span>,<span style="color:#e6db74">&#34;SW&#34;</span>]]
+preDirList <span style="color:#f92672">=</span> [[<span style="color:#e6db74">&#34;North&#34;</span>,<span style="color:#e6db74">&#34;N&#34;</span>],[<span style="color:#e6db74">&#34;East&#34;</span>,<span style="color:#e6db74">&#34;E&#34;</span>],[<span style="color:#e6db74">&#34;South&#34;</span>,<span style="color:#e6db74">&#34;S&#34;</span>],[<span style="color:#e6db74">&#34;West&#34;</span>,<span style="color:#e6db74">&#34;W&#34;</span>]]
+<span style="color:#75715e">############################################</span>
+<span style="color:#75715e">## Read Arguments</span>
 
-if (len(sys.argv) &amp;gt; 1):
-    inFC = sys.argv[1]
+<span style="color:#66d9ef">if</span> (len(sys<span style="color:#f92672">.</span>argv) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>):
+    inFC <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>]
 
-############################################
-# General Purpose Functions
-def printit(inputString):
-    try:
-        print(inputString)
-        arcpy.AddMessage(str(inputString))
-    except:
-        pass
+<span style="color:#75715e">############################################</span>
+<span style="color:#75715e"># General Purpose Functions</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">printit</span>(inputString):
+    <span style="color:#66d9ef">try</span>:
+        <span style="color:#66d9ef">print</span>(inputString)
+        arcpy<span style="color:#f92672">.</span>AddMessage(str(inputString))
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">pass</span>
 
-def printerror(inputString):
-    print (inputString)
-    arcpy.AddError(inputString)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">printerror</span>(inputString):
+    <span style="color:#66d9ef">print</span> (inputString)
+    arcpy<span style="color:#f92672">.</span>AddError(inputString)
 
-def getField(inFeatureClass, inFieldName):
-  fieldList = arcpy.ListFields(inFeatureClass)
-  for iField in fieldList:
-    if iField.name.lower() == inFieldName.lower():
-      return iField
-  return None
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getField</span>(inFeatureClass, inFieldName):
+  fieldList <span style="color:#f92672">=</span> arcpy<span style="color:#f92672">.</span>ListFields(inFeatureClass)
+  <span style="color:#66d9ef">for</span> iField <span style="color:#f92672">in</span> fieldList:
+    <span style="color:#66d9ef">if</span> iField<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>lower() <span style="color:#f92672">==</span> inFieldName<span style="color:#f92672">.</span>lower():
+      <span style="color:#66d9ef">return</span> iField
+  <span style="color:#66d9ef">return</span> None
 
-def fieldExists(inFeatureClass, inFieldName):
-  return getField(inFeatureClass,inFieldName) &lt;&gt; None
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fieldExists</span>(inFeatureClass, inFieldName):
+  <span style="color:#66d9ef">return</span> getField(inFeatureClass,inFieldName) <span style="color:#f92672">&lt;&gt;</span> None
 
-############################################
-# Initial QC
+<span style="color:#75715e">############################################</span>
+<span style="color:#75715e"># Initial QC</span>
 
-def initialQC():
-    if (arcpy.Exists(inFC)):
-        printit(&quot;PASS: Feature Class {} Exists&quot;.format(inFC))
-    else:
-        printerror(&quot;ERROR: Feature Class {} Does Not Exist, Cancelling...&quot;.format(inFC))
-        return False
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">initialQC</span>():
+    <span style="color:#66d9ef">if</span> (arcpy<span style="color:#f92672">.</span>Exists(inFC)):
+        printit(<span style="color:#e6db74">&#34;PASS: Feature Class {} Exists&#34;</span><span style="color:#f92672">.</span>format(inFC))
+    <span style="color:#66d9ef">else</span>:
+        printerror(<span style="color:#e6db74">&#34;ERROR: Feature Class {} Does Not Exist, Cancelling...&#34;</span><span style="color:#f92672">.</span>format(inFC))
+        <span style="color:#66d9ef">return</span> False
 
-    for iFld in requiredFieldList:
-        if (fieldExists(inFC,iFld)):
-            printit(&quot;PASS: Feature Class {} Has Field [{}]&quot;.format(inFC,iFld))
-        else:
-            printerror(&quot;ERROR: Feature Class {} Does Not Have Field [{}], Cancelling...&quot;.format(inFC,iFld))
-            return False
+    <span style="color:#66d9ef">for</span> iFld <span style="color:#f92672">in</span> requiredFieldList:
+        <span style="color:#66d9ef">if</span> (fieldExists(inFC,iFld)):
+            printit(<span style="color:#e6db74">&#34;PASS: Feature Class {} Has Field [{}]&#34;</span><span style="color:#f92672">.</span>format(inFC,iFld))
+        <span style="color:#66d9ef">else</span>:
+            printerror(<span style="color:#e6db74">&#34;ERROR: Feature Class {} Does Not Have Field [{}], Cancelling...&#34;</span><span style="color:#f92672">.</span>format(inFC,iFld))
+            <span style="color:#66d9ef">return</span> False
 
-    if not (fieldExists(inFC,newFieldName)):
-        printit(&quot;GOOD: Feature Class {} Does Not Already Have Field [{}]&quot;.format(inFC,newFieldName))
-        printit(&quot; ADDING Field [{}]&quot;.format(newFieldName))
-        try:
-            arcpy.AddField_management(in_table=inFC, field_name=newFieldName, field_type=&quot;TEXT&quot;, field_precision=&quot;&quot;, field_scale=&quot;&quot;, field_length=&quot;100&quot;, field_alias=&quot;&quot;, field_is_nullable=&quot;NULLABLE&quot;, field_is_required=&quot;NON_REQUIRED&quot;, field_domain=&quot;&quot;)
-        except:
-            printerror(&quot;ERROR: Error While Adding Field [{}], Cancelling...&quot;.format(newFieldName))
-            return False
-        if not (fieldExists(inFC,newFieldName)):
-            printerror(&quot;ERROR: Unable to Add Field [{}], Cancelling...&quot;.format(newFieldName))
-            return False
-    else:
-        printerror(&quot;ERROR: Feature Class {} Already Has Field [{}], Cancelling...&quot;.format(inFC,newFieldName))
-        return False
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> (fieldExists(inFC,newFieldName)):
+        printit(<span style="color:#e6db74">&#34;GOOD: Feature Class {} Does Not Already Have Field [{}]&#34;</span><span style="color:#f92672">.</span>format(inFC,newFieldName))
+        printit(<span style="color:#e6db74">&#34; ADDING Field [{}]&#34;</span><span style="color:#f92672">.</span>format(newFieldName))
+        <span style="color:#66d9ef">try</span>:
+            arcpy<span style="color:#f92672">.</span>AddField_management(in_table<span style="color:#f92672">=</span>inFC, field_name<span style="color:#f92672">=</span>newFieldName, field_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;TEXT&#34;</span>, field_precision<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, field_scale<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, field_length<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;100&#34;</span>, field_alias<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, field_is_nullable<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;NULLABLE&#34;</span>, field_is_required<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;NON_REQUIRED&#34;</span>, field_domain<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
+        <span style="color:#66d9ef">except</span>:
+            printerror(<span style="color:#e6db74">&#34;ERROR: Error While Adding Field [{}], Cancelling...&#34;</span><span style="color:#f92672">.</span>format(newFieldName))
+            <span style="color:#66d9ef">return</span> False
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> (fieldExists(inFC,newFieldName)):
+            printerror(<span style="color:#e6db74">&#34;ERROR: Unable to Add Field [{}], Cancelling...&#34;</span><span style="color:#f92672">.</span>format(newFieldName))
+            <span style="color:#66d9ef">return</span> False
+    <span style="color:#66d9ef">else</span>:
+        printerror(<span style="color:#e6db74">&#34;ERROR: Feature Class {} Already Has Field [{}], Cancelling...&#34;</span><span style="color:#f92672">.</span>format(inFC,newFieldName))
+        <span style="color:#66d9ef">return</span> False
 
-    return True
+    <span style="color:#66d9ef">return</span> True
 
-############################################
-# Main
+<span style="color:#75715e">############################################</span>
+<span style="color:#75715e"># Main</span>
 
-def makeSubstitution(inList,inValue,inFieldName):
-    for iAbbreviationPr in inList:
-        if (inValue == iAbbreviationPr[0]): #Found a Match
-            return iAbbreviationPr[1]
-    printit(&quot;WARNING: [{}] of {} does not have a value in the abbreviation list! Potential Error...&quot;.format(inFieldName,inValue))
-    return inValue
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">makeSubstitution</span>(inList,inValue,inFieldName):
+    <span style="color:#66d9ef">for</span> iAbbreviationPr <span style="color:#f92672">in</span> inList:
+        <span style="color:#66d9ef">if</span> (inValue <span style="color:#f92672">==</span> iAbbreviationPr[<span style="color:#ae81ff">0</span>]): <span style="color:#75715e">#Found a Match</span>
+            <span style="color:#66d9ef">return</span> iAbbreviationPr[<span style="color:#ae81ff">1</span>]
+    printit(<span style="color:#e6db74">&#34;WARNING: [{}] of {} does not have a value in the abbreviation list! Potential Error...&#34;</span><span style="color:#f92672">.</span>format(inFieldName,inValue))
+    <span style="color:#66d9ef">return</span> inValue
 
-def main():
-    cursorFieldList = requiredFieldList
-    cursorFieldList.append(newFieldName)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    cursorFieldList <span style="color:#f92672">=</span> requiredFieldList
+    cursorFieldList<span style="color:#f92672">.</span>append(newFieldName)
 
-    try:
-        iUCursor = arcpy.da.UpdateCursor(inFC,cursorFieldList)
-        iRowCount = 0
-        iRowMax = 1
-        for uRow in iUCursor:
+    <span style="color:#66d9ef">try</span>:
+        iUCursor <span style="color:#f92672">=</span> arcpy<span style="color:#f92672">.</span>da<span style="color:#f92672">.</span>UpdateCursor(inFC,cursorFieldList)
+        iRowCount <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        iRowMax <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">for</span> uRow <span style="color:#f92672">in</span> iUCursor:
 
-            #Just to give user an indicator that progress is being made
-            if (iRowCount&amp;gt;iRowMax):
-                printit(&quot; {}&quot;.format(iRowCount))
-                iRowMax *= 10
-                iRowCount+=1
+            <span style="color:#75715e">#Just to give user an indicator that progress is being made</span>
+            <span style="color:#66d9ef">if</span> (iRowCount <span style="color:#f92672">&gt;</span> iRowMax):
+                printit(<span style="color:#e6db74">&#34; {}&#34;</span><span style="color:#f92672">.</span>format(iRowCount))
+                iRowMax <span style="color:#f92672">*=</span> <span style="color:#ae81ff">10</span>
+                iRowCount<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
 
-            abbreviateConcatenatedName = &quot;&quot;
-            iFldIndex = 0
-            for iFld in requiredFieldList:
-
-
-                if (iFld == newFieldName):
-                    uRow[iFldIndex] = abbreviateConcatenatedName
-                    iUCursor.updateRow(uRow)
-                else:
-                    iValue = uRow[iFldIndex].strip() #Strip is just a safe-guard
+            abbreviateConcatenatedName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+            iFldIndex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+            <span style="color:#66d9ef">for</span> iFld <span style="color:#f92672">in</span> requiredFieldList:
 
 
-                    if ((iValue != &quot;&quot;) and (iValue != None)):
-                        if (iFld == &quot;ST_PRE_DIR&quot;):
-                            iValue= makeSubstitution(preDirList,iValue,&quot;ST_PRE_DIR&quot;)
-                        if (iFld == &quot;ST_POS_TYP&quot;):
-                            iValue= makeSubstitution(abbList,iValue,&quot;ST_POS_TYPE&quot;)
-                        if (iFld == &quot;ST_POS_DIR&quot;):
-                            iValue = makeSubstitution(posDirList,iValue,&quot;ST_POS_DIR&quot;)
-
-                        if (abbreviateConcatenatedName == &quot;&quot;):
-                            abbreviateConcatenatedName = iValue
-                        else:
-                            abbreviateConcatenatedName+=&quot; &quot;+iValue
-                iFldIndex += 1
-
-        del iUCursor
-    except RuntimeError as e:
-        printerror(&quot;ERROR: Error {} Occurred, Cancelling...&quot;.format(e))
-        try:
-            del iUCursor
-            del uRow
-        except:
-            return False
-    return True
+                <span style="color:#66d9ef">if</span> (iFld <span style="color:#f92672">==</span> newFieldName):
+                    uRow[iFldIndex] <span style="color:#f92672">=</span> abbreviateConcatenatedName
+                    iUCursor<span style="color:#f92672">.</span>updateRow(uRow)
+                <span style="color:#66d9ef">else</span>:
+                    iValue <span style="color:#f92672">=</span> uRow[iFldIndex]<span style="color:#f92672">.</span>strip() <span style="color:#75715e">#Strip is just a safe-guard</span>
 
 
-if __name__ == '__main__':
-    if (initialQC() == True):
-        if (main() == True):
-            printit(&quot;Done!&quot;)
+                    <span style="color:#66d9ef">if</span> ((iValue <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#f92672">and</span> (iValue <span style="color:#f92672">!=</span> None)):
+                        <span style="color:#66d9ef">if</span> (iFld <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;ST_PRE_DIR&#34;</span>):
+                            iValue<span style="color:#f92672">=</span> makeSubstitution(preDirList,iValue,<span style="color:#e6db74">&#34;ST_PRE_DIR&#34;</span>)
+                        <span style="color:#66d9ef">if</span> (iFld <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;ST_POS_TYP&#34;</span>):
+                            iValue<span style="color:#f92672">=</span> makeSubstitution(abbList,iValue,<span style="color:#e6db74">&#34;ST_POS_TYPE&#34;</span>)
+                        <span style="color:#66d9ef">if</span> (iFld <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;ST_POS_DIR&#34;</span>):
+                            iValue <span style="color:#f92672">=</span> makeSubstitution(posDirList,iValue,<span style="color:#e6db74">&#34;ST_POS_DIR&#34;</span>)
 
-</code></pre>
+                        <span style="color:#66d9ef">if</span> (abbreviateConcatenatedName <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span>):
+                            abbreviateConcatenatedName <span style="color:#f92672">=</span> iValue
+                        <span style="color:#66d9ef">else</span>:
+                            abbreviateConcatenatedName<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">+</span>iValue
+                iFldIndex <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+        <span style="color:#66d9ef">del</span> iUCursor
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">RuntimeError</span> <span style="color:#66d9ef">as</span> e:
+        printerror(<span style="color:#e6db74">&#34;ERROR: Error {} Occurred, Cancelling...&#34;</span><span style="color:#f92672">.</span>format(e))
+        <span style="color:#66d9ef">try</span>:
+            <span style="color:#66d9ef">del</span> iUCursor
+            <span style="color:#66d9ef">del</span> uRow
+        <span style="color:#66d9ef">except</span>:
+            <span style="color:#66d9ef">return</span> False
+    <span style="color:#66d9ef">return</span> True
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    <span style="color:#66d9ef">if</span> (initialQC() <span style="color:#f92672">==</span> True):
+        <span style="color:#66d9ef">if</span> (main() <span style="color:#f92672">==</span> True):
+            printit(<span style="color:#e6db74">&#34;Done!&#34;</span>)
+
+</code></pre></div>
 
 </div>
 </article>
