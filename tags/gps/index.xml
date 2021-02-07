@@ -14,22 +14,40 @@
       <link>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</link>
       <pubDate>Fri, 16 May 2014 21:11:20 -0500</pubDate>
       <guid>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</guid>
-      <description>&lt;p&gt;I mentioned using &lt;!-- raw HTML omitted --&gt;Tapiriik&lt;!-- raw HTML omitted --&gt; to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .&lt;!-- raw HTML omitted --&gt;GPX to shapefiles&lt;!-- raw HTML omitted --&gt; that worked but none seemed to recognize my heart rate data.&lt;/p&gt;
+      <description>&lt;p&gt;I mentioned using &lt;a href=&#34;https://tapiriik.com&#34; target=&#34;_blank&#34;&gt;Tapiriik&lt;/a&gt; to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .&lt;a href=&#34;http://arcscripts.esri.com/details.asp?dbid=16797&#34; target=&#34;_blank&#34;&gt;GPX to shapefiles&lt;/a&gt; that worked but none seemed to recognize my heart rate data.&lt;/p&gt;
 &lt;p&gt;The trick is Garmin extends the GPX specification to incorporate the heart rate:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;span style=&amp;quot;color: #333333;&amp;quot;&amp;gt;xmlns:gpxtpx=&amp;quot;http://www.garmin.com/xmlschemas/TrackPointExtension/v1&amp;quot;&amp;lt;/span&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Each track point looks like this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;div id=&#34;LC15&#34; class=&#34;line&#34;&gt;
+       &lt;trkpt lat=&#39;43.68346489146352&amp;#8243; lon=&#39;-92.99583793468773&amp;#8243;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC16&#34; class=&#34;line&#34;&gt;
+          &lt;time&gt;2014-03-16T20:35:47+00:00&lt;/time&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC17&#34; class=&#34;line&#34;&gt;
+          &lt;ele&gt;296.20001220703125
+&lt;/div&gt;
+&lt;div id=&#34;LC18&#34; class=&#34;line&#34;&gt;
+          &lt;extensions&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC19&#34; class=&#34;line&#34;&gt;
+            &lt;gpxtpx:TrackPointExtension&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC20&#34; class=&#34;line&#34;&gt;
+              &lt;gpxtpx:hr&gt;86
+&lt;/div&gt;
+&lt;div id=&#34;LC21&#34; class=&#34;line&#34;&gt;
+            &lt;!--&lt;span class=&#34;hiddenSpellError&#34; pre=&#34;&#34; data-mce-bogus=&#34;1&#34;--&gt;gpxtpx:TrackPointExtension&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC22&#34; class=&#34;line&#34;&gt;
+          &lt;/extensions&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC23&#34; class=&#34;line&#34;&gt;
+        &lt;!--&lt;span class=&#34;hiddenSpellError&#34; pre=&#34;&#34; data-mce-bogus=&#34;1&#34;--&gt;trkpt&gt;
+&lt;/div&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;Since the first few exiting GPX converters failed to meet my needs, I decided to make my own, at least partially.&lt;/p&gt;
-&lt;p&gt;I used Joel Lawhead of &lt;!-- raw HTML omitted --&gt;GeospatialPython.com&lt;!-- raw HTML omitted --&gt;‘s &lt;!-- raw HTML omitted --&gt;pyshp&lt;!-- raw HTML omitted --&gt; library to handle writing the shapefile. I added some basic loop and I stuck a template.prj in the workspace that gets copied once for each shapefile.&lt;/p&gt;
+&lt;p&gt;I used Joel Lawhead of &lt;a href=&#34;http://geospatialpython.com&#34; target=&#34;_blank&#34;&gt;GeospatialPython.com&lt;/a&gt;‘s &lt;a href=&#34;https://code.google.com/p/pyshp/&#34; target=&#34;_blank&#34;&gt;pyshp&lt;/a&gt; library to handle writing the shapefile. I added some basic loop and I stuck a template.prj in the workspace that gets copied once for each shapefile.&lt;/p&gt;
 &lt;p&gt;Otherwise, nothing too fancy going on.  The code can be downloaded from &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/python/python/20140516_GPX2SHP&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import glob, os
 import xml.etree.ElementTree as ET
@@ -221,11 +239,11 @@ theLineList = mainLoop()
       <guid>https://maprantala.com/2014/04/25/friday-fave-tapiriik/</guid>
       <description>&lt;p&gt;This &lt;a href=&#34;https://maprantala.com/category/fun-maps/friday-fave/&#34;&gt;Friday Fave&lt;/a&gt; is a little bit different.&lt;/p&gt;
 &lt;p&gt;My interest in geospatial technologies (although we just called it GIS back then) largely because I wanted to measure my running routes more accurately and efficiently than the paper map &amp;amp; scrap of paper method I was using in the early 90s. When I was introduced to GIS, I knew what I was going to use it for.&lt;/p&gt;
-&lt;p&gt;Now that GPS technology is ubiquitous–I&amp;rsquo;m currently using four different GPS devices, at the same time, on my bike rides–I seldom have to use a map to measure my routes. I may still use &lt;!-- raw HTML omitted --&gt;MapMyRun.com&lt;!-- raw HTML omitted --&gt; to plan a route ahead of time if I&amp;rsquo;m running in a new area or trying to plan a loop of a certain distance but GPS has really made it so simple to just go out and run.&lt;/p&gt;
-&lt;p&gt;While there are several GPS options available, I have used Garmin ever since their 405 Forerunner came out. This was their first watch that didn&amp;rsquo;t get confused for a Timex-Sinclair 1000 strapped to your wrist.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/04/Zx81-timex-manipulated2.jpg&#34; alt=&#34;Timex Sinclair 1000&#34;&gt;&lt;!-- raw HTML omitted --&gt;Timex Sinclair 1000&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;Garmin&amp;rsquo;s watches upload their data to &lt;!-- raw HTML omitted --&gt;Gamin Connect,&lt;!-- raw HTML omitted --&gt; which works fine, but for a project I recently started, I wanted to down load all my data which Garmin Connect does not make easy. I had over 1,000 data logs and downloading them individually was not going to happen.&lt;/p&gt;
-&lt;p&gt;A little Googling led me to &lt;!-- raw HTML omitted --&gt;tapiriik.com&lt;!-- raw HTML omitted --&gt;, which allows you to share data amongst several different online services that endurance athletes might use including Runkeeper, Strava, Garmin Connect, SportTracks, DropBox.com, and Training Peaks.&lt;/p&gt;
+&lt;p&gt;Now that GPS technology is ubiquitous–I&amp;rsquo;m currently using four different GPS devices, at the same time, on my bike rides–I seldom have to use a map to measure my routes. I may still use &lt;a href=&#34;http://www.mapmyrun.com&#34; target=&#34;_blank&#34;&gt;MapMyRun.com&lt;/a&gt; to plan a route ahead of time if I&amp;rsquo;m running in a new area or trying to plan a loop of a certain distance but GPS has really made it so simple to just go out and run.&lt;/p&gt;
+&lt;p&gt;While there are several GPS options available, I have used Garmin ever since their 405 Forerunner came out. This was their first watch that didn&amp;rsquo;t get confused for a Timex-Sinclair 1000 strapped to your wrist.&lt;figure id=&#34;attachment_928&#34; aria-describedby=&#34;caption-attachment-928&#34; style=&#34;width: 300px&#34; class=&#34;wp-caption alignnone&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/04/Zx81-timex-manipulated2.jpg&#34; alt=&#34;Timex Sinclair 1000&#34;&gt;&lt;figcaption id=&#34;caption-attachment-928&#34; class=&#34;wp-caption-text&#34;&gt;Timex Sinclair 1000&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Garmin&amp;rsquo;s watches upload their data to &lt;a href=&#34;https://tapiriik.com/&#34; target=&#34;_blank&#34;&gt;Gamin Connect,&lt;/a&gt; which works fine, but for a project I recently started, I wanted to down load all my data which Garmin Connect does not make easy. I had over 1,000 data logs and downloading them individually was not going to happen.&lt;/p&gt;
+&lt;p&gt;A little Googling led me to &lt;a href=&#34;https://tapiriik.com/&#34; target=&#34;_blank&#34;&gt;tapiriik.com&lt;/a&gt;, which allows you to share data amongst several different online services that endurance athletes might use including Runkeeper, Strava, Garmin Connect, SportTracks, DropBox.com, and Training Peaks.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/04/Screen-Shot-2014-04-24-at-9.52.48-PM.png&#34; alt=&#34;https://tapiriik.com/&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;You can use Tapiriik for free (you just need to visit their website to start synchronization) or for $2 per year they will automatically synchronize data between your accounts. You just provide your account information for whichever sites you want to synchronize and either visit their site or pay $2 and it will automatically share data between your accounts.&lt;/p&gt;
@@ -241,15 +259,15 @@ theLineList = mainLoop()
       <link>https://maprantala.com/2014/04/18/friday-fave-custom-maps-app-for-android/</link>
       <pubDate>Fri, 18 Apr 2014 06:11:58 -0500</pubDate>
       <guid>https://maprantala.com/2014/04/18/friday-fave-custom-maps-app-for-android/</guid>
-      <description>&lt;p&gt;I admit, I love picking up freebie maps. Whether it is from the front desk of a hotel or from the bicycle shop, there is a certain appeal to seeing what people put on maps. I have maps organic orchards, breweries, &lt;!-- raw HTML omitted --&gt;Minnesota authors&lt;!-- raw HTML omitted --&gt;, rails to trails, zoos, fictional places, race maps, and a variety of other things that someone felt the need to cartographize.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I admit, I love picking up freebie maps. Whether it is from the front desk of a hotel or from the bicycle shop, there is a certain appeal to seeing what people put on maps. I have maps organic orchards, breweries, &lt;a href=&#34;http://thefriends.org/wp-content/uploads/2012/12/mn_writers_on_the_map_web_download.pdf&#34; target=&#34;_blank&#34;&gt;Minnesota authors&lt;/a&gt;, rails to trails, zoos, fictional places, race maps, and a variety of other things that someone felt the need to cartographize.&lt;figure id=&#34;attachment_896&#34; aria-describedby=&#34;caption-attachment-896&#34; style=&#34;width: 198px&#34; class=&#34;wp-caption alignnone&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/04/Screen-Shot-2014-04-10-at-10.35.26-PM-198x300.png&#34; alt=&#34;Options&#34;&gt;&lt;/p&gt;
-&lt;p&gt;(&lt;a href=&#34;http://thefriends.org/wp-content/uploads/2012/12/mn_writers_on_the_map_web_download.pdf&#34;&gt;http://thefriends.org/wp-content/uploads/2012/12/mn_writers_on_the_map_web_download.pdf&lt;/a&gt;)&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://thefriends.org/&#34;&gt;http://thefriends.org/&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;So, with all these paper maps lying around, I was thrilled to find &lt;!-- raw HTML omitted --&gt;Custom &lt;!-- raw HTML omitted --&gt;Maps&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;, a free app on&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;Google Play&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;(&lt;a href=&#34;http://thefriends.org/wp-content/uploads/2012/12/mn_writers_on_the_map_web_download.pdf&#34;&gt;http://thefriends.org/wp-content/uploads/2012/12/mn_writers_on_the_map_web_download.pdf&lt;/a&gt;)&lt;figcaption id=&#34;caption-attachment-896&#34; class=&#34;wp-caption-text&#34;&gt;&lt;a href=&#34;http://thefriends.org/&#34;&gt;http://thefriends.org/&lt;/a&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;So, with all these paper maps lying around, I was thrilled to find &lt;a href=&#34;http://www.custommapsapp.com&#34; target=&#34;_blank&#34;&gt;Custom &lt;span style=&#34;line-height: 1.5;&#34;&gt;Maps&lt;/span&gt;&lt;/a&gt;&lt;span style=&#34;line-height: 1.5;&#34;&gt;, a free app on&lt;/span&gt;&lt;span style=&#34;line-height: 1.5;&#34;&gt; &lt;/span&gt;
+&lt;a style=&#34;line-height: 1.5; color: #41a62a; outline: #000000;&#34; href=&#34;https://play.google.com/store/apps/details?id=com.custommapsapp.android&#34; target=&#34;_blank&#34;&gt;Google Play&lt;/a&gt;&lt;span style=&#34;line-height: 1.5;&#34;&gt;.&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;This app allows you to take a picture (or use an image on your device) and georeference it.  You can then view your location on the map. I&amp;rsquo;ve tried it with a few maps and have been happy with the results.&lt;/p&gt;
-&lt;p&gt;Similar to georeferencing in a desktop application, you select points on the map and then the same points on a control. You need at lest two or three points. After doing it a couple of times, the process becomes pretty easy and it just takes a minute or two from taking the picture to viewing your current location on the map.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/04/CustomMaps-AlignPoint.png&#34; alt=&#34;http://www.custommapsapp.com&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.custommapsapp.com&#34;&gt;http://www.custommapsapp.com&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Similar to georeferencing in a desktop application, you select points on the map and then the same points on a control. You need at lest two or three points. After doing it a couple of times, the process becomes pretty easy and it just takes a minute or two from taking the picture to viewing your current location on the map.&lt;figure id=&#34;attachment_900&#34; aria-describedby=&#34;caption-attachment-900&#34; style=&#34;width: 180px&#34; class=&#34;wp-caption aligncenter&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/04/CustomMaps-AlignPoint.png&#34; alt=&#34;http://www.custommapsapp.com&#34;&gt;&lt;figcaption id=&#34;caption-attachment-900&#34; class=&#34;wp-caption-text&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.custommapsapp.com&#34;&gt;http://www.custommapsapp.com&lt;/a&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;An example use case scenario for this app is you are lugging your family around at an overwhelming large amusement park and never quite sure where you are. You can take a picture of the map you picked up at the entrance, georeference it, and your phone will then show exactly where you are on that map and where the nearest loo is.&lt;/p&gt;
 &lt;p&gt;The biggest limitation I&amp;rsquo;ve seen so far is that there is a limit of 3-5 megapixel size limit on the image. Apparently this is an android limitation on how much memory an app can consume. But if you adjust your camera settings not to exceed this, you should be good.&lt;/p&gt;
 &lt;p&gt;So far, I&amp;rsquo;m enjoying this app. The author, Marko Teittinen (a good Finn name), has made the source code &lt;a href=&#34;https://code.google.com/p/custom-maps/&#34;&gt;open source&lt;/a&gt; so I look forward to digging into it in more detail.&lt;/p&gt;

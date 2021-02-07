@@ -72,8 +72,9 @@ else:
         quit()
 
 print theEmailText
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-252&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -82,7 +83,7 @@ print theEmailText
       <pubDate>Wed, 11 Aug 2010 17:31:21 -0500</pubDate>
       <guid>https://maprantala.com/2010/08/11/trying-to-perform-relate-in-model-builder/</guid>
       <description>&lt;p&gt;I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y&#39;) in another table (CWI.C5IX).  There is not an existing tool for doing this in ArcGIS.  I did find a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=1728&amp;amp;t=257179&amp;amp;g=1&#34;&gt;post&lt;/a&gt; by Layne Seely in &lt;a href=&#34;http://forums.esri.com/&#34;&gt;ArcForums&lt;/a&gt; titled &amp;lsquo;trying to perform &amp;lsquo;relate&amp;rsquo; in Model Builder.&amp;rsquo; that led me to the Make Table View under Data Management Tools-Make Table View and even had  the basic syntax I was looking for (if it hadn&amp;rsquo;t I probably would have guessed that it would not allow subqueries).&lt;/p&gt;
-&lt;p&gt;Since I always like to see exactly the syntax someone uses, I decided to show the syntax I used in case that helps anyone else.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Since I always like to see exactly the syntax someone uses, I decided to show the syntax I used in case that helps anyone else.&lt;figure id=&#34;attachment_171&#34; aria-describedby=&#34;caption-attachment-171&#34; style=&#34;width: 615px&#34; class=&#34;wp-caption alignnone&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/08/tableview.jpg?resize=615%2C392&#34; alt=&#34;tableView&#34;&gt;&lt;/p&gt;
 &lt;p&gt;It does require that the tables reside in the same workspace, which is a reasonable limitation that I can live with.  Another drawback is that if you export the model to a python script, the command can get pretty long, especially if you have many fields.&lt;/p&gt;
 </description>

@@ -14,8 +14,8 @@
       <link>https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/</link>
       <pubDate>Tue, 06 May 2014 05:42:04 -0500</pubDate>
       <guid>https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/</guid>
-      <description>&lt;p&gt;Back in 2010, I posted a &lt;!-- raw HTML omitted --&gt;python script &lt;!-- raw HTML omitted --&gt;and an &lt;!-- raw HTML omitted --&gt;ArcToolbox&lt;!-- raw HTML omitted --&gt; tool for zipping a shapefile.&lt;/p&gt;
-&lt;p&gt;Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn&amp;rsquo;t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from &lt;!-- raw HTML omitted --&gt;Github&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;Back in 2010, I posted a &lt;a href=&#34;https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34; target=&#34;_blank&#34;&gt;python script &lt;/a&gt;and an &lt;a href=&#34;https://maprantala.com/2010/12/15/zipping-a-shapefile-via-arctoolbox/&#34; target=&#34;_blank&#34;&gt;ArcToolbox&lt;/a&gt; tool for zipping a shapefile.&lt;/p&gt;
+&lt;p&gt;Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn&amp;rsquo;t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/ArcToolbox/ArcGIS_9.3/20101215_ZipShapefileFromArcToolbox&#34; target=&#34;_blank&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The guts of the code is here, though:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import zipfile
 import sys
@@ -66,8 +66,9 @@ print &amp;quot;done!&amp;quot;
       <description>&lt;p&gt;Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent.  Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range.  Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m not sure how rapidly ESRI takes &amp;lsquo;Ideas&amp;rsquo; into consideration but if you feel like it would benefit you, why not promote this idea:  &lt;a href=&#34;http://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Have a good weekend, all!&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-501&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -108,8 +109,9 @@ def listds():
 
 listfc(d)
 listds()
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-440&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -130,8 +132,9 @@ listds()
 &lt;p&gt;The way to get around this is to extract the data to XML and then import the XML workspace into a geodatabase.  Not sure if that will work for all schemas but it was successful for me.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/02/exportxml.jpg&#34; alt=&#34;Export XML&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-304&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -151,8 +154,9 @@ listds()
 &lt;p&gt;Turns out the solution was simple, this &lt;a href=&#34;http://resources.arcgis.com/content/kbase?fa=articleShow&amp;amp;d=37385&#34;&gt;article&lt;/a&gt; points out that &lt;a href=&#34;http://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;amp;PID=17&amp;amp;MetaID=1620&#34;&gt;Service pack 2&lt;/a&gt; is required.  After updating my ArcGIS, the problem was solved:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/01/errormessage.jpg&#34; alt=&#34;ErrorMessage&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&amp;rsquo;s &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDE with the -o option as the first error message instructed me to do.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-284&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.979965&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.263836&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
   </channel>

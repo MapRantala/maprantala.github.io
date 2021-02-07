@@ -113,7 +113,7 @@ Tags:
 <div class="content">
 <p>I was helping a co-worker who needed to check if a field exists in their arcpy script. Since we were located at their computer, I thought I would just do a quick Google search and pull the code off this blog. Seemed logical since I the original purpose was exactly that—to serve as a handy, public place to store code snippets that I use &amp; that others might find handy.</p>
 <p>Anyhow, my Google Search on “<a href="https://www.google.com/#q=Node+Dangles+field+Exists">Node Dangles field Exists</a>” came up with a <a href="https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/">9.3 script</a> to check if field index exists. And I also have a <a href="https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/">10.0 version</a> but did not come up with the field exists snippet. So here it is:</p>
-<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2013/09/image2.png"><!-- raw HTML omitted --></a></p>
+<p><a href="https://i0.wp.com/maprantala.com/wp-content/uploads/2013/09/image2.png"><img style="background-image: none; padding-top: 0; padding-left: 0; display: inline; padding-right: 0; border: 0;" title="image" alt="image" src="https://i0.wp.com/maprantala.com/wp-content/uploads/2013/09/image_thumb2.png?resize=445%2C131" width="445" height="131" border="0" data-recalc-dims="1" /></a></p>
 <pre><code>def fieldExists(inFeatureClass, inFieldName):
    fieldList = arcpy.ListFields(inFeatureClass)
    for iField in fieldList:

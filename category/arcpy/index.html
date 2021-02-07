@@ -117,7 +117,7 @@ Working with a routine process today that I normally only do once in awhile but 
 
 </header>
 <div class="content">
-One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a &lsquo;recover-our-cost&rsquo; mentality to more of an &lsquo;Open Data&rsquo;. Minnesota, for example, has launched their Geospatial Commonsas a platform for sharing data.
+One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a &lsquo;recover-our-cost&rsquo; mentality to more of an &lsquo;Open Data&rsquo;. Minnesota, for example, has launched their Geospatial Commons as a platform for sharing data.
 And while getting free, authoritative data is awesome, it can leave you in a bind if the structure of the data changes. Sometime between April and September, Hennepin County, Minnesota, changed the schema of their publicly available street centerlines data.
 </div>
 </article>
@@ -131,7 +131,7 @@ And while getting free, authoritative data is awesome, it can leave you in a bin
 
 </header>
 <div class="content">
-Working on doing some advanced ArcGIS server printingand had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks Petr Krebsfor the idea), copy all the existing layers into it, and save it out as a layer file.
+Working on doing some advanced ArcGIS server printing and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks Petr Krebs for the idea), copy all the existing layers into it, and save it out as a layer file.
 </div>
 </article>
 
@@ -144,9 +144,9 @@ Working on doing some advanced ArcGIS server printingand had the need to batch c
 
 </header>
 <div class="content">
-Recently I&rsquo;ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a &lsquo;Help&rsquo; button that opens a help file in .pdf format.The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(path to help.pdf).
+Recently I&rsquo;ve created Python add-ins for data entry for our staff. Most of these have a toolbar with a &lsquo;Help&rsquo; button that opens a help file in .pdf format.Sample python add-in toolbar. The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(path to help.pdf).
 However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!
-Luckily the Python development team at Esrialready had a blog postabout this at their ArcPy Café blog.
+Luckily the Python development team at Esri already had a blog post about this at their ArcPy Café blog.
 </div>
 </article>
 
@@ -159,7 +159,7 @@ Luckily the Python development team at Esrialready had a blog postabout this at 
 
 </header>
 <div class="content">
-I&rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a Coded Value Domainis valid.
+I&rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a Coded Value Domain is valid.
 The logic of the code is pretty straight-forward. Get a field&rsquo;s domain and check that a potential value is one of the code values. The biggest &lsquo;trick&rsquo; in this code is that arcpy.
 </div>
 </article>
@@ -189,7 +189,7 @@ import arcpy, glob,os theDir = r&#34;L:\gdrs\data\org\us_mn_state_dnr\elev_minne
 <div class="content">
 I&rsquo;m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some psycopg2).
 One of the QC checks I&rsquo;m doing at the end of this re-write is just verifying that the feature class schemas are the same (or that the differences are intended) under the new process as they were in the old process.
-And while ArcGIS does have a good toolfor this, there were a couple tweaks I wanted to make.
+And while ArcGIS does have a good tool for this, there were a couple tweaks I wanted to make.
 </div>
 </article>
 
@@ -202,7 +202,7 @@ And while ArcGIS does have a good toolfor this, there were a couple tweaks I wan
 
 </header>
 <div class="content">
-Back in 2010, I posted a python script and an ArcToolboxtool for zipping a shapefile.
+Back in 2010, I posted a python script and an ArcToolbox tool for zipping a shapefile.
 Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn&rsquo;t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from Github.
 </div>
 </article>
@@ -231,7 +231,7 @@ This tool will change all feature classes in the O:\clay_cga\sand-distribution_m
 
 </header>
 <div class="content">
-I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&rsquo;s ListFeatureClassesrequest. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.
+I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&rsquo;s ListFeatureClasses request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.
 Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.
 After discovering missing data in our backups, I reconstructed what happened and found this bug.
 </div>

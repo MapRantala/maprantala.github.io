@@ -104,9 +104,9 @@ StatCounter"></a></div></noscript>
 
 </header>
 <div class="content">
-Recently I&rsquo;ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a &lsquo;Help&rsquo; button that opens a help file in .pdf format.The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(path to help.pdf).
+Recently I&rsquo;ve created Python add-ins for data entry for our staff. Most of these have a toolbar with a &lsquo;Help&rsquo; button that opens a help file in .pdf format.Sample python add-in toolbar. The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(path to help.pdf).
 However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!
-Luckily the Python development team at Esrialready had a blog postabout this at their ArcPy Café blog.
+Luckily the Python development team at Esri already had a blog post about this at their ArcPy Café blog.
 </div>
 </article>
 
@@ -119,7 +119,7 @@ Luckily the Python development team at Esrialready had a blog postabout this at 
 
 </header>
 <div class="content">
-I&rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a Coded Value Domainis valid.
+I&rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a Coded Value Domain is valid.
 The logic of the code is pretty straight-forward. Get a field&rsquo;s domain and check that a potential value is one of the code values. The biggest &lsquo;trick&rsquo; in this code is that arcpy.
 </div>
 </article>
@@ -162,7 +162,7 @@ I&rsquo;ve been asked this twice this week, so thought I should post it. Calcula
 <div class="content">
 I&rsquo;m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some psycopg2).
 One of the QC checks I&rsquo;m doing at the end of this re-write is just verifying that the feature class schemas are the same (or that the differences are intended) under the new process as they were in the old process.
-And while ArcGIS does have a good toolfor this, there were a couple tweaks I wanted to make.
+And while ArcGIS does have a good tool for this, there were a couple tweaks I wanted to make.
 </div>
 </article>
 
@@ -175,10 +175,10 @@ And while ArcGIS does have a good toolfor this, there were a couple tweaks I wan
 
 </header>
 <div class="content">
-I mentioned using Tapiriikto batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .GPX to shapefilesthat worked but none seemed to recognize my heart rate data.
+I mentioned using Tapiriik to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .GPX to shapefiles that worked but none seemed to recognize my heart rate data.
 The trick is Garmin extends the GPX specification to incorporate the heart rate:
 &lt;span style=&quot;color: #333333;&quot;&gt;xmlns:gpxtpx=&quot;http://www.garmin.com/xmlschemas/TrackPointExtension/v1&quot;&lt;/span&gt; Each track point looks like this:
- Since the first few exiting GPX converters failed to meet my needs, I decided to make my own, at least partially.
+ 2014-03-16T20:35:47+00:00  296.20001220703125      86  gpxtpx:TrackPointExtension    trkpt   Since the first few exiting GPX converters failed to meet my needs, I decided to make my own, at least partially.
 </div>
 </article>
 
@@ -191,7 +191,7 @@ The trick is Garmin extends the GPX specification to incorporate the heart rate:
 
 </header>
 <div class="content">
-Back in 2010, I posted a python script and an ArcToolboxtool for zipping a shapefile.
+Back in 2010, I posted a python script and an ArcToolbox tool for zipping a shapefile.
 Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn&rsquo;t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from Github.
 </div>
 </article>

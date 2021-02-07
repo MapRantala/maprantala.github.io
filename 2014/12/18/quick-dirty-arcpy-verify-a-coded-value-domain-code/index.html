@@ -103,10 +103,10 @@ StatCounter"></a></div></noscript>
 </div>
 </header>
 <div class="content">
-<p>I&rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a <!-- raw HTML omitted -->Coded Value Domain<!-- raw HTML omitted --> is valid.</p>
-<p>The logic of the code is pretty straight-forward. Get a field&rsquo;s domain and check that a potential value is one of the code values. The biggest &lsquo;trick&rsquo; in this code is that <!-- raw HTML omitted -->arcpy.da.ListDomains<!-- raw HTML omitted -->, which locates a field&rsquo;s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.</p>
+<p>I&rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a <a href="http://resources.arcgis.com/en/help/main/10.2/index.html#//001s00000001000000" target="_blank">Coded Value Domain</a> is valid.</p>
+<p>The logic of the code is pretty straight-forward. Get a field&rsquo;s domain and check that a potential value is one of the code values. The biggest &lsquo;trick&rsquo; in this code is that <a href="http://resources.arcgis.com/en/help/main/10.2/index.html#//018w0000001z000000" target="_blank">arcpy.da.ListDomains</a>, which locates a field&rsquo;s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.</p>
 <p>A couple caveats about the code. It only returns True if a field exists, has a coded value domain, and the value tested is one of the (case-sensitive) valid codes. While I have an ArcToolbox tool to call it for illustration purposes, I&rsquo;m only calling it from code so I wanted tight requirements.</p>
-<p>Anyhow, here is the code or <!-- raw HTML omitted -->download it<!-- raw HTML omitted --> from GitHub.</p>
+<p>Anyhow, here is the code or <a href="https://github.com/MapRantala/Blog/tree/master/python/arcpy/20141218_VerifyDomainValue" target="_blank">download it</a> from GitHub.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> arcpy
 
 inFeatureClass <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>]

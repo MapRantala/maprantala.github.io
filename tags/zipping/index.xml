@@ -43,8 +43,9 @@ def zipFileGeodatabase(inFileGeodatabase, newZipFN):
 zipFileGeodatabase(infile,outfile)
 
 
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-312&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -89,8 +90,9 @@ return True
 
 zipShapefile(wellsShapeFile,wellsZipFile)
 print &amp;quot;done!&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-236&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.979965&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.263836&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
   </channel>

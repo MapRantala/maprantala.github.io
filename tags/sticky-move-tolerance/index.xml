@@ -21,8 +21,7 @@
 &lt;img src=&#34;https://maprantala.com/images/2010/07/setting.jpg&#34; alt=&#34;Settings&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The Sticky move tolerance is on the General tab.  In this example, I have my setting at 25 pixels which may be a bit high but I do not do a lot of data editing myself so it is workable.  The downside of having it set this high is if I want to move a feature just a tiny bit, I have to first drag the mouse relatively far away and then bring it tighter into where the feature is.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/07/options.jpg?resize=344%2C341g&#34; alt=&#34;Options&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Not sure how well this is documented although it can be found in the help system.&lt;/p&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;https://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Moving_features&#34;&gt;https://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Moving_features&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Not sure how well this is documented although it can be found &lt;a href=&#34;https://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Moving_features&#34; target=&#34;_blank&#34;&gt;in the help system.&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

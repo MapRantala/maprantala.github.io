@@ -16,10 +16,10 @@
       <guid>https://maprantala.com/2017/08/07/arcgis-pro-2.0-migration-overview/</guid>
       <description>&lt;p&gt;In April I started a new position at a company that had no existing GIS.&lt;/p&gt;
 &lt;p&gt;Nothing.&lt;/p&gt;
-&lt;p&gt;There was a definite need for GIS and some GIS-type functions were occuring but basically when I started, I had an &lt;!-- raw HTML omitted --&gt;ArcGIS Enterprise&lt;!-- raw HTML omitted --&gt; license and a mess of KML files.&lt;/p&gt;
+&lt;p&gt;There was a definite need for GIS and some GIS-type functions were occuring but basically when I started, I had an &lt;a href=&#34;http://server.arcgis.com/en/server/latest/get-started/windows/what-is-arcgis-enterprise-.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ArcGIS Enterprise&lt;/a&gt; license and a mess of KML files.&lt;/p&gt;
 &lt;p&gt;An exciting opportunity. And since I was starting from scratch, I had zero legacy concerns. No existing data, workflows, custom code, or maps to tie me to a specific software package. Knowing that ArcGIS Pro is taking over the world, I decided to transition to ArcPro and use that as our (GIS staff count of 1) company standard for desktop mapping.&lt;/p&gt;
-&lt;p&gt;That plan got side-tracked somewhat when we purchased a data management tool (&lt;!-- raw HTML omitted --&gt;CrescentLink Network Manager&lt;!-- raw HTML omitted --&gt;) that is only available for ArcMap. But I have still been using Pro on a regular basis.&lt;/p&gt;
-&lt;p&gt;I started a brilliant post about the transition–the pros, the cons, and my overall experience. But before I could finish it, &lt;!-- raw HTML omitted --&gt;out came 2.0&lt;!-- raw HTML omitted --&gt; and my post was suddenly out-dated. So I&amp;rsquo;ve decided to split that post into a bunch of smaller, more focused posts.&lt;/p&gt;
+&lt;p&gt;That plan got side-tracked somewhat when we purchased a data management tool (&lt;a href=&#34;http://crescentlink.com/products#manager&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CrescentLink Network Manager&lt;/a&gt;) that is only available for ArcMap. But I have still been using Pro on a regular basis.&lt;/p&gt;
+&lt;p&gt;I started a brilliant post about the transition–the pros, the cons, and my overall experience. But before I could finish it, &lt;a href=&#34;https://blogs.esri.com/esri/arcgis/2017/06/27/arcgis-pro-2-0-has-been-released/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;out came 2.0&lt;/a&gt; and my post was suddenly out-dated. So I&amp;rsquo;ve decided to split that post into a bunch of smaller, more focused posts.&lt;/p&gt;
 &lt;h4 id=&#34;overview&#34;&gt;Overview&lt;/h4&gt;
 &lt;p&gt;Without getting into to deep on specific features or functionality, I do have some broad comments to make.&lt;/p&gt;
 &lt;h6 id=&#34;learning-curve&#34;&gt;Learning Curve&lt;/h6&gt;
@@ -31,7 +31,16 @@
 &lt;p&gt;Performance is still painful to me. There are too many times when the wait cursor shows up when you do simple things like clicking on a button. A lot of the processing has been routed through the geoprocessing system and it just seems much slower.&lt;/p&gt;
 &lt;h4 id=&#34;version-20-highlights&#34;&gt;Version 2.0 Highlights&lt;/h4&gt;
 &lt;p&gt;While I&amp;rsquo;ll probably do some whining about ArcGIS Pro in this planned series of posts, there were a couple of significant highlights to the 2.0 release that took care of two of my major usability concerns.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;li style=&#34;list-style-type: none;&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      Simultaneously running multiple instances of ArcGIS on the same machine. I did some initial scripting for a data preparation process. The script took a good 15-20 minutes to run. Using 1.5, I had to launch it and then work in something other than ArcGIS Pro. Now I can launch that process and continue to work in a second session.
+    &lt;/li&gt;
+    &lt;li&gt;
+      Highlighting. Maybe I am just weird but I really missed the ability to highlight records in table. As part of my QC process, I will often select records using a spatial or attribute query and then go through that set and either unselect or reselect them in batches by first highlighting them. This was a huge issue I had with 1.5 especially since it does not seem like it should be difficult functionality to add in. I was going to wait on 2.0 until I saw this functionality.&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2017/08/Highlight-1.png&#34;&gt;&lt;img class=&#34;aligncenter wp-image-4715 &#34; src=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2017/08/Highlight-1.png?resize=886%2C374&#34; alt=&#34;&#34; width=&#34;886&#34; height=&#34;374&#34; data-recalc-dims=&#34;1&#34; /&gt;&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/li&gt;
 &lt;h4 id=&#34;summary&#34;&gt;Summary&lt;/h4&gt;
 &lt;p&gt;Overall, I&amp;rsquo;ve grown accustom to ArcPro. Like any new software, it takes time to get a feel for it. The transition is not that much different from going from ArcView 3.x to ArcGIS Desktop (or whatever 8.x was called). I am not yet as productive in it as Desktop but there are some things I really like about it to go along with my complaints.&lt;/p&gt;
 </description>
@@ -56,7 +65,7 @@
       <link>https://maprantala.com/2010/05/15/endpoints/</link>
       <pubDate>Sat, 15 May 2010 13:27:09 -0500</pubDate>
       <guid>https://maprantala.com/2010/05/15/endpoints/</guid>
-      <description>&lt;p&gt;I spent almost nine years working for a great company, &lt;a href=&#34;https://www.adc4gis.com/&#34;&gt;Applied Data Consultants&lt;/a&gt;, through a variety of roles–spent approximately 3 weeks doing Parcel work as a GIS Tech before I started working in Avenue for my own sanity. After that, spent several years doing various programming tasks including building tools for internal production and application development. The last couple years, I served more of a Consultant role, both for internal and external clients.&lt;/p&gt;
+      <description>&lt;p&gt;I spent almost nine years working for a great company, &lt;a href=&#34;https://www.adc4gis.com/&#34; target=&#34;_blank&#34;&gt;Applied Data Consultants!&lt;/a&gt;, through a variety of roles–spent approximately 3 weeks doing Parcel work as a GIS Tech before I started working in Avenue for my own sanity. After that, spent several years doing various programming tasks including building tools for internal production and application development. The last couple years, I served more of a Consultant role, both for internal and external clients.&lt;/p&gt;
 &lt;p&gt;Where one polyline ends, another starts in this case.&lt;/p&gt;
 &lt;p&gt;In a couple days, I start my role as Geological Information Specialist at a state agency in Minnesota. I previously worked for the Wisconsin DNR (where I originally &amp;lsquo;discovered&amp;rsquo; GIS) and Pierce County, Wisconsin so I have some governmental experience but I am wondering how I will adapt to the organizational differences.&lt;/p&gt;
 </description>

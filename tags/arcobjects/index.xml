@@ -24,8 +24,9 @@
 &lt;pre&gt;&lt;code&gt;Dim pCursorStream As System.IO.Stream = Me.GetType.Assembly.GetManifestResourceStream(&amp;quot;QDI.QdiAddIn.NewCursor.cur&amp;quot;)
 MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
 
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-599&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -39,8 +40,9 @@ MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
 &lt;p&gt;Finally, I realized that I needed to close ArcCatalog before arcpy recognized the fact I had renamed something. To note, I was running arcpy from a separate PythonWin window, not from the ArcCatalog session I had renamed the raster dataset with.&lt;/p&gt;
 &lt;p&gt;Once I closed ArcCatalog, arcpy recognized the renaming and life was good.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-546&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -61,9 +63,10 @@ MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/04/ds_3.png&#34; alt=&#34;Domain Sorter Dialog&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The only problem I have had is that only the owner of a domain is allowed to edit it on an SDE geodatabase.&lt;/p&gt;
 &lt;p&gt;But other than that, the button allows you to easily keep your domains sorted.&lt;/p&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;p&gt;&lt;small&gt;&lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;div id=&#34;geo-post-522&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -251,8 +254,9 @@ del inputRows
 del outputRows
 
 printit(&amp;quot;Done!&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-528&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -284,7 +288,9 @@ printit(&amp;quot;Done!&amp;quot;)
       <description>&lt;p&gt;In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0.  So far, I&amp;rsquo;m loving the functionality.&lt;/p&gt;
 &lt;p&gt;One thing, however, that I have to figure out is that the controls are not instantiated until they are clicked on.  One of the results is that the controls, by default, are enabled.  This is not the functionality I wanted.&lt;/p&gt;
 &lt;p&gt;I found the solution in ESRI&amp;rsquo;s topic, &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/&#34;&gt;Advanced add-in concepts (ArcObjects .NET 10 SDK)&lt;/a&gt; in the Delayed loading section:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p style=&#34;padding-left:30px;&#34;&gt;
+  &#39;&lt;strong&gt;&lt;/strong&gt;By default, the assemblies associated with add-in buttons and tools are not loaded until the corresponding item on a toolbar or menu is clicked by the user. This behavior helps conserve application memory and other resources. Since the enabled state of an add-in button or tool is controlled by the OnUpdate method within code, the button or tool will initially appear enabled. If you need tighter control over the initial enabled state of a button or tool, you need to override the default behavior and force the item to load at startup by setting the onDemand Extensible Markup Language (XML) attribute to false.&#39;
+&lt;/p&gt;
 &lt;p&gt;The verbiage, &amp;lsquo;setting the onDemand Extensible Markup Language (XML) attribute to false&amp;rsquo; was a bit non-specific to me.  I guessed right, however, that they were referring to the control definiton in the Command section of Config.esriaddinx.  In the example below, I set the onDemand attribute to false by adding the  ‘onDemand=&amp;lsquo;false&amp;rsquo;‘ tag and the control did, in fact, get instantiated at load time, giving me the ability to disable it.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;Tool id=&amp;quot;MGS_QDIAddin_QDIAddTool&amp;quot; class=&amp;quot;QDIAddTool&amp;quot; message=&amp;quot;QDI Add New Location.&amp;quot; caption=&amp;quot;QDI Add Tool&amp;quot; tip=&amp;quot;QDI Add Tool.&amp;quot; category=&amp;quot;QDI Add-In Controls&amp;quot; image=&amp;quot;ImagesQDIAddTool.png&amp;quot; onDemand=&amp;quot;false&amp;quot;&amp;gt;
 
@@ -317,8 +323,9 @@ printit(&amp;quot;Done!&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = ESRI.ArcGIS.Display.esriSimpleMarkerStyle.esriSMSCircle
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-328&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>

@@ -14,22 +14,40 @@
       <link>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</link>
       <pubDate>Fri, 16 May 2014 21:11:20 -0500</pubDate>
       <guid>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</guid>
-      <description>&lt;p&gt;I mentioned using &lt;!-- raw HTML omitted --&gt;Tapiriik&lt;!-- raw HTML omitted --&gt; to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .&lt;!-- raw HTML omitted --&gt;GPX to shapefiles&lt;!-- raw HTML omitted --&gt; that worked but none seemed to recognize my heart rate data.&lt;/p&gt;
+      <description>&lt;p&gt;I mentioned using &lt;a href=&#34;https://tapiriik.com&#34; target=&#34;_blank&#34;&gt;Tapiriik&lt;/a&gt; to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .&lt;a href=&#34;http://arcscripts.esri.com/details.asp?dbid=16797&#34; target=&#34;_blank&#34;&gt;GPX to shapefiles&lt;/a&gt; that worked but none seemed to recognize my heart rate data.&lt;/p&gt;
 &lt;p&gt;The trick is Garmin extends the GPX specification to incorporate the heart rate:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;span style=&amp;quot;color: #333333;&amp;quot;&amp;gt;xmlns:gpxtpx=&amp;quot;http://www.garmin.com/xmlschemas/TrackPointExtension/v1&amp;quot;&amp;lt;/span&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Each track point looks like this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;div id=&#34;LC15&#34; class=&#34;line&#34;&gt;
+       &lt;trkpt lat=&#39;43.68346489146352&amp;#8243; lon=&#39;-92.99583793468773&amp;#8243;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC16&#34; class=&#34;line&#34;&gt;
+          &lt;time&gt;2014-03-16T20:35:47+00:00&lt;/time&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC17&#34; class=&#34;line&#34;&gt;
+          &lt;ele&gt;296.20001220703125
+&lt;/div&gt;
+&lt;div id=&#34;LC18&#34; class=&#34;line&#34;&gt;
+          &lt;extensions&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC19&#34; class=&#34;line&#34;&gt;
+            &lt;gpxtpx:TrackPointExtension&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC20&#34; class=&#34;line&#34;&gt;
+              &lt;gpxtpx:hr&gt;86
+&lt;/div&gt;
+&lt;div id=&#34;LC21&#34; class=&#34;line&#34;&gt;
+            &lt;!--&lt;span class=&#34;hiddenSpellError&#34; pre=&#34;&#34; data-mce-bogus=&#34;1&#34;--&gt;gpxtpx:TrackPointExtension&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC22&#34; class=&#34;line&#34;&gt;
+          &lt;/extensions&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC23&#34; class=&#34;line&#34;&gt;
+        &lt;!--&lt;span class=&#34;hiddenSpellError&#34; pre=&#34;&#34; data-mce-bogus=&#34;1&#34;--&gt;trkpt&gt;
+&lt;/div&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;Since the first few exiting GPX converters failed to meet my needs, I decided to make my own, at least partially.&lt;/p&gt;
-&lt;p&gt;I used Joel Lawhead of &lt;!-- raw HTML omitted --&gt;GeospatialPython.com&lt;!-- raw HTML omitted --&gt;‘s &lt;!-- raw HTML omitted --&gt;pyshp&lt;!-- raw HTML omitted --&gt; library to handle writing the shapefile. I added some basic loop and I stuck a template.prj in the workspace that gets copied once for each shapefile.&lt;/p&gt;
+&lt;p&gt;I used Joel Lawhead of &lt;a href=&#34;http://geospatialpython.com&#34; target=&#34;_blank&#34;&gt;GeospatialPython.com&lt;/a&gt;‘s &lt;a href=&#34;https://code.google.com/p/pyshp/&#34; target=&#34;_blank&#34;&gt;pyshp&lt;/a&gt; library to handle writing the shapefile. I added some basic loop and I stuck a template.prj in the workspace that gets copied once for each shapefile.&lt;/p&gt;
 &lt;p&gt;Otherwise, nothing too fancy going on.  The code can be downloaded from &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/python/python/20140516_GPX2SHP&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import glob, os
 import xml.etree.ElementTree as ET

@@ -14,11 +14,11 @@
       <link>https://maprantala.com/2010/07/14/iowa-geological-survey/</link>
       <pubDate>Wed, 14 Jul 2010 13:01:47 -0500</pubDate>
       <guid>https://maprantala.com/2010/07/14/iowa-geological-survey/</guid>
-      <description>&lt;p&gt;The &lt;a href=&#34;http://www.igsb.uiowa.edu/&#34;&gt;Iowa Geological Survey&lt;/a&gt; has a lot of data available to download &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/nrgislibx/&#34;&gt;here&lt;/a&gt;.  PDF versions of many of their publications can be found in their &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/gsbpubs/&#34;&gt;List of Publications&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Their GIS data is minimally attributed for the most part, their public wells data set did have a more robust attribution scheme.  One cool feature I found in the wells data is that they provide a hyper-link for many features to an &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/geosam/Scripts/geocard.asp?wnumber=43873&#34;&gt;on-line site record&lt;/a&gt;.  Found both shapefiles and file geodatabases in the samples I downloaded.&lt;/p&gt;
+      <description>&lt;p&gt;The &lt;a href=&#34;http://www.igsb.uiowa.edu/&#34; target=&#34;_blank&#34;&gt;Iowa Geological Survey&lt;/a&gt;has a lot of data available to download &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/nrgislibx/&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.  PDF versions of many of their publications can be found in their &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/gsbpubs/&#34; target=&#34;_blank&#34;&gt;List of Publications&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Their GIS data is minimally attributed for the most part, their public wells data set did have a more robust attribution scheme.  One cool feature I found in the wells data is that they provide a hyper-link for many features to an &lt;a href=&#34;http://www.igsb.uiowa.edu/webapps/geosam/Scripts/geocard.asp?wnumber=43873&#34; target=&#34;_blank&#34;&gt;on-line site record&lt;/a&gt;.  Found both shapefiles and file geodatabases in the samples I downloaded.&lt;/p&gt;
 &lt;p&gt;More interestingly, I opened up their Bedrock Geological Map and noticed something odd to me.  See the bulls-eye just NW of center?  That, even to a non-geologist like me, does not look too geologic.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Turns out it is related to a meteorite impact known as the &lt;a href=&#34;http://en.wikipedia.org/wiki/Manson_crater&#34;&gt;Manson Crater&lt;/a&gt;, once thought to be The Dinosaur Killer until it was determined to be too old.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/07/bedrockgeologyrelief.jpg&#34; alt=&#34;Options&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Turns out it is related to a meteorite impact known as the &lt;a href=&#34;http://en.wikipedia.org/wiki/Manson_crater&#34; target=&#34;_blank&#34;&gt;Manson Crater&lt;/a&gt;, once thought to be The Dinosaur Killer until it was determined to be too old.&lt;/p&gt;
 </description>
     </item>
     

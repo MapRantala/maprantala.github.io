@@ -103,9 +103,9 @@ StatCounter"></a></div></noscript>
 </div>
 </header>
 <div class="content">
-<p>I&rsquo;m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some <!-- raw HTML omitted -->psycopg2<!-- raw HTML omitted -->).</p>
+<p>I&rsquo;m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some <a href="http://initd.org/psycopg/" target="_blank">psycopg2</a>).</p>
 <p>One of the QC checks I&rsquo;m doing at the end of this re-write is just verifying that the feature class schemas are the same (or that the differences are intended)  under the new process as they were in the old process.</p>
-<p>And while ArcGIS does have a <!-- raw HTML omitted -->good tool<!-- raw HTML omitted --> for this, there were a couple tweaks I wanted to make. Most notably, I wanted a list of fields that are not in both feature classes.</p>
+<p>And while ArcGIS does have a <a href="http://resources.arcgis.com/en/help/main/10.1/index.html#//001700000007000000" target="_blank">good tool</a> for this, there were a couple tweaks I wanted to make. Most notably, I wanted a list of fields that are not in both feature classes.</p>
 <p><img src="/images/2014/07/TableCompare.png" alt="ArcGIS Table Compare"></p>
 <p>So I made a quick &amp; dirty script to do that, nothing especially clever but I&rsquo;ve found it useful. Download it from <a href="https://github.com/MapRantala/Blog/tree/master/ArcToolbox/ArcGIS_10_2/20140702_CompareTableFields">GitHub</a>. I have it currently set up to work on feature layers but you should be able to change the toolbox parameter types to allow feature classes or tables.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> arcpy<span style="color:#f92672">,</span>sys<span style="color:#f92672">,</span>os

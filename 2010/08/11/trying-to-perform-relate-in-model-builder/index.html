@@ -104,7 +104,7 @@ StatCounter"></a></div></noscript>
 </header>
 <div class="content">
 <p>I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y') in another table (CWI.C5IX).  There is not an existing tool for doing this in ArcGIS.  I did find a <a href="http://forums.esri.com/Thread.asp?c=93&amp;f=1728&amp;t=257179&amp;g=1">post</a> by Layne Seely in <a href="http://forums.esri.com/">ArcForums</a> titled &lsquo;trying to perform &lsquo;relate&rsquo; in Model Builder.&rsquo; that led me to the Make Table View under Data Management Tools-Make Table View and even had  the basic syntax I was looking for (if it hadn&rsquo;t I probably would have guessed that it would not allow subqueries).</p>
-<p>Since I always like to see exactly the syntax someone uses, I decided to show the syntax I used in case that helps anyone else.<!-- raw HTML omitted --></p>
+<p>Since I always like to see exactly the syntax someone uses, I decided to show the syntax I used in case that helps anyone else.<figure id="attachment_171" aria-describedby="caption-attachment-171" style="width: 615px" class="wp-caption alignnone"></p>
 <p><img src="/images/2010/08/tableview.jpg?resize=615%2C392" alt="tableView"></p>
 <p>It does require that the tables reside in the same workspace, which is a reasonable limitation that I can live with.  Another drawback is that if you export the model to a python script, the command can get pretty long, especially if you have many fields.</p>
 

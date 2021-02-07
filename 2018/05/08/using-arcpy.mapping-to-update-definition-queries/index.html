@@ -114,7 +114,7 @@ Tags:
 </header>
 <div class="content">
 <p>Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the &lsquo;lazy&rsquo; GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.</p>
-<p>The quick &amp; dirty <!-- raw HTML omitted -->script<!-- raw HTML omitted --> code that I wrote &amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &lsquo;.replace&rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.</p>
+<p>The quick &amp; dirty <del>script</del> code that I wrote &amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &lsquo;.replace&rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.</p>
 <pre><code>#These first 3 lines only need to be run once.
 mxd = arcpy.mapping.MapDocument(&quot;CURRENT&quot;)
 l = arcpy.mapping.ListDataFrames(mxd)[0] #Note the hard-code [0], meaning the first dataframe. YMMV

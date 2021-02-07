@@ -15,10 +15,10 @@
       <pubDate>Tue, 26 Feb 2013 05:25:03 -0600</pubDate>
       <guid>https://maprantala.com/2013/02/26/arcsde-tip-finding-an-arcsde-instances-port/</guid>
       <description>&lt;p&gt;One of my main tasks right now is to document many of the details of maintaining ArcSDE geodatabases so I anticipate having several blog posts on this topic that are re-writes of documents I am working on. I am presuming that the person will have no ArcSDE experience so I am documenting very detailed information.&lt;/p&gt;
-&lt;p&gt;Almost all of the ArcSDE commands require that you specify which instance (service/port) the command applies to by using the &amp;lsquo;-i&amp;rsquo; parameter.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2013/02/instanceparameter1.png&#34; alt=&#34;ArcSDE Instance Parameter&#34;&gt;&lt;!-- raw HTML omitted --&gt;ArcSDE Instance Parameter&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Almost all of the ArcSDE commands require that you specify which instance (service/port) the command applies to by using the &amp;lsquo;-i&amp;rsquo; parameter.&lt;figure id=&#34;attachment_755&#34; aria-describedby=&#34;caption-attachment-755&#34; style=&#34;width: 672px&#34; class=&#34;wp-caption aligncenter&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2013/02/instanceparameter1.png&#34; alt=&#34;ArcSDE Instance Parameter&#34;&gt;&lt;figcaption id=&#34;caption-attachment-755&#34; class=&#34;wp-caption-text&#34;&gt;ArcSDE Instance Parameter&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Since we have multiple ArcSDE geodatabases, I like to have a handy-dandy sticky note with all the geodatabases and their respective ports on the side of my monitor.&lt;/p&gt;
-&lt;p&gt;But when that is not handy and I can never remember the ArcSDE command line syntax to get a list of instances and their ports–I mean remembering &amp;lsquo;&lt;!-- raw HTML omitted --&gt;sdeservice -o list&lt;!-- raw HTML omitted --&gt;&amp;rsquo; is difficult at my age.&lt;/p&gt;
+&lt;p&gt;But when that is not handy and I can never remember the ArcSDE command line syntax to get a list of instances and their ports–I mean remembering &amp;lsquo;&lt;a href=&#34;http://help.arcgis.com/en/geodatabase/10.0/admin_cmds/support_files/admincmdref.htm&#34; target=&#34;_blank&#34;&gt;sdeservice -o list&lt;/a&gt;&amp;rsquo; is difficult at my age.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2013/02/sdeservicelist.png&#34; alt=&#34;sdeservicelist&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The quickest and most reliable way I&amp;rsquo;ve found to get the instance number is just to check the properties of your SDE connection file in ArcCatalog, right-click on it and select &amp;lsquo;Connection Properties&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2013/02/connectionproperties.png&#34; alt=&#34;connectionproperties&#34;&gt;&lt;/p&gt;
@@ -54,8 +54,9 @@ During the process, though, the support person had me set a couple of environmen
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/08/dataextractionfailed.png&#34; alt=&#34;Data Extraction Failed&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Reading through this thread at &lt;a href=&#34;http://forums.esri.com/thread.asp?c=158&amp;amp;f=1696&amp;amp;t=273750&#34;&gt;ArcForum&lt;/a&gt; led to some good information.  But Thomas&#39; comment that he was using &amp;lsquo;IIS7 for my reverse proxy server&amp;rsquo; and had to change one more setting led me to the solution.  In Server Manager, the default Proxy Time-Out is set at 30 seconds by default.  I bumped that up, 60 seconds shown below but I ended up going to 300 seconds and the problem was resolved.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/08/servermanager.jpg&#34; alt=&#34;fsda&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-628&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -82,8 +83,9 @@ arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;env&lt;span style=&
    &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; fc
  
 &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Done!&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div id=&#34;geo-post-564&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -97,8 +99,9 @@ arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;env&lt;span style=&
 &lt;p&gt;Finally, I realized that I needed to close ArcCatalog before arcpy recognized the fact I had renamed something. To note, I was running arcpy from a separate PythonWin window, not from the ArcCatalog session I had renamed the raster dataset with.&lt;/p&gt;
 &lt;p&gt;Once I closed ArcCatalog, arcpy recognized the renaming and life was good.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-546&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -119,9 +122,10 @@ arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;env&lt;span style=&
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/04/ds_3.png&#34; alt=&#34;Domain Sorter Dialog&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The only problem I have had is that only the owner of a domain is allowed to edit it on an SDE geodatabase.&lt;/p&gt;
 &lt;p&gt;But other than that, the button allows you to easily keep your domains sorted.&lt;/p&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;p&gt;&lt;small&gt;&lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;div id=&#34;geo-post-522&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -138,8 +142,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
 &lt;p&gt;I actually expected that would occur–ArcSDE isn&amp;rsquo;t aware of PostgreSQL&amp;rsquo;s public account.&lt;/p&gt;
 &lt;p&gt;The solution was to go into pgAdmin II and revoke the privileges there.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/03/revokepgadminiii.jpg&#34; alt=&#34;Revoke public access in PGadminIII&#34;&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-428&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -180,8 +185,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
 &lt;p&gt;But running the fourth step, Create ArcSDE Service, resulted in this sweet message:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/02/success.jpg&#34; alt=&#34;Success&#34;&gt;&lt;/p&gt;
 &lt;p&gt;After editing my pg_hba.conf and opening the port in my firewall, the service was created, running, and visible.  So far, it seems to be fully functional and without problems.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-340&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -202,8 +208,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
 &lt;p&gt;The way to get around this is to extract the data to XML and then import the XML workspace into a geodatabase.  Not sure if that will work for all schemas but it was successful for me.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/02/exportxml.jpg&#34; alt=&#34;Export XML&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-304&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -223,8 +230,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
 &lt;p&gt;Turns out the solution was simple, this &lt;a href=&#34;http://resources.arcgis.com/content/kbase?fa=articleShow&amp;amp;d=37385&#34;&gt;article&lt;/a&gt; points out that &lt;a href=&#34;http://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;amp;PID=17&amp;amp;MetaID=1620&#34;&gt;Service pack 2&lt;/a&gt; is required.  After updating my ArcGIS, the problem was solved:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/01/errormessage.jpg&#34; alt=&#34;ErrorMessage&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&amp;rsquo;s &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDE with the -o option as the first error message instructed me to do.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-284&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.979965&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.263836&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
   </channel>

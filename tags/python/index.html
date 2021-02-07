@@ -117,7 +117,7 @@ Working with a routine process today that I normally only do once in awhile but 
 
 </header>
 <div class="content">
-One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a &lsquo;recover-our-cost&rsquo; mentality to more of an &lsquo;Open Data&rsquo;. Minnesota, for example, has launched their Geospatial Commonsas a platform for sharing data.
+One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a &lsquo;recover-our-cost&rsquo; mentality to more of an &lsquo;Open Data&rsquo;. Minnesota, for example, has launched their Geospatial Commons as a platform for sharing data.
 And while getting free, authoritative data is awesome, it can leave you in a bind if the structure of the data changes. Sometime between April and September, Hennepin County, Minnesota, changed the schema of their publicly available street centerlines data.
 </div>
 </article>
@@ -131,7 +131,7 @@ And while getting free, authoritative data is awesome, it can leave you in a bin
 
 </header>
 <div class="content">
-Working on doing some advanced ArcGIS server printingand had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks Petr Krebsfor the idea), copy all the existing layers into it, and save it out as a layer file.
+Working on doing some advanced ArcGIS server printing and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks Petr Krebs for the idea), copy all the existing layers into it, and save it out as a layer file.
 </div>
 </article>
 
@@ -144,9 +144,9 @@ Working on doing some advanced ArcGIS server printingand had the need to batch c
 
 </header>
 <div class="content">
-Recently I&rsquo;ve created Python add-insfor data entry for our staff. Most of these have a toolbar with a &lsquo;Help&rsquo; button that opens a help file in .pdf format.The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(path to help.pdf).
+Recently I&rsquo;ve created Python add-ins for data entry for our staff. Most of these have a toolbar with a &lsquo;Help&rsquo; button that opens a help file in .pdf format.Sample python add-in toolbar. The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(path to help.pdf).
 However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!
-Luckily the Python development team at Esrialready had a blog postabout this at their ArcPy Café blog.
+Luckily the Python development team at Esri already had a blog post about this at their ArcPy Café blog.
 </div>
 </article>
 
@@ -173,10 +173,10 @@ import arcpy, glob,os theDir = r&#34;L:\gdrs\data\org\us_mn_state_dnr\elev_minne
 
 </header>
 <div class="content">
-I mentioned using Tapiriikto batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .GPX to shapefilesthat worked but none seemed to recognize my heart rate data.
+I mentioned using Tapiriik to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .GPX to shapefiles that worked but none seemed to recognize my heart rate data.
 The trick is Garmin extends the GPX specification to incorporate the heart rate:
 &lt;span style=&quot;color: #333333;&quot;&gt;xmlns:gpxtpx=&quot;http://www.garmin.com/xmlschemas/TrackPointExtension/v1&quot;&lt;/span&gt; Each track point looks like this:
- Since the first few exiting GPX converters failed to meet my needs, I decided to make my own, at least partially.
+ 2014-03-16T20:35:47+00:00  296.20001220703125      86  gpxtpx:TrackPointExtension    trkpt   Since the first few exiting GPX converters failed to meet my needs, I decided to make my own, at least partially.
 </div>
 </article>
 

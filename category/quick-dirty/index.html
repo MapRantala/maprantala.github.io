@@ -117,7 +117,7 @@ Working with a routine process today that I normally only do once in awhile but 
 
 </header>
 <div class="content">
-I&rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a Coded Value Domainis valid.
+I&rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a Coded Value Domain is valid.
 The logic of the code is pretty straight-forward. Get a field&rsquo;s domain and check that a potential value is one of the code values. The biggest &lsquo;trick&rsquo; in this code is that arcpy.
 </div>
 </article>
@@ -147,7 +147,7 @@ import arcpy, glob,os theDir = r&#34;L:\gdrs\data\org\us_mn_state_dnr\elev_minne
 <div class="content">
 I&rsquo;m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some psycopg2).
 One of the QC checks I&rsquo;m doing at the end of this re-write is just verifying that the feature class schemas are the same (or that the differences are intended) under the new process as they were in the old process.
-And while ArcGIS does have a good toolfor this, there were a couple tweaks I wanted to make.
+And while ArcGIS does have a good tool for this, there were a couple tweaks I wanted to make.
 </div>
 </article>
 

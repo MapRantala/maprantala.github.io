@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Garmin GPX to Shapefile (SHP) conversion GPX2Shp.py – Node Dangles</title>
-<meta name="description" content="I mentioned using Tapiriikto batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .GPX to shapefilesthat …">
+<meta name="description" content="I mentioned using Tapiriik to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .GPX to shapefiles that …">
 <meta name="created" content="2014-05-16T21:11:20-0500">
 <meta name="modified" content="2014-05-16T21:11:20-0500">
 <meta name="author" content="Matt">
@@ -37,7 +37,7 @@
     "datePublished": "2014-05-16T21:11:20-05:00",
     "dateModified": "2014-05-16T21:11:20-05:00",
     "url" : "https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/",
-    "description": "I mentioned using Tapiriikto batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .GPX to shapefilesthat …",
+    "description": "I mentioned using Tapiriik to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .GPX to shapefiles that …",
     "keywords": ["arcpy","geospatial","GIS","gps","GPX","python"],
     "author": {
       "@type": "Person",
@@ -115,22 +115,40 @@ Tags:
 </div>
 </header>
 <div class="content">
-<p>I mentioned using <!-- raw HTML omitted -->Tapiriik<!-- raw HTML omitted --> to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .<!-- raw HTML omitted -->GPX to shapefiles<!-- raw HTML omitted --> that worked but none seemed to recognize my heart rate data.</p>
+<p>I mentioned using <a href="https://tapiriik.com" target="_blank">Tapiriik</a> to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .<a href="http://arcscripts.esri.com/details.asp?dbid=16797" target="_blank">GPX to shapefiles</a> that worked but none seemed to recognize my heart rate data.</p>
 <p>The trick is Garmin extends the GPX specification to incorporate the heart rate:</p>
 <pre><code>&lt;span style=&quot;color: #333333;&quot;&gt;xmlns:gpxtpx=&quot;http://www.garmin.com/xmlschemas/TrackPointExtension/v1&quot;&lt;/span&gt;
 </code></pre><p>Each track point looks like this:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<div id="LC15" class="line">
+       <trkpt lat='43.68346489146352&#8243; lon='-92.99583793468773&#8243;>
+</div>
+<div id="LC16" class="line">
+          <time>2014-03-16T20:35:47+00:00</time>
+</div>
+<div id="LC17" class="line">
+          <ele>296.20001220703125
+</div>
+<div id="LC18" class="line">
+          <extensions>
+</div>
+<div id="LC19" class="line">
+            <gpxtpx:TrackPointExtension>
+</div>
+<div id="LC20" class="line">
+              <gpxtpx:hr>86
+</div>
+<div id="LC21" class="line">
+            <!--<span class="hiddenSpellError" pre="" data-mce-bogus="1"-->gpxtpx:TrackPointExtension>
+</div>
+<div id="LC22" class="line">
+          </extensions>
+</div>
+<div id="LC23" class="line">
+        <!--<span class="hiddenSpellError" pre="" data-mce-bogus="1"-->trkpt>
+</div>
 <p> </p>
 <p>Since the first few exiting GPX converters failed to meet my needs, I decided to make my own, at least partially.</p>
-<p>I used Joel Lawhead of <!-- raw HTML omitted -->GeospatialPython.com<!-- raw HTML omitted -->‘s <!-- raw HTML omitted -->pyshp<!-- raw HTML omitted --> library to handle writing the shapefile. I added some basic loop and I stuck a template.prj in the workspace that gets copied once for each shapefile.</p>
+<p>I used Joel Lawhead of <a href="http://geospatialpython.com" target="_blank">GeospatialPython.com</a>‘s <a href="https://code.google.com/p/pyshp/" target="_blank">pyshp</a> library to handle writing the shapefile. I added some basic loop and I stuck a template.prj in the workspace that gets copied once for each shapefile.</p>
 <p>Otherwise, nothing too fancy going on.  The code can be downloaded from <a href="https://github.com/MapRantala/Blog/tree/master/python/python/20140516_GPX2SHP">Github</a>.</p>
 <pre><code>import glob, os
 import xml.etree.ElementTree as ET

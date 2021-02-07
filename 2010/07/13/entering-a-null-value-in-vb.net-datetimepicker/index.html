@@ -116,7 +116,7 @@ Tags:
 </div>
 </header>
 <div class="content">
-<p>While working on a VB.Net form to query a database that includes an optional date range query, I decided I wanted to display a datetimepicker with a blank value by default and then, if the user sets a date show the date.  By default, a datetimepicker can not have a Null date, so I went a&rsquo;Googling and found this post, <a href="http://dotnetref.blogspot.com/2009/03/setting-datetimepicker-to-blank-value.html">.NET Reference: Setting the DateTimePicker to a Blank Value</a> ,that had exactly the technique I wanted.</p>
+<p>While working on a VB.Net form to query a database that includes an optional date range query, I decided I wanted to display a datetimepicker with a blank value by default and then, if the user sets a date show the date.  By default, a datetimepicker can not have a Null date, so I went a&rsquo;Googling and found this post, <a href="http://dotnetref.blogspot.com/2009/03/setting-datetimepicker-to-blank-value.html" target="_blank">.NET Reference: Setting the DateTimePicker to a Blank Value</a>,that had exactly the technique I wanted.</p>
 <p>Basically, I set the datetimepicker&rsquo;s CustomFormat to a space (' &lsquo;) when I want it to be Null and then when the user makes a selection, set the custom format to the date format I wanted to display.    This is the sample code I found:</p>
 <pre><code>Private Sub ToDateField_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) _
    Handles ToDateField.ValueChanged
@@ -139,8 +139,9 @@ End Sub
 <pre><code>If Not (Me.ToDateField.CustomFormat = &quot; &quot;) Then
  'Code here to add to my SQL statement
  End If
-</code></pre><!-- raw HTML omitted -->
-
+</code></pre><div id="geo-post-87" class="geo geo-post" style="display: none">
+  <span class="latitude"></span><span class="longitude"></span>
+</div>
 
 </div>
 </article>

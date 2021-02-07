@@ -14,7 +14,7 @@
       <link>https://maprantala.com/2014/04/02/arcpy.listfeatureclasses-bug/</link>
       <pubDate>Wed, 02 Apr 2014 18:59:06 -0500</pubDate>
       <guid>https://maprantala.com/2014/04/02/arcpy.listfeatureclasses-bug/</guid>
-      <description>&lt;p&gt;I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&amp;rsquo;s &lt;!-- raw HTML omitted --&gt;ListFeatureClasses&lt;!-- raw HTML omitted --&gt; request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.&lt;/p&gt;
+      <description>&lt;p&gt;I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&amp;rsquo;s &lt;a href=&#34;http://resources.arcgis.com/en/help/main/10.2/index.html#//018v00000018000000&#34; target=&#34;_blank&#34;&gt;ListFeatureClasses&lt;/a&gt; request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.&lt;/p&gt;
 &lt;p&gt;Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.&lt;/p&gt;
 &lt;p&gt;After discovering missing data in our backups, I reconstructed what happened and found this bug. Below is arcpy code that iterates through the feature datasets in a geodatabase and lists the feature classes:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; arcpy
@@ -39,7 +39,7 @@ copyAll()
 &lt;p&gt;But if I rename the feature dataset (e.g. outcrop_fd), the results are what I would hope for:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/04/results2.png&#34; alt=&#34;results&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I found that the feature class does not even need to be within the feature dataset and also the problem does not always occur, I have had the code successfully run in some cases.&lt;/p&gt;
-&lt;p&gt;Once I confirmed the problem, I did find &lt;!-- raw HTML omitted --&gt;this thread&lt;!-- raw HTML omitted --&gt; from almost three years ago that mentions the bug. One poster indicated the same thing occurs in ArcObjects which leads me to think something may not be getting registered right in the sde tables.&lt;/p&gt;
+&lt;p&gt;Once I confirmed the problem, I did find &lt;a href=&#34;http://forums.arcgis.com/threads/31291-List-feature-classes-in-a-geodatabase-using-Python&#34; target=&#34;_blank&#34;&gt;this thread&lt;/a&gt; from almost three years ago that mentions the bug. One poster indicated the same thing occurs in ArcObjects which leads me to think something may not be getting registered right in the sde tables.&lt;/p&gt;
 &lt;p&gt;I was not able to re-create this using either personal or file geodatabases.&lt;/p&gt;
 &lt;p&gt;So I adopting the policy of not using the same name for a feature dataset as for a feature class.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -53,14 +53,14 @@ copyAll()
       <guid>https://maprantala.com/2012/06/05/unsupported-arc-reboxing-or-updating-the-extent-of-a-feature-class/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve found that sometimes I can not find the answer to a question until I know the answer &amp;amp; then it becomes ridiculously easy to find the answer.&lt;/p&gt;
 &lt;p&gt;One small annoying thing that I never spent much time was when you delete features from a feature class making it significantly smaller but the envelope does not get re-sized so the zoom extent (still the original extent) is too large. This often happens to use when we convert tables to an XY theme and there are blank records–most of our data shows in Minnesota but there are some in Oklahoma (I think). Once we eliminate or correct the blank records, our data view still pops out to include a large section of the United States even though we only have data in Minnesota.&lt;/p&gt;
-&lt;p&gt;A long, long time ago, &lt;!-- raw HTML omitted --&gt;Workstation ArcInfo&lt;!-- raw HTML omitted --&gt; had a simple command, &lt;!-- raw HTML omitted --&gt;Rebox&lt;!-- raw HTML omitted --&gt;, for just this purpose (actually it still does, I just don&amp;rsquo;t get to use it anymore)–it shrunk the extent to the smallest rectangle required to enclose all the data. Up until today, I thought &lt;!-- raw HTML omitted --&gt;the request&lt;!-- raw HTML omitted --&gt; for this feature was completely ignored.&lt;/p&gt;
+&lt;p&gt;A long, long time ago, &lt;a href=&#34;http://forums.arcgis.com/forums/54-ArcInfo-Workstation&#34; target=&#34;_blank&#34;&gt;Workstation ArcInfo&lt;/a&gt; had a simple command, &lt;a href=&#34;http://resources.esri.com/help/9.3/geoprocessing/pdf/arcinfo_commands.pdf&#34; target=&#34;_blank&#34;&gt;Rebox&lt;/a&gt;, for just this purpose (actually it still does, I just don&amp;rsquo;t get to use it anymore)–it shrunk the extent to the smallest rectangle required to enclose all the data. Up until today, I thought &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;f=993&amp;t=184832&#34; target=&#34;_blank&#34;&gt;the request&lt;/a&gt; for this feature was completely ignored.&lt;/p&gt;
 &lt;p&gt;While researching something else, I was digging around in the sde tables and found one, sde.sde_layers, that had the interesting fields, minx, miny, maxx, and maxy. My quick &amp;amp; dangerous test (I performed it on a throw-away feature class in a throw-away geodatabase) gave me the results I wanted–once I loaded the feature class into ArcMap, the extent was a nice, tight rectangle around my features.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2012/06/extent1.png&#34; alt=&#34;Extent&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Is this a supported way to Rebox the extent? No.&lt;/p&gt;
 &lt;p&gt;Is it recommend by ESRI or me? No.&lt;/p&gt;
 &lt;p&gt;Will it screw up your entire geodatabase, making you lose all your data &amp;amp; costing you your job? Probably not but do you want to take that chance?&lt;/p&gt;
-&lt;p&gt;Will it get the job done? Maybe.  But in the process of writing this post, I found two safer ways to go about it. First, the straight-forward, sde command-line way that probably always existed that I never found until today, &lt;!-- raw HTML omitted --&gt;sdelayer -o alter had an -E option to reset the extent&lt;!-- raw HTML omitted --&gt;, including the ability to either specify it or have sde calculate it. Ok, that is usable for one person in our organization.&lt;/p&gt;
-&lt;p&gt;Previously, we had found either a VBA or other tool for doing this but had minimal success with it. Today, I found an &lt;!-- raw HTML omitted --&gt;ArcGIS 10 Add-In&lt;!-- raw HTML omitted --&gt; that is suppose to do the same thing. In my experiments (sample size n=1) it worked perfectly. If you need this sort of functionality, I would recommend trying out this Add-In first, if that fails go the sde command line route. Use the direct SQL method at your own risk!&lt;/p&gt;
+&lt;p&gt;Will it get the job done? Maybe.  But in the process of writing this post, I found two safer ways to go about it. First, the straight-forward, sde command-line way that probably always existed that I never found until today, &lt;a href=&#34;http://help.arcgis.com/en/geodatabase/10.0/admin_cmds/support_files/datamgmt/sdelayer.htm&#34; target=&#34;_blank&#34;&gt;sdelayer -o alter had an -E option to reset the extent&lt;/a&gt;, including the ability to either specify it or have sde calculate it. Ok, that is usable for one person in our organization.&lt;/p&gt;
+&lt;p&gt;Previously, we had found either a VBA or other tool for doing this but had minimal success with it. Today, I found an &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=AE907673-1422-2418-A092-D7AAF6A16E6C&#34; target=&#34;_blank&#34;&gt;ArcGIS 10 Add-In&lt;/a&gt; that is suppose to do the same thing. In my experiments (sample size n=1) it worked perfectly. If you need this sort of functionality, I would recommend trying out this Add-In first, if that fails go the sde command line route. Use the direct SQL method at your own risk!&lt;/p&gt;
 </description>
     </item>
     
@@ -90,8 +90,9 @@ copyAll()
 &lt;pre&gt;&lt;code&gt;Dim pCursorStream As System.IO.Stream = Me.GetType.Assembly.GetManifestResourceStream(&amp;quot;QDI.QdiAddIn.NewCursor.cur&amp;quot;)
 MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
 
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-599&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -105,8 +106,9 @@ MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
 &lt;p&gt;Finally, I realized that I needed to close ArcCatalog before arcpy recognized the fact I had renamed something. To note, I was running arcpy from a separate PythonWin window, not from the ArcCatalog session I had renamed the raster dataset with.&lt;/p&gt;
 &lt;p&gt;Once I closed ArcCatalog, arcpy recognized the renaming and life was good.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-546&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -127,9 +129,10 @@ MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/04/ds_3.png&#34; alt=&#34;Domain Sorter Dialog&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The only problem I have had is that only the owner of a domain is allowed to edit it on an SDE geodatabase.&lt;/p&gt;
 &lt;p&gt;But other than that, the button allows you to easily keep your domains sorted.&lt;/p&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;p&gt;&lt;small&gt;&lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;div id=&#34;geo-post-522&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -140,7 +143,9 @@ MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
       <description>&lt;p&gt;In migrating a toolbar consisting of a button and a couple of tools for use in ArcMap 10, I decided to take advantage of the ease of deployment enabled by add-ins which was introduced in 10.0.  So far, I&amp;rsquo;m loving the functionality.&lt;/p&gt;
 &lt;p&gt;One thing, however, that I have to figure out is that the controls are not instantiated until they are clicked on.  One of the results is that the controls, by default, are enabled.  This is not the functionality I wanted.&lt;/p&gt;
 &lt;p&gt;I found the solution in ESRI&amp;rsquo;s topic, &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#/Advanced_add_in_concepts/0001000004n7000000/&#34;&gt;Advanced add-in concepts (ArcObjects .NET 10 SDK)&lt;/a&gt; in the Delayed loading section:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p style=&#34;padding-left:30px;&#34;&gt;
+  &#39;&lt;strong&gt;&lt;/strong&gt;By default, the assemblies associated with add-in buttons and tools are not loaded until the corresponding item on a toolbar or menu is clicked by the user. This behavior helps conserve application memory and other resources. Since the enabled state of an add-in button or tool is controlled by the OnUpdate method within code, the button or tool will initially appear enabled. If you need tighter control over the initial enabled state of a button or tool, you need to override the default behavior and force the item to load at startup by setting the onDemand Extensible Markup Language (XML) attribute to false.&#39;
+&lt;/p&gt;
 &lt;p&gt;The verbiage, &amp;lsquo;setting the onDemand Extensible Markup Language (XML) attribute to false&amp;rsquo; was a bit non-specific to me.  I guessed right, however, that they were referring to the control definiton in the Command section of Config.esriaddinx.  In the example below, I set the onDemand attribute to false by adding the  ‘onDemand=&amp;lsquo;false&amp;rsquo;‘ tag and the control did, in fact, get instantiated at load time, giving me the ability to disable it.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;Tool id=&amp;quot;MGS_QDIAddin_QDIAddTool&amp;quot; class=&amp;quot;QDIAddTool&amp;quot; message=&amp;quot;QDI Add New Location.&amp;quot; caption=&amp;quot;QDI Add Tool&amp;quot; tip=&amp;quot;QDI Add Tool.&amp;quot; category=&amp;quot;QDI Add-In Controls&amp;quot; image=&amp;quot;ImagesQDIAddTool.png&amp;quot; onDemand=&amp;quot;false&amp;quot;&amp;gt;
 
@@ -173,8 +178,9 @@ MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To this:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;simpleMarkerSymbol.Style = ESRI.ArcGIS.Display.esriSimpleMarkerStyle.esriSMSCircle
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Overall, the walk-through is very well done, just a couple minor tweaks.  I am now working my way through modifying an existing solution–one that included seven projects–to see if I can create an ArcGIS 10 Add-In.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-328&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -240,8 +246,9 @@ else:
         quit()
 
 print theEmailText
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-252&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>

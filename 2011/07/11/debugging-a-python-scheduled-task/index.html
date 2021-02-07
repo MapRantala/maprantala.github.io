@@ -119,7 +119,7 @@ Tags:
 <p>This made the process easier because I could work on my local machine, editing the problematic script, saving changes and within 60 seconds it would be launched on the remote machine.  I could view the results, make additional edits, delete the .start file and it would launch again within 60 seconds.</p>
 <p>Within a couple minutes I was able to determine the problem (path related) and fix it.</p>
 <p>Happy programmer.</p>
-<p><!-- raw HTML omitted -->I would recommend using this only while debugging a script–routinely running it could be a security risk since someone could copy a destructive python script into the directory and this would run it.<!-- raw HTML omitted --></p>
+<p><disclaimer>I would recommend using this only while debugging a script–routinely running it could be a security risk since someone could copy a destructive python script into the directory and this would run it.</disclaimer></p>
 <p>Download: <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110711_tester.zip">tester.py</a></p>
 <pre><code>import sys, string, os
 import glob
@@ -179,8 +179,9 @@ while (stopFileExists == False):
     printit(&quot;nEnd of Loop: &quot;+datetime.date.today().strftime(&quot;%Y-%m-%d_&quot;)+datetime.datetime.now().strftime(&quot;%H:%M:%S&quot;)+&quot;n&quot;)    
 
 printit(&quot;Done!&quot;)
-</code></pre><!-- raw HTML omitted -->
-
+</code></pre><div id="geo-post-583" class="geo geo-post" style="display: none">
+  <span class="latitude">44.852994</span><span class="longitude">-93.55073</span>
+</div>
 
 </div>
 </article>

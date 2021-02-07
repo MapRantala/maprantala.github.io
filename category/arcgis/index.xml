@@ -14,9 +14,9 @@
       <link>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</link>
       <pubDate>Fri, 14 Aug 2015 10:01:54 -0500</pubDate>
       <guid>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</guid>
-      <description>&lt;p&gt;Working on doing some &lt;!-- raw HTML omitted --&gt;advanced ArcGIS server printing&lt;!-- raw HTML omitted --&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;!-- raw HTML omitted --&gt;Petr Krebs&lt;!-- raw HTML omitted --&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
+      <description>&lt;p&gt;Working on doing some &lt;a href=&#34;http://resources.arcgis.com/EN/HELP/MAIN/10.1/index.html#//01540000056t000000&#34; target=&#34;_blank&#34;&gt;advanced ArcGIS server printing&lt;/a&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;a href=&#34;http://gis.stackexchange.com/users/434/petr-krebs&#34; target=&#34;_blank&#34;&gt;Petr Krebs&lt;/a&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
 &lt;p&gt;I created an ArcGIS toolbox with two options–one to convert a single .mxd and one to batch convert an entire folder. To use it, make sure to have the EmptyGroup.lyr in the same directory as the .py file.&lt;/p&gt;
-&lt;p&gt;Here is the raw code or &lt;!-- raw HTML omitted --&gt;git it&lt;!-- raw HTML omitted --&gt;:&lt;/p&gt;
+&lt;p&gt;Here is the raw code or &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/ArcToolbox/ArcGIS/20150814_ConvertMxd2Lyr&#34; target=&#34;_blank&#34;&gt;git it&lt;/a&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import os
 import arcpy
 import inspect
@@ -93,8 +93,8 @@ else:
       <link>https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/</link>
       <pubDate>Tue, 06 May 2014 05:42:04 -0500</pubDate>
       <guid>https://maprantala.com/2014/05/06/zipping-a-shapefile-from-arccatalog/</guid>
-      <description>&lt;p&gt;Back in 2010, I posted a &lt;!-- raw HTML omitted --&gt;python script &lt;!-- raw HTML omitted --&gt;and an &lt;!-- raw HTML omitted --&gt;ArcToolbox&lt;!-- raw HTML omitted --&gt; tool for zipping a shapefile.&lt;/p&gt;
-&lt;p&gt;Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn&amp;rsquo;t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from &lt;!-- raw HTML omitted --&gt;Github&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;Back in 2010, I posted a &lt;a href=&#34;https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34; target=&#34;_blank&#34;&gt;python script &lt;/a&gt;and an &lt;a href=&#34;https://maprantala.com/2010/12/15/zipping-a-shapefile-via-arctoolbox/&#34; target=&#34;_blank&#34;&gt;ArcToolbox&lt;/a&gt; tool for zipping a shapefile.&lt;/p&gt;
+&lt;p&gt;Well, I had a request to modify the code so it would not error out if it encounters a .lock file. While .lock files exist for a reason and shouldn&amp;rsquo;t be totally ignored, in some cases it is safe to do so, so I went ahead any modified the code, which can be downloaded from &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/ArcToolbox/ArcGIS_9.3/20101215_ZipShapefileFromArcToolbox&#34; target=&#34;_blank&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The guts of the code is here, though:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import zipfile
 import sys
@@ -144,11 +144,11 @@ print &amp;quot;done!&amp;quot;
       <guid>https://maprantala.com/2014/05/02/friday-fave-geodatabase-geek/</guid>
       <description>&lt;p&gt;This &lt;a href=&#34;https://maprantala.com/category/friday-fave/&#34;&gt;Friday Fave&lt;/a&gt; is more for utility than pleasure.&lt;/p&gt;
 &lt;p&gt;Unfortunately, I have been working to determine why my views and query layers perform so much worse than directly accessing my feature class.&lt;/p&gt;
-&lt;p&gt;My Googling led me to &lt;!-- raw HTML omitted --&gt;Geodatabase Geek&lt;!-- raw HTML omitted --&gt;, by Trevor Hart, &lt;!-- raw HTML omitted --&gt;Eagle Technology Group Ltd&lt;!-- raw HTML omitted --&gt;.  Trevor has some real good information about Geodatabases and also  gave a good lightening talk on &lt;a href=&#34;http://video.esri.com/watch/2481/usage-reporting-on-arcgis-101-for-server&#34;&gt;Usage Reporting on ArcGIS 10.1 for Server &lt;/a&gt;at the 2013 ESRI International Developer&amp;rsquo;s Conference.&lt;/p&gt;
-&lt;p&gt;One tool he pointed out was &lt;!-- raw HTML omitted --&gt;Mxdperfstat&lt;!-- raw HTML omitted --&gt; for benchmarking the performance of your MXD. Trevor used it to compare the performance of a &lt;!-- raw HTML omitted --&gt;Feature Class vs Query Layer vs Spatial View&lt;!-- raw HTML omitted --&gt;. While the official version is available for ArcGIS 9.3 through 10.2, I do want to point out &lt;!-- raw HTML omitted --&gt;Hussein Nasser&amp;rsquo;s 10.1 version&lt;!-- raw HTML omitted --&gt; which he put out before the official 10.1 version came out (it&amp;rsquo;s not really a version, more of a work-around but I like his ingenuity).&lt;/p&gt;
+&lt;p&gt;My Googling led me to &lt;a href=&#34;http://gdbgeek.wordpress.com/&#34; target=&#34;_blank&#34;&gt;Geodatabase Geek&lt;/a&gt;, by Trevor Hart, &lt;a href=&#34;http://www.eagle.co.nz/&#34; target=&#34;_blank&#34;&gt;Eagle Technology Group Ltd&lt;/a&gt;.  Trevor has some real good information about Geodatabases and also  gave a good lightening talk on &lt;a href=&#34;http://video.esri.com/watch/2481/usage-reporting-on-arcgis-101-for-server&#34;&gt;Usage Reporting on ArcGIS 10.1 for Server &lt;/a&gt;at the 2013 ESRI International Developer&amp;rsquo;s Conference.&lt;/p&gt;
+&lt;p&gt;One tool he pointed out was &lt;a href=&#34;https://www.arcgis.com/home/item.html?id=a269d03aa1c840638680e2902dadecac&#34; target=&#34;_blank&#34;&gt;Mxdperfstat&lt;/a&gt; for benchmarking the performance of your MXD. Trevor used it to compare the performance of a &lt;a href=&#34;http://gdbgeek.wordpress.com/2014/01/15/feature-class-vs-query-layer-vs-spatial-view/&#34; target=&#34;_blank&#34;&gt;Feature Class vs Query Layer vs Spatial View&lt;/a&gt;. While the official version is available for ArcGIS 9.3 through 10.2, I do want to point out &lt;a href=&#34;http://www.husseinnasser.com/2013/04/mxdperfstat-101-download-mxd.html&#34; target=&#34;_blank&#34;&gt;Hussein Nasser&amp;rsquo;s 10.1 version&lt;/a&gt; which he put out before the official 10.1 version came out (it&amp;rsquo;s not really a version, more of a work-around but I like his ingenuity).&lt;/p&gt;
 &lt;p&gt;My results were significantly different on our 10.0 database server, the spatial view I was testing was much slower.  The query for both the spatial view and query layer was simply &amp;lsquo;Select * from &lt;em&gt;featureclass&lt;/em&gt;&amp;rsquo;&lt;/p&gt;
-&lt;p&gt;So not sure what to make of the performance yet, I&amp;rsquo;ve got a spatial index made so not sure what else I can try.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/05/MGSDB1.png&#34; alt=&#34;ArcSDE 10.0 Performance&#34;&gt;&lt;!-- raw HTML omitted --&gt;ArcSDE 10.0 Performance&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;So not sure what to make of the performance yet, I&amp;rsquo;ve got a spatial index made so not sure what else I can try.&lt;figure id=&#34;attachment_936&#34; aria-describedby=&#34;caption-attachment-936&#34; style=&#34;width: 597px&#34; class=&#34;wp-caption alignnone&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/05/MGSDB1.png&#34; alt=&#34;ArcSDE 10.0 Performance&#34;&gt;&lt;figcaption id=&#34;caption-attachment-936&#34; class=&#34;wp-caption-text&#34;&gt;ArcSDE 10.0 Performance&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 </description>
     </item>
@@ -183,10 +183,10 @@ ESRI indicated that the path varied by ArcGIS version:&lt;/p&gt;
       <pubDate>Tue, 26 Feb 2013 05:25:03 -0600</pubDate>
       <guid>https://maprantala.com/2013/02/26/arcsde-tip-finding-an-arcsde-instances-port/</guid>
       <description>&lt;p&gt;One of my main tasks right now is to document many of the details of maintaining ArcSDE geodatabases so I anticipate having several blog posts on this topic that are re-writes of documents I am working on. I am presuming that the person will have no ArcSDE experience so I am documenting very detailed information.&lt;/p&gt;
-&lt;p&gt;Almost all of the ArcSDE commands require that you specify which instance (service/port) the command applies to by using the &amp;lsquo;-i&amp;rsquo; parameter.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2013/02/instanceparameter1.png&#34; alt=&#34;ArcSDE Instance Parameter&#34;&gt;&lt;!-- raw HTML omitted --&gt;ArcSDE Instance Parameter&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Almost all of the ArcSDE commands require that you specify which instance (service/port) the command applies to by using the &amp;lsquo;-i&amp;rsquo; parameter.&lt;figure id=&#34;attachment_755&#34; aria-describedby=&#34;caption-attachment-755&#34; style=&#34;width: 672px&#34; class=&#34;wp-caption aligncenter&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2013/02/instanceparameter1.png&#34; alt=&#34;ArcSDE Instance Parameter&#34;&gt;&lt;figcaption id=&#34;caption-attachment-755&#34; class=&#34;wp-caption-text&#34;&gt;ArcSDE Instance Parameter&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Since we have multiple ArcSDE geodatabases, I like to have a handy-dandy sticky note with all the geodatabases and their respective ports on the side of my monitor.&lt;/p&gt;
-&lt;p&gt;But when that is not handy and I can never remember the ArcSDE command line syntax to get a list of instances and their ports–I mean remembering &amp;lsquo;&lt;!-- raw HTML omitted --&gt;sdeservice -o list&lt;!-- raw HTML omitted --&gt;&amp;rsquo; is difficult at my age.&lt;/p&gt;
+&lt;p&gt;But when that is not handy and I can never remember the ArcSDE command line syntax to get a list of instances and their ports–I mean remembering &amp;lsquo;&lt;a href=&#34;http://help.arcgis.com/en/geodatabase/10.0/admin_cmds/support_files/admincmdref.htm&#34; target=&#34;_blank&#34;&gt;sdeservice -o list&lt;/a&gt;&amp;rsquo; is difficult at my age.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2013/02/sdeservicelist.png&#34; alt=&#34;sdeservicelist&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The quickest and most reliable way I&amp;rsquo;ve found to get the instance number is just to check the properties of your SDE connection file in ArcCatalog, right-click on it and select &amp;lsquo;Connection Properties&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2013/02/connectionproperties.png&#34; alt=&#34;connectionproperties&#34;&gt;&lt;/p&gt;
@@ -242,8 +242,9 @@ def returnCase(inValue1, inValue2):
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/08/dataextractionfailed.png&#34; alt=&#34;Data Extraction Failed&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Reading through this thread at &lt;a href=&#34;http://forums.esri.com/thread.asp?c=158&amp;amp;f=1696&amp;amp;t=273750&#34;&gt;ArcForum&lt;/a&gt; led to some good information.  But Thomas&#39; comment that he was using &amp;lsquo;IIS7 for my reverse proxy server&amp;rsquo; and had to change one more setting led me to the solution.  In Server Manager, the default Proxy Time-Out is set at 30 seconds by default.  I bumped that up, 60 seconds shown below but I ended up going to 300 seconds and the problem was resolved.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/08/servermanager.jpg&#34; alt=&#34;fsda&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-628&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -264,8 +265,9 @@ def returnCase(inValue1, inValue2):
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/07/fc-arcpy.png&#34; alt=&#34;Field Calculator&#34;&gt;&lt;/p&gt;
 &lt;p&gt;While composing this post, I actually wanted a concatenated value; &amp;lsquo;OC&amp;rsquo; plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/07/fc-arcpy2.png&#34; alt=&#34;Field Calculator&#34;&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-620&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -283,8 +285,9 @@ def returnCase(inValue1, inValue2):
 &lt;pre&gt;&lt;code&gt;Dim pCursorStream As System.IO.Stream = Me.GetType.Assembly.GetManifestResourceStream(&amp;quot;QDI.QdiAddIn.NewCursor.cur&amp;quot;)
 MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
 
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-599&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -305,9 +308,10 @@ MyBase.Cursor = New System.Windows.Forms.Cursor(pCursorStream)
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/04/ds_3.png&#34; alt=&#34;Domain Sorter Dialog&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The only problem I have had is that only the owner of a domain is allowed to edit it on an SDE geodatabase.&lt;/p&gt;
 &lt;p&gt;But other than that, the button allows you to easily keep your domains sorted.&lt;/p&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;p&gt;&lt;small&gt;&lt;a href=&#34;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&#34;&gt;http://edndoc.esri.com/arcobjects/9.2/CPP_VB6_VBA_VCPP_Doc/COM_Samples_Docs/Geodatabase/Schema_Creation_and_Management/Sort_a_domain/e826c5a8-9740-4f0b-86b6-d3b834735574.htm&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;div id=&#34;geo-post-522&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -495,8 +499,9 @@ del inputRows
 del outputRows
 
 printit(&amp;quot;Done!&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-528&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -507,8 +512,9 @@ printit(&amp;quot;Done!&amp;quot;)
       <description>&lt;p&gt;Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent.  Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range.  Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m not sure how rapidly ESRI takes &amp;lsquo;Ideas&amp;rsquo; into consideration but if you feel like it would benefit you, why not promote this idea:  &lt;a href=&#34;http://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Have a good weekend, all!&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-501&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -549,8 +555,9 @@ def listds():
 
 listfc(d)
 listds()
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-440&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -567,8 +574,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
 &lt;p&gt;I actually expected that would occur–ArcSDE isn&amp;rsquo;t aware of PostgreSQL&amp;rsquo;s public account.&lt;/p&gt;
 &lt;p&gt;The solution was to go into pgAdmin II and revoke the privileges there.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/03/revokepgadminiii.jpg&#34; alt=&#34;Revoke public access in PGadminIII&#34;&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-428&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -609,8 +617,9 @@ Failed to execute (ChangePrivileges).&lt;/p&gt;
 &lt;p&gt;Turns out the solution was simple, this &lt;a href=&#34;http://resources.arcgis.com/content/kbase?fa=articleShow&amp;amp;d=37385&#34;&gt;article&lt;/a&gt; points out that &lt;a href=&#34;http://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;amp;PID=17&amp;amp;MetaID=1620&#34;&gt;Service pack 2&lt;/a&gt; is required.  After updating my ArcGIS, the problem was solved:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/01/errormessage.jpg&#34; alt=&#34;ErrorMessage&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&amp;rsquo;s &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDE with the -o option as the first error message instructed me to do.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-284&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.979965&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.263836&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -676,8 +685,9 @@ else:
         quit()
 
 print theEmailText
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-252&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -697,7 +707,7 @@ print theEmailText
       <pubDate>Wed, 11 Aug 2010 17:31:21 -0500</pubDate>
       <guid>https://maprantala.com/2010/08/11/trying-to-perform-relate-in-model-builder/</guid>
       <description>&lt;p&gt;I was using Model Builder (ugh!) to select records in one table (CWI.C5ST) that relate to a subset of records ([BHGEOPHYS] = ‘Y&#39;) in another table (CWI.C5IX).  There is not an existing tool for doing this in ArcGIS.  I did find a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=1728&amp;amp;t=257179&amp;amp;g=1&#34;&gt;post&lt;/a&gt; by Layne Seely in &lt;a href=&#34;http://forums.esri.com/&#34;&gt;ArcForums&lt;/a&gt; titled &amp;lsquo;trying to perform &amp;lsquo;relate&amp;rsquo; in Model Builder.&amp;rsquo; that led me to the Make Table View under Data Management Tools-Make Table View and even had  the basic syntax I was looking for (if it hadn&amp;rsquo;t I probably would have guessed that it would not allow subqueries).&lt;/p&gt;
-&lt;p&gt;Since I always like to see exactly the syntax someone uses, I decided to show the syntax I used in case that helps anyone else.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Since I always like to see exactly the syntax someone uses, I decided to show the syntax I used in case that helps anyone else.&lt;figure id=&#34;attachment_171&#34; aria-describedby=&#34;caption-attachment-171&#34; style=&#34;width: 615px&#34; class=&#34;wp-caption alignnone&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2010/08/tableview.jpg?resize=615%2C392&#34; alt=&#34;tableView&#34;&gt;&lt;/p&gt;
 &lt;p&gt;It does require that the tables reside in the same workspace, which is a reasonable limitation that I can live with.  Another drawback is that if you export the model to a python script, the command can get pretty long, especially if you have many fields.&lt;/p&gt;
 </description>
@@ -708,7 +718,7 @@ print theEmailText
       <link>https://maprantala.com/2010/07/14/arcgis-ideas/</link>
       <pubDate>Wed, 14 Jul 2010 14:20:47 -0500</pubDate>
       <guid>https://maprantala.com/2010/07/14/arcgis-ideas/</guid>
-      <description>&lt;p&gt;Ok, maybe I have been hiding under a rock, but just saw this is a post from &lt;a href=&#34;http://www.spatiallyadjusted.com/&#34;&gt;James Fee&amp;rsquo;s Spatially Adjusted blog&lt;/a&gt;.  ESRI has a public suggestion box called  &lt;a href=&#34;http://ideas.arcgis.com/&#34;&gt;ArcGIS Ideas&lt;/a&gt; where users can submit suggestions for ESRI.  One thing I like is that it is open for other users to see and comment.  Not sure how responsive ESRI will be but at least it gives us a place to vent.&lt;/p&gt;
+      <description>&lt;p&gt;Ok, maybe I have been hiding under a rock, but just saw this is a post from &lt;a href=&#34;http://www.spatiallyadjusted.com/&#34; target=&#34;_blank&#34;&gt;James Fee&amp;rsquo;s Spatially Adjusted blog&lt;/a&gt;.  ESRI has a public suggestion box called  &lt;a href=&#34;http://ideas.arcgis.com/&#34; target=&#34;_blank&#34;&gt;ArcGIS Ideas&lt;/a&gt; where users can submit suggestions for ESRI.  One thing I like is that it is open for other users to see and comment.  Not sure how responsive ESRI will be but at least it gives us a place to vent.&lt;/p&gt;
 </description>
     </item>
     
@@ -717,7 +727,7 @@ print theEmailText
       <link>https://maprantala.com/2010/07/12/esri-releases-service-arcgis-9.3.1-pack-2/</link>
       <pubDate>Mon, 12 Jul 2010 12:36:49 -0500</pubDate>
       <guid>https://maprantala.com/2010/07/12/esri-releases-service-arcgis-9.3.1-pack-2/</guid>
-      <description>&lt;p&gt;Right before the Users Conference, ESRI has released &lt;a href=&#34;http://blogs.esri.com/Dev/blogs/arcgisdesktop/archive/2010/07/09/ArcGIS-Desktop-9.3.1-Service-Pack-2.aspx&#34;&gt;ArcGIS Desktop 9.3.1 Service Pack 2&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;Right before the Users Conference, ESRI has released &lt;a href=&#34;http://blogs.esri.com/Dev/blogs/arcgisdesktop/archive/2010/07/09/ArcGIS-Desktop-9.3.1-Service-Pack-2.aspx&#34; target=&#34;_blank&#34;&gt;ArcGIS Desktop 9.3.1 Service Pack&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Haven&amp;rsquo;t had a chance to see what bugs this addresses yet.&lt;/p&gt;
 </description>
     </item>

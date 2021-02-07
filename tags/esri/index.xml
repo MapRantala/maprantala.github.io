@@ -17,12 +17,12 @@
       <description>&lt;p&gt;Because we use ArcGIS Online Web Maps in our daily work-flows, I created an AGO group that contains Feature Layers that are links to our self-hosted ArcGIS Server services. This way, users can quickly add data from our ArcGIS Server Site and not have to look up URLs/Usernames/Passwords (I&amp;rsquo;ve save the username/password as part of the ArcGIS Online service when appropriate).&lt;/p&gt;
 &lt;p&gt;But I&amp;rsquo;ve had a problem where if I change the service, the changes are not reflected in the AGO Feature Layer for that service and I have to monkey about to get the changes to migrate to the maps.&lt;/p&gt;
 &lt;p&gt;Finally annoyed with doing that for the Xth time, I decided to see if I could get the feature service information to refresh automatically. Documentation search found nothing; call in to tech support–still waiting. While experimenting, however, I found that newer Feature Layer I added this way do actually update when I made changes. WTH?!&lt;/p&gt;
-&lt;p&gt;Using &lt;!-- raw HTML omitted --&gt;ArcGIS Online Assistant&lt;!-- raw HTML omitted --&gt;, something caught my eye. My older Feature Layers had a Description and Data but the newer (automatically updating ones) do not.&lt;/p&gt;
+&lt;p&gt;Using &lt;a href=&#34;https://ago-assistant.esri.com/#&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ArcGIS Online Assistant&lt;/a&gt;, something caught my eye. My older Feature Layers had a Description and Data but the newer (automatically updating ones) do not.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2018/06/Data-1.jpg&#34; alt=&#34;Options&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Was this the answer–the 912 line JSON file for this service had all the information about the Feature Service. So it seems like the information about my Feature Service probably got saved when I create the Feature Layer and this cache was used later instead of gathering new information. Now that I had a suspected reason why this was occurring, I needed to figure out how to either delete or force a refresh of the cache. There&amp;rsquo;s no delete option next to the Data section so I figured I would empty the content and see if that would work.&lt;/p&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;WARNING: Unsupported Technique Ahead!! Proceed at Own Risk–Test First with a Copy of Data!!!&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;Using AGO Assistant, I copied the Feature Layer that did not recognize when I made changes to the Feature Service and then made a map with that new Feature Layer so that I could test against a copy of the data. Once I had those, I went to the Copy of my Feature Layer in AGO Assistant and deleted almost everything in the Data section and saved that. (Note that it despite saying it saved my edits when I deleted everything, the contents were still there so you have to leave something in there).&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;br&gt;
+&lt;p&gt;&lt;span style=&#34;color: #ff0000;&#34;&gt;WARNING: Unsupported Technique Ahead!! Proceed at Own Risk–Test First with a Copy of Data!!!&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&#34;color: #000000;&#34;&gt;Using AGO Assistant, I copied the Feature Layer that did not recognize when I made changes to the Feature Service and then made a map with that new Feature Layer so that I could test against a copy of the data. Once I had those, I went to the Copy of my Feature Layer in AGO Assistant and deleted almost everything in the Data section and saved that. (Note that it despite saying it saved my edits when I deleted everything, the contents were still there so you have to leave something in there).&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&#34;color: #000000;&#34;&gt; &lt;a href=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2018/06/almostEmptyJSON.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-4787&#34; src=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2018/06/almostEmptyJSON.png?resize=514%2C128&#34; alt=&#34;&#34; width=&#34;514&#34; height=&#34;128&#34; data-recalc-dims=&#34;1&#34; /&gt;&lt;/a&gt;&lt;/span&gt;&lt;br&gt;
 Once I went and looked at the Feature Layer and it showed the layer I had previously added that was not showing up. And when added to a New map, it reflected all my changes. The existing map, however, still had previous settings–a new field, for example, did not appear.&lt;/p&gt;
 &lt;p&gt;So I found a partial fix–the Feature Layer hopefully will not cache any information about the Feature Service so when I add it to a map, the most recent settings will be used. Will still need to update maps but at least I have a Feature Layer now that reflects the most recent changes to the Feature Service.&lt;/p&gt;
 </description>
@@ -34,7 +34,7 @@ Once I went and looked at the Feature Layer and it showed the layer I had previo
       <pubDate>Tue, 08 May 2018 17:56:09 -0500</pubDate>
       <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries/</guid>
       <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the &amp;lsquo;lazy&amp;rsquo; GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
-&lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
+&lt;p&gt;The quick &amp;amp; dirty &lt;del&gt;script&lt;/del&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;#These first 3 lines only need to be run once.
 mxd = arcpy.mapping.MapDocument(&amp;quot;CURRENT&amp;quot;)
 l = arcpy.mapping.ListDataFrames(mxd)[0] #Note the hard-code [0], meaning the first dataframe. YMMV
@@ -59,7 +59,7 @@ for l in ll:
       <link>https://maprantala.com/2017/08/06/esri-web-appbuilder-2.4-empty-basemap-gallery-follow-up/</link>
       <pubDate>Sun, 06 Aug 2017 10:12:07 -0500</pubDate>
       <guid>https://maprantala.com/2017/08/06/esri-web-appbuilder-2.4-empty-basemap-gallery-follow-up/</guid>
-      <description>&lt;p&gt;A while ago I &lt;!-- raw HTML omitted --&gt;posted &lt;!-- raw HTML omitted --&gt;a work-around for a problem I was having with a &lt;!-- raw HTML omitted --&gt;Web AppBuilder&lt;!-- raw HTML omitted --&gt; application. Working with Esri tech support, we determined what I was doing to cause the problem.&lt;/p&gt;
+      <description>&lt;p&gt;A while ago I &lt;a href=&#34;https://maprantala.com/2017/04/10/esri-web-appbuilder-2-4-empty-basemap-gallery/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;posted &lt;/a&gt;a work-around for a problem I was having with a &lt;a href=&#34;http://www.esri.com/software/web-appbuilder&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Web AppBuilder&lt;/a&gt; application. Working with Esri tech support, we determined what I was doing to cause the problem.&lt;/p&gt;
 &lt;p&gt;In my config.json, I was using a relative path to the proxy. Note that I had the proxy as a separate application at the root level of our domain because I intended to have a shared proxy for all of our applications instead of individual ones. So the WAB application would be using &lt;a href=&#34;http://ourarcgisdomain.com/proxy/proxy.ashx&#34;&gt;http://ourarcgisdomain.com/proxy/proxy.ashx&lt;/a&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;quot;httpProxy&amp;quot;: {
 	&amp;quot;useProxy&amp;quot;: true,
@@ -68,7 +68,7 @@ for l in ll:
     &amp;quot;rules&amp;quot;: []
   }
 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Well, that was causing the hiccup in the &lt;!-- raw HTML omitted --&gt;Basemap Gallery Widget&lt;!-- raw HTML omitted --&gt;. I simply modified the url parameter to have the full path of our domain, undid my custom code, and the Basemap Gallery Widget was happy.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Well, that was causing the hiccup in the &lt;a href=&#34;http://doc.arcgis.com/en/web-appbuilder/create-apps/widget-basemap.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Basemap Gallery Widget&lt;/a&gt;. I simply modified the url parameter to have the full path of our domain, undid my custom code, and the Basemap Gallery Widget was happy.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;quot;httpProxy&amp;quot;: {
      &amp;quot;useProxy&amp;quot;: true,
      &amp;quot;alwaysUseProxy&amp;quot;: true,
@@ -77,7 +77,7 @@ for l in ll:
    }
 
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Score one for Esri Tech Support.&lt;/p&gt;
-&lt;p&gt;Although, in my defense the &lt;!-- raw HTML omitted --&gt;documentation on the configuring the proxy&lt;!-- raw HTML omitted --&gt; is silent on the pathing.&lt;/p&gt;
+&lt;p&gt;Although, in my defense the &lt;a href=&#34;https://developers.arcgis.com/web-appbuilder/api-reference/app-configuration.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;documentation on the configuring the proxy&lt;/a&gt; is silent on the pathing.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 </description>
     </item>
@@ -87,9 +87,9 @@ for l in ll:
       <link>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</link>
       <pubDate>Fri, 14 Aug 2015 10:01:54 -0500</pubDate>
       <guid>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</guid>
-      <description>&lt;p&gt;Working on doing some &lt;!-- raw HTML omitted --&gt;advanced ArcGIS server printing&lt;!-- raw HTML omitted --&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;!-- raw HTML omitted --&gt;Petr Krebs&lt;!-- raw HTML omitted --&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
+      <description>&lt;p&gt;Working on doing some &lt;a href=&#34;http://resources.arcgis.com/EN/HELP/MAIN/10.1/index.html#//01540000056t000000&#34; target=&#34;_blank&#34;&gt;advanced ArcGIS server printing&lt;/a&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;a href=&#34;http://gis.stackexchange.com/users/434/petr-krebs&#34; target=&#34;_blank&#34;&gt;Petr Krebs&lt;/a&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
 &lt;p&gt;I created an ArcGIS toolbox with two options–one to convert a single .mxd and one to batch convert an entire folder. To use it, make sure to have the EmptyGroup.lyr in the same directory as the .py file.&lt;/p&gt;
-&lt;p&gt;Here is the raw code or &lt;!-- raw HTML omitted --&gt;git it&lt;!-- raw HTML omitted --&gt;:&lt;/p&gt;
+&lt;p&gt;Here is the raw code or &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/ArcToolbox/ArcGIS/20150814_ConvertMxd2Lyr&#34; target=&#34;_blank&#34;&gt;git it&lt;/a&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import os
 import arcpy
 import inspect
@@ -166,13 +166,13 @@ else:
       <link>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis/</link>
       <pubDate>Wed, 31 Dec 2014 14:38:16 -0600</pubDate>
       <guid>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis/</guid>
-      <description>&lt;p&gt;Recently I&amp;rsquo;ve created &lt;!-- raw HTML omitted --&gt;Python add-ins&lt;!-- raw HTML omitted --&gt; for data entry for our staff. Most of these have a toolbar with a &amp;lsquo;Help&amp;rsquo; button that opens a help file in .pdf format.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Recently I&amp;rsquo;ve created &lt;a href=&#34;http://resources.arcgis.com/en/help/main/10.2/index.html#//014p00000025000000&#34; target=&#34;_blank&#34;&gt;Python add-ins&lt;/a&gt; for data entry for our staff. Most of these have a toolbar with a &amp;lsquo;Help&amp;rsquo; button that opens a help file in .pdf format.&lt;figure id=&#34;attachment_4515&#34; aria-describedby=&#34;caption-attachment-4515&#34; style=&#34;width: 339px&#34; class=&#34;wp-caption alignnone&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/12/Toolbar.png&#34; alt=&#34;Sample python add-in toolbar.&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;figcaption id=&#34;caption-attachment-4515&#34; class=&#34;wp-caption-text&#34;&gt;Sample python add-in toolbar.&lt;/figcaption&gt;&lt;/figure&gt; 
 &lt;p&gt;The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(&lt;em&gt;path to help.pdf&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!&lt;/p&gt;
-&lt;p&gt;Luckily the &lt;!-- raw HTML omitted --&gt;Python development team at Esri&lt;!-- raw HTML omitted --&gt; already had a &lt;!-- raw HTML omitted --&gt;blog post&lt;!-- raw HTML omitted --&gt; about this at their &lt;!-- raw HTML omitted --&gt;ArcPy Café blog&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
-&lt;p&gt;They report that the root of the problem is &amp;lsquo;conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool&amp;rsquo;. But this can be overcome by using a &lt;!-- raw HTML omitted --&gt;decorator&lt;!-- raw HTML omitted --&gt; function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.&lt;/p&gt;
+&lt;p&gt;Luckily the &lt;a href=&#34;https://twitter.com/arcpy&#34; target=&#34;_blank&#34;&gt;Python development team at Esri&lt;/a&gt; already had a &lt;a href=&#34;https://arcpy.wordpress.com/2013/10/25/using-os-startfile-and-webbrowser-open-in-arcgis-for-desktop/&#34; target=&#34;_blank&#34;&gt;blog post&lt;/a&gt; about this at their &lt;a href=&#34;https://arcpy.wordpress.com/&#34; target=&#34;_blank&#34;&gt;ArcPy Café blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;They report that the root of the problem is &amp;lsquo;conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool&amp;rsquo;. But this can be overcome by using a &lt;a href=&#34;http://en.wikipedia.org/wiki/Decorator_pattern&#34; target=&#34;_blank&#34;&gt;decorator&lt;/a&gt; function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.&lt;/p&gt;
 &lt;p&gt;Example code is shown below:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; functools
 &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; os
@@ -263,8 +263,9 @@ if (iIndex.fields[0].Name.upper() == fieldname.upper()):&lt;br&gt;
 return True&lt;/p&gt;
 &lt;p&gt;return False&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-581&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -291,8 +292,9 @@ arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;env&lt;span style=&
    &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; fc
  
 &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Done!&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div id=&#34;geo-post-564&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -306,8 +308,9 @@ arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;env&lt;span style=&
 &lt;p&gt;Finally, I realized that I needed to close ArcCatalog before arcpy recognized the fact I had renamed something. To note, I was running arcpy from a separate PythonWin window, not from the ArcCatalog session I had renamed the raster dataset with.&lt;/p&gt;
 &lt;p&gt;Once I closed ArcCatalog, arcpy recognized the renaming and life was good.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-546&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -495,8 +498,9 @@ del inputRows
 del outputRows
 
 printit(&amp;quot;Done!&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-528&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -627,8 +631,9 @@ for lf in lfields:
 
 if (doOutputFile):
  tmpfile.close
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-473&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -669,8 +674,9 @@ def listds():
 
 listfc(d)
 listds()
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-440&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -682,8 +688,9 @@ listds()
 &lt;p&gt;A referenced mosaic dataset is a raster datatype that uses a mosaic dataset as a base.  For example, we loaded a series of DEMs into a mosaic dataset and then created a referenced mosaic dataset that does the meters to feet conversion for us.  This saved us from having to process each DEM before loading it.  We also created a referenced mosaic dataset hillshade from the original meter data.&lt;/p&gt;
 &lt;p&gt;The problem I came across, and this was more my oversight than anything, but I had a heck of a time trying to grant privileges to the referenced mosaic dataset.  The solution was actually very simple–I needed to also grant access to the mosaic dataset that was being used as the base.&lt;/p&gt;
 &lt;p&gt;That makes some sense, you should not be able to grant access to a dataset (the referenced mosaic dataset) that would inadvertently be exposing data (the base mosaic dataset) that a user does not have access to.  This, however, conflicts a bit in that the permissions on individual rasters that make up a mosaic raster dataset are ignored.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-424&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -761,8 +768,9 @@ listds()
 &lt;p&gt;But running the fourth step, Create ArcSDE Service, resulted in this sweet message:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/02/success.jpg&#34; alt=&#34;Success&#34;&gt;&lt;/p&gt;
 &lt;p&gt;After editing my pg_hba.conf and opening the port in my firewall, the service was created, running, and visible.  So far, it seems to be fully functional and without problems.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-340&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -782,8 +790,9 @@ listds()
 &lt;p&gt;Turns out the solution was simple, this &lt;a href=&#34;http://resources.arcgis.com/content/kbase?fa=articleShow&amp;amp;d=37385&#34;&gt;article&lt;/a&gt; points out that &lt;a href=&#34;http://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;amp;PID=17&amp;amp;MetaID=1620&#34;&gt;Service pack 2&lt;/a&gt; is required.  After updating my ArcGIS, the problem was solved:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/01/errormessage.jpg&#34; alt=&#34;ErrorMessage&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&amp;rsquo;s &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDE with the -o option as the first error message instructed me to do.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-284&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.979965&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.263836&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -793,7 +802,9 @@ listds()
       <guid>https://maprantala.com/2011/01/06/displaying-node-dangles-in-arcedit/</guid>
       <description>&lt;p&gt;Since the name of the blog is Node Dangles, I get several hits daily from searches on &amp;lsquo;Node Dangles&amp;rsquo; and I have no  information on node dangles.  This post is the first in a series to change that.&lt;/p&gt;
 &lt;p&gt;First let us, by us, I mean &lt;a href=&#34;http://www.esri.com&#34;&gt;ESRI&lt;/a&gt;, define what a node dangle is.  Their online glossary actually defines a &lt;a href=&#34;http://resources.arcgis.com/glossary/term/215&#34;&gt;dangling arc&lt;/a&gt;, a dangling node is a &lt;a href=&#34;http://resources.arcgis.com/glossary/term/71&#34;&gt;node&lt;/a&gt; (endpoint of an arc) that does the non-connecting mentioned below:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p style=&#34;padding-left:30px;&#34;&gt;
+  &#39;An arc having the same polygon on both its left and right sides and having at least one node that does not connect to any other arc. It often occurs where a polygon does not close properly, where arcs do not connect properly (an undershoot), or where an arc was digitized past its intersection with another arc (an overshoot). A dangling arc is not always an error; for example, it can represent a cul-de-sac in a street network.&#39;
+&lt;/p&gt;
 &lt;p&gt;Matt&amp;rsquo;s definition is &amp;lsquo;a node that isn&amp;rsquo;t connected to any other node&amp;rsquo;.  The Arcedit screen shot below shows a coverage of roads and its arcs (white lines), nodes (white squares) at the ends of the arcs, and node dangles (red squares) indicating what nodes are dangling.  Too bad clearly flagging &lt;a href=&#34;http://en.wikipedia.org/wiki/United_States_presidential_election,_2000&#34;&gt;dangling chads&lt;/a&gt; isn&amp;rsquo;t so easy.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/01/dangles.jpg?resize=629%2C598&#34; alt=&#34;Node Dangles in ArcEdit&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Displaying (and illustrating) how to display dangling nodes in Arcedit is simple, the command is &amp;lsquo;drawenvironment node dangle&amp;rsquo; or, as I&amp;rsquo;ve done above, &amp;lsquo;drawe node dangle&amp;rsquo;.  To display the dangles in a different color than the default white, follow-up with the command &amp;lsquo;nodecolor dangle 2&amp;rsquo;.  The 2 is ESRI&amp;rsquo;s value for red.&lt;/p&gt;
@@ -842,8 +853,9 @@ return True
 
 zipShapefile(wellsShapeFile,wellsZipFile)
 print &amp;quot;done!&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-236&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.979965&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.263836&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -886,7 +898,7 @@ print &amp;quot;done!&amp;quot;
       <link>https://maprantala.com/2010/07/14/arcgis-ideas/</link>
       <pubDate>Wed, 14 Jul 2010 14:20:47 -0500</pubDate>
       <guid>https://maprantala.com/2010/07/14/arcgis-ideas/</guid>
-      <description>&lt;p&gt;Ok, maybe I have been hiding under a rock, but just saw this is a post from &lt;a href=&#34;http://www.spatiallyadjusted.com/&#34;&gt;James Fee&amp;rsquo;s Spatially Adjusted blog&lt;/a&gt;.  ESRI has a public suggestion box called  &lt;a href=&#34;http://ideas.arcgis.com/&#34;&gt;ArcGIS Ideas&lt;/a&gt; where users can submit suggestions for ESRI.  One thing I like is that it is open for other users to see and comment.  Not sure how responsive ESRI will be but at least it gives us a place to vent.&lt;/p&gt;
+      <description>&lt;p&gt;Ok, maybe I have been hiding under a rock, but just saw this is a post from &lt;a href=&#34;http://www.spatiallyadjusted.com/&#34; target=&#34;_blank&#34;&gt;James Fee&amp;rsquo;s Spatially Adjusted blog&lt;/a&gt;.  ESRI has a public suggestion box called  &lt;a href=&#34;http://ideas.arcgis.com/&#34; target=&#34;_blank&#34;&gt;ArcGIS Ideas&lt;/a&gt; where users can submit suggestions for ESRI.  One thing I like is that it is open for other users to see and comment.  Not sure how responsive ESRI will be but at least it gives us a place to vent.&lt;/p&gt;
 </description>
     </item>
     
@@ -895,7 +907,7 @@ print &amp;quot;done!&amp;quot;
       <link>https://maprantala.com/2010/07/12/esri-releases-service-arcgis-9.3.1-pack-2/</link>
       <pubDate>Mon, 12 Jul 2010 12:36:49 -0500</pubDate>
       <guid>https://maprantala.com/2010/07/12/esri-releases-service-arcgis-9.3.1-pack-2/</guid>
-      <description>&lt;p&gt;Right before the Users Conference, ESRI has released &lt;a href=&#34;http://blogs.esri.com/Dev/blogs/arcgisdesktop/archive/2010/07/09/ArcGIS-Desktop-9.3.1-Service-Pack-2.aspx&#34;&gt;ArcGIS Desktop 9.3.1 Service Pack 2&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;Right before the Users Conference, ESRI has released &lt;a href=&#34;http://blogs.esri.com/Dev/blogs/arcgisdesktop/archive/2010/07/09/ArcGIS-Desktop-9.3.1-Service-Pack-2.aspx&#34; target=&#34;_blank&#34;&gt;ArcGIS Desktop 9.3.1 Service Pack&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Haven&amp;rsquo;t had a chance to see what bugs this addresses yet.&lt;/p&gt;
 </description>
     </item>

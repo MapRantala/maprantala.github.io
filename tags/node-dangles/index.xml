@@ -27,8 +27,9 @@
 &lt;p&gt;The way to get around this is to extract the data to XML and then import the XML workspace into a geodatabase.  Not sure if that will work for all schemas but it was successful for me.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/02/exportxml.jpg&#34; alt=&#34;Export XML&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-304&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -48,8 +49,9 @@
 &lt;p&gt;Turns out the solution was simple, this &lt;a href=&#34;http://resources.arcgis.com/content/kbase?fa=articleShow&amp;amp;d=37385&#34;&gt;article&lt;/a&gt; points out that &lt;a href=&#34;http://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;amp;PID=17&amp;amp;MetaID=1620&#34;&gt;Service pack 2&lt;/a&gt; is required.  After updating my ArcGIS, the problem was solved:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/01/errormessage.jpg&#34; alt=&#34;ErrorMessage&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&amp;rsquo;s &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDE with the -o option as the first error message instructed me to do.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-284&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.979965&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.263836&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -59,7 +61,9 @@
       <guid>https://maprantala.com/2011/01/06/displaying-node-dangles-in-arcedit/</guid>
       <description>&lt;p&gt;Since the name of the blog is Node Dangles, I get several hits daily from searches on &amp;lsquo;Node Dangles&amp;rsquo; and I have no  information on node dangles.  This post is the first in a series to change that.&lt;/p&gt;
 &lt;p&gt;First let us, by us, I mean &lt;a href=&#34;http://www.esri.com&#34;&gt;ESRI&lt;/a&gt;, define what a node dangle is.  Their online glossary actually defines a &lt;a href=&#34;http://resources.arcgis.com/glossary/term/215&#34;&gt;dangling arc&lt;/a&gt;, a dangling node is a &lt;a href=&#34;http://resources.arcgis.com/glossary/term/71&#34;&gt;node&lt;/a&gt; (endpoint of an arc) that does the non-connecting mentioned below:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p style=&#34;padding-left:30px;&#34;&gt;
+  &#39;An arc having the same polygon on both its left and right sides and having at least one node that does not connect to any other arc. It often occurs where a polygon does not close properly, where arcs do not connect properly (an undershoot), or where an arc was digitized past its intersection with another arc (an overshoot). A dangling arc is not always an error; for example, it can represent a cul-de-sac in a street network.&#39;
+&lt;/p&gt;
 &lt;p&gt;Matt&amp;rsquo;s definition is &amp;lsquo;a node that isn&amp;rsquo;t connected to any other node&amp;rsquo;.  The Arcedit screen shot below shows a coverage of roads and its arcs (white lines), nodes (white squares) at the ends of the arcs, and node dangles (red squares) indicating what nodes are dangling.  Too bad clearly flagging &lt;a href=&#34;http://en.wikipedia.org/wiki/United_States_presidential_election,_2000&#34;&gt;dangling chads&lt;/a&gt; isn&amp;rsquo;t so easy.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/01/dangles.jpg?resize=629%2C598&#34; alt=&#34;Node Dangles in ArcEdit&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Displaying (and illustrating) how to display dangling nodes in Arcedit is simple, the command is &amp;lsquo;drawenvironment node dangle&amp;rsquo; or, as I&amp;rsquo;ve done above, &amp;lsquo;drawe node dangle&amp;rsquo;.  To display the dangles in a different color than the default white, follow-up with the command &amp;lsquo;nodecolor dangle 2&amp;rsquo;.  The 2 is ESRI&amp;rsquo;s value for red.&lt;/p&gt;

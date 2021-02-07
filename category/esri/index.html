@@ -132,7 +132,7 @@ Digging around, I found some old posts where users were experiencing similar pro
 
 </header>
 <div class="content">
-I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&rsquo;s ListFeatureClassesrequest. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.
+I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&rsquo;s ListFeatureClasses request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.
 Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.
 After discovering missing data in our backups, I reconstructed what happened and found this bug.
 </div>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Converting MXD to Layer file in Arcpy – Node Dangles</title>
-<meta name="description" content="Working on doing some advanced ArcGIS server printingand had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map …">
+<meta name="description" content="Working on doing some advanced ArcGIS server printing and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map …">
 <meta name="created" content="2015-08-14T10:01:54-0500">
 <meta name="modified" content="2015-08-14T10:01:54-0500">
 <meta name="author" content="Matt">
@@ -37,7 +37,7 @@
     "datePublished": "2015-08-14T10:01:54-05:00",
     "dateModified": "2015-08-14T10:01:54-05:00",
     "url" : "https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/",
-    "description": "Working on doing some advanced ArcGIS server printingand had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map …",
+    "description": "Working on doing some advanced ArcGIS server printing and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map …",
     "keywords": ["arcgis","arcpy","ArcScripts","ESRI","GIS","lyr","mxd","python"],
     "author": {
       "@type": "Person",
@@ -117,9 +117,9 @@ Tags:
 </div>
 </header>
 <div class="content">
-<p>Working on doing some <!-- raw HTML omitted -->advanced ArcGIS server printing<!-- raw HTML omitted --> and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks <!-- raw HTML omitted -->Petr Krebs<!-- raw HTML omitted --> for the idea), copy all the existing layers into it, and save it out as a layer file.</p>
+<p>Working on doing some <a href="http://resources.arcgis.com/EN/HELP/MAIN/10.1/index.html#//01540000056t000000" target="_blank">advanced ArcGIS server printing</a> and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks <a href="http://gis.stackexchange.com/users/434/petr-krebs" target="_blank">Petr Krebs</a> for the idea), copy all the existing layers into it, and save it out as a layer file.</p>
 <p>I created an ArcGIS toolbox with two options–one to convert a single .mxd and one to batch convert an entire folder. To use it, make sure to have the EmptyGroup.lyr in the same directory as the .py file.</p>
-<p>Here is the raw code or <!-- raw HTML omitted -->git it<!-- raw HTML omitted -->:</p>
+<p>Here is the raw code or <a href="https://github.com/MapRantala/Blog/tree/master/ArcToolbox/ArcGIS/20150814_ConvertMxd2Lyr" target="_blank">git it</a>:</p>
 <pre><code>import os
 import arcpy
 import inspect

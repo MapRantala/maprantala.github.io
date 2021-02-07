@@ -14,7 +14,7 @@
       <link>https://maprantala.com/2017/08/06/esri-web-appbuilder-2.4-empty-basemap-gallery-follow-up/</link>
       <pubDate>Sun, 06 Aug 2017 10:12:07 -0500</pubDate>
       <guid>https://maprantala.com/2017/08/06/esri-web-appbuilder-2.4-empty-basemap-gallery-follow-up/</guid>
-      <description>&lt;p&gt;A while ago I &lt;!-- raw HTML omitted --&gt;posted &lt;!-- raw HTML omitted --&gt;a work-around for a problem I was having with a &lt;!-- raw HTML omitted --&gt;Web AppBuilder&lt;!-- raw HTML omitted --&gt; application. Working with Esri tech support, we determined what I was doing to cause the problem.&lt;/p&gt;
+      <description>&lt;p&gt;A while ago I &lt;a href=&#34;https://maprantala.com/2017/04/10/esri-web-appbuilder-2-4-empty-basemap-gallery/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;posted &lt;/a&gt;a work-around for a problem I was having with a &lt;a href=&#34;http://www.esri.com/software/web-appbuilder&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Web AppBuilder&lt;/a&gt; application. Working with Esri tech support, we determined what I was doing to cause the problem.&lt;/p&gt;
 &lt;p&gt;In my config.json, I was using a relative path to the proxy. Note that I had the proxy as a separate application at the root level of our domain because I intended to have a shared proxy for all of our applications instead of individual ones. So the WAB application would be using &lt;a href=&#34;http://ourarcgisdomain.com/proxy/proxy.ashx&#34;&gt;http://ourarcgisdomain.com/proxy/proxy.ashx&lt;/a&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;quot;httpProxy&amp;quot;: {
 	&amp;quot;useProxy&amp;quot;: true,
@@ -23,7 +23,7 @@
     &amp;quot;rules&amp;quot;: []
   }
 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Well, that was causing the hiccup in the &lt;!-- raw HTML omitted --&gt;Basemap Gallery Widget&lt;!-- raw HTML omitted --&gt;. I simply modified the url parameter to have the full path of our domain, undid my custom code, and the Basemap Gallery Widget was happy.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Well, that was causing the hiccup in the &lt;a href=&#34;http://doc.arcgis.com/en/web-appbuilder/create-apps/widget-basemap.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Basemap Gallery Widget&lt;/a&gt;. I simply modified the url parameter to have the full path of our domain, undid my custom code, and the Basemap Gallery Widget was happy.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;quot;httpProxy&amp;quot;: {
      &amp;quot;useProxy&amp;quot;: true,
      &amp;quot;alwaysUseProxy&amp;quot;: true,
@@ -32,7 +32,7 @@
    }
 
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Score one for Esri Tech Support.&lt;/p&gt;
-&lt;p&gt;Although, in my defense the &lt;!-- raw HTML omitted --&gt;documentation on the configuring the proxy&lt;!-- raw HTML omitted --&gt; is silent on the pathing.&lt;/p&gt;
+&lt;p&gt;Although, in my defense the &lt;a href=&#34;https://developers.arcgis.com/web-appbuilder/api-reference/app-configuration.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;documentation on the configuring the proxy&lt;/a&gt; is silent on the pathing.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 </description>
     </item>

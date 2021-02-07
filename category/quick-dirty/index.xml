@@ -15,7 +15,7 @@
       <pubDate>Tue, 08 May 2018 17:56:09 -0500</pubDate>
       <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries/</guid>
       <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the &amp;lsquo;lazy&amp;rsquo; GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
-&lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
+&lt;p&gt;The quick &amp;amp; dirty &lt;del&gt;script&lt;/del&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;#These first 3 lines only need to be run once.
 mxd = arcpy.mapping.MapDocument(&amp;quot;CURRENT&amp;quot;)
 l = arcpy.mapping.ListDataFrames(mxd)[0] #Note the hard-code [0], meaning the first dataframe. YMMV
@@ -40,10 +40,10 @@ for l in ll:
       <link>https://maprantala.com/2014/12/18/quick-dirty-arcpy-verify-a-coded-value-domain-code/</link>
       <pubDate>Thu, 18 Dec 2014 22:32:11 -0600</pubDate>
       <guid>https://maprantala.com/2014/12/18/quick-dirty-arcpy-verify-a-coded-value-domain-code/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a &lt;!-- raw HTML omitted --&gt;Coded Value Domain&lt;!-- raw HTML omitted --&gt; is valid.&lt;/p&gt;
-&lt;p&gt;The logic of the code is pretty straight-forward. Get a field&amp;rsquo;s domain and check that a potential value is one of the code values. The biggest &amp;lsquo;trick&amp;rsquo; in this code is that &lt;!-- raw HTML omitted --&gt;arcpy.da.ListDomains&lt;!-- raw HTML omitted --&gt;, which locates a field&amp;rsquo;s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.&lt;/p&gt;
+      <description>&lt;p&gt;I&amp;rsquo;ve been working on a few different data import routines and one of the things I recently built was the ability to verify that a potential Code to be entered into a field with a &lt;a href=&#34;http://resources.arcgis.com/en/help/main/10.2/index.html#//001s00000001000000&#34; target=&#34;_blank&#34;&gt;Coded Value Domain&lt;/a&gt; is valid.&lt;/p&gt;
+&lt;p&gt;The logic of the code is pretty straight-forward. Get a field&amp;rsquo;s domain and check that a potential value is one of the code values. The biggest &amp;lsquo;trick&amp;rsquo; in this code is that &lt;a href=&#34;http://resources.arcgis.com/en/help/main/10.2/index.html#//018w0000001z000000&#34; target=&#34;_blank&#34;&gt;arcpy.da.ListDomains&lt;/a&gt;, which locates a field&amp;rsquo;s domain, takes a geodatabase (or Enterprise geodatabase connection file) as its only parameter. The documentation says it takes a workspace, but it does not like a feature dataset, which a feature class might be in.&lt;/p&gt;
 &lt;p&gt;A couple caveats about the code. It only returns True if a field exists, has a coded value domain, and the value tested is one of the (case-sensitive) valid codes. While I have an ArcToolbox tool to call it for illustration purposes, I&amp;rsquo;m only calling it from code so I wanted tight requirements.&lt;/p&gt;
-&lt;p&gt;Anyhow, here is the code or &lt;!-- raw HTML omitted --&gt;download it&lt;!-- raw HTML omitted --&gt; from GitHub.&lt;/p&gt;
+&lt;p&gt;Anyhow, here is the code or &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/python/arcpy/20141218_VerifyDomainValue&#34; target=&#34;_blank&#34;&gt;download it&lt;/a&gt; from GitHub.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; arcpy
 
 inFeatureClass &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;argv[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
@@ -133,9 +133,9 @@ os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;chdir(theDir)
       <link>https://maprantala.com/2014/07/07/quick-dirty-arcpy-compare-feature-class-table-schemas/</link>
       <pubDate>Mon, 07 Jul 2014 05:06:18 -0500</pubDate>
       <guid>https://maprantala.com/2014/07/07/quick-dirty-arcpy-compare-feature-class-table-schemas/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some &lt;!-- raw HTML omitted --&gt;psycopg2&lt;!-- raw HTML omitted --&gt;).&lt;/p&gt;
+      <description>&lt;p&gt;I&amp;rsquo;m in the process of rewriting a process, moving most of the processing from arcpy to postgresql-enabled python (love me some &lt;a href=&#34;http://initd.org/psycopg/&#34; target=&#34;_blank&#34;&gt;psycopg2&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;One of the QC checks I&amp;rsquo;m doing at the end of this re-write is just verifying that the feature class schemas are the same (or that the differences are intended)  under the new process as they were in the old process.&lt;/p&gt;
-&lt;p&gt;And while ArcGIS does have a &lt;!-- raw HTML omitted --&gt;good tool&lt;!-- raw HTML omitted --&gt; for this, there were a couple tweaks I wanted to make. Most notably, I wanted a list of fields that are not in both feature classes.&lt;/p&gt;
+&lt;p&gt;And while ArcGIS does have a &lt;a href=&#34;http://resources.arcgis.com/en/help/main/10.1/index.html#//001700000007000000&#34; target=&#34;_blank&#34;&gt;good tool&lt;/a&gt; for this, there were a couple tweaks I wanted to make. Most notably, I wanted a list of fields that are not in both feature classes.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/07/TableCompare.png&#34; alt=&#34;ArcGIS Table Compare&#34;&gt;&lt;/p&gt;
 &lt;p&gt;So I made a quick &amp;amp; dirty script to do that, nothing especially clever but I&amp;rsquo;ve found it useful. Download it from &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/ArcToolbox/ArcGIS_10_2/20140702_CompareTableFields&#34;&gt;GitHub&lt;/a&gt;. I have it currently set up to work on feature layers but you should be able to change the toolbox parameter types to allow feature classes or tables.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt;sys&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt;os
@@ -361,7 +361,7 @@ printit(&amp;quot;Done&amp;quot;)
       <link>https://maprantala.com/2012/05/31/quick-dirty-python-converting-a-text-file-to-audio-.wav/</link>
       <pubDate>Thu, 31 May 2012 23:12:28 -0500</pubDate>
       <guid>https://maprantala.com/2012/05/31/quick-dirty-python-converting-a-text-file-to-audio-.wav/</guid>
-      <description>&lt;p&gt;This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without any freeware that could handle the 53 page document–there are some cool websites that do text to mp3 like &lt;!-- raw HTML omitted --&gt;vozme &lt;!-- raw HTML omitted --&gt;and &lt;!-- raw HTML omitted --&gt;YAKiToMe&lt;!-- raw HTML omitted --&gt;! but they didn&amp;rsquo;t convert the whole document. I then found &lt;!-- raw HTML omitted --&gt;pyTTS&lt;!-- raw HTML omitted --&gt;, a python package that serves as a wrapper to the &lt;!-- raw HTML omitted --&gt;Microsoft Speech API (SAPI) &lt;!-- raw HTML omitted --&gt;, which has &lt;!-- raw HTML omitted --&gt;been in version 5 since 2000.&lt;!-- raw HTML omitted --&gt; But I didn&amp;rsquo;t easily find a version of pyTTS for python 2.6. So I decided to see if I could roll my own.&lt;/p&gt;
+      <description>&lt;p&gt;This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without any freeware that could handle the 53 page document–there are some cool websites that do text to mp3 like &lt;a href=&#34;http://vozme.com/index.php?lang=en&#34; target=&#34;_blank&#34;&gt;vozme &lt;/a&gt;and &lt;a href=&#34;http://www.yakitome.com/&#34; target=&#34;_blank&#34;&gt;YAKiToMe&lt;/a&gt;! but they didn&amp;rsquo;t convert the whole document. I then found &lt;a href=&#34;http://www.cs.unc.edu/Research/assist/doc/pytts/&#34; target=&#34;_blank&#34;&gt;pyTTS&lt;/a&gt;, a python package that serves as a wrapper to the &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/ms723627%28v=vs.85%29&#34; target=&#34;_blank&#34;&gt;Microsoft Speech API (SAPI) &lt;/a&gt;, which has &lt;a href=&#34;http://en.wikipedia.org/wiki/Microsoft_Speech_API&#34; target=&#34;_blank&#34;&gt;been in version 5 since 2000.&lt;/a&gt; But I didn&amp;rsquo;t easily find a version of pyTTS for python 2.6. So I decided to see if I could roll my own.&lt;/p&gt;
 &lt;p&gt;As it turns out, getting python to talk using SAPI is relatively easy. Reading a plain text file can be done in a few lines.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; comtypes.client &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; CreateObject
 
@@ -665,8 +665,9 @@ del inputRows
 del outputRows
 
 printit(&amp;quot;Done!&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-528&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -797,8 +798,9 @@ for lf in lfields:
 
 if (doOutputFile):
  tmpfile.close
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-473&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
   </channel>

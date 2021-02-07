@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>arcpy.ListFeatureClasses() Bug – Node Dangles</title>
-<meta name="description" content="I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&amp;amp;rsquo;s ListFeatureClassesrequest. If you have a feature class in …">
+<meta name="description" content="I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&amp;amp;rsquo;s ListFeatureClasses request. If you have a feature class in …">
 <meta name="created" content="2014-04-02T18:59:06-0500">
 <meta name="modified" content="2014-04-02T18:59:06-0500">
 <meta name="author" content="Matt">
@@ -37,7 +37,7 @@
     "datePublished": "2014-04-02T18:59:06-05:00",
     "dateModified": "2014-04-02T18:59:06-05:00",
     "url" : "https://maprantala.com/2014/04/02/arcpy.listfeatureclasses-bug/",
-    "description": "I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy\u0026amp;rsquo;s ListFeatureClassesrequest. If you have a feature class in …",
+    "description": "I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy\u0026amp;rsquo;s ListFeatureClasses request. If you have a feature class in …",
     "keywords": ["arcgis","arcpy","ListFeatureClasses"],
     "author": {
       "@type": "Person",
@@ -112,7 +112,7 @@ Tags:
 </div>
 </header>
 <div class="content">
-<p>I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&rsquo;s <!-- raw HTML omitted -->ListFeatureClasses<!-- raw HTML omitted --> request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.</p>
+<p>I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&rsquo;s <a href="http://resources.arcgis.com/en/help/main/10.2/index.html#//018v00000018000000" target="_blank">ListFeatureClasses</a> request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.</p>
 <p>Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.</p>
 <p>After discovering missing data in our backups, I reconstructed what happened and found this bug. Below is arcpy code that iterates through the feature datasets in a geodatabase and lists the feature classes:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> arcpy
@@ -137,7 +137,7 @@ copyAll()
 <p>But if I rename the feature dataset (e.g. outcrop_fd), the results are what I would hope for:</p>
 <p><img src="/images/2014/04/results2.png" alt="results"></p>
 <p>I found that the feature class does not even need to be within the feature dataset and also the problem does not always occur, I have had the code successfully run in some cases.</p>
-<p>Once I confirmed the problem, I did find <!-- raw HTML omitted -->this thread<!-- raw HTML omitted --> from almost three years ago that mentions the bug. One poster indicated the same thing occurs in ArcObjects which leads me to think something may not be getting registered right in the sde tables.</p>
+<p>Once I confirmed the problem, I did find <a href="http://forums.arcgis.com/threads/31291-List-feature-classes-in-a-geodatabase-using-Python" target="_blank">this thread</a> from almost three years ago that mentions the bug. One poster indicated the same thing occurs in ArcObjects which leads me to think something may not be getting registered right in the sde tables.</p>
 <p>I was not able to re-create this using either personal or file geodatabases.</p>
 <p>So I adopting the policy of not using the same name for a feature dataset as for a feature class.</p>
 <p> </p>

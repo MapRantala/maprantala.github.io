@@ -26,7 +26,7 @@ def returnCase(inValue):
       caseList.append(inValue)
 
    return caseList.index(inValue)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-700&#34; title=&#34;Case&#34; src=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2012/04/case.png?resize=614%2C449&#34; alt=&#34;&#34; width=&#34;614&#34; height=&#34;449&#34; data-recalc-dims=&#34;1&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     

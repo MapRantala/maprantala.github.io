@@ -15,7 +15,7 @@
       <pubDate>Tue, 08 May 2018 17:56:09 -0500</pubDate>
       <guid>https://maprantala.com/2018/05/08/using-arcpy.mapping-to-update-definition-queries/</guid>
       <description>&lt;p&gt;Working with a routine process today that I normally only do once in awhile but today needed to do it several times. It requires changing the definition query on several features classes. Being the &amp;lsquo;lazy&amp;rsquo; GIS guy that I am (owner of a company I used to work at called me that once as a sort of compliment for my tendency to script a lot of what I did), I decided to finally script it instead of changing definition queries about 42 times.&lt;/p&gt;
-&lt;p&gt;The quick &amp;amp; dirty &lt;!-- raw HTML omitted --&gt;script&lt;!-- raw HTML omitted --&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
+&lt;p&gt;The quick &amp;amp; dirty &lt;del&gt;script&lt;/del&gt; code that I wrote &amp;amp; can be run in the ArcMap python window consists of two parts. The first three lines just need to be run once per session to get a variable set with the list of layers. The loop I ran multiple times, updating the &amp;lsquo;.replace&amp;rsquo; settings each time. I ran the loop, did my other processes, and re-ran the loop as needed and was a happy GISer.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;#These first 3 lines only need to be run once.
 mxd = arcpy.mapping.MapDocument(&amp;quot;CURRENT&amp;quot;)
 l = arcpy.mapping.ListDataFrames(mxd)[0] #Note the hard-code [0], meaning the first dataframe. YMMV
@@ -40,13 +40,13 @@ for l in ll:
       <link>https://maprantala.com/2017/10/04/arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</link>
       <pubDate>Wed, 04 Oct 2017 22:17:11 -0500</pubDate>
       <guid>https://maprantala.com/2017/10/04/arctoolbox-tool-add-st_con_abr-to-hennepin-county-mn-centerlines/</guid>
-      <description>&lt;p&gt;One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a &amp;lsquo;recover-our-cost&amp;rsquo; mentality to more of an &amp;lsquo;Open Data&amp;rsquo;. Minnesota, for example, has launched their &lt;!-- raw HTML omitted --&gt;Geospatial Commons&lt;!-- raw HTML omitted --&gt; as a platform for sharing data.&lt;/p&gt;
-&lt;p&gt;And while getting free, authoritative data is awesome, it can leave you in a bind if the structure of the data changes. Sometime between April and September, Hennepin County, Minnesota, changed the schema of their &lt;!-- raw HTML omitted --&gt;publicly available street centerlines data&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;One of the great advancements over the last decade plus in GIS is that government agencies have started to move away from a &amp;lsquo;recover-our-cost&amp;rsquo; mentality to more of an &amp;lsquo;Open Data&amp;rsquo;. Minnesota, for example, has launched their &lt;a href=&#34;https://gisdata.mn.gov/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geospatial Commons&lt;/a&gt; as a platform for sharing data.&lt;/p&gt;
+&lt;p&gt;And while getting free, authoritative data is awesome, it can leave you in a bind if the structure of the data changes. Sometime between April and September, Hennepin County, Minnesota, changed the schema of their &lt;a href=&#34;http://www.hennepin.us/gisopendata&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;publicly available street centerlines data&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The data used to have both a full, concatenated street name field ([ST_CONCAT]) and an abbreviated version ([ST_CON_ABR]). A record might have &amp;lsquo;James Lofton Avenue North&amp;rsquo; and &amp;lsquo;James Lofton Ave N&amp;rsquo;, respectively, in these two fields. The abbreviated version was nice for labeling but it disappeared from the most recent updates.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2017/10/Streetnames.jpg&#34; alt=&#34;Options&#34;&gt;&lt;/p&gt;
 &lt;p&gt;So, as you  might guess from the fact that I&amp;rsquo;m posting about it, I wrote a script to add that field in and launch it from an ArcToolbox Tool. Nothing fancy going on in the code, just a series of replaces, depending on the field. Using dictionaries instead of arrays of paired values might have been better but the script takes just a few seconds to run so I can live with it as-is.&lt;/p&gt;
-&lt;p&gt;The list of street type abbreviations came from a combination of &lt;!-- raw HTML omitted --&gt;ESRI&amp;rsquo;s standards&lt;!-- raw HTML omitted --&gt; and those found in an older version of the Hennepin County data. There were no conflicting abbreviations between the two. The code warns if a street name occurs in the data that is not in the list.&lt;/p&gt;
-&lt;p&gt;While I&amp;rsquo;m including the code here for reference, it&amp;rsquo;s probably best to &lt;!-- raw HTML omitted --&gt;download the code from GitHub.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;The list of street type abbreviations came from a combination of &lt;a href=&#34;http://support.esri.com/en/technical-article/000008454&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ESRI&amp;rsquo;s standards&lt;/a&gt; and those found in an older version of the Hennepin County data. There were no conflicting abbreviations between the two. The code warns if a street name occurs in the data that is not in the list.&lt;/p&gt;
+&lt;p&gt;While I&amp;rsquo;m including the code here for reference, it&amp;rsquo;s probably best to &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/ArcToolbox/20171004_Add_STCONABR&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;download the code from GitHub.&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#-------------------------------------------------------------------------------&lt;/span&gt;
 &lt;span style=&#34;color:#75715e&#34;&gt;# Name:        usi_dataprep_Add_STCONABR&lt;/span&gt;
 &lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
@@ -445,9 +445,9 @@ preDirList &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [[&lt;span s
       <link>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</link>
       <pubDate>Fri, 14 Aug 2015 10:01:54 -0500</pubDate>
       <guid>https://maprantala.com/2015/08/14/converting-mxd-to-layer-file-in-arcpy/</guid>
-      <description>&lt;p&gt;Working on doing some &lt;!-- raw HTML omitted --&gt;advanced ArcGIS server printing&lt;!-- raw HTML omitted --&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;!-- raw HTML omitted --&gt;Petr Krebs&lt;!-- raw HTML omitted --&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
+      <description>&lt;p&gt;Working on doing some &lt;a href=&#34;http://resources.arcgis.com/EN/HELP/MAIN/10.1/index.html#//01540000056t000000&#34; target=&#34;_blank&#34;&gt;advanced ArcGIS server printing&lt;/a&gt; and had the need to batch convert many existing .mxd files to .lyr files. So instead of opening up X number of map documents, thought I would do it via code. All of my .mxds in this case had just one data frame so the process was pretty simple–I add an empty group layer (Thanks &lt;a href=&#34;http://gis.stackexchange.com/users/434/petr-krebs&#34; target=&#34;_blank&#34;&gt;Petr Krebs&lt;/a&gt; for the idea), copy all the existing layers into it, and save it out as a layer file.&lt;/p&gt;
 &lt;p&gt;I created an ArcGIS toolbox with two options–one to convert a single .mxd and one to batch convert an entire folder. To use it, make sure to have the EmptyGroup.lyr in the same directory as the .py file.&lt;/p&gt;
-&lt;p&gt;Here is the raw code or &lt;!-- raw HTML omitted --&gt;git it&lt;!-- raw HTML omitted --&gt;:&lt;/p&gt;
+&lt;p&gt;Here is the raw code or &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/ArcToolbox/ArcGIS/20150814_ConvertMxd2Lyr&#34; target=&#34;_blank&#34;&gt;git it&lt;/a&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import os
 import arcpy
 import inspect
@@ -524,13 +524,13 @@ else:
       <link>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis/</link>
       <pubDate>Wed, 31 Dec 2014 14:38:16 -0600</pubDate>
       <guid>https://maprantala.com/2014/12/31/calling-os.startfile-and-webbrowser.open-from-arcgis/</guid>
-      <description>&lt;p&gt;Recently I&amp;rsquo;ve created &lt;!-- raw HTML omitted --&gt;Python add-ins&lt;!-- raw HTML omitted --&gt; for data entry for our staff. Most of these have a toolbar with a &amp;lsquo;Help&amp;rsquo; button that opens a help file in .pdf format.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Recently I&amp;rsquo;ve created &lt;a href=&#34;http://resources.arcgis.com/en/help/main/10.2/index.html#//014p00000025000000&#34; target=&#34;_blank&#34;&gt;Python add-ins&lt;/a&gt; for data entry for our staff. Most of these have a toolbar with a &amp;lsquo;Help&amp;rsquo; button that opens a help file in .pdf format.&lt;figure id=&#34;attachment_4515&#34; aria-describedby=&#34;caption-attachment-4515&#34; style=&#34;width: 339px&#34; class=&#34;wp-caption alignnone&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/12/Toolbar.png&#34; alt=&#34;Sample python add-in toolbar.&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;figcaption id=&#34;caption-attachment-4515&#34; class=&#34;wp-caption-text&#34;&gt;Sample python add-in toolbar.&lt;/figcaption&gt;&lt;/figure&gt; 
 &lt;p&gt;The first add-in was for ArcCatalog and this worked splendidly. I was using os.startfile(&lt;em&gt;path to help.pdf&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;However, when I started doing ArcMap add-ins, clicking the Help button would open the help.pdf but ArcMap would crash. Oops!&lt;/p&gt;
-&lt;p&gt;Luckily the &lt;!-- raw HTML omitted --&gt;Python development team at Esri&lt;!-- raw HTML omitted --&gt; already had a &lt;!-- raw HTML omitted --&gt;blog post&lt;!-- raw HTML omitted --&gt; about this at their &lt;!-- raw HTML omitted --&gt;ArcPy Café blog&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
-&lt;p&gt;They report that the root of the problem is &amp;lsquo;conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool&amp;rsquo;. But this can be overcome by using a &lt;!-- raw HTML omitted --&gt;decorator&lt;!-- raw HTML omitted --&gt; function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.&lt;/p&gt;
+&lt;p&gt;Luckily the &lt;a href=&#34;https://twitter.com/arcpy&#34; target=&#34;_blank&#34;&gt;Python development team at Esri&lt;/a&gt; already had a &lt;a href=&#34;https://arcpy.wordpress.com/2013/10/25/using-os-startfile-and-webbrowser-open-in-arcgis-for-desktop/&#34; target=&#34;_blank&#34;&gt;blog post&lt;/a&gt; about this at their &lt;a href=&#34;https://arcpy.wordpress.com/&#34; target=&#34;_blank&#34;&gt;ArcPy Café blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;They report that the root of the problem is &amp;lsquo;conflicts in the way the Windows libraries expect to be called, they can fail or crash when called within ArcGIS for Desktop in an add-in script or geoprocessing script tool&amp;rsquo;. But this can be overcome by using a &lt;a href=&#34;http://en.wikipedia.org/wiki/Decorator_pattern&#34; target=&#34;_blank&#34;&gt;decorator&lt;/a&gt; function that calls os.startfile from a new thread. Another function effected by these conflicts is webbrowser.open.&lt;/p&gt;
 &lt;p&gt;Example code is shown below:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; functools
 &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; os
@@ -587,22 +587,40 @@ os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;chdir(theDir)
       <link>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</link>
       <pubDate>Fri, 16 May 2014 21:11:20 -0500</pubDate>
       <guid>https://maprantala.com/2014/05/16/garmin-gpx-to-shapefile-shp-conversion-gpx2shp.py/</guid>
-      <description>&lt;p&gt;I mentioned using &lt;!-- raw HTML omitted --&gt;Tapiriik&lt;!-- raw HTML omitted --&gt; to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .&lt;!-- raw HTML omitted --&gt;GPX to shapefiles&lt;!-- raw HTML omitted --&gt; that worked but none seemed to recognize my heart rate data.&lt;/p&gt;
+      <description>&lt;p&gt;I mentioned using &lt;a href=&#34;https://tapiriik.com&#34; target=&#34;_blank&#34;&gt;Tapiriik&lt;/a&gt; to batch download my entire Garmin Connect history–over 1,000 separate .GPX files. I found several tools to convert .&lt;a href=&#34;http://arcscripts.esri.com/details.asp?dbid=16797&#34; target=&#34;_blank&#34;&gt;GPX to shapefiles&lt;/a&gt; that worked but none seemed to recognize my heart rate data.&lt;/p&gt;
 &lt;p&gt;The trick is Garmin extends the GPX specification to incorporate the heart rate:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;span style=&amp;quot;color: #333333;&amp;quot;&amp;gt;xmlns:gpxtpx=&amp;quot;http://www.garmin.com/xmlschemas/TrackPointExtension/v1&amp;quot;&amp;lt;/span&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Each track point looks like this:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;div id=&#34;LC15&#34; class=&#34;line&#34;&gt;
+       &lt;trkpt lat=&#39;43.68346489146352&amp;#8243; lon=&#39;-92.99583793468773&amp;#8243;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC16&#34; class=&#34;line&#34;&gt;
+          &lt;time&gt;2014-03-16T20:35:47+00:00&lt;/time&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC17&#34; class=&#34;line&#34;&gt;
+          &lt;ele&gt;296.20001220703125
+&lt;/div&gt;
+&lt;div id=&#34;LC18&#34; class=&#34;line&#34;&gt;
+          &lt;extensions&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC19&#34; class=&#34;line&#34;&gt;
+            &lt;gpxtpx:TrackPointExtension&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC20&#34; class=&#34;line&#34;&gt;
+              &lt;gpxtpx:hr&gt;86
+&lt;/div&gt;
+&lt;div id=&#34;LC21&#34; class=&#34;line&#34;&gt;
+            &lt;!--&lt;span class=&#34;hiddenSpellError&#34; pre=&#34;&#34; data-mce-bogus=&#34;1&#34;--&gt;gpxtpx:TrackPointExtension&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC22&#34; class=&#34;line&#34;&gt;
+          &lt;/extensions&gt;
+&lt;/div&gt;
+&lt;div id=&#34;LC23&#34; class=&#34;line&#34;&gt;
+        &lt;!--&lt;span class=&#34;hiddenSpellError&#34; pre=&#34;&#34; data-mce-bogus=&#34;1&#34;--&gt;trkpt&gt;
+&lt;/div&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;Since the first few exiting GPX converters failed to meet my needs, I decided to make my own, at least partially.&lt;/p&gt;
-&lt;p&gt;I used Joel Lawhead of &lt;!-- raw HTML omitted --&gt;GeospatialPython.com&lt;!-- raw HTML omitted --&gt;‘s &lt;!-- raw HTML omitted --&gt;pyshp&lt;!-- raw HTML omitted --&gt; library to handle writing the shapefile. I added some basic loop and I stuck a template.prj in the workspace that gets copied once for each shapefile.&lt;/p&gt;
+&lt;p&gt;I used Joel Lawhead of &lt;a href=&#34;http://geospatialpython.com&#34; target=&#34;_blank&#34;&gt;GeospatialPython.com&lt;/a&gt;‘s &lt;a href=&#34;https://code.google.com/p/pyshp/&#34; target=&#34;_blank&#34;&gt;pyshp&lt;/a&gt; library to handle writing the shapefile. I added some basic loop and I stuck a template.prj in the workspace that gets copied once for each shapefile.&lt;/p&gt;
 &lt;p&gt;Otherwise, nothing too fancy going on.  The code can be downloaded from &lt;a href=&#34;https://github.com/MapRantala/Blog/tree/master/python/python/20140516_GPX2SHP&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import glob, os
 import xml.etree.ElementTree as ET
@@ -792,7 +810,7 @@ theLineList = mainLoop()
       <link>https://maprantala.com/2014/04/02/arcpy.listfeatureclasses-bug/</link>
       <pubDate>Wed, 02 Apr 2014 18:59:06 -0500</pubDate>
       <guid>https://maprantala.com/2014/04/02/arcpy.listfeatureclasses-bug/</guid>
-      <description>&lt;p&gt;I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&amp;rsquo;s &lt;!-- raw HTML omitted --&gt;ListFeatureClasses&lt;!-- raw HTML omitted --&gt; request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.&lt;/p&gt;
+      <description>&lt;p&gt;I was recently re-evaluating our back-up procedures and discovered and found a nasty bug with the arcpy&amp;rsquo;s &lt;a href=&#34;http://resources.arcgis.com/en/help/main/10.2/index.html#//018v00000018000000&#34; target=&#34;_blank&#34;&gt;ListFeatureClasses&lt;/a&gt; request. If you have a feature class in a feature dataset with the same name, ListFeatureClasses may not find it or anything else in that feature dataset.&lt;/p&gt;
 &lt;p&gt;Unfortunately, we recently made our daily backup a python-based system that uses ListFeatureClasses and got bit by this bug.&lt;/p&gt;
 &lt;p&gt;After discovering missing data in our backups, I reconstructed what happened and found this bug. Below is arcpy code that iterates through the feature datasets in a geodatabase and lists the feature classes:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; arcpy
@@ -817,7 +835,7 @@ copyAll()
 &lt;p&gt;But if I rename the feature dataset (e.g. outcrop_fd), the results are what I would hope for:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2014/04/results2.png&#34; alt=&#34;results&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I found that the feature class does not even need to be within the feature dataset and also the problem does not always occur, I have had the code successfully run in some cases.&lt;/p&gt;
-&lt;p&gt;Once I confirmed the problem, I did find &lt;!-- raw HTML omitted --&gt;this thread&lt;!-- raw HTML omitted --&gt; from almost three years ago that mentions the bug. One poster indicated the same thing occurs in ArcObjects which leads me to think something may not be getting registered right in the sde tables.&lt;/p&gt;
+&lt;p&gt;Once I confirmed the problem, I did find &lt;a href=&#34;http://forums.arcgis.com/threads/31291-List-feature-classes-in-a-geodatabase-using-Python&#34; target=&#34;_blank&#34;&gt;this thread&lt;/a&gt; from almost three years ago that mentions the bug. One poster indicated the same thing occurs in ArcObjects which leads me to think something may not be getting registered right in the sde tables.&lt;/p&gt;
 &lt;p&gt;I was not able to re-create this using either personal or file geodatabases.&lt;/p&gt;
 &lt;p&gt;So I adopting the policy of not using the same name for a feature dataset as for a feature class.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -831,7 +849,7 @@ copyAll()
       <guid>https://maprantala.com/2013/09/23/arcpy-check-if-a-field-exists/</guid>
       <description>&lt;p&gt;I was helping a co-worker who needed to check if a field exists in their arcpy script. Since we were located at their computer, I thought I would just do a quick Google search and pull the code off this blog. Seemed logical since I the original purpose was exactly that—to serve as a handy, public place to store code snippets that I use &amp;amp; that others might find handy.&lt;/p&gt;
 &lt;p&gt;Anyhow, my Google Search on “&lt;a href=&#34;https://www.google.com/#q=Node+Dangles+field+Exists&#34;&gt;Node Dangles field Exists&lt;/a&gt;” came up with a &lt;a href=&#34;https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;9.3 script&lt;/a&gt; to check if field index exists. And I also have a &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;10.0 version&lt;/a&gt; but did not come up with the field exists snippet. So here it is:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2013/09/image2.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2013/09/image2.png&#34;&gt;&lt;img style=&#34;background-image: none; padding-top: 0; padding-left: 0; display: inline; padding-right: 0; border: 0;&#34; title=&#34;image&#34; alt=&#34;image&#34; src=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2013/09/image_thumb2.png?resize=445%2C131&#34; width=&#34;445&#34; height=&#34;131&#34; border=&#34;0&#34; data-recalc-dims=&#34;1&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;def fieldExists(inFeatureClass, inFieldName):
    fieldList = arcpy.ListFields(inFeatureClass)
    for iField in fieldList:
@@ -848,10 +866,10 @@ copyAll()
       <pubDate>Thu, 05 Sep 2013 14:04:40 -0500</pubDate>
       <guid>https://maprantala.com/2013/09/05/arcmap-field-calculator-number-of-parts-in-multi-part-feature/</guid>
       <description>&lt;p&gt;In the last week, I have looked for multi-part features a couple of times. Today, I was looking for multi-part polygons after dealing with the fall-out of a case of Clip Gone Wild as shown below.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/09/image.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/09/image.png&#34;&gt;&lt;img style=&#34;background-image:none;padding-top:0;padding-left:0;display:inline;padding-right:0;border:0;&#34; title=&#34;image&#34; alt=&#34;image&#34; src=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2013/09/image_thumb.png?resize=554%2C416&#34; width=&#34;554&#34; height=&#34;416&#34; border=&#34;0&#34; data-recalc-dims=&#34;1&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I have not found a way to write a query to find these but Field Calculator does allow you to calculate a field’s value to the number of parts.&lt;/p&gt;
 &lt;p&gt;Using the Python parser, just write the formula (note that case matters): !shape!.partCount&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/09/image1.png&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://i2.wp.com/maprantala.com/wp-content/uploads/2013/09/image1.png&#34;&gt;&lt;img style=&#34;background-image:none;padding-top:0;padding-left:0;display:inline;padding-right:0;border:0;&#34; title=&#34;image&#34; alt=&#34;image&#34; src=&#34;https://i1.wp.com/maprantala.com/wp-content/uploads/2013/09/image_thumb1.png?resize=633%2C483&#34; width=&#34;633&#34; height=&#34;483&#34; border=&#34;0&#34; data-recalc-dims=&#34;1&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -860,7 +878,7 @@ copyAll()
       <link>https://maprantala.com/2012/05/31/quick-dirty-python-converting-a-text-file-to-audio-.wav/</link>
       <pubDate>Thu, 31 May 2012 23:12:28 -0500</pubDate>
       <guid>https://maprantala.com/2012/05/31/quick-dirty-python-converting-a-text-file-to-audio-.wav/</guid>
-      <description>&lt;p&gt;This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without any freeware that could handle the 53 page document–there are some cool websites that do text to mp3 like &lt;!-- raw HTML omitted --&gt;vozme &lt;!-- raw HTML omitted --&gt;and &lt;!-- raw HTML omitted --&gt;YAKiToMe&lt;!-- raw HTML omitted --&gt;! but they didn&amp;rsquo;t convert the whole document. I then found &lt;!-- raw HTML omitted --&gt;pyTTS&lt;!-- raw HTML omitted --&gt;, a python package that serves as a wrapper to the &lt;!-- raw HTML omitted --&gt;Microsoft Speech API (SAPI) &lt;!-- raw HTML omitted --&gt;, which has &lt;!-- raw HTML omitted --&gt;been in version 5 since 2000.&lt;!-- raw HTML omitted --&gt; But I didn&amp;rsquo;t easily find a version of pyTTS for python 2.6. So I decided to see if I could roll my own.&lt;/p&gt;
+      <description>&lt;p&gt;This is a bit of a tangent but for some crazy reason, I wanted to convert some text to audio so I could listen to it while I drive. A quick Google search left me without any freeware that could handle the 53 page document–there are some cool websites that do text to mp3 like &lt;a href=&#34;http://vozme.com/index.php?lang=en&#34; target=&#34;_blank&#34;&gt;vozme &lt;/a&gt;and &lt;a href=&#34;http://www.yakitome.com/&#34; target=&#34;_blank&#34;&gt;YAKiToMe&lt;/a&gt;! but they didn&amp;rsquo;t convert the whole document. I then found &lt;a href=&#34;http://www.cs.unc.edu/Research/assist/doc/pytts/&#34; target=&#34;_blank&#34;&gt;pyTTS&lt;/a&gt;, a python package that serves as a wrapper to the &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/ms723627%28v=vs.85%29&#34; target=&#34;_blank&#34;&gt;Microsoft Speech API (SAPI) &lt;/a&gt;, which has &lt;a href=&#34;http://en.wikipedia.org/wiki/Microsoft_Speech_API&#34; target=&#34;_blank&#34;&gt;been in version 5 since 2000.&lt;/a&gt; But I didn&amp;rsquo;t easily find a version of pyTTS for python 2.6. So I decided to see if I could roll my own.&lt;/p&gt;
 &lt;p&gt;As it turns out, getting python to talk using SAPI is relatively easy. Reading a plain text file can be done in a few lines.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; comtypes.client &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; CreateObject
 
@@ -953,7 +971,7 @@ def returnCase(inValue):
       caseList.append(inValue)
 
    return caseList.index(inValue)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-700&#34; title=&#34;Case&#34; src=&#34;https://i0.wp.com/maprantala.com/wp-content/uploads/2012/04/case.png?resize=614%2C449&#34; alt=&#34;&#34; width=&#34;614&#34; height=&#34;449&#34; data-recalc-dims=&#34;1&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -1026,8 +1044,9 @@ def returnCase(inValue1, inValue2):
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/07/fc-arcpy.png&#34; alt=&#34;Field Calculator&#34;&gt;&lt;/p&gt;
 &lt;p&gt;While composing this post, I actually wanted a concatenated value; &amp;lsquo;OC&amp;rsquo; plus an 8 character numeric sequential number starting at OC00000001 so the actual code is shown below:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/07/fc-arcpy2.png&#34; alt=&#34;Field Calculator&#34;&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-620&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -1041,7 +1060,7 @@ def returnCase(inValue1, inValue2):
 &lt;p&gt;This made the process easier because I could work on my local machine, editing the problematic script, saving changes and within 60 seconds it would be launched on the remote machine.  I could view the results, make additional edits, delete the .start file and it would launch again within 60 seconds.&lt;/p&gt;
 &lt;p&gt;Within a couple minutes I was able to determine the problem (path related) and fix it.&lt;/p&gt;
 &lt;p&gt;Happy programmer.&lt;/p&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;I would recommend using this only while debugging a script–routinely running it could be a security risk since someone could copy a destructive python script into the directory and this would run it.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;disclaimer&gt;I would recommend using this only while debugging a script–routinely running it could be a security risk since someone could copy a destructive python script into the directory and this would run it.&lt;/disclaimer&gt;&lt;/p&gt;
 &lt;p&gt;Download: &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110711_tester.zip&#34;&gt;tester.py&lt;/a&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;import sys, string, os
 import glob
@@ -1101,8 +1120,9 @@ while (stopFileExists == False):
     printit(&amp;quot;nEnd of Loop: &amp;quot;+datetime.date.today().strftime(&amp;quot;%Y-%m-%d_&amp;quot;)+datetime.datetime.now().strftime(&amp;quot;%H:%M:%S&amp;quot;)+&amp;quot;n&amp;quot;)    
 
 printit(&amp;quot;Done!&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-583&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -1127,8 +1147,9 @@ if (iIndex.fields[0].Name.upper() == fieldname.upper()):&lt;br&gt;
 return True&lt;/p&gt;
 &lt;p&gt;return False&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-581&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -1142,8 +1163,9 @@ return True&lt;/p&gt;
 &lt;p&gt;Finally, I realized that I needed to close ArcCatalog before arcpy recognized the fact I had renamed something. To note, I was running arcpy from a separate PythonWin window, not from the ArcCatalog session I had renamed the raster dataset with.&lt;/p&gt;
 &lt;p&gt;Once I closed ArcCatalog, arcpy recognized the renaming and life was good.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-546&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -1331,8 +1353,9 @@ del inputRows
 del outputRows
 
 printit(&amp;quot;Done!&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-528&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -1343,8 +1366,9 @@ printit(&amp;quot;Done!&amp;quot;)
       <description>&lt;p&gt;During a process I was working on, I needed to compare a feature class before and after some edits.  I did not quickly find anything in ArcToolbox but searching &lt;a href=&#34;http://resources.arcgis.com/&#34;&gt;ArcResources&lt;/a&gt; led me to &lt;a href=&#34;http://resources.arcgis.com/gallery/file/Geoprocessing-Model-and-Script-Tool-Gallery/details?entryID=351BEE10-1422-2418-8815-82074A3E6B6C&#34;&gt;Change Detector script by Bruce Harold&lt;/a&gt;.  After making a couple of tweaks–for some reason in one of my feature classes, the Shape field had an upper case &amp;lsquo;S&amp;rsquo; and in the other it was a lower case &amp;rsquo;s&#39;.  I also discovered that it needs to export to the same format (personal geodatabase, file geodatabase, shapefile) as the source data (or at least one that uses the same field name deliminator).&lt;/p&gt;
 &lt;p&gt;After minor adjustments, though, it worked like a charm.  I&amp;rsquo;ll be submitting the changes I made to Bruce and let him incorporate the changes into the official code.&lt;/p&gt;
 &lt;p&gt;FOLLOW-UP: Mr. Harold quickly responded to my email &amp;amp; made the change (although I haven&amp;rsquo;t checked it). Way to go Bruce!  Thanks for a handy script.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-508&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -1475,8 +1499,9 @@ for lf in lfields:
 
 if (doOutputFile):
  tmpfile.close
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-473&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -1517,8 +1542,9 @@ def listds():
 
 listfc(d)
 listds()
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-440&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -1571,8 +1597,9 @@ if not (arcpy.Exists(outRaster)):
 else:
     printit (&amp;quot;Skipping: &amp;quot;+basedir+&amp;quot; because it already exists!&amp;quot;)
 
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-385&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -1602,8 +1629,9 @@ return False
 
  return False
 
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-364&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
   </channel>

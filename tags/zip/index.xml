@@ -21,7 +21,7 @@
 &lt;p&gt;I have, however, with some minor tweaking, made a version that can added to ArcToolbox. The steps to install are below, please note that at one point I had you download a *.zip file that had been renamed to *.jpg–this should now be corrected and the link should lead you directly to zipshapefile.zip.  Because of this steps two and three are obsolete.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Download the code from here.&lt;/li&gt;
-&lt;li&gt;&lt;!-- raw HTML omitted --&gt;Rename the file from zipshapefile-zip.jpg back to zipshapefile.zip.&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;Rename the file from zipshapefile-zip.jpg back to zipshapefile.zip.&lt;/del&gt;&lt;/li&gt;
 &lt;li&gt;Unzip the file.&lt;/li&gt;
 &lt;li&gt;Move ZipShapefile.py to C:Program FilesArcGISArcToolBoxScriptsZipShapefile.py.&lt;/li&gt;
 &lt;li&gt;Optionally, move Zip Shapefile.tbx, perhaps C:Program FilesArcGISArcToolBoxToolboxes.&lt;/li&gt;
@@ -34,8 +34,9 @@ In response to Chris:&lt;/p&gt;
 &lt;p&gt;I believe you need to copy the ZipShapefile.py file from the .zip that you downloaded to C:Program FilesArcGISArcToolBoxScripts, the error message is consistent with the tool not being about to find the python script there.&lt;/p&gt;
 &lt;p&gt;If you prefer to place the ZipShapefile.py in a different location, you will need to change the source on the tool. To do this, right click on the tool in ArcCatalog and change the path of the Script File as set in the Source tab (see below):
 &lt;img src=&#34;https://maprantala.com/images/2012/03/setpath.png?resize=494%2C265&#34; alt=&#34;set Path&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;div id=&#34;geo-post-246&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -80,8 +81,9 @@ return True
 
 zipShapefile(wellsShapeFile,wellsZipFile)
 print &amp;quot;done!&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-236&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+  &lt;span class=&#34;latitude&#34;&gt;44.979965&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.263836&lt;/span&gt;
+&lt;/div&gt;</description>
     </item>
     
   </channel>
