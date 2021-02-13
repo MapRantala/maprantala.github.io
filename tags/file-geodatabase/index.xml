@@ -17,33 +17,32 @@
       <description>&lt;p&gt;Ever since the ever-popular post, &lt;a href=&#34;https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/&#34;&gt;Zipping a shapefile using python&lt;/a&gt;, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.&lt;/p&gt;
 &lt;p&gt;The key trick, as shown in line 17, is appending the basename of the file geodatabase (&amp;lsquo;nfg.gdb/&amp;rsquo; in my example) in front of each file as you write it to the zipfile.&lt;/p&gt;
 &lt;p&gt;UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp;amp; pasted and have work.  So I have posted a the code &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110208_Sample_Zip_FileGeodatabase.zip&#34;&gt;HERE&lt;/a&gt; for downloading.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import os
-import zipfile
-import glob
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; os
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; zipfile
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; glob
 
-infile = &amp;quot;c:/temp/nfg.gdb&amp;quot;
-outfile = &amp;quot;c:/temp/nfg.zip&amp;quot;
-def zipFileGeodatabase(inFileGeodatabase, newZipFN):
-   if not (os.path.exists(inFileGeodatabase)):
-      return False
+infile &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;c:/temp/nfg.gdb&amp;#34;&lt;/span&gt;
+outfile &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;c:/temp/nfg.zip&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;zipFileGeodatabase&lt;/span&gt;(inFileGeodatabase, newZipFN):
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; (os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exists(inFileGeodatabase)):
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
 
-   if (os.path.exists(newZipFN)):
-      os.remove(newZipFN)
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exists(newZipFN)):
+      os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;remove(newZipFN)
 
-   zipobj = zipfile.ZipFile(newZipFN,&#39;w&#39;)
+   zipobj &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; zipfile&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ZipFile(newZipFN,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;w&amp;#39;&lt;/span&gt;)
 
-   for infile in glob.glob(inFileGeodatabase+&amp;quot;/*&amp;quot;):
-      zipobj.write(infile, os.path.basename(inFileGeodatabase)+&amp;quot;/&amp;quot;+os.path.basename(infile), zipfile.ZIP_DEFLATED)
-      print (&amp;quot;Zipping: &amp;quot;+infile)
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; infile &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; glob&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;glob(inFileGeodatabase&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/*&amp;#34;&lt;/span&gt;):
+      zipobj&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;write(infile, os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;basename(inFileGeodatabase)&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;basename(infile), zipfile&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ZIP_DEFLATED)
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Zipping: &amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;infile)
 
-   zipobj.close()
+   zipobj&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;close()
 
-   return True
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; True
 
 zipFileGeodatabase(infile,outfile)
 
-
-&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-312&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div id=&#34;geo-post-312&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
   &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
 &lt;/div&gt;</description>
     </item>

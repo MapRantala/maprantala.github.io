@@ -121,36 +121,36 @@ Tags:
 <p>So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.</p>
 <p>I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).</p>
 <p><img src="/images/2011/03/failedtodeletedomain.png" alt="The domain is used as a default domain."></p>
-<p>The Google Machine led me to an <a href="http://forums.esri.com/Thread.asp?c=93&amp;f=985&amp;t=303616">ArcForums post</a> by  with some python code for listing all the fields with a domain.</p>
-<p>I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip">9.3 version</a> and the <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip">10.0 version</a>, but here is a quick look.  The key addition is the ‘listfc('')&rsquo; line that is the first line of the def listds() module.</p>
-<pre><code>import arcpy
+<p>The Google Machine led me to an <a href="http://forums.esri.com/Thread.asp?c=93&f=985&t=303616" target="_blank">ArcForums post</a> by  with some python code for listing all the fields with a domain.</p>
+<p>I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip" target="_blank">9.3 version</a> and the <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip" target="_blank">10.0 version</a>, but here is a quick look.  The key addition is the &ldquo;listfc('')&rdquo; line that is the first line of the def listds() module.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> arcpy
 
-min_workspace = r&quot;C:\Users\mranter\AppData\Roaming\ESRI\Desktop10.0\ArcCatalog\min.minstaff.sde&quot;
+min_workspace <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;C:\Users\mranter\AppData\Roaming\ESRI\Desktop10.0\ArcCatalog\min.minstaff.sde&#34;</span>
 
-infgdb=(min_workspace)
-arcpy.env.workspace = infgdb
+infgdb<span style="color:#f92672">=</span>(min_workspace)
+arcpy<span style="color:#f92672">.</span>env<span style="color:#f92672">.</span>workspace <span style="color:#f92672">=</span> infgdb
 
-def listfc(inDataset):
-   featureclasses = arcpy.ListFeatureClasses(&quot;&quot;,&quot;&quot;,inDataset)
-   for f in featureclasses:
-      print &quot;feature class: &quot;,f
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">listfc</span>(inDataset):
+   featureclasses <span style="color:#f92672">=</span> arcpy<span style="color:#f92672">.</span>ListFeatureClasses(<span style="color:#e6db74">&#34;&#34;</span>,<span style="color:#e6db74">&#34;&#34;</span>,inDataset)
+   <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> featureclasses:
+      <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;feature class: &#34;</span>,f
 
-lfields=arcpy.ListFields(f)
+lfields<span style="color:#f92672">=</span>arcpy<span style="color:#f92672">.</span>ListFields(f)
 
-for lf in lfields:
-   if lf.domain &lt; &quot;&quot;:
-      print &quot;      domain&quot;,f, lf.name, lf.domain
+<span style="color:#66d9ef">for</span> lf <span style="color:#f92672">in</span> lfields:
+   <span style="color:#66d9ef">if</span> lf<span style="color:#f92672">.</span>domain <span style="color:#f92672">&lt;</span> <span style="color:#e6db74">&#34;&#34;</span>:
+      <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;      domain&#34;</span>,f, lf<span style="color:#f92672">.</span>name, lf<span style="color:#f92672">.</span>domain
 
-def listds():
-   listfc(&quot;&quot;)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">listds</span>():
+   listfc(<span style="color:#e6db74">&#34;&#34;</span>)
 
-   datasets=arcpy.ListDatasets (&quot;&quot;,&quot;&quot;)
-   for d in datasets:
-      print &quot;  dataset: &quot;,d
+   datasets<span style="color:#f92672">=</span>arcpy<span style="color:#f92672">.</span>ListDatasets (<span style="color:#e6db74">&#34;&#34;</span>,<span style="color:#e6db74">&#34;&#34;</span>)
+   <span style="color:#66d9ef">for</span> d <span style="color:#f92672">in</span> datasets:
+      <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  dataset: &#34;</span>,d
 
 listfc(d)
 listds()
-</code></pre><div id="geo-post-440" class="geo geo-post" style="display: none">
+</code></pre></div><div id="geo-post-440" class="geo geo-post" style="display: none">
   <span class="latitude">44.852994</span><span class="longitude">-93.55073</span>
 </div>
 

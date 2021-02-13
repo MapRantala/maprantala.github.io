@@ -118,33 +118,32 @@ Tags:
 <p>Ever since the ever-popular post, <a href="https://maprantala.com/2010/12/10/zipping-a-shapefile-using-python/">Zipping a shapefile using python</a>, came out, people have been asking (one person, yesterday) for a sample of how to zip a file geodatabase using python.</p>
 <p>The key trick, as shown in line 17, is appending the basename of the file geodatabase (&lsquo;nfg.gdb/&rsquo; in my example) in front of each file as you write it to the zipfile.</p>
 <p>UPDATE: WordPress messes with the spacing when I post code, making it difficult to post code that can just be copied &amp; pasted and have work.  So I have posted a the code <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110208_Sample_Zip_FileGeodatabase.zip">HERE</a> for downloading.</p>
-<pre><code>import os
-import zipfile
-import glob
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> zipfile
+<span style="color:#f92672">import</span> glob
 
-infile = &quot;c:/temp/nfg.gdb&quot;
-outfile = &quot;c:/temp/nfg.zip&quot;
-def zipFileGeodatabase(inFileGeodatabase, newZipFN):
-   if not (os.path.exists(inFileGeodatabase)):
-      return False
+infile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;c:/temp/nfg.gdb&#34;</span>
+outfile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;c:/temp/nfg.zip&#34;</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">zipFileGeodatabase</span>(inFileGeodatabase, newZipFN):
+   <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> (os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(inFileGeodatabase)):
+      <span style="color:#66d9ef">return</span> False
 
-   if (os.path.exists(newZipFN)):
-      os.remove(newZipFN)
+   <span style="color:#66d9ef">if</span> (os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(newZipFN)):
+      os<span style="color:#f92672">.</span>remove(newZipFN)
 
-   zipobj = zipfile.ZipFile(newZipFN,'w')
+   zipobj <span style="color:#f92672">=</span> zipfile<span style="color:#f92672">.</span>ZipFile(newZipFN,<span style="color:#e6db74">&#39;w&#39;</span>)
 
-   for infile in glob.glob(inFileGeodatabase+&quot;/*&quot;):
-      zipobj.write(infile, os.path.basename(inFileGeodatabase)+&quot;/&quot;+os.path.basename(infile), zipfile.ZIP_DEFLATED)
-      print (&quot;Zipping: &quot;+infile)
+   <span style="color:#66d9ef">for</span> infile <span style="color:#f92672">in</span> glob<span style="color:#f92672">.</span>glob(inFileGeodatabase<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;/*&#34;</span>):
+      zipobj<span style="color:#f92672">.</span>write(infile, os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(inFileGeodatabase)<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">+</span>os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(infile), zipfile<span style="color:#f92672">.</span>ZIP_DEFLATED)
+      <span style="color:#66d9ef">print</span> (<span style="color:#e6db74">&#34;Zipping: &#34;</span><span style="color:#f92672">+</span>infile)
 
-   zipobj.close()
+   zipobj<span style="color:#f92672">.</span>close()
 
-   return True
+   <span style="color:#66d9ef">return</span> True
 
 zipFileGeodatabase(infile,outfile)
 
-
-</code></pre><div id="geo-post-312" class="geo geo-post" style="display: none">
+</code></pre></div><div id="geo-post-312" class="geo geo-post" style="display: none">
   <span class="latitude">44.852994</span><span class="longitude">-93.55073</span>
 </div>
 

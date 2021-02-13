@@ -14,7 +14,7 @@
       <link>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</link>
       <pubDate>Tue, 15 Feb 2011 17:05:55 -0600</pubDate>
       <guid>https://maprantala.com/2011/02/15/walkthrough-building-custom-ui-elements-using-add-ins-arcobjects-.net-10-sdk/</guid>
-      <description>&lt;p&gt;I was working my way through this ESRI &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#//0001000001ms000000&#34;&gt;Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)&lt;/a&gt;.  And came across a couple minor errors that I had to correct during the process.&lt;/p&gt;
+      <description>&lt;p&gt;I was working my way through this ESRI &lt;a href=&#34;http://help.arcgis.com/en/sdk/10.0/arcobjects_net/conceptualhelp/index.html#//0001000001ms000000&#34; target=&#34;_blank&#34;&gt;Walkthrough: Building custom UI elements using add-ins (ArcObjects .NET 10 SDK)&lt;/a&gt;.  And came across a couple minor errors that I had to correct during the process.&lt;/p&gt;
 &lt;p&gt;First, while implementing the OnClick() code for ZoomToLayer.vb, Visual Studio gave me a &amp;lsquo;Name ‘ArcMap&amp;rsquo; is not declared.&#39; error.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/02/arcmapnotdeclared.jpg&#34; alt=&#34;ArcMap Not Declared&#34;&gt;&lt;/p&gt;
 &lt;p&gt;In the walk-through, they mention that the ArcMap method of your class.  For me, however, it appeared under the .My method.  Not sure if this is something specific to my set-up or, as I&amp;rsquo;m guessing, something that got changed after the first documentation was created and the final libraries published.&lt;/p&gt;

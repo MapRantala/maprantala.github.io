@@ -16,27 +16,27 @@
       <guid>https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10.0/</guid>
       <description>&lt;p&gt;Updating some python code from 9.3 that using geoprocessing  to 10.0 using arcpy and the first real object I&amp;rsquo;ve had to change relates to detecting whether or not an index exists on a table.&lt;/p&gt;
 &lt;p&gt;I previously &lt;a href=&#34;https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/&#34;&gt;posted code&lt;/a&gt; using a 9.3 geoprocessing commands, the core of it being:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;indexList = gp.listindexes(tablename)
-for iIndex in indexList:
-    if (iIndex.Name == indexname):
-       return True
-return False
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;indexList &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;listindexes(tablename)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; iIndex &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; indexList:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (iIndex&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Name &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; indexname):
+       &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; True
+&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;With arcpy, ESRI has gone back to using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Describe/000v00000026000000/&#34;&gt;Describe&lt;/a&gt; methodology.  Way back when GISers use to type most of their commands into their wood-burning computers, the command &amp;lsquo;Describe&amp;rsquo; was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).  The snippet below shows a function for checking to see if a table has an index with a specified named.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;def indexExists(tablename,indexname):
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With arcpy, ESRI has gone back to using the &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Describe/000v00000026000000/&#34; target=&#34;_blank&#34;&gt;Describe&lt;/a&gt; methodology.  Way back when GISers use to type most of their commands into their wood-burning computers, the command &amp;lsquo;Describe&amp;rsquo; was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).  The snippet below shows a function for checking to see if a table has an index with a specified named.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;indexExists&lt;/span&gt;(tablename,indexname):
 
- if not arcpy.Exists(tablename):
-  return False
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Exists(tablename):
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
 
- tabledescription = arcpy.Describe(tablename)
+ tabledescription &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Describe(tablename)
 
- for iIndex in tabledescription.indexes:
-  if (iIndex.Name == indexname):
-   return True
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; iIndex &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; tabledescription&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;indexes:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (iIndex&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Name &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; indexname):
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; True
 
- return False
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
 
-&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-364&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div id=&#34;geo-post-364&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
   &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
 &lt;/div&gt;</description>
     </item>

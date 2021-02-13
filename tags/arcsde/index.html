@@ -176,7 +176,7 @@ This can be confusing for users–they go to select &lsquo;Milli Vanilli&rsquo; 
 
 </header>
 <div class="content">
-While banging my head on how to grant access to a referenced mosaic dataset , I did something out of frustration that I normally would not do–I granted ‘public' access to some data.
+While banging my head on how to grant access to a referenced mosaic dataset , I did something out of frustration that I normally would not do–I granted &lsquo;public&rsquo; access to some data.
 Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:
 Error 999999: Error executing function.
 The Object being referenced does not exist [ERROR: role &lsquo;public&rsquo; does not exist::SQL state: 42704]
@@ -237,7 +237,7 @@ After doing some exploring, one of the options that looks like it will feel the 
 NOTE: I have a post here that shows how to check if a field exists using arcpy in ArcGIS 10.0.
 In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.
 No problem creating the index, for example:
-gp.AddIndex_management(tablename, field, IndexName, &quot;NON_UNIQUE&quot;, &quot;NON_ASCENDING&quot;) But before creating the index, I wanted to verify that it did not exist. I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).
+gp.AddIndex_management(tablename, field, IndexName, &#34;NON_UNIQUE&#34;, &#34;NON_ASCENDING&#34;) But before creating the index, I wanted to verify that it did not exist. I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).
 </div>
 </article>
 

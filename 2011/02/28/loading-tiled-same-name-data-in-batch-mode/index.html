@@ -124,25 +124,25 @@ C:\GIS_dataBuchetteparcels.shp</p>
 <p>Then, I went to the Results Tab (Select Geoprocessing from the Menubar, Geoprocessing-Results) and right-clicked on the Copy Raster result and selected &lsquo;Copy as Python Snippet&rsquo;.</p>
 <p>I then created a new python script and pasted the one line.</p>
 <p>I added some imports, accepted a parameter, some string manipulation, and some result outputs and I had a quick &amp; easy script. In added the script in ArcToolbox and now I can right-click on it and run it in Batch mode. I do a quick search in Windows Explorer to get all the rasters I want to run it on and select &amp; drag them to my ArcToolbox Batch Dialog.</p>
-<p>Actual code can be downloaded <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110228_load_lidar_data.zip">HERE</a> and you don&rsquo;t need to worry about WordPress messing up the spacing.</p>
-<pre><code>import arcpy
-import os, sys
+<p>Actual code can be downloaded <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110228_load_lidar_data.zip" target="_blank">HERE</a> and you don&rsquo;t need to worry about WordPress messing up the spacing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> arcpy
+<span style="color:#f92672">import</span> os<span style="color:#f92672">,</span> sys
 
-inRaster = sys.argv[1] 
-basedir = os.path.basename(os.path.dirname(inRaster)).lower()
-outRaster = &quot;Database Connections/mgs_lidar.lidar.sde/mgs_lidar.lidar.&quot;+basedir
+inRaster <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>] 
+basedir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(inRaster))<span style="color:#f92672">.</span>lower()
+outRaster <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Database Connections/mgs_lidar.lidar.sde/mgs_lidar.lidar.&#34;</span><span style="color:#f92672">+</span>basedir
 
-def printit(inMessage):
-    print inMessage
-    arcpy.AddMessage(inMessage)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">printit</span>(inMessage):
+    <span style="color:#66d9ef">print</span> inMessage
+    arcpy<span style="color:#f92672">.</span>AddMessage(inMessage)
     
-if not (arcpy.Exists(outRaster)):
-    printit (&quot;Importing: &quot;+basedir)
-    arcpy.CopyRaster_management(inRaster,outRaster,&quot;#&quot;,&quot;#&quot;,&quot;#&quot;,&quot;NONE&quot;,&quot;NONE&quot;,&quot;#&quot;)
-else:
-    printit (&quot;Skipping: &quot;+basedir+&quot; because it already exists!&quot;)
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> (arcpy<span style="color:#f92672">.</span>Exists(outRaster)):
+    printit (<span style="color:#e6db74">&#34;Importing: &#34;</span><span style="color:#f92672">+</span>basedir)
+    arcpy<span style="color:#f92672">.</span>CopyRaster_management(inRaster,outRaster,<span style="color:#e6db74">&#34;#&#34;</span>,<span style="color:#e6db74">&#34;#&#34;</span>,<span style="color:#e6db74">&#34;#&#34;</span>,<span style="color:#e6db74">&#34;NONE&#34;</span>,<span style="color:#e6db74">&#34;NONE&#34;</span>,<span style="color:#e6db74">&#34;#&#34;</span>)
+<span style="color:#66d9ef">else</span>:
+    printit (<span style="color:#e6db74">&#34;Skipping: &#34;</span><span style="color:#f92672">+</span>basedir<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; because it already exists!&#34;</span>)
 
-</code></pre><div id="geo-post-385" class="geo geo-post" style="display: none">
+</code></pre></div><div id="geo-post-385" class="geo geo-post" style="display: none">
   <span class="latitude">44.852994</span><span class="longitude">-93.55073</span>
 </div>
 

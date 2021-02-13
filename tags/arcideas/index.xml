@@ -10,12 +10,12 @@
     <atom:link href="https://maprantala.com/tags/arcideas/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>ArcIdeas: Scale-Dependant Settings.</title>
-      <link>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings./</link>
+      <title>ArcIdeas: Scale-Dependant Settings</title>
+      <link>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings/</link>
       <pubDate>Fri, 25 Mar 2011 11:29:36 -0500</pubDate>
-      <guid>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings./</guid>
+      <guid>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings/</guid>
       <description>&lt;p&gt;Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent.  Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range.  Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;m not sure how rapidly ESRI takes &amp;lsquo;Ideas&amp;rsquo; into consideration but if you feel like it would benefit you, why not promote this idea:  &lt;a href=&#34;http://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not sure how rapidly ESRI takes &amp;lsquo;Ideas&amp;rsquo; into consideration but if you feel like it would benefit you, why not promote this idea: &lt;a href=&#34;https://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34; target=&#34;_blank&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Have a good weekend, all!&lt;/p&gt;
 &lt;div id=&#34;geo-post-501&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
   &lt;span class=&#34;latitude&#34;&gt;&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;&lt;/span&gt;
@@ -27,7 +27,7 @@
       <link>https://maprantala.com/2010/09/08/icon-transparency/</link>
       <pubDate>Wed, 08 Sep 2010 15:47:36 -0500</pubDate>
       <guid>https://maprantala.com/2010/09/08/icon-transparency/</guid>
-      <description>&lt;p&gt;Maybe I am just dense, but skimming &lt;a href=&#34;https://c.na1.visual.force.com/apex/ideaView?id=0873000000088YVAAY&#34;&gt;ArcIdeas&lt;/a&gt;, I found out that the transparency for an icon is determined by the upper-left pixel.  Don&amp;rsquo;t know if this is an ESRI convention or not but thought I would pass it one.&lt;/p&gt;
+      <description>&lt;p&gt;Maybe I am just dense, but skimming &lt;a href=&#34;https://c.na1.visual.force.com/apex/ideaView?id=0873000000088YVAAY&#34; target=&#34;_blank&#34;&gt;ArcIdeas&lt;/a&gt;, I found out that the transparency for an icon is determined by the upper-left pixel.  Don&amp;rsquo;t know if this is an ESRI convention or not but thought I would pass it one.&lt;/p&gt;
 </description>
     </item>
     

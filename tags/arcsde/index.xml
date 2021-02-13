@@ -80,7 +80,7 @@ arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;env&lt;span style=&
       <guid>https://maprantala.com/2011/05/03/renaming-raster-dataset-and-arcpy.exists/</guid>
       <description>&lt;p&gt;Discovered something today. I was working on an arcpy script that copies a raster dataset from a file geodatabase into a Postgres SDE geodatabase and then does some boring routine tasks–building stats, creating a mosaic dataset, adding the raster to the mosaic dataset and making a couple referenced mosaic datasets.&lt;/p&gt;
 &lt;p&gt;It sometimes has trouble with the initial step of uploading the raster because of the sheer size of if (1m elevation raster for counties) and it failed today on one. It failed today so I used the ArcCatalog GUI to copy the raster and renamed it.&lt;/p&gt;
-&lt;p&gt;I then proceeded to run launch my script. Before each step, I use &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Exists/000v00000021000000/&#34;&gt;arcpy.Exists&lt;/a&gt;() extensively to check to see if various items exist before I attempt to create them. It was continuously reporting that my raster set did not exist even though I could see it in ArcCatalog.&lt;/p&gt;
+&lt;p&gt;I then proceeded to run launch my script. Before each step, I use &lt;a href=&#34;https://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Exists/000v00000021000000/&#34; target=&#34;_blank&#34;&gt;arcpy.Exists&lt;/a&gt; extensively to check to see if various items exist before I attempt to create them. It was continuously reporting that my raster set did not exist even though I could see it in ArcCatalog.&lt;/p&gt;
 &lt;p&gt;Finally, I realized that I needed to close ArcCatalog before arcpy recognized the fact I had renamed something. To note, I was running arcpy from a separate PythonWin window, not from the ArcCatalog session I had renamed the raster dataset with.&lt;/p&gt;
 &lt;p&gt;Once I closed ArcCatalog, arcpy recognized the renaming and life was good.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m also suspicious now about a problem I often have running statistics on my rasters.  The ArcTool reports no errors when I create them but for some reason the raster does not show that it has statistics afterwards.  I normally have multiple ArcApplication sessions open and now suspect that perhaps this problem is due to sessions not letting go of the connection.  Stay tuned for further developments on this.&lt;/p&gt;
@@ -118,7 +118,7 @@ arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;env&lt;span style=&
       <link>https://maprantala.com/2011/03/11/revoking-public-permissions-in-postgresql-arcsde/</link>
       <pubDate>Fri, 11 Mar 2011 11:11:48 -0600</pubDate>
       <guid>https://maprantala.com/2011/03/11/revoking-public-permissions-in-postgresql-arcsde/</guid>
-      <description>&lt;p&gt;While banging my head on how to grant access to a &lt;a href=&#34;http://wp.me/pVrsJ-6Q&#34;&gt;referenced mosaic dataset&lt;/a&gt; , I did something out of frustration that I normally would not do–I granted ‘public&#39; access to some data.&lt;/p&gt;
+      <description>&lt;p&gt;While banging my head on how to grant access to a &lt;a href=&#34;https://maprantala.com/2011/03/09/referenced-mosaic-datasets-permissions-on-sde/&#34;&gt;referenced mosaic dataset&lt;/a&gt; , I did something out of frustration that I normally would not do–I granted &amp;lsquo;public&amp;rsquo; access to some data.&lt;/p&gt;
 &lt;p&gt;Then, after figuring out the problem, I went to revoke public access using ArcCatalog and received this error message:&lt;/p&gt;
 &lt;p&gt;Error 999999: Error executing function.&lt;/p&gt;
 &lt;p&gt;The Object being referenced does not exist [ERROR:  role &amp;lsquo;public&amp;rsquo; does not exist::SQL state: 42704]&lt;br&gt;
@@ -148,25 +148,25 @@ C:\GIS_dataBuchetteparcels.shp&lt;/p&gt;
 &lt;p&gt;Then, I went to the Results Tab (Select Geoprocessing from the Menubar, Geoprocessing-Results) and right-clicked on the Copy Raster result and selected &amp;lsquo;Copy as Python Snippet&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;I then created a new python script and pasted the one line.&lt;/p&gt;
 &lt;p&gt;I added some imports, accepted a parameter, some string manipulation, and some result outputs and I had a quick &amp;amp; easy script. In added the script in ArcToolbox and now I can right-click on it and run it in Batch mode. I do a quick search in Windows Explorer to get all the rasters I want to run it on and select &amp;amp; drag them to my ArcToolbox Batch Dialog.&lt;/p&gt;
-&lt;p&gt;Actual code can be downloaded &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110228_load_lidar_data.zip&#34;&gt;HERE&lt;/a&gt; and you don&amp;rsquo;t need to worry about WordPress messing up the spacing.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import arcpy
-import os, sys
+&lt;p&gt;Actual code can be downloaded &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110228_load_lidar_data.zip&#34; target=&#34;_blank&#34;&gt;HERE&lt;/a&gt; and you don&amp;rsquo;t need to worry about WordPress messing up the spacing.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; arcpy
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; sys
 
-inRaster = sys.argv[1] 
-basedir = os.path.basename(os.path.dirname(inRaster)).lower()
-outRaster = &amp;quot;Database Connections/mgs_lidar.lidar.sde/mgs_lidar.lidar.&amp;quot;+basedir
+inRaster &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;argv[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] 
+basedir &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;basename(os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dirname(inRaster))&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;lower()
+outRaster &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Database Connections/mgs_lidar.lidar.sde/mgs_lidar.lidar.&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;basedir
 
-def printit(inMessage):
-    print inMessage
-    arcpy.AddMessage(inMessage)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;printit&lt;/span&gt;(inMessage):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; inMessage
+    arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AddMessage(inMessage)
     
-if not (arcpy.Exists(outRaster)):
-    printit (&amp;quot;Importing: &amp;quot;+basedir)
-    arcpy.CopyRaster_management(inRaster,outRaster,&amp;quot;#&amp;quot;,&amp;quot;#&amp;quot;,&amp;quot;#&amp;quot;,&amp;quot;NONE&amp;quot;,&amp;quot;NONE&amp;quot;,&amp;quot;#&amp;quot;)
-else:
-    printit (&amp;quot;Skipping: &amp;quot;+basedir+&amp;quot; because it already exists!&amp;quot;)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; (arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Exists(outRaster)):
+    printit (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Importing: &amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;basedir)
+    arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;CopyRaster_management(inRaster,outRaster,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NONE&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NONE&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+    printit (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Skipping: &amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;basedir&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; because it already exists!&amp;#34;&lt;/span&gt;)
 
-&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-385&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div id=&#34;geo-post-385&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
   &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
 &lt;/div&gt;</description>
     </item>
@@ -177,7 +177,7 @@ else:
       <pubDate>Thu, 17 Feb 2011 18:22:07 -0600</pubDate>
       <guid>https://maprantala.com/2011/02/17/multiple-geodatabases-and-arcsde-services-from-one-postgresql-server/</guid>
       <description>&lt;p&gt;To better organize our ArcSDE data, we wanted to create multiple geodatabases and multiple ArcSDE services using one PostgreSQL database cluster (a cluster containing 1 machine at this point).  A side question is why can&amp;rsquo;t tables and raster be placed in Feature Datasets?  This wouldn&amp;rsquo;t be an end-all solution for what we want to do but there are some messy consequences of this limitation.&lt;/p&gt;
-&lt;p&gt;ESRI has instructions on &lt;a href=&#34;http://help.arcgis.com/EN/ArcGISDesktop/10.0/Help/index.html#//002p00000011000000.htm&#34;&gt;Setting up multiple geodatabases in one PostgreSQL database cluster on Windows&lt;/a&gt; which was helpful but we repeatedly got an &amp;lsquo;The ArcSDE Repository was unsuccessfully completed.  Would you like to view this error?&amp;rsquo; error during the Repository Setup step, step two of four, of the ArcSDE Post Installation process. The odd thing, however, was that the wise_err.log was blank so I had no clue on why it was failing.  After much Googling and head-banging, I came across a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=158&amp;amp;f=2290&amp;amp;t=298474#941273&#34;&gt;post from&lt;/a&gt; &lt;a href=&#34;http://www.linkedin.com/profile/view?id=24468141&amp;amp;authType=name&amp;amp;authToken=VoHW&amp;amp;pvs=pp&amp;amp;trk=ppro_viewmore&#34;&gt;Kim Doty&lt;/a&gt; on ESRI&amp;rsquo;s forums reporting the same problem but they were able to create a service by just continuing through the process .  Figuring I had nothing to lose, I thought I might as well try to go through the entire ArcSDE Post Installation process and see what happened.  Although I received blank error messages, I was able to successfully create the second ArcSDE instance.&lt;/p&gt;
+&lt;p&gt;ESRI has instructions on &lt;a href=&#34;https://help.arcgis.com/EN/ArcGISDesktop/10.0/Help/index.html#//002p00000011000000.htm&#34; target=&#34;_blank&#34;&gt;Setting up multiple geodatabases in one PostgreSQL database cluster on Windows&lt;/a&gt; which was helpful but we repeatedly got an &amp;lsquo;The ArcSDE Repository was unsuccessfully completed.  Would you like to view this error?&amp;rsquo; error during the Repository Setup step, step two of four, of the ArcSDE Post Installation process. The odd thing, however, was that the wise_err.log was blank so I had no clue on why it was failing.  After much Googling and head-banging, I came across a &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=158&amp;f=2290&amp;t=298474#941273&#34; target=&#34;_blank&#34;&gt;post from&lt;/a&gt; &lt;a href=&#34;http://www.linkedin.com/profile/view?id=24468141&amp;authType=name&amp;authToken=VoHW&amp;pvs=pp&amp;trk=ppro_viewmore&#34; target=&#34;_blank&#34;&gt;Kim Doty&lt;/a&gt; on ESRI&amp;rsquo;s forums reporting the same problem but they were able to create a service by just continuing through the process .  Figuring I had nothing to lose, I thought I might as well try to go through the entire ArcSDE Post Installation process and see what happened.  Although I received blank error messages, I was able to successfully create the second ArcSDE instance.&lt;/p&gt;
 &lt;p&gt;I will touch on some of the highlights of the process.  In my case, I was creating a database &amp;amp; service with these parameters:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Database name:&lt;img src=&#34;https://maprantala.com/Users/mrantala/AppData/Local/Temp/moz-screenshot-11.png&#34; alt=&#34;&#34;&gt; mgsgdb_lidar&lt;/li&gt;
@@ -220,7 +220,7 @@ else:
       <pubDate>Fri, 04 Feb 2011 18:26:53 -0600</pubDate>
       <guid>https://maprantala.com/2011/02/04/using-arcgis-9.3.1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</guid>
       <description>&lt;p&gt;In building our Enterprise GIS Database, we need to support users with different needs.  Some of our users just need to see the data on a map while others may want to download a copy of the data so they can use it within their own desktop system.&lt;/p&gt;
-&lt;p&gt;After doing some exploring, one of the options that looks like it will feel the bulk of our internal needs is to create a &lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Map%20service&#34;&gt;Map Service&lt;/a&gt;/&lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Geodata%20service&#34;&gt;Geodata Servic&lt;/a&gt;e pair–by creating a Map Service, we can make an easy-to-use visual representation of our data.  Combining that with a paired Geodata Service–a Geodata Service with the same name as the Map Service–we can accommodate those users who want to extract the data to their hard drive.&lt;/p&gt;
+&lt;p&gt;After doing some exploring, one of the options that looks like it will feel the bulk of our internal needs is to create a &lt;a href=&#34;https://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;anchor=ArcGIS%20Map%20service)&#34; target=&#34;_blank&#34;&gt;Map Service&lt;/a&gt;/&lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;anchor=ArcGIS%20Geodata%20service&#34; target=&#34;_blank&#34;&gt;Geodata Service&lt;/a&gt; pair–by creating a Map Service, we can make an easy-to-use visual representation of our data.  Combining that with a paired Geodata Service–a Geodata Service with the same name as the Map Service–we can accommodate those users who want to extract the data to their hard drive.&lt;/p&gt;
 &lt;p&gt;A user who has added paired Map &amp;amp; Geodata Services to an ArcMap dataframe can use the Distributed Geodatabase Toolbar to extract data to a local geodatabase.  The Extract Data button is on the far right of the Distributed Geodatabase Toolbar.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/02/distributedgeodatabasetoolbar.jpg&#34; alt=&#34;Distributed Geodatabase Toolbar&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -228,7 +228,7 @@ else:
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/02/versionerror.jpg&#34; alt=&#34;Version Error&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;When exporting to an .mdb file, I could open it in Access and see the data.&lt;/p&gt;
-&lt;p&gt;Luckily the error is fairly helpful–I was getting an ArcGIS &lt;a href=&#34;http://blogs.esri.com/Dev/blogs/geodatabase/archive/2010/03/15/The-Simplified-Geodatabase-Schema-in-ArcGIS-10.aspx&#34;&gt;10 Geodatabase&lt;/a&gt; even though I am running ArcGIS 9.3.1 on my desktop.  I was able to open the exported geodatabases using a copy of ArcGIS 10 on another machine.   The reason for the inconsistency is pretty interesting.  Our office is, and for the foreseeable future, running in a mixed-version environment.  We have a mixture of 9.3.1 and 10 desktops, a 9.3.1 ArcSDE server and a 10 ArcGIS Server.  The Extract Tool is a server-side function apparently that creates a version 10 Geodatabase.&lt;/p&gt;
+&lt;p&gt;Luckily the error is fairly helpful–I was getting an ArcGIS &lt;a href=&#34;https://blogs.esri.com/Dev/blogs/geodatabase/archive/2010/03/15/The-Simplified-Geodatabase-Schema-in-ArcGIS-10.aspx&#34; target=&#34;_blank&#34;&gt;10 Geodatabase&lt;/a&gt; even though I am running ArcGIS 9.3.1 on my desktop.  I was able to open the exported geodatabases using a copy of ArcGIS 10 on another machine.   The reason for the inconsistency is pretty interesting.  Our office is, and for the foreseeable future, running in a mixed-version environment.  We have a mixture of 9.3.1 and 10 desktops, a 9.3.1 ArcSDE server and a 10 ArcGIS Server.  The Extract Tool is a server-side function apparently that creates a version 10 Geodatabase.&lt;/p&gt;
 &lt;p&gt;The way to get around this is to extract the data to XML and then import the XML workspace into a geodatabase.  Not sure if that will work for all schemas but it was successful for me.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/02/exportxml.jpg&#34; alt=&#34;Export XML&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -245,27 +245,27 @@ else:
       <description>&lt;p&gt;NOTE:  I have a &lt;a href=&#34;https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/&#34;&gt;post here&lt;/a&gt; that shows how to check if a field exists using arcpy in ArcGIS 10.0.&lt;/p&gt;
 &lt;p&gt;In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.&lt;/p&gt;
 &lt;p&gt;No problem creating the index, for example:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;gp.AddIndex_management(tablename, field, IndexName, &amp;quot;NON_UNIQUE&amp;quot;, &amp;quot;NON_ASCENDING&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;gp.Exists(mgs_c5ix_fullname)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;AddIndex_management(tablename, field, IndexName, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NON_UNIQUE&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NON_ASCENDING&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Exists(mgs_c5ix_fullname)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I finally found this &lt;a href=&#34;http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method&#34; target=&#34;_blank&#34;&gt;ArcGIS Desktop Help 9.3 – ListIndexes method&lt;/a&gt; from ESRI.  Unfortunately, it doesn&amp;rsquo;t work-it did not like the &amp;lsquo;while&amp;rsquo; loop construction.  I&amp;rsquo;m guessing it worked in 9.2 and despite ESRI&amp;rsquo;s own &lt;a href=&#34;https://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions&#34; target=&#34;_blank&#34;&gt;warning&lt;/a&gt; about differences in 9.2 &amp;amp; 9.3, they did not update the sample code.&lt;/p&gt;
 &lt;p&gt;A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;gp = arcgisscripting.create(9.3)
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;gp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; arcgisscripting&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;create(&lt;span style=&#34;color:#ae81ff&#34;&gt;9.3&lt;/span&gt;)
 
-def indexExists(tablename,indexname):
- if not gp.Exists(tablename):
-  return False
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;indexExists&lt;/span&gt;(tablename,indexname):
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Exists(tablename):
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
 
- indexList = gp.listindexes(tablename)
+ indexList &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; gp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;listindexes(tablename)
 
- for iIndex in indexList:
-  if (iIndex.Name == indexname):
-   return True
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; iIndex &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; indexList:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (iIndex&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Name &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; indexname):
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; True
 
- return False
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;indexExists(tablename,indexname)
-&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-298&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To call it, just pass the table and indexname you are looking for.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;indexExists(tablename,indexname)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div id=&#34;geo-post-298&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
   &lt;span class=&#34;latitude&#34;&gt;&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;&lt;/span&gt;
 &lt;/div&gt;</description>
     </item>
@@ -284,9 +284,9 @@ def indexExists(tablename,indexname):
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/01/connecterror2.jpg&#34; alt=&#34;ConnectError2&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;p&gt;Turns out the solution was simple, this &lt;a href=&#34;http://resources.arcgis.com/content/kbase?fa=articleShow&amp;amp;d=37385&#34;&gt;article&lt;/a&gt; points out that &lt;a href=&#34;http://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;amp;PID=17&amp;amp;MetaID=1620&#34;&gt;Service pack 2&lt;/a&gt; is required.  After updating my ArcGIS, the problem was solved:&lt;/p&gt;
+&lt;p&gt;Turns out the solution was simple, this &lt;a href=&#34;https://resources.arcgis.com/content/kbase?fa=articleShow&amp;d=37385&#34; target=&#34;_blank&#34;&gt;article&lt;/a&gt; points out that &lt;a href=&#34;https://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;PID=17&amp;MetaID=1620&#34; target=&#34;_blank&#34;&gt;Service pack 2&lt;/a&gt; is required.  After updating my ArcGIS, the problem was solved:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/01/errormessage.jpg&#34; alt=&#34;ErrorMessage&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&amp;rsquo;s &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDE with the -o option as the first error message instructed me to do.&lt;/p&gt;
+&lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;https://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34; target=&#34;_blank&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&amp;rsquo;s &lt;a href=&#34;https://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34; target=&#34;_blank&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDE with the -o option as the first error message instructed me to do.&lt;/p&gt;
 &lt;div id=&#34;geo-post-284&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
   &lt;span class=&#34;latitude&#34;&gt;44.979965&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.263836&lt;/span&gt;
 &lt;/div&gt;</description>

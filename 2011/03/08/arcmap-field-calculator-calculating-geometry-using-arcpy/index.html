@@ -119,13 +119,13 @@ Tags:
 </div>
 </header>
 <div class="content">
-<p>One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm">Field Calculator</a>.  When I stumbled upon a bug in the way the <a href="https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/">Extract Values to Points</a> tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.</p>
+<p>One of the things I had not gotten around to doing in ArcGIS 10 was figure out how to directly manipulate the geometry of a record using the <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//005s00000025000000.htm" target="_blank">Field Calculator</a>.  When I stumbled upon a bug in the way the <a href="https://maprantala.com/2011/03/07/extract-values-to-points-spatial-analyst-bug/" target="_blank">Extract Values to Points</a> tool handles Null geometries, I figured it was time to figure it out.  Setting the X, Y to 0,0 was sufficient for my needs.</p>
 <p>I set the Parser to Python and the formula was simple once I figured out the syntax:</p>
-<pre><code>pPoint = arcpy.Point(0,0)
-</code></pre><p><img src="/images/2011/03/origin.jpg" alt="Use Field Calculator to Calculate Geometry"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pPoint <span style="color:#f92672">=</span> arcpy<span style="color:#f92672">.</span>Point(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>)
+</code></pre></div><p><img src="/images/2011/03/origin.jpg" alt="Use Field Calculator to Calculate Geometry"></p>
 <p>Then, to extend my knowledge, I wanted to see how to calculate the geometry based off of two fields (X and Y).   The only real trick is knowing the bracket field names using exclamation points instead of brackets:</p>
-<pre><code>arcpy.Point(!X!,!Y!)
-</code></pre><p><img src="/images/2011/03/fields.jpg" alt="Using Field Calculating to Calculate Geometry Using Attributes"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">arcpy<span style="color:#f92672">.</span>Point(<span style="color:#960050;background-color:#1e0010">!</span>X<span style="color:#960050;background-color:#1e0010">!</span>,<span style="color:#960050;background-color:#1e0010">!</span>Y<span style="color:#960050;background-color:#1e0010">!</span>)
+</code></pre></div><p><img src="/images/2011/03/fields.jpg" alt="Using Field Calculating to Calculate Geometry Using Attributes"></p>
 <p>So turns out everything it pretty easy and straight-forward.  Whew!</p>
 
 

@@ -116,18 +116,18 @@ Tags:
 <div class="content">
 <p>Related to my <a href="https://maprantala.com/2010/12/13/launching-a-python-script-with-parameters-3-methods/">post</a> on how I enable a script to accept parameters from different sources, I also often set up pythons scripts to output information a variety of ways.  This is largely due to the fact that some are called by ArcToolbox scripts.  Running in ESRI&rsquo;s domain, these scripts need to send the output through the arcgisscripting object but if you are running the python outside the ArcGIS framework, you can just print.</p>
 <p>If you assume one output method but then run your code in the opposite framework, you don&rsquo;t get to see all the pretty little messages.  What I do is create a simple little routine that broadcasts the message both ways.  This is probably an obvious solution but took a few cases before I went ahead and started implementing it.</p>
-<pre><code>gp = arcgisscripting.create()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">gp <span style="color:#f92672">=</span> arcgisscripting<span style="color:#f92672">.</span>create()
 
-#This will print both to the geoprocessing window or Python output window
-def gpprint(inmessage):
- gp.addmessage(inmessage)
- print inmessage
+<span style="color:#75715e">#This will print both to the geoprocessing window or Python output window</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gpprint</span>(inmessage):
+ gp<span style="color:#f92672">.</span>addmessage(inmessage)
+ <span style="color:#66d9ef">print</span> inmessage
 
-&lt;Code to do stuff&gt;
+<span style="color:#f92672">&lt;</span>Code to do stuff<span style="color:#f92672">&gt;</span>
 
-#Ok, I want to send a message:
-gpprint('Hello, sailor!')
-</code></pre>
+<span style="color:#75715e">#Ok, I want to send a message:</span>
+gpprint(<span style="color:#e6db74">&#39;Hello, sailor!&#39;</span>)
+</code></pre></div>
 
 </div>
 </article>

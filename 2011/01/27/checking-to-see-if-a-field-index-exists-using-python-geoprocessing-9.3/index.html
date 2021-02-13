@@ -120,27 +120,27 @@ Tags:
 <p>NOTE:  I have a <a href="https://maprantala.com/2011/02/21/checking-to-see-if-a-field-index-exists-using-arcpy-argis-10-0/">post here</a> that shows how to check if a field exists using arcpy in ArcGIS 10.0.</p>
 <p>In developing a python script to reload a geodatabase, I wanted to create any necessary indexes.</p>
 <p>No problem creating the index, for example:</p>
-<pre><code>gp.AddIndex_management(tablename, field, IndexName, &quot;NON_UNIQUE&quot;, &quot;NON_ASCENDING&quot;)
-</code></pre><p>But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).</p>
-<pre><code>gp.Exists(mgs_c5ix_fullname)
-</code></pre><p>I finally found this <a href="http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method">ArcGIS Desktop Help 9.3 – ListIndexes method</a> from ESRI.  Unfortunately, it doesn&rsquo;t work-it did not like the &lsquo;while&rsquo; loop construction.  I&rsquo;m guessing it worked in 9.2 and despite ESRI&rsquo;s own <a href="http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions">warning</a> about differences in 9.2 &amp; 9.3, they did not update the sample code.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">gp<span style="color:#f92672">.</span>AddIndex_management(tablename, field, IndexName, <span style="color:#e6db74">&#34;NON_UNIQUE&#34;</span>, <span style="color:#e6db74">&#34;NON_ASCENDING&#34;</span>)
+</code></pre></div><p>But before creating the index, I wanted to verify that it did not exist.  I tried the ever-popular, exists but could not get it to work–either it does not detect indexes or I just never got the fully-qualified name for the index right (ArcSDE using a postgres datastore).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">gp<span style="color:#f92672">.</span>Exists(mgs_c5ix_fullname)
+</code></pre></div><p>I finally found this <a href="http://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=ListIndexes_method" target="_blank">ArcGIS Desktop Help 9.3 – ListIndexes method</a> from ESRI.  Unfortunately, it doesn&rsquo;t work-it did not like the &lsquo;while&rsquo; loop construction.  I&rsquo;m guessing it worked in 9.2 and despite ESRI&rsquo;s own <a href="https://webhelp.esri.com/arcgiSDEsktop/9.3/index.cfm?TopicName=Differences_between_geoprocessor_versions" target="_blank">warning</a> about differences in 9.2 &amp; 9.3, they did not update the sample code.</p>
 <p>A key is to make sure you create a 9.3-version geoprocessing object and the following code can be used.  The caveat that I need to include is that the code only checks one table, if the index is on a different table, it will give you a false-negative.</p>
-<pre><code>gp = arcgisscripting.create(9.3)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">gp <span style="color:#f92672">=</span> arcgisscripting<span style="color:#f92672">.</span>create(<span style="color:#ae81ff">9.3</span>)
 
-def indexExists(tablename,indexname):
- if not gp.Exists(tablename):
-  return False
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">indexExists</span>(tablename,indexname):
+ <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> gp<span style="color:#f92672">.</span>Exists(tablename):
+  <span style="color:#66d9ef">return</span> False
 
- indexList = gp.listindexes(tablename)
+ indexList <span style="color:#f92672">=</span> gp<span style="color:#f92672">.</span>listindexes(tablename)
 
- for iIndex in indexList:
-  if (iIndex.Name == indexname):
-   return True
+ <span style="color:#66d9ef">for</span> iIndex <span style="color:#f92672">in</span> indexList:
+  <span style="color:#66d9ef">if</span> (iIndex<span style="color:#f92672">.</span>Name <span style="color:#f92672">==</span> indexname):
+   <span style="color:#66d9ef">return</span> True
 
- return False
-</code></pre><p>To call it, just pass the table and indexname you are looking for.</p>
-<pre><code>indexExists(tablename,indexname)
-</code></pre><div id="geo-post-298" class="geo geo-post" style="display: none">
+ <span style="color:#66d9ef">return</span> False
+</code></pre></div><p>To call it, just pass the table and indexname you are looking for.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">indexExists(tablename,indexname)
+</code></pre></div><div id="geo-post-298" class="geo geo-post" style="display: none">
   <span class="latitude"></span><span class="longitude"></span>
 </div>
 

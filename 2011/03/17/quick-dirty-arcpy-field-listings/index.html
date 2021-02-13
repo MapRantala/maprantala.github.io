@@ -118,7 +118,7 @@ Tags:
 </header>
 <div class="content">
 <p>I have to often get a table structure for a feature class or table into either a spreadsheet or word processing document.  There might be an easy way to do this in ArcGIS 10 but I haven&rsquo;t found it.  So, as is my nature, I decided to roll my own.</p>
-<p>This is a <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip">bare-bones script</a> that iterates through the fields, printing the field name, type, width, and precision.  There are three optional features to it:</p>
+<p>This is a <a href="https://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip" target="_blank">bare-bones script</a> that iterates through the fields, printing the field name, type, width, and precision.  There are three optional features to it:</p>
 <ul>
 <li>You can choose to have it list the domain, if there is one, on each field.</li>
 <li>You can have it write to a text file (otherwise you can just copy &amp; paste the results from the results window).</li>
@@ -131,116 +131,116 @@ Tags:
 <li>doCountsRespone, Boolean, Input, Required (controls whether or not you want to get the number of populated records.  (Your definition of populated may vary from my code)</li>
 <li>outputFile, File, Output, Optional (optional output file to write)</li>
 </ul>
-<p>Here is the code, but you are better off <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip">just downloading</a> it since I haven&rsquo;t figured out a good way to have WordPress play nicely with python&rsquo;s indenting.</p>
-<pre><code># Name: ListFields-arcpy.py
-#
-# Purpose: Lists the fields, their type, width, and precision
-# Can either have it export it to a CSV file or copy
-# and paste from the results window.
-#
-# To use, create a tool from the script and add 3 parameters:
-#  1) Table, Input, Required
-#  2) Boolean, Input, Required (controls whether or not domains are exported)
-#  3) Boolean, Input, Rekquired (controls whether or not you want to get the number of
-#  Populated records.&amp;nbsp; (Your defintion of populated may vary from my code)
-#  4) File, Output, Optional (optional output file to write)
-#
-#
+<p>Here is the code, but you are better off <a href="http://dl.dropbox.com/u/22241283/NodeDangles/20110316_ListFieldCounts-arcpy.zip" target="_blank">just downloading</a> it since I haven&rsquo;t figured out a good way to have WordPress play nicely with python&rsquo;s indenting.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Name: ListFields-arcpy.py</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># Purpose: Lists the fields, their type, width, and precision</span>
+<span style="color:#75715e"># Can either have it export it to a CSV file or copy</span>
+<span style="color:#75715e"># and paste from the results window.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># To use, create a tool from the script and add 3 parameters:</span>
+<span style="color:#75715e">#  1) Table, Input, Required</span>
+<span style="color:#75715e">#  2) Boolean, Input, Required (controls whether or not domains are exported)</span>
+<span style="color:#75715e">#  3) Boolean, Input, Rekquired (controls whether or not you want to get the number of</span>
+<span style="color:#75715e">#  Populated records.&amp;nbsp; (Your defintion of populated may vary from my code)</span>
+<span style="color:#75715e">#  4) File, Output, Optional (optional output file to write)</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#</span>
 
-import arcpy,sys,os
+<span style="color:#f92672">import</span> arcpy<span style="color:#f92672">,</span>sys<span style="color:#f92672">,</span>os
 
-def printit(inMessage):
- print inMessage
- arcpy.AddMessage(inMessage)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">printit</span>(inMessage):
+ <span style="color:#66d9ef">print</span> inMessage
+ arcpy<span style="color:#f92672">.</span>AddMessage(inMessage)
 
-if len(sys.argv) &gt; 4:
- featureclass = sys.argv[1]
- includedomainstring = sys.argv[2]
- doCountsRespone = sys.argv[3]
- outputFile = sys.argv[4]
-else:
- featureclass = &quot;C:/temp/before.shp&quot;
- includedomainstring = &quot;false&quot;
- doCountsRespone = &quot;true&quot;
- outputFile = &quot;C:/temp/before.csv&quot;
+<span style="color:#66d9ef">if</span> len(sys<span style="color:#f92672">.</span>argv) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>:
+ featureclass <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>]
+ includedomainstring <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">2</span>]
+ doCountsRespone <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">3</span>]
+ outputFile <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">4</span>]
+<span style="color:#66d9ef">else</span>:
+ featureclass <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C:/temp/before.shp&#34;</span>
+ includedomainstring <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;false&#34;</span>
+ doCountsRespone <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;true&#34;</span>
+ outputFile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C:/temp/before.csv&#34;</span>
 
-if (outputFile == &quot;&quot;):
- doOutputFile = False
-else:
- doOutputFile = True
+<span style="color:#66d9ef">if</span> (outputFile <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span>):
+ doOutputFile <span style="color:#f92672">=</span> False
+<span style="color:#66d9ef">else</span>:
+ doOutputFile <span style="color:#f92672">=</span> True
 
-if (str(doCountsRespone).lower() == &quot;true&quot;):
- doCounts = True
-else:
- doCounts = False
+<span style="color:#66d9ef">if</span> (str(doCountsRespone)<span style="color:#f92672">.</span>lower() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;true&#34;</span>):
+ doCounts <span style="color:#f92672">=</span> True
+<span style="color:#66d9ef">else</span>:
+ doCounts <span style="color:#f92672">=</span> False
 
-if (str(includedomainstring).lower() == &quot;true&quot;):
- includedomain = True
-else:
- includedomain = False
+<span style="color:#66d9ef">if</span> (str(includedomainstring)<span style="color:#f92672">.</span>lower() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;true&#34;</span>):
+ includedomain <span style="color:#f92672">=</span> True
+<span style="color:#66d9ef">else</span>:
+ includedomain <span style="color:#f92672">=</span> False
 
-lfields=arcpy.ListFields(featureclass)
+lfields<span style="color:#f92672">=</span>arcpy<span style="color:#f92672">.</span>ListFields(featureclass)
 
-d = arcpy.Describe(featureclass)
-printit(&quot;Dataset: &quot;+d.baseName)
-printit(&quot;Type: &quot;+d.dataType)
-printit(&quot;Path: &quot;+d.catalogPath)
-printit(&quot; &quot;)
+d <span style="color:#f92672">=</span> arcpy<span style="color:#f92672">.</span>Describe(featureclass)
+printit(<span style="color:#e6db74">&#34;Dataset: &#34;</span><span style="color:#f92672">+</span>d<span style="color:#f92672">.</span>baseName)
+printit(<span style="color:#e6db74">&#34;Type: &#34;</span><span style="color:#f92672">+</span>d<span style="color:#f92672">.</span>dataType)
+printit(<span style="color:#e6db74">&#34;Path: &#34;</span><span style="color:#f92672">+</span>d<span style="color:#f92672">.</span>catalogPath)
+printit(<span style="color:#e6db74">&#34; &#34;</span>)
 
-tableheaders = 'name,type,width,precision'
+tableheaders <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;name,type,width,precision&#39;</span>
 
-if (doCounts == True):
- tableheaders+=&quot;,count&quot;
+<span style="color:#66d9ef">if</span> (doCounts <span style="color:#f92672">==</span> True):
+ tableheaders<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;,count&#34;</span>
 
-if (includedomain == True):
- tableheaders+=&quot;,domain&quot;
+<span style="color:#66d9ef">if</span> (includedomain <span style="color:#f92672">==</span> True):
+ tableheaders<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;,domain&#34;</span>
 
-if (doOutputFile):
- tmpfile = open(outputFile,&quot;w&quot;)
- tmpfile.write(tableheaders)
- tmpfile.write(&quot;n&quot;)
+<span style="color:#66d9ef">if</span> (doOutputFile):
+ tmpfile <span style="color:#f92672">=</span> open(outputFile,<span style="color:#e6db74">&#34;w&#34;</span>)
+ tmpfile<span style="color:#f92672">.</span>write(tableheaders)
+ tmpfile<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;n&#34;</span>)
 
 printit (tableheaders)
-for lf in lfields:
+<span style="color:#66d9ef">for</span> lf <span style="color:#f92672">in</span> lfields:
 
- pThisline = lf.name+&quot;,&quot;+lf.type +&quot;,&quot;+str(lf.length)+&quot;,&quot;+str(lf.precision)
+ pThisline <span style="color:#f92672">=</span> lf<span style="color:#f92672">.</span>name<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">+</span>lf<span style="color:#f92672">.</span>type <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">+</span>str(lf<span style="color:#f92672">.</span>length)<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">+</span>str(lf<span style="color:#f92672">.</span>precision)
 
- if (doCounts == True):
+ <span style="color:#66d9ef">if</span> (doCounts <span style="color:#f92672">==</span> True):
 
- rowCount = 0
+ rowCount <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 
- #Note that I do not account for all field types
- #Also note that my definition of being populated may vary from yours.
- #I am using -999 as a flag to indicate a field type was not successfully
- #identified.
- if (lf.type == &quot;Double&quot;) or (lf.type == &quot;Single&quot;)&amp;nbsp; or (lf.type == &quot;Integer&quot;) or (lf.type == &quot;SmallInteger&quot;):
-  queryString = '&quot;'+lf.name + '&quot; &gt; 0'
-  rows = arcpy.SearchCursor(featureclass, queryString, &quot;&quot;, &quot;&quot;, &quot;&quot;)
- elif (lf.type == &quot;String&quot;):
-  queryString = '&quot;'+lf.name + '&quot; &lt;&gt; ' + &quot;''&quot;
-  rows = arcpy.SearchCursor(featureclass, queryString, &quot;&quot;, &quot;&quot;, &quot;&quot;)
- else:
-  rowCount = -999
-  #rows = arcpy.SearchCursor(featureclass, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;)
+ <span style="color:#75715e">#Note that I do not account for all field types</span>
+ <span style="color:#75715e">#Also note that my definition of being populated may vary from yours.</span>
+ <span style="color:#75715e">#I am using -999 as a flag to indicate a field type was not successfully</span>
+ <span style="color:#75715e">#identified.</span>
+ <span style="color:#66d9ef">if</span> (lf<span style="color:#f92672">.</span>type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Double&#34;</span>) <span style="color:#f92672">or</span> (lf<span style="color:#f92672">.</span>type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Single&#34;</span>)<span style="color:#f92672">&amp;</span>nbsp; <span style="color:#f92672">or</span> (lf<span style="color:#f92672">.</span>type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Integer&#34;</span>) <span style="color:#f92672">or</span> (lf<span style="color:#f92672">.</span>type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;SmallInteger&#34;</span>):
+  queryString <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#34;&#39;</span><span style="color:#f92672">+</span>lf<span style="color:#f92672">.</span>name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&#34; &gt; 0&#39;</span>
+  rows <span style="color:#f92672">=</span> arcpy<span style="color:#f92672">.</span>SearchCursor(featureclass, queryString, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+ <span style="color:#66d9ef">elif</span> (lf<span style="color:#f92672">.</span>type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;String&#34;</span>):
+  queryString <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#34;&#39;</span><span style="color:#f92672">+</span>lf<span style="color:#f92672">.</span>name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&#34; &lt;&gt; &#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39;&#39;&#34;</span>
+  rows <span style="color:#f92672">=</span> arcpy<span style="color:#f92672">.</span>SearchCursor(featureclass, queryString, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+ <span style="color:#66d9ef">else</span>:
+  rowCount <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">999</span>
+  <span style="color:#75715e">#rows = arcpy.SearchCursor(featureclass, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;)</span>
 
- if (rowCount == 0):
-  for row in rows:
-   rowCount+=1
+ <span style="color:#66d9ef">if</span> (rowCount <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>):
+  <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> rows:
+   rowCount<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
 
- pThisline=pThisline+&quot;,&quot;+str(rowCount)
+ pThisline<span style="color:#f92672">=</span>pThisline<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">+</span>str(rowCount)
 
- if (includedomain == True):
-  pThisline=pThisline+&quot;,&quot;+lf.domain
+ <span style="color:#66d9ef">if</span> (includedomain <span style="color:#f92672">==</span> True):
+  pThisline<span style="color:#f92672">=</span>pThisline<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">+</span>lf<span style="color:#f92672">.</span>domain
 
  printit (pThisline)
 
- if (doOutputFile):
-  tmpfile.write(pThisline)
-  tmpfile.write(&quot;n&quot;)
+ <span style="color:#66d9ef">if</span> (doOutputFile):
+  tmpfile<span style="color:#f92672">.</span>write(pThisline)
+  tmpfile<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;n&#34;</span>)
 
-if (doOutputFile):
- tmpfile.close
-</code></pre><div id="geo-post-473" class="geo geo-post" style="display: none">
+<span style="color:#66d9ef">if</span> (doOutputFile):
+ tmpfile<span style="color:#f92672">.</span>close
+</code></pre></div><div id="geo-post-473" class="geo geo-post" style="display: none">
   <span class="latitude">44.852994</span><span class="longitude">-93.55073</span>
 </div>
 

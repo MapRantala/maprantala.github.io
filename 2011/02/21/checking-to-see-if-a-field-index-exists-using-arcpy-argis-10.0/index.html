@@ -116,27 +116,27 @@ Tags:
 <div class="content">
 <p>Updating some python code from 9.3 that using geoprocessing  to 10.0 using arcpy and the first real object I&rsquo;ve had to change relates to detecting whether or not an index exists on a table.</p>
 <p>I previously <a href="https://maprantala.com/2011/01/27/checking-to-see-if-a-field-index-exists-using-python/">posted code</a> using a 9.3 geoprocessing commands, the core of it being:</p>
-<pre><code>indexList = gp.listindexes(tablename)
-for iIndex in indexList:
-    if (iIndex.Name == indexname):
-       return True
-return False
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">indexList <span style="color:#f92672">=</span> gp<span style="color:#f92672">.</span>listindexes(tablename)
+<span style="color:#66d9ef">for</span> iIndex <span style="color:#f92672">in</span> indexList:
+    <span style="color:#66d9ef">if</span> (iIndex<span style="color:#f92672">.</span>Name <span style="color:#f92672">==</span> indexname):
+       <span style="color:#66d9ef">return</span> True
+<span style="color:#66d9ef">return</span> False
 
-</code></pre><p>With arcpy, ESRI has gone back to using the <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Describe/000v00000026000000/">Describe</a> methodology.  Way back when GISers use to type most of their commands into their wood-burning computers, the command &lsquo;Describe&rsquo; was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).  The snippet below shows a function for checking to see if a table has an index with a specified named.</p>
-<pre><code>def indexExists(tablename,indexname):
+</code></pre></div><p>With arcpy, ESRI has gone back to using the <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Describe/000v00000026000000/" target="_blank">Describe</a> methodology.  Way back when GISers use to type most of their commands into their wood-burning computers, the command &lsquo;Describe&rsquo; was used to retrieve information about a coverage, grid, or other data set in our fancy AMLs (or SMLs).  The snippet below shows a function for checking to see if a table has an index with a specified named.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">indexExists</span>(tablename,indexname):
 
- if not arcpy.Exists(tablename):
-  return False
+ <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> arcpy<span style="color:#f92672">.</span>Exists(tablename):
+  <span style="color:#66d9ef">return</span> False
 
- tabledescription = arcpy.Describe(tablename)
+ tabledescription <span style="color:#f92672">=</span> arcpy<span style="color:#f92672">.</span>Describe(tablename)
 
- for iIndex in tabledescription.indexes:
-  if (iIndex.Name == indexname):
-   return True
+ <span style="color:#66d9ef">for</span> iIndex <span style="color:#f92672">in</span> tabledescription<span style="color:#f92672">.</span>indexes:
+  <span style="color:#66d9ef">if</span> (iIndex<span style="color:#f92672">.</span>Name <span style="color:#f92672">==</span> indexname):
+   <span style="color:#66d9ef">return</span> True
 
- return False
+ <span style="color:#66d9ef">return</span> False
 
-</code></pre><div id="geo-post-364" class="geo geo-post" style="display: none">
+</code></pre></div><div id="geo-post-364" class="geo geo-post" style="display: none">
   <span class="latitude">44.852994</span><span class="longitude">-93.55073</span>
 </div>
 

@@ -59,12 +59,12 @@ print &amp;quot;done!&amp;quot;
     </item>
     
     <item>
-      <title>ArcIdeas: Scale-Dependant Settings.</title>
-      <link>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings./</link>
+      <title>ArcIdeas: Scale-Dependant Settings</title>
+      <link>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings/</link>
       <pubDate>Fri, 25 Mar 2011 11:29:36 -0500</pubDate>
-      <guid>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings./</guid>
+      <guid>https://maprantala.com/2011/03/25/arcideas-scale-dependant-settings/</guid>
       <description>&lt;p&gt;Someone mentioned an idea on ArcIdeas for making various display settings on a feature classes scale-dependent.  Right now some of that can be accomplished by loading a feature classes multiple times, adjusting the settings, and setting the visible range.  Working more and more in ArcGIS Server, I can see the value of increased scale-dependent settings.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;m not sure how rapidly ESRI takes &amp;lsquo;Ideas&amp;rsquo; into consideration but if you feel like it would benefit you, why not promote this idea:  &lt;a href=&#34;http://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not sure how rapidly ESRI takes &amp;lsquo;Ideas&amp;rsquo; into consideration but if you feel like it would benefit you, why not promote this idea: &lt;a href=&#34;https://ideas.arcgis.com/ideaView?id=087300000008IPaAAM&#34; target=&#34;_blank&#34;&gt;Scale Range, SQL Query and Symbology Rendering in ArcMap&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Have a good weekend, all!&lt;/p&gt;
 &lt;div id=&#34;geo-post-501&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
   &lt;span class=&#34;latitude&#34;&gt;&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;&lt;/span&gt;
@@ -80,36 +80,36 @@ print &amp;quot;done!&amp;quot;
 &lt;p&gt;So I went through the process of converting my domain back to a table, made my edits in Access and exported the rows to a .dbf in the order I wanted them.&lt;/p&gt;
 &lt;p&gt;I removed the domain from the field I knew it was assigned to but when I tried to delete the domain, I received an error (The domain is used as a default domain).&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/03/failedtodeletedomain.png&#34; alt=&#34;The domain is used as a default domain.&#34;&gt;&lt;/p&gt;
-&lt;p&gt;The Google Machine led me to an &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;amp;f=985&amp;amp;t=303616&#34;&gt;ArcForums post&lt;/a&gt; by  with some python code for listing all the fields with a domain.&lt;/p&gt;
-&lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the ‘listfc(&#39;&#39;)&amp;rsquo; line that is the first line of the def listds() module.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import arcpy
+&lt;p&gt;The Google Machine led me to an &lt;a href=&#34;http://forums.esri.com/Thread.asp?c=93&amp;f=985&amp;t=303616&#34; target=&#34;_blank&#34;&gt;ArcForums post&lt;/a&gt; by  with some python code for listing all the fields with a domain.&lt;/p&gt;
+&lt;p&gt;I tweaked the original a bit, first because it was only examining feature classes in a feature dataset, not stand-alone feature datasets.  And secondly, I updated it to use arcpy.  I posted both the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-9_3.zip&#34; target=&#34;_blank&#34;&gt;9.3 version&lt;/a&gt; and the &lt;a href=&#34;http://dl.dropbox.com/u/22241283/NodeDangles/20110314_ListDomains-10.zip&#34; target=&#34;_blank&#34;&gt;10.0 version&lt;/a&gt;, but here is a quick look.  The key addition is the &amp;ldquo;listfc(&#39;&#39;)&amp;rdquo; line that is the first line of the def listds() module.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; arcpy
 
-min_workspace = r&amp;quot;C:\Users\mranter\AppData\Roaming\ESRI\Desktop10.0\ArcCatalog\min.minstaff.sde&amp;quot;
+min_workspace &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;r&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C:\Users\mranter\AppData\Roaming\ESRI\Desktop10.0\ArcCatalog\min.minstaff.sde&amp;#34;&lt;/span&gt;
 
-infgdb=(min_workspace)
-arcpy.env.workspace = infgdb
+infgdb&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(min_workspace)
+arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;env&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;workspace &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; infgdb
 
-def listfc(inDataset):
-   featureclasses = arcpy.ListFeatureClasses(&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,inDataset)
-   for f in featureclasses:
-      print &amp;quot;feature class: &amp;quot;,f
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;listfc&lt;/span&gt;(inDataset):
+   featureclasses &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ListFeatureClasses(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,inDataset)
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; f &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; featureclasses:
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;feature class: &amp;#34;&lt;/span&gt;,f
 
-lfields=arcpy.ListFields(f)
+lfields&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ListFields(f)
 
-for lf in lfields:
-   if lf.domain &amp;lt; &amp;quot;&amp;quot;:
-      print &amp;quot;      domain&amp;quot;,f, lf.name, lf.domain
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; lf &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; lfields:
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; lf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;domain &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;:
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;      domain&amp;#34;&lt;/span&gt;,f, lf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;name, lf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;domain
 
-def listds():
-   listfc(&amp;quot;&amp;quot;)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;listds&lt;/span&gt;():
+   listfc(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;)
 
-   datasets=arcpy.ListDatasets (&amp;quot;&amp;quot;,&amp;quot;&amp;quot;)
-   for d in datasets:
-      print &amp;quot;  dataset: &amp;quot;,d
+   datasets&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;arcpy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ListDatasets (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;)
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; d &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; datasets:
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;  dataset: &amp;#34;&lt;/span&gt;,d
 
 listfc(d)
 listds()
-&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;geo-post-440&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div id=&#34;geo-post-440&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
   &lt;span class=&#34;latitude&#34;&gt;44.852994&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.55073&lt;/span&gt;
 &lt;/div&gt;</description>
     </item>
@@ -120,7 +120,7 @@ listds()
       <pubDate>Fri, 04 Feb 2011 18:26:53 -0600</pubDate>
       <guid>https://maprantala.com/2011/02/04/using-arcgis-9.3.1-desktop-to-extract-data-from-an-arcgis-10-server-geodata-service/</guid>
       <description>&lt;p&gt;In building our Enterprise GIS Database, we need to support users with different needs.  Some of our users just need to see the data on a map while others may want to download a copy of the data so they can use it within their own desktop system.&lt;/p&gt;
-&lt;p&gt;After doing some exploring, one of the options that looks like it will feel the bulk of our internal needs is to create a &lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Map%20service&#34;&gt;Map Service&lt;/a&gt;/&lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;amp;anchor=ArcGIS%20Geodata%20service&#34;&gt;Geodata Servic&lt;/a&gt;e pair–by creating a Map Service, we can make an easy-to-use visual representation of our data.  Combining that with a paired Geodata Service–a Geodata Service with the same name as the Map Service–we can accommodate those users who want to extract the data to their hard drive.&lt;/p&gt;
+&lt;p&gt;After doing some exploring, one of the options that looks like it will feel the bulk of our internal needs is to create a &lt;a href=&#34;https://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;anchor=ArcGIS%20Map%20service)&#34; target=&#34;_blank&#34;&gt;Map Service&lt;/a&gt;/&lt;a href=&#34;http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?TopicName=Types_of_services_in_ArcGIS_Server&amp;anchor=ArcGIS%20Geodata%20service&#34; target=&#34;_blank&#34;&gt;Geodata Service&lt;/a&gt; pair–by creating a Map Service, we can make an easy-to-use visual representation of our data.  Combining that with a paired Geodata Service–a Geodata Service with the same name as the Map Service–we can accommodate those users who want to extract the data to their hard drive.&lt;/p&gt;
 &lt;p&gt;A user who has added paired Map &amp;amp; Geodata Services to an ArcMap dataframe can use the Distributed Geodatabase Toolbar to extract data to a local geodatabase.  The Extract Data button is on the far right of the Distributed Geodatabase Toolbar.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/02/distributedgeodatabasetoolbar.jpg&#34; alt=&#34;Distributed Geodatabase Toolbar&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -128,7 +128,7 @@ listds()
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/02/versionerror.jpg&#34; alt=&#34;Version Error&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;p&gt;When exporting to an .mdb file, I could open it in Access and see the data.&lt;/p&gt;
-&lt;p&gt;Luckily the error is fairly helpful–I was getting an ArcGIS &lt;a href=&#34;http://blogs.esri.com/Dev/blogs/geodatabase/archive/2010/03/15/The-Simplified-Geodatabase-Schema-in-ArcGIS-10.aspx&#34;&gt;10 Geodatabase&lt;/a&gt; even though I am running ArcGIS 9.3.1 on my desktop.  I was able to open the exported geodatabases using a copy of ArcGIS 10 on another machine.   The reason for the inconsistency is pretty interesting.  Our office is, and for the foreseeable future, running in a mixed-version environment.  We have a mixture of 9.3.1 and 10 desktops, a 9.3.1 ArcSDE server and a 10 ArcGIS Server.  The Extract Tool is a server-side function apparently that creates a version 10 Geodatabase.&lt;/p&gt;
+&lt;p&gt;Luckily the error is fairly helpful–I was getting an ArcGIS &lt;a href=&#34;https://blogs.esri.com/Dev/blogs/geodatabase/archive/2010/03/15/The-Simplified-Geodatabase-Schema-in-ArcGIS-10.aspx&#34; target=&#34;_blank&#34;&gt;10 Geodatabase&lt;/a&gt; even though I am running ArcGIS 9.3.1 on my desktop.  I was able to open the exported geodatabases using a copy of ArcGIS 10 on another machine.   The reason for the inconsistency is pretty interesting.  Our office is, and for the foreseeable future, running in a mixed-version environment.  We have a mixture of 9.3.1 and 10 desktops, a 9.3.1 ArcSDE server and a 10 ArcGIS Server.  The Extract Tool is a server-side function apparently that creates a version 10 Geodatabase.&lt;/p&gt;
 &lt;p&gt;The way to get around this is to extract the data to XML and then import the XML workspace into a geodatabase.  Not sure if that will work for all schemas but it was successful for me.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/02/exportxml.jpg&#34; alt=&#34;Export XML&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -151,9 +151,9 @@ listds()
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/01/connecterror2.jpg&#34; alt=&#34;ConnectError2&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;p&gt;Turns out the solution was simple, this &lt;a href=&#34;http://resources.arcgis.com/content/kbase?fa=articleShow&amp;amp;d=37385&#34;&gt;article&lt;/a&gt; points out that &lt;a href=&#34;http://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;amp;PID=17&amp;amp;MetaID=1620&#34;&gt;Service pack 2&lt;/a&gt; is required.  After updating my ArcGIS, the problem was solved:&lt;/p&gt;
+&lt;p&gt;Turns out the solution was simple, this &lt;a href=&#34;https://resources.arcgis.com/content/kbase?fa=articleShow&amp;d=37385&#34; target=&#34;_blank&#34;&gt;article&lt;/a&gt; points out that &lt;a href=&#34;https://resources.arcgis.com/content/patches-and-service-packs?fa=viewPatch&amp;PID=17&amp;MetaID=1620&#34; target=&#34;_blank&#34;&gt;Service pack 2&lt;/a&gt; is required.  After updating my ArcGIS, the problem was solved:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://maprantala.com/images/2011/01/errormessage.jpg&#34; alt=&#34;ErrorMessage&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;http://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&amp;rsquo;s &lt;a href=&#34;http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDE with the -o option as the first error message instructed me to do.&lt;/p&gt;
+&lt;p&gt;I was the proud, new recipient of a non-misleading error message.  After some minor head-slapping, I realized that &lt;a href=&#34;https://wikis.esri.com/wiki/display/SupportCenter/ArcGIS+10+-+Product+Compatibility+Matrix+for+Clients+and+Servers+of+ArcSDE+technology+in+ArcGIS+Server&#34; target=&#34;_blank&#34;&gt;9.3.1 and older versions of ArcGIS&lt;/a&gt; are not able to connect to ArcSDE 10.  Doh!  My bad–I should have read ESRI&amp;rsquo;s &lt;a href=&#34;https://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/Compatibility_between_clients_and_geodatabases_in_PostgreSQL_when_using_an_ArcSDE_service/002p000000pw000000/&#34; target=&#34;_blank&#34;&gt;clear information&lt;/a&gt; on this topic.  At least I never actually tried to install ArcSDE with the -o option as the first error message instructed me to do.&lt;/p&gt;
 &lt;div id=&#34;geo-post-284&#34; class=&#34;geo geo-post&#34; style=&#34;display: none&#34;&gt;
   &lt;span class=&#34;latitude&#34;&gt;44.979965&lt;/span&gt;&lt;span class=&#34;longitude&#34;&gt;-93.263836&lt;/span&gt;
 &lt;/div&gt;</description>
